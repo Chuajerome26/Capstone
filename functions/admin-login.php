@@ -33,9 +33,11 @@ require '../classes/database.php';
 
      //start session 
     session_start();
-    $_SESSION["admin_id"] = $adminEmpId;
+    $_SESSION["id"] = $adminEmpId;
 
-    header("Location: ../Pages/dashboard.php");
+    alert('Pakyuu');
+
+    // header("Location: ../Pages/dashboard.php");
     exit();
 } else {
     header("Location:../index.php?error=emptyInput");
