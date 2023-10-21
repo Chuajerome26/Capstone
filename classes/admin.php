@@ -31,4 +31,14 @@ class Admin
             return $result;
         }
     }
+    public function twoFactor($token, $token_expiry, $id){
+
+        $stmt = $this->database->getConnection()->prepare('UPDATE login SET token = ?, token_expiry = ? WHERE id = ?');
+
+         //if execution fail
+         if (!$stmt->execute([$token, $token_expiry, $id])) {
+            header("Location: ../index.php?error=stmtfail");
+            exit();
+        }
+    }
 }
