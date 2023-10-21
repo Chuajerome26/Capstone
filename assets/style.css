@@ -25,22 +25,22 @@ body {
 
 @keyframes slideshow {
   0% {
-    background-image: url(peoples.jpg);
+    background-image: url(../images/peoples.jpg);
   }
   20% {
-    background-image: url(peoples\ 2.jpg);
+    background-image: url(../images/peoples\ 2.jpg);
   }
   40% {
-    background-image: url(peoples\ 3.jpg);
+    background-image: url(../images/peoples\ 3.jpg);
   }
   60% {
-    background-image: url(peoples\ 4.jpg);
+    background-image: url(../images/peoples\ 4.jpg);
   }
   80% {
-    background-image: url(peoples\ 5.jpg);
+    background-image: url(../images/peoples\ 5.jpg);
   }
   100% {
-    background-image: url(peoples\ 6.jpg);
+    background-image: url(../images/peoples\ 6.jpg);
   }
 }
 
@@ -131,7 +131,7 @@ span {
   transition: 0.1s;
   width: 27px;
   height: 24px;
-  background: url(mata.png);
+  background: url(../images/mata.png);
   background-size: 27px 27px;
   margin: 0 auto;
   border: none;
@@ -146,7 +146,7 @@ span {
   transition: 0.1s;
   width: 27px;
   height: 24px;
-  background: url(mata\ 2.png);
+  background: url(../images/mata\ 2.png);
   background-size: 27px 27px;
   margin: 0 auto;
   border: none;
@@ -160,7 +160,7 @@ span {
   transition: 0.1s;
   width: 27px;
   height: 24px;
-  background: url(download1.png);
+  background: url(../images/download1.png);
   background-size: 27px 27px;
   margin: 0 auto;
   border: none;
@@ -175,7 +175,7 @@ span {
   transition: 0.1s;
   width: 27px;
   height: 24px;
-  background: url(download2.png);
+  background: url(../images/download2.png);
   background-size: 27px 27px;
   margin: 0 auto;
   border: none;

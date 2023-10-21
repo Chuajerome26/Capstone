@@ -42,7 +42,7 @@
             
                 <div class="logo">
 
-                  <img src="ss.png"  width="115" height="115" style="border-radius: 50%;" >
+                  <img src="images/ss.png" width="115" height="115" style="border-radius: 50%;">
                   
                 </div>
               </br>
@@ -54,9 +54,7 @@
                     <input type="password" id="pass" class="input-field" placeholder="Enter Password" required />
                     <a href="#" class="showPass" id="passVis"></a>
                     <input type="checkbox" class="check-box" /><span>Remember Password</span>
-               
                     <button type="submit" class="submit-btn" style="height: 40px;"><b style=color:white;>Log In</b></button>
-                    
                 </form>
     
                 
