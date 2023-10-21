@@ -1,0 +1,187 @@
+body {
+  font-family: Arial;
+  color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  background-size: cover;
+  background-position: center center;
+  animation: slideshow 16s infinite; /* Adjust the duration (8s) as needed */
+}
+
+@keyframes slideshow {
+  0% {
+    background-image: url(peoples.jpg);
+  }
+  20% {
+    background-image: url(peoples\ 2.jpg);
+  }
+  40% {
+    background-image: url(peoples\ 3.jpg);
+  }
+  60% {
+    background-image: url(peoples\ 4.jpg);
+  }
+  80% {
+    background-image: url(peoples\ 5.jpg);
+  }
+  100% {
+    background-image: url(peoples\ 6.jpg);
+  }
+}
+
+.right {
+  right: 0;
+  background: linear-gradient(
+    109.6deg,
+    rgb(0, 204, 130) 11.2%,
+    rgb(58, 181, 46) 91.7%
+  );
+}
+
+.center {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5); /* Background color with transparency */
+}
+
+/* pagitan */
+
+.form-box {
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 6% auto;
+  background: white;
+  padding: 5px;
+  overflow: hidden;
+  border-radius: 30px;
+}
+
+.logo {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.input-group {
+  top: 180px;
+  position: absolute;
+  width: 280px;
+  transition: 0.5s;
+}
+.input-field {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: transparent;
+}
+.check-box {
+  margin: 30px 10px 30px 0;
+}
+.submit-btn {
+  width: 70%;
+  height: 50%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  background: linear-gradient(
+    109.6deg,
+    rgb(0, 204, 130) 11.2%,
+    rgb(58, 181, 46) 91.7%
+  );
+  border-radius: 10px;
+}
+
+.submit-btn:hover {
+  background-color: lightblue;
+}
+
+span {
+  color: #777;
+  font-size: 12px;
+  bottom: 68px;
+  position: absolute;
+}
+#login {
+  left: 50px;
+}
+
+.showPass {
+  transition: 0.1s;
+  width: 27px;
+  height: 24px;
+  background: url(mata.png);
+  background-size: 27px 27px;
+  margin: 0 auto;
+  border: none;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: -34px;
+  outline: none;
+}
+
+.notShowPass {
+  transition: 0.1s;
+  width: 27px;
+  height: 24px;
+  background: url(mata\ 2.png);
+  background-size: 27px 27px;
+  margin: 0 auto;
+  border: none;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: -34px;
+  outline: none;
+}
+.ShowPass2 {
+  transition: 0.1s;
+  width: 27px;
+  height: 24px;
+  background: url(download1.png);
+  background-size: 27px 27px;
+  margin: 0 auto;
+  border: none;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: -34px;
+  outline: none;
+}
+
+.notShowPass2 {
+  transition: 0.1s;
+  width: 27px;
+  height: 24px;
+  background: url(download2.png);
+  background-size: 27px 27px;
+  margin: 0 auto;
+  border: none;
+  float: right;
+  cursor: pointer;
+  position: relative;
+  top: -34px;
+  outline: none;
+}
