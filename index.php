@@ -49,12 +49,12 @@
             </br>
               
     
-                <form id="login" class="input-group">
-                    <input type="text" class="input-field" placeholder="Email" required />
-                    <input type="password" id="pass" class="input-field" placeholder="Enter Password" required />
+                <form method="post" action="functions/admin-login.php" id="login" class="input-group">
+                    <input type="text" name="email" class="input-field" placeholder="Email" required />
+                    <input type="password" id="pass" name="pass" class="input-field" placeholder="Enter Password" required />
                     <a href="#" class="showPass" id="passVis"></a>
                     <input type="checkbox" class="check-box" /><span>Remember Password</span>
-                    <button type="submit" class="submit-btn" style="height: 40px;"><b style=color:white;>Log In</b></button>
+                    <input type="submit" class="submit-btn" name="submitBtn">
                 </form>
     
                 
