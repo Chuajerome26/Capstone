@@ -42,7 +42,7 @@ class Database
     $mail->Port = 587;
 
     //recipients
-    $mail->setFrom('3gclothingline.noreply@gmail.com','3gclothingline');
+    $mail->setFrom('3gclothingline.noreply@gmail.com','CCMF');
     $mail->addAddress($recipient);
     $mail->Subject = $subject;
     $mail->Body = $message;
