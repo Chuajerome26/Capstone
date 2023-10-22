@@ -17,7 +17,7 @@ require '../classes/database.php';
 
     $adminData = $admin->login($email);
     $adminId = $adminData['id'];
-    $adminPass = $adminData['pass'];
+    $adminPass = $adminData['pass'];    
 
     if(!$adminData){
           header("Location:../index.php?error=errorEmail");
