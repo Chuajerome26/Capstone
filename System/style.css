@@ -1,0 +1,114 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	}
+body {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(home.jpg);
+	background-size: cover;
+	}
+img{
+	height: 80px;
+	width: 100px;
+	float: left;
+	margin-left:3%;
+}
+.logo h3{
+	margin-left: 12%;
+	color: #63d68f;
+}
+.form{
+	background: #fff;
+	border-radius: 10px;
+	margin-left: 2%;
+	margin-right: 2%;
+	}
+.form h1{
+	background: linear-gradient(150deg, #007a54, #63d68f);
+	font-size: 20px;
+	text-align: left;
+	color: white;
+	padding: 10px;
+	}
+.form h2{
+	margin-left: 3%;
+	font-size: 22px;
+}
+.form h3{
+	margin-left: 1%;
+	font-size: 22px;
+}
+.fields{
+	display: flex;
+	flex-wrap: wrap;
+}
+.input-field{
+	font-size: 20px;
+	width: calc(100% / 4 - 20px);
+}
+.input-field input{
+	font-size: 18px;
+	height:30px;
+}
+#birthdate{ 
+	height:30px;
+	width:222px; 
+	font-size:18px;
+}
+h4{
+	color: #007a54;
+}
+.educational{
+	display: flex;
+	flex-wrap: wrap;
+}
+.educ-back{
+	font-size: 20px;
+	width: calc(100% / 2 - 20px);
+}
+.educ-back input{
+	font-size: 18px;
+	width: 65%;
+}
+#primary{
+	margin-left: 26px;
+}
+#tertiary{
+	margin-left: 33px;
+}
+#graddate{ 
+	height:30px;
+	width:222px; 
+	font-size:18px;
+}
+form .button{
+	height: 45px;
+	margin: 25px 0;
+}
+form .button input{
+	height: 100%;
+	width: 20%;
+	outline: none;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 500;
+	letter-spacing: 1px;
+	border-radius: 100px;
+	background: linear-gradient(135deg, #63d68f, #007a54);
+}
+form .button input:hover{
+	background: linear-gradient(-135deg, #63d68f, #007a54);
+}
+#checkbox{
+	width:30px;
+	height: 15px;
+}
+#uploadbtn{
+	margin-left: 3%;
+}
+p{
+	margin-left:33;
+}
+a{
+	color: #007a54;
+}
