@@ -43,7 +43,7 @@ require '../classes/database.php';
     session_start();
     $_SESSION["id"] = $adminId;
 
-    header("Location: ../Pages/twoFactor.php");
+    header("Location: ../Pages-admin/twoFactor.php");
     exit();
 } else {
     header("Location:../index.php?error=emptyInput");

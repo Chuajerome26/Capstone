@@ -5,7 +5,7 @@ require '../classes/database.php';
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['token'] === '') {
     $token = $_POST['token'];
     $userId = $_SESSION['id'];
 
@@ -21,9 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $database->getConnection()->prepare('UPDATE login SET token = NULL, token_expiry = NULL WHERE id = :id');
         $stmt->execute(['id' => $userId]);
 
-        header("Location: ../Pages/navigation.html");
+        header("Location: ../Pages-admin/dashboard.php");
     } else {
         echo 'Invalid 2FA code or code has expired.';
     }
+}else{
+    header("Location: ../index.php");
 }
 ?>
