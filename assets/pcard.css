@@ -1,25 +1,156 @@
-body{
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
     background-color: lightgreen;
-    margin: 10em;
-}
-.card-img-top{
-    width: 60%;
+    margin: 3em 10em;
+  }
+  
+  /* Float four columns side by side */
+  .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding in columns */
+  .row {margin: 0 -5px;}
+  
+
+  .card-img-top{
+    width: 50%;
     border-radius: 50%;
     margin: 0 auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
+     border: 3px solid #fff;
+     margin-top: 15px;
+    
+  }
 
+  
 .card{
-    padding: 1.5em .5em. 5em;
     text-align: center;
     border-radius: 2em;
-    box-shadow: 0 50px 10px rgba(0, 0, 0, 0.2);
+    border-width: 20%;
+    padding: 16px;
+    background-color: #f1f1f1;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border-radius: 15px;
 }
-.card-title{
-    font-weight: bold;
-    font-size: 1.5em;
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+
+  
+.card:hover .card-img-top{
+    border-color:lightgreen;
+    transition: .7s ;
 }
-.btn-primary{
-    border-radius: 2em;
-    padding: 0.5 1.5 ;
+  
+.card-title
+{
+    font-size: medium;
 }
+
+
+  /* Responsive columns - one column layout (vertical) on small screens */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&family=Ubuntu&display=swap');
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Ubunty', sans-serif;
+    list-style: none;
+  }
+
+  .searchBox{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    height: 60px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  }
+
+.searchBox .dropdown{
+    position: relative;
+}
+
+  .searchBox .dropdown .defaultOption{
+    width: 170px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    cursor: pointer;
+    border-right: 2px solid rgb(168, 168, 168);
+    color: rgb(70, 70, 70);
+  }
+
+.searchBox .dropdown ul{
+    position: absolute;
+    border-radius: 5px;
+    top: 7px;
+    background-color: white;
+    width: 167px;
+    text-align: center;
+    padding-top: 20px;
+    display: none; 
+}
+
+.searchBox .dropdown ul.active{
+    display: block;
+
+}
+.searchBox .dropdown ul li{
+    padding-bottom: 10px;
+    color: rgb(70, 70, 70);
+    cursor: pointer;
+}
+.wrapper .searchBox .searchField{
+    width: 450px;
+    height: 60px;
+    position: relative;
+}
+.wrapper .searchBox .searchField input{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+    padding-left: 20px;
+}
+.wrapper .searchBox .searchField  i{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    line-height: 60px;
+    cursor: pointer;
+    color: lightgreen;
+}
+
+
+
+
