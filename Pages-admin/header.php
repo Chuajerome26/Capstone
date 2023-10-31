@@ -3,7 +3,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
@@ -44,24 +43,24 @@
           <!-- start -->
           
           <li class="item">
-            <div href="#" class="nav_link submenu_item">
-              
-              <span class="navlink_icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
-                  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
-                </svg>
-                <i class="bi bi-person-badge-fill"></i>
-              </span>
-              
-              <span class="navlink">Applicant Info</span>
-              <i class="bx bx-chevron-right arrow-left"></i>
-            </div>
-
-            <ul class="menu_items submenu">
-              <a href="#" class="nav_link sublink">Scholars</a>
-              <a href="#" class="nav_link sublink">Alumni</a>
-            </ul>
-          </li>
+              <div href="#" class="nav_link submenu_item">
+                
+                <span class="navlink_icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge-fill" viewBox="0 0 16 16">
+                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                  </svg>
+                  <i class="bi bi-person-badge-fill"></i>
+                </span>
+                
+                <span class="navlink">Applicant Info</span>
+                <i class="bx bx-chevron-right arrow-left"></i>
+              </div>
+  
+              <ul class="menu_items submenu">
+                <a href="profilecard.php" class="nav_link sublink">Scholar's Profile</a>
+              </ul>
+            </li>
+            
           <!-- end -->
 
           <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
@@ -74,10 +73,10 @@
                   <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
                   <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
                 </svg>
-                <i class="bi bi-list-task"></i>
               </span>
-              <span class="navlink">Appointment Plan</span>
+              <span class="navlink">Appointment</span>
               <i class="bx bx-chevron-right arrow-left"></i>
+
             </div>
 
             <ul class="menu_items submenu">
