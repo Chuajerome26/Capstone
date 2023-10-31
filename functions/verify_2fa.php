@@ -5,7 +5,7 @@ require '../classes/database.php';
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['token'] === '') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['token'];
     $userId = $_SESSION['id'];
 

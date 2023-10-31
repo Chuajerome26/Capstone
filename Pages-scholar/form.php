@@ -1,12 +1,10 @@
-<html>
-    <head>
-    <title>Application Form</title>
-    <link rel="stylesheet" href="style.css">
-    </head>
+<?php 
+include("header.php");
+?>
 <body>
     <div class="banner-area">
         <div class="wrapper">
-            <div class="logo"><img src="logo.jpg"></img>
+            <div class="logo"><img src="../images/logo.jpg"></img>
     <br>
         <h3> Consuelo Chito Madrigal <br> Foundation (CCMF)</h3>
             </div>
@@ -101,7 +99,7 @@
                             <input type="text" required>
                     </div> 
                     <div class="input-field">
-                        <label>Province:</label>
+                        <label>Province:</label><br>
                             <input type="text" required>
                     </div> 
                     <div class="input-field">
