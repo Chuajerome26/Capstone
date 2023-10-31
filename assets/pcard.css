@@ -5,14 +5,16 @@
   body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: lightgreen;
-    margin: 3em 10em;
+    margin-top: 1cm;
+    margin-left: 6.5cm;
+    margin-right: 2cm;
   }
   
   /* Float four columns side by side */
   .column {
     float: left;
     width: 25%;
-    padding: 0 10px;
+    padding: 24 10px;
   }
   
   /* Remove extra left and right margins, due to padding in columns */
@@ -150,7 +152,5 @@
     cursor: pointer;
     color: lightgreen;
 }
-
-
 
 
