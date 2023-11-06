@@ -55,7 +55,7 @@ include("header.php");
                     </div> 
                     <div class="input-field">
                         <label>Mobile Number:</label>
-                            <input type="text" placeholder="   Mobile Number" id="mNum" name="mNum" value="<?php echo isset($_POST['mNUm']) ? htmlspecialchars($_POST['mNum']) : ''; ?>" required>
+                            <input type="text" placeholder="   Mobile Number" id="mNum" name="mNum" value="<?php echo isset($_POST['mNUm']) ? htmlspecialchars($_POST['mNum']) : ''; ?>" onkeydown="return onlyNumberKey(event)" required>
                     </div> 
                     <div class="input-field">
                         <label>Email Address:</label>
@@ -85,7 +85,7 @@ include("header.php");
     <br></br>
                     <div class="input-field">
                         <label>Mobile Number:</label>
-                            <input type="text" placeholder="   Mobile Number" id="pMnum" name="pMnum" required>
+                            <input type="text" placeholder="   Mobile Number" id="pMnum" name="pMnum" onkeydown="return onlyNumberKey(event)" required>
                     </div> 
                     <div class="input-field">
                         <label>Occupation:</label>
@@ -175,6 +175,20 @@ function check() {
     submitButton.disabled = true;
   }
 }
+
+function onlyNumberKey(evt) {
+    
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
+    
+    // Allow numbers, backspace, delete, arrow keys, etc.
+    if ((ASCIICode >= 48 && ASCIICode <= 57) || (ASCIICode >= 96 && ASCIICode <= 105) ||
+        ASCIICode == 8 || ASCIICode == 46 || (ASCIICode >= 37 && ASCIICode <= 40) ||
+        ASCIICode == 9) {
+        return true;
+    }
+    return false;
+}
+
 
 function validateForm() {
   var email = document.forms["myForm"]["email"].value;
