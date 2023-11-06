@@ -31,19 +31,19 @@ require '../classes/database.php';
     }
 
     // Generate a random token and set expiry time (e.g., 10 minutes from now)
-    $token = bin2hex(random_bytes(5));
-    $expiry = new DateTime('+10 minutes');
-    $formattedExpiry = $expiry->format('Y-m-d H:i:s');
+    // $token = bin2hex(random_bytes(5));
+    // $expiry = new DateTime('+10 minutes');
+    // $formattedExpiry = $expiry->format('Y-m-d H:i:s');
 
-    $update = $admin->twoFactor($token, $formattedExpiry, $adminId);
+    // $update = $admin->twoFactor($token, $formattedExpiry, $adminId);
 
-    $sentEmail = $database->sendEmail($email,"Your Code For Authentication", "Your code is ". $token);
+    // $sentEmail = $database->sendEmail($email,"Your Code For Authentication", "Your code is ". $token);
 
      //start session 
     session_start();
     $_SESSION["id"] = $adminId;
 
-    header("Location: ../Pages-admin/twoFactor.php");
+    header("Location: ../admin_views/dashboard.php");
     exit();
 } else {
     header("Location:../index.php?error=emptyInput");
