@@ -34,7 +34,8 @@ if (isset($_SESSION['id'])) {
                     <th scope="col">Details</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
+            
             <?php
             $applicantsData = $admin->getApplicants();
             $num = 1;
@@ -51,19 +52,81 @@ if (isset($_SESSION['id'])) {
                     <td><?php echo $s["email"];?></td>
                     <td><?php echo $s["date_apply"];?></td>
                     <td><?php echo $status;?></td>
-                    <td><a href="#">View</a></td>
+                    <td>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        View
+                    </button>
+                    </td>
                 </tr>
-            </tbody>
-            <?php 
+                <?php 
             $num++;
                 } 
             ?>
+            </tbody>
         </table>
         </div>
     </div>
 </div>
 
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:600px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table id="applicant-modal" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Requirements</th>
+                    <th>Details</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <?php
+                    $appliData = $admin->getApplicants();
+                    foreach($appliData as $a){
+                ?>
+                <tr>
+                    <td>Copy of Id</td>
+                    <td><a href="../Uploads_pic/<?php echo $a["id_pic"]?>">Copy of Grades</a></td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>D</td>
+                </tr>
+                <tr>
+                    <td>E</td>
+                    <td>F</td>
+                </tr>
+                <tr>
+                    <td>G</td>
+                    <td>H</td>
+                </tr>
+                <tr>
+                    <td>I</td>
+                    <td>J</td>
+                </tr>
+                <tr>
+                    <td>K</td>
+                    <td>L</td>
+                </tr>
+                <tr>
+                    <td>M</td>
+                    <td>N</td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <?php
 include("footer.php");
@@ -72,5 +135,9 @@ include("footer.php");
 <script>
 $(document).ready(function() {
     $('#applicant').DataTable();
+});
+
+$(document).ready(function() {
+    $('#applicant-modal').DataTable();
 });
 </script>
