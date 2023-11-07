@@ -71,7 +71,7 @@ if(isset($_POST['submit'])){
 
     $fileExt1 = explode('.', $fileData1['fileName']);
     $fileActualExt1= strtolower(end($fileExt1));
-    $allowed1 = array('jpeg','png','jpg');
+    $allowed1 = array('pdf', 'docx');
 
     $fileExt2 = explode('.', $fileData2['fileName']);
     $fileActualExt2 = strtolower(end($fileExt2));

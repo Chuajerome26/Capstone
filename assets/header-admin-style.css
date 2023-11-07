@@ -38,8 +38,8 @@ li {
 }
 
 #sidebar {
-    max-width: 264px;
-    min-width: 264px;
+    max-width: 210px;
+    min-width: 210px;
     background: linear-gradient(
     109.6deg,
     rgb(0, 204, 130) 11.2%,

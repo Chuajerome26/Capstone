@@ -36,13 +36,13 @@ class Database
     $mail->isSMTP();
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = '3gclothingline.noreply@gmail.com';
-    $mail->Password = 'aguqhplqhbhvejvr';
+    $mail->Username = 'ccmf91740@gmail.com';
+    $mail->Password = 'oftm hnec gkiw mddd';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
     //recipients
-    $mail->setFrom('3gclothingline.noreply@gmail.com','CCMF');
+    $mail->setFrom('ccmf91740@gmail.com','CCMF');
     $mail->addAddress($recipient);
     $mail->Subject = $subject;
     $mail->Body = $message;

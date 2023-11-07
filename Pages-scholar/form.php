@@ -112,7 +112,7 @@ include("header.php");
     <br></br>
                 <div class="educational">  
                     <div class="educ-back">
-                            <input type="file" id="grades" name="grades" accept="image/jpeg, image/png" required>
+                            <input type="file" id="grades" name="grades" accept=".docx, .pdf" required>
                     </div> 
 		</div>
     <h4>_____________________________________________________________________________________________________________________________________</h4>

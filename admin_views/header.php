@@ -18,7 +18,7 @@
     <div class="wrapper">
         <!-- Sidebar -->
         <aside id="sidebar">
-            <div class="h-100" style="">
+            <div class="h-100">
                 <div class="sidebar-logo">
                     <a href="#">CCMF</a>
                 </div>
