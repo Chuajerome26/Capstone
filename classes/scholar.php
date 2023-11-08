@@ -173,5 +173,22 @@ class Scholar{
         exit();
     }
 
+    public function insertData($scholarID, $subjectTotal, $unitTotal, $gwa, $remark, $uploadedFileName) {
+        try {
+            // Insert data into the database using a single query
+            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_renew (scholarID, `subject-total`, `unit-total`, gwa, remark, file, status, date) VALUES (?, ?, ?, ?, ?, ?, 'Pending', NOW())");
+            $stmt->bindParam(1, $scholarID);
+            $stmt->bindParam(2, $subjectTotal);
+            $stmt->bindParam(3, $unitTotal);
+            $stmt->bindParam(4, $gwa);
+            $stmt->bindParam(5, $remark);
+            $stmt->bindParam(6, $uploadedFileName);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error inserting data: " . $e->getMessage();
+            return false;
+        }
+    }
 }
 
