@@ -10,13 +10,13 @@ require '../vendor/phpmailer/phpmailer/src/SMTP.php';
 
 class Database
 {
-    private $dbServername = "localhost";
-    private $dbUsername = "root";
-    private $dbPassword = "";
+    private $dbServername = "193.203.184.6";
+    private $dbUsername = "u434603824_capstoneSBIT4D";
+    private $dbPassword = "capstoneSBIT4D";
     private $connection;
 
     public function __construct( ) {
-        $this->connection = new PDO("mysql:host=$this->dbServername;dbname=capstone", $this->dbUsername, $this->dbPassword);
+        $this->connection = new PDO("mysql:host=$this->dbServername;dbname=u434603824_capstone", $this->dbUsername, $this->dbPassword);
 
        // set the PDO error mode to exception
        $this->connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);

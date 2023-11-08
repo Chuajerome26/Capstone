@@ -1,3 +1,11 @@
+<?php
+require '../classes/admin.php';
+require '../classes/database.php';
+
+$database = new Database();
+$admin = new Admin($database);
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -74,146 +82,25 @@
 
   
   <!--1st Column-->
+  
+<?php
+$data = $admin->getScholars();
+  foreach($data as $d){
+?>
   <div class="column">
+
   <div class="card" style="width: 15em;">
-                <img src="../images/pcard1.jpg" class="card-img-top" alt="...">
+                <img src="../Uploads_pic/<?php echo $d['id_pic'];?>" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h2 class="card-title">Alindog, Cong</h2>
-                  <h2 class="card-title">Student</h2>
-                  <p class="card-text">QCU-20-2132</p>
+                  <h2 class="card-title"><?php echo $d['f_name']." ".$d['l_name'];?></h2>
+                  <h2 class="card-title"><?php echo $d['email'];?></h2>
+                  <p class="card-text"><?php echo $d['date_apply'];?></p>
                   <a href="#" class="btn btn-primary">More Details</a>                  
                 </div>
               </div>
-
-              <br>
-            
-  <div class="card" style="width: 15em;">
-                <img src="../images/UserIconSample.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Surname, Firstname</h2>
-                  <h2 class="card-title">Student</h2>
-                  <p class="card-text">School-xx-xxx</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-
-              <br>
-
-  <div class="card" style="width: 15em;">
-                <img src="../images/UserIconSample.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Surname, Firstname</h2>
-                  <h2 class="card-title">Student</h2>
-                  <p class="card-text">School-xx-xxx</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-
-</div>
-           
-  
-  
-<!--Second Column-->
-  <div class="column">
-  <div class="card" style="width: 15em;">
-                <img src="../images/pcard2.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Anderson, John</h2>
-                  <h2 class="card-title">Alumni</h2>
-                  <p class="card-text">QCU-21-2122</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-              <br>
-              <div class="card" style="width: 15em;">
-                <img src="../images/UserIconSample.jpg"class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Surname, Firstname</h2>
-                  <h2 class="card-title">Alumni</h2>
-                  <p class="card-text">School-xx-xxx</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-              <br>
-              <div class="card" style="width: 15em;">
-                <img src="../images/UserIconSample.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Surname, Firstname</h2>
-                  <h2 class="card-title">Student</h2>
-                  <p class="card-text">School-xx-xxx</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-  </div>
-
-  <!--Third Column-->
-  <div class="column">
-  <div class="card" style="width: 15em;">
-                <img src="../images/pcard3.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Akita, Jenny</h2>
-                  <h2 class="card-title">Student</h2>
-                  <p class="card-text">QCU-20-2176</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-              <br>
-              <div class="card" style="width: 15em;">
-                <img src="../images/UserIconSample.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Surname, Firstname</h2>
-                  <h2 class="card-title">Alumni</h2>
-                  <p class="card-text">School-xx-xxx</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-              <br>
-              <div class="card" style="width: 15em;">
-                <img src="../images/UserIconSample.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Surname, Firstname</h2>
-                  <h2 class="card-title">Alumni</h2>
-                  <p class="card-text">School-xx-xxx</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-  </div>
-
-    <!--Fourth Column-->
-
-  <div class="column">
-  <div class="card" style="width: 15em;">
-                <img src="../images/pcard4.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Asaka, Hanny</h2>
-                  <h2 class="card-title">Student</h2>
-                  <p class="card-text">QCU-20-2132</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-              <br>
-              <div class="card" style="width: 15em;">
-                <img src="../images/UserIconSample.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Surname, Firstname</h2>
-                  <h2 class="card-title">Alumni</h2>
-                  <p class="card-text">School-xx-xxx</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-              <br>
-               <div class="card" style="width: 15em;">
-                <img src="../images/UserIconSample.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h2 class="card-title">Surname, Firstname</h2>
-                  <h2 class="card-title">Alumni</h2>
-                  <p class="card-text">School-xx-xxx</p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-
-  </div>
-
+        <?php
+  }
+        ?>
   
 
               <script>
