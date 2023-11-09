@@ -12,9 +12,37 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
     <title>CCMF</title>
+    <link rel="stylesheet"  href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="icon" href="../images/consuelo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/style1.css" />
+
+
+    <nav class="navbar">
+      <div class="logo_item">
+        <i class="" id="sidebarOpen"></i>
+       &nbsp; &nbsp;</i>Logo's Here
+      </div>
+
+      <div class="navbar_content">
+        <i class="bi bi-grid"></i>
+        <i class='bx bx-sun' id="darkLight"></i>
+        <i class='bx bx-bell' ></i>
+        
+        <img src="..//images/pcard1.jpg" alt="" class="profile" />
+        
+      </div>
+    </nav>
+ <br>
+ <br>
+ <br>
+
+
 </head>
 
 <body>
+
     <div class="wrapper">
         <!-- Sidebar -->
         <aside id="sidebar">
@@ -58,3 +86,7 @@
             </div>
         </aside>
         <!-- Main Component -->
+
+</body>
+
+</html>
