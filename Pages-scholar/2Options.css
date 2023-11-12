@@ -1,0 +1,86 @@
+.card1{
+    margin-left: 1cm;
+    margin-top: 2cm;
+    width: 10cm;
+    height: 6.5cm;
+    background-color: rgb(248, 248, 149);
+    
+    
+}
+
+.card-header1{
+    background-color: rgb(253, 253, 83);
+    width: 10cm;
+    height: 1.5cm;
+
+}
+
+
+.card2{
+    margin-left: 1cm;
+    margin-top: 2cm;
+    width: 10cm;
+    height: 6cm;
+    background-color: rgb(172, 231, 172);
+    
+}
+
+.card-header2{
+    background-color: rgb(109, 255, 109);
+    width: 10cm;
+    height: 1.5cm;
+
+}
+
+
+.grid-container {
+
+display: inline-grid;
+grid-template-columns: auto auto auto;
+background-color: rgb(253, 253, 83);
+padding:10px;
+width: 100%;
+padding-left: 300px;
+    
+
+
+}
+
+.grid-container1 {
+
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    background-color: rgb(109, 255, 109);
+    padding:10px;
+    width: 100%;
+    padding-left: 300px;
+    
+    }
+
+.time i{
+
+color: black;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

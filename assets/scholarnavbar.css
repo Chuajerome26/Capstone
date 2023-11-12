@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+}
+
+.sidebar-item{
+    height: 100vh; /* Set the height of the sidebar to 100% of the viewport height */
+    width: 250px; /* Set the width of the sidebar */
+    background-color: rgb(102, 233, 102); /* Background color of the sidebar */
+    padding-top: 20px; /* Add some padding at the top */
+    position: fixed; /* Fixed position so it stays in view even when scrolling */
+}
+
+.sidebar a {
+    padding: 10px 20px; /* Add padding to the links for better spacing */
+    text-decoration: none;
+    color: #ffffff; /* Link color */
+    display: block; /* Display links as block elements to take full width */
+}
+
+.sidebar a:hover {
+    ruby-align: (35, 224, 130); /* Hover background color */
+}
+
+.content {
+    margin-left: 250px; /* Set the left margin to match the width of the sidebar */
+    padding: 20px; /* Add some padding to the main content */
+}

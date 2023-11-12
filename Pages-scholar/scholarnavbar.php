@@ -21,33 +21,13 @@
     <link rel="stylesheet" href="../assets/style1.css" />
     <link rel="stylesheet" href="../assets/scholaruser.css"/>
 
-    <nav class="navbar">
-      <div class="logo_item">
-        <i class="" id="sidebarOpen"></i>
-       &nbsp; &nbsp;</i>Logo's Here
-      </div>
-
-      <div class="navbar_content">
-        <i class="bi bi-grid"></i>
-        <i class='bx bx-sun' id="darkLight"></i>
-        <i class='bx bx-bell' ></i>
-        
-        <div class="user-dropdown">
-        <img src="../images/pcard3.jpg" alt="User Image" class="user-image">
-        <div class="dropdown-content">
-            <a href="#">Profile</a>
-            <a href="#">Settings</a>
-            <a href="#" onclick="logout()">Log Out</a>
-        </div>
-    </div>
-
-    <script src="scholaruser.js"></script>
-
-      </div>
-    </nav>
- <br>
- <br>
- <br>
+   
+<?php
+include("topnav.php");
+?>
+<br>
+<br>
+<br>
 
 
 </head>
@@ -64,16 +44,11 @@
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                        <i class="bi bi-house-fill"></i>
-                        Home
+                        <a href="scholardash2Options.php" class="sidebar-link">
+                        <i class="bi bi-speedometer"></i>
+                        Dashboard
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a href="form.php" class="sidebar-link">
-                        <i class="bi bi-person-vcard"></i>
-                        Application Form
-                        </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="applicants.php" class="sidebar-link">
@@ -103,6 +78,9 @@
         </aside>
         <!-- Main Component -->
 
+
+
+        
 </body>
 <script src="../assets/scholaruser.js"></script>
 </html>
