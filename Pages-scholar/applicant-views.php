@@ -1,22 +1,31 @@
 <?php 
-include("header.php");
 
 // start session
 session_start();
 
-if (isset($_SESSION['id'])) {
+// if (isset($_SESSION['id'])) {
     require '../classes/admin.php';
     require '../classes/database.php';
 
     $database = new Database();
     $admin = new Admin($database);
 
-} else {
-    header("Location: ../index.php");
-}
+// } else {
+//     header("Location: ../index.php");
+// }
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
 
-<div class="main my-3" style="margin-left:5px;">
+<div class="main my-3" style="margin:20px;">
     <div class="main-header mb-3" style="margin-left:5px;">
         <h2>Applicants</h2>
         <hr>
@@ -34,7 +43,6 @@ if (isset($_SESSION['id'])) {
                     <th scope="col">Details</th>
                     <th scope="col">Files</th>
                     <th scope="col">Analysis</th>
-                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -57,10 +65,6 @@ if (isset($_SESSION['id'])) {
                     <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button></td>
                     <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button></td>
                     <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: 100%">100%</div></div></td>
-                    <td style="white-space: nowrap;">
-                    <input class="btn btn-primary" type="submit" value="Accept">
-                    <input class="btn btn-danger" type="submit" value="Decline">
-                </td>
                 </tr>
                 <?php 
             $num++;
@@ -145,6 +149,10 @@ $appliData = $admin->getApplicants();
                     <td>General Weighted Average</td>
                     <td><?php echo $a["gwa"];?></td>
                 </tr>
+                <tr>
+                    <td>Guardian Relationship</td>
+                    <td><?php echo $a["pR"];?></td>
+                </tr>
             </tbody>
         </table>    
       </div>
@@ -211,13 +219,23 @@ $appliData = $admin->getApplicants();
 <?php } ?>
 <!-- Modal end -->
 
-<?php
-include("footer.php");
-?>
+</body>
+</html>
 
-<script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+        <!-- jQuery Library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap Bundle with Popper (includes JS) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables JS -->
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> -->
+<!-- DataTables Bootstrap 5 JS -->
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script> -->
+<!-- <script>
 $(document).ready(function() {
     $('#applicant').DataTable();
 });
 
-</script>
+</script> -->

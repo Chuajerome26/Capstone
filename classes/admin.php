@@ -5,7 +5,7 @@ class Admin
     private $database;
     private $date;
 
-    public function __construct( $database) {
+    public function __construct($database) {
         $this->database = $database;
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
@@ -105,4 +105,15 @@ class Admin
 
     
   }
+  public function acceptScholar($id){
+        // prepared statement
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET status = ? WHERE id = ?");
+
+       //if execution fail
+       if (!$stmt->execute([1,$id])) {
+           header("Location: ../Pages/employee-register.php?error=stmtfail");
+
+           exit();
+       }
+   }
 }

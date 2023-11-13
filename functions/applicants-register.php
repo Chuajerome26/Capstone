@@ -3,12 +3,13 @@
 if(isset($_POST['submit'])){
     require '../classes/database.php';
     require '../classes/scholar.php';
+    require '../classes/admin.php';
 
     $database = new Database();
     $scholar = new Scholar($database);
 
-    //employee data
-    $employeeData = array(
+    //scholar data
+    $scholarData = array(
         'f_name' => trim($_POST["f_name"]),
         'l_name' => trim($_POST["l_name"]),
         'gender' => trim($_POST["gender"]),
@@ -20,11 +21,9 @@ if(isset($_POST['submit'])){
         'mNum' => $_POST["mNum"],
         'email' => $_POST["email"],
         'address' => $_POST["address"],
-        'pFname' => trim($_POST["pFname"]),
-        'pLname' => trim($_POST["pLname"]),
-        'pMnum' => trim($_POST["pMnum"]),
-        'pOccupation' => trim($_POST["pOccupation"]),
-        'pR' => trim($_POST["pR"]),
+        'totalSub' => trim($_POST["totalSub"]),
+        'totalUnits' => trim($_POST["totalUnits"]),
+        'gwa' => trim($_POST["gwa"]),
     );
   
     //file data
@@ -110,7 +109,7 @@ if(isset($_POST['submit'])){
     );
 
     //check if any input is  empty
-    foreach($employeeData as $data){
+    foreach($scholarData as $data){
         if(empty($data)){
             //return to employee register page
             header("Location: ../Pages/employee-register.php?error=emptyInput");
@@ -120,7 +119,7 @@ if(isset($_POST['submit'])){
 
 
     //check if records already exist
-    if($scholar->findByEmail($employeeData['email'])){
+    if($scholar->findByEmail($scholarData['email'])){
 
          //return to employee register page
         header("Location: ../Pages-scholar/form.php?error=alreadyExist");
@@ -132,7 +131,7 @@ if(isset($_POST['submit'])){
     if ( $fileData['fileError'] === 0 && $fileData1['fileError'] === 0 && $fileData2['fileError'] === 0 && $fileData3['fileError'] === 0 && $fileData4['fileError'] === 0) {
 
         $scholar->checkData($filesAndPicture,
-                             $employeeData);
+                             $scholarData);
     } else {
         echo "There was an error while uploading the file";
         exit();

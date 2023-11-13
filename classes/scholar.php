@@ -33,7 +33,7 @@ class Scholar{
 
     }
 
-    public function checkData($filesAndPicture, $employeeData){
+    public function checkData($filesAndPicture, $scholarData){
          //check if the file extension is in the array $allowed
         if (in_array($filesAndPicture['fileActualExt'], $filesAndPicture['allowed']) &&
              in_array($filesAndPicture['fileActualExt1'], $filesAndPicture['allowed1']) &&
@@ -81,7 +81,7 @@ class Scholar{
                 move_uploaded_file($filesAndPicture['fileTmpName3'],$fileDestination3) &&
                 move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4))  {
 
-                $this->registerEmployee($employeeData, $fileNameNew, $fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4);
+                $this->registerEmployee($scholarData, $fileNameNew, $fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4);
          
             } else {
                 echo "move_uploaded_file error";
@@ -93,32 +93,30 @@ class Scholar{
 
 
 
-    public function registerEmployee($employeeData, $id_pic, $copy_grades, $psa, $good_moral, $eForm){
+    public function registerEmployee($scholarData, $id_pic, $copy_grades, $psa, $good_moral, $eForm){
 
         // prepare insert statement for employee table
-         $sql = "INSERT INTO scholars_info (f_name,l_name, gender, cStatus, citizenship, date_of_birth, birth_place, religion, mobile_num, email, address, pFname, pLname, pMnum, pOccupation, pR, date_apply)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+         $sql = "INSERT INTO scholars_info (f_name,l_name, gender, cStatus, citizenship, date_of_birth, birth_place, religion, mobile_num, email, address, total_sub, total_units, gwa, date_apply)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
          // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
 
         //if execution fail
-        if (!$stmt->execute([$employeeData['f_name'],
-                             $employeeData['l_name'],
-                             $employeeData['gender'],
-                             $employeeData['cStatus'],
-                             $employeeData['citizenship'],
-                             $employeeData['bday'],
-                             $employeeData['bplace'],
-                             $employeeData['religion'],
-                             $employeeData['mNum'],
-                             $employeeData['email'],
-                             $employeeData['address'],
-                             $employeeData['pFname'],
-                             $employeeData['pLname'],
-                             $employeeData['pMnum'],
-                             $employeeData['pOccupation'],
-                             $employeeData['pR'],
+        if (!$stmt->execute([$scholarData['f_name'],
+                             $scholarData['l_name'],
+                             $scholarData['gender'],
+                             $scholarData['cStatus'],
+                             $scholarData['citizenship'],
+                             $scholarData['bday'],
+                             $scholarData['bplace'],
+                             $scholarData['religion'],
+                             $scholarData['mNum'],
+                             $scholarData['email'],
+                             $scholarData['address'],
+                             $scholarData['totalSub'],
+                             $scholarData['totalUnits'],
+                             $scholarData['gwa'],
                              $this->date])) {
             header("Location: ../Pages-scholar/form.php?error=stmtfail");
 
@@ -127,15 +125,15 @@ class Scholar{
         
         // get the ID of the inserted employee record
         // prepare the SQL statement using the database property
-        $stmtEmployeeID = $this->database->getConnection()->prepare("SELECT id FROM scholars_info WHERE email=?");
+        $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM scholars_info WHERE email=?");
 
          //if execution fail
-        if (!$stmtEmployeeID->execute([$employeeData['email']])) {
-            header("Location: ../index.php?error=stmtfail");
+        if (!$stmtScholarID->execute([$scholarData['email']])) {
+            header("Location: ../Pages-scholar/form.php?error=stmtfail");
             exit();
         }
         //fetch the employeeID
-        $employeeId = $stmtEmployeeID->fetchColumn();
+        $scholarId = $stmtScholarID->fetchColumn();
 
         // prepare insert statement for employee_details table
         $sql2 = "INSERT INTO scholar_files (scholar_id, id_pic, copy_grades, psa, good_moral, e_Form) 
@@ -146,15 +144,23 @@ class Scholar{
         $stmt2 = $this->database->getConnection()->prepare($sql2);
 
          //if execution fail
-        if (!$stmt2->execute([$employeeId, $id_pic, $copy_grades, $psa, $good_moral, $eForm])) {
+        if (!$stmt2->execute([$scholarId, $id_pic, $copy_grades, $psa, $good_moral, $eForm])) {
             header("Location: ../Pages-scholar/form.php?error=stmtfail");
             //close connection
             unset($this->database);
             exit();
         }
 
-        //send email
-        // $this->database->sendEmail($employeeData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
+        
+        //generate scholar account
+        $scholarUser = $this->generateEmployeeIDAndPassword($scholarData['l_name']);
+        $scholarPass = $this->generateEmployeeIDAndPassword($scholarData['f_name']);
+
+        $this->saveScholarIDAndPassword($scholarUser[0], $scholarPass[0], $scholarId,0, $scholarData['email']);
+
+
+        // send email
+        // $this->database->sendEmail($scholarData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
 
         //if sucess uploading file, go to this 👇 page
         header("Location: ../Pages-scholar/form.php?success=success"); 
@@ -162,7 +168,7 @@ class Scholar{
 
     }
 
-    public function acceptEmployee($employeeData){
+    public function acceptEmployee($scholarData){
         // prepared statement
          $stmt = $this->database->getConnection()->prepare("INSERT INTO employees (first_name,last_name, email, gender, address, contact, status)
             VALUES (?,?,?,?,?,?,?);");
@@ -170,6 +176,50 @@ class Scholar{
     public function attendanceList(){
         $attlist =  $this->database->getConnection()->query("SELECT * FROM attendance")->fetchAll();
         return $attlist;
+        exit();
+    }
+
+    public function generateEmployeeIDAndPassword($scholarLastName){
+
+        // Generate a random 4-digit number
+        $randomNumber = rand(1000, 9999);
+    
+        // Convert the number to a string and concatenate lastname
+        $scholarID = strval($randomNumber).strtoupper($scholarLastName);
+    
+        //return the id and password
+        return [$scholarID];
+    
+        }
+      public function saveScholarIDAndPassword($scholarUser, $scholarPass, $user_id, $user_type, $scholarEmail){
+        // prepare insert statement for employee_login table
+         $sql = "INSERT INTO login (user,pass,user_id,user_type) VALUES (?,?,?,?);";
+    
+         // prepared statement
+         $stmt = $this->database->getConnection()->prepare($sql);
+    
+         //hash password
+        $hashedpwd = password_hash($scholarPass, PASSWORD_DEFAULT);
+         //if execution fail
+        if (!$stmt->execute([$scholarUser, $hashedpwd, $user_id, $user_type])) {
+            header("Location: ../Pages-scholar/form.php?error=stmtfail");
+            exit();
+            
+        }
+        //send email employee his/her id and password
+    $emailSubject = "Congratulations! Your Scholar Application has been Submit";
+    $emailBody = "Dear Applicant,\n\n"
+    . "Username: " . $scholarUser . "\n"
+    . "Password: " . $scholarPass . "\n\n"
+    . "Please let us know if you have any questions or concerns, and we will be more than happy to help.\n\n"
+    . "Best regards,\n"
+    . "CCMF";
+    
+        //send email employee his/her id and password 
+        $this->database->sendEmail($scholarEmail,$emailSubject, $emailBody);
+    
+        //if success saving account 
+        header("Location: ../Pages-scholar/form.php?scholar=register");
         exit();
     }
 

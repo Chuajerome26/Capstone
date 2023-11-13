@@ -70,30 +70,22 @@ include("header.php");
 
     <h4>_____________________________________________________________________________________________________________________________________</h4>
    
-    <h3><br>Parent's / Guardian's Information</h3>                              
+    <h3><br>Grade Information</h3>                              
     <br></br>
                 <div class="fields">  
                     <div class="input-field">
-                       <label>Firstname:</label>
-                            <input type="text" placeholder="   Firstname" id="pFname" name="pFname" value="<?php echo isset($_POST['pFname']) ? htmlspecialchars($_POST['pFname']) : ''; ?>" required>
+                       <label>Total Subject:</label>
+                            <input type="text" placeholder="   Total Subject" id="totalSub" name="totalSub" value="<?php echo isset($_POST['totalSub']) ? htmlspecialchars($_POST['totalSub']) : ''; ?>" required>
                     </div> 
                     <div class="input-field">
-                        <label>Lastname:</label>
-                            <input type="text" placeholder="   Lastname" id="pLname" name="pLname" required>
+                        <label>Total Units:</label>
+                            <input type="text" placeholder="   Total Units" id="totalUnits" name="totalUnits" required>
                     </div> 
     <br></br>
     <br></br>
                     <div class="input-field">
-                        <label>Mobile Number:</label>
-                            <input type="text" placeholder="   Mobile Number" id="pMnum" name="pMnum" onkeydown="return onlyNumberKey(event)" required>
-                    </div> 
-                    <div class="input-field">
-                        <label>Occupation:</label>
-                            <input type="text" placeholder="   Occupation" id="pOccupation" name="pOccupation" required>
-                    </div> 
-                    <div class="input-field">
-                        <label>Relationship:</label>
-                            <input type="text" placeholder="   Relationship" id="pR" name="pR" required>
+                        <label>General Weighted Average:</label>
+                            <input type="text" placeholder="   Gwa" id="gwa" name="gwa" required>
                     </div> 
                     </div>
 
