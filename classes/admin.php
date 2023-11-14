@@ -10,12 +10,12 @@ class Admin
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
-    public function login($email){
+    public function scholarInfo($scholar_id){
         // prepare the SQL statement using the database property
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM login WHERE user=?");
 
          //if execution fail
-        if (!$stmt->execute([$email])) {
+        if (!$stmt->execute([$scholar_id])) {
             header("Location: ../index.php?error=stmtfail");
             exit();
         }

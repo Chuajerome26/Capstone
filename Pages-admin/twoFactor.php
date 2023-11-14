@@ -12,7 +12,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #7db043;
+            background-color: #fff;
             font-family: Arial, sans-serif;
         }
 
