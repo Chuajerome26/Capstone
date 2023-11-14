@@ -43,7 +43,7 @@ include("scholarnavbar.php");
 </br>
    <div class="grid-container">
     <div class="time">
-       <a href="#"> <i  class="bi bi-clock-history" style="font-size: 23px;"></i></a>
+       <a href="SweatEquityHistory.php"> <i  class="bi bi-clock-history" style="font-size: 23px;"></i></a>
 </div>
 </div>
       </div>
@@ -62,7 +62,7 @@ include("scholarnavbar.php");
 </br>
 <div class="grid-container1">
   <div class="time">
-        <a href="#"><i  class="bi bi-clock-history"  style="font-size: 23px;"></a></i>
+        <a href="Allowance History.php"><i  class="bi bi-clock-history"  style="font-size: 23px;"></a></i>
         </div>
 </div>
       </div>

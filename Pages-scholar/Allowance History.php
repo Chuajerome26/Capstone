@@ -7,7 +7,7 @@ include("scholarnavbar.php")
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scholar's Sweat Equity History</title>
+    <title>Allowance History</title>
     <link rel="stylesheet" type="text/css" href="SweatEquityHistory.css">
 
 
@@ -34,7 +34,7 @@ include("scholarnavbar.php")
     </style>
 </head>
 <body>
-    <h2>Scholar's Sweat Equity History</h2>
+    <h2>Allowance History</h2>
 
     <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
@@ -64,8 +64,8 @@ include("scholarnavbar.php")
     <table>
         <tr>
             <th>Date</th>
-            <th>Activity</th>
-            <th>Details</th>
+            <th>Amount</th>
+            <th>Status</th>
         </tr>
        
     </table>

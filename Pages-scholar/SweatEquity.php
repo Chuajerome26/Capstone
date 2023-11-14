@@ -77,11 +77,3 @@ include("scholarnavbar.php");
     </tbody>
 
     </main>
-
-
-
-
-
-                   
-
-                    

@@ -40,12 +40,12 @@
           <div class="flex-container">
             <div class="profile">
               <button type="button" class="butt" onclick="myFunction()">
-                <img src="../images/pcard1.jpg" onclick="toggleDropdown()" />
+                <img src="../images/pcard3.jpg" onclick="toggleDropdown()" />
               </button>
               <div class="d-c" id="dropdownContent">
                 <a href="#">Option 1</a></br>  </br>
                 <a href="#">Option 1</a>  </br>  </br>
-                <a href="#">Log Out</a>
+                <a href="../Ladingpage2/Ladingpage.html">Log Out</a>
               </div>
             </div>
           </div>

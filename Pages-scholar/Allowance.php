@@ -7,9 +7,13 @@ include("scholarnavbar.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+
+    <div class="main">
+
 <body>
 <style>
+
+
         body {
             font-family: Arial, sans-serif;
         }
@@ -45,8 +49,17 @@ include("scholarnavbar.php");
             background-color: #45a049;
         }
     </style>
+
 </head>
-<body>
+
+    </br>
+    </br>
+    </br>
+    </br>
+    </br>
+
+    <body>
+
     <div class="container">
         <h1>Scholarship Allowance</h1>
         <table>
@@ -67,6 +80,7 @@ include("scholarnavbar.php");
                     <td></td>
                     <td></td>
 
-                
-</body>
-</html>
+
+    </tbody>
+
+</main>
