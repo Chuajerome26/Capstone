@@ -1,4 +1,20 @@
 <!-- verify_2fa.html -->
+<?php 
+// start session
+session_start();
+
+if (isset($_SESSION['id'])) {
+    require '../classes/admin.php';
+    require '../classes/database.php';
+
+    $database = new Database();
+    $admin = new Admin($database);
+
+} else {
+    header("Location: ../index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -16,37 +16,41 @@ require '../classes/database.php';
 
 
     $adminData = $admin->login($email);
+
     $user_id = $adminData['user_id'];
     $adminPass = $adminData['pass'];
     $user_type = $adminData['user_type'];  
+
+    $scholarInfo = $admin->scholarInfo($user_id);
+
+    $email = $scholarInfo[0]['email'];
 
     if(!$adminData){
           header("Location:../index.php?error=errorEmail");
         exit();
     }
-
-    if($adminPass !== $pass){
+    $hashed_input_password = password_hash($pass, PASSWORD_DEFAULT);
+    if(!password_verify($pass, $adminPass)){
         // if not, create variable error 
           header("Location:../index.php?error=errorPassword");
         exit();
     }
 
     // Generate a random token and set expiry time (e.g., 10 minutes from now)
-    // $token = bin2hex(random_bytes(5));
-    // $expiry = new DateTime('+10 minutes');
-    // $formattedExpiry = $expiry->format('Y-m-d H:i:s');
+    $token = $admin->generateRandomSixDigitNumber();
+    $expiry = new DateTime('+10 minutes');
+    $formattedExpiry = $expiry->format('Y-m-d H:i:s');
 
-    // $update = $admin->twoFactor($token, $formattedExpiry, $adminId);
+    $update = $admin->twoFactor($token, $formattedExpiry, $user_id);
 
-    // $sentEmail = $database->sendEmail($email,"Your Code For Authentication", "Your code is ". $token);
+    $sentEmail = $database->sendEmail($email,"Your Code For Authentication", "Your code is ". $token);
 
      //start session 
     session_start();
     $_SESSION["id"] = $user_id;
+    $_SESSION["user_type"] = $user_type;
 
-
-
-    header("Location: ../admin_views/dashboard.php");
+    header("Location: ../Pages-admin/twoFactor.php");
     exit();
 } else {
     header("Location:../index.php?error=emptyInput");

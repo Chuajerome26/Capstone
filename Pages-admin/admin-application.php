@@ -1,3 +1,20 @@
+<?php 
+// start session
+session_start();
+
+if (isset($_SESSION['id'])) {
+    require '../classes/admin.php';
+    require '../classes/database.php';
+
+    $database = new Database();
+    $admin = new Admin($database);
+
+} else {
+    header("Location: ../index.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,16 +26,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Profiles</title>
+    <title>CCMF</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -31,7 +51,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
@@ -43,7 +63,8 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="dashboard.php">
+                    
                     <span>Dashboard</span></a>
             </li>
 
@@ -52,24 +73,17 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="Scholars Tab.html">
+                <a class="nav-link collapsed" href="admin-scholar.php">
                     
                     <span>Scholars Tab</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="Scholar Appli.html">
-                    
-                    <span>Scholarship Application</span>
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="admin-application.php">
+                   
+                    <span>Scholar Applicants</span>
                 </a>
             </li>
 
@@ -77,26 +91,20 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="Admin Profiles.html">
-                    
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="admin-profiles.php">
+                   
                     <span>Admin Profiles</span>
                 </a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="userinfo.html">
+                <a class="nav-link" href="userinfo.php">
                     <span>User</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
-            </li>
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -309,7 +317,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Admin Profile Overview</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Scholar Applicants</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -317,71 +325,88 @@
                     <!-- Content Row -->
                     <div class="row">
 
+
                     <!-- Content Row -->
 
                     <div class="row">
-                        <div class="card-body">
-                            </div>
-                            </div>
+
                         <!-- Area Chart -->
-                        <div class="col-xl-6 col-lg-7">
+                        <div class="col-lg-15 mb-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Admin Profile</h6>
-                                    <div class="card-body">
-                                        
-                                    </div>
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
                                 </div>
-                                <!-- Card Body -->
                                 <div class="card-body">
-                                    <form>
-                                        <div class="form-group">
-                                          <label for="exampleInputEmail1">Username:</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                        </div>
-                                        <div class="form-group">
-                                          <label for="exampleInputPassword1">Password:</label>
-                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                        </div>
-                                        <div class="form-check">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                      </form>
+                                    
+                                    <table id="applicant" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Date Applied</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Files</th>
+                    <th scope="col">Analysis</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            <?php
+            $applicantsData = $admin->getApplicants();
+            $num = 1;
+            foreach($applicantsData as $s){
+                if($s['status'] == 0){
+                    $status = "Pending";
+                }else{
+                    $status = "Accepted";
+                }
+        ?>
+                <tr>
+                    <th scope="col"><?php echo $num; ?></th>
+                    <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
+                    <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
+                    <td><?php echo $s["date_apply"];?></td>
+                    <td><?php echo $status;?></td>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button></td>
+                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button></td>
+                    <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: 100%">100%</div></div></td>
+                    <td style="white-space: nowrap;">
+                    <input class="btn btn-primary" type="submit" value="Accept">
+                    <input class="btn btn-danger" type="submit" value="Decline">
+                </td>
+                </tr>
+                <?php 
+            $num++;
+                } 
+            ?>
+            </tbody>
+        </table>
+                                     
                                 </div>
                             </div>
                         </div>
 
                         <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-6">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Achievements</h6>
-                                    <div class="card-body">
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    
-                            </div>
-                        </div>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="card-body"></div>
-</div>
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
 
-                            <!-- Project Card Example -->
-                                <div class="card-body">
-                                    
-                                </div>
-                            </div>
+                        <!-- Content Column -->
+                        <div class="col-lg-15 mb-4">
+
+            </div>
+            <!-- End of Main Content -->
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -402,29 +427,180 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="admin-logout.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Modal for Details -->
+
+<?php
+$appliData = $admin->getApplicants();
+    foreach($appliData as $a){
+?>
+<div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>l" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:600px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Requirements</th>
+                    <th>Details</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><?php echo $a["f_name"]." ".$a["l_name"];?></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td><?php echo $a["gender"];?></td>
+                </tr>
+                <tr>
+                    <td>Civil Status</td>
+                    <td><?php echo $a["cStatus"];?></td>
+                </tr>
+                <tr>
+                    <td>Citizenship</td>
+                    <td><?php echo $a["citizenship"];?></td>
+                </tr>
+                <tr>
+                    <td>Birthday</td>
+                    <td><?php echo $a["date_of_birth"];?></td>
+                </tr>
+                <tr>
+                    <td>Place of Birth</td>
+                    <td><?php echo $a["birth_place"];?></td>
+                </tr>
+                <tr>
+                    <td>Religion</td>
+                    <td><?php echo $a["religion"];?></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td><?php echo $a["mobile_num"];?></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><?php echo $a["email"];?></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><?php echo $a["address"];?></td>
+                </tr>
+                <tr>
+                    <td>Total Subject</td>
+                    <td><?php echo $a["total_sub"];?></td>
+                </tr>
+                <tr>
+                    <td>Total Units</td>
+                    <td><?php echo $a["total_units"];?></td>
+                </tr>
+                <tr>
+                    <td>General Weighted Average</td>
+                    <td><?php echo $a["gwa"];?></td>
+                </tr>
+            </tbody>
+        </table>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
+<!-- Modal end -->
+<!-- Modal for Files -->
+<?php
+$appliData = $admin->getApplicants();
+    foreach($appliData as $b){
+?>
+<div class="modal fade" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:600px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table id="applicant-modal<?php echo $b["id"]?>" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Requirements</th>
+                    <th>Details</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Copy of Id</td>
+                    <td><a href="../Uploads_pic/<?php echo $b["id_pic"]?>" target="_blank"><?php echo $b["id_pic"]?></a></td>
+                </tr>
+                <tr>
+                    <td>Copy of Grades</td>
+                    <td><a href="../Uploads_cog/<?php echo $b["copy_grades"]?>" target="_blank"><?php echo $b["copy_grades"]?></a></td>
+                </tr>
+                <tr>
+                    <td>Copy of PSA</td>
+                    <td><a href="../Uploads_psa/<?php echo $b["psa"]?>" target="_blank"><?php echo $b["psa"]?></a></td>
+                </tr>
+                <tr>
+                    <td>Copy of Good Moral</td>
+                    <td><a href="../Uploads_gm/<?php echo $b["good_moral"]?>" target="_blank"><?php echo $b["good_moral"]?></a></td>
+                </tr>
+                <tr>
+                    <td>Copy of Enrollment Form</td>
+                    <td><a href="../Uploads_ef/<?php echo $b["e_Form"]?>" target="_blank"><?php echo $b["e_Form"]?></a></td>
+                </tr>
+            </tbody>
+        </table>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
+<!-- Modal end -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../assets/js/demo/chart-area-demo.js"></script>
+    <script src="../assets/js/demo/chart-pie-demo.js"></script>
+    
+    <!-- DataTables JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Bootstrap 5 JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 
+    <script>
+$(document).ready(function() {
+    $('#applicant').DataTable();
+});
+
+</script>
 </body>
 
 </html>

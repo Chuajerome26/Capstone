@@ -10,12 +10,12 @@ class Admin
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
-    public function scholarInfo($scholar_id){
+    public function login($email){
         // prepare the SQL statement using the database property
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM login WHERE user=?");
 
          //if execution fail
-        if (!$stmt->execute([$scholar_id])) {
+        if (!$stmt->execute([$email])) {
             header("Location: ../index.php?error=stmtfail");
             exit();
         }
@@ -31,9 +31,18 @@ class Admin
             return $result;
         }
     }
+    function generateRandomSixDigitNumber() {
+        $number = '';
+    
+        for ($i = 0; $i < 6; $i++) {
+            $number .= strval(random_int(0, 9));
+        }
+    
+        return $number;
+    }
     public function twoFactor($token, $token_expiry, $id){
 
-        $stmt = $this->database->getConnection()->prepare('UPDATE login SET token = ?, token_expiry = ? WHERE id = ?');
+        $stmt = $this->database->getConnection()->prepare('UPDATE login SET token = ?, token_expiry = ? WHERE user_id = ?');
 
          //if execution fail
          if (!$stmt->execute([$token, $token_expiry, $id])) {
@@ -55,7 +64,7 @@ class Admin
         return $stmt;
         exit();
     }
-    public function btnPic($id){
+    public function scholarInfo($id){
         
         // prepare the SQL statement using the database property
       $stmt = $this->database->getConnection()->prepare("SELECT scholars_info.*,scholar_files.* FROM scholars_info
@@ -116,4 +125,33 @@ class Admin
            exit();
        }
    }
+
+   function predictAcceptanceOfRenew($gwa, $attendanceHours) {
+    // Assuming 1 is the highest GWA and 5 is the lowest
+    $maxGwa = 5.0;
+    $minGwa = 1.0;
+    $maxAttendanceHours = 150; // Hypothetical maximum attendance hours for full weight
+    
+
+    // Weights for each factor
+    $gwaWeight = 0.40;
+    $attendanceWeight = 0.60;
+
+    // Normalize scores
+    // Higher GWA (closer to 5) results in a lower score, and vice versa
+    $normalizedGwaScore = ($maxGwa - $gwa) / ($maxGwa - $minGwa); // 5 - 1.5 / 5 - 1 = 3.5 / 4
+    $attendanceScore = min($attendanceHours / $maxAttendanceHours, 1);
+
+    // Weighted scores
+    $weightedGwaScore = $normalizedGwaScore * $gwaWeight;
+    $weightedAttendanceScore = $attendanceScore * $attendanceWeight;
+
+    // Total weighted score
+    $totalWeightedScore = $weightedGwaScore + $weightedAttendanceScore;
+
+    // Convert the score to a percentage and round to 2 decimal places
+    $acceptanceChance = round($totalWeightedScore * 100, 2);
+
+    return $acceptanceChance;
+}
 }

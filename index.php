@@ -51,7 +51,7 @@
           </div>
 
         </div>
-        <li><a href="Applicationform.html">Application</a></li>
+        <li><a href="Pages-scholar/form.php">Application</a></li>
           <div class="login">
         <div class="menu">
 
