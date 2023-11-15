@@ -51,7 +51,7 @@ class Admin
         }
     }
     public function getScholars(){
-        $stmt = $this->database->getConnection()->query("SELECT scholars_info.*, scholar_files.* FROM scholars_info 
+        $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
                                                         JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
                                                         WHERE scholars_info.status = '1'")->fetchAll();
         return $stmt;
@@ -67,7 +67,7 @@ class Admin
     public function scholarInfo($id){
         
         // prepare the SQL statement using the database property
-      $stmt = $this->database->getConnection()->prepare("SELECT scholars_info.*,scholar_files.* FROM scholars_info
+      $stmt = $this->database->getConnection()->prepare("SELECT scholars_info.id AS scholar_id, scholars_info.*,scholar_files.* FROM scholars_info
                                                     JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
                                                    WHERE scholars_info.id=?");
 

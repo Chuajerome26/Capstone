@@ -112,7 +112,7 @@ if(isset($_POST['submit'])){
     foreach($scholarData as $data){
         if(empty($data)){
             //return to employee register page
-            header("Location: ../Pages/employee-register.php?error=emptyInput");
+            header("Location: ../Pages/employee-register.php?scholar=emptyInput");
             exit();
         }
     }
@@ -122,7 +122,7 @@ if(isset($_POST['submit'])){
     if($scholar->findByEmail($scholarData['email'])){
 
          //return to employee register page
-        header("Location: ../Pages-scholar/form.php?error=alreadyExist");
+        header("Location: ../Pages-scholar/form.php?scholar=alreadyExist");
         exit();
     }
 

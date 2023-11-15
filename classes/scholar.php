@@ -17,7 +17,7 @@ class Scholar{
 
          //if execution fail
         if (!$stmt->execute([$email])) {
-            header("Location: ../Pages/employee-register.php?error=stmtfail");
+            header("Location: ../Pages-scholar/form.php?scholar=emailExist");
             exit();
         }
 
@@ -118,7 +118,7 @@ class Scholar{
                              $scholarData['totalUnits'],
                              $scholarData['gwa'],
                              $this->date])) {
-            header("Location: ../Pages-scholar/form.php?error=stmtfail");
+            header("Location: ../Pages-scholar/form.php?scholar=stmtfail");
 
             exit();
         }
@@ -129,7 +129,7 @@ class Scholar{
 
          //if execution fail
         if (!$stmtScholarID->execute([$scholarData['email']])) {
-            header("Location: ../Pages-scholar/form.php?error=stmtfail");
+            header("Location: ../Pages-scholar/form.php?scholar=stmtfail");
             exit();
         }
         //fetch the employeeID
@@ -145,7 +145,7 @@ class Scholar{
 
          //if execution fail
         if (!$stmt2->execute([$scholarId, $id_pic, $copy_grades, $psa, $good_moral, $eForm])) {
-            header("Location: ../Pages-scholar/form.php?error=stmtfail");
+            header("Location: ../Pages-scholar/form.php?scholar=stmtfail");
             //close connection
             unset($this->database);
             exit();
@@ -163,7 +163,7 @@ class Scholar{
         // $this->database->sendEmail($scholarData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
 
         //if sucess uploading file, go to this 👇 page
-        header("Location: ../Pages-scholar/form.php?success=success"); 
+        header("Location: ../Pages-scholar/form.php?scholar=success"); 
         exit();
 
     }
@@ -202,7 +202,7 @@ class Scholar{
         $hashedpwd = password_hash($scholarPass, PASSWORD_DEFAULT);
          //if execution fail
         if (!$stmt->execute([$scholarUser, $hashedpwd, $user_id, $user_type])) {
-            header("Location: ../Pages-scholar/form.php?error=stmtfail");
+            header("Location: ../Pages-scholar/form.php?scholar=stmtfail");
             exit();
             
         }
@@ -219,7 +219,7 @@ class Scholar{
         $this->database->sendEmail($scholarEmail,$emailSubject, $emailBody);
     
         //if success saving account 
-        header("Location: ../Pages-scholar/form.php?scholar=register");
+        header("Location: ../Pages-scholar/form.php?scholar=success");
         exit();
     }
 

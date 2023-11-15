@@ -348,7 +348,7 @@ if (isset($_SESSION['id'])) {
                                     </thead>
                                     <tbody class="table-group-dividercar">
                                     <?php
-                                    $applicantsData = $admin->getApplicants();
+                                    $applicantsData = $admin->getScholars();
                                     $num = 1;
                                     foreach($applicantsData as $s){
                                         if($s['status'] == 0){
@@ -398,15 +398,21 @@ if (isset($_SESSION['id'])) {
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $applicantsData = $admin->getApplicants();
+                                            $applicantsData = $admin->getScholars();
                                             foreach($applicantsData as $s){
-                                                $percentage = $admin->predictAcceptanceOfRenew($s['gwa'], 80);
+                                                $percentage = $admin->predictAcceptanceOfRenew($s['gwa'], 40);
                                         ?>
                                         <tr>
                                             <td><?php echo $s['f_name']." ".$s['l_name'];?></td>
-                                            <td>
-                                                <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-success" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div>
-                                            </td>
+                                            <?php if($percentage <= 100 && $percentage >= 76):?>
+                                            <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-success" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div></td>
+                                            <?php elseif($percentage <= 75 && $percentage >= 51): ?>
+                                            <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-info" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div></td>
+                                            <?php elseif($percentage <= 50 && $percentage >= 21):?>
+                                            <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-warning" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div></td>
+                                            <?php elseif($percentage <= 20 && $percentage >= 0):?>
+                                            <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-danger" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div></td>
+                                            <?php endif;?>
                                         </tr>
                                         <?php } ?>
                                     </tbody>

@@ -1,6 +1,11 @@
-<?php 
-include("header.php");
-?>
+<html>
+    <head>
+        <title></title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+        <link rel="stylesheet" href="../assets/style-application.css">
+
+    </head>
 <body>
     <div class="banner-area">
         <div class="wrapper">
@@ -153,8 +158,41 @@ include("header.php");
 </form>
 </body>
 </html>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const successValue = urlParams.get('scholar');
+    console.log(successValue);
+
+    if(successValue === "stmfail"){
+        Swal.fire({
+            icon:'error',
+            title:'Error in your Application Please Try Again!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "success"){
+        Swal.fire({
+            icon:'success',
+            title:'Successfully Registered!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }
 function check() {
   // Get the checkbox and submit button elements
   var checkbox = document.getElementById('checkbox');

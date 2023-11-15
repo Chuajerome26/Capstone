@@ -46,7 +46,7 @@
                 <div class="col-lg-12">
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="index.php">
                             <img src="assets1/images/logo/logo.png" alt="Logo">
                         </a>
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
@@ -58,7 +58,7 @@
                         </button>
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ms-auto">
-                                <li class="nav-item"><a href="index.html">Home</a></li>
+                                <li class="nav-item"><a href="index.php">Home</a></li>
                                 <li class="nav-item"><a href="#Top">About Us</a></li>
                                 <li class="nav-item"><a href="#Contact">Contact</a></li>
                             </ul>
@@ -88,7 +88,7 @@
                         <p>The Consuelo Chito Madrigal Foundation (CCMF) is dedicated to improving the quality of life of distressed families in selected communities in the Philippines. Established by banker, philanthropist and Papal awardee Dona Consuelo Chito Madrigal-Collantes in 1997, it supports programs designed to respond to the needs of these communities to be self-sustaining.</p>
                     </div>
                     <ul class="breadcrumb-nav">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.php">Home</a></li>
                         <li>About Us</li>
                     </ul>
                 </div>
@@ -187,7 +187,7 @@
                         <!-- Single Widget -->
                         <div class="f-about single-footer">
                             <div class="logo">
-                                <a href="index.html"><img src="assets1/images/logo/logo.png" alt="Logo"></a>
+                                <a href="index.php"><img src="assets1/images/logo/logo.png" alt="Logo"></a>
                             </div>
                             <h3>INQUIRIES</h3>
                             

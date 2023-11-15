@@ -340,50 +340,56 @@ if (isset($_SESSION['id'])) {
                                 <div class="card-body">
                                     
                                     <table id="applicant" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Date Applied</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Details</th>
-                    <th scope="col">Files</th>
-                    <th scope="col">Analysis</th>
-                    <th scope="col">Action</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-            <?php
-            $applicantsData = $admin->getApplicants();
-            $num = 1;
-            foreach($applicantsData as $s){
-                if($s['status'] == 0){
-                    $status = "Pending";
-                }else{
-                    $status = "Accepted";
-                }
-        ?>
-                <tr>
-                    <th scope="col"><?php echo $num; ?></th>
-                    <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
-                    <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                    <td><?php echo $s["date_apply"];?></td>
-                    <td><?php echo $status;?></td>
-                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button></td>
-                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button></td>
-                    <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: 100%">100%</div></div></td>
-                    <td style="white-space: nowrap;">
-                    <input class="btn btn-primary" type="submit" value="Accept">
-                    <input class="btn btn-danger" type="submit" value="Decline">
-                </td>
-                </tr>
-                <?php 
-            $num++;
-                } 
-            ?>
-            </tbody>
-        </table>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Date Applied</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Details</th>
+                                                <th scope="col">Files</th>
+                                                <th scope="col">Analysis</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                        <?php
+                                        $applicantsData = $admin->getApplicants();
+                                        $num = 1;
+                                        foreach($applicantsData as $s){
+                                            if($s['status'] == 0){
+                                                $status = "Pending";
+                                            }else{
+                                                $status = "Accepted";
+                                            }
+                                    ?>
+                                            <tr>
+                                                <th scope="col"><?php echo $num; ?></th>
+                                                <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
+                                                <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
+                                                <td><?php echo $s["date_apply"];?></td>
+                                                <td><?php echo $status;?></td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button></td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button></td>
+                                                <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: 100%">100%</div></div></td>
+                                                <td style="white-space: nowrap;">
+                                                    <form method="post" action="../functions/scholar-accept.php">
+                                                        <input class="btn btn-primary" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
+                                                    </form>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["scholar_id"];?>">Decline</button>
+
+                                                    <!-- <form method="post" action="../functions/scholar-accept.php">
+                                                        <input class="btn btn-danger" type="submit" value="decline"><input type="hidden" name="declineId" value="<?php echo $s['scholar_id']?>">
+                                                    </form> -->
+                                            </td>
+                                            </tr>
+                                            <?php 
+                                        $num++;
+                                            } 
+                                        ?>
+                                        </tbody>
+                                    </table>
                                      
                                 </div>
                             </div>
@@ -432,14 +438,40 @@ if (isset($_SESSION['id'])) {
             </div>
         </div>
     </div>
+<!-- Modal for Decline -->
+<?php
+$appliData = $admin->getApplicants();
+foreach($appliData as $z){
+?>
+<div class="modal fade" id="declineModal<?php echo $z["scholar_id"];?>" tabindex="-1" aria-labelledby="declineModal<?php echo $z["scholar_id"];?>l" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:600px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="declineModal<?php echo $z["scholar_id"];?>">Scholar Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="../functions/scholar-decline.php">
+            <textarea rows="8" cols="50" placeholder="Remarks" name="remarks"></textarea>
+            <input type="hidden" name="declineId" value="<?php echo $z['scholar_id']?>">
+      </div>
+      <div class="modal-footer">
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<?php } ?>
 
+<!-- End -->
     <!-- Modal for Details -->
 
 <?php
 $appliData = $admin->getApplicants();
     foreach($appliData as $a){
 ?>
-<div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>l" aria-hidden="true">
+<div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>l" aria-hidden="true">
   <div class="modal-dialog" style="max-width:600px;">
     <div class="modal-content">
       <div class="modal-header">
@@ -447,7 +479,7 @@ $appliData = $admin->getApplicants();
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
+        <table id="applicant-modal<?php echo $a["scholar_id"]?>" class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Requirements</th>
@@ -524,15 +556,15 @@ $appliData = $admin->getApplicants();
 $appliData = $admin->getApplicants();
     foreach($appliData as $b){
 ?>
-<div class="modal fade" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
+<div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog" style="max-width:600px;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Modal title</h5>
+        <h5 class="modal-title" id="filesModal<?php echo $b["scholar_id"];?>">Modal title</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <table id="applicant-modal<?php echo $b["id"]?>" class="table table-striped table-hover">
+        <table id="applicant-modal<?php echo $b["scholar_id"]?>" class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Requirements</th>
