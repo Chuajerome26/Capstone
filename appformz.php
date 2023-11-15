@@ -94,6 +94,7 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 <h6 class="mb-2 text-primary">Personal's Information</h6>
 </div>
+<form action="functions/application-register.php" method="post" multipart> 
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
 <label for="Fname">First Name:</label>
@@ -231,7 +232,8 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="text-right">
 <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-<button type="button" id="submit" name="submit" class="btn btn-primary">Submit</button>
+<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
+</form>
 </div>
 </div>
 </div>
