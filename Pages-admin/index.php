@@ -1,612 +1,515 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Consuelo Chito Madrigal Foundation</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets1/images/favicon.svg" />
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- Web Font -->
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CCMF</title>
+    <link rel="stylesheet" href="assets/style3.css" />
+    <link rel="icon" href="images/consuelo.jpg" type="image/x-icon">
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets1/css/LineIcons.2.0.css" />
-    <link rel="stylesheet" href="assets1/css/animate.css" />
-    <link rel="stylesheet" href="assets1/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets1/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets1/css/main.css" />
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-   
-
-</head>
-
-<body>
-   
-
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
-            </div>
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="menu">
+        <div class="logo">
+          
+          <a href="#">CCMF-Quezon City</a>
         </div>
-    </div>
-    <!-- /End Preloader -->
+        <ul>
+          <li><a href="#" >Home</a></li>
 
-    <!-- Start Header Area -->
-    <header class="header navbar-area">
-        <!-- Toolbar Start -->
-        <div class="toolbar-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-md-6 col-12">
-                        <div class="toolbar-social">
-                            <ul>
-                                <li><span class="title">Follow Us On : </span></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-facebook-original"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="lni lni-google"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="toolbar-login">
-                            <div class="button">
-                                <a href="Pages-scholar/form.php">Create an Account</a>
-                                <a href="#" class="btn"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="dropdown">
+          <li><a href="#" class="dropbtn">About</a></li>
+          <div class="dropdown-content">
+            <a href="#vision">Vission</a>
+            <a href="#mission">Mission</a>
+            <a href="#values">Values</a>
+          </div>
+
         </div>
-        <!-- Toolbar End -->
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                <div class="nav-inner">
-                    <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.php">
-                            <img src="assets1/images/logo/Logo.png" alt="Logo">
-                        </a>
-                        <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                            
-                            <ul id="nav" class="navbar-nav ms-auto">
-                                <li class="nav-item" class="scroll-to-section"><a class="active" href="#top">Home</a></li>
-                                <li class="nav-item" class="scroll-to-section"><a href="#Programs">Programs</a></li>
-                                <li class="nav-item"><a href="about-us.php">About</a></li>
-                                <li class="nav-item"><a href="#Contact">Contact</a></li>
-                            </ul>
-                            <form class="d-flex search-form">
-                                <input class="form-control me-2" type="search" placeholder="Search"
-                                    aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit"><i
-                                        class="lni lni-search-alt"></i></button>
-                            </form>
-                        </div> <!-- navbar collapse -->
-                    </nav> <!-- navbar -->
-                </div>
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </header>
-    <!-- End Header Area -->
 
-    <!-- Start Hero Area -->
-    <section id="Top"></section>
-    <section class="hero-area">
-        <div class="hero-slider">
-            <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('assets1/images/hero/slider-bg1.jpg');">
-                <div class="container">
-                    <div class="row ">
-                        <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
-                            <div class="home-slider">
-                                <div class="hero-text">
-                                    <h5 class="wow fadeInUp" data-wow-delay=".3s">Consuelo 'Chito' Madrigal Foundation (CCMF)</h5>
-                                    <h1 class="wow fadeInUp" data-wow-delay=".5s">Opening Doors of Hope.. </h1>
-                                    <p class="wow fadeInUp" data-wow-delay=".7s">Education is one of the highest values among Filipinos, 
-                                        <br>in general, which is why CCMF offers various forms of assistance...</p>
-                                    <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.php" class="btn">Learn More</a>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ End Single Slider -->
-            <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('assets1/images/hero/slider-bg2.jpg');">
-                <div class="container">
-                    <div class="row ">
-                        <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
-                            <div class="home-slider">
-                                <div class="hero-text">
-                                    <h5 class="wow fadeInUp" data-wow-delay=".3s">Scholarship Programs</h5>
-                                    <h1 class="wow fadeInUp" data-wow-delay=".5s">Building a strong foundation<br> through education </h1>
-                                    <p class="wow fadeInUp" data-wow-delay=".7s">CCMF offers various forms of assistance ranging from allowances to tuition support to close to 100 scholars in various schools. Beneficiaries are bright but economically challenged students. 
-                                        </p>
-                                    <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.php" class="btn">Learn More</a>
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ End Single Slider -->
-            <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('assets1/images/hero/slider-bg3.jpg');">
-                <div class="container">
-                    <div class="row ">
-                        <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
-                            <div class="home-slider">
-                                <div class="hero-text">
-                                    <h5 class="wow fadeInUp" data-wow-delay=".3s">Payatas CSR Demo Campus</h5>
-                                    <h1 class="wow fadeInUp" data-wow-delay=".5s">Empower communities and enlighten families</h1>
-                                    <p class="wow fadeInUp" data-wow-delay=".7s">CCMF has offered a 7.5 hectares property it owns in the Payatas area as a resource of the community, using it as a training venue for skills development and programs.
-                                        </p>
-                                    <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.php" class="btn">Learn More</a>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--/ End Single Slider -->
+        
+          <li><a href="#contact">Contact</a></li>
+          
+          <div class="dropdown1">
+          <li><a href="#" class="dropbtn1">Programs</a></li>
+          
+          <div class="dropdown-content1">
+          </br>
+            <a href="#scholar">Scholarship</a>
+            <a href="#CSR">CSR demo campus</a>
+            <a href="#Nutri">Nutrition program</a>
+            <a href="#Liveli">Livelihood</a>
+            <a href="#CCMF">CCMF Bulacan</a>
+            <a href="#credit">Credit faciities</a>
+            <a href="#orga">Organic farming</a>
+            <a href="#pagsulay">Pagsulay</a>
+          </div>
+
         </div>
-    </section>
-    <!--/ End Hero Area -->
+        <li><a href="Pages-scholar/form.php">Application</a></li>
+          <div class="login">
+        <div class="menu">
 
-    <!-- Start About Us Area -->
-    <section class="about-us section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-12">
-                    <div class="about-left">
-                        <div class="about-title align-left">
-                            <span class="wow fadeInDown" data-wow-delay=".2s">About Our Foundation</span>
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Welcome To Our Foundation</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">The foundation seeks to enhance the human dignity and self-esteem of individuals and families through various poverty alleviation interventions - from livelihood and housing assistance, microfinance. It applies a more holistic approach by promoting "social entrepreneurship" as a way out of poverty.</p>
-                            <p class="qote wow fadeInUp" data-wow-delay=".8s"></p>
-                            <div class="button wow fadeInUp" data-wow-delay="1s">
-                                <a href="about-us.php" class="btn">Read More</a>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-12">
-                    <div class="about-right wow fadeInRight" data-wow-delay=".4s">
-                        <img src="assets1/images/about/1.png" alt="#">
-                    </div>
-                </div>
-            </div>
+
+          
         </div>
-    </section>
-    <!-- /End About Us Area -->
+           
+              
+                 &nbsp; &nbsp; &nbsp;
+                 
 
-    <!-- Start Programs Area -->
-    <section id="Programs"></section>
-    <section class="courses section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="section-title">
-                        <div class="section-icon wow zoomIn" data-wow-delay=".4s">
-                            <i class="lni lni-graduation"></i>
-                        </div>
-                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Programs</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".6s">Consuelo 'Chito' Madrigal Foundation Programs</p>
-                    </div>
-                </div>
-            </div>
-            <div class="single-head">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Course -->
-                        <div class="single-course wow fadeInUp" data-wow-delay=".2s">
-                            <div class="course-image">
-                                <img src="assets1/images/courses/chito.png"
-                                        alt="#"></a>
-                                <p class="price">Free</p>
-                            </div>
-                            <div class="content">
-                                <h3><a href="course-details.php">CHITO MADRIGAL LEARNING AND LIVELIHOOD VILLAGE: PAYATAS CSR DEMO CAMPUS</a></h3>
-                                <p>The Payatas community in Metro Manila, the Philippine mega city, has long served as a symbol of the debilitating and dehumanizing effects of poverty. Metro Manila’s 12 million residents dump their garbage in Payatas, where thousands of distressed families making a living scavenging from the garbage mountain.</p>
-                            </div>
-                            <div class="bottom-content">
-                                <ul class="review">
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li>22 Reviews</li>
-                                </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Demo Campus</a>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- End Single Course -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Course -->
-                        <div class="single-course wow fadeInUp" data-wow-delay=".4s">
-                            <div class="course-image">
-                                <img src="assets1/images/courses/scholar.png"
-                                        alt="#"></a>
-                                <p class="price">Free</p>
-                            </div>
-                            <div class="content">
-                                <h3><a href="course-details.php">Scholarship</a></h3>
-                                <p>Education is one of the highest values among Filipinos, in general, which is why CCMF offers various forms of assistance...</p>
-                            </div>
-                            <div class="bottom-content">
-                                <ul class="review">
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li>10 Reviews</li>
-                                </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Scholarship</a>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- End Single Course -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Course -->
-                        <div class="single-course wow fadeInUp" data-wow-delay=".6s">
-                            <div class="course-image">
-                              <img src="assets1/images/courses/nutriprog.png"
-                                        alt="#"></a>
-                                <p class="price">Free</p>
-                            </div>
-                            <div class="content">
-                                <h3><a href="course-details.php">Nutrition Program</a></h3>
-                                <p>Nutrition Program through its network, CCMF prepares 57,000 meals per month.</p>
-                            </div>
-                            <div class="bottom-content">
-                                <ul class="review">
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li>55 Reviews</li>
-                                </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Nutrition</a>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- End Single Course -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Course -->
-                        <div class="single-course wow fadeInUp" data-wow-delay=".2s">
-                            <div class="course-image">
-                                <img src="assets1/images/courses/liveli.png"
-                                        alt="#"></a>
-                                <p class="price">Free</p>
-                            </div>
-                            <div class="content">
-                                <h3><a href="course-details.php">Livelihood</a></h3>
-                                <p>CCMF supports ongoing livelihood activities by providing additional capital through microfinance loans. With the injection of additional funds, the recipients’ businesses are strengthened and the viability of these concerns as sources of income reinforced. Close to 2,000 micro-entrepreneurs have benefitted from this program.</p>
-                            </div>
-                            <div class="bottom-content">
-                                <ul class="review">
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li>60 Reviews</li>
-                                </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Livelihood</a>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- End Single Course -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Course -->
-                        <div class="single-course wow fadeInUp" data-wow-delay=".4s">
-                            <div class="course-image">
-                                <img src="assets1/images/courses/CCMFbulacan.png"
-                                        alt="#"></a>
-                                <p class="price">Free</p>
-                            </div>
-                            <div class="content">
-                                <h3><a href="course-details.php">CCMF Bulacan</a></h3>
-                                <p>North of Metro Manila, CCMF is beginning to make its presence felt in the city of San Jose del Monte through the San Lorenzo Ruiz parish. The foundation has established the following: a credit line to finance livelihood projects; services to benefit a group of homeless urban poor being organized into a community; and scholarships for students in elementary, high school and college.</p>
-                            </div>
-                            <div class="bottom-content">
-                                <ul class="review">
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li>25 Reviews</li>
-                                </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">CCMF Bulacan</a>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- End Single Course -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <!-- Start Single Course -->
-                        <div class="single-course wow fadeInUp" data-wow-delay=".6s">
-                            <div class="course-image">
-                                <img src="assets1/images/courses/pagsulay.png"
-                                        alt="#"></a>
-                                <p class="price">Free</p>
-                            </div>
-                            <div class="content">
-                                <h3><a href="course-details.php">Pagsulay</a></h3>
-                                <p>Bohol church restoration through scholarship with Escuella Taller Foundation.</p>
-                            </div>
-                            <div class="bottom-content">
-                                <ul class="review">
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li><i class="lni lni-star-filled"></i></li>
-                                    <li>35 Reviews</li>
-                                </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Pagsulay</a>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- End Single Course -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Courses Area -->
+                 <span onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="highlighted-text" id=>Sign In</span>
+                 
+                 <div id="id01" class="modal">
+                 
 
-    <!-- Start Achivement Area -->
-    <section class="our-achievement section overlay">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-12">
-                    <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
-                        <h3 class="counter"><span id="secondo1" class="countup" cup-end="500">500</span>+</h3>
-                        <h4>Scholars</h4>
+  
+                  <form class="modal-content animate" action="functions/admin-login.php" method="post">
+                    <div class="imgcontainer3">
+                      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                      <img src="images/finalogo.png"  class="avatar">
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-12">
-                    <div class="single-achievement wow fadeInUp" data-wow-delay=".4s">
-                        <h3 class="counter"><span id="secondo2" class="countup" cup-end="70">70</span>+</h3>
-                        <h4>Programs</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-12">
-                    <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
-                        <h3 class="counter"><span id="secondo3" class="countup" cup-end="100">100</span>%</h3>
-                        <h4>Satisfaction</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-12">
-                    <div class="single-achievement wow fadeInUp" data-wow-delay=".6s">
-                        <h3 class="counter"><span id="secondo3" class="countup" cup-end="100">100%</span>%</h3>
-                        <h4>Support</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Achivement Area -->
+                
+                    <div class="container1">
+                      
+                      <label for="uname"><b class="usename">Username</b></label>
+                    </br>
+                      <input type="text" placeholder="Enter Username" name="uname" required>
+                    </br>
 
-   
-             
+                
+                      <label for="psw"><b class="usename">Password</b></label>
+                  </br>
+                      <input type="password" placeholder="Enter Password" name="psw" id="myInput" required>
+                      
+                </br>
+                        
+                      <button type="submit" name="submitBtn">Login</button>
+              </br>
+            </br>
+
+            
+            <input type="checkbox" onclick="myFunction()" name="remember">Show Password &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+                      
+                    </br></br></br></br><span class="floating">Forgot <a href="forgotpass.html">password?</a></span>
+                    </div>
+                
+                    
+                      
+                  </br>
+                </br>
+                    
+                  </form>
+                </div>
+              
+              
+              
+            </div>
+          </div>
+        </ul>
+      </div>  
+    </nav>
+    <div class="img"></div>
     
-    <!-- Start Clients Area -->
-    
-    <!-- Start Footer Area -->
-    <section id="Contact"></section>
-    <footer class="footer style2">
-        <!-- Start Middle Top -->
-        <div class="footer-middle">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Single Widget -->
-                        <div class="f-about single-footer">
-                            <div class="logo">
-                                <a href="index.php"><img src="assets1/images/logo/logo.png" alt="Logo"></a>
-                            </div>
-                            <p>INQUIRIES
-
-
-                                Should you wish to know more about our programs, how to donate or volunteer, please fill up the form on the right and we will get back to you.</p>
-                            <div class="footer-social">
-                                <ul>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-facebook-original"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
-                                    <li><a href="javascript:void(0)"><i class="lni lni-google"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- End Single Widget -->
-                    </div>
-                   
-                             
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <!-- Single Widget -->
-                                    <div class="single-footer sm-custom-border recent-blog">
-                                      
-                                         <h3>Contact Information</h3>
-                                        <ul>
-                                            <li>
-                                                <p style="font-size: 17px"><b>Phone:</b>+63-2-848-0981</p>
-                                                <br>
-                                                <p style="font-size: 17px"><b>Email:</b>ccmf2015main@gmail.com</p>
-                                                <br>
-                                                <p style="font-size: 17px"><b>Open Hours:</b>Mon - Fri : 9am - 5pm</p>
-                                            </li>
-                                        
-                                          
-                                        </ul>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="center">
+      <div class="title">Consuelo Chito Madrigal Foundation</div>
+      <div class="sub_title1">"Opening Doors of Hope.."</div>
+      </br>
+      <div class="sub_title">Education is one of the highest values among Filipinos, </div>
+      <div class="sub_title">in general, which is why CCMF offers various forms of assistance...</div>
+ 
         </div>
-        <!--/ End Footer Middle -->
-        <!-- Start Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="inner">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="left">
-                                <p>Consuelo 'Chito' Madrigal Foundation<a href="" rel="nofollow"
-                                        target="_blank">(CCMF)</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Footer Middle -->
-    </footer>
-    <!--/ End Footer Area -->
-    <!-- Modal for Login -->
-    <div class="modal fade" id="loginModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <!-- Add your login form here -->
-                    <form action="functions/admin-login.php" method="post">
-                        <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input type="text" class="form-control" name="uname" placeholder="Enter username">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" class="form-control" name="psw" placeholder="Enter password">
-                        </div>
-                        <button type="submit" name="submitBtn" class="btn btn-primary">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+      <div class="btns"></div>
     </div>
-    <!-- End of Modal -->
-    <!-- ========================= scroll-top ========================= -->
-    <a href="#" class="scroll-top btn-hover">
-        <i class="lni lni-chevron-up"></i>
-    </a>
+ 
+  
+    <section id="vision"></section>
+    <div class="first">
+     
+     <p style="text-align:center; font-size: 40px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><b>About</b></p>
+ 
+    </br>
 
-    <!-- ========================= JS here ========================= -->
-    <script src="assets1/js/bootstrap.min.js"></script>
-    <script src="assets1/js/count-up.min.js"></script>
-    <script src="assets1/js/wow.min.js"></script>
-    <script src="assets1/js/tiny-slider.js"></script>
-    <script src="assets1/js/glightbox.min.js"></script>
-    <script src="assets1/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-        //========= Hero Slider 
-        tns({
-            container: '.hero-slider',
-            items: 1,
-            slideBy: 'page',
-            autoplay: false,
-            mouseDrag: true,
-            gutter: 0,
-            nav: true,
-            controls: false,
-            controlsText: ['<i class="lni lni-arrow-left"></i>', '<i class="lni lni-arrow-right"></i>'],
-        });
-        //====== Clients Logo Slider
-        tns({
-            container: '.client-logo-carousel',
-            slideBy: 'page',
-            autoplay: true,
-            autoplayButtonOutput: false,
-            mouseDrag: true,
-            gutter: 15,
-            nav: false,
-            controls: false,
-            responsive: {
-                0: {
-                    items: 1,
-                },
-                540: {
-                    items: 3,
-                },
-                768: {
-                    items: 4,
-                },
-                992: {
-                    items: 4,
-                },
-                1170: {
-                    items: 6,
-                }
-            }
-        });
-        //========= glightbox
-        GLightbox({
-            'href': 'https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM',
-            'type': 'video',
-            'source': 'youtube', //vimeo, youtube or local
-            'width': 900,
-            'autoplayVideos': true,
-        });
-    </script>
-</body>
+  </br>
+</br>
 
+</br>
+
+    <img src="images/a.jpg"  style="width:350px;height:350px;margin-left:15px;">
+      &nbsp;<p style="font-size: 30px;">Vision:</p></br> <p style="font-size: 17px">To help improve the quality of life  of distressed families through strategic and holistic approaches addressing basic human needs i.e, nutrition, education, skills training, values formation, social enterprise,shelter, etc  guided and inspired by the principles of true integral development and deep respect for humanity.
+         </p>
+       
+         
+      
+ 
+
+
+        
+  </div>  
+  <section id="mission"></section>
+  <div class="first1">
+<img src="images/g.jpg"  style="width:350px;height:350px;margin-left:15px;">
+&nbsp;<p style="font-size: 30px;">Mission:</p></br> <p style="font-size: 17px">Well-educated individuals, families, imbued with charity and truth,healed from poverty to help build a better tomorrow.
+    </p>
+    </br>
+  </br>
+  
+    </div>
+    <section id="values"></section>
+    <div class="first2">
+      <img src="images/g.jpg"  style="width:350px;height:350px;margin-left:15px;">
+      <p style="font-size: 30px;">Values:</p></br> <p style="font-size: 17px"><b>C</b>reativity and Innovation are essential to the nature of our Foundation.
+      </p>
+      
+    </br><p style="font-size: 17px"><b>H</b>ardwork and Diligence define the work ethics of CCMF.
+      </p>
+    </br><p style="font-size: 17px"><b>I</b>ntegrity and Honesty are fundamental dictum as a financial institution.
+      </p>
+    </br><p style="font-size: 17px"><b>T</b>rustworthiness and Excellence refer to quality service that must be made available not only to the rich.
+      </p>
+    </br><p style="font-size: 17px"><b>O</b>penmindedness and Flexibility are essential ingredients for growth, development and survival.
+      </p>
+      </div>
+     
+      
+      <div class="first3">
+        
+      </br></br></br><p style="text-align:center; font-size: 40px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><b>Programs</b></p>
+      </br>
+      <section id="scholar"></section> 
+    </br>
+  </br>
+  
+
+  </br>
+  
+        <img src="images/scholar.png"  style="width:300px;height:300px;margin-left:15px;">
+       
+        &nbsp;<p style="font-size: 30px;">Scholarship:</p></br> <p style="font-size: 17px">
+          Education is one of the highest values among Filipinos,  in general, which is why CCMF offers various forms of assistance...
+        </p>
+        
+
+       
+          
+       
+      </br>
+    </br>
+  </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+</br>
+</br>
+
+</br>
+<section id="CSR"></section> 
+</br>
+</br>
+</br>
+
+
+    
+    </br>
+          &nbsp;  <img src="images/chito.png"  style="width:300px;height:300px;margin-left:15px;">
+          &nbsp;<p style="font-size: 30px;">Chito madrigal learning and livelihood village payatas CSR demo campus:</p></br> <p style="font-size: 17px">
+            The Payatas community in Metro Manila, the Philippine mega city, has long served as a symbol of the debilitating and dehumanizing effects of poverty. 
+            Metro Manila’s 12 million residents dump their garbage in Payatas, where thousands of distressed families making a living scavenging from the garbage mountain.<p>
+            Nevertheless, the dangers of living in such toxic surroundings were emphasized in 2004 when continuous rain caused a landslide in the trash mountain. Over 200 individuals were buried alive in the incident.</p><p> Those who survived continue to be exposed to the methane, arsenic and other dangerous substances generated by enormous volumes of trash.
+            These factors and the fact that leachate from Payatas is threatening the water supply of Metro Manila have prompted the city government to make plans to close the dumpsite in 2007.</p>
+          </p>
+        
+           
+
+    
+      
+        
+      
+      
+        </br>
+      </br>
+</br>
+</br>
+</br>
+<section id="Nutri"></section> 
+</br>
+</br>
+
+</br>
+</br>
+
+</br>
+
+
+
+&nbsp;  <img src="images/nutriprog.png"  style="width:300px;height:300px;margin-left:15px;">
+&nbsp;<p style="font-size: 30px;">Nutrition Program:</p></br> <p style="font-size: 17px">
+  Nutrition Program through its network, CCMF prepares 57,000 meals per month.
+          </p>
+
+    
+      
+        
+      
+      </br>
+    </br>
+  </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+</br>
+<section id="Liveli"></section> 
+</br>
+</br>
+</br>
+</br>
+</br>
+
+&nbsp;  <img src="images/liveli.png"  style="width:300px;height:300px;margin-left:15px;">
+&nbsp; <p style="font-size: 30px;">Livelihood:</p></br> <p style="font-size: 17px">
+  CCMF supports ongoing livelihood activities by providing additional capital through microfinance loans. With the injection of additional funds, the recipients’ businesses are strengthened and the viability of these concerns as sources of income reinforced. Close to 2,000 micro-entrepreneurs have benefitted from this program.
+
+          </p>
+          <p>With the vision of reaching out to as many borrowers as possible, the foundation partners with agencies that have established a track record such as the Bicol Alternative and Savings Cooperative, the Countryside Multiline Cooperative and the social action centers of various parishes.</p>
+
+    
+      
+        
+      
+      
+    </br>
+  </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<section id="CCMF"></section> 
+</br>
+
+</br>
+
+</br>
+</br>
+</br>
+
+&nbsp;  <img src="images/CCMFbulacan.png"  style="width:300px;height:300px;margin-left:15px;">
+&nbsp;<p style="font-size: 30px;">CCMF Bulacan:</p></br> <p style="font-size: 17px">
+  North of Metro Manila, CCMF is beginning to make its presence felt in the city of San Jose del Monte through the San Lorenzo Ruiz parish. The foundation has established the following: a credit line to finance livelihood projects; services to benefit a group of homeless urban poor being organized into a community; and scholarships for students in elementary, high school and college.
+          </p>
+
+    
+      
+        
+      
+      </br>
+    </br>
+  </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<section id="credit"></section> 
+</br>
+
+</br>
+</br>
+</br>
+</br>
+
+&nbsp;  <img src="images/g.jpg"  style="width:300px;height:300px;margin-left:15px;">
+&nbsp;<p style="font-size: 30px;">Credit facilities :</p></br> <p style="font-size: 17px">
+  Twenty-five livelihood projects have been set up thanks to credit line offered by CCMF to distressed families.</p><p>The credit facility was established so that beneficiaries could set up microenterprises, that, in turn, could eventually help them to generate savings.
+          </p>
+
+    
+      
+        
+      
+      </br>
+    </br>
+  </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<section id="orga"></section>
+</br>
+</br>
+ 
+</br>
+</br>
+</br>
+
+&nbsp;  <img src="images/liveli.png"  style="width:300px;height:300px;margin-left:15px;">
+&nbsp;<p style="font-size: 30px;">Organic farming:</p></br> <p style="font-size: 17px">
+  In Madrigal Learning and Livelihood Village in Payatas, they have started plots that now produces organic vegetables. 
+          </p>
+          <p>Currently, in Bicol, MADRIGAL INTEGRATED FARMING AND TRANING PROGRAM (MIFTP) is piloting the modules, that will later on be offered to farmers as a capacity-building intervention. The program has two sites: (1) Daculang Tubig, San Fernando and (2) San Gabriel, Pamplona, both in Camarines Sur.  In Daculang Tubig, San Fernando, the program operates the Madrigal Organic Farm and Training Center. The farm now produces organic goods such as rice, vegetables, livestock, and fertilizers. </p>
+  
+    
+      
+        
+      
+
+  </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<section id="pagsulay"></section> 
+</br>
+</br>
+
+</br>
+</br>
+</br>
+&nbsp;  <img src="images/pagsulay.png"  style="width:300px;height:300px;margin-left:15px;">
+&nbsp;<p style="font-size: 30px;">Pagsulay:</p></br> <p style="font-size: 17px">
+  Bohol church restoration through scholarship with Escuella Taller Foundation.
+
+          </p>
+
+    
+      
+        
+      
+      </br>
+    </br>
+  </br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+
+        
+        </div>
+  
+      
+      
+      <sention id="contact"></sention>
+      <div class="footer">
+        <div class="contain">
+            <div class="col">
+               
+            </div>
+            <div class="col">
+                <h1>Contact</h1>
+                <ul>
+                    <li ><i class="fas fa-phone"></i>282898795</li></i>
+                    <li>Social-site</li>
+                    <li>Software</li>
+                    <li>Games</li>
+                    <li>News-blogs</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h1>About</h1>
+                <ul>
+                    <li>Terms</li>
+                    <li>Mission</li>
+                    <li>Services</li>
+                    <li>Education</li>
+                    <li>Get in touch</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h1>Website</h1>
+                <ul>
+                    <li>Codoxia</li>
+                    <li>Codo Code</li>
+                    <li>CodePotro</li>
+                    <li>CodeRunner</li>
+                    <li>Code-templates</li>
+                    <li>CodeKhan</li>
+                </ul>
+            </div>
+            <div class="col">
+                <h1>Support</h1>
+                <ul>
+                    <li>Contact us</li>
+                    <li>Send Email</li>
+                    <li>Buy a phone</li>
+                </ul>
+            </div>
+            <div class="col social">
+                <h1>Social</h1>
+                <ul>
+                  
+                    <a href="https://www.facebook.com/CCMFI"><img src="fb.png" width="32" style="width: 32px;"></li>
+                    <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSDbSPcQWrTspmQgBPZrbMSqXnPDDJPsjvfjNdkLMmzKKWgKLFpCwnnwPfpKTSxwnVggPzTl"><img src="gmail.png"  style="width: 47px;"></li>
+                    
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <footer class="foot">
+                <p> Copyright © 2020 - Consuelo Madrigal Foundation-QC </p>
+            </footer>
+        </div>
+
+
+    </div>
+    <script>
+      // Get the modal
+      
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+      </script>
+      
+  </body>
 </html>
