@@ -598,6 +598,9 @@ $appliData = $admin->getApplicants();
     <script>
 $(document).ready(function() {
     $('#applicant').DataTable();
+
+    $('#applicant').parent().parent().css('overflow', 'auto');
+    $('#applicant').parent().parent().css('max-height', '500px');
 });
 
 </script>

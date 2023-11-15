@@ -333,47 +333,46 @@ if (isset($_SESSION['id'])) {
                                     <h6 class="m-0 font-weight-bold text-primary">Scholar list</h6>
                                 </div>
                                 <div class="card-body">
-                                    
                                     <table id="scholars" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Date Applied</th>
-                    
-                    <th scope="col">Details</th>
-                    <th scope="col">Files</th>
-                    
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-            <?php
-            $applicantsData = $admin->getApplicants();
-            $num = 1;
-            foreach($applicantsData as $s){
-                if($s['status'] == 0){
-                    $status = "Pending";
-                }else{
-                    $status = "Accepted";
-                }
-        ?>
-                <tr>
-                    <th scope="col"><?php echo $num; ?></th>
-                    <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
-                    <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                    <td><?php echo $s["date_apply"];?></td>
-                    
-                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button></td>
-                    <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button></td>
-                    
-                </tr>
-                <?php 
-            $num++;
-                } 
-            ?>
-            </tbody>
-        </table>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Date Applied</th>
+                                            
+                                            <th scope="col">Details</th>
+                                            <th scope="col">Files</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-dividercar">
+                                    <?php
+                                    $applicantsData = $admin->getApplicants();
+                                    $num = 1;
+                                    foreach($applicantsData as $s){
+                                        if($s['status'] == 0){
+                                            $status = "Pending";
+                                        }else{
+                                            $status = "Accepted";
+                                        }
+                                    ?>
+                                        <tr>
+                                            <th scope="col"><?php echo $num; ?></th>
+                                            <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
+                                            <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
+                                            <td><?php echo $s["date_apply"];?></td>
+                                            
+                                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button></td>
+                                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button></td>
+                                            
+                                        </tr>
+                                        <?php 
+                                    $num++;
+                                        } 
+                                    ?>
+                                    </tbody>
+                                    </table>
                                     
                                 </div>
                             </div>
@@ -514,6 +513,9 @@ if (isset($_SESSION['id'])) {
     <script>
 $(document).ready(function() {
     $('#scholars').DataTable();
+
+    $('#scholars').parent().parent().css('overflow', 'auto');
+    $('#scholars').parent().parent().css('max-height', '500px');
 });
 
 </script>
