@@ -15,10 +15,16 @@ if(isset($_POST['submit'])){
     $user = $stmt->fetch();
 
     $email = $user['email'];
-    
+
     $stmt = $database->getConnection()->prepare('UPDATE scholars_info SET status = 5 WHERE id = :id');
 
     if(!$stmt->execute(['id' => $id])){
+        header('Location: ../Pages-admin/admin-application.php?status=error');
+    }
+
+    $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 5 WHERE id = :id');
+
+    if(!$stmt1->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
     $declineMessage = "Dear ".$user['f_name']." ".$user['l_name'].",

@@ -25,7 +25,8 @@ if (isset($_SESSION['id'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Profiles</title>
+    <title>Consuelo Chito Madrigal Foundation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

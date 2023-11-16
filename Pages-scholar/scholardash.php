@@ -53,7 +53,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="sweatequityhistory.html">
+                <a class="nav-link collapsed" href="sweat-equity-history.php">
                     
                     <span>Sweat Equity</span>
                 </a>
@@ -61,7 +61,7 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="allowancehistory.html">
+                <a class="nav-link collapsed" href="allowancehistory.php">
                     
                     <span>Allowance</span>
                 </a>

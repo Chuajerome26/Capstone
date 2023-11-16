@@ -20,7 +20,8 @@ if (isset($_SESSION['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Consuelo Chito Madrigal Foundation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
     <style>
         body {
             display: flex;

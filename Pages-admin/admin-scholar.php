@@ -25,7 +25,8 @@ if (isset($_SESSION['id'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Scholars Tab</title>
+    <title>Consuelo Chito Madrigal Foundation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 

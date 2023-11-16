@@ -44,7 +44,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="scholardash.html">
+                <a class="nav-link" href="scholardash.php">
                     
                     <span>              Dashboard</span></a>
             </li>
@@ -54,7 +54,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="sweatequityhistory.html">
+                <a class="nav-link collapsed" href="sweatequityhistory.php">
                     
                     <span>Sweat Equity</span>
                 </a>
@@ -62,7 +62,7 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="allowancehistory.html">
+                <a class="nav-link collapsed" href="allowancehistory.php">
                     
                     <span>Allowance</span>
                 </a>

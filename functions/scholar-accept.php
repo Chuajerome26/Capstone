@@ -19,6 +19,12 @@ if(isset($_POST["accept"])){
     if(!$stmt->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
+
+    $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE id = :id');
+
+    if(!$stmt1->execute(['id' => $id])){
+        header('Location: ../Pages-admin/admin-application.php?status=error');
+    }
     $acceptanceMessage = "Dear ".$user['f_name']." ".$user['l_name'].",
 
     We are delighted to inform you that your application has been accepted by our organization. Congratulations!
@@ -37,7 +43,7 @@ if(isset($_POST["accept"])){
     CCMF
     ";
 
-    $sentEmail = $database->sendEmail($email,"Your Scholarship Application Has been Declined!", $acceptanceMessage);
+    $sentEmail = $database->sendEmail($email,"Your Scholarship Application Has been Accepted!", $acceptanceMessage);
     header('Location: ../Pages-admin/admin-application.php?status=success');
 
 }

@@ -26,10 +26,13 @@ if (isset($_SESSION['id'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CCMF</title>
+    <title>Consuelo Chito Madrigal Foundation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -358,6 +361,8 @@ if (isset($_SESSION['id'])) {
                                         $applicantsData = $admin->getApplicants();
                                         $num = 1;
                                         foreach($applicantsData as $s){
+
+                                            $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], 5, 20);
                                             if($s['status'] == 0){
                                                 $status = "Pending";
                                             }else{
@@ -372,7 +377,7 @@ if (isset($_SESSION['id'])) {
                                                 <td><?php echo $status;?></td>
                                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button></td>
                                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button></td>
-                                                <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: 100%">100%</div></div></td>
+                                                <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?>%</div></div></td>
                                                 <td style="white-space: nowrap;">
                                                     <form method="post" action="../functions/scholar-accept.php">
                                                         <input class="btn btn-primary" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
@@ -621,6 +626,7 @@ $appliData = $admin->getApplicants();
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- DataTables JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -628,12 +634,46 @@ $appliData = $admin->getApplicants();
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
-$(document).ready(function() {
-    $('#applicant').DataTable();
+    const urlParams = new URLSearchParams(window.location.search);
+    const successValue = urlParams.get('status');
+    console.log(successValue);
 
-    $('#applicant').parent().parent().css('overflow', 'auto');
-    $('#applicant').parent().parent().css('max-height', '500px');
-});
+    if(successValue === "success"){
+        Swal.fire({
+            icon:'success',
+            title:'Success',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "error"){
+        Swal.fire({
+            icon:'error',
+            title:'Error',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }
+
+    $(document).ready(function() {
+        $('#applicant').DataTable();
+
+        $('#applicant').parent().parent().css('overflow', 'auto');
+        $('#applicant').parent().parent().css('max-height', '500px');
+    });
 
 </script>
 </body>

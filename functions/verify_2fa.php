@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }else if($userType == 2){
             header("Location: ../Pages-admin/dashboard.php");
         }else if($userType == 1){
-            header("Location: ../Pages-admin/dashboard.php");
+            header("Location: ../Pages-scholar/scholardash.php");
         }else if($userType == 0){
             header("Location: ../Pages-admin/dashboard.php");
         }

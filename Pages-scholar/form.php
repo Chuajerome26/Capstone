@@ -1,6 +1,7 @@
 <html>
     <head>
-        <title></title>
+        <title>Consuelo Chito Madrigal Foundation</title>
+        <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
         <link rel="stylesheet" href="../assets/style-application.css">
