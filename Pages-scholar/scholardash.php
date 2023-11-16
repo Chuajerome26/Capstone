@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="scholardash.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="scholardash.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
@@ -43,9 +43,9 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="scholardash.html">
+                <a class="nav-link" href="scholardash.php">
                     
-                    <span>              Dashboard</span></a>
+                    <span>             Dashboard</span></a>
             </li>
 
             <!-- Divider -->
@@ -310,7 +310,9 @@
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-5" style="font-size: 22px;">
                                                 Sweat Equity</div>
                                                 <div>
-                                                    <button href="#" type="submit" class="btn btn-primary">View Details</button>
+                                                <form action="sweat-equity-history.php" method="get">
+                                    <button type="submit" class="btn btn-primary">View Details</button>
+                                    </form>
                                                     </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
@@ -332,10 +334,11 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-5" style="font-size: 22px;">
-                                                Scholarship Grants</div>
-                                                <div>
-                                                    <button href="#" type="submit" class="btn btn-primary"style="background: #1cc88a;">View Details</button>
-                                                    </div>
+                                                Allowance</div>
+                                                    <div>
+                                                <form action="allowancehistory.php" method="get">
+                                    <button type="submit" class="btn btn-primary" style="background: #1cc88a; ">View Details</button>
+                                    </form>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                         <div class="col-auto">

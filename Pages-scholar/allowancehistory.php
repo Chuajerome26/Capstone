@@ -32,7 +32,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="scholardash.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="scholardash.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
@@ -43,7 +43,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="scholardash.php">
                     
                     <span>              Dashboard</span></a>
@@ -61,7 +61,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="allowancehistory.php">
                     
                     <span>Allowance</span>
