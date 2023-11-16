@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="Applicant-Requirments-CSS.css" />
+  </head>
+  <center>
+  <body>
+    <h1>Applicant Requirements</h1>
+
+    <table id="customers">
+      <tr>
+        <th>Firstname</th>
+        <td>John Carlo</td>
+        <td>
+          <button class="edit-btn" onclick="openModal(1)">Edit</button>
+        </td>
+      </tr>
+      <tr>
+        <th>Lastname</th>
+        <td>Moral</td>
+        <td>
+          <button class="edit-btn" onclick="openModal(2)">Edit</button>
+        </td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td>Male</td>
+        <td><button class="edit-btn" onclick="openModal(3)">Edit</button></td>
+      </tr>
+      <tr>
+        <th>Civil Status</th>
+        <td>Married</td>
+        <td><button class="edit-btn" onclick="openModal(4)">Edit</button></td>
+      </tr>
+
+      <tr>
+        <th>Citizenship</th>
+        <td>Filipino</td>
+        <td><button class="edit-btn" onclick="openModal(5)">Edit</button></td>
+      </tr>
+      <tr>
+        <th>Date of birth</th>
+        <td>5/02/2002</td>
+        <td><button class="edit-btn" onclick="openModal(6)">Edit</button></td>
+      </tr>
+      <tr>
+        <th>Birthplace</th>
+        <td>Quezon City</td>
+        <td><button class="edit-btn" onclick="openModal(7)">Edit</button></td>
+      </tr>
+
+      <tr>
+        <th>Mobile Number</th>
+        <td>0919123123</td>
+        <td><button class="edit-btn" onclick="openModal(8)">Edit</button></td>
+      </tr>
+      <tr>
+        <th>Email Address</th>
+        <td>johncarlo@gmail.com</td>
+        <td><button class="edit-btn" onclick="openModal(9)">Edit</button></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td>016 Elma St Donfabian Brgy Commonwealth QuezonCity</td>
+        <td><button class="edit-btn" onclick="openModal(10)">Edit</button></td>
+      </tr>
+      <tr>
+        <th>Total Subject</th>
+        <td>7</td>
+        <td><button class="edit-btn" onclick="openModal(11)">Edit</button></td>
+      </tr>
+      <tr>
+        <th>Total Units</th>
+        <td>28</td>
+        <td><button class="edit-btn" onclick="openModal(12)">Edit</button></td>
+      </tr>
+      <tr>
+        <th>General Weigthed Average</th>
+        <td>1.42</td>
+        <td><button class="edit-btn" onclick="openModal(13)">Edit</button></td>
+      </tr>
+
+      <tr>
+        <th>Upload 2x2 ID photo</th>
+        <td></td>
+        <td>
+          <label for="formFile" class="form-label"></label>
+          <input class="form-control" type="file" id="formFile">
+      </td>
+      </tr>
+      <tr>
+        <th>Latest Copy of Grades</th>
+        <td></td>
+        <td><label for="formFile" class="form-label"></label>
+          <input class="form-control" type="file" id="formFile"></td>
+      </tr>
+      <tr>
+        <th>Copy of Birth Certificate/PSA</th>
+        <td></td>
+        <td><label for="formFile" class="form-label"></label>
+          <input class="form-control" type="file" id="formFile"></td>
+      </tr>
+      <tr>
+        <th>Certificate of Good Moral</th>
+        <td></td>
+        <td><label for="formFile" class="form-label"></label>
+          <input class="form-control" type="file" id="formFile"></td>
+      </tr>
+      <tr>
+        <th>Copy of Enrollment Form</th>
+        <td></td>
+        <td><label for="formFile" class="form-label"></label>
+          <input class="form-control" type="file" id="formFile"></td>
+      </tr>
+    </table>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+      </br>
+    </br>
+
+        <input type="text" id="editedName" />
+        <button onclick="saveChanges()"><p>Save</p></button>
+      </div>
+    </div>
+    <script>
+      var currentRowId;
+
+      function openModal(rowId) {
+        currentRowId = rowId;
+        var modal = document.getElementById("myModal");
+
+        var cellContent = document.querySelector(
+          `tr:nth-child(${rowId}) td:nth-child(2)`
+        ).textContent;
+        var editedNameInput = document.getElementById("editedName");
+        editedNameInput.value = cellContent;
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModal");
+
+        modal.style.display = "none";
+      }
+
+      function saveChanges() {
+        var editedName = document.getElementById("editedName").value;
+        var cellToEdit = document.querySelector(
+          `tr:nth-child(${currentRowId}) td:nth-child(2)`
+        );
+        cellToEdit.textContent = editedName;
+        closeModal();
+      }
+      //   for upload
+    </script>
+  </body>
+  </center>
+</html>
