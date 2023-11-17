@@ -58,11 +58,18 @@ class Admin
         exit();
     }
     public function getApplicants(){
-        $stmt = $this->database->getConnection()->query("SELECT scholars_info.*, scholar_files.* FROM scholars_info 
+        $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
                                                         JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
                                                         WHERE scholars_info.status = '0'")->fetchAll();
         return $stmt;
         exit();
+    }
+    public function getApplicantById($id){
+        $stmt = $this->database->getConnection()->prepare("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
+                                                        JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
+                                                        WHERE scholars_info.status = '0' AND scholars_info.id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
     }
     public function scholarInfo($id){
         
@@ -155,7 +162,7 @@ class Admin
     return $acceptanceChance;
 }
 
-function predictAcceptanceOfApplicant($gwa, $numDocumentsSubmitted, $attendanceHours) {
+function predictAcceptanceOfApplicant($gwa, $numDocumentsSubmitted) {
     // Assuming 1 is the highest GWA and 5 is the lowest
     $maxGwa = 5.0; 
     $minGwa = 1.0; 
@@ -163,24 +170,22 @@ function predictAcceptanceOfApplicant($gwa, $numDocumentsSubmitted, $attendanceH
     $totalRequiredDocuments = 5; // Total number of required documents
 
     // Weights for each factor
-    $gwaWeight = 0.30;
-    $documentWeight = 0.30;
-    $attendanceWeight = 0.40;
+    $gwaWeight = 0.40;
+    $documentWeight = 0.60;
 
     // Normalize scores
     // Higher GWA (closer to 5) results in a lower score, and vice versa
     $normalizedGwaScore = ($maxGwa - $gwa) / ($maxGwa - $minGwa); //5 - 1 / 5 - 1
     $normalizedDocumentScore = $numDocumentsSubmitted / $totalRequiredDocuments; //5 / 5
     $normalizedDocumentScore = min($normalizedDocumentScore, 1); // Cap at 1 
-    $attendanceScore = min($attendanceHours / $maxAttendanceHours, 1);
-
+    
     // Weighted scores
     $weightedGwaScore = $normalizedGwaScore * $gwaWeight;
     $weightedDocumentScore = $normalizedDocumentScore * $documentWeight;
-    $weightedAttendanceScore = $attendanceScore * $attendanceWeight;
+    
 
     // Total weighted score
-    $totalWeightedScore = $weightedGwaScore + $weightedDocumentScore + $weightedAttendanceScore;
+    $totalWeightedScore = $weightedGwaScore + $weightedDocumentScore;
 
     // Convert the score to a percentage and round to 2 decimal places
     $acceptanceChance = round($totalWeightedScore * 100, 2);

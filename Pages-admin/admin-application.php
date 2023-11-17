@@ -362,7 +362,7 @@ if (isset($_SESSION['id'])) {
                                         $num = 1;
                                         foreach($applicantsData as $s){
 
-                                            $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], 5, 20);
+                                            $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], 5);
                                             if($s['status'] == 0){
                                                 $status = "Pending";
                                             }else{
@@ -641,7 +641,7 @@ $appliData = $admin->getApplicants();
     if(successValue === "success"){
         Swal.fire({
             icon:'success',
-            title:'Success',
+            title:'Accepted',
             toast:true,
             position:'top-end',
             showConfirmButton: false,
@@ -652,10 +652,10 @@ $appliData = $admin->getApplicants();
             toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-    }else if(successValue === "error"){
+    }else if(successValue === "successDecline"){
         Swal.fire({
             icon:'error',
-            title:'Error',
+            title:'Declined',
             toast:true,
             position:'top-end',
             showConfirmButton: false,

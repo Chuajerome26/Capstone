@@ -364,8 +364,8 @@ if (isset($_SESSION['id'])) {
                                             <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
                                             <td><?php echo $s["date_apply"];?></td>
                                             
-                                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button></td>
-                                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button></td>
+                                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button></td>
+                                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button></td>
                                             
                                         </tr>
                                         <?php 
@@ -492,6 +492,146 @@ if (isset($_SESSION['id'])) {
             </div>
         </div>
     </div>
+
+    <!-- Modal for Details -->
+
+<?php
+$appliData = $admin->getScholars();
+    foreach($appliData as $a){
+?>
+<div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>l" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:600px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table id="applicant-modal<?php echo $a["scholar_id"]?>" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Requirements</th>
+                    <th>Details</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td><?php echo $a["f_name"]." ".$a["l_name"];?></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td><?php echo $a["gender"];?></td>
+                </tr>
+                <tr>
+                    <td>Civil Status</td>
+                    <td><?php echo $a["cStatus"];?></td>
+                </tr>
+                <tr>
+                    <td>Citizenship</td>
+                    <td><?php echo $a["citizenship"];?></td>
+                </tr>
+                <tr>
+                    <td>Birthday</td>
+                    <td><?php echo $a["date_of_birth"];?></td>
+                </tr>
+                <tr>
+                    <td>Place of Birth</td>
+                    <td><?php echo $a["birth_place"];?></td>
+                </tr>
+                <tr>
+                    <td>Religion</td>
+                    <td><?php echo $a["religion"];?></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td><?php echo $a["mobile_num"];?></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><?php echo $a["email"];?></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><?php echo $a["address"];?></td>
+                </tr>
+                <tr>
+                    <td>Total Subject</td>
+                    <td><?php echo $a["total_sub"];?></td>
+                </tr>
+                <tr>
+                    <td>Total Units</td>
+                    <td><?php echo $a["total_units"];?></td>
+                </tr>
+                <tr>
+                    <td>General Weighted Average</td>
+                    <td><?php echo $a["gwa"];?></td>
+                </tr>
+            </tbody>
+        </table>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
+<!-- Modal end -->
+<!-- Modal for Files -->
+<?php
+$appliData = $admin->getScholars();
+    foreach($appliData as $b){
+?>
+<div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:600px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="filesModal<?php echo $b["scholar_id"];?>">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table id="applicant-modal<?php echo $b["scholar_id"]?>" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Requirements</th>
+                    <th>Details</th>
+                </tr> 
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Copy of Id</td>
+                    <td><a href="../Uploads_pic/<?php echo $b["id_pic"]?>" target="_blank"><?php echo $b["id_pic"]?></a></td>
+                </tr>
+                <tr>
+                    <td>Copy of Grades</td>
+                    <td><a href="../Uploads_cog/<?php echo $b["copy_grades"]?>" target="_blank"><?php echo $b["copy_grades"]?></a></td>
+                </tr>
+                <tr>
+                    <td>Copy of PSA</td>
+                    <td><a href="../Uploads_psa/<?php echo $b["psa"]?>" target="_blank"><?php echo $b["psa"]?></a></td>
+                </tr>
+                <tr>
+                    <td>Copy of Good Moral</td>
+                    <td><a href="../Uploads_gm/<?php echo $b["good_moral"]?>" target="_blank"><?php echo $b["good_moral"]?></a></td>
+                </tr>
+                <tr>
+                    <td>Copy of Enrollment Form</td>
+                    <td><a href="../Uploads_ef/<?php echo $b["e_Form"]?>" target="_blank"><?php echo $b["e_Form"]?></a></td>
+                </tr>
+            </tbody>
+        </table>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php } ?>
+<!-- Modal end -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>

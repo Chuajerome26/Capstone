@@ -29,18 +29,15 @@ if(isset($_POST["accept"])){
 
     We are delighted to inform you that your application has been accepted by our organization. Congratulations!
 
-    Details of the Acceptance:
-    - Dahil Malupet ka.
-    - Pogi ka
-    - Matalino ka
-    - Edi ikaw na!
-
-    We look forward to having you as a part of our program/team and working together towards our shared goals.
+    We look forward to having you as a part of our foundation and working together towards our shared goals.
 
     If you have any questions or need further information, please do not hesitate to contact us.
 
-    Sincerely,
-    CCMF
+    Best Regards,
+    Socorro L. Bautista
+    Executive Director
+    Consuelo Chito Madrigal Foundation
+    Incorporation
     ";
 
     $sentEmail = $database->sendEmail($email,"Your Scholarship Application Has been Accepted!", $acceptanceMessage);

@@ -31,13 +31,20 @@ if(isset($_POST['submit'])){
 
     We regret to inform you that your application has been declined by the administrator.
 
-    Reason for Decline:
-    ".$remarks."
+    Thank you for your application for the Educational Assistant. After careful review,
+
+    we regret to inform you that your application was not selected.
+
+    We appreciate your interest and commend your efforts. Wishing you success in your
+    academic and future endeavors.
 
     If you have any questions or need further information, please feel free to contact us.
 
-    Sincerely,
-    CCMF
+    Best Regards,
+    Socorro L. Bautista
+    Executive Director
+    Consuelo Chito Madrigal Foundation
+    Incorporation
     
     ";
     $sentEmail = $database->sendEmail($email,"Your Scholarship Application Has been Declined!", $declineMessage);
