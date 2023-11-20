@@ -9,6 +9,14 @@ if (isset($_SESSION['id'])) {
     $database = new Database();
     $admin = new Admin($database);
 
+    $id = $_SESSION['id'];
+
+    $admin_info = $admin->scholarInfo($id);
+
+    $scholar = $admin->getScholarCount();
+    $applicants = $admin->getApplicantsCount();
+    $funds = $admin->getTotalFunds();
+
 } else {
     header("Location: ../index.php");
 }
@@ -97,8 +105,8 @@ if (isset($_SESSION['id'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="userinfo.php">
-                    <span>User</span></a>
+                <a class="nav-link" href="admin-funds.php">
+                    <span>Funds</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -294,7 +302,7 @@ if (isset($_SESSION['id'])) {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="../Uploads_pic/<?php echo $admin_info[0]['id_pic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -345,7 +353,7 @@ if (isset($_SESSION['id'])) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Current Scholars</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">500</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $scholar; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -362,8 +370,8 @@ if (isset($_SESSION['id'])) {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Scholarship Grants</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">₱215,000</div>
+                                                Total Funds</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">₱<?php echo $funds[0]['total_funds']; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-peso-sign fa-2x text-gray-300"></i>
@@ -381,7 +389,7 @@ if (isset($_SESSION['id'])) {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Sweat Equity
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -411,8 +419,8 @@ if (isset($_SESSION['id'])) {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Pending Applicants</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applicants; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -566,6 +574,19 @@ if (isset($_SESSION['id'])) {
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
+    <script>
+        fetch('../functions/get_chart_data.php')
+            .then(response => response.json())
+            .then(monthData => {
+                const labels = Object.keys(monthData);
+                const amounts = Object.values(monthData);
+
+                myLineChart.data.labels = labels;
+                myLineChart.data.datasets[0].data = amounts;
+                myLineChart.update();
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
 
 </body>
 

@@ -57,6 +57,26 @@ class Admin
         return $stmt;
         exit();
     }
+    public function getScholarCount() {
+        $scholars = $this->getScholars();
+        return count($scholars);
+    }
+    public function getApplicantsCount() {
+        $applicants = $this->getApplicants();
+        return count($applicants);
+    }
+    public function getTotalFunds(){
+        $stmt = $this->database->getConnection()->query("SELECT total_funds FROM totalFunds WHERE id = 1")->fetchAll();
+
+        return $stmt;
+        exit();
+    }
+    public function getDataforAreaChart(){
+        $stmt = $this->database->getConnection()->query("SELECT date_added, amount FROM admin_funds")->fetchAll();
+
+        return $stmt;
+        exit();
+    }
     public function getApplicants(){
         $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
                                                         JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
@@ -191,6 +211,48 @@ function predictAcceptanceOfApplicant($gwa, $numDocumentsSubmitted) {
     $acceptanceChance = round($totalWeightedScore * 100, 2);
 
     return $acceptanceChance;
+}
+public function addFunds($amount, $donors, $date){
+
+    // prepare insert statement for employee table
+     $sql = "INSERT INTO admin_funds (amount, donors, date_added)
+        VALUES (?,?,?);";
+
+     // prepared statement
+    $stmt = $this->database->getConnection()->prepare($sql);
+
+    //if execution fail
+    if (!$stmt->execute([$amount, $donors, $date])) {
+        header("Location: ../Pages-admin/admin-funds.php?status=error");
+        exit();
+    }
+
+    $stmtTotalAmount = $this->database->getConnection()->prepare("SELECT total_funds FROM totalFunds");
+
+         //if execution fail
+        if (!$stmtTotalAmount->execute()) {
+            header("Location: ../Pages-admin/admin-funds.php?status=error");
+            exit();
+        }
+        //fetch the employeeID
+    $totalFunds = $stmtTotalAmount->fetchColumn();
+
+    $updateTotalAmount = $totalFunds + $amount;
+
+
+    $sql1 = "UPDATE totalFunds SET total_funds = ?, last_date_added = ? WHERE id = 1";
+     // prepared statement
+    $stmt1 = $this->database->getConnection()->prepare($sql1);
+
+
+    if (!$stmt1->execute([$updateTotalAmount, $this->date])) {
+        header("Location: ../Pages-admin/admin-funds.php?status=error");
+        exit();
+    }
+
+
+    header("Location: ../Pages-admin/admin-funds.php?status=success");
+
 }
 
 

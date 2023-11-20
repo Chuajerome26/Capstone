@@ -21,6 +21,8 @@ if (isset($_SESSION['id'])) {
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Consuelo Chito Madrigal Foundation</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
     <link rel="stylesheet" href="Applicant-Requirments-CSS.css" />
   </head>
   <center>

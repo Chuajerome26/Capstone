@@ -66,23 +66,23 @@ if(isset($_POST['submit'])){
     //seperate the filename and its extension - file
     $fileExt = explode('.', $fileData['fileName']);
     $fileActualExt = strtolower(end($fileExt));
-    $allowed = array('jpeg', 'png', 'jpg');
+    $allowed = array('jpeg', 'png', 'jpg', 'pdf');
 
     $fileExt1 = explode('.', $fileData1['fileName']);
     $fileActualExt1= strtolower(end($fileExt1));
-    $allowed1 = array('pdf', 'docx');
+    $allowed1 = array('jpeg', 'png', 'jpg', 'pdf');
 
     $fileExt2 = explode('.', $fileData2['fileName']);
     $fileActualExt2 = strtolower(end($fileExt2));
-    $allowed2 = array('jpeg','png','jpg');
+    $allowed2 = array('jpeg', 'png', 'jpg', 'pdf');
 
     $fileExt3 = explode('.', $fileData3['fileName']);
     $fileActualExt3 = strtolower(end($fileExt3));
-    $allowed3 = array('jpeg','png','jpg');
+    $allowed3 = array('jpeg', 'png', 'jpg', 'pdf');
 
     $fileExt4 = explode('.', $fileData4['fileName']);
     $fileActualExt4 = strtolower(end($fileExt4));
-    $allowed4 = array('jpeg','png','jpg');
+    $allowed4 = array('jpeg', 'png', 'jpg', 'pdf');
 
     //resume and picture data
     $filesAndPicture = array(

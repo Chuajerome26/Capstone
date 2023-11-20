@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <style type="text/css">
     	body {
     margin: 0;
@@ -74,10 +75,27 @@
 
     </style>
 </head>
+<!-- $scholarData = array(
+        'f_name' => trim($_POST["f_name"]),
+        'l_name' => trim($_POST["l_name"]),
+        'gender' => trim($_POST["gender"]),
+        'cStatus' => trim($_POST["cStatus"]),
+        'citizenship' => trim($_POST["citizenship"]),
+        'bday' => trim($_POST["bday"]),
+        'bplace' => $_POST["bplace"],
+        'religion' => $_POST["religion"],
+        'mNum' => $_POST["mNum"],
+        'email' => $_POST["email"],
+        'address' => $_POST["address"],
+        'totalSub' => trim($_POST["totalSub"]),
+        'totalUnits' => trim($_POST["totalUnits"]),
+        'gwa' => trim($_POST["gwa"]),
+    ); -->
+
 <div class="container mt-4">
     <div class="row mx-auto">
       <div class="col-xl-1 col-lg-6 col-md-6 col-sm-6 col-6">
-        <img src="images/consuelo.jpg" alt="Image" class="img-fluid">
+        <img src="../images/consuelo.jpg" alt="Image" class="img-fluid">
       </div>
       <div class="col">
         <header>
@@ -94,71 +112,71 @@
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 <h6 class="mb-2 text-primary">Personal's Information</h6>
 </div>
-<form action="functions/application-register.php" method="post" multipart> 
+<form action="../functions/applicants-register.php" method="post" enctype="multipart/form-data" name="myForm" onsubmit="return validateForm()"> 
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
 <label for="Fname">First Name:</label>
-<input type="text" class="form-control" id="Fname" placeholder="First Name">
+<input type="text" class="form-control" name="f_name" placeholder="First Name" value="<?php echo isset($_POST['f_name']) ? htmlspecialchars($_POST['f_name']) : ''; ?>" required>
 </div>
 </div>
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
 <label for="Lname">Last Name:</label>
-<input type="Lname" class="form-control" id="Lname" placeholder="Last Name">
+<input type="text" class="form-control" name="l_name" placeholder="Last Name" value="<?php echo isset($_POST['l_name']) ? htmlspecialchars($_POST['l_name']) : ''; ?>" required>
 </div>
 </div>
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
     <label for="gend">Gender:</label>
-    <input type="gend" class="form-control" id="gend" placeholder="Gender">
+    <input type="text" class="form-control" name="gender" placeholder="Gender" value="<?php echo isset($_POST['gender']) ? htmlspecialchars($_POST['gender']) : ''; ?>" required>
     </div>
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
         <label for="Cstat">Civil Status:</label>
-        <input type="Cstat" class="form-control" id="Cstat" placeholder="Civil Status">
+        <input type="text" class="form-control" name="cStatus" placeholder="Civil Status" value="<?php echo isset($_POST['cStatus']) ? htmlspecialchars($_POST['cStatus']) : ''; ?>" required>
         </div>
         </div>
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
 <label for="Cship">Citizenship</label>
-<input type="Cship" class="form-control" id="Cship" placeholder="Enter Citizenship">
+<input type="text" class="form-control" name="citizenship" placeholder="Enter Citizenship" value="<?php echo isset($_POST['citizenship']) ? htmlspecialchars($_POST['citizenship']) : ''; ?>" required>
 </div>
 </div>
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
 <label for="website">Date of Birth:</label>
-<input type="url" class="form-control" id="website" placeholder="zz">
+<input type="date" class="form-control" name="bday" value="<?php echo isset($_POST['bday']) ? htmlspecialchars($_POST['bday']) : ''; ?>" required>
 </div>
 </div>
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
     <label for="Bplace">Birthplace:</label>
-    <input type="Bplace" class="form-control" id="Bplace" placeholder="Birthplace">
+    <input type="text" class="form-control" name="bplace" placeholder="Birthplace" value="<?php echo isset($_POST['bplace']) ? htmlspecialchars($_POST['bplace']) : ''; ?>" required>
     </div>
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="form-group">
         <label for="rgion">Religion:</label>
-        <input type="rgion" class="form-control" id="rgion" placeholder="Religion">
+        <input type="text" class="form-control" name="religion" placeholder="Religion" value="<?php echo isset($_POST['religion']) ? htmlspecialchars($_POST['religion']) : ''; ?>" required>
         </div>
         </div>
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="form-group">
             <label for="Mnum">Mobile Number:</label>
-            <input type="Mnum" class="form-control" id="Mnum" placeholder="Enter # Number">
+            <input type="text" class="form-control" name="mNum" placeholder="Enter # Number" value="<?php echo isset($_POST['mNUm']) ? htmlspecialchars($_POST['mNum']) : ''; ?>" onkeydown="return onlyNumberKey(event)" required>
             </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="form-group">
                 <label for="Eadd">Email Address:</label>
-                <input type="Eadd" class="form-control" id="Eadd" placeholder="Email Address">
+                <input type="text" class="form-control" name="email" placeholder="Email Address" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
                 </div>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                     <label for="adds">Address:</label>
-                    <input type="adds" class="form-control" id="adds" placeholder="Address">
+                    <input type="text" class="form-control" name="address" placeholder="Address" value="<?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address']) : ''; ?>" required>
                     </div>
                     </div>
 </div>
@@ -169,20 +187,20 @@
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
     <label for="tsubj">Total Subject:</label>
-    <input type="tsubj" class="form-control" id="tsubj" placeholder="Total Subject">
+    <input type="text" class="form-control" name="totalSub" placeholder="Total Subject" value="<?php echo isset($_POST['totalSub']) ? htmlspecialchars($_POST['totalSub']) : ''; ?>" required>
     </div>
     </div>
 
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="form-group">
         <label for="Tunit">Total Units:</label>
-        <input type="Tunit" class="form-control" id="Tunit" placeholder="Total Units">
+        <input type="text" class="form-control" name="totalUnits" placeholder="Total Units" value="<?php echo isset($_POST['totalUnits']) ? htmlspecialchars($_POST['totalUnits']) : ''; ?>" required>
         </div>
         </div>
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
 <div class="form-group">
 <label for="genwa">General Weighted Average:</label>
-<input type="genwa" class="form-control" id="genwa" placeholder="GWA">
+<input type="text" class="form-control" name="gwa" placeholder="GWA" value="<?php echo isset($_POST['gwa']) ? htmlspecialchars($_POST['gwa']) : ''; ?>" required> 
 </div>
 </div>
 </div>
@@ -193,37 +211,37 @@
 <div class="row gutters">
 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
-    <label for="Fname">Upload 2X2 ID Photo</label>
+    <label for="Fname">Upload 2X2 name Photo</label>
     <label for="formFile" class="form-label"></label>
-    <input class="form-control" type="file" id="formFile">
+    <input class="form-control" type="file" name="idPhoto" accept=".jpeg, .jpg, .png, .pdf" required>
     </div>
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
         <div class="form-group">
         <label for="Tunit">Latest Copy of Grades:</label>
         <label for="formFile" class="form-label"></label>
-        <input class="form-control" type="file" id="formFile">
+        <input class="form-control" type="file" name="grades" accept=".jpeg, .jpg, .png, .pdf" required>
         </div>
         </div>
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
             <div class="form-group">
             <label for="Tunit">Copy of Birth Certificate/PSA</label>
             <label for="formFile" class="form-label"></label>
-            <input class="form-control" type="file" id="formFile">
+            <input class="form-control" type="file" name="PSA" accept=".jpeg, .jpg, .png, .pdf" required>
             </div>
             </div>
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div class="form-group">
                 <label for="Tunit">Certificate of Good Moral</label>
                 <label for="formFile" class="form-label"></label>
-                <input class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" name="goodMoral" accept=".jpeg, .jpg, .png, .pdf" required>
                 </div>
                 </div>
                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div class="form-group">
                         <label for="Fname">Copy of Enrollment Form </label>
                         <label for="formFile" class="form-label"></label>
-                        <input class="form-control" type="file" id="formFile">
+                        <input class="form-control" type="file" name="eForm" accept=".jpeg, .jpg, .png, .pdf" required>
                         </div>
                         </div>
     </div>
@@ -231,8 +249,7 @@
 <div class="row gutters">
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 <div class="text-right">
-<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-<button type="submit" id="submit" name="submit" class="btn btn-primary">Submit</button>
+<button type="submit" name="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
 </div>
@@ -242,13 +259,15 @@
 </div>
 </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script type="text/javascript">
-
+   
 </script>
 </body>
 </html>

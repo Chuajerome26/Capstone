@@ -19,7 +19,7 @@ require '../classes/database.php';
 
     $user_id = $adminData['user_id'];
     $adminPass = $adminData['pass'];
-    $user_type = $adminData['user_type'];  
+    $userType = $adminData['user_type'];  
 
     $scholarInfo = $admin->scholarInfo($user_id);
 
@@ -37,20 +37,30 @@ require '../classes/database.php';
     }
 
     // Generate a random token and set expiry time (e.g., 10 minutes from now)
-    $token = $admin->generateRandomSixDigitNumber();
-    $expiry = new DateTime('+10 minutes');
-    $formattedExpiry = $expiry->format('Y-m-d H:i:s');
+    // $token = $admin->generateRandomSixDigitNumber();
+    // $expiry = new DateTime('+10 minutes');
+    // $formattedExpiry = $expiry->format('Y-m-d H:i:s');
 
-    $update = $admin->twoFactor($token, $formattedExpiry, $user_id);
+    // $update = $admin->twoFactor($token, $formattedExpiry, $user_id);
 
-    $sentEmail = $database->sendEmail($email,"Your Code For Authentication", "Your code is ". $token);
+    // $sentEmail = $database->sendEmail($email,"Your Code For Authentication", "Your code is ". $token);
 
      //start session 
     session_start();
     $_SESSION["id"] = $user_id;
-    $_SESSION["user_type"] = $user_type;
+    $_SESSION["user_type"] = $userType;
 
-    header("Location: ../Pages-admin/twoFactor.php");
+    if($userType == 3){
+        header("Location: ../Pages-admin/dashboard.php");
+    }else if($userType == 2){
+        header("Location: ../Pages-admin/dashboard.php");
+    }else if($userType == 1){
+        header("Location: ../Pages-scholar/scholardash.php");
+    }else if($userType == 0){
+        header("Location: ../Pages-Applicant/Applicant-Requirements.php");
+    }
+
+    // header("Location: ../Pages-admin/dashboard.php");
     exit();
 } else {
     header("Location:../index.php?error=emptyInput");

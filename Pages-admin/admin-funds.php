@@ -9,6 +9,10 @@ if (isset($_SESSION['id'])) {
     $database = new Database();
     $admin = new Admin($database);
 
+    $id = $_SESSION['id'];
+
+    $admin_info = $admin->scholarInfo($id);
+
 } else {
     header("Location: ../index.php");
 }
@@ -96,8 +100,8 @@ if (isset($_SESSION['id'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href="userinfo.php">
-                    <span>User</span></a>
+                <a class="nav-link" href="admin-funds.php">
+                    <span>Funds</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -279,7 +283,7 @@ if (isset($_SESSION['id'])) {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="../Uploads_pic/<?php echo $admin_info[0]['id_pic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -314,7 +318,7 @@ if (isset($_SESSION['id'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">User Overview</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Funds</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -334,24 +338,28 @@ if (isset($_SESSION['id'])) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Edit User info</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Add Funds</h6>
                                     <div class="card-body">
                                         
                                     </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <form>
+                                    <form action="../functions/addFunds.php" method="post">
                                         <div class="form-group">
-                                          <label for="exampleInputEmail1">Username:</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                                          <label for="exampleInputEmail1">Amount</label>
+                                          <input type="text" class="form-control" name="amount" aria-describedby="email" placeholder="Enter amount">
                                         </div>
                                         <div class="form-group">
-                                          <label for="exampleInputPassword1">Password:</label>
-                                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                          <label for="exampleInputPassword1">Donors</label>
+                                          <input type="text" class="form-control" name="donor" placeholder="Donors">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputPassword1">Date Receive</label>
+                                          <input type="date" class="form-control" name="date" placeholder="Donors">
                                         </div>
                                         <div class="form-check">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                       </form>
                                 </div>
@@ -362,8 +370,7 @@ if (isset($_SESSION['id'])) {
                         <div class="col-xl-4 col-lg-6">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Achievements</h6>
                                     <div class="card-body">
                                     </div>

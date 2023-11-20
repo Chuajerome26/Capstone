@@ -118,7 +118,7 @@ class Scholar{
                              $scholarData['totalUnits'],
                              $scholarData['gwa'],
                              $this->date])) {
-            header("Location: ../Pages-scholar/form.php?scholar=stmtfail");
+            header("Location: ../Pages-scholar/appforms.php?scholar=stmtfail");
 
             exit();
         }
@@ -129,7 +129,7 @@ class Scholar{
 
          //if execution fail
         if (!$stmtScholarID->execute([$scholarData['email']])) {
-            header("Location: ../Pages-scholar/form.php?scholar=stmtfail");
+            header("Location: ../Pages-scholar/appforms.php?scholar=stmtfail");
             exit();
         }
         //fetch the employeeID
@@ -145,7 +145,7 @@ class Scholar{
 
          //if execution fail
         if (!$stmt2->execute([$scholarId, $id_pic, $copy_grades, $psa, $good_moral, $eForm])) {
-            header("Location: ../Pages-scholar/form.php?scholar=stmtfail");
+            header("Location: ../Pages-scholar/appforms.php?scholar=stmtfail");
             //close connection
             unset($this->database);
             exit();
@@ -163,16 +163,11 @@ class Scholar{
         // $this->database->sendEmail($scholarData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
 
         //if sucess uploading file, go to this 👇 page
-        header("Location: ../Pages-scholar/form.php?scholar=success"); 
+        header("Location: ../Pages-scholar/appforms.php?scholar=success"); 
         exit();
 
     }
 
-    public function acceptEmployee($scholarData){
-        // prepared statement
-         $stmt = $this->database->getConnection()->prepare("INSERT INTO employees (first_name,last_name, email, gender, address, contact, status)
-            VALUES (?,?,?,?,?,?,?);");
-    }
     public function attendanceList(){
         $attlist =  $this->database->getConnection()->query("SELECT * FROM attendance")->fetchAll();
         return $attlist;
@@ -202,7 +197,7 @@ class Scholar{
         $hashedpwd = password_hash($scholarPass, PASSWORD_DEFAULT);
          //if execution fail
         if (!$stmt->execute([$scholarUser, $hashedpwd, $user_id, $user_type])) {
-            header("Location: ../Pages-scholar/form.php?scholar=stmtfail");
+            header("Location: ../Pages-scholar/appforms.php?scholar=stmtfail");
             exit();
             
         }
@@ -219,7 +214,7 @@ class Scholar{
         $this->database->sendEmail($scholarEmail,$emailSubject, $emailBody);
     
         //if success saving account 
-        header("Location: ../Pages-scholar/form.php?scholar=success");
+        header("Location: ../Pages-scholar/appforms.php?scholar=success");
         exit();
     }
 

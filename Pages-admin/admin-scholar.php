@@ -9,6 +9,10 @@ if (isset($_SESSION['id'])) {
     $database = new Database();
     $admin = new Admin($database);
 
+    $id = $_SESSION['id'];
+
+    $admin_info = $admin->scholarInfo($id);
+
 } else {
     header("Location: ../index.php");
 }
@@ -101,8 +105,8 @@ if (isset($_SESSION['id'])) {
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="userinfo.php">
-                    <span>User</span></a>
+                <a class="nav-link" href="admin-funds.php">
+                    <span>Funds</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -283,7 +287,7 @@ if (isset($_SESSION['id'])) {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="../Uploads_pic/<?php echo $admin_info[0]['id_pic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -385,7 +389,7 @@ if (isset($_SESSION['id'])) {
 
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Predictive Analysis</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Recommended Home Visit</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
