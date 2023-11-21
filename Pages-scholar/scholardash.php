@@ -67,6 +67,14 @@
                 </a>
             </li>
 
+             <!-- Nav Item - Utilities Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="renewal.php">
+                    
+                    <span>Renewal</span>
+                </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -301,8 +309,8 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Sweat Equity Example -->
-                        <div class="col-xl-4 col-md-6 mb-6 ">
+                            <!-- Sweat Equity Example -->
+                                                <div class="col-xl-4 col-md-4 mb-4 ">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -327,52 +335,63 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-4 col-md-6 mb-6">
-                            <div class="card border-left-success shadow h-100 py-2">
+                         <!-- Allowance Example -->
+                         <div class="col-xl-4 col-md-4 mb-4 ">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-5" style="font-size: 22px;">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-5" style="font-size: 22px;">
                                                 Allowance</div>
-                                                    <div>
+                                                <div>
                                                 <form action="allowancehistory.php" method="get">
-                                    <button type="submit" class="btn btn-primary" style="background: #1cc88a; ">View Details</button>
+                                    <button type="submit" class="btn btn-primary">View Details</button>
                                     </form>
+                                                    </div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-peso-sign fa-2x text-gray-300"></i>
-                                            
-                                    
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                           
+
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                
+                         <!-- Renewal Example -->
+                         <div class="col-xl-4 col-md-4 mb-4 ">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-5" style="font-size: 22px;">
+                                                Renewal</div>
+                                                <div>
+                                                <form action="renewal.php" method="get">
+                                    <button type="submit" class="btn btn-primary">View Details</button>
+                                    </form>
+                                                    </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                           
 
-                        <!-- Pending Requests Card Example -->
-                       
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
 
-                    <!-- Content Row -->
-
-
-                        <!-- Area Chart -->
                         
-
-                                <!-- Card Header - Dropdown -->
-                                
-
-                        <!-- Pie Chart -->
-                        
-                    <!-- Content Row -->
-                  
 
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-lg-10 mb-4">
                             
             </div>
             <!-- End of Main Content -->

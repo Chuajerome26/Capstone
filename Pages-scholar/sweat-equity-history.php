@@ -68,6 +68,14 @@
                 </a>
             </li>
 
+             <!-- Nav Item - Utilities Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="renewal.php">
+                    
+                    <span>Renewal</span>
+                </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -301,6 +309,8 @@
 
                     <!-- Content Row -->
 
+                    <div class="row">
+
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
                           <div class="col-md-4">
@@ -313,11 +323,6 @@
                           </div>
                         </div>
                       </div>
-        
-
-
-
-                    <div class="row">
 
                         <!-- Sweat Equity History Example -->
                         <style>

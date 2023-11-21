@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Allowance Records</title>
+    <title>Renewal</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -61,7 +61,7 @@
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="allowancehistory.php">
                     
                     <span>Allowance</span>
@@ -69,7 +69,7 @@
             </li>
 
              <!-- Nav Item - Utilities Collapse Menu -->
-             <li class="nav-item">
+             <li class="nav-item active">
                 <a class="nav-link collapsed" href="renewal.php">
                     
                     <span>Renewal</span>
@@ -302,73 +302,26 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Allowance Records</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Renewal</h1>
                         
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
-
-
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                                  <div class="col-md-4">
-                                <img src="../images/scholar pic.jpg" class="img-fluid rounded-start" alt="...">
-                              </div>
-                              <div class="col-md-8">
-                                <div class="card-body">
-                                  <h1 class="card-title">Surname, Lastname M.I</h1>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                        <style>
-                            table {
-                              width: 100%;
-                              border-collapse: collapse;
-                              margin-top: 20px;
-                            }
-                        
-                            table, th, td {
-                              border: 1px solid black;
-                            }
-                        
-                            th, td {
-                              padding: 10px;
-                              text-align: center;
-                            }
-                            
-                            
-                        
-                            th {
-                              background-color: #f2f2f2;
-                            }
-
-                            
-                          </style>
-                        </head>
-                        <body>
-                        
-                         
-                        
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>2023-01-01</td>
-                                <td>2, 000.00</td>
-                                <td>Received</td>   
-                            </tr>
-                              </tr>
-                              <!-- Add more rows as needed -->
-                            </tbody>
+    <form action="/submit" method="post">
+         <label for="gwa">Scholar ID:</label>
+        <input type="number" id="scholarid" name="scholarid" required><br><br>
+        <label for="gwa">Total Subjects:</label>
+        <input type="number" id="totalsubjects" name="totalsubjects" required><br><br>
+        <label for="gwa">Total Units:</label>
+        <input type="number" id="totalunits" name="totalunits" required><br><br>
+        <label for="gwa">GWA:</label>
+        <input type="number" id="gwa" name="gwa" required><br><br>
+        <label for="gradeslip">Upload Grade Slip:</label>
+        <input type="file" id="gradeslip" name="gradeslip" required><br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+                       
   <!-- Script for handling file upload -->
   <script>
    document.getElementById('fileInput').addEventListener('change', handleFileSelect);
