@@ -117,7 +117,7 @@ if (isset($_SESSION['id'])) {
       </tr>
       <tr>
         <th>Latest Copy of Grades</th>
-        <td><a href="../Uploads_cog/<?php echo $a["copy_grades"]?>" target="_blank"><?php echo $a["id_pic"]?></a></td>
+        <td><a href="../Uploads_cog/<?php echo $a["copy_grades"]?>" target="_blank"><?php echo $a["copy_grades"]?></a></td>
         <td><label for="formFile" class="form-label"></label>
           <input class="form-control" type="file" id="formFile"></td>
       </tr>
