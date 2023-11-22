@@ -301,27 +301,21 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Allowance Records</h1>
                         
-                    </div>
+                    </div> -->
 
                     <!-- Content Row -->
                     <div class="row">
-
-
-                        <!-- <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                                  <div class="col-md-4">
-                                <img src="../images/scholar pic.jpg" class="img-fluid rounded-start" alt="...">
-                              </div>
-                              <div class="col-md-8">
-                                <div class="card-body">
-                                  <h1 class="card-title">Surname, Lastname M.I</h1>
-                                </div>
-                              </div>
+                        
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Allowance Records</h6>
                             </div>
-                          </div> -->
+                            <div class="card-body">
 
                         <style>
                             table {

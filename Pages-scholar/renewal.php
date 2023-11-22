@@ -12,7 +12,7 @@
     <title>Renewal</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -301,26 +301,45 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Renewal</h1>
                         
-                    </div>
+                    </div> -->
 
                     <!-- Content Row -->
                     <div class="row">
+
+                    <div class="col-xl-6 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Renewal</h6>
+                            </div>
+                            <div class="card-body">
+
     <form action="/submit" method="post">
-         <label for="gwa">Scholar ID:</label>
-        <input type="number" id="scholarid" name="scholarid" required><br><br>
+        <label for="gwa">Scholar ID:</label>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" id="scholarid" name="scholarid" required><br>
         <label for="gwa">Total Subjects:</label>
-        <input type="number" id="totalsubjects" name="totalsubjects" required><br><br>
+        <input type="number" id="totalsubjects" name="totalsubjects" required><br>
         <label for="gwa">Total Units:</label>
-        <input type="number" id="totalunits" name="totalunits" required><br><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" id="totalunits" name="totalunits" required><br>
         <label for="gwa">GWA:</label>
-        <input type="number" id="gwa" name="gwa" required><br><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" id="gwa" name="gwa" required><br>
         <label for="gradeslip">Upload Grade Slip:</label>
-        <input type="file" id="gradeslip" name="gradeslip" required><br><br>
+        <input type="file" id="gradeslip" name="gradeslip" required><br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+</div>
+</div>
+</div>
+                    <div class="col-xl-4 col-lg-7">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Renewal List</h6>
+                        </div>
+                        <div class="card-body">
                        
   <!-- Script for handling file upload -->
   <script>
@@ -446,21 +465,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../assets/js/demo/chart-area-demo.js"></script>
+    <script src="../assets/js/demo/chart-pie-demo.js"></script>
 
          <!-- Link Bootstrap JS and Popper.js -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
