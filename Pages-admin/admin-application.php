@@ -371,6 +371,7 @@ foreach($applicantss as $z){
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                <div class="table-responsive">
                 <table id="applicant-modal<?php echo $z["scholar_id"]?>" class="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -381,28 +382,29 @@ foreach($applicantss as $z){
                         <?php 
                             $getRemarks = $admin->getRemarks($id);
                                 if($getRemarks):
-                                    $num = 1;
+                                    $number = 1;
                                     foreach($getRemarks as $pogi):
+                                        
                         ?>
                         <tbody>
                             <tr>
-                                <td><?php echo $num; ?></td>
+                                <td><?php echo $number; ?></td>
                                 <td><?php echo $pogi["remarks"];?></td>
                             </tr>
                         </tbody>
-                                    <?php $num++; endforeach;?>
+                                    <?php $number++; endforeach;?>
                         <?php else: ?>
                             <tbody>
                             <tr>
-                                <td><?php echo $num; ?></td>
-                                <td>No Remarks</td>
+                                <td colspan="2"><center>No Remarks</center></td>
                             </tr>
                         </tbody>
                         <?php endif;?>
                     </table>    
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z["scholar_id"];?>">Give Remarks</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z["scholar_id"];?>" onclick="modal(<?php echo $z['scholar_id']; ?>)">Give Remarks</button>
                 </div>
                 </div>
             </div>
@@ -594,6 +596,7 @@ $appliData2 = $admin->getApplicants();
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
+    <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- DataTables JS -->
@@ -634,6 +637,20 @@ $appliData2 = $admin->getApplicants();
             toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
+    }else if(successValue === "successRemarks"){
+        Swal.fire({
+            icon:'success',
+            title:'Save Remarks Successfully!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
     }
 
     $(document).ready(function() {
@@ -642,6 +659,15 @@ $appliData2 = $admin->getApplicants();
         $('#applicant').parent().parent().css('overflow', 'auto');
         $('#applicant').parent().parent().css('max-height', '500px');
     });
+
+    function modal(id){
+        $(document).ready(function() {
+        $('#applicant'+id).DataTable();
+
+        $('#applicant'+id).parent().parent().css('overflow', 'auto');
+        $('#applicant'+id).parent().parent().css('max-height', '500px');
+    });
+    }
 
 </script>
 </body>

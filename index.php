@@ -561,6 +561,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript">
         //========= Hero Slider 
         tns({
@@ -614,13 +615,13 @@
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const successValue = urlParams.get('status');
+    const successValue = urlParams.get('error');
     console.log(successValue);
 
-    if(successValue === "success"){
+    if(successValue === "errorEmail"){
         Swal.fire({
-            icon:'success',
-            title:'Accepted',
+            icon:'error',
+            title:'Wrong Email',
             toast:true,
             position:'top-end',
             showConfirmButton: false,
@@ -631,10 +632,10 @@
             toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-    }else if(successValue === "successDecline"){
+    }else if(successValue === "errorPassword"){
         Swal.fire({
             icon:'error',
-            title:'Declined',
+            title:'Wrong Password',
             toast:true,
             position:'top-end',
             showConfirmButton: false,

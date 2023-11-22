@@ -9,6 +9,7 @@ if(isset($_POST['submit'])){
 
     $id = $_POST["scholar_id"];
     $remarks = $_POST['remarks'];
+    $date =  date('Y-m-d');
 
     $stmt = $database->getConnection()->prepare('SELECT * FROM scholars_info WHERE id = :id');
     $stmt->execute(['id' => $id]);
@@ -16,9 +17,9 @@ if(isset($_POST['submit'])){
 
     $email = $user['email'];
 
-    $stmt = $database->getConnection()->prepare('INSERT INTO admin_remarks (scholar_id, remarks) VALUES (:id, :remarks)');
+    $stmt = $database->getConnection()->prepare('INSERT INTO admin_remarks (scholar_id, remarks, date) VALUES (:id, :remarks, :date)');
 
-    if(!$stmt->execute(['id' => $id, 'remarks' => $remarks])){
+    if(!$stmt->execute(['id' => $id, 'remarks' => $remarks, 'date' => $date])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
     
@@ -40,7 +41,7 @@ Incorporation
 
     $sentEmail = $database->sendEmail($email,"Update on Your Application", $declineMessage);
 
-    header('Location: ../Pages-admin/admin-application.php?status=successDecline');
+    header('Location: ../Pages-admin/admin-application.php?status=successRemarks');
 }
 
 
