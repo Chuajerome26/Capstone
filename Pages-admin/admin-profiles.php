@@ -2,7 +2,7 @@
 // start session
 session_start();
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
     require '../classes/admin.php';
     require '../classes/database.php';
 
@@ -92,9 +92,9 @@ if (isset($_SESSION['id'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link collapsed" href="admin-profiles.php">
+                <a class="nav-link collapsed" href="renewal.php">
                     
-                    <span>Admin Profiles</span>
+                    <span>Renewal</span>
                 </a>
             </li>
 
@@ -288,7 +288,7 @@ if (isset($_SESSION['id'])) {
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!-- <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -300,7 +300,7 @@ if (isset($_SESSION['id'])) {
                                     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Activity Log
                                 </a>
-                                <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div> -->
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout

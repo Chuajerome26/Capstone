@@ -40,6 +40,7 @@ class Admin
     
         return $number;
     }
+
     public function twoFactor($token, $token_expiry, $id){
 
         $stmt = $this->database->getConnection()->prepare('UPDATE login SET token = ?, token_expiry = ? WHERE user_id = ?');

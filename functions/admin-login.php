@@ -48,15 +48,18 @@ require '../classes/database.php';
      //start session 
     session_start();
     $_SESSION["id"] = $user_id;
-    $_SESSION["user_type"] = $userType;
 
     if($userType == 3){
+        $_SESSION["user_type"] = 3;
         header("Location: ../Pages-admin/dashboard.php");
     }else if($userType == 2){
+        $_SESSION["user_type"] = 2;
         header("Location: ../Pages-admin/dashboard.php");
     }else if($userType == 1){
+        $_SESSION["user_type"] = 1;
         header("Location: ../Pages-scholar/scholardash.php");
     }else if($userType == 0){
+        $_SESSION["user_type"] = 0;
         header("Location: ../Pages-Applicant/Applicant-Requirements.php");
     }
 

@@ -88,7 +88,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="admin-application.php">
                    
                     <span>Scholar Applicants</span>
@@ -99,7 +99,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="renewal.php">
                    
                     <span>Renewal</span>
@@ -184,9 +184,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Scholar Applicants</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <h1 class="h3 mb-0 text-gray-800">Renewal</h1>
+                        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#startRenewal">
+                            Start Renewal
+                        </button>
                     </div>
 
                     <!-- Content Row -->
@@ -202,7 +203,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Renewal</h6>
                                 </div>
                                 <div class="card-body">
                                     
@@ -307,172 +308,48 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </div>
         </div>
     </div>
-<!-- Modal for Decline -->
-<?php
-$appliData = $admin->getApplicants();
-foreach($appliData as $z){
-?>
-<div class="modal fade" id="declineModal<?php echo $z["scholar_id"];?>" tabindex="-1" aria-labelledby="declineModal<?php echo $z["scholar_id"];?>l" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
+    <!-- end -->
+<!-- Modal for Start and end of date renewal -->
+<div class="modal fade" id="startRenewal">
+  <div class="modal-dialog">
     <div class="modal-content">
+      <!-- Modal Header -->
       <div class="modal-header">
-        <h5 class="modal-title" id="declineModal<?php echo $z["scholar_id"];?>">Scholar Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h4 class="modal-title">Renewal Dates</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
+      <!-- Modal body -->
       <div class="modal-body">
-        <form method="post" action="../functions/scholar-decline.php">
-            <textarea rows="8" cols="50" placeholder="Remarks" name="remarks"></textarea>
-            <input type="hidden" name="declineId" value="<?php echo $z['scholar_id']?>">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Range of Date</h2>
+                            <form method="post" action="../functions/setDateRenewal.php">
+                                <div class="form-group">
+                                    <label for="startDate">Start Date:</label>
+                                    <input type="date" class="form-control" id="startDate" name="startDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="endDate">End Date:</label>
+                                    <input type="date" class="form-control" id="endDate" name="endDate" required>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
-      </div>
-      </form>
+      
     </div>
   </div>
 </div>
-<?php } ?>
-
-<!-- End -->
-    <!-- Modal for Details -->
-
-<?php
-$appliData = $admin->getApplicants();
-    foreach($appliData as $a){
-?>
-<div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>l" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table id="applicant-modal<?php echo $a["scholar_id"]?>" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Requirements</th>
-                    <th>Details</th>
-                </tr> 
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td><?php echo $a["f_name"]." ".$a["l_name"];?></td>
-                </tr>
-                <tr>
-                    <td>Gender</td>
-                    <td><?php echo $a["gender"];?></td>
-                </tr>
-                <tr>
-                    <td>Civil Status</td>
-                    <td><?php echo $a["cStatus"];?></td>
-                </tr>
-                <tr>
-                    <td>Citizenship</td>
-                    <td><?php echo $a["citizenship"];?></td>
-                </tr>
-                <tr>
-                    <td>Birthday</td>
-                    <td><?php echo $a["date_of_birth"];?></td>
-                </tr>
-                <tr>
-                    <td>Place of Birth</td>
-                    <td><?php echo $a["birth_place"];?></td>
-                </tr>
-                <tr>
-                    <td>Religion</td>
-                    <td><?php echo $a["religion"];?></td>
-                </tr>
-                <tr>
-                    <td>Mobile Number</td>
-                    <td><?php echo $a["mobile_num"];?></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><?php echo $a["email"];?></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><?php echo $a["address"];?></td>
-                </tr>
-                <tr>
-                    <td>Total Subject</td>
-                    <td><?php echo $a["total_sub"];?></td>
-                </tr>
-                <tr>
-                    <td>Total Units</td>
-                    <td><?php echo $a["total_units"];?></td>
-                </tr>
-                <tr>
-                    <td>General Weighted Average</td>
-                    <td><?php echo $a["gwa"];?></td>
-                </tr>
-            </tbody>
-        </table>    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<?php } ?>
-<!-- Modal end -->
-<!-- Modal for Files -->
-<?php
-$appliData = $admin->getApplicants();
-    foreach($appliData as $b){
-?>
-<div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["scholar_id"];?>">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table id="applicant-modal<?php echo $b["scholar_id"]?>" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Requirements</th>
-                    <th>Details</th>
-                </tr> 
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Copy of Id</td>
-                    <td><a href="../Uploads_pic/<?php echo $b["id_pic"]?>" target="_blank"><?php echo $b["id_pic"]?></a></td>
-                </tr>
-                <tr>
-                    <td>Copy of Grades</td>
-                    <td><a href="../Uploads_cog/<?php echo $b["copy_grades"]?>" target="_blank"><?php echo $b["copy_grades"]?></a></td>
-                </tr>
-                <tr>
-                    <td>Copy of PSA</td>
-                    <td><a href="../Uploads_psa/<?php echo $b["psa"]?>" target="_blank"><?php echo $b["psa"]?></a></td>
-                </tr>
-                <tr>
-                    <td>Copy of Good Moral</td>
-                    <td><a href="../Uploads_gm/<?php echo $b["good_moral"]?>" target="_blank"><?php echo $b["good_moral"]?></a></td>
-                </tr>
-                <tr>
-                    <td>Copy of Enrollment Form</td>
-                    <td><a href="../Uploads_ef/<?php echo $b["e_Form"]?>" target="_blank"><?php echo $b["e_Form"]?></a></td>
-                </tr>
-            </tbody>
-        </table>    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<?php } ?>
-<!-- Modal end -->
+<!-- End of Modal -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -505,7 +382,7 @@ $appliData = $admin->getApplicants();
     if(successValue === "success"){
         Swal.fire({
             icon:'success',
-            title:'Accepted',
+            title:'Set Date Successfully',
             toast:true,
             position:'top-end',
             showConfirmButton: false,
@@ -519,7 +396,7 @@ $appliData = $admin->getApplicants();
     }else if(successValue === "successDecline"){
         Swal.fire({
             icon:'error',
-            title:'Declined',
+            title:'Set Date Failed',
             toast:true,
             position:'top-end',
             showConfirmButton: false,
@@ -537,6 +414,12 @@ $appliData = $admin->getApplicants();
 
         $('#applicant').parent().parent().css('overflow', 'auto');
         $('#applicant').parent().parent().css('max-height', '500px');
+    });
+
+    $(document).ready(function () {
+        $("#openModalLink").click(function () {
+        $("#myModal").modal("show");
+        });
     });
 
 </script>

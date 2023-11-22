@@ -20,11 +20,12 @@ if(isset($_POST["accept"])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
 
-    $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE id = :id');
+    $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE user_id = :id');
 
     if(!$stmt1->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
+    
     $acceptanceMessage = "Dear ".$user['f_name']." ".$user['l_name'].",
 
     We are delighted to inform you that your application has been accepted by our organization. Congratulations!
