@@ -459,7 +459,7 @@
                             <div class="logo">
                                 <a href="index.php"><img src="assets1/images/logo/logo.png" alt="Logo"></a>
                             </div>
-                            <p>INQUIRIES
+                            <h3>INQUIRIES</h3>
 
 
                                 Should you wish to know more about our programs, how to donate or volunteer, please fill up the form on the right and we will get back to you.</p>

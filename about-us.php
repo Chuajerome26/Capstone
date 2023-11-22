@@ -7,8 +7,8 @@
     <title>About Us</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets1/images/favicon.svg" />
-    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/logo.jpg" />
+        <!-- Place favicon.ico in the root directory -->
 
     <!-- Web Font -->
     <link
@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="assets1/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets1/css/main.css" />
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -205,7 +206,7 @@
                     </div>
                    
                              
-                                <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-3 col-md-6 col-12">
                                     <!-- Single Widget -->
                                     <div class="single-footer sm-custom-border recent-blog">
                                       
