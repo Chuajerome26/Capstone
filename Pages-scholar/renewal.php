@@ -312,7 +312,7 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Renewal</h6>
+                                <h4 class="m-0 font-weight-bold text-primary">Renewal</h4>
                             </div>
                             <div class="card-body">
 
@@ -336,7 +336,7 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Renewal List</h6>
+                            <h4 class="m-0 font-weight-bold text-primary">Renewal List</h4>
                         </div>
                         <div class="card-body">
                        
