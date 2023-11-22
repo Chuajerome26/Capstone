@@ -121,7 +121,7 @@ class Admin
 
         
         // prepare the SQL statement using the database property
-      $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholars_info WHERE status = '1' AND id=?");
+      $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholars_info WHERE status = 1 AND id=?");
 
        //if execution fail
       if (!$stmt->execute([$id])) {
@@ -257,31 +257,52 @@ public function addFunds($amount, $donors, $date){
 }
 public function editApplicants($id, $f_name, $l_name, $mobile_num, $email, $total_sub, $total_units, $gwa) {
     // Update personal information in scholars_info table
-    $stmt = $this->database->prepare("UPDATE scholars_info SET f_name = ?, l_name = ?, mobile_num = ?, email = ?, total_sub = ?, total_units = ?, gwa = ? WHERE id = ?");
+    $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET f_name = ?, l_name = ?, mobile_num = ?, email = ?, total_sub = ?, total_units = ?, gwa = ? WHERE id = ?");
     $stmt->execute([$f_name, $l_name, $mobile_num, $email, $total_sub, $total_units, $gwa, $id]);
 
     // Handle document uploads in scholar_files table
-    $this->handleDocumentUpload($id, 'id_pic', 'scholar_files');
-    $this->handleDocumentUpload($id, 'copy_grades', 'scholar_files');
-    $this->handleDocumentUpload($id, 'psa', 'scholar_files');
-    $this->handleDocumentUpload($id, 'good_moral', 'scholar_files');
-    $this->handleDocumentUpload($id, 'e_Form', 'scholar_files');
+    $this->handleDocumentUpload($id, 'pic', 'id_pic', 'scholar_files');
+    $this->handleDocumentUpload($id, 'cog', 'copy_grades','scholar_files');
+    $this->handleDocumentUpload($id, 'psa', 'psa','scholar_files');
+    $this->handleDocumentUpload($id, 'gm', 'good_moral','scholar_files');
+    $this->handleDocumentUpload($id, 'e_f', 'e_Form','scholar_files');
 }
 
-private function handleDocumentUpload($id, $columnName, $tableName) {
+private function handleDocumentUpload($id, $folder, $columnName, $tableName) {
     // Check if a new file is uploaded
     if (isset($_FILES[$columnName]) && $_FILES[$columnName]['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = "../Uploads_{$columnName}/";
-        $newFileName = $id . '_' . basename($_FILES[$columnName]['name']);
+        $uploadDir = "../Uploads_{$folder}/";
+        $newFileName = explode($_FILES[$columnName]['name']);
         $uploadFilePath = $uploadDir . $newFileName;
 
         // Move the uploaded file to the destination
         move_uploaded_file($_FILES[$columnName]['tmp_name'], $uploadFilePath);
 
         // Update the database with the new file name
-        $stmt = $this->database->prepare("UPDATE $tableName SET $columnName = ? WHERE scholar_id = ?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE $tableName SET $columnName = ? WHERE scholar_id = ?");
         $stmt->execute([$newFileName, $id]);
     }
+}
+public function getRemarks($id){
+    // prepare the SQL statement using the database property
+    $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_remarks WHERE scholar_id=?");
+
+    //if execution fail
+   if (!$stmt->execute([$id])) {
+       header("Location: ../index.php?error=stmtfail");
+       exit();
+   }
+
+   //fetch the result
+   $result = $stmt->fetchAll();
+   
+     //if has result return it, else return false
+   if ($result) {
+       return $result;
+   } else {
+       $result = false;
+       return $result;
+   }
 }
 
 }

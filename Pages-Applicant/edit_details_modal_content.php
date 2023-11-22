@@ -1,23 +1,8 @@
-<?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save'])) {
-        // Process form submission
-        $f_name = $_POST['f_name'];
-        $l_name = $_POST['l_name'];
-        $mobile_num = $_POST['mobile_num'];
-        $email = $_POST['email'];
-        $total_sub = $_POST['total_sub'];
-        $total_units = $_POST['total_units'];
-        $gwa = $_POST['gwa'];
-
-        // Update the data
-        $admin->editApplicants($id, $f_name, $l_name, $mobile_num, $email, $total_sub, $total_units, $gwa);
-    }
-?>
 <!-- Content for the "View Details" modal -->
 <div class="container mt-5">
     <h1>Edit Applicant Details</h1>
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" action="../functions/edit-applicant-info.php">
     <?php 
     $applicants = $admin->getApplicantById($id);
     
@@ -90,8 +75,8 @@
                 <a href="../Uploads_ef/<?= $a['e_Form'] ?>" target="_blank"><?= $a['e_Form'] ?></a>
                 <input class="form-control" type="file" id="e_Form" name="e_Form">
             </div>
-
-        <button type="submit" name="save" class="btn btn-primary">Save Changes</button>
+            <input type="hidden" class="text" name="id" value="<?php echo $a['scholar_id'];?>">
+        <button type="submit" name="submit" class="btn btn-primary">Save Changes</button>
     </form>
 </div>
 <?php } ?>

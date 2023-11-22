@@ -1,4 +1,5 @@
 <?php 
+
     $applicants = $admin->getApplicantById($id);
     
     foreach($applicants as $a){

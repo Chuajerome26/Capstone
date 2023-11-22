@@ -42,7 +42,7 @@ if (isset($_SESSION['id'])) {
 
 </head>
 
-<body id="page-top">
+<body>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -261,7 +261,7 @@ if (isset($_SESSION['id'])) {
                     
                      <!-- View Details -->
                     <div class="row">
-                        <div class="col-xl-3 col-md-8 mb-8 ">
+                        <div class="col-xl-3 col-md-8 mb-8">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -296,14 +296,14 @@ if (isset($_SESSION['id'])) {
                                 </div>
                                 <div class="modal-body">
                                     <!-- Include the content from an external file here -->
-                                    <?php include 'view_details_modal_content.php'; ?>
+                                    <?php include("view_details_modal_content.php"); ?>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                       <!-- Edit Details -->
-                      <div class="col-xl-3 col-md-8 mb-8 ">
+                      <div class="col-xl-3 col-md-8 mb-8">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -335,14 +335,14 @@ if (isset($_SESSION['id'])) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <?php include 'edit_details_modal_content.php'; ?>
+                                    <?php include("edit_details_modal_content.php"); ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                       <!-- View Remarrks-->
-                      <div class="col-xl-3 col-md- mb-8 ">
+                      <div class="col-xl-3 col-md- mb-8">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
                                 <div class="row no-gutters align-items-center">
@@ -371,7 +371,7 @@ if (isset($_SESSION['id'])) {
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <?php include 'view_remarks_modal_content.php'; ?>
+                                    <?php include("view_remarks_modal_content.php"); ?>
                                 </div>
                             </div>
                         </div>

@@ -6,6 +6,6 @@ require '../classes/database.php';
 $database = new Database();
 $admin = new Admin($database);
 
-$scholarInfo = $admin->scholarInfo(21);
+$scholarInfo = $admin->getRemarks(45);
 
 var_dump($scholarInfo);

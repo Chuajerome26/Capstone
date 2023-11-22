@@ -237,6 +237,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Details</th>
                                                 <th scope="col">Files</th>
+                                                <th scope="col">Remarks</th>
                                                 <th scope="col">Analysis</th>
                                                 <th scope="col">Action</th>
                                             </tr>
@@ -260,8 +261,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
                                                 <td><?php echo $s["date_apply"];?></td>
                                                 <td><?php echo $status;?></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button></td>
+                                                <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button></td>
                                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button></td>
+                                                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#remarks<?php echo $s["scholar_id"];?>">Remarks</button></td>
                                                 <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?>%</div></div></td>
                                                 <td style="white-space: nowrap;">
                                                     <form method="post" action="../functions/scholar-accept.php">
@@ -355,11 +357,92 @@ foreach($appliData as $z){
 <?php } ?>
 
 <!-- End -->
-    <!-- Modal for Details -->
+<!-- Modal for Remarks -->
+<?php
+$applicantss = $admin->getApplicants();
+foreach($applicantss as $z){
+    $id = $z["scholar_id"];
+?>
+            <div class="modal fade" id="remarks<?php echo $z["scholar_id"];?>" tabindex="-1" aria-labelledby="remarks<?php echo $z["scholar_id"];?>l" aria-hidden="true">
+            <div class="modal-dialog" style="max-width:600px;">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="remarks<?php echo $z["scholar_id"];?>">Remarks</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <table id="applicant-modal<?php echo $z["scholar_id"]?>" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Remarks</th>
+                            </tr> 
+                        </thead>
+                        <?php 
+                            $getRemarks = $admin->getRemarks($id);
+                                if($getRemarks):
+                                    $num = 1;
+                                    foreach($getRemarks as $pogi):
+                        ?>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $num; ?></td>
+                                <td><?php echo $pogi["remarks"];?></td>
+                            </tr>
+                        </tbody>
+                                    <?php $num++; endforeach;?>
+                        <?php else: ?>
+                            <tbody>
+                            <tr>
+                                <td><?php echo $num; ?></td>
+                                <td>No Remarks</td>
+                            </tr>
+                        </tbody>
+                        <?php endif;?>
+                    </table>    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z["scholar_id"];?>">Give Remarks</button>
+                </div>
+                </div>
+            </div>
+            </div>
+<!-- End -->
+<?php }?>
 
 <?php
-$appliData = $admin->getApplicants();
-    foreach($appliData as $a){
+$applicantsss = $admin->getApplicants();
+$num = 1;
+foreach($applicantsss as $pogiko){
+?>
+<!-- Modal for Remarks Save-->
+<div class="modal fade" id="remarksSend<?php echo $pogiko["scholar_id"];?>" tabindex="-1" aria-labelledby="remarksSend<?php echo $pogiko["scholar_id"];?>l" aria-hidden="true">
+  <div class="modal-dialog" style="max-width:600px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="remarksSend<?php echo $pogiko["scholar_id"];?>">Scholar Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="../functions/remarks.php">
+            <textarea rows="8" cols="50" placeholder="Remarks" name="remarks"></textarea>
+            <input type="hidden" name="scholar_id" value="<?php echo $pogiko['scholar_id']?>">
+      </div>
+      <div class="modal-footer">
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<?php } ?>
+<!-- End -->
+
+<!-- Modal for Details -->
+
+<?php
+$appliData1 = $admin->getApplicants();
+    foreach($appliData1 as $a){
 ?>
 <div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>l" aria-hidden="true">
   <div class="modal-dialog" style="max-width:600px;">
@@ -443,8 +526,8 @@ $appliData = $admin->getApplicants();
 <!-- Modal end -->
 <!-- Modal for Files -->
 <?php
-$appliData = $admin->getApplicants();
-    foreach($appliData as $b){
+$appliData2 = $admin->getApplicants();
+    foreach($appliData2 as $b){
 ?>
 <div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog" style="max-width:600px;">

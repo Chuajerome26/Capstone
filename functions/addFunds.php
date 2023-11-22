@@ -15,4 +15,8 @@ if(isset($_POST['submit'])){
 
     $admin = $admin->addFunds($amount, $donor, $date, $mot, $tn);
 
+    if($admin){
+        header('Location: ../Pages-admin/admin-funds.php?status=successSave');
+    }
+
 }

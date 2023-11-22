@@ -10,7 +10,7 @@
     
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.jpg" />
     <!-- Place favicon.ico in the root directory -->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
     <!-- Web Font -->
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -608,6 +608,43 @@
             'autoplayVideos': true,
         });
     </script>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const successValue = urlParams.get('status');
+    console.log(successValue);
+
+    if(successValue === "success"){
+        Swal.fire({
+            icon:'success',
+            title:'Accepted',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "successDecline"){
+        Swal.fire({
+            icon:'error',
+            title:'Declined',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }
+
+</script>
 </body>
 
 </html>
