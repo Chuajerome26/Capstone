@@ -108,7 +108,21 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <button onclick="history.back()" class="btn btn-primary">Back</button>
+                                <button id="backButton" class="btn btn-primary">Back</button>
+
+                        <script>
+                        document.getElementById('backButton').addEventListener('click', function(event) {
+                                var confirmAction = confirm("Are you sure you want to go back?");
+                                if (confirmAction) {
+                                    // Perform the desired action here
+                                    window.history.back(); // Navigate back
+                                } else {
+                                    // Handle the case when the user cancels the action
+                                    console.log("Action cancelled.");
+                                }
+                            });
+                            </script>
+
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
