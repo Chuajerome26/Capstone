@@ -62,8 +62,8 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="toolbar-login">
                             <div class="button">
-                                <a href="Pages-scholar/appforms.php">Create an Account</a>
-                                <a href="#" class="btn"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></a>
+                                <a href="Pages-scholar/appforms.php"><p class="h6"> Create an Account </p></a>
+                                <a href="#" class="btn"><button type="button" style="font-size: 15px;" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></a>
                             </div>
                         </div>
                     </div>
