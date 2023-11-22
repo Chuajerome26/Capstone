@@ -15,8 +15,6 @@
 
                 <dt class="col-sm-4">Last Name:</dt>
                 <dd class="col-sm-8"><?php echo $a["l_name"];?></dd>
-
-                <!-- Add other personal information fields in a similar fashion -->
             </dl>
         </div>
 
@@ -28,8 +26,6 @@
 
                 <dt class="col-sm-4">Email Address:</dt>
                 <dd class="col-sm-8"><?php echo $a["email"];?></dd>
-
-                <!-- Add other contact information fields in a similar fashion -->
             </dl>
         </div>
     </div>
@@ -44,8 +40,6 @@
 
         <dt class="col-sm-4">General Weighted Average:</dt>
         <dd class="col-sm-8"><?php echo $a["gwa"];?></dd>
-
-        <!-- Add other educational information fields in a similar fashion -->
     </dl>
 
     <h4>Document Uploads</h4>
@@ -64,10 +58,7 @@
         
         <dt class="col-sm-4">Copy of Enrollment Form:</dt>
         <dd class="col-sm-8"><a href="../Uploads_ef/<?php echo $a["e_Form"]?>" target="_blank"><?php echo $a["e_Form"]?></a></dd>
-
-        <!-- Add other document upload fields in a similar fashion -->
     </dl>
 </div>
 
   <?php } ?>
-    </table>

@@ -275,14 +275,34 @@ if (isset($_SESSION['id'])) {
                                        
                                     </div>
                                     <div class="col-auto">
-                                        <button class="btn btn-primary">Click Here</button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewDetailsModal">
+                                            Click Here
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     
-                    
-                      <!-- View Details -->
+                        <div class="modal fade" id="viewDetailsModal" tabindex="-1" role="dialog" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
+                        <!-- Include the content of the "View Details" modal from an external file -->
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <!-- You can include the content of the modal here -->
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="viewDetailsModalLabel">View Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Include the content from an external file here -->
+                                    <?php include 'view_details_modal_content.php'; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                      <!-- Edit Details -->
                       <div class="col-xl-3 col-md-8 mb-8 ">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
@@ -297,12 +317,29 @@ if (isset($_SESSION['id'])) {
                                     
                                 </div>
                                 <div class="col-auto">
-                                    <button class="btn btn-primary">Click Here</button>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editDetailsModal">
+                                        Click Here
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>    
 
+                    <div class="modal fade" id="editDetailsModal" tabindex="-1" role="dialog" aria-labelledby="editDetailsModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editDetailsModalLabel">Edit Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <?php include 'edit_details_modal_content.php'; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                       <!-- View Remarrks-->
                       <div class="col-xl-3 col-md- mb-8 ">
@@ -318,73 +355,27 @@ if (isset($_SESSION['id'])) {
                                     </div>
                                 </div>
                                 <div class="col-auto">
-                                    <button class="btn btn-primary">Click Here</button>
+                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewRemarksModal">Click Here</button>
                                 </div>
                             </div>
                         </div>
-                    </div>    
-                    
-                </div>
+                    </div>
 
-                
-
-
-                       
-  <!-- Script for handling file upload -->
-  <script>
-   document.getElementById('fileInput').addEventListener('change', handleFileSelect);
-
-   function handleFileSelect(event) {
-     const file = event.target.files[0];
-
-     if (file) {
-       const reader = new FileReader();
-
-       reader.onload = function(e) {
-         const data = e.target.result;
-         // Assuming the uploaded file is a CSV and contains the same structure as the table
-         updateTableWithData(parseCSV(data));
-       };
-
-       reader.readAsText(file);
-     }
-   }
-
-   function parseCSV(data) {
-     // Custom CSV parsing logic based on your data format
-     // For simplicity, you might want to use a CSV parsing library for more complex CSV structures
-     const rows = data.split('\n');
-     const tableData = [];
-
-     for (const row of rows) {
-       const columns = row.split(',');
-       tableData.push(columns);
-     }
-
-     return tableData;
-   }
-
-   function updateTableWithData(data) {
-     const tableBody = document.getElementById('workLogTable').getElementsByTagName('tbody')[0];
-     tableBody.innerHTML = '';
-
-     for (const row of data) {
-       const tableRow = document.createElement('tr');
-       for (const column of row) {
-         const tableCell = document.createElement('td');
-         tableCell.textContent = column;
-         tableRow.appendChild(tableCell);
-       }
-       tableBody.appendChild(tableRow);
-     }
-   }
- </script>
-                          </table>
-
-                      
-                        
-
-
+                    <div class="modal fade" id="viewRemarksModal" tabindex="-1" role="dialog" aria-labelledby="viewRemarksModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="viewRemarksModalLabel">View Remarks</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <?php include 'view_remarks_modal_content.php'; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
                             
@@ -425,7 +416,7 @@ if (isset($_SESSION['id'])) {
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="../index.php">Logout</a>
                 </div>
             </div>
         </div>
