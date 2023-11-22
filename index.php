@@ -518,6 +518,7 @@
     </footer>
     <!--/ End Footer Area -->
     <!-- Modal for Login -->
+    
     <div class="modal fade" id="loginModal">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -537,6 +538,8 @@
                             <input type="password" class="form-control" name="psw" placeholder="Enter password" required>
                         </div>
                         <button type="submit" name="submitBtn" class="btn btn-primary">Login</button>
+                        <p style="margin-top: 20px"> Don't have an account? <a href="Pages-scholar/appforms.php">Sign up here</a>
+                    </div>
                     </form>
                 </div>
             </div>
