@@ -248,39 +248,39 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Recommended Home Visit</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Send Email</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                        <th scope="col">Scholar</th>
-                                        <th scope="col">Percentage</th>
-                                        
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
-                                            $applicantsData = $admin->getScholars();
-                                            foreach($applicantsData as $s){
-                                                $percentage = $admin->predictAcceptanceOfRenew($s['gwa'], 40);
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $s['f_name']." ".$s['l_name'];?></td>
-                                            <?php if($percentage <= 100 && $percentage >= 76):?>
-                                            <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-success" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div></td>
-                                            <?php elseif($percentage <= 75 && $percentage >= 51): ?>
-                                            <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-info" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div></td>
-                                            <?php elseif($percentage <= 50 && $percentage >= 21):?>
-                                            <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-warning" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div></td>
-                                            <?php elseif($percentage <= 20 && $percentage >= 0):?>
-                                            <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="<?php echo $percentage;?>" aria-valuemin="0" aria-valuemax="<?php echo $percentage;?>"><div class="progress-bar bg-danger" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?></div></div></td>
-                                            <?php endif;?>
-                                        </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                                    <div class="container mt-5">
+                                        <form enctype="multipart/form-data" method="post" action="../functions/admin-sendEmail.php">
+                                            <div class="form-group">
+                                                <label for="recipientEmail">Recipient's Email:</label>
+                                                <select name="email" class="form-control" required>
+                                                    <option value="0">Select Scholar</option>
+                                                    <?php
+                                                    $scholar = $admin->getScholars();
+                                                    foreach($scholar as $s){
+                                                        echo "<option value='" . $s['email'] . "'>" . $s['f_name'] . " " . $s['l_name'] . "</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="subject">Subject:</label>
+                                                <input type="text" class="form-control" name="subject" placeholder="Enter email subject" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="message">Message:</label>
+                                                <textarea class="form-control" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="file">Attach File:</label>
+                                                <input type="file" class="form-control-file" id="file" name="file">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -54,7 +54,7 @@ class Admin
     public function getScholars(){
         $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
                                                         JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
-                                                        WHERE scholars_info.status = '1'")->fetchAll();
+                                                        WHERE scholars_info.status = 1")->fetchAll();
         return $stmt;
         exit();
     }
@@ -81,14 +81,14 @@ class Admin
     public function getApplicants(){
         $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
                                                         JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
-                                                        WHERE scholars_info.status = '0'")->fetchAll();
+                                                        WHERE scholars_info.status = 0")->fetchAll();
         return $stmt;
         exit();
     }
     public function getApplicantById($id){
         $stmt = $this->database->getConnection()->prepare("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
                                                         JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
-                                                        WHERE scholars_info.status = '0' AND scholars_info.id = ?");
+                                                        WHERE scholars_info.status = 0 AND scholars_info.id = ?");
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }
@@ -213,17 +213,17 @@ function predictAcceptanceOfApplicant($gwa, $numDocumentsSubmitted) {
 
     return $acceptanceChance;
 }
-public function addFunds($amount, $donors, $date){
+public function addFunds($amount, $donors, $date, $mot, $tn){
 
     // prepare insert statement for employee table
-     $sql = "INSERT INTO admin_funds (amount, donors, date_added)
-        VALUES (?,?,?);";
+     $sql = "INSERT INTO admin_funds (amount, donors, date_added, mode_of_transfer, transaction_number)
+        VALUES (?,?,?,?,?);";
 
      // prepared statement
     $stmt = $this->database->getConnection()->prepare($sql);
 
     //if execution fail
-    if (!$stmt->execute([$amount, $donors, $date])) {
+    if (!$stmt->execute([$amount, $donors, $date, $mot, $tn])) {
         header("Location: ../Pages-admin/admin-funds.php?status=error");
         exit();
     }
@@ -255,6 +255,10 @@ public function addFunds($amount, $donors, $date){
     header("Location: ../Pages-admin/admin-funds.php?status=success");
 
 }
-
+public function getDonorsFunds(){
+    $stmt = $this->database->getConnection()->query("SELECT * FROM admin_funds")->fetchAll();
+    return $stmt;
+    exit();
+}
 
 }

@@ -31,6 +31,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
     <title>Consuelo Chito Madrigal Foundation</title>
     <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" /> 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -215,7 +221,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                         </div>
                                         <div class="form-group">
                                           <label for="exampleInputPassword1">Date Receive</label>
-                                          <input type="date" class="form-control" name="date" placeholder="Donors">
+                                          <input type="date" class="form-control" name="date" placeholder="Date Receive">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputPassword1">Mode of Transfer</label>
+                                          <input type="text" class="form-control" name="mot" placeholder="Mode of Transfer">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputPassword1">Transaction Number</label>
+                                          <input type="text" class="form-control" name="tn" placeholder="Transaction Number">
                                         </div>
                                         <div class="form-check">
                                             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
@@ -226,20 +240,50 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                         </div>
 
                         <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-6">
+                        <div class="col-xl-5 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Achievements</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">List of Donors</h6>
                                     <div class="card-body">
                                     </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    
+                                    <table id="funds" class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Amount</th>
+                                                <th scope="col">Donors</th>
+                                                <th scope="col">Date Receive</th>
+                                                <th scope="col">Mode of Transfer</th>
+                                                <th scope="col">Transaction Number</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                            <?php
+                                                $funds = $admin->getDonorsFunds();
+                                                $num = 1;
+                                                foreach($funds as $s){
+                                            ?>
+                                            <tr>
+                                                <th scope="col"><?php echo $num; ?></th>
+                                                <td style="white-space: nowrap;"><?php echo $s["donors"]; ?></td>
+                                                <td style="white-space: nowrap;"><?php echo $s["amount"];?></td>
+                                                <td><?php echo $s["date_added"];?></td>
+                                                <td><?php echo $s["mode_of_transfer"];?></td>
+                                                <td><?php echo $s["transaction_number"];?></td>
+                                            </tr>
+                                            <?php 
+                                                $num++;
+                                            } 
+                                            ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
                     <!-- Content Row -->
                     <div class="row">
@@ -277,8 +321,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                 </div>
             </div>
         </div>
-    </div>
-
+    </div>  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -296,6 +340,18 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
 
+    <!-- DataTables JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables Bootstrap 5 JS -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('#funds').DataTable();
+
+        $('#funds').parent().parent().css('overflow', 'auto');
+        $('#funds').parent().parent().css('max-height', '500px');
+    });
+    </script>
 </body>
 
 </html>

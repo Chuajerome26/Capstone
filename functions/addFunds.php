@@ -10,7 +10,9 @@ if(isset($_POST['submit'])){
     $amount = $_POST['amount'];
     $donor = $_POST['donor'];
     $date = $_POST['date'];
+    $mot = $_POST['mot'];
+    $tn = $_POST['tn'];
 
-    $admin = $admin->addFunds($amount, $donor, $date);
+    $admin = $admin->addFunds($amount, $donor, $date, $mot, $tn);
 
 }
