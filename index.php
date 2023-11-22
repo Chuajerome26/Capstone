@@ -530,11 +530,11 @@
                     <form action="functions/admin-login.php" method="post">
                         <div class="form-group">
                             <label for="username">Username:</label>
-                            <input type="text" class="form-control" name="uname" placeholder="Enter username">
+                            <input type="text" class="form-control" name="uname" placeholder="Enter username" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <input type="password" class="form-control" name="psw" placeholder="Enter password">
+                            <input type="password" class="form-control" name="psw" placeholder="Enter password" required>
                         </div>
                         <button type="submit" name="submitBtn" class="btn btn-primary">Login</button>
                     </form>
