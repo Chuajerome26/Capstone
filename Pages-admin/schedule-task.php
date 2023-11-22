@@ -47,6 +47,244 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
     <!-- Custom styles for this template-->
     <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
+<style type="text/css">
+.Scheduling .section-title .title-text {
+    margin-bottom: 50px;
+}
+
+.Scheduling .tab-area .nav-tabs {
+    border-bottom: inherit;
+}
+
+.Scheduling .tab-area .nav {
+    border-bottom: inherit;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.Scheduling .tab-area .nav-item {
+    margin-bottom: 75px;
+}
+.Scheduling .tab-area .nav-item .nav-link {
+    text-align: center;
+    font-size: 22px;
+    color: #333;
+    font-weight: 600;
+    border-radius: inherit;
+    border: inherit;
+    padding: 0px;
+    text-transform: capitalize !important;
+}
+.Scheduling .tab-area .nav-item .nav-link.active {
+    color: #4125dd;
+    background-color: transparent;
+}
+
+.Scheduling .tab-area .tab-content .table {
+    margin-bottom: 0;
+    width: 80%;
+}
+.Scheduling .tab-area .tab-content .table thead td,
+.Scheduling .tab-area .tab-content .table thead th {
+    border-bottom-width: 1px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #252525;
+}
+.Scheduling .tab-area .tab-content .table td,
+.Scheduling .tab-area .tab-content .table th {
+    border: 1px solid #b7b7b7;
+    padding-left: 30px;
+}
+.Scheduling .tab-area .tab-content .table tbody th .heading,
+.Scheduling .tab-area .tab-content .table tbody td .heading {
+    font-size: 16px;
+    text-transform: capitalize;
+    margin-bottom: 16px;
+    font-weight: 500;
+    color: #252525;
+    margin-bottom: 6px;
+}
+.Scheduling .tab-area .tab-content .table tbody th span,
+.Scheduling .tab-area .tab-content .table tbody td span {
+    color: #4125dd;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+}
+.Scheduling .tab-area .tab-content .table tbody th span.date,
+.Scheduling .tab-area .tab-content .table tbody td span.date {
+    color: #656565;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 15px;
+}
+.event-schedule-area .tab-area .tab-content .table tbody th p {
+    font-size: 14px;
+    margin: 0;
+    font-weight: normal;
+}
+
+.Scheduling .section-title .title-text h2 {
+    margin: 0px 0 15px;
+}
+
+.Scheduling1 ul.custom-tab {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 30px;
+}
+.Scheduling1 ul.custom-tab li {
+    margin-right: 70px;
+    position: relative;
+}
+.Scheduling1 ul.custom-tab li a {
+    color: #252525;
+    font-size: 25px;
+    line-height: 25px;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 35px 0;
+    position: relative;
+}
+.Scheduling1 ul.custom-tab li a:hover:before {
+    width: 100%;
+}
+.Scheduling1 ul.custom-tab li a:before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    content: "";
+    background: #4125dd;
+    width: 0;
+    height: 2px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.Scheduling1 ul.custom-tab li a.active {
+    color: #4125dd;
+}
+
+.Scheduling1 .primary-btn {
+    margin-top: 40px;
+}
+
+.Scheduling1 .tab-content .table {
+    -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+}
+.Scheduling1 .tab-content .table thead {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 20px;
+}
+.Scheduling1 .tab-content .table thead tr th {
+    padding: 20px;
+    border: 0;
+}
+.Scheduling1 .tab-content .table tbody {
+    background: #fff;
+}
+.Scheduling1 .tab-content .table tbody tr.inner-box {
+    border-bottom: 1px solid #dee2e6;
+}
+.Scheduling1 .tab-content .table tbody tr th {
+    border: 0;
+    padding: 30px 20px;
+    vertical-align: middle;
+}
+.Scheduling1 .tab-content .table tbody tr th .event-date {
+    color: #252525;
+    text-align: center;
+}
+.Scheduling1 .tab-content .table tbody tr th .event-date span {
+    font-size: 50px;
+    line-height: 50px;
+    font-weight: normal;
+}
+.Scheduling1 .tab-content .table tbody tr td {
+    padding: 30px 20px;
+    vertical-align: middle;
+}
+.Scheduling1 .tab-content .table tbody tr td .r-no span {
+    color: #252525;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap h3 a {
+    font-size: 20px;
+    line-height: 20px;
+    color: #cf057c;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap h3 a:hover {
+    color: #4125dd;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap .categories {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    margin: 10px 0;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap .categories a {
+    color: #252525;
+    font-size: 16px;
+    margin-left: 10px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap .categories a:before {
+    content: "\f07b";
+    font-family: fontawesome;
+    padding-right: 5px;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap .time span {
+    color: #252525;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap .organizers {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    margin: 10px 0;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap .organizers a {
+    color: #4125dd;
+    font-size: 16px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap .organizers a:hover {
+    color: #4125dd;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-wrap .organizers a:before {
+    content: "\f007";
+    font-family: fontawesome;
+    padding-right: 5px;
+}
+.Scheduling1 .tab-content .table tbody tr td .primary-btn {
+    margin-top: 0;
+    text-align: center;
+}
+.Scheduling1 .tab-content .table tbody tr td .event-img img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+    </style>
 
 </head>
 
@@ -96,7 +334,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="admin-application.php">
                     <!-- SCHO APP -->
                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
@@ -133,7 +371,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="schedule-task.php">
                     <!-- FUNDS ICON -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
@@ -142,7 +380,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                  <span class="ml-2">Schedule Interview</span>
                 </a>
             </li>
-
             <!-- Nav Item - Tables -->
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -236,63 +473,73 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                     <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
                                 </div>
                                 <div class="card-body">
-                                    
-                                    <table id="applicant" class="table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Date Applied</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Details</th>
-                                                <th scope="col">Files</th>
-                                                <th scope="col">Remarks</th>
-                                                <th scope="col">Analysis</th>
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider">
-                                        <?php
-                                        $applicantsData = $admin->getApplicants();
-                                        $num = 1;
-                                        foreach($applicantsData as $s){
+                                <div class="event-schedule-area-two bg-color pad100">
+                                    <div class="container">
+                                    <div class="row">
+                                    <div class="col-lg-12">
+                                    <div class="section-title text-center">
+                                    <div class="title-text">
+                                    <h2>Schedule Task</h2>
+                                    </div>
+                                    <p>
+                                        <button type="button" class="btn btn-primary">Add Schedule</button>
+                                    </p>
+                                    </div>
+                                    </div>
 
-                                            $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], 5);
-                                            if($s['status'] == 0){
-                                                $status = "Pending";
-                                            }else{
-                                                $status = "Accepted";
-                                            }
-                                    ?>
-                                            <tr>
-                                                <th scope="col"><?php echo $num; ?></th>
-                                                <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
-                                                <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                                                <td><?php echo $s["date_apply"];?></td>
-                                                <td><?php echo $status;?></td>
-                                                <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button></td>
-                                                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#remarks<?php echo $s["scholar_id"];?>">Remarks</button></td>
-                                                <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?>%</div></div></td>
-                                                <td style="white-space: nowrap;">
-                                                    <form method="post" action="../functions/scholar-accept.php">
-                                                        <input class="btn btn-primary mb-2" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
-                                                    </form>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["scholar_id"];?>">Decline</button>
+                                    </div>
 
-                                                    <!-- <form method="post" action="../functions/scholar-accept.php">
-                                                        <input class="btn btn-danger" type="submit" value="decline"><input type="hidden" name="declineId" value="<?php echo $s['scholar_id']?>">
-                                                    </form> -->
-                                            </td>
-                                            </tr>
-                                            <?php 
-                                        $num++;
-                                            } 
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                     
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade active show" id="home" role="tabpanel">
+                                                <div class="table-responsive">
+                                                <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center" scope="col">Date</th>
+                                                        <th scope="col">Profile</th>
+                                                        <th scope="col">Session</th>
+                                                        <th scope="col">Venue</th>
+                                                        <th class="text-center" scope="col">Add to Records</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="inner-box">
+                                                        <th scope="row"><div class="event-date"><span>16</span><p>Novembar</p></div></th>
+                                                    <td><div class="event-img"><img src="C:\Users\marti\Downloads\noprofilepic.jpg" alt /></div></td>
+                                                    <td><div class="event-wrap">
+                                                            <h3><a href="#">Jericho castro</a></h3>
+                                                            <div class="time">
+                                                                <span>05:35 AM - 08:00 AM 2h 25'</span>
+                                                            </div>
+                                                        </div>  
+                                                    </td>
+                                                    <td>
+                                                        <div class="r-no">
+                                                            <span>Room B3</span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                    <div class="primary-btn">
+                                                        <button type="button" class="btn btn-primary" name="rate">Rate</button>
+                                                    </div>
+                                                    </td>
+                                                    </tr>
+
+                                                    </tbody>
+                                                    </table>
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    </div>
+                                    </div>
+
+                                    </div>
+
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -320,6 +567,63 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+    <!-- Add Interview Modal-->
+    <div class="modal fade" id="setScheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Interview</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form>
+                    <!-- Select Applicant -->
+                    <div class="form-group">
+                        <label for="applicantSelect">Select Applicant:</label>
+                        <select class="form-control" id="applicantSelect" name="applicant">
+                            <option value="applicant1">Applicant 1</option>
+                            <option value="applicant2">Applicant 2</option>
+                            <option value="applicant3">Applicant 3</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+
+                    <!-- Date -->
+                    <div class="form-group">
+                        <label for="eventDate">Event Date:</label>
+                        <input type="date" class="form-control" id="eventDate" name="date">
+                    </div>
+
+                    <!-- Session -->
+                    <div class="form-group">
+                        <label for="sessionSelect">Select Session:</label>
+                        <select class="form-control" id="sessionSelect" name="session">
+                            <option value="morning">Morning</option>
+                            <option value="afternoon">Afternoon</option>
+                            <option value="evening">Evening</option>
+                            <!-- Add more options as needed -->
+                        </select>
+                    </div>
+
+                    <!-- Venue -->
+                    <div class="form-group">
+                        <label for="venueInput">Venue:</label>
+                        <input type="text" class="form-control" id="venueInput" name="venue">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -340,255 +644,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </div>
         </div>
     </div>
-<!-- Modal for Decline -->
-<?php
-$appliData = $admin->getApplicants();
-foreach($appliData as $z){
-?>
-<div class="modal fade" id="declineModal<?php echo $z["scholar_id"];?>" tabindex="-1" aria-labelledby="declineModal<?php echo $z["scholar_id"];?>l" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="declineModal<?php echo $z["scholar_id"];?>">Scholar Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="../functions/scholar-decline.php">
-            <textarea rows="8" cols="50" placeholder="Remarks" name="remarks"></textarea>
-            <input type="hidden" name="declineId" value="<?php echo $z['scholar_id']?>">
-      </div>
-      <div class="modal-footer">
-        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-<?php } ?>
 
-<!-- End -->
-<!-- Modal for Remarks -->
-<?php
-$applicantss = $admin->getApplicants();
-foreach($applicantss as $z){
-    $id = $z["scholar_id"];
-?>
-            <div class="modal fade" id="remarks<?php echo $z["scholar_id"];?>" tabindex="-1" aria-labelledby="remarks<?php echo $z["scholar_id"];?>l" aria-hidden="true">
-            <div class="modal-dialog" style="max-width:600px;">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="remarks<?php echo $z["scholar_id"];?>">Remarks</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                <div class="table-responsive">
-                <table id="applicant-modal<?php echo $z["scholar_id"]?>" class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Remarks</th>
-                            </tr> 
-                        </thead>
-                        <?php 
-                            $getRemarks = $admin->getRemarks($id);
-                                if($getRemarks):
-                                    $number = 1;
-                                    foreach($getRemarks as $pogi):
-                                        
-                        ?>
-                        <tbody>
-                            <tr>
-                                <td><?php echo $number; ?></td>
-                                <td><?php echo $pogi["remarks"];?></td>
-                            </tr>
-                        </tbody>
-                                    <?php $number++; endforeach;?>
-                        <?php else: ?>
-                            <tbody>
-                            <tr>
-                                <td colspan="2"><center>No Remarks</center></td>
-                            </tr>
-                        </tbody>
-                        <?php endif;?>
-                    </table>    
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z["scholar_id"];?>" onclick="modal(<?php echo $z['scholar_id']; ?>)">Give Remarks</button>
-                </div>
-                </div>
-            </div>
-            </div>
-<!-- End -->
-<?php }?>
-
-<?php
-$applicantsss = $admin->getApplicants();
-$num = 1;
-foreach($applicantsss as $pogiko){
-?>
-<!-- Modal for Remarks Save-->
-<div class="modal fade" id="remarksSend<?php echo $pogiko["scholar_id"];?>" tabindex="-1" aria-labelledby="remarksSend<?php echo $pogiko["scholar_id"];?>l" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="remarksSend<?php echo $pogiko["scholar_id"];?>">Scholar Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="post" action="../functions/remarks.php">
-            <textarea rows="8" cols="50" placeholder="Remarks" name="remarks"></textarea>
-            <input type="hidden" name="scholar_id" value="<?php echo $pogiko['scholar_id']?>">
-      </div>
-      <div class="modal-footer">
-        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-<?php } ?>
-<!-- End -->
-
-<!-- Modal for Details -->
-
-<?php
-$appliData1 = $admin->getApplicants();
-    foreach($appliData1 as $a){
-?>
-<div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>l" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table id="applicant-modal<?php echo $a["scholar_id"]?>" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Requirements</th>
-                    <th>Details</th>
-                </tr> 
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td><?php echo $a["f_name"]." ".$a["l_name"];?></td>
-                </tr>
-                <tr>
-                    <td>Gender</td>
-                    <td><?php echo $a["gender"];?></td>
-                </tr>
-                <tr>
-                    <td>Civil Status</td>
-                    <td><?php echo $a["cStatus"];?></td>
-                </tr>
-                <tr>
-                    <td>Citizenship</td>
-                    <td><?php echo $a["citizenship"];?></td>
-                </tr>
-                <tr>
-                    <td>Birthday</td>
-                    <td><?php echo $a["date_of_birth"];?></td>
-                </tr>
-                <tr>
-                    <td>Place of Birth</td>
-                    <td><?php echo $a["birth_place"];?></td>
-                </tr>
-                <tr>
-                    <td>Religion</td>
-                    <td><?php echo $a["religion"];?></td>
-                </tr>
-                <tr>
-                    <td>Mobile Number</td>
-                    <td><?php echo $a["mobile_num"];?></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><?php echo $a["email"];?></td>
-                </tr>
-                <tr>
-                    <td>Address</td>
-                    <td><?php echo $a["address"];?></td>
-                </tr>
-                <tr>
-                    <td>Total Subject</td>
-                    <td><?php echo $a["total_sub"];?></td>
-                </tr>
-                <tr>
-                    <td>Total Units</td>
-                    <td><?php echo $a["total_units"];?></td>
-                </tr>
-                <tr>
-                    <td>General Weighted Average</td>
-                    <td><?php echo $a["gwa"];?></td>
-                </tr>
-            </tbody>
-        </table>    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<?php } ?>
-<!-- Modal end -->
-<!-- Modal for Files -->
-<?php
-$appliData2 = $admin->getApplicants();
-    foreach($appliData2 as $b){
-?>
-<div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["scholar_id"];?>">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <table id="applicant-modal<?php echo $b["scholar_id"]?>" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Requirements</th>
-                    <th>Details</th>
-                </tr> 
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Copy of Id</td>
-                    <td><a href="../Uploads_pic/<?php echo $b["id_pic"]?>" target="_blank"><?php echo $b["id_pic"]?></a></td>
-                </tr>
-                <tr>
-                    <td>Copy of Grades</td>
-                    <td><a href="../Uploads_cog/<?php echo $b["copy_grades"]?>" target="_blank"><?php echo $b["copy_grades"]?></a></td>
-                </tr>
-                <tr>
-                    <td>Copy of PSA</td>
-                    <td><a href="../Uploads_psa/<?php echo $b["psa"]?>" target="_blank"><?php echo $b["psa"]?></a></td>
-                </tr>
-                <tr>
-                    <td>Copy of Good Moral</td>
-                    <td><a href="../Uploads_gm/<?php echo $b["good_moral"]?>" target="_blank"><?php echo $b["good_moral"]?></a></td>
-                </tr>
-                <tr>
-                    <td>Copy of Enrollment Form</td>
-                    <td><a href="../Uploads_ef/<?php echo $b["e_Form"]?>" target="_blank"><?php echo $b["e_Form"]?></a></td>
-                </tr>
-            </tbody>
-        </table>    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<?php } ?>
-<!-- Modal end -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>

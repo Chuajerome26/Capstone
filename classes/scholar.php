@@ -163,7 +163,7 @@ class Scholar{
         // $this->database->sendEmail($scholarData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
 
         //if sucess uploading file, go to this 👇 page
-        header("Location: ../Pages-scholar/appforms.php?scholar=success"); 
+        header("Location: ../index.php?scholar=success"); 
         exit();
 
     }
@@ -214,7 +214,7 @@ class Scholar{
         $this->database->sendEmail($scholarEmail,$emailSubject, $emailBody);
     
         //if success saving account 
-        header("Location: ../Pages-scholar/appforms.php?scholar=success");
+        header("Location: ../index.php?scholar=success");
         exit();
     }
 

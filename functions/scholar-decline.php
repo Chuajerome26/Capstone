@@ -27,26 +27,23 @@ if(isset($_POST['submit'])){
     if(!$stmt1->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
-    $declineMessage = "Dear ".$user['f_name']." ".$user['l_name'].",
+    $declineMessage = "Dear " . $user['f_name'] . " " . $user['l_name'] . ",<br><br>"
+    . "We regret to inform you that your application has been declined by the administrator.<br>"
+    . "Reason for Decline:<br>"
+    . $remarks . "<br><br>"
+    . "Thank you for your application for the Educational Assistant. After careful review,<br>"
+    . "we regret to inform you that your application was not selected.<br>"
+    . "We appreciate your interest and commend your efforts. Wishing you success in your<br>"
+    . "academic and future endeavors.<br><br>"
+    . "If you have any questions or need further information, please feel free to contact us.<br><br>"
+    . "Sincerely,<br>"
+    . "CCMF<br><br>"
+    . "Best Regards,<br>"
+    . "Socorro L. Bautista<br>"
+    . "Executive Director<br>"
+    . "Consuelo Chito Madrigal Foundation<br>"
+    . "Incorporation";
 
-    We regret to inform you that your application has been declined by the administrator.
-
-    Thank you for your application for the Educational Assistant. After careful review,
-
-    we regret to inform you that your application was not selected.
-
-    We appreciate your interest and commend your efforts. Wishing you success in your
-    academic and future endeavors.
-
-    If you have any questions or need further information, please feel free to contact us.
-
-    Best Regards,
-    Socorro L. Bautista
-    Executive Director
-    Consuelo Chito Madrigal Foundation
-    Incorporation
-    
-    ";
     $sentEmail = $database->sendEmail($email,"Your Scholarship Application Has been Declined!", $declineMessage);
 
     header('Location: ../Pages-admin/admin-application.php?status=successDecline');

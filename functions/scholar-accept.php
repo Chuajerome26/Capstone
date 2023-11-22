@@ -26,20 +26,16 @@ if(isset($_POST["accept"])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
     
-    $acceptanceMessage = "Dear ".$user['f_name']." ".$user['l_name'].",
+    $acceptanceMessage = "Dear " . $user['f_name'] . " " . $user['l_name'] . ",<br><br>"
+    . "We are delighted to inform you that your application has been accepted by our organization. Congratulations!<br><br>"
+    . "We look forward to having you as a part of our foundation and working together towards our shared goals.<br><br>"
+    . "If you have any questions or need further information, please do not hesitate to contact us.<br><br>"
+    . "Best Regards,<br>"
+    . "Socorro L. Bautista<br>"
+    . "Executive Director<br>"
+    . "Consuelo Chito Madrigal Foundation<br>"
+    . "Incorporation";
 
-    We are delighted to inform you that your application has been accepted by our organization. Congratulations!
-
-    We look forward to having you as a part of our foundation and working together towards our shared goals.
-
-    If you have any questions or need further information, please do not hesitate to contact us.
-
-    Best Regards,
-    Socorro L. Bautista
-    Executive Director
-    Consuelo Chito Madrigal Foundation
-    Incorporation
-    ";
 
     $sentEmail = $database->sendEmail($email,"Your Scholarship Application Has been Accepted!", $acceptanceMessage);
     header('Location: ../Pages-admin/admin-application.php?status=success');

@@ -18,8 +18,7 @@ if (isset($_POST['submit'])) {
 
     // Update the data
     $savee = $admin->editApplicants($id, $f_name, $l_name, $mobile_num, $email, $total_sub, $total_units, $gwa);
-    if($savee){
-        header('Location: ../Pages-Applicant/Applicant-Requirements2.php?status=editSuccess');
-    }
+    
+    header('Location: ../Pages-Applicant/Applicant-Requirements2.php?status=editSuccess');
 }
 

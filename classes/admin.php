@@ -272,7 +272,7 @@ private function handleDocumentUpload($id, $folder, $columnName, $tableName) {
     // Check if a new file is uploaded
     if (isset($_FILES[$columnName]) && $_FILES[$columnName]['error'] === UPLOAD_ERR_OK) {
         $uploadDir = "../Uploads_{$folder}/";
-        $newFileName = explode($_FILES[$columnName]['name']);
+        $newFileName = $id ." - " . basename($_FILES[$columnName]['name']);
         $uploadFilePath = $uploadDir . $newFileName;
 
         // Move the uploaded file to the destination
@@ -303,6 +303,11 @@ public function getRemarks($id){
        $result = false;
        return $result;
    }
+}
+public function getDonorsFunds(){
+    $stmt = $this->database->getConnection()->query("SELECT * FROM admin_funds")->fetchAll();
+    return $stmt;
+    exit();
 }
 
 }
