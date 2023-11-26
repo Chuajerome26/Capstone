@@ -341,7 +341,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
                     <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z"/>
                  </svg>
-                 <span class ="ml-2">Scholarship Application</span>
+                 <span class ="ml-2">Schedule Interview</span>
                 </a>
             </li>
 
@@ -452,7 +452,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Scholar Applicants</h1>
+                        <p class="h3 mb-0 font-weight-bold text-gray-800">Schedule Interview</p>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -470,7 +470,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Schedule Interview</h6>
                                 </div>
                                 <div class="card-body">
                                 <div class="event-schedule-area-two bg-color pad100">

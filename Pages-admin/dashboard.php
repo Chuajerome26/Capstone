@@ -213,7 +213,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <p class="h3 mb-0 font-weight-bold text-gray-800">Dashboard</p>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -227,7 +227,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
                                                 Current Scholars</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $scholar; ?></div>
                                         </div>
@@ -248,12 +248,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <div class="text-s font-weight-bold text-success text-uppercase mb-1">
                                                 Total Funds</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">₱<?php echo $funds[0]['total_funds']; ?></div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-3x text-gray-300">₱</i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                   <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                 </svg>
                                             
                                     
                                         </div>
@@ -268,7 +270,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Renewal
+                                            <div class="text-s font-weight-bold text-info text-uppercase mb-1">Renewal
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -293,7 +295,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
                                                 Pending Applicants</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $applicants; ?></div>
                                         </div>
@@ -319,7 +321,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Funds</h6>
+                                    <h5 class="m-0 font-weight-bold text-primary">Funds</h5>
                                     <div class="dropdown no-arrow">
                                         <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -350,7 +352,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Recommended Home Visit</h6>
+                                    <h5 class="m-0 font-weight-bold text-primary">Recommended Home Visit</h5>
                                     <div class="dropdown no-arrow">
                                         <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -373,13 +375,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
+                                            <i class="fas fa-circle text-primary"></i> <b>Direct</b>
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
+                                            <i class="fas fa-circle text-success"></i> <b>Social</b>
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
+                                            <i class="fas fa-circle text-info"></i> <b>Referral</b>
                                         </span>
                                     </div>
                                 </div>

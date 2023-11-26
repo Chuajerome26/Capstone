@@ -214,7 +214,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Funds</h1>
+                        <p class="h3 font-weight-bold mb-0 text-gray-800">Funds</p>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
