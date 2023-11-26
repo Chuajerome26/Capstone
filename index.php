@@ -63,7 +63,7 @@
                         <div class="toolbar-login">
                             <div class="button">
                                 <a href="Pages-scholar/appforms.php"><p class="h6"> Create an Account </p></a>
-                                <a href="#" class="btn"><button type="button" style="font-size: 15px;" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></a>
+                                <a href="#" class="btn"> <button type="button" style="font-size: 15px;" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button></a>
                             </div>
                         </div>
                     </div>
@@ -537,7 +537,7 @@
                             <label for="password">Password:</label>
                             <input type="password" class="form-control" name="psw" placeholder="Enter password" required>
                         </div>
-                        <button type="submit" name="submitBtn" class="btn btn-primary">Login</button>
+                        <button type="submit" name="submitBtn" class="btn btn-success">Login</button>
                         <p style="margin-top: 20px"> Don't have an account? <a href="Pages-scholar/appforms.php">Sign up here</a>
                     </div>
                     </form>
