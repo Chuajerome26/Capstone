@@ -483,7 +483,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                     <h2>Schedule Task</h2>
                                     </div>
                                     <p>
-                                        <button type="button" class="btn btn-primary">Add Schedule</button>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#setScheduleModal">Set Date Schedule</button>
                                     </p>
                                     </div>
                                     </div>
@@ -505,30 +505,44 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                         <th class="text-center" scope="col">Add to Records</th>
                                                     </tr>
                                                 </thead>
+                                                <?php 
+                                                    $sched = $admin->getSchedule();
+                                                    foreach($sched as $po){
+                                                        $id = $po['scholar_id'];
+                                                        $info = $admin->getApplicantById($id);
+
+                                                        $date = $po['date'];
+                                                        // Convert the input date to a Unix timestamp
+                                                        $timestamp = strtotime($date);
+
+                                                        // Convert the Unix timestamp to a text date
+                                                        $textDate = date("F j, Y", $timestamp);
+                                                ?>
                                                 <tbody>
                                                     <tr class="inner-box">
-                                                        <th scope="row"><div class="event-date"><span>16</span><p>Novembar</p></div></th>
+                                                        <th scope="row"><div class="event-date"><?php echo $textDate; ?></th>
                                                     <td><div class="event-img"><img src="C:\Users\marti\Downloads\noprofilepic.jpg" alt /></div></td>
                                                     <td><div class="event-wrap">
-                                                            <h3><a href="#">Jericho castro</a></h3>
+                                                            <h3><a href="#"><?php echo $info[0]['f_name']." ".$info[0]['l_name'] ?></a></h3>
                                                             <div class="time">
-                                                                <span>05:35 AM - 08:00 AM 2h 25'</span>
+                                                                <span><?php echo $po['time_start']." - ". $po['time_end'] ?></span>
                                                             </div>
                                                         </div>  
                                                     </td>
                                                     <td>
                                                         <div class="r-no">
-                                                            <span>Room B3</span>
+                                                            <span><?php echo $po['venue'];?></span>
                                                         </div>
                                                     </td>
                                                     <td>
                                                     <div class="primary-btn">
-                                                        <button type="button" class="btn btn-primary" name="rate">Rate</button>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rateModal<?php echo $po['id'];?>">Rate</button>
                                                     </div>
                                                     </td>
                                                     </tr>
 
                                                     </tbody>
+                                                    <?php } ?>
                                                     </table>
                                     </div>
                                     </div>
@@ -569,27 +583,33 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
         <i class="fas fa-angle-up"></i>
     </a>
     <!-- Add Interview Modal-->
+    <!-- Logout Modal-->
     <div class="modal fade" id="setScheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Interview</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <h5 class="modal-title" id="exampleModalLabel">Set Schedule</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                <form>
+                <form method="post" action="../functions/setInterviewSchedule.php">
                     <!-- Select Applicant -->
                     <div class="form-group">
                         <label for="applicantSelect">Select Applicant:</label>
-                        <select class="form-control" id="applicantSelect" name="applicant">
-                            <option value="applicant1">Applicant 1</option>
-                            <option value="applicant2">Applicant 2</option>
-                            <option value="applicant3">Applicant 3</option>
+                        <select class="form-control" id="applicantSelect" name="scholar">
+                        <?php 
+                            $applicants = $admin->getApplicants();
+                            foreach($applicants as $s){
+                        ?>
+                            <option value="<?php echo $s['scholar_id'] ?>"><?php echo $s['f_name']." ".$s['l_name'] ?></option>
+                            
                             <!-- Add more options as needed -->
+                        <?php } ?>
                         </select>
+                        
                     </div>
 
                     <!-- Date -->
@@ -600,13 +620,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
                     <!-- Session -->
                     <div class="form-group">
-                        <label for="sessionSelect">Select Session:</label>
-                        <select class="form-control" id="sessionSelect" name="session">
-                            <option value="morning">Morning</option>
-                            <option value="afternoon">Afternoon</option>
-                            <option value="evening">Evening</option>
-                            <!-- Add more options as needed -->
-                        </select>
+                        <label for="sessionSelect">Time Start:</label>
+                        <input type="time" class="form-control" name="time_start">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sessionSelect">Time End:</label>
+                        <input type="time" class="form-control" name="time_end">
                     </div>
 
                     <!-- Venue -->
@@ -616,24 +636,23 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary" name="submit">Save</button>
                 </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -645,6 +664,38 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </div>
         </div>
     </div>
+<?php
+$sched = $admin->getSchedule();
+foreach($sched as $ss){ 
+?>
+    <div class="modal" id="rateModal<?php echo $ss['id'];?>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ratings</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form method="post" action="../functions/rate.php">
+          <div class="form-group">
+            <label for="data">Rate:</label>
+            <input type="text" class="form-control" id="rate" name="rate">
+            <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $ss['id']; ?>">
+          </div>
+        
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submitBtn" name="submit">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<?php } ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
@@ -720,21 +771,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
         })
     }
 
-    $(document).ready(function() {
-        $('#applicant').DataTable();
+    function closeModal(modalId) {
+        // Find the modal element by its id
+        var modal = document.getElementById(modalId);
 
-        $('#applicant').parent().parent().css('overflow', 'auto');
-        $('#applicant').parent().parent().css('max-height', '500px');
-    });
-
-    function modal(id){
-        $(document).ready(function() {
-        $('#applicant'+id).DataTable();
-
-        $('#applicant'+id).parent().parent().css('overflow', 'auto');
-        $('#applicant'+id).parent().parent().css('max-height', '500px');
-    });
+        // Use the Bootstrap modal method to hide the modal
+        $(modal).modal('hide');
     }
+    
 
 </script>
 </body>

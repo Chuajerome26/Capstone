@@ -60,7 +60,7 @@ require '../classes/database.php';
         header("Location: ../Pages-scholar/scholardash.php");
     }else if($userType == 0){
         $_SESSION["user_type"] = 0;
-        header("Location: ../Pages-Applicant/Applicant-Requirements.php");
+        header("Location: ../Pages-Applicant/Applicant-Requirements2.php");
     }
 
     // header("Location: ../Pages-admin/dashboard.php");

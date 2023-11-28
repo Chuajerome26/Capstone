@@ -182,37 +182,60 @@ class Admin
 
     return $acceptanceChance;
 }
+function convertToDecimalFivePointScale($grade) {
+    if ($grade >= 90 && $grade <= 99) {
+        return 1;
+    } elseif ($grade >= 85 && $grade < 90) {
+        return 2;
+    } elseif ($grade >= 80 && $grade < 85) {
+        return 2.5;
+    } elseif ($grade >= 75 && $grade < 80) {
+        return 3;
+    } elseif ($grade >= 70 && $grade < 75) {
+        return 3.5;
+    } elseif ($grade >= 65 && $grade < 70) {
+        return 4;
+    } elseif ($grade >= 60 && $grade < 65) {
+        return 4.5;
+    } else {
+        return 5;
+    }
+}
 
-function predictAcceptanceOfApplicant($gwa, $numDocumentsSubmitted) {
+function predictAcceptanceOfApplicant($gwa, $ratings) {
     // Assuming 1 is the highest GWA and 5 is the lowest
+    if($gwa >= 75 && $gwa <= 100){
+        $gwa = $this->convertToDecimalFivePointScale($gwa);
+    }
+
     $maxGwa = 5.0; 
-    $minGwa = 1.0; 
-    $maxAttendanceHours = 100; // Hypothetical maximum attendance hours for full weight
-    $totalRequiredDocuments = 5; // Total number of required documents
+    $minGwa = 1.0;  // Hypothetical maximum attendance hours for full weight
+    $totalRatings = 100; // Total number of required ratings
 
     // Weights for each factor
     $gwaWeight = 0.40;
-    $documentWeight = 0.60;
+    $ratingsWeight = 0.60; // Updated weight variable name
 
     // Normalize scores
     // Higher GWA (closer to 5) results in a lower score, and vice versa
     $normalizedGwaScore = ($maxGwa - $gwa) / ($maxGwa - $minGwa); //5 - 1 / 5 - 1
-    $normalizedDocumentScore = $numDocumentsSubmitted / $totalRequiredDocuments; //5 / 5
-    $normalizedDocumentScore = min($normalizedDocumentScore, 1); // Cap at 1 
+    $normalizedRatingsScore = $ratings / $totalRatings; // Updated variable name
+    $normalizedRatingsScore = min($normalizedRatingsScore, 1); // Cap at 1 
     
     // Weighted scores
     $weightedGwaScore = $normalizedGwaScore * $gwaWeight;
-    $weightedDocumentScore = $normalizedDocumentScore * $documentWeight;
+    $weightedRatingsScore = $normalizedRatingsScore * $ratingsWeight; // Updated variable name
     
 
     // Total weighted score
-    $totalWeightedScore = $weightedGwaScore + $weightedDocumentScore;
+    $totalWeightedScore = $weightedGwaScore + $weightedRatingsScore; // Updated variable name
 
     // Convert the score to a percentage and round to 2 decimal places
     $acceptanceChance = round($totalWeightedScore * 100, 2);
 
     return $acceptanceChance;
 }
+
 public function addFunds($amount, $donors, $date){
 
     // prepare insert statement for employee table
@@ -309,5 +332,52 @@ public function getDonorsFunds(){
     return $stmt;
     exit();
 }
+public function setSchedule($scholar_id, $date, $time_start, $time_end, $venue){
 
+    // prepare insert statement for employee table
+     $sql = "INSERT INTO admin_schedule (scholar_id, date, time_start, time_end, venue) VALUES (?,?,?,?,?)";
+
+     // prepared statement
+    $stmt = $this->database->getConnection()->prepare($sql);
+
+    //if execution fail
+    if (!$stmt->execute([$scholar_id, $date, $time_start, $time_end, $venue])) {
+        header("Location: ../Pages-admin/admin-funds.php?status=error");
+        exit();
+    }
+    header("Location: ../Pages-admin/admin-funds.php?status=success");
+
+}
+public function getSchedule(){
+    $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule")->fetchAll();
+    return $stmt;
+    exit();
+}
+public function getScheduleById($id){
+    // prepare the SQL statement using the database property
+    $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_schedule WHERE scholar_id=?");
+
+    //if execution fail
+   if (!$stmt->execute([$id])) {
+       header("Location: ../index.php?error=stmtfail");
+       exit();
+   }
+
+   //fetch the result
+   $result = $stmt->fetch();
+   
+     //if has result return it, else return false
+   if ($result) {
+       return $result;
+   } else {
+       $result = false;
+       return $result;
+   }
+}
+public function giveRate($id, $rate) {
+    // Update personal information in scholars_info table
+    $stmt = $this->database->getConnection()->prepare("UPDATE admin_schedule SET rate = ? WHERE id = ?");
+    $stmt->execute([$rate, $id]);
+
+}
 }

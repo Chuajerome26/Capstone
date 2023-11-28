@@ -258,8 +258,18 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                         $applicantsData = $admin->getApplicants();
                                         $num = 1;
                                         foreach($applicantsData as $s){
-
-                                            $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], 5);
+                                            $id = $s['scholar_id'];
+                                            $rate = $admin->getScheduleById($id);
+                                            if($rate){
+                                                if($rate['rate'] == 0){
+                                                    $rate1 = 0;
+                                                }else{
+                                                    $rate1 = $rate['rate']; 
+                                                }
+                                            }else{
+                                                $rate1 = 0;
+                                            }
+                                            $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], $rate1);
                                             if($s['status'] == 0){
                                                 $status = "Pending";
                                             }else{
