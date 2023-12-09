@@ -307,26 +307,23 @@ private function handleDocumentUpload($id, $folder, $columnName, $tableName) {
     }
 }
 public function getRemarks($id){
-    // prepare the SQL statement using the database property
-    $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_remarks WHERE scholar_id=?");
-
-    //if execution fail
-   if (!$stmt->execute([$id])) {
-       header("Location: ../index.php?error=stmtfail");
-       exit();
-   }
-
-   //fetch the result
-   $result = $stmt->fetchAll();
-   
-     //if has result return it, else return false
-   if ($result) {
-       return $result;
-   } else {
-       $result = false;
-       return $result;
-   }
+    if (!$id) {
+        return false;
+    }
+    $stmt = $this->database->getConnection()->prepare("SELECT remarks FROM admin_remarks WHERE scholar_id=?");
+    if (!$stmt) {
+        return false;
+    }
+    if (!$stmt->execute([$id])) {
+        return false;
+    }
+    $result = [];
+    while ($row = $stmt->fetch()) {
+        $result[] = $row;
+    }
+    return $result ? $result : false;
 }
+
 public function getDonorsFunds(){
     $stmt = $this->database->getConnection()->query("SELECT * FROM admin_funds")->fetchAll();
     return $stmt;
