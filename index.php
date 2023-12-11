@@ -535,18 +535,18 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Sign in</h5>
+                    <h5 class="modal-title fw-bold">Sign in</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <!-- Add your login form here -->
                     <form action="functions/admin-login.php" method="post">
                         <div class="form-group">
-                            <label for="username">Username:</label>
+                            <label class="fw-bold" for="username">Username:</label>
                             <input type="text" class="form-control" name="uname" placeholder="Enter username" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Password:</label>
+                            <label class="fw-bold" for="password">Password:</label>
                             <input type="password" class="form-control" name="psw" placeholder="Enter password" required>
                         </div>
                         <button type="submit" name="submitBtn" class="btn btn-success">Login</button>
