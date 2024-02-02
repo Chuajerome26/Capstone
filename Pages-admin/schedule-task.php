@@ -47,244 +47,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
     <!-- Custom styles for this template-->
     <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
-<style type="text/css">
-.Scheduling .section-title .title-text {
-    margin-bottom: 50px;
-}
-
-.Scheduling .tab-area .nav-tabs {
-    border-bottom: inherit;
-}
-
-.Scheduling .tab-area .nav {
-    border-bottom: inherit;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin-top: 80px;
-}
-
-.Scheduling .tab-area .nav-item {
-    margin-bottom: 75px;
-}
-.Scheduling .tab-area .nav-item .nav-link {
-    text-align: center;
-    font-size: 22px;
-    color: #333;
-    font-weight: 600;
-    border-radius: inherit;
-    border: inherit;
-    padding: 0px;
-    text-transform: capitalize !important;
-}
-.Scheduling .tab-area .nav-item .nav-link.active {
-    color: #4125dd;
-    background-color: transparent;
-}
-
-.Scheduling .tab-area .tab-content .table {
-    margin-bottom: 0;
-    width: 80%;
-}
-.Scheduling .tab-area .tab-content .table thead td,
-.Scheduling .tab-area .tab-content .table thead th {
-    border-bottom-width: 1px;
-    font-size: 20px;
-    font-weight: 600;
-    color: #252525;
-}
-.Scheduling .tab-area .tab-content .table td,
-.Scheduling .tab-area .tab-content .table th {
-    border: 1px solid #b7b7b7;
-    padding-left: 30px;
-}
-.Scheduling .tab-area .tab-content .table tbody th .heading,
-.Scheduling .tab-area .tab-content .table tbody td .heading {
-    font-size: 16px;
-    text-transform: capitalize;
-    margin-bottom: 16px;
-    font-weight: 500;
-    color: #252525;
-    margin-bottom: 6px;
-}
-.Scheduling .tab-area .tab-content .table tbody th span,
-.Scheduling .tab-area .tab-content .table tbody td span {
-    color: #4125dd;
-    font-size: 18px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    display: block;
-}
-.Scheduling .tab-area .tab-content .table tbody th span.date,
-.Scheduling .tab-area .tab-content .table tbody td span.date {
-    color: #656565;
-    font-size: 14px;
-    font-weight: 500;
-    margin-top: 15px;
-}
-.event-schedule-area .tab-area .tab-content .table tbody th p {
-    font-size: 14px;
-    margin: 0;
-    font-weight: normal;
-}
-
-.Scheduling .section-title .title-text h2 {
-    margin: 0px 0 15px;
-}
-
-.Scheduling1 ul.custom-tab {
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    border-bottom: 1px solid #dee2e6;
-    margin-bottom: 30px;
-}
-.Scheduling1 ul.custom-tab li {
-    margin-right: 70px;
-    position: relative;
-}
-.Scheduling1 ul.custom-tab li a {
-    color: #252525;
-    font-size: 25px;
-    line-height: 25px;
-    font-weight: 600;
-    text-transform: capitalize;
-    padding: 35px 0;
-    position: relative;
-}
-.Scheduling1 ul.custom-tab li a:hover:before {
-    width: 100%;
-}
-.Scheduling1 ul.custom-tab li a:before {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    content: "";
-    background: #4125dd;
-    width: 0;
-    height: 2px;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-}
-.Scheduling1 ul.custom-tab li a.active {
-    color: #4125dd;
-}
-
-.Scheduling1 .primary-btn {
-    margin-top: 40px;
-}
-
-.Scheduling1 .tab-content .table {
-    -webkit-box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 0;
-}
-.Scheduling1 .tab-content .table thead {
-    background-color: #007bff;
-    color: #fff;
-    font-size: 20px;
-}
-.Scheduling1 .tab-content .table thead tr th {
-    padding: 20px;
-    border: 0;
-}
-.Scheduling1 .tab-content .table tbody {
-    background: #fff;
-}
-.Scheduling1 .tab-content .table tbody tr.inner-box {
-    border-bottom: 1px solid #dee2e6;
-}
-.Scheduling1 .tab-content .table tbody tr th {
-    border: 0;
-    padding: 30px 20px;
-    vertical-align: middle;
-}
-.Scheduling1 .tab-content .table tbody tr th .event-date {
-    color: #252525;
-    text-align: center;
-}
-.Scheduling1 .tab-content .table tbody tr th .event-date span {
-    font-size: 50px;
-    line-height: 50px;
-    font-weight: normal;
-}
-.Scheduling1 .tab-content .table tbody tr td {
-    padding: 30px 20px;
-    vertical-align: middle;
-}
-.Scheduling1 .tab-content .table tbody tr td .r-no span {
-    color: #252525;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap h3 a {
-    font-size: 20px;
-    line-height: 20px;
-    color: #cf057c;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap h3 a:hover {
-    color: #4125dd;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap .categories {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    margin: 10px 0;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap .categories a {
-    color: #252525;
-    font-size: 16px;
-    margin-left: 10px;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap .categories a:before {
-    content: "\f07b";
-    font-family: fontawesome;
-    padding-right: 5px;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap .time span {
-    color: #252525;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap .organizers {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    margin: 10px 0;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap .organizers a {
-    color: #4125dd;
-    font-size: 16px;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    transition: all 0.4s;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap .organizers a:hover {
-    color: #4125dd;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-wrap .organizers a:before {
-    content: "\f007";
-    font-family: fontawesome;
-    padding-right: 5px;
-}
-.Scheduling1 .tab-content .table tbody tr td .primary-btn {
-    margin-top: 0;
-    text-align: center;
-}
-.Scheduling1 .tab-content .table tbody tr td .event-img img {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
-}
-
-    </style>
 
 </head>
 
@@ -341,7 +103,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
                     <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z"/>
                  </svg>
-                 <span class ="ml-2">Schedule Interview</span>
+                 <span class ="ml-2">Scholarship Application</span>
                 </a>
             </li>
 
@@ -361,19 +123,19 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="admin-funds.php">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="admin-funds.php"> -->
                     <!-- FUNDS ICON -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
                     <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
                   </svg>
                  <span class ="ml-2">Funds</span>
                 </a>
-            </li>
+            </li> -->
 
             <li class="nav-item active">
                 <a class="nav-link" href="schedule-task.php">
-                    <!-- Schedule Int ICON -->
+                    <!-- Sched int ICON -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
                      <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                      <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
@@ -381,6 +143,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                  <span class="ml-2">Schedule Interview</span>
                 </a>
             </li>
+
             <!-- Nav Item - Tables -->
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -453,7 +216,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <p class="h3 mb-0 font-weight-bold text-gray-800">Schedule Interview</p>
+                        <p class="h3 mb-0 font-weight-bold text-gray-800">Scholar Applicants</p>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -471,89 +234,24 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Schedule Interview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
                                 </div>
                                 <div class="card-body">
-                                <div class="event-schedule-area-two bg-color pad100">
-                                    <div class="container">
-                                    <div class="row">
-                                    <div class="col-lg-12">
-                                    <div class="section-title text-center">
-                                    <div class="title-text">
-                                    <h2>Schedule Task</h2>
-                                    </div>
-                                    <p>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#setScheduleModal">Set Date Schedule</button>
-                                    </p>
-                                    </div>
-                                    </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade active show" id="home" role="tabpanel">
-                                                <div class="table-responsive">
-                                                <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="text-center" scope="col">Date</th>
-                                                        <th scope="col">Profile</th>
-                                                        <th scope="col">Session</th>
-                                                        <th scope="col">Venue</th>
-                                                        <th class="text-center" scope="col">Add to Records</th>
-                                                    </tr>
-                                                </thead>
-                                                <?php 
-                                                    $sched = $admin->getSchedule();
-                                                    foreach($sched as $po){
-                                                        $id = $po['scholar_id'];
-                                                        $info = $admin->getApplicantById($id);
-
-                                                        $date = $po['date'];
-                                                        // Convert the input date to a Unix timestamp
-                                                        $timestamp = strtotime($date);
-
-                                                        // Convert the Unix timestamp to a text date
-                                                        $textDate = date("F j, Y", $timestamp);
-                                                ?>
-                                                <tbody>
-                                                    <tr class="inner-box">
-                                                        <th scope="row"><div class="event-date"><?php echo $textDate; ?></th>
-                                                    <td><div class="event-img"><img src="C:\Users\marti\Downloads\noprofilepic.jpg" alt /></div></td>
-                                                    <td><div class="event-wrap">
-                                                            <h3><a href="#"><?php echo $info[0]['f_name']." ".$info[0]['l_name'] ?></a></h3>
-                                                            <div class="time">
-                                                                <span><?php echo $po['time_start']." - ". $po['time_end'] ?></span>
-                                                            </div>
-                                                        </div>  
-                                                    </td>
-                                                    <td>
-                                                        <div class="r-no">
-                                                            <span><?php echo $po['venue'];?></span>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                    <div class="primary-btn">
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rateModal<?php echo $po['id'];?>">Rate</button>
+                                    <div class="container mt-6">
+                                        <div class="row">
+                                            <!-- Example of a single card with custom class -->
+                                            <div class="col-sm-6 col-md-4 col-lg-3" style="margin-top:20px;">
+                                                <div class="card custom-card">
+                                                    <img class="card-img-top" src="image_url" alt="Card image">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Card Title</h5>
+                                                        <p class="card-text">Some quick example text to build on the card.</p>
+                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
                                                     </div>
-                                                    </td>
-                                                    </tr>
-
-                                                    </tbody>
-                                                    <?php } ?>
-                                                    </table>
-                                    </div>
-                                    </div>
-                                    </div>
-
-                                    </div>
-                                    </div>
-
-                                    </div>
-
-                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Repeat the above div for more cards -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -582,77 +280,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-    <!-- Add Interview Modal-->
+
     <!-- Logout Modal-->
-    <div class="modal fade" id="setScheduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Set Schedule</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                <form method="post" action="../functions/setInterviewSchedule.php">
-                    <!-- Select Applicant -->
-                    <div class="form-group">
-                        <label for="applicantSelect">Select Applicant:</label>
-                        <select class="form-control" id="applicantSelect" name="scholar">
-                        <?php 
-                            $applicants = $admin->getApplicants();
-                            foreach($applicants as $s){
-                        ?>
-                            <option value="<?php echo $s['scholar_id'] ?>"><?php echo $s['f_name']." ".$s['l_name'] ?></option>
-                            
-                            <!-- Add more options as needed -->
-                        <?php } ?>
-                        </select>
-                        
-                    </div>
-
-                    <!-- Date -->
-                    <div class="form-group">
-                        <label for="eventDate">Event Date:</label>
-                        <input type="date" class="form-control" id="eventDate" name="date">
-                    </div>
-
-                    <!-- Session -->
-                    <div class="form-group">
-                        <label for="sessionSelect">Time Start:</label>
-                        <input type="time" class="form-control" name="time_start">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="sessionSelect">Time End:</label>
-                        <input type="time" class="form-control" name="time_end">
-                    </div>
-
-                    <!-- Venue -->
-                    <div class="form-group">
-                        <label for="venueInput">Venue:</label>
-                        <input type="text" class="form-control" id="venueInput" name="venue">
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary" name="submit">Save</button>
-                </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true">
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -664,39 +300,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </div>
         </div>
     </div>
-<?php
-$sched = $admin->getSchedule();
-foreach($sched as $ss){ 
-?>
-    <div class="modal" id="rateModal<?php echo $ss['id'];?>">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Ratings</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      <!-- Modal body -->
-      <div class="modal-body">
-        <form method="post" action="../functions/rate.php">
-          <div class="form-group">
-            <label for="data">Rate:</label>
-            <input type="text" class="form-control" id="rate" name="rate">
-            <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $ss['id']; ?>">
-          </div>
-        
-      </div>
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" id="submitBtn" name="submit">Submit</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-<?php } ?>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -771,14 +374,21 @@ foreach($sched as $ss){
         })
     }
 
-    function closeModal(modalId) {
-        // Find the modal element by its id
-        var modal = document.getElementById(modalId);
+    $(document).ready(function() {
+        $('#applicant').DataTable();
 
-        // Use the Bootstrap modal method to hide the modal
-        $(modal).modal('hide');
+        $('#applicant').parent().parent().css('overflow', 'auto');
+        $('#applicant').parent().parent().css('max-height', '500px');
+    });
+
+    function modal(id){
+        $(document).ready(function() {
+        $('#applicant'+id).DataTable();
+
+        $('#applicant'+id).parent().parent().css('overflow', 'auto');
+        $('#applicant'+id).parent().parent().css('max-height', '500px');
+    });
     }
-    
 
 </script>
 </body>

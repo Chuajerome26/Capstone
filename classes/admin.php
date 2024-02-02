@@ -142,13 +142,24 @@ class Admin
 
     
   }
+  public function updateFilesRemarks($scholar_id, $id_pic, $cog, $psa, $gm, $ef){
+    // prepared statement
+    $stmt = $this->database->getConnection()->prepare("UPDATE scholar_files SET id_status = ?, grade_status = ?, psa_status = ?, gm_status = ?, ef_status = ?, review_date = ? WHERE scholar_id = ?");
+
+   //if execution fail
+   if (!$stmt->execute([$id_pic, $cog, $psa, $gm, $ef, $this->date, $scholar_id])) {
+       header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+
+       exit();
+   }
+    }
   public function acceptScholar($id){
         // prepared statement
         $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET status = ? WHERE id = ?");
 
        //if execution fail
        if (!$stmt->execute([1,$id])) {
-           header("Location: ../Pages/employee-register.php?error=stmtfail");
+           header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
 
            exit();
        }

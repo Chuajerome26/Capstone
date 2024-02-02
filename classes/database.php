@@ -10,7 +10,7 @@ require '../vendor/phpmailer/phpmailer/src/SMTP.php';
 
 class Database
 {
-    private $dbServername = "193.203.184.6";
+    private $dbServername = "45.84.205.130";
     private $dbUsername = "u434603824_capstoneSBIT4D";
     private $dbPassword = "capstoneSBIT4D";
     private $connection;

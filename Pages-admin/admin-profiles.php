@@ -99,10 +99,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="admin-funds.php">
                     <span>Funds</span></a>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Tables -->
 

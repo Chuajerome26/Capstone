@@ -85,7 +85,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-            <a class="nav-link collapsed" href="admin-application.php">
+            <a class="nav-link collapsed" href="admin-scholar.php">
                 <!-- SCHO TAB ICON -->
             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
                   <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913z"/>
@@ -123,15 +123,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="admin-funds.php">
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="admin-funds.php"> -->
                     <!-- FUNDS ICON -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
                     <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
                   </svg>
                  <span class ="ml-2">Funds</span>
                 </a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link" href="schedule-task.php">
@@ -553,7 +553,7 @@ $appliData2 = $admin->getApplicants();
     foreach($appliData2 as $b){
 ?>
 <div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
+  <div class="modal-dialog" style="max-width:800px;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="filesModal<?php echo $b["scholar_id"];?>">Modal title</h5>
@@ -565,35 +565,90 @@ $appliData2 = $admin->getApplicants();
                 <tr>
                     <th>Requirements</th>
                     <th>Details</th>
+                    <th>First Evaluation</th>
+                    <th>Last Evaluation</th>
                 </tr> 
             </thead>
+            <form method="post" action="../functions/filesRemarks.php">
             <tbody>
                 <tr>
                     <td>Copy of Id</td>
                     <td><a href="../Uploads_pic/<?php echo $b["id_pic"]?>" target="_blank"><?php echo $b["id_pic"]?></a></td>
+                    <?php if($b["id_status"] == 0): ?>
+                        <td align="center"><input type="checkbox" name="id_pic" value="1"></td>
+                        <td align="center"><input type="checkbox" name="id_pic" value="2" disabled></td>
+                    <?php elseif($b["id_status"] == 1): ?>
+                        <td align="center">Done</td>
+                        <td align="center"><input type="checkbox" name="id_pic" value="2"></td>
+                    <?php else: ?>
+                        <td align="center">Done</td>
+                        <td align="center">Done</td>
+                    <?php endif; ?>
                 </tr>
                 <tr>
                     <td>Copy of Grades</td>
                     <td><a href="../Uploads_cog/<?php echo $b["copy_grades"]?>" target="_blank"><?php echo $b["copy_grades"]?></a></td>
+                    <?php if($b["grade_status"] == 0): ?>
+                        <td align="center"><input type="checkbox" name="cog" value="1"></td>
+                        <td align="center"><input type="checkbox" name="cog" value="2" disabled></td>
+                    <?php elseif($b["grade_status"] == 1): ?>
+                        <td align="center">Done</td>
+                        <td align="center"><input type="checkbox" name="cog" value="2"></td>
+                    <?php else: ?>
+                        <td align="center">Done</td>
+                        <td align="center">Done</td>
+                    <?php endif; ?>
                 </tr>
                 <tr>
                     <td>Copy of PSA</td>
                     <td><a href="../Uploads_psa/<?php echo $b["psa"]?>" target="_blank"><?php echo $b["psa"]?></a></td>
+                    <?php if($b["psa_status"] == 0): ?>
+                        <td align="center"><input type="checkbox" name="psa" value="1"></td>
+                        <td align="center"><input type="checkbox" name="psa" value="2" disabled></td>
+                    <?php elseif($b["psa_status"] == 1): ?>
+                        <td align="center">Done</td>
+                        <td align="center"><input type="checkbox" name="psa" value="2"></td>
+                    <?php else: ?>
+                        <td align="center">Done</td>
+                        <td align="center">Done</td>
+                    <?php endif; ?>
                 </tr>
                 <tr>
                     <td>Copy of Good Moral</td>
                     <td><a href="../Uploads_gm/<?php echo $b["good_moral"]?>" target="_blank"><?php echo $b["good_moral"]?></a></td>
+                    <?php if($b["gm_status"] == 0): ?>
+                        <td align="center"><input type="checkbox" name="gm" value="1"></td>
+                        <td align="center"><input type="checkbox" name="gm" value="2" disabled></td>
+                    <?php elseif($b["gm_status"] == 1): ?>
+                        <td align="center">Done</td>
+                        <td align="center"><input type="checkbox" name="gm" value="2"></td>
+                    <?php else: ?>
+                        <td align="center">Done</td>
+                        <td align="center">Done</td>
+                    <?php endif; ?>
                 </tr>
                 <tr>
                     <td>Copy of Enrollment Form</td>
                     <td><a href="../Uploads_ef/<?php echo $b["e_Form"]?>" target="_blank"><?php echo $b["e_Form"]?></a></td>
+                    <?php if($b["ef_status"] == 0): ?>
+                        <td align="center"><input type="checkbox" name="eForm" value="1"></td>
+                        <td align="center"><input type="checkbox" name="eForm" value="2" disabled></td>
+                    <?php elseif($b["ef_status"] == 1): ?>
+                        <td align="center">Done</td>
+                        <td align="center"><input type="checkbox" name="eForm" value="2"></td>
+                    <?php else: ?>
+                        <td align="center">Done</td>
+                        <td align="center">Done</td>
+                    <?php endif; ?>
                 </tr>
             </tbody>
         </table>    
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <input type="hidden" name="scholar_id" value="<?php echo $b['scholar_id'] ?>">
+        <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+        </form>
       </div>
     </div>
   </div>
@@ -672,6 +727,20 @@ $appliData2 = $admin->getApplicants();
             toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
+    }else if(successValue === "UpdatedRemarks"){
+        Swal.fire({
+            icon:'success',
+            title:'Update Remarks!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
     }
 
     $(document).ready(function() {
@@ -683,10 +752,10 @@ $appliData2 = $admin->getApplicants();
 
     function modal(id){
         $(document).ready(function() {
-        $('#applicant'+id).DataTable();
+        $('#applicant-modal'+id).DataTable();
 
-        $('#applicant'+id).parent().parent().css('overflow', 'auto');
-        $('#applicant'+id).parent().parent().css('max-height', '500px');
+        $('#applicant-modal'+id).parent().parent().css('overflow', 'auto');
+        $('#applicant-modal'+id).parent().parent().css('max-height', '500px');
     });
     }
 
