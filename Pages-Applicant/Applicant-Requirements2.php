@@ -302,45 +302,6 @@ if (isset($_SESSION['id'])) {
                         </div>
                     </div>
 
-                      <!-- Edit Details -->
-                      <div class="col-xl-3 col-md-8 mb-8">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-5" style="font-size: 22px;">
-                                            Edit Details</div>
-                                            <div>
-                                                </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-auto">
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editDetailsModal">
-                                        Click Here
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-
-                    <div class="modal fade" id="editDetailsModal" tabindex="-1" role="dialog" aria-labelledby="editDetailsModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editDetailsModalLabel">Edit Details</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <?php include("edit_details_modal_content.php"); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
                       <!-- View Remarrks-->
                       <div class="col-xl-3 col-md- mb-8">
                         <div class="card border-left-primary shadow h-100 py-2">
@@ -416,7 +377,7 @@ if (isset($_SESSION['id'])) {
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../index.php">Logout</a>
+                    <a class="btn btn-primary" href="applicant-logout.php">Logout</a>
                 </div>
             </div>
         </div>
