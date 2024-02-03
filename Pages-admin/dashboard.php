@@ -15,7 +15,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
     $scholar = $admin->getScholarCount();
     $applicants = $admin->getApplicantsCount();
-    $funds = $admin->getTotalFunds();
+    // $funds = $admin->getTotalFunds();
 
 } else {
     header("Location: ../index.php");
@@ -251,7 +251,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                         <div class="col mr-2">
                                             <div class="text-s font-weight-bold text-success text-uppercase mb-1">
                                                 Total Funds</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">₱<?php echo $funds[0]['total_funds']; ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">₱ 1</div>
                                         </div>
                                         <div class="col-auto">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
@@ -455,7 +455,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
-    <script>
+    <!-- <script>
         fetch('../functions/get_chart_data.php')
             .then(response => response.json())
             .then(monthData => {
@@ -468,7 +468,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                 myLineChart.update();
             })
             .catch(error => console.error('Error:', error));
-    </script>
+    </script> -->
 
 </body>
 
