@@ -1,3 +1,42 @@
+<?php
+// Include the database connection code
+require '../classes/scholar.php';
+require '../classes/database.php';
+
+// Check if the form is submitted
+if (isset($_POST['submit'])) {
+    // Get user input data
+    $scholarID = $_POST['scholarID'];
+    $subjectTotal = $_POST['subjectTotal'];
+    $unitTotal = $_POST['unitTotal'];
+    $gwa = $_POST['gwa'];
+    $remark = $_POST['remark'];
+
+    // Create a new instance of the Database class
+    $database = new Scholar(new Database());
+
+
+    // Handle file upload
+    $uploadDir = "../Uploads_gslip/";
+    $uploadedFileName = $_FILES['file']['name'];
+    $uploadedFile = $uploadDir . $uploadedFileName;
+
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
+        if ($database->insertData($scholarID, $subjectTotal, $unitTotal, $gwa, $remark, $uploadedFileName)) {
+            // Display an alert and then redirect using JavaScript
+            echo '<script>alert("Data uploaded successfully!"); window.location.href = "scholardash.php";</script>';
+            exit;
+        } else {
+            echo "Error inserting data.";
+        }
+    } else {
+        echo "Error uploading file.";
+    }
+    
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -317,18 +356,23 @@
                             </div>
                             <div class="card-body">
 
-    <form action="/submit" method="post">
+    <form action="renewal.php" method="post" enctype="multipart/form-data">
         <label for="gwa">Scholar ID:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" id="scholarid" name="scholarid" required><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" required><br>
         <label for="gwa">Total Subjects:</label>
-        <input type="number" id="totalsubjects" name="totalsubjects" required><br>
+        <input type="text" id="totalsubjects" name="subjectTotal" required><br>
         <label for="gwa">Total Units:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" id="totalunits" name="totalunits" required><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="totalunits" name="unitTotal" required><br>
         <label for="gwa">GWA:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="number" id="gwa" name="gwa" required><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="gwa" name="gwa" required><br>
+        <label for="gwa">Remarks:</label>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select name="remark">
+            <option value="passed">Passed</option>
+            <option value="failed">Failed</option>
+        </select><br>
         <label for="gradeslip">Upload Grade Slip:</label>
-        <input type="file" id="gradeslip" name="gradeslip" required><br>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="file" id="gradeslip" name="file" required><br>
+        <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 </div>
