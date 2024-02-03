@@ -1,41 +1,25 @@
 <?php
-// Include the database connection code
+// Include the necessary classes and set date renewal check
 require '../classes/scholar.php';
 require '../classes/database.php';
 
+// Create a new instance of the Database class
+$database = new Scholar(new Database());
+
+// Fetch Scholar ID from the "scholar_files" table
+$defaultScholarID = $database->getScholarID(); // Replace with the actual method to fetch Scholar ID
+
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
-    // Get user input data
-    $scholarID = $_POST['scholarID'];
-    $subjectTotal = $_POST['subjectTotal'];
-    $unitTotal = $_POST['unitTotal'];
-    $gwa = $_POST['gwa'];
-    $remark = $_POST['remark'];
+    // ... (existing code for form submission)
+} else {
+    // Check if the current date is within the renewal period
+    $renewalDates = $database->getRenewalDates(); // Replace with the actual method to fetch renewal dates
+    $currentDate = date('Y-m-d');
 
-    // Create a new instance of the Database class
-    $database = new Scholar(new Database());
-
-
-    // Handle file upload
-    $uploadDir = "../Uploads_gslip/";
-    $uploadedFileName = $_FILES['file']['name'];
-    $uploadedFile = $uploadDir . $uploadedFileName;
-
-    if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadedFile)) {
-        if ($database->insertData($scholarID, $subjectTotal, $unitTotal, $gwa, $remark, $uploadedFileName)) {
-            // Display an alert and then redirect using JavaScript
-            echo '<script>alert("Data uploaded successfully!"); window.location.href = "scholardash.php";</script>';
-            exit;
-        } else {
-            echo "Error inserting data.";
-        }
-    } else {
-        echo "Error uploading file.";
-    }
-    
-
-}
-?>
+    if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
+        // Display the form with the pre-input Scholar ID
+        ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -358,7 +342,7 @@ if (isset($_POST['submit'])) {
 
     <form action="renewal.php" method="post" enctype="multipart/form-data">
         <label for="gwa">Scholar ID:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" required><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" value="<?php echo $defaultScholarID; ?>" required><br>
         <label for="gwa">Total Subjects:</label>
         <input type="text" id="totalsubjects" name="subjectTotal" required><br>
         <label for="gwa">Total Units:</label>
@@ -533,3 +517,10 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
+<?php
+    } else {
+        // Display a message indicating that renewal is not allowed at the current date
+        echo '<p>Renewal is not allowed at the current date.</p>';
+    }
+}
+?>

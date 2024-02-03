@@ -235,5 +235,23 @@ class Scholar{
             return false;
         }
     }
+
+    public function getScholarID(){
+        $scholarID = $this->database->getConnection()->query("SELECT scholar_id FROM scholar_files")->fetchColumn();
+        return $scholarID;
+    }
+    public function getRenewalDates() {
+        $query = "SELECT renewal_date_start, renewal_date_end FROM scholar_renewal_date WHERE id = 1";
+        $stmt = $this->database->getConnection()->query($query);
+    
+        if ($stmt) {
+            $renewalDates = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $renewalDates;
+        } else {
+            // Handle the error, you might want to log or return an appropriate value
+            return false;
+        }
+    }
+    
 }
 
