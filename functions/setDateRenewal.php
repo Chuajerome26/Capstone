@@ -3,10 +3,10 @@
 
 require '../classes/database.php';
 
+
 if(isset($_POST['submit'])){
-
     $database = new Database();
-
+    
     $start = $_POST['startDate'];
     $end = $_POST['endDate'];
 

@@ -553,7 +553,7 @@ $appliData2 = $admin->getApplicants();
     foreach($appliData2 as $b){
 ?>
 <div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:800px;">
+  <div class="modal-dialog" style="max-width:900px;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="filesModal<?php echo $b["scholar_id"];?>">Modal title</h5>
@@ -567,6 +567,7 @@ $appliData2 = $admin->getApplicants();
                     <th>Details</th>
                     <th>First Evaluation</th>
                     <th>Last Evaluation</th>
+                    <th>Remarks</th>
                 </tr> 
             </thead>
             <form method="post" action="../functions/filesRemarks.php">
@@ -584,6 +585,7 @@ $appliData2 = $admin->getApplicants();
                         <td align="center">Done</td>
                         <td align="center">Done</td>
                     <?php endif; ?>
+                    <td><input type="text" class="form-control" name="id_remarks" placeholder="Id Remarks"></td>
                 </tr>
                 <tr>
                     <td>Copy of Grades</td>
@@ -598,6 +600,7 @@ $appliData2 = $admin->getApplicants();
                         <td align="center">Done</td>
                         <td align="center">Done</td>
                     <?php endif; ?>
+                    <td><input type="text" class="form-control" name="cog_remarks" placeholder="Copy of Grades Remarks"></td>
                 </tr>
                 <tr>
                     <td>Copy of PSA</td>
@@ -612,6 +615,7 @@ $appliData2 = $admin->getApplicants();
                         <td align="center">Done</td>
                         <td align="center">Done</td>
                     <?php endif; ?>
+                    <td><input type="text" class="form-control" name="psa_remarks" placeholder="PSA Remarks"></td>
                 </tr>
                 <tr>
                     <td>Copy of Good Moral</td>
@@ -626,6 +630,7 @@ $appliData2 = $admin->getApplicants();
                         <td align="center">Done</td>
                         <td align="center">Done</td>
                     <?php endif; ?>
+                    <td><input type="text" class="form-control" name="gm_remarks" placeholder="Good Moral Remarks"></td>
                 </tr>
                 <tr>
                     <td>Copy of Enrollment Form</td>
@@ -640,6 +645,7 @@ $appliData2 = $admin->getApplicants();
                         <td align="center">Done</td>
                         <td align="center">Done</td>
                     <?php endif; ?>
+                    <td><input type="text" class="form-control" name="eForm_remarks" placeholder="Enrollment Form Remarks"></td>
                 </tr>
             </tbody>
         </table>    

@@ -7,6 +7,12 @@ if(isset($_POST['submit'])){
     $database = new Database();
     $admin = new Admin($database);
 
+    $id_remarks = $_POST['id_remarks'];
+    $cog_remarks = $_POST['cog_remarks'];
+    $psa_remarks = $_POST['id_remarks'];
+    $gm_remarks = $_POST['gm_remarks'];
+    $eForm_remarks = $_POST['eForm_remarks'];
+
     $scholar_id = $_POST['scholar_id'];
     $applicantInfo = $admin->getApplicantById($scholar_id);
     $email = $applicantInfo[0]['email'];
@@ -42,42 +48,38 @@ if(isset($_POST['submit'])){
     if($id_newwStat == 1 && $grade_newwStat == 1 && $psa_newwStat == 1 && $gm_newwStat == 1 && $ef_newwStat == 1){
         $database->sendEmail($email,"Your Schedule for Interview", $newDate);
     }else{
-        if($id_newwStat == 1){
-            $IDstat = "Correct ID";
-        }elseif($id_newwStat == 0){
-            $IDstat = "Wrong ID";
+        $wrongFiles = "Wrong";
+        $counter = 1; // Initialize a counter variable
+
+        if ($id_newwStat == 0) {
+            $wrongFiles .= "\n" . $counter . ". 2x2 Picture - ". $id_remarks;
+            $counter++; // Increment the counter
         }
 
-        if($grade_newwStat == 1){
-            $Gradestat = "Correct Grade";
-        }elseif($grade_newwStat == 0){
-            $Gradestat = "Wrong Grade";
+        if ($grade_newwStat == 0) {
+            $wrongFiles .= "\n" . $counter . ". Grade - ". $cog_remarks;
+            $counter++; // Increment the counter
         }
 
-        if($psa_newwStat == 1){
-            $PSAstat = "Correct PSA";
-        }elseif($psa_newwStat == 0){
-            $PSAstat = "Wrong PSA";
+        if ($psa_newwStat == 0) {
+            $wrongFiles .= "\n" . $counter . ". PSA - ". $psa_remarks;
+            $counter++; // Increment the counter
         }
 
-        if($gm_newwStat == 1){
-            $GMstat = "Correct Good Moral";
-        }elseif($gm_newwStat == 0){
-            $GMstat = "Wrong Good Moral";
+        if ($gm_newwStat == 0) {
+            $wrongFiles .= "\n" . $counter . ". Good Moral - ". $gm_remarks;
+            $counter++; // Increment the counter
         }
 
-        if($ef_newwStat == 1){
-            $EFstat = "Correct Enrollment Form";
-        }elseif($ef_newwStat == 0){
-            $EFstat = "Wrong Enrollment Form";
+        if ($ef_newwStat == 0) {
+            $wrongFiles .= "\n" . $counter . ". Enrollment Form - ". $eForm_remarks;
+            $counter++; // Increment the counter
         }
 
-        $message = "
-        1. $IDstat
-        2. $Gradestat
-        3. $PSAstat
-        4. $GMstat
-        5. $EFstat";
+        $message = $wrongFiles;
+
+
+
 
         $database->sendEmail($email,"Your Application is Under Review", $message);
     }

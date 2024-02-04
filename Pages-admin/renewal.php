@@ -5,14 +5,32 @@ session_start();
 if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     require '../classes/admin.php';
     require '../classes/database.php';
-
+    require '../classes/scholar.php';
+    date_default_timezone_set('Asia/Manila');
     $database = new Database();
     $admin = new Admin($database);
+    $scholar = new Scholar($database);
     
     $id = $_SESSION['id'];
-
+    $date = date('Y-m-d');
     $admin_info = $admin->scholarInfo($id);
+    $renewalDates = $scholar->getRenewalDates();
+    $scholars = $admin->getScholars();
+  
+    $start = $renewalDates['renewal_date_start'];
+    $end = $renewalDates['renewal_date_end'];
 
+    if($start == $date){
+        foreach($scholars as $data){
+            $database->sendEmail($data['email'], "Renewal Na tangina ka","Renewal na po Mag renew kanang hinayupak ka");
+            $admin->updateNotif1($data['scholar_id']);
+        }
+    }elseif($end == $date){
+        foreach($scholars as $data){
+            $database->sendEmail($data['email'], "Tapos Na tangina ka","Tapos na po");
+            $admin->updateNotif0($data['scholar_id']);
+        }
+    }
 
 } else {
     header("Location: ../index.php");

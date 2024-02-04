@@ -10,6 +10,20 @@ class Admin
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
+    public function updateNotif1($id){
+        // prepared statement
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET notif_send = ? WHERE id =?");
+       //if execution fail
+       $stmt->execute([1, $id]);
+       
+    }
+    public function updateNotif0($id){
+        // prepared statement
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET notif_send = ? WHERE id =?");
+       //if execution fail
+       $stmt->execute([0, $id]);
+       
+    }
     public function login($email){
         // prepare the SQL statement using the database property
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM login WHERE user=?");
