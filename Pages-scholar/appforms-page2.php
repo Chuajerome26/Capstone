@@ -109,6 +109,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button id="backButton" class="btn btn-primary">Back</button>
                         
 
                         <script>
@@ -224,22 +225,22 @@
         <input type="text" name="degree" id="degree" style="display: block; height: 80%; width: 100%; margin-bottom: 10px;">
     </div>
         <div class="column" style="font-weight: bold; border: 1px solid black;">
-        <input type="radio" id="myRadioYes" name="myRadio" value="Yes" style="width: 16px; height: 16px; margin-right: 10px">
-    <label for="myRadioYes" style="font-size: 16px; width: 50px; height: 15px;">YES</label>
-    <input type="radio" id="myRadioNo" name="myRadio" value="No" style="width: 16px; height: 16px; margin-right: 10px">
-    <label for="myRadioNo" style="font-size: 16px; width: 50px; height: 15px;">NO</label>
+        <input type="radio" id="myradioYes" name="myRadio1" value="Yes1" style="width: 16px; height: 16px; margin-right: 10px">
+    <label for="myRadio1" style="font-size: 16px; width: 50px; height: 15px;">YES</label>
+    <input type="radio" id="myradioNo" name="myRadio1" value="No1" style="width: 16px; height: 16px; margin-right: 10px">
+    <label for="myRadio1" style="font-size: 16px; width: 50px; height: 15px;">NO</label>
     <p>
 <h6 style="font-weight: bold;">IF "NO," WHEN:</h6>
 <input type="date" name="date" id="date" value="2023-03-14">
 </p>
 <p>
 <h6 style="font-weight: bold;">IF "YES:"</h6> 
-<input type="radio" id="myRadioPass" name="myRadio" value="Pass" style="width: 16px; height: 16px; margin-right: 10px">
-<label for="myRadioPass" style="font-size: 16px; width: 50px; height: 15px;">PASS</label>
-<input type="radio" id="myRadioFail" name="myRadio" value="Fail" style="width: 16px; height: 16px; margin-right: 10px">
-<label for="myRadioFail" style="font-size: 16px; width: 50px; height: 15px;">FAIL</label>
-<input type="radio" id="myRadioWaitlist" name="myRadio" value="Waitlist" style="width: 16px; height: 16px; margin-right: 10px">
-<label for="myRadioWaitlist" style="font-size: 16px; width: 80px; height: 15px;">WAITLIST</label>
+<input type="radio" id="myradioPass" name="myRadio2" value="Pass" style="width: 16px; height: 16px; margin-right: 10px">
+<label for="myRadio2" style="font-size: 16px; width: 50px; height: 15px;">PASS</label>
+<input type="radio" id="myradioFail" name="myRadio2" value="Fail" style="width: 16px; height: 16px; margin-right: 10px">
+<label for="myRadio2" style="font-size: 16px; width: 50px; height: 15px;">FAIL</label>
+<input type="radio" id="myradioWaitlist" name="myRadio2" value="Waitlist" style="width: 16px; height: 16px; margin-right: 10px">
+<label for="myRadio2" style="font-size: 16px; width: 80px; height: 15px;">WAITLIST</label>
 </p>
 </div>
   </tr>
@@ -258,9 +259,9 @@
         <input type="text" name="degree" id="degree" style="display: block; height: 80%; width: 100%; margin-bottom: 10px;">
     </div>
         <div class="column" style="font-weight: bold; border: 1px solid black;">
-        <input type="radio" id="myRadioYes" name="myRadio" value="Yes" style="width: 16px; height: 16px; margin-right: 10px">
+        <input type="radio" id="myRadioYes" name="myRadio3" value="Yes" style="width: 16px; height: 16px; margin-right: 10px">
     <label for="myRadioYes" style="font-size: 16px; width: 50px; height: 15px;">YES</label>
-    <input type="radio" id="myRadioNo" name="myRadio" value="No" style="width: 16px; height: 16px; margin-right: 10px">
+    <input type="radio" id="myRadioNo" name="myRadio3" value="No" style="width: 16px; height: 16px; margin-right: 10px">
     <label for="myRadioNo" style="font-size: 16px; width: 50px; height: 15px;">NO</label>
     <p>
 <h6 style="font-weight: bold;">IF "NO," WHEN:</h6>
@@ -268,11 +269,11 @@
 </p>
 <p>
 <h6 style="font-weight: bold;">IF "YES:"</h6> 
-<input type="radio" id="myRadioPass" name="myRadio" value="Pass" style="width: 16px; height: 16px; margin-right: 10px">
+<input type="radio" id="myRadioPass" name="myRadio4" value="Pass" style="width: 16px; height: 16px; margin-right: 10px">
 <label for="myRadioPass" style="font-size: 16px; width: 50px; height: 15px;">PASS</label>
-<input type="radio" id="myRadioFail" name="myRadio" value="Fail" style="width: 16px; height: 16px; margin-right: 10px">
+<input type="radio" id="myRadioFail" name="myRadio4" value="Fail" style="width: 16px; height: 16px; margin-right: 10px">
 <label for="myRadioFail" style="font-size: 16px; width: 50px; height: 15px;">FAIL</label>
-<input type="radio" id="myRadioWaitlist" name="myRadio" value="Waitlist" style="width: 16px; height: 16px; margin-right: 10px">
+<input type="radio" id="myRadioWaitlist" name="myRadio4" value="Waitlist" style="width: 16px; height: 16px; margin-right: 10px">
 <label for="myRadioWaitlist" style="font-size: 16px; width: 80px; height: 15px;">WAITLIST</label>
 </p>
 </div>
@@ -292,9 +293,9 @@
         <input type="text" name="degree" id="degree" style="display: block; height: 80%; width: 100%; margin-bottom: 10px;">
     </div>
         <div class="column" style="font-weight: bold; border: 1px solid black;">
-        <input type="radio" id="myRadioYes" name="myRadio" value="Yes" style="width: 16px; height: 16px; margin-right: 10px">
+        <input type="radio" id="myRadioYes" name="myRadi5" value="Yes" style="width: 16px; height: 16px; margin-right: 10px">
     <label for="myRadioYes" style="font-size: 16px; width: 50px; height: 15px;">YES</label>
-    <input type="radio" id="myRadioNo" name="myRadio" value="No" style="width: 16px; height: 16px; margin-right: 10px">
+    <input type="radio" id="myRadioNo" name="myRadio5" value="No" style="width: 16px; height: 16px; margin-right: 10px">
     <label for="myRadioNo" style="font-size: 16px; width: 50px; height: 15px;">NO</label>
     <p>
 <h6 style="font-weight: bold;">IF "NO," WHEN:</h6>
@@ -302,11 +303,11 @@
 </p>
 <p>
 <h6 style="font-weight: bold;">IF "YES:"</h6> 
-<input type="radio" id="myRadioPass" name="myRadio" value="Pass" style="width: 16px; height: 16px; margin-right: 10px">
+<input type="radio" id="myRadioPass" name="myRadio6" value="Pass" style="width: 16px; height: 16px; margin-right: 10px">
 <label for="myRadioPass" style="font-size: 16px; width: 50px; height: 15px;">PASS</label>
-<input type="radio" id="myRadioFail" name="myRadio" value="Fail" style="width: 16px; height: 16px; margin-right: 10px">
+<input type="radio" id="myRadioFail" name="myRadio6" value="Fail" style="width: 16px; height: 16px; margin-right: 10px">
 <label for="myRadioFail" style="font-size: 16px; width: 50px; height: 15px;">FAIL</label>
-<input type="radio" id="myRadioWaitlist" name="myRadio" value="Waitlist" style="width: 16px; height: 16px; margin-right: 10px">
+<input type="radio" id="myRadioWaitlist" name="myRadio6" value="Waitlist" style="width: 16px; height: 16px; margin-right: 10px">
 <label for="myRadioWaitlist" style="font-size: 16px; width: 80px; height: 15px;">WAITLIST</label>
 </p>
 </div>
@@ -321,9 +322,9 @@
     <!-- row1 -->
   <div class="row">
         <div class="column" style="font-weight: bold; border: 1px solid black;">Did you apply for / are you recipient of other scholarship?
-        <input type="radio" id="myRadioYes" name="myRadio" value="Yes" style="width: 16px; height: 16px; margin-left: 80px; margin-right: 20px; margin-left: 10px;">
+        <input type="radio" id="myRadioYes" name="myRadio7" value="Yes" style="width: 16px; height: 16px; margin-left: 80px; margin-right: 20px; margin-left: 10px;">
     <label for="myCheckbox" style="font-size: 16px; width: 50px; height: 15px;">YES</label>
-    <input type="radio" id="myRadioNo" name="myRadio" value="No" style="width: 16px; height: 16px; margin-left: 80px; margin-right: 10px">
+    <input type="radio" id="myRadioNo" name="myRadio7" value="No" style="width: 16px; height: 16px; margin-left: 80px; margin-right: 10px">
     <label for="myCheckbox" style="font-size: 16px; width: 50px; height: 15px;">NO</label>
     <div>
   <input type="text" name="type" placeholder="TYPE" style="display: block; width: 31.1%; margin-bottom: 10px"> 
@@ -353,15 +354,15 @@
     <div class="column" style="font-weight: bold; border: 1px solid black;">Will are you applying for this scholarship?
         <div>
 
-  <input type="radio" id="myRadioYes" name="myRadio" value="Yes" style="width: 16px; height: 16px; margin-right: 10px;">
+  <input type="radio" id="myRadioYes" name="myRadio8" value="Yes" style="width: 16px; height: 16px; margin-right: 10px;">
   <label for="myCheckboxYes" style="font-size: 16px; width: 50px; height: 15px;">YES</label>
 </div>
 <div>
-  <input type="radio" id="myRadioNo" name="myRadio" value="No" style="width: 16px; height: 16px; margin-right: 10px;">
+  <input type="radio" id="myRadioNo" name="myRadio8" value="No" style="width: 16px; height: 16px; margin-right: 10px;">
   <label for="myCheckboxNo" style="font-size: 16px; width: 50px; height: 15px;">NO</label>
 </div>
 <div>
-  <input type="radio" id="myRadioI don't know" name="myRadio" value="I don't know" style="width: 16px; height: 16px; margin-right: 10px;">
+  <input type="radio" id="myRadioI don't know" name="myRadio8" value="I don't know" style="width: 16px; height: 16px; margin-right: 10px;">
   <label for="myI don't know" style="font-size: 16px; width: 150px; height: 15px;">I DON'T KNOW</label>
 </div>
 
@@ -377,20 +378,22 @@
         }
     </script>   
     </div>
-   
     </div> 
-  
-    
-
   </tr>
 
-  
+  <div>
+    <br>
+  <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+
+  </div>
+
+
 <div class="row gutters">
 
-    
+ </form>
 
-
-                        </form>
+                        
+                        
 </div>
 </div>
 </div>
