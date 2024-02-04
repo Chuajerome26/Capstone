@@ -85,7 +85,6 @@
     margin-bottom: 1rem;
 }
 
-
     </style>
 </head>
 <body id="page-top">
@@ -455,7 +454,108 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <h4 class="mt-3 mb-2 text-primary">Siblings</h4>
         <div class="border-bottom container mb-3 border border-1"></div>
+        
+    <div class="container">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Religion</th>
+                    <th>Occupation</th>
+                    <th>Civil Status</th>
+                    <th>Relationship</th>
+                    <th>Educational Attainment</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <td><input type="text" class="form-control" name="name[]"></td>
+                <td><input type="text" class="form-control" name="age[]"></td>
+                <td><input type="text" class="form-control" name="religion[]"></td>
+                <td><input type="text" class="form-control" name="occupation[]"></td>
+                <td><input type="text" class="form-control" name="civilStatus[]"></td>
+                <td><input type="text" class="form-control" name="relationship[]"></td>
+                <td><input type="text" class="form-control" name="educationalAttainment[]"></td>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" id="addRow">Add Row</button>
+    </div>
+    <script>
 
+document.getElementById('addRow').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent page from scrolling to top
+
+    const tableBody = document.getElementById('tableBody');
+    const row = document.createElement('tr');
+
+    const name = document.createElement('td');
+    const nameInput = document.createElement('input');
+    nameInput.className = 'form-control';
+    nameInput.name = 'name[]'; // Generate unique name for input element
+    name.appendChild(nameInput);
+
+    const age = document.createElement('td');
+    const ageInput = document.createElement('input');
+    ageInput.className = 'form-control';
+    ageInput.name = 'age[]'; // Generate unique name for input element
+    ageInput.type = 'number'; // Only accept numbers
+    age.appendChild(ageInput);
+
+    const religion = document.createElement('td');
+    const religionInput = document.createElement('input');
+    religionInput.className = 'form-control';
+    religionInput.name = 'religion[]'; // Generate unique name for input element
+    religion.appendChild(religionInput);
+
+    const occupation = document.createElement('td');
+    const occupationInput = document.createElement('input');
+    occupationInput.className = 'form-control';
+    occupationInput.name = 'occupation[]'; // Generate unique name for input element
+    occupation.appendChild(occupationInput);
+
+    const civilStatus = document.createElement('td');
+    const civilStatusInput = document.createElement('input');
+    civilStatusInput.className = 'form-control';
+    civilStatusInput.name = 'civilStatus[]'; // Generate unique name for input element
+    civilStatus.appendChild(civilStatusInput);
+
+    const relationship = document.createElement('td');
+    const relationshipInput = document.createElement('input');
+    relationshipInput.className = 'form-control';
+    relationshipInput.name = 'relationship[]'; // Generate unique name for input element
+    relationship.appendChild(relationshipInput);
+
+    const educationalAttainment = document.createElement('td');
+    const educationalAttainmentInput = document.createElement('input');
+    educationalAttainmentInput.className = 'form-control';
+    educationalAttainmentInput.name = 'educationalAttainment[]'; // Generate unique name for input element
+    educationalAttainment.appendChild(educationalAttainmentInput);
+
+    const action = document.createElement('td');
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'btn btn-danger';
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', function() {
+        tableBody.removeChild(row);
+    });
+
+    action.appendChild(deleteButton);
+    row.appendChild(name);
+    row.appendChild(age);
+    row.appendChild(religion);
+    row.appendChild(occupation);
+    row.appendChild(civilStatus);
+    row.appendChild(relationship);
+    row.appendChild(educationalAttainment);
+    row.appendChild(action);
+    tableBody.appendChild(row);
+    counter++; // Increment counter for next row
+});
+        
+
+    </script>
+                            
 <div class="row gutters">
 
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
