@@ -13,6 +13,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
     $admin_info = $admin->scholarInfo($id);
 
+    $initialInterview = $admin->getInitialInterviews();
+
 
 } else {
     header("Location: ../index.php");
@@ -228,21 +230,77 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <!-- Content Row -->
 
                     <div class="row">
+    <!-- Area Chart -->
+                    <div class="col-lg-15 mb-4">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Final Interview</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="container mt-6">
+                                    <div class="row">
+                                            <?php
+                                            // Initialize an array to keep track of displayed dates
+                                            $displayedDates = [];
 
-                        <!-- Area Chart -->
-                        <div class="col-lg-15 mb-4">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
+                                            // Loop to generate a square for each date
+                                            foreach ($initialInterview as $it) {
+                                                $date = $it['date'];
+                                                
+                                                // Check if the date has already been displayed
+                                                if (!in_array($date, $displayedDates)) {
+                                                    // Add the date to the list of displayed dates
+                                                    $displayedDates[] = $date;
+                                                    ?>
+                                                    <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
+                                                        <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title"><?php echo $date; ?></h5>
+                                                                <?php
+                                                                // Loop to display data entries with the same date within the same card
+                                                                foreach ($initialInterview as $entry) {
+                                                                    if ($entry['date'] == $date) {
+                                                                        $info = $admin->findScholarById($entry['scholar_id']);
+                                                                        ?>
+                                                                            <p class="card-text"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></p>
+                                                                        <?php
+                                                                    }
+                                                                }
+                                                                ?>
+                                                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="container mt-6">
-                                        <div class="row">
-                                            <!-- Example of a single card with custom class -->
-                                            <div class="col-sm-6 col-md-4 col-lg-3" style="margin-top:20px;">
-                                                <div class="card custom-card">
-                                                    <img class="card-img-top" src="image_url" alt="Card image">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pie Chart -->
+                </div>
+
+                <div class="row">
+                    <!-- Area Chart -->
+                    <div class="col-lg-15 mb-4">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Final Interview</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="container mt-6">
+                                    <div class="row">
+                                        <?php
+                                        // Loop to generate 9 cards (3 cards per row, 3 rows)
+                                       
+                                            ?>
+                                            <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
+                                                <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
                                                     <div class="card-body">
                                                         <h5 class="card-title">Card Title</h5>
                                                         <p class="card-text">Some quick example text to build on the card.</p>
@@ -250,21 +308,16 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- Repeat the above div for more cards -->
-                                        </div>
+                                        <?php
+                                        
+                                        ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Pie Chart -->
                     </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-15 mb-4">
+                    <!-- Pie Chart -->
+                </div>
 
             </div>
             <!-- End of Main Content -->

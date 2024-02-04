@@ -10,19 +10,75 @@ class Admin
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
-    public function updateNotif1($id){
-        // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET notif_send = ? WHERE id =?");
-       //if execution fail
-       $stmt->execute([1, $id]);
-       
+    function getInitialInterviews(){
+        $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview WHERE i_f_interview = 0")->fetchAll();
+        return $stmt;
+        exit();
     }
-    public function updateNotif0($id){
-        // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET notif_send = ? WHERE id =?");
-       //if execution fail
-       $stmt->execute([0, $id]);
-       
+    function insertDateWithCheck($date) {
+        while (true) {
+            // Prepare the SQL query to count the number of rows for the given date
+            $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) FROM admin_schedule WHERE date = :date");
+            $stmt->execute([':date' => $date]);
+            $count = $stmt->fetchColumn();
+    
+            // Check if the count is less than 10
+            if ($count < 10) {
+                // If the count is less than 10, return the current date
+                return $date;
+            } else {
+                // If the count is 10, add one day to the date and check again
+                $date = date('Y-m-d', strtotime($date . ' +1 days'));
+            }
+        }
+    }
+      
+    function selectAndInsertSchedules($scholarData, $start, $end, $excludeStart, $excludeEnd, $appointmentDuration, $maxSchedules, $date) {
+        $startTime = strtotime($start);
+        $endTime = strtotime($end);
+        $excludeStartTime = strtotime($excludeStart);
+        $excludeEndTime = strtotime($excludeEnd);
+        $formattedDate = $this->insertDateWithCheck($date);
+    
+        $insertedSchedules = [];
+    
+        while ($startTime < $endTime && count($insertedSchedules) < $maxSchedules) {
+            if ($startTime >= $excludeStartTime && $startTime < $excludeEndTime) {
+                // Skip the excluded time range
+                $startTime = $excludeEndTime;
+            }
+    
+            $endTimeSlot = strtotime("+$appointmentDuration minutes", $startTime);
+    
+            // Check if the end time of the slot is beyond the end time of the schedule
+            if ($endTimeSlot > $endTime) {
+                break;
+            }
+    
+            // Check if the schedule already exists in the database
+            $sql = "SELECT COUNT(*) FROM admin_schedule_interview WHERE date = :date AND time_start = :start AND time_end = :end";
+            $stmt = $this->database->getConnection()->prepare($sql);
+            $stmt->execute([':date' => $formattedDate, ':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
+            $count = $stmt->fetchColumn();
+
+            if($count == 0){
+                // The schedule doesn't exist in the database, insert it
+                $sql = "INSERT INTO admin_schedule_interview (scholar_id, date, i_f_interview, time_start, time_end) VALUES (:id, :date, :type, :start, :end)";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->execute([':id' => $scholarData['scholar_id'],':date' => $formattedDate,'type' => $scholarData['type'],':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
+    
+                // Add the inserted schedule to the array
+                $insertedSchedules[] = [
+                    'date' => $formattedDate,
+                    'start' => date('H:i', $startTime),
+                    'end' => date('H:i', $endTimeSlot)
+                ];
+            }
+    
+            $startTime = $endTimeSlot;
+        }
+    
+        return $insertedSchedules;
     }
     public function login($email){
         // prepare the SQL statement using the database property

@@ -91,7 +91,21 @@ class Scholar{
         }
     }
 
+    public function insertInterview($scholarData){
+        $sql = "INSERT INTO admin_schedule (scholar_id, interview_schedule, mode_interview, i_f_interview, status, venue, time_start, time_end, grade) VALUES (?,?,?,?,?,?,?,?,?)";
 
+        $stmt = $this->database->getConnection()->prepare($sql);
+
+        if(!$stmt->execute([
+            $scholarData['scholar_id'],
+            $scholarData['interview_schedule'],
+            $scholarData['mode_interview'],
+            $scholarData['i_f_interview'],
+            $scholarData['status'],
+        ])){
+
+        }
+    }
 
     public function registerEmployee($scholarData, $id_pic, $copy_grades, $psa, $good_moral, $eForm){
 
