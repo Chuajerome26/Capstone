@@ -218,28 +218,25 @@ class Scholar{
         exit();
     }
 
-    public function insertData($scholarID, $subjectTotal, $unitTotal, $gwa, $remark, $uploadedFileName) {
+    public function insertData($scholarID, $subjectTotal, $unitTotal, $gwa, $remark, $uploadedFileName1, $uploadedFileName2) {
         try {
             // Insert data into the database using a single query
-            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_renew (scholarID, `subject-total`, `unit-total`, gwa, remark, file, status, date) VALUES (?, ?, ?, ?, ?, ?, 'Pending', NOW())");
+            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_renew (scholarID, `subject-total`, `unit-total`, gwa, remark, file1, file2, status, date) VALUES (?, ?, ?, ?, ?, ?, ?, 'Pending', NOW())");
             $stmt->bindParam(1, $scholarID);
             $stmt->bindParam(2, $subjectTotal);
             $stmt->bindParam(3, $unitTotal);
             $stmt->bindParam(4, $gwa);
             $stmt->bindParam(5, $remark);
-            $stmt->bindParam(6, $uploadedFileName);
+            $stmt->bindParam(6, $uploadedFileName1);
+            $stmt->bindParam(7, $uploadedFileName2);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
             echo "Error inserting data: " . $e->getMessage();
             return false;
         }
-    }
-
-    public function getScholarID(){
-        $scholarID = $this->database->getConnection()->query("SELECT scholar_id FROM scholar_files")->fetchColumn();
-        return $scholarID;
-    }
+    }    
+    
     public function getRenewalDates() {
         $query = "SELECT renewal_date_start, renewal_date_end FROM scholar_renewal_date WHERE id = 1";
         $stmt = $this->database->getConnection()->query($query);
@@ -252,6 +249,15 @@ class Scholar{
             return false;
         }
     }
+
+    public function hasSubmittedRenewal($scholarsId) {
+        $query = "SELECT COUNT(*) FROM scholar_renew WHERE scholarID = :scholarID";
+        $stmt = $this->database->getConnection()->prepare($query);
+        $stmt->bindParam(':scholarID', $scholarsId, PDO::PARAM_STR);
+        $stmt->execute();
     
+        $count = $stmt->fetchColumn();
+        return ($count > 0);
+    }
 }
 

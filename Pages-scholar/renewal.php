@@ -1,26 +1,51 @@
 <?php
-// Include the necessary classes and set date renewal check
+// Start the session
+session_start();
 require '../classes/scholar.php';
 require '../classes/database.php';
 
 // Create a new instance of the Database class
 $database = new Scholar(new Database());
 
-// Fetch Scholar ID from the "scholar_files" table
-$defaultScholarID = $database->getScholarID(); // Replace with the actual method to fetch Scholar ID
-
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
-    // ... (existing code for form submission)
+    $scholarID = $_POST['scholarID'];
+    $subjectTotal = $_POST['subjectTotal'];
+    $unitTotal = $_POST['unitTotal'];
+    $gwa = $_POST['gwa'];
+    $remark = $_POST['remark'];
+
+    // Handle file upload
+    $uploadDir = "../Uploads_gslip/";
+    $uploadedFileName1 = $_FILES['file1']['name'];
+    $uploadedFileName2 = $_FILES['file2']['name'];
+    $uploadedFile1 = $uploadDir . $uploadedFileName1;
+    $uploadedFile2 = $uploadDir . $uploadedFileName2;
+
+    if (move_uploaded_file($_FILES['file1']['tmp_name'], $uploadDir . $uploadedFileName1) &&
+        move_uploaded_file($_FILES['file2']['tmp_name'], $uploadDir . $uploadedFileName2)) {
+        if ($database->insertData($scholarID, $subjectTotal, $unitTotal, $gwa, $remark, $uploadedFileName1, $uploadedFileName2)) {
+            echo '<script>alert("Data uploaded successfully!"); window.location.href = "scholardash.php";</script>';
+            exit;
+        } else {
+            echo "Error inserting data.";
+        }
+    } else {
+        echo "Error uploading file.";
+    }
 } else {
     // Check if the current date is within the renewal period
-    $renewalDates = $database->getRenewalDates(); // Replace with the actual method to fetch renewal dates
+    $renewalDates = $database->getRenewalDates();
     $currentDate = date('Y-m-d');
 
     if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
-        // Display the form with the pre-input Scholar ID
-        ?>
+        // Before displaying the renewal form, check if the scholar has already submitted
+        
+        // Fetch scholar ID from the session
+        $scholarsId = $_SESSION["id"];
 
+        if (!$database->hasSubmittedRenewal($scholarsId)) {
+            ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -342,7 +367,7 @@ if (isset($_POST['submit'])) {
 
     <form action="renewal.php" method="post" enctype="multipart/form-data">
         <label for="gwa">Scholar ID:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" value="<?php echo $defaultScholarID; ?>" required><br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" value="<?php echo $scholarsId; ?>"><br>
         <label for="gwa">Total Subjects:</label>
         <input type="text" id="totalsubjects" name="subjectTotal" required><br>
         <label for="gwa">Total Units:</label>
@@ -355,7 +380,9 @@ if (isset($_POST['submit'])) {
             <option value="failed">Failed</option>
         </select><br>
         <label for="gradeslip">Upload Grade Slip:</label>
-        <input type="file" id="gradeslip" name="file" required><br>
+        <input type="file" id="gradeslip" name="file1" required><br>
+        <label for="gradeslip">Upload Registration Form:</label>
+        <input type="file" id="regform" name="file2" required><br>
         <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
@@ -518,9 +545,13 @@ if (isset($_POST['submit'])) {
 
 </html>
 <?php
-    } else {
+}else {
+    // Display a message indicating that the scholar has already submitted
+    echo '<p>You have already submitted a renewal entry.</p>';
+    }
+    }else {
         // Display a message indicating that renewal is not allowed at the current date
         echo '<p>Renewal is not allowed at the current date.</p>';
-    }
+        }
 }
 ?>
