@@ -15,7 +15,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     $date = date('Y-m-d');
     $admin_info = $admin->scholarInfo($id);
     $renewalDates = $scholar->getRenewalDates();
-    $scholars = $admin->getScholars();
+    $scholars = $admin->getScholarAndRenewalFiles();
   
     $start = $renewalDates['renewal_date_start'];
     $end = $renewalDates['renewal_date_end'];
@@ -259,18 +259,17 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <th scope="col">Email</th>
                                                 <th scope="col">Date Renewed</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Details</th>
                                                 <th scope="col">Files</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
                                         <?php
-                                        $applicantsData = $admin->getApplicants();
+                                        $applicantsData = $admin->getScholarAndRenewalFiles();
                                         $num = 1;
                                         foreach($applicantsData as $s){
 
-                                            if($s['status'] == 0){
+                                            if($s['renew_status'] == 0){
                                                 $status = "Pending";
                                             }else{
                                                 $status = "Accepted";
@@ -280,15 +279,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <th scope="col"><?php echo $num; ?></th>
                                                 <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                                 <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                                                <td><?php echo $s["date_apply"];?></td>
+                                                <td><?php echo $s["date_renew"];?></td>
                                                 <td><?php echo $status;?></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button></td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["scholar_id"];?>">Files</button></td>
                                                 <td style="white-space: nowrap;">
                                                     <form method="post" action="../functions/scholar-accept.php">
                                                         <input class="btn btn-primary mb-2" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
                                                     </form>
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["scholar_id"];?>">Decline</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#tentativeModal<?php echo $s["scholar_id"];?>">Tentative</button>
 
                                                     <!-- <form method="post" action="../functions/scholar-accept.php">
                                                         <input class="btn btn-danger" type="submit" value="decline"><input type="hidden" name="declineId" value="<?php echo $s['scholar_id']?>">
@@ -350,6 +349,46 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
         </div>
     </div>
     <!-- end -->
+<!-- RenewFiles Modal-->
+<?php
+    $renewalFiless = $scholar->getRenewalInfo();
+        foreach($renewalFiless as $a){
+    ?>
+        <div class="modal fade" id="renewFilesModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $a["id"];?>l" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:600px;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Files</th>
+                            <th>Details</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Grade Slip</td>
+                        <td><a href="../Uploads_gslip/<?php echo $a["file1"]; ?>" target="_blank"><?php echo $a["file1"]?></a></td>
+                    </tr>
+                    <tr>
+                        <td>Registration Form</td>
+                        <td><a href="../Uploads_gslip/<?php echo $a["file2"]; ?>" target="_blank"><?php echo $a["file2"]?></a></td>
+                    </tr>
+                    </tbody>
+                </table>    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    <?php } ?>
+<!-- Modal end -->
 <!-- Modal for Start and end of date renewal -->
 <div class="modal fade" id="startRenewal">
   <div class="modal-dialog">

@@ -268,7 +268,9 @@ class Scholar{
     }
 
     public function hasSubmittedRenewal($scholarsId) {
-        $query = "SELECT COUNT(*) FROM scholar_renew WHERE scholarID = :scholarID";
+        $query = "SELECT COUNT(*) FROM scholar_renew AS sr 
+                  JOIN scholar_renewal_date AS srd ON sr.date_renew BETWEEN srd.renewal_date_start AND srd.renewal_date_end
+                  WHERE sr.scholarID = :scholarID";
         $stmt = $this->database->getConnection()->prepare($query);
         $stmt->bindParam(':scholarID', $scholarsId, PDO::PARAM_STR);
         $stmt->execute();
@@ -276,5 +278,6 @@ class Scholar{
         $count = $stmt->fetchColumn();
         return ($count > 0);
     }
+    
 }
 

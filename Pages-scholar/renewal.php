@@ -416,7 +416,7 @@ if (isset($_POST['submit'])) {
                                         $num = 1;
                                         foreach($rewalInfo as $s){
 
-                                            if($s['status'] == 0){
+                                            if($s['renew_status'] == 0){
                                                 $status = "Pending";
                                             }else{
                                                 $status = "Accepted";
@@ -426,7 +426,7 @@ if (isset($_POST['submit'])) {
                                                 <th scope="col"><?php echo $num; ?></th>
                                                 <td><?php echo $s["date_renew"];?></td>
                                                 <td><?php echo $status;?></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["scholarID"];?>">Files</button></td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["id"];?>">Files</button></td>
                                             <td></td>
                                             </tr>
                                             <?php 
@@ -585,15 +585,15 @@ if (isset($_POST['submit'])) {
     $renewalFiless = $database->getRenewalInfo();
         foreach($renewalFiless as $a){
     ?>
-        <div class="modal fade" id="renewFilesModal<?php echo $a["scholarID"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $a["scholarID"];?>l" aria-hidden="true">
+        <div class="modal fade" id="renewFilesModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $a["id"];?>l" aria-hidden="true">
         <div class="modal-dialog" style="max-width:600px;">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailsModal<?php echo $a["scholarID"];?>">Scholar Details</h5>
+                <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="applicant-modal<?php echo $a["scholarID"]?>" class="table table-striped table-hover">
+                <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Files</th>
@@ -601,20 +601,19 @@ if (isset($_POST['submit'])) {
                         </tr> 
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Grade Slip</td>
-                            <td><?php echo $a["file1"];?></td>
-                        </tr>
-                        <tr>
-                            <td>Registration Form</td>
-                            <td><?php echo $a["file2"];?></td>
-                        </tr>
+                    <tr>
+                        <td>Grade Slip</td>
+                        <td><a href="../Uploads_gslip/<?php echo $a["file1"]; ?>" target="_blank"><?php echo $a["file1"]?></a></td>
+                    </tr>
+                    <tr>
+                        <td>Registration Form</td>
+                        <td><a href="../Uploads_gslip/<?php echo $a["file2"]; ?>" target="_blank"><?php echo $a["file2"]?></a></td>
+                    </tr>
                     </tbody>
                 </table>    
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
             </div>
         </div>
@@ -624,6 +623,10 @@ if (isset($_POST['submit'])) {
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>

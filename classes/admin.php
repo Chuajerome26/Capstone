@@ -430,4 +430,11 @@ public function giveRate($id, $rate) {
     $stmt->execute([$rate, $id]);
 
 }
+public function getScholarAndRenewalFiles(){
+    $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_renew.* FROM scholars_info 
+                                                    JOIN scholar_renew ON scholars_info.id = scholar_renew.scholarID
+                                                    WHERE scholars_info.status = '1'")->fetchAll();
+    return $stmt;
+}
+
 }
