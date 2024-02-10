@@ -232,24 +232,27 @@ class Scholar{
         exit();
     }
 
-    public function insertData($scholarID, $subjectTotal, $unitTotal, $gwa, $remark, $uploadedFileName1, $uploadedFileName2) {
+    public function insertData($scholarID, $yearLvl, $uploadedFileName1, $uploadedFileName2) {
         try {
             // Insert data into the database using a single query
-            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_renew (scholarID, `subject-total`, `unit-total`, gwa, remark, file1, file2, status, date) VALUES (?, ?, ?, ?, ?, ?, ?, 'Pending', NOW())");
+            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_renew (scholarID, yearLvl, file1, file2, date_renew) VALUES ( ?, ?, ?, ?, NOW())");
             $stmt->bindParam(1, $scholarID);
-            $stmt->bindParam(2, $subjectTotal);
-            $stmt->bindParam(3, $unitTotal);
-            $stmt->bindParam(4, $gwa);
-            $stmt->bindParam(5, $remark);
-            $stmt->bindParam(6, $uploadedFileName1);
-            $stmt->bindParam(7, $uploadedFileName2);
+            $stmt->bindParam(2, $yearLvl);
+            $stmt->bindParam(3, $uploadedFileName1);
+            $stmt->bindParam(4, $uploadedFileName2);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
             echo "Error inserting data: " . $e->getMessage();
             return false;
         }
-    }    
+    }
+
+    public function getRenewalInfo() {
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew")->fetchAll();
+
+        return $stmt;
+    }
     
     public function getRenewalDates() {
         $query = "SELECT renewal_date_start, renewal_date_end FROM scholar_renewal_date WHERE id = 1";

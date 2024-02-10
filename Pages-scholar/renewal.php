@@ -7,13 +7,13 @@ require '../classes/database.php';
 // Create a new instance of the Database class
 $database = new Scholar(new Database());
 
+// Fetch scholar ID from the session
+$scholarsId = $_SESSION["id"];
+
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
     $scholarID = $_POST['scholarID'];
-    $subjectTotal = $_POST['subjectTotal'];
-    $unitTotal = $_POST['unitTotal'];
-    $gwa = $_POST['gwa'];
-    $remark = $_POST['remark'];
+    $yearLvl = ($_POST['yearLvl'] === 'other') ? $_POST['otherYearLevel'] : $_POST['yearLvl'];
 
     // Handle file upload
     $uploadDir = "../Uploads_gslip/";
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
 
     if (move_uploaded_file($_FILES['file1']['tmp_name'], $uploadDir . $uploadedFileName1) &&
         move_uploaded_file($_FILES['file2']['tmp_name'], $uploadDir . $uploadedFileName2)) {
-        if ($database->insertData($scholarID, $subjectTotal, $unitTotal, $gwa, $remark, $uploadedFileName1, $uploadedFileName2)) {
+        if ($database->insertData($scholarID, $yearLvl, $uploadedFileName1, $uploadedFileName2)) {
             echo '<script>alert("Data uploaded successfully!"); window.location.href = "scholardash.php";</script>';
             exit;
         } else {
@@ -33,19 +33,8 @@ if (isset($_POST['submit'])) {
     } else {
         echo "Error uploading file.";
     }
-} else {
-    // Check if the current date is within the renewal period
-    $renewalDates = $database->getRenewalDates();
-    $currentDate = date('Y-m-d');
-
-    if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
-        // Before displaying the renewal form, check if the scholar has already submitted
-        
-        // Fetch scholar ID from the session
-        $scholarsId = $_SESSION["id"];
-
-        if (!$database->hasSubmittedRenewal($scholarsId)) {
-            ?>
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -364,27 +353,43 @@ if (isset($_POST['submit'])) {
                                 <h4 class="m-0 font-weight-bold text-primary">Renewal</h4>
                             </div>
                             <div class="card-body">
-
+        <?php
+        $renewalDates = $database->getRenewalDates();
+        $currentDate = date('Y-m-d');
+        if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
+            // Before displaying the renewal form, check if the scholar has already submitted
+        if (!$database->hasSubmittedRenewal($scholarsId)) {
+        ?>
     <form action="renewal.php" method="post" enctype="multipart/form-data">
         <label for="gwa">Scholar ID:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" value="<?php echo $scholarsId; ?>"><br>
-        <label for="gwa">Total Subjects:</label>
-        <input type="text" id="totalsubjects" name="subjectTotal" required><br>
-        <label for="gwa">Total Units:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="totalunits" name="unitTotal" required><br>
-        <label for="gwa">GWA:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="gwa" name="gwa" required><br>
-        <label for="gwa">Remarks:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select name="remark">
-            <option value="passed">Passed</option>
-            <option value="failed">Failed</option>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" value="<?php echo $scholarsId; ?>" readonly><br>
+        <label for="gwa">Year Level:</label>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select name="yearLvl" id="yearLvlSelect" onchange="checkOtherOption()">
+            <option value="1st">1st</option>
+            <option value="2nd">2nd</option>
+            <option value="3rd">3rd</option>
+            <option value="4th">4th</option>
+            <option value="other">Other</option>
         </select><br>
+        <div id="otherOption" style="display: none;">
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="otherYearLevel" id="otherYearLevelInput" placeholder="Enter your year level">
+        </div>
         <label for="gradeslip">Upload Grade Slip:</label>
         <input type="file" id="gradeslip" name="file1" required><br>
         <label for="gradeslip">Upload Registration Form:</label>
         <input type="file" id="regform" name="file2" required><br>
         <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
     </form>
+    <?php
+    } else {
+        // Display a message indicating that the scholar has already submitted
+        echo '<p>You have already submitted a renewal entry.</p>';
+    }
+    }else {
+        // Display a message indicating that renewal is not allowed at the current date
+        echo '<p>Renewal is not allowed at the current date.</p>';
+        }
+    ?>
 </div>
 </div>
 </div>
@@ -395,7 +400,63 @@ if (isset($_POST['submit'])) {
                             <h4 class="m-0 font-weight-bold text-primary">Renewal List</h4>
                         </div>
                         <div class="card-body">
-                       
+                        <table id="applicant" class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Date Renewed</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Files</th>
+                                                <th scope="col">Remarks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-group-divider">
+                                        <?php
+                                        $rewalInfo = $database->getRenewalInfo();
+                                        $num = 1;
+                                        foreach($rewalInfo as $s){
+
+                                            if($s['status'] == 0){
+                                                $status = "Pending";
+                                            }else{
+                                                $status = "Accepted";
+                                            }
+                                    ?>
+                                            <tr>
+                                                <th scope="col"><?php echo $num; ?></th>
+                                                <td><?php echo $s["date_renew"];?></td>
+                                                <td><?php echo $status;?></td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["scholarID"];?>">Files</button></td>
+                                            <td></td>
+                                            </tr>
+                                            <?php 
+                                        $num++;
+                                            } 
+                                        ?>
+                                        </tbody>
+                                    </table>
+                        </div>
+                        </div>
+                        </div>
+
+<!-- Script for Year level other options -->
+<script>
+    function checkOtherOption() {
+        var selectElement = document.getElementById("yearLvlSelect");
+        var otherOptionDiv = document.getElementById("otherOption");
+        var otherYearLevelInput = document.getElementById("otherYearLevelInput");
+
+        if (selectElement.value === "other") {
+            otherOptionDiv.style.display = "block";
+            otherYearLevelInput.required = true; // Make the textbox required
+        } else {
+            otherOptionDiv.style.display = "none";
+            otherYearLevelInput.required = false; // Make the textbox not required
+        }
+    }
+</script>
+<!-- Script End -->
+
   <!-- Script for handling file upload -->
   <script>
    document.getElementById('fileInput').addEventListener('change', handleFileSelect);
@@ -519,6 +580,47 @@ if (isset($_POST['submit'])) {
         </div>
     </div>
 
+<!-- RenewFiles Modal-->
+    <?php
+    $renewalFiless = $database->getRenewalInfo();
+        foreach($renewalFiless as $a){
+    ?>
+        <div class="modal fade" id="renewFilesModal<?php echo $a["scholarID"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $a["scholarID"];?>l" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:600px;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModal<?php echo $a["scholarID"];?>">Scholar Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="applicant-modal<?php echo $a["scholarID"]?>" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Files</th>
+                            <th>Details</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Grade Slip</td>
+                            <td><?php echo $a["file1"];?></td>
+                        </tr>
+                        <tr>
+                            <td>Registration Form</td>
+                            <td><?php echo $a["file2"];?></td>
+                        </tr>
+                    </tbody>
+                </table>    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    <?php } ?>
+<!-- Modal end -->
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -544,14 +646,3 @@ if (isset($_POST['submit'])) {
 </body>
 
 </html>
-<?php
-}else {
-    // Display a message indicating that the scholar has already submitted
-    echo '<p>You have already submitted a renewal entry.</p>';
-    }
-    }else {
-        // Display a message indicating that renewal is not allowed at the current date
-        echo '<p>Renewal is not allowed at the current date.</p>';
-        }
-}
-?>

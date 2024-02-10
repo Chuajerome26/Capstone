@@ -257,11 +257,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <th scope="col">#</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">Date Applied</th>
+                                                <th scope="col">Date Renewed</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Details</th>
                                                 <th scope="col">Files</th>
-                                                <th scope="col">Analysis</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -271,7 +270,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                         $num = 1;
                                         foreach($applicantsData as $s){
 
-                                            $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], 5);
                                             if($s['status'] == 0){
                                                 $status = "Pending";
                                             }else{
@@ -286,7 +284,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <td><?php echo $status;?></td>
                                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button></td>
                                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button></td>
-                                                <td><div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><div class="progress-bar bg-success" style="width: <?php echo $percentage;?>%"><?php echo $percentage;?>%</div></div></td>
                                                 <td style="white-space: nowrap;">
                                                     <form method="post" action="../functions/scholar-accept.php">
                                                         <input class="btn btn-primary mb-2" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
@@ -394,6 +391,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
   </div>
 </div>
 <!-- End of Modal -->
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
