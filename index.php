@@ -97,7 +97,7 @@
                             <ul id="nav" class="navbar-nav ms-auto">
                                 <li class="nav-item" class="scroll-to-section"><a class="active" href="#top">Home</a></li>
                                 <li class="nav-item" class="scroll-to-section"><a href="#Programs">Programs</a></li>
-                                <li class="nav-item"><a href="about-us.php">About</a></li>
+                                <li class="nav-item"><a href="#About">About</a></li>
                                 <li class="nav-item"><a href="#Contact">Contact</a></li>
                             </ul>
                             <form class="d-flex search-form">
@@ -413,6 +413,103 @@
         </div>
     </section>
     <!-- End Courses Area -->
+
+    <section id="About"></section>
+    <div class="breadcrumbs overlay">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">About Us</h1>
+                        <p>The Consuelo Chito Madrigal Foundation (CCMF) is dedicated to improving the quality of life of distressed families in selected communities in the Philippines. Established by banker, philanthropist and Papal awardee Dona Consuelo Chito Madrigal-Collantes in 1997, it supports programs designed to respond to the needs of these communities to be self-sustaining.</p>
+                    </div>
+                    <ul class="breadcrumb-nav">
+                        
+                        <li>About Us</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Start About Us Area -->
+    <section class="about-us section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <div class="about-left">
+                        <div class="about-title align-left">
+                            <span class="wow fadeInDown" data-wow-delay=".2s">About Our Foundation</span>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Welcome to our Foundation</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".6s">The foundation seeks to enhance the human dignity and self-esteem of individuals and families through various poverty alleviation interventions - from livelihood and housing assistance, microfinance. It applies a more holistic approach by promoting "social entrepreneurship" as a way out of poverty.</p>
+                            <p class="qote wow fadeInUp" data-wow-delay=".8s"></p>
+                            <div class="button wow fadeInUp" data-wow-delay="1s">
+                               
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="about-right wow fadeInRight" data-wow-delay=".4s">
+                        <img src="assets1/images/about/1.png" alt="#">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /End About Us Area -->
+
+    <!-- Start Newsletter Area -->
+    <section class="newsletter-area section">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-6 offset-lg-3 col-md-12 col-12">
+                    <div class="newsletter-title">
+                        
+                        <h2>Mission</h2>
+                        <p>To help improve the quality of life  of distressed families through strategic and holistic approaches addressing basic human needs i.e, nutrition, education, skills training, values formation, social enterprise,shelter, etc  guided and inspired by the principles of true integral development and deep respect for humanity.</p>
+                        <br>
+                        <h2>Vission</h2>
+                        <p>Well-educated individuals, families, imbued with charity and truth,healed from poverty to help build a better tomorrow.</p>
+                    </div>
+                  
+               
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /End Newsletter Area -->
+
+    <!-- Start Call To Action Area -->
+    <section class="call-action section overlay">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
+                    <div class="call-content">
+                        
+                        <h2>Values</h2>
+                        <p style="font-size: 17px"><b>C</b>reativity and Innovation are essential to the nature of our Foundation.</p>
+                  <br>
+                  <p style="font-size: 17px"><b>H</b>ardwork and Diligence define the work ethics of CCMF.</p>
+                  <br>
+                  <p style="font-size: 17px"><b>I</b>ntegrity and Honesty are fundamental dictum as a financial institution.</p>
+                  <br>
+                  <p style="font-size: 17px"><b>T</b>rustworthiness and Excellence refer to quality service that must be made available not only to the rich.</p>
+                  <br>
+                  <p style="font-size: 17px"><b>O</b>penmindedness and Flexibility are essential ingredients for growth, development and survival.</p>
+                    
+                    </div>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /End Call To Action Area -->
+
 
     <!-- Start Achivement Area -->
     <section class="our-achievement section overlay">
