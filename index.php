@@ -53,23 +53,18 @@
                         <div class="toolbar-social">
                             <ul>
                                 <li><span class="title"><p class="h6">Follow Us On : </p></span></li>
-                                <li><a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <li><a href="https://www.facebook.com/CCMFI"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
                                 </svg></a></li>
-                                <li><a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
-                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
-                                </svg></a></li>
-                                <li><a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
-                                    <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/>
-                                </svg></a></li>
+                               
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="toolbar-login">
                             <div class="button">
-                                <a href="Pages-scholar/appform.php"><p class="h6"> Create an Account </p></a>
-                                <button type="button" style="font-size: 15px;" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button>
+                                <a href="Pages-scholar/appforms.php"><p class="h6"> Create an Account </p></a>
+                                <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button>
                             </div>
                         </div>
                     </div>
@@ -83,7 +78,7 @@
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
                         <a class="navbar-brand" href="index.php">
-                            <img src="assets1/images/logo/Logo.png" alt="Logo">
+                            <img src="assets1/images/logo/Logo2.png" alt="Logo">
                         </a>
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -95,10 +90,10 @@
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             
                             <ul id="nav" class="navbar-nav ms-auto">
-                                <li class="nav-item" class="scroll-to-section"><a class="active" href="#top">Home</a></li>
-                                <li class="nav-item" class="scroll-to-section"><a href="#Programs">Programs</a></li>
-                                <li class="nav-item"><a href="#About">About</a></li>
-                                <li class="nav-item"><a href="#Contact">Contact</a></li>
+                                <li class="nav-item" class="scroll-to-section"><a class="nav-link active" href="#top">Home</a></li>
+                                <li class="nav-item" class="scroll-to-section"><a class ="nav-link" href="#Programs">Programs</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#About">About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
                             </ul>
                             <form class="d-flex search-form">
                                 <input class="form-control me-2" type="search" placeholder="Search"
@@ -240,7 +235,7 @@
                             <div class="course-image">
                                 <img src="assets1/images/courses/chito.png"
                                         alt="#"></a>
-                                <p class="price">Free</p>
+                                
                             </div>
                             <div class="content">
                                 <h3><a href="course-details.php">CHITO MADRIGAL LEARNING AND LIVELIHOOD VILLAGE: PAYATAS CSR DEMO CAMPUS</a></h3>
@@ -269,7 +264,7 @@
                             <div class="course-image">
                                 <img src="assets1/images/courses/scholar.png"
                                         alt="#"></a>
-                                <p class="price">Free</p>
+                                
                             </div>
                             <div class="content">
                                 <h3><a href="course-details.php">Scholarship</a></h3>
@@ -298,7 +293,7 @@
                             <div class="course-image">
                               <img src="assets1/images/courses/nutriprog.png"
                                         alt="#"></a>
-                                <p class="price">Free</p>
+                                
                             </div>
                             <div class="content">
                                 <h3><a href="course-details.php">Nutrition Program</a></h3>
@@ -327,7 +322,7 @@
                             <div class="course-image">
                                 <img src="assets1/images/courses/liveli.png"
                                         alt="#"></a>
-                                <p class="price">Free</p>
+                                
                             </div>
                             <div class="content">
                                 <h3><a href="course-details.php">Livelihood</a></h3>
@@ -356,7 +351,7 @@
                             <div class="course-image">
                                 <img src="assets1/images/courses/CCMFbulacan.png"
                                         alt="#"></a>
-                                <p class="price">Free</p>
+                               
                             </div>
                             <div class="content">
                                 <h3><a href="course-details.php">CCMF Bulacan</a></h3>
@@ -385,7 +380,7 @@
                             <div class="course-image">
                                 <img src="assets1/images/courses/pagsulay.png"
                                         alt="#"></a>
-                                <p class="price">Free</p>
+                               
                             </div>
                             <div class="content">
                                 <h3><a href="course-details.php">Pagsulay</a></h3>
@@ -440,9 +435,9 @@
                 <div class="col-lg-6 col-12">
                     <div class="about-left">
                         <div class="about-title align-left">
-                            <span class="wow fadeInDown" data-wow-delay=".2s">About Our Foundation</span>
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Welcome to our Foundation</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s">The foundation seeks to enhance the human dignity and self-esteem of individuals and families through various poverty alleviation interventions - from livelihood and housing assistance, microfinance. It applies a more holistic approach by promoting "social entrepreneurship" as a way out of poverty.</p>
+                            <span class="wow fadeInDown" data-wow-delay=".2s">Foundation History</span>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">History</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".6s">The Consuelo "Chito" Madrigal Foundation Inc. (CCMFI) was established in the Philippines in 1997 by Consuelo "Chito" Madrigal Collantes, a prominent philanthropist and social activist. The foundation was created to address various social issues such as education, healthcare, community development, and environmental conservation. Over the years, CCMFI has implemented numerous programs and projects aimed at improving the lives of marginalized communities across the country. These initiatives often focus on empowering women and children, promoting sustainable livelihoods, and supporting education and healthcare infrastructure in underserved areas. Through its holistic approach to development, CCMFI has made significant contributions to the welfare of Filipino communities, earning recognition for its impactful work in the field of social development.</p>
                             <p class="qote wow fadeInUp" data-wow-delay=".8s"></p>
                             <div class="button wow fadeInUp" data-wow-delay="1s">
                                
@@ -453,7 +448,7 @@
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="about-right wow fadeInRight" data-wow-delay=".4s">
-                        <img src="assets1/images/about/1.png" alt="#">
+                        <img src="assets1/images/about/ceo2.png" alt="#">
                     </div>
                 </div>
             </div>
@@ -471,7 +466,7 @@
                         <h2>Mission</h2>
                         <p>To help improve the quality of life  of distressed families through strategic and holistic approaches addressing basic human needs i.e, nutrition, education, skills training, values formation, social enterprise,shelter, etc  guided and inspired by the principles of true integral development and deep respect for humanity.</p>
                         <br>
-                        <h2>Vission</h2>
+                        <h2>Vision</h2>
                         <p>Well-educated individuals, families, imbued with charity and truth,healed from poverty to help build a better tomorrow.</p>
                     </div>
                   
@@ -517,7 +512,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-12">
                     <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
-                        <h3 class="counter"><span id="secondo1" class="countup" cup-end="500">500</span>+</h3>
+                        <h3 class="counter"><span id="secondo1" class="countup" cup-end="100">100</span>+</h3>
                         <h4>Scholars</h4>
                     </div>
                 </div>
@@ -560,7 +555,7 @@
                         <!-- Single Widget -->
                         <div class="f-about single-footer">
                             <div class="logo">
-                                <a href="index.php"><img src="assets1/images/logo/logo.png" alt="Logo"></a>
+                                <a href="index.php"><img src="assets1/images/logo/Logo2.png" alt="Logo"></a>
                             </div>
                             <p class="fw-bold fs-5">INQUIRIES</p>
 
@@ -571,12 +566,7 @@
                                 <li><a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
                                 </svg></a></li>
-                                <li><a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
-                                    <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
-                                </svg></a></li>
-                                <li><a href="javascript:void(0)"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
-                                    <path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/>
-                            </svg></a></li>
+                               
                                 </ul>
                             </div>
                         </div>
@@ -617,6 +607,8 @@
                             <div class="left">
                                 <p class="fw-bold fs-5">Consuelo 'Chito' Madrigal Foundation <a href="" rel="nofollow"
                                         target="_blank">(CCMF)</a></p>
+
+                                        <p class=" fs-6">&copy; 2024 Chito Madrigal Foundation. All Rights Reserved. </p>
                             </div>
                         </div>
                     </div>
@@ -629,31 +621,52 @@
     <!-- Modal for Login -->
     
     <div class="modal fade" id="loginModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold">Sign in</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <!-- Add your login form here -->
-                    <form action="functions/admin-login.php" method="post">
-                        <div class="form-group">
-                            <label class="fw-bold" for="username">Username:</label>
-                            <input type="text" class="form-control" name="uname" placeholder="Enter username" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="fw-bold" for="password">Password:</label>
-                            <input type="password" class="form-control" name="psw" placeholder="Enter password" required>
-                        </div>
-                        <button type="submit" name="submitBtn" class="btn btn-success">Login</button>
-                        <p style="margin-top: 20px"> Don't have an account? <a href="Pages-scholar/appforms.php">Sign up here</a>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold text-center">Sign in</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your login form here -->
+                <form action="functions/admin-login.php" method="post">
+                    <div class="form-group">
+                        <label class="fw-bold" for="username">Username:</label>
+                        <input type="text" class="form-control" style="height: 50px;" name="uname" placeholder="Enter username" required>
                     </div>
-                    </form>
+                    <div class="form-group">
+                        <label class="fw-bold" for="password">Password:</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" style="height: 50px;" name="psw" id="password" placeholder="Enter password" required>
+                        </div>
+                        <div class="mt-2 pl-0 form-check">
+                            <input type="checkbox" onclick="showPassword()">
+                            <label class="form-check-label" for="showPassword">Show Password</label>
+                        </div>
+                    </div>
+                    <button type="submit" name="submitBtn" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;">Login</button>
+                    
+                    <p style="margin-top: 20px" class="pl-0"> Don't have an account? <a href="Pages-scholar/appforms.php">Sign up here</a>
+                    
                 </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+         
+<script>
+    $(document).ready(function() {
+        $("#showPasswordCheckbox").on('change', function() {
+            if (this.checked) {
+                $("#password").attr("type", "text");
+            } else {
+                $("#password").attr("type", "password");
+            }
+            $("#password").val($("#password").val());
+        });
+    });
+</script>
     <!-- End of Modal -->
     <!-- ========================= scroll-top ========================= -->
     <a href="#" class="scroll-top btn-hover">
@@ -722,6 +735,17 @@
         });
     </script>
 
+    <script>
+  $(document).ready(function() {
+    $('#nav .nav-link').click(function() {
+      // Remove 'active' class from all links
+      $('#nav .nav-link').removeClass('active');
+      // Add 'active' class to the clicked link
+      $(this).addClass('active');
+    });
+  });
+</script>
+
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const successValue = urlParams.get('error');
@@ -756,6 +780,15 @@
             }
         })
     }
+
+    function showPassword() {
+    var passwordField = document.getElementById("password");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+    } else {
+        passwordField.type = "password";
+    }
+}
 
 </script>
 </body>
