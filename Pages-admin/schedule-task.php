@@ -218,7 +218,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <p class="h3 mb-0 font-weight-bold text-gray-800">Scholar Applicants</p>
+                        <p class="h3 mb-0 font-weight-bold text-gray-800">Interviews</p>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -235,49 +235,53 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Final Interview</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Initial Interview</h6>
                             </div>
                             <div class="card-body">
-                                <div class="container mt-6">
+                                <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
                                     <div class="row">
-                                            <?php
-                                            // Initialize an array to keep track of displayed dates
-                                            $displayedDates = [];
+                                        <?php
+                                        // Initialize an array to keep track of displayed dates
+                                        $displayedDates = [];
 
-                                            // Loop to generate a square for each date
-                                            foreach ($initialInterview as $it) {
-                                                $date = $it['date'];
-                                                
-                                                // Check if the date has already been displayed
-                                                if (!in_array($date, $displayedDates)) {
-                                                    // Add the date to the list of displayed dates
-                                                    $displayedDates[] = $date;
-                                                    ?>
-                                                    <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
-                                                        <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title"><?php echo $date; ?></h5>
-                                                                <?php
-                                                                // Loop to display data entries with the same date within the same card
-                                                                foreach ($initialInterview as $entry) {
-                                                                    if ($entry['date'] == $date) {
-                                                                        $info = $admin->findScholarById($entry['scholar_id']);
-                                                                        ?>
-                                                                            <p class="card-text"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></p>
-                                                                        <?php
-                                                                    }
+                                        // Loop to generate a square for each date
+                                        foreach ($initialInterview as $it) {
+                                            $date = $it['date'];
+                                            $dateTime = new DateTime($date);
+                                            $formattedDate = $dateTime->format("F j, Y");
+                                            // Check if the date has already been displayed
+                                            if (!in_array($date, $displayedDates)) {
+                                                // Add the date to the list of displayed dates
+                                                $displayedDates[] = $date;
+                                                ?>
+                                                <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
+                                                    <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><?php echo $formattedDate; ?></h5>
+                                                            <?php
+                                                            // Loop to display data entries with the same date within the same card
+                                                            foreach ($initialInterview as $entry) { 
+                                                                if ($entry['date'] == $date) {
+                                                                    $info = $admin->findScholarById($entry['scholar_id']);
+                                                                    ?>
+                                                                    <p class="card-text"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></p>
+                                                                    <?php
                                                                 }
-                                                                ?>
-                                                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                                                            </div>
+                                                            }
+                                                            ?>
+                                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $it["id"];?>">View</button>
+                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $it["id"];?>">Edit</button>
+
                                                         </div>
                                                     </div>
-                                                    <?php
-                                                }
+                                                </div>
+                                                <?php
                                             }
-                                            ?>
-                                        </div>
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -293,11 +297,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                 <h6 class="m-0 font-weight-bold text-primary">Final Interview</h6>
                             </div>
                             <div class="card-body">
-                                <div class="container mt-6">
+                                <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
                                     <div class="row">
                                         <?php
                                         // Loop to generate 9 cards (3 cards per row, 3 rows)
-                                       
+                                            
                                             ?>
                                             <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
                                                 <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
@@ -353,6 +357,57 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             </div>
         </div>
     </div>
+    <!-- Modal For View Details -->
+    <?php 
+        $displayedDatesforModal = [];
+        foreach($initialInterview as $a){
+            $date1 = $a['date'];
+            if (!in_array($date, $displayedDatesforModal)) {
+                // Add the date to the list of displayed dates
+                $displayedDatesforModal[] = $date;
+    ?>
+    <div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>l" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:600px;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Requirements</th>
+                            <th>Actions</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <?php foreach($initialInterview as $b){
+                                if($b['date'] == $date1){
+                                    $info1 = $admin->findScholarById($b['scholar_id']);
+                                    ?>
+                        <tr>
+                            <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $b["id"];?>">Start</button>
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $b["id"];?>">Edit</button>
+                            </td>
+                        </tr>
+                        <?php }
+                    }
+                    ?>
+                    </tbody>
+                </table>    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <?php }} ?>
+    <!-- Modal End -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>

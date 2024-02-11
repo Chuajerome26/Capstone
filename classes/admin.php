@@ -10,8 +10,20 @@ class Admin
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
+    public function updateNotif1($id){
+        // prepared statement
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET notif_send = ? WHERE id =?");
+       //if execution fail
+        $stmt->execute([1, $id]);
+    }
+    public function updateNotif0($id){
+        // prepared statement
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET notif_send = ? WHERE id =?");
+       //if execution fail
+        $stmt->execute([0, $id]);
+    }
     function getInitialInterviews(){
-        $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview WHERE i_f_interview = 0")->fetchAll();
+        $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview WHERE i_f_interview = 0 AND status = 0")->fetchAll();
         return $stmt;
         exit();
     }
@@ -32,7 +44,6 @@ class Admin
             }
         }
     }
-      
     function selectAndInsertSchedules($scholarData, $start, $end, $excludeStart, $excludeEnd, $appointmentDuration, $maxSchedules, $date) {
         $startTime = strtotime($start);
         $endTime = strtotime($end);
