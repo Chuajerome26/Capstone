@@ -131,7 +131,7 @@
                                     <p class="wow fadeInUp" data-wow-delay=".7s">Education is one of the highest values among Filipinos, 
                                         <br>in general, which is why CCMF offers various forms of assistance...</p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.php" class="btn">Learn More</a>
+                                        <a href="#About" class="btn">Learn More</a>
                                         
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@
                                     <p class="wow fadeInUp" data-wow-delay=".7s">CCMF offers various forms of assistance ranging from allowances to tuition support to close to 100 scholars in various schools. Beneficiaries are bright but economically challenged students. 
                                         </p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.php" class="btn">Learn More</a>
+                                        <a href="#About" class="btn">Learn More</a>
                                        
                                     </div>
                                 </div>
@@ -175,7 +175,7 @@
                                     <p class="wow fadeInUp" data-wow-delay=".7s">CCMF has offered a 7.5 hectares property it owns in the Payatas area as a resource of the community, using it as a training venue for skills development and programs.
                                         </p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="about-us.php" class="btn">Learn More</a>
+                                        <a href="#About" class="btn">Learn More</a>
                                         
                                     </div>
                                 </div>
@@ -201,7 +201,7 @@
                             <p class="wow fadeInUp" data-wow-delay=".6s">The foundation seeks to enhance the human dignity and self-esteem of individuals and families through various poverty alleviation interventions - from livelihood and housing assistance, microfinance. It applies a more holistic approach by promoting "social entrepreneurship" as a way out of poverty.</p>
                             <p class="qote wow fadeInUp" data-wow-delay=".8s"></p>
                             <div class="button wow fadeInUp" data-wow-delay="1s">
-                                <a href="about-us.php" class="btn">Read More</a>
+                                <a href="#About" class="btn">Read More</a>
                                 
                             </div>
                         </div>
