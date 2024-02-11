@@ -7,13 +7,18 @@
 </head>
 <body>
     <?php 
-         $arrayNames = array('Application Form', 'Id Photo', 'Family Profile', 'Letter of Intent', 'Parent Consent', 'Copy of Grades',
-         'Birth Certificate', 'Indigency', 'Recommendation Letter', 'Good Moral', 'School Diploma', 'Form 137/138', 'Acceptance Letter'
-     , 'Enrollment Form', 'Family Picture', 'Sketch of House Area');
+    require '../classes/admin.php';
+    require '../classes/database.php';
 
-     for($i = 0; $i < count($arrayNames); $i++){
-        echo $arrayNames[$i]."\n";
-     }
+    $database = new Database();
+    $admin = new Admin($database);
+          $newapplicantInfo = $admin->getApplicantsFiles(8);
+          $currentDate = date('Y-m-d');
+          // Add 7 days to the current date
+          $newDate = date('Y-m-d', strtotime($currentDate . ' +7 days'));
+
+          var_dump($newapplicantInfo);
+        
     ?>
 </body>
 </html>

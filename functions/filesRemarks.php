@@ -7,11 +7,27 @@ if(isset($_POST['submit'])){
     $database = new Database();
     $admin = new Admin($database);
 
-    $id_remarks = $_POST['id_remarks'];
-    $cog_remarks = $_POST['cog_remarks'];
-    $psa_remarks = $_POST['psa_remarks'];
-    $gm_remarks = $_POST['gm_remarks'];
-    $eForm_remarks = $_POST['eForm_remarks'];
+    $arrayNames = array('ApplicationForm', 'IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
+                    'BirthCertificate', 'Indigency', 'RecommendationLetter', 'GoodMoral', 'SchoolDiploma', 'Form137/138', 'AcceptanceLetter'
+                , 'EnrollmentForm', 'FamilyPicture', 'SketchofHouseArea');
+    $remarks = array();
+    // Iterate through each name and retrieve its value from $_POST
+    foreach ($arrayNames as $name) {
+        // Check if the value exists in $_POST before assigning
+        if (isset($_POST[$name."_remarks"])) {
+            // Retrieve the status and remarks based on $_POST
+            $remarks[$name] = isset($_POST[$name.'_remarks']) ? $_POST[$name.'_remarks'] : "";
+        } else {
+            // If the value doesn't exist in $_POST, assign an empty string for remarks
+            $remarks[$name] = "";
+        }
+    }
+    var_dump($remarks);
+    // $id_remarks = $_POST['id_remarks'];
+    // $cog_remarks = $_POST['cog_remarks'];
+    // $psa_remarks = $_POST['psa_remarks'];
+    // $gm_remarks = $_POST['gm_remarks'];
+    // $eForm_remarks = $_POST['eForm_remarks'];
     $start_time = '09:00';
     $end_time = '15:00';
     $excluded_start = '12:00';
@@ -20,14 +36,15 @@ if(isset($_POST['submit'])){
     $duration = 30;
 
     $scholar_id = $_POST['scholar_id'];
-    $applicantInfo = $admin->getApplicantById($scholar_id);
-    $email = $applicantInfo[0]['email'];
-    $last_name = $applicantInfo[0]['l_name'];
-    $id_newStat = $applicantInfo[0]['id_status'];
-    $grade_newStat = $applicantInfo[0]['grade_status'];
-    $psa_newStat = $applicantInfo[0]['psa_status'];
-    $gm_newStat = $applicantInfo[0]['gm_status'];
-    $ef_newStat = $applicantInfo[0]['ef_status'];
+    $applicantInfo = $admin->getApplicantsFiles($scholar_id);
+
+    // $email = $applicantInfo[0]['email'];
+    // $last_name = $applicantInfo[0]['l_name'];
+    // $id_newStat = $applicantInfo[0]['id_status'];
+    // $grade_newStat = $applicantInfo[0]['grade_status'];
+    // $psa_newStat = $applicantInfo[0]['psa_status'];
+    // $gm_newStat = $applicantInfo[0]['gm_status'];
+    // $ef_newStat = $applicantInfo[0]['ef_status'];
 
     $scholarData = array(
         'scholar_id' => $scholar_id,
@@ -35,32 +52,34 @@ if(isset($_POST['submit'])){
 
     );
     
-    // Check if documents is set, otherwise use a default value (e.g., 0)
-    $scholar_id = $_POST['scholar_id'];
-    $id_status = isset($_POST['id_pic']) ? $_POST['id_pic'] : $id_newStat;
-    $grade_status = isset($_POST['cog']) ? $_POST['cog'] : $grade_newStat;
-    $psa_status = isset($_POST['psa']) ? $_POST['psa'] : $psa_newStat;
-    $gm_status = isset($_POST['gm']) ? $_POST['gm'] : $gm_newStat;
-    $ef_status = isset($_POST['eForm']) ? $_POST['eForm'] : $ef_newStat;
+    $status = array();
+    foreach ($arrayNames as $name) {
+        // Check if the value exists in $_POST before assigning
+        if (isset($_POST[$name])) {
+            $status[$name] = $_POST[$name];
+        } else {
+            foreach ($applicantInfo as $file) {
+                if ($file['requirement_name'] == $name) {
+                    $currentStatus = $file['status'];
+                    break; // Exit the loop once the status is found
+                }
+            }
+            $status[$name] = $currentStatus;
+        }
+    }
 
-    $admin->updateFilesRemarks($scholar_id, $id_status, $grade_status, $psa_status, $gm_status, $ef_status);
+    var_dump($status);
+    $admin->updateFilesRemarks($scholar_id, $status, $arrayNames);
 
-
-    // new Update to the Files
-    $newapplicantInfo = $admin->getApplicantById($scholar_id);
+    $scholar_infor = $admin->getApplicantById($scholar_id);
+    $last_name = $scholar_infor[0]['l_name'];
+    $email = $scholar_infor[0]['email'];
+    $countCorrect = $admin->getApplicantsFilesCorrect($scholar_id);
     $currentDate = date('Y-m-d');
     // Add 7 days to the current date
     $newDate = date('Y-m-d', strtotime($currentDate . ' +7 days'));
 
-
-
-    $id_newwStat = $newapplicantInfo[0]['id_status'];
-    $grade_newwStat = $newapplicantInfo[0]['grade_status'];
-    $psa_newwStat = $newapplicantInfo[0]['psa_status'];
-    $gm_newwStat = $newapplicantInfo[0]['gm_status'];
-    $ef_newwStat = $newapplicantInfo[0]['ef_status'];
-
-    if($id_newwStat == 1 && $grade_newwStat == 1 && $psa_newwStat == 1 && $gm_newwStat == 1 && $ef_newwStat == 1){
+    if($countCorrect[0]['count'] == 16){
         
         $sched = $admin->selectAndInsertSchedules($scholarData, $start_time, $end_time, $excluded_start, $excluded_end, $duration, $max10, $newDate);
         $date = $sched[0]['date'];
@@ -72,32 +91,15 @@ if(isset($_POST['submit'])){
         $message = "Dear $last_name,\nYour Schedulte for Interview: \nSchedule Date for Interview: $date\nTime Start: $convertedTime\nTime End: $convertedTime1\n";
         $database->sendEmail($email,"Scholarship Application Evaluation - Completed", $message);
     }else{
-        $wrongFiles = "Wrong";
-        $counter = 1; // Initialize a counter variable
+        $counter = 1;
+        $wrongFiles = "";
 
-        if ($id_newwStat == 0) {
-            $wrongFiles .= "\n" . $counter . ". 2x2 Picture - ". $id_remarks;
-            $counter++; // Increment the counter
-        }
-
-        if ($grade_newwStat == 0) {
-            $wrongFiles .= "\n" . $counter . ". Grade - ". $cog_remarks;
-            $counter++; // Increment the counter
-        }
-
-        if ($psa_newwStat == 0) {
-            $wrongFiles .= "\n" . $counter . ". PSA - ". $psa_remarks;
-            $counter++; // Increment the counter
-        }
-
-        if ($gm_newwStat == 0) {
-            $wrongFiles .= "\n" . $counter . ". Good Moral - ". $gm_remarks;
-            $counter++; // Increment the counter
-        }
-
-        if ($ef_newwStat == 0) {
-            $wrongFiles .= "\n" . $counter . ". Enrollment Form - ". $eForm_remarks;
-            $counter++; // Increment the counter
+        foreach ($arrayNames as $name) {
+            // Assuming $id_remarks is the remark associated with the file '2x2 Picture'
+            if ($remarks[$name] != "") {
+                $wrongFiles .= "\n" . $counter . ". " . $name . " - " . $remarks[$name];
+                $counter++; // Increment the counter
+            }
         }
 
         $message = "
@@ -111,5 +113,5 @@ if(isset($_POST['submit'])){
         $database->sendEmail($email,"Your Application is Under Review", $message);
     }
      
-     header('Location: ../Pages-admin/admin-application.php?status=UpdatedRemarks');
+    //  header('Location: ../Pages-admin/admin-application.php?status=UpdatedRemarks');
 }

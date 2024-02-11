@@ -262,7 +262,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                             // Loop to display data entries with the same date within the same card
                                                             foreach ($initialInterview as $entry) { 
                                                                 if ($entry['date'] == $date) {
-                                                                    $info = $admin->findScholarById($entry['scholar_id']);
+                                                                    $info = $admin->getApplicantById($entry['scholar_id']);
                                                                     ?>
                                                                     <p class="card-text"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></p>
                                                                     <?php
@@ -384,12 +384,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <tbody>
                         <?php foreach($initialInterview as $b){
                                 if($b['date'] == $date1){
-                                    $info1 = $admin->findScholarById($b['scholar_id']);
+                                    $info1 = $admin->getApplicantById($b['scholar_id']);
                                     ?>
                         <tr>
                             <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $b["id"];?>">Start</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#questionModal<?php echo $b["id"];?>">Start</button>
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $b["id"];?>">Edit</button>
                             </td>
                         </tr>
@@ -407,6 +407,59 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
         </div>
     </div>
     <?php }} ?>
+    <!-- Modal End -->
+
+    <!-- Modal Start Question -->
+    <?php 
+    foreach($initialInterview as $z){
+    ?>
+    <div class="modal fade" id="questionModal<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $z["id"];?>l" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:600px;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModal<?php echo $z["id"];?>">Scholar Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table id="applicant-modal<?php echo $z["id"]?>" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Questions</th>
+                            <th>Grade</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sample ?</td>
+                            <td><input class="form-control" type="text" name="q1"></td>
+                        </tr>
+                        <tr>
+                            <td>Sample ?</td>
+                            <td><input class="form-control" type="text" name="q2"></td>
+                        </tr>
+                        <tr>
+                            <td>Sample ?</td>
+                            <td><input class="form-control" type="text" name="q3"></td>
+                        </tr>
+                        <tr>
+                            <td>Sample ?</td>
+                            <td><input class="form-control" type="text" name="q4"></td>
+                        </tr>
+                        <tr>
+                            <td>Sample ?</td>
+                            <td><input class="form-control" type="text" name="q5"></td>
+                        </tr>
+                    </tbody>
+                </table>    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <?php }?>
     <!-- Modal End -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->

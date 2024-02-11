@@ -9,12 +9,12 @@ if(isset($_POST["accept"])){
     $database = new Database;
     $id = $_POST["acceptId"];
 
-    $stmt = $database->getConnection()->prepare('SELECT * FROM scholars_info WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
     $stmt->execute(['id' => $id]);
     $user = $stmt->fetch();
 
     $email = $user['email'];
-    $stmt = $database->getConnection()->prepare('UPDATE scholars_info SET status = 1 WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 1 WHERE id = :id');
 
     if(!$stmt->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');

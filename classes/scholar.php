@@ -250,9 +250,9 @@ class Scholar{
         //fetch the employeeID
         $scholarId = $stmtScholarID->fetchColumn();
 
-        $arrayNames = array('Application Form', 'Id Photo', 'Family Profile', 'Letter of Intent', 'Parent Consent', 'Copy of Grades',
-                    'Birth Certificate', 'Indigency', 'Recommendation Letter', 'Good Moral', 'School Diploma', 'Form 137/138', 'Acceptance Letter'
-                , 'Enrollment Form', 'Family Picture', 'Sketch of House Area');
+        $arrayNames = array('ApplicationForm', 'IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
+                    'BirthCertificate', 'Indigency', 'RecommendationLetter', 'GoodMoral', 'SchoolDiploma', 'Form137/138', 'AcceptanceLetter'
+                , 'EnrollmentForm', 'FamilyPicture', 'SketchofHouse Area');
 
                 for ($i = 0; $i < count($scholarFiles); $i++) {
                     $fileName = $scholarFiles[$i];

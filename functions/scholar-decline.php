@@ -10,13 +10,13 @@ if(isset($_POST['submit'])){
     $id = $_POST["declineId"];
     $remarks = $_POST['remarks'];
 
-    $stmt = $database->getConnection()->prepare('SELECT * FROM scholars_info WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
     $stmt->execute(['id' => $id]);
     $user = $stmt->fetch();
 
     $email = $user['email'];
 
-    $stmt = $database->getConnection()->prepare('UPDATE scholars_info SET status = 5 WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 5 WHERE id = :id');
 
     if(!$stmt->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');

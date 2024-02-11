@@ -12,13 +12,13 @@ class Admin
     }
     public function updateNotif1($id){
         // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET notif_send = ? WHERE id =?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE id =?");
        //if execution fail
         $stmt->execute([1, $id]);
     }
     public function updateNotif0($id){
         // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET notif_send = ? WHERE id =?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE id =?");
        //if execution fail
         $stmt->execute([0, $id]);
     }
@@ -133,9 +133,9 @@ class Admin
         }
     }
     public function getScholars(){
-        $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
-                                                        JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
-                                                        WHERE scholars_info.status = '1'")->fetchAll();
+        $stmt = $this->database->getConnection()->query("SELECT scholar_info.id AS scholar_id, scholar_info.*, scholar_file.* FROM scholar_info 
+                                                        JOIN scholar_file ON scholar_info.id = scholar_file.scholar_id
+                                                        WHERE scholar_info.status = '1'")->fetchAll();
         return $stmt;
         exit();
     }
@@ -160,25 +160,62 @@ class Admin
         exit();
     }
     public function getApplicants(){
-        $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
-                                                        JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
-                                                        WHERE scholars_info.status = '0'")->fetchAll();
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_info
+                                                        WHERE status = '0'")->fetchAll();
         return $stmt;
         exit();
     }
+    public function getApplicantsFiles($scholar_id){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_file WHERE scholar_id=?");
+
+       //if execution fail
+      if (!$stmt->execute([$scholar_id])) {
+          header("Location: ../index.php?error=stmtfail");
+          exit();
+      }
+      //fetch the result
+      $result = $stmt->fetchAll();
+      
+        //if has result return it, else return false
+      if ($result) {
+          return $result;
+      } else {
+          $result = false;
+          return $result;
+      }
+    }
+    public function getApplicantsFilesCorrect($scholar_id){
+        $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) as count FROM scholar_file WHERE scholar_id=? AND status = 1");
+
+       //if execution fail
+      if (!$stmt->execute([$scholar_id])) {
+          header("Location: ../index.php?error=stmtfail");
+          exit();
+      }
+
+      //fetch the result
+      $result = $stmt->fetchAll();
+      
+        //if has result return it, else return false
+      if ($result) {
+          return $result;
+      } else {
+          $result = false;
+          return $result;
+      }
+    }
     public function getApplicantById($id){
-        $stmt = $this->database->getConnection()->prepare("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_files.* FROM scholars_info 
-                                                        JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
-                                                        WHERE scholars_info.status = '0' AND scholars_info.id = ?");
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
+                                                        WHERE status = '0' AND id = ?");
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }
     public function scholarInfo($id){
         
         // prepare the SQL statement using the database property
-      $stmt = $this->database->getConnection()->prepare("SELECT scholars_info.id AS scholar_id, scholars_info.*,scholar_files.* FROM scholars_info
-                                                    JOIN scholar_files ON scholars_info.id = scholar_files.scholar_id
-                                                   WHERE scholars_info.id=?");
+      $stmt = $this->database->getConnection()->prepare("SELECT scholar_info.id AS scholar_id, scholar_info.*,scholar_file.* FROM scholar_info
+                                                    JOIN scholar_file ON scholar_info.id = scholar_file.scholar_id
+                                                   WHERE scholar_info.id=?");
 
        //if execution fail
       if (!$stmt->execute([$id])) {
@@ -196,13 +233,13 @@ class Admin
           $result = false;
           return $result;
       }
-    }
+    } 
 
     public function findScholarById($id){
 
         
         // prepare the SQL statement using the database property
-      $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholars_info WHERE status = 1 AND id=?");
+      $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE status = 1 AND id=?");
 
        //if execution fail
       if (!$stmt->execute([$id])) {
@@ -223,20 +260,37 @@ class Admin
 
     
   }
-  public function updateFilesRemarks($scholar_id, $id_pic, $cog, $psa, $gm, $ef){
-    // prepared statement
-    $stmt = $this->database->getConnection()->prepare("UPDATE scholar_files SET id_status = ?, grade_status = ?, psa_status = ?, gm_status = ?, ef_status = ?, review_date = ? WHERE scholar_id = ?");
-
-   //if execution fail
-   if (!$stmt->execute([$id_pic, $cog, $psa, $gm, $ef, $this->date, $scholar_id])) {
-       header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
-
-       exit();
-   }
+  public function updateFilesRemarks($scholar_id, $status, $arrayNames) {
+    // Check if the sizes of $status and $arrayNames arrays are the same
+    if (count($status) !== count($arrayNames)) {
+        // Handle error, such as array size mismatch
+        error_log("Array sizes mismatch: Status count = " . count($status) . ", ArrayNames count = " . count($arrayNames));
+        header("Location: ../Pages-admin/admin-application.php?error=array_size_mismatch");
+        exit();
     }
-  public function acceptScholar($id){
+
+    // Iterate through each name and its corresponding status
+    foreach ($arrayNames as $name) {
+        // Check if the name exists as a key in the $status array
+        if (array_key_exists($name, $status)) {
+            $statusValue = $status[$name];
+            $stmt = $this->database->getConnection()->prepare("UPDATE scholar_file SET status = ? WHERE scholar_id = ? AND requirement_name = ?");
+
+            // Bind parameters and execute the statement
+            $stmt->execute([$statusValue, $scholar_id, $name]);
+            // Close the statement
+        } else {
+            // Log the error for debugging
+            error_log("Undefined array key: $name in status array.");
+            // Handle the error as needed
+        }
+    }
+}
+
+
+public function acceptScholar($id){
         // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET status = ? WHERE id = ?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET status = ? WHERE id = ?");
 
        //if execution fail
        if (!$stmt->execute([1,$id])) {
@@ -436,15 +490,15 @@ public function getScheduleById($id){
    }
 }
 public function giveRate($id, $rate) {
-    // Update personal information in scholars_info table
+    // Update personal information in scholar_info table
     $stmt = $this->database->getConnection()->prepare("UPDATE admin_schedule SET rate = ? WHERE id = ?");
     $stmt->execute([$rate, $id]);
 
 }
 public function getScholarAndRenewalFiles(){
-    $stmt = $this->database->getConnection()->query("SELECT scholars_info.id AS scholar_id, scholars_info.*, scholar_renew.* FROM scholars_info 
-                                                    JOIN scholar_renew ON scholars_info.id = scholar_renew.scholarID
-                                                    WHERE scholars_info.status = '1'")->fetchAll();
+    $stmt = $this->database->getConnection()->query("SELECT scholar_info.id AS scholar_id, scholar_info.*, scholar_renew.* FROM scholar_info 
+                                                    JOIN scholar_renew ON scholar_info.id = scholar_renew.scholarID
+                                                    WHERE scholar_info.status = '1'")->fetchAll();
     return $stmt;
 }
 
