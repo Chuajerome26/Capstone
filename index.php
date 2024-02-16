@@ -779,7 +779,22 @@
             toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
+    }else if(successValue === "success"){
+        Swal.fire({
+            icon:'success',
+            title:'Application Complete',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
     }
+
 
     function showPassword() {
     var passwordField = document.getElementById("password");

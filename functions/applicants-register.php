@@ -69,6 +69,21 @@ if(isset($_POST['submit'])){
         'q2' => trim($_POST["q2"]) ?? '',
         'applyScho' => trim($_POST["applyScho"]) ?? '',
         'applySchoExplain' => trim($_POST["applySchoExplain"]) ?? '',
+        'sName' => $_POST["sName"] ?? '',
+        'sAge' => $_POST["sAge"] ?? '',
+        'sOccupation' => $_POST["sOccupation"] ?? '',
+        'sCstatus' => $_POST["sCstatus"] ?? '',
+        'sReligion' => $_POST["sReligion"] ?? '',
+        'sEattained' => $_POST["sEattained"] ?? '',
+        'sub' => $_POST["sub"] ?? '',
+        'totalUnits' => $_POST["totalUnits"] ?? '',
+        'gAverage' => $_POST["gAverage"] ?? '',
+        'collegeChoice' => $_POST["collegeChoice"] ?? '',
+        'collegeCourse' => $_POST["collegeCourse"] ?? '',
+        'entranceExam' => $_POST["entranceExam"] ?? '',
+        'ifYes' => $_POST['yesStats'] ?? '',
+        'ifNo' => $_POST['noDate'] ?? '',
+        
     );
 
     //file data

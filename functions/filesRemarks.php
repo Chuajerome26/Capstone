@@ -71,7 +71,7 @@ if(isset($_POST['submit'])){
     var_dump($status);
     $admin->updateFilesRemarks($scholar_id, $status, $arrayNames);
 
-    $scholar_infor = $admin->getApplicantById($scholar_id);
+    $scholar_infor = $admin->getApplicantById($scholar_id); 
     $last_name = $scholar_infor[0]['l_name'];
     $email = $scholar_infor[0]['email'];
     $countCorrect = $admin->getApplicantsFilesCorrect($scholar_id);
@@ -88,7 +88,26 @@ if(isset($_POST['submit'])){
 
         $convertedTime = date("h:i A", strtotime($time_start));
         $convertedTime1 = date("h:i A", strtotime($time_end));
-        $message = "Dear $last_name,\nYour Schedulte for Interview: \nSchedule Date for Interview: $date\nTime Start: $convertedTime\nTime End: $convertedTime1\n";
+        $message = '
+Dear '.$last_name.',
+
+I trust this message finds you well. We wanted to inform you that the evaluation of your scholarship application has been successfully completed.
+
+    NOTE: Date and Time for Initial Interview 
+    Date: '.$date.'
+    Time: '.$convertedTime.' - '.$convertedTime1.'
+
+Our committee thoroughly reviewed your academic achievements, extracurricular activities, and personal statements. We appreciate the time and effort you invested in your application.
+
+Thank you for your interest in the John Poul B. Galen. We wish you the best of luck in the final stages of the selection process.
+
+Best regards,
+
+Executive Director
+Consuelo "CHITO" Madrigal Foundation Inc
+ccmf2015main@gmail.com
+';
+
         $database->sendEmail($email,"Scholarship Application Evaluation - Completed", $message);
     }else{
         $counter = 1;
@@ -102,16 +121,28 @@ if(isset($_POST['submit'])){
             }
         }
 
-        $message = "
-        
-        
-        ".$wrongFiles;
+        $message = '
+Dear '.$last_name.',
+
+Thank you for submitting your application for the Consuelo "CHITO" Madrigal Foundation, Inc. We have begun the evaluation process, and we regret to inform you that there are discrepancies or missing information in your submitted files.
+
+To ensure a fair assessment, we kindly request you to review your application and rectify the issues identified below:
+'.$wrongFiles.'
+
+Please make the necessary corrections and resubmit your updated files by '.$newDate.'. If you encounter any challenges or have questions regarding the requested changes, feel free to contact our scholarship office at 2-8289-8795.
+
+We appreciate your prompt attention to this matter and value your commitment to the scholarship application process.
+
+Best regards,
 
 
+Executive Director
+Consuelo "CHITO" Madrigal Foundation Inc
+ccmf2015main@gmail.com
+        ';
 
-
-        $database->sendEmail($email,"Your Application is Under Review", $message);
+        $database->sendEmail($email,"Scholarship Application - File Evaluation Update", $message);
     }
-     
-    //  header('Location: ../Pages-admin/admin-application.php?status=UpdatedRemarks');
+
+    header('Location: ../Pages-admin/admin-application.php?status=UpdatedRemarks');
 }

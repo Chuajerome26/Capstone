@@ -30,7 +30,7 @@ class Admin
     function insertDateWithCheck($date) {
         while (true) {
             // Prepare the SQL query to count the number of rows for the given date
-            $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) FROM admin_schedule WHERE date = :date");
+            $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) FROM admin_schedule_interview WHERE date = :date");
             $stmt->execute([':date' => $date]);
             $count = $stmt->fetchColumn();
     
@@ -133,9 +133,8 @@ class Admin
         }
     }
     public function getScholars(){
-        $stmt = $this->database->getConnection()->query("SELECT scholar_info.id AS scholar_id, scholar_info.*, scholar_file.* FROM scholar_info 
-                                                        JOIN scholar_file ON scholar_info.id = scholar_file.scholar_id
-                                                        WHERE scholar_info.status = '1'")->fetchAll();
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_info 
+                                                        WHERE status = '1'")->fetchAll();
         return $stmt;
         exit();
     }
@@ -464,13 +463,13 @@ public function setSchedule($scholar_id, $date, $time_start, $time_end, $venue){
 
 }
 public function getSchedule(){
-    $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule")->fetchAll();
+    $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview")->fetchAll();
     return $stmt;
     exit();
 }
 public function getScheduleById($id){
     // prepare the SQL statement using the database property
-    $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_schedule WHERE scholar_id=?");
+    $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_schedule_interview WHERE scholar_id=?");
 
     //if execution fail
    if (!$stmt->execute([$id])) {

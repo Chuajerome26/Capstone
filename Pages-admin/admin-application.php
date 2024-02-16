@@ -237,7 +237,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                     <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
                                 </div>
                                 <div class="card-body">
-                                    
+                                    <div class="table-responsive">
                                     <table id="applicant" class="table table-striped table-hover">
                                         <thead>
                                             <tr>
@@ -298,6 +298,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                         ?>
                                         </tbody>
                                     </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -307,75 +308,33 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-lg-15 mb-4">
+                        <div class="col-lg-6 mb-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Suggested Applicants</h6>
                                 </div>
                                 <div class="card-body">
-                                    
-                                    <table id="applicant" class="table table-striped table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Date Applied</th>
-                                                <th scope="col">Status</th>
-                                                <th scope="col">Details</th>
-                                                <th scope="col">Files</th>
-                                                <th scope="col">Remarks</th>
-                                                
-                                                <th scope="col">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider">
+                                <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
+                                    <div class="row">
                                         <?php
-                                        $applicantsData = $admin->getApplicants();
-                                        $num = 1;
-                                        foreach($applicantsData as $s){
-                                            // $id = $s['id'];
-                                            // $rate = $admin->getScheduleById($id);
-                                            // if($rate){
-                                            //     if($rate['rate'] == 0){
-                                            //         $rate1 = 0;
-                                            //     }else{
-                                            //         $rate1 = $rate['rate']; 
-                                            //     }
-                                            // }else{
-                                            //     $rate1 = 0;
-                                            // }
-                                            // $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], $rate1);
-                                            if($s['status'] == 0){
-                                                $status = "Pending";
-                                            }else{
-                                                $status = "Accepted";
-                                            }
-                                    ?>
-                                            <tr>
-                                                <th scope="col"><?php echo $num; ?></th>
-                                                <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
-                                                <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                                                <td><?php echo $s["date_apply"];?></td>
-                                                <td><?php echo $status;?></td>
-                                                <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button></td>
-                                                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#remarks<?php echo $s["id"];?>">Remarks</button></td>
-                                                <td style="white-space: nowrap;">
-                                                    <form method="post" action="../functions/scholar-accept.php">
-                                                        <input class="btn btn-primary mb-2" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['id']?>">
-                                                    </form>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["id"];?>">Decline</button>
-                                            </td>
-                                            </tr>
-                                            <?php 
-                                        $num++;
-                                            } 
+                                        // Loop to generate 9 cards (3 cards per row, 3 rows)
+                                            
+                                            ?>
+                                            <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
+                                                <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Card Title</h5>
+                                                        <p class="card-text">Some quick example text to build on the card.</p>
+                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php
+                                        
                                         ?>
-                                        </tbody>
-                                    </table>
-                                     
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -458,7 +417,7 @@ foreach($applicantss as $z){
                 </div>
                 <div class="modal-body">
                 <div class="table-responsive">
-                <table id="applicant-modal<?php echo $z["scholar_id"]?>" class="table table-striped table-hover">
+                <table id="applicant-modal-remarks" class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -541,7 +500,7 @@ $appliData1 = $admin->getApplicants();
       </div>
       <div class="modal-body">
         <div class="table-responsive">
-        <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
+        <table id="applicant-modal-details" class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Requirements</th>
@@ -740,7 +699,7 @@ $appliData2 = $admin->getApplicants();
       </div>
       <div class="modal-body">
         <div class="table-responsive">
-        <table id="applicant-modal<?php echo $b["id"]?>" class="table table-striped table-hover">
+        <table id="applicant-modal-files" class="table table-striped table-hover">
             <thead>
                 <tr>
                     <th>Requirements</th>
@@ -750,7 +709,7 @@ $appliData2 = $admin->getApplicants();
                     <th>Remarks</th>
                 </tr> 
             </thead>
-            <form method="post" action="../functions/filesRemarks.php">
+            <form id="formRemarks" method="post" action="../functions/filesRemarks.php">
             <tbody>
                 <?php foreach($appliFiles as $files){ ?>
                 <tr>
@@ -779,7 +738,7 @@ $appliData2 = $admin->getApplicants();
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <input type="hidden" name="scholar_id" value="<?php echo $b['id'] ?>">
-        <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+        <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
         </form>
       </div>
     </div>
@@ -880,6 +839,27 @@ $appliData2 = $admin->getApplicants();
 
         $('#applicant').parent().parent().css('overflow', 'auto');
         $('#applicant').parent().parent().css('max-height', '500px');
+    });
+
+    $(document).ready(function() {
+        $('#applicant1').DataTable();
+
+        $('#applicant1').parent().parent().css('overflow', 'auto');
+        $('#applicant1').parent().parent().css('max-height', '500px');
+    });
+
+    $(document).ready(function() {
+        $('#applicant-modal-remarks').DataTable();
+
+        $('#applicant-modal-remarks').parent().parent().css('overflow', 'auto');
+        $('#applicant-modal-remarks').parent().parent().css('max-height', '500px');
+    });
+    
+    $(document).ready(function() {
+        $('#applicant-modal-details').DataTable();
+
+        $('#applicant-modal-details').parent().parent().css('overflow', 'auto');
+        $('#applicant-modal-details').parent().parent().css('max-height', '500px');
     });
 
     function modal(id){

@@ -15,20 +15,53 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     $date = date('Y-m-d');
     $admin_info = $admin->scholarInfo($id);
     $renewalDates = $scholar->getRenewalDates();
-    $scholars = $admin->getScholarAndRenewalFiles();
-  
+    $scholars = $admin->getScholars();
+
     $start = $renewalDates['renewal_date_start'];
     $end = $renewalDates['renewal_date_end'];
 
+    $dateFormat = date('M d, Y', strtotime($renewalDates['renewal_date_start']));
+    $dateFormat1 = date('M d, Y', strtotime($renewalDates['renewal_date_end']));
+
+    $messageStart = '
+Dear Scholars,
+
+Don\'t forget to renew your scholar program for the upcoming Semester. Kindly review and update attached documents by '.$dateFormat.'. Reach out for assistance at Consuelo "CHITO" Madrigal Foundation Inc.
+    
+We value your commitment to academic achievement and look forward to another year of fostering your growth and success.
+    
+Best regards,
+    
+Executive Director
+Consuelo "CHITO" Madrigal Foundation Inc
+ccmf2015main@gmail.com';
+
+    $messageEnd = '
+Dear Scholars,
+
+We hope this message finds you well. As we approach the end of the scholarship renewal period, we want to remind you to submit your Registration Form to ensure a smooth renewal process.
+
+The deadline for renewal submissions is '.$dateFormat1.'. Please take a moment to review your renewal requirements and provide any necessary documentation. Failure to complete the renewal process by the deadline may result in the discontinuation of your scholarship.
+
+If you have any questions or concerns, please don\'t hesitate to contact our scholarship office at Consuelo "CHITO" Madrigal Foundation Inc.
+
+Thank you for your attention to this matter, and we appreciate your continued commitment to your academic pursuits.
+
+Best regards,
+
+Executive Director
+Consuelo "CHITO" Madrigal Foundation Inc
+ccmf2015main@gmail.com';
+
     if($start == $date){
         foreach($scholars as $data){
-            $database->sendEmail($data['email'], "Renewal Na tangina ka","Renewal na po Mag renew kanang hinayupak ka");
-            $admin->updateNotif1($data['scholar_id']);
+            $database->sendEmail($data['email'], "Scholar Program Renewal", $messageStart);
+            $admin->updateNotif1($data['id']);
         }
     }elseif($end == $date){
         foreach($scholars as $data){
-            $database->sendEmail($data['email'], "Tapos Na tangina ka","Tapos na po");
-            $admin->updateNotif0($data['scholar_id']);
+            $database->sendEmail($data['email'], "Scholarship Renewal Period Closing", $messageEnd);
+            $admin->updateNotif0($data['id']);
         }
     }
 

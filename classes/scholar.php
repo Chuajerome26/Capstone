@@ -252,7 +252,7 @@ class Scholar{
 
         $arrayNames = array('ApplicationForm', 'IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
                     'BirthCertificate', 'Indigency', 'RecommendationLetter', 'GoodMoral', 'SchoolDiploma', 'Form137/138', 'AcceptanceLetter'
-                , 'EnrollmentForm', 'FamilyPicture', 'SketchofHouse Area');
+                , 'EnrollmentForm', 'FamilyPicture', 'SketchofHouseArea');
 
                 for ($i = 0; $i < count($scholarFiles); $i++) {
                     $fileName = $scholarFiles[$i];
@@ -263,6 +263,37 @@ class Scholar{
 
                     $stmt123->execute([$scholarId, $name, $fileName]);
                 }
+
+                // Loop through each set of additional scholar data and insert into the database
+                for ($i = 0; $i < count($scholarData['sName']); $i++) {
+                    // Prepare an SQL statement
+                    $stmt3 = $this->database->getConnection()->prepare("INSERT INTO scholar_siblings (scholar_id, name, age, occupation, civil_status, religion, educational_attained) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+                    // Bind parameters and execute the statement
+                    $stmt3->execute([$scholarId ,$scholarData['sName'][$i], $scholarData['sAge'][$i], $scholarData['sOccupation'][$i], $scholarData['sCstatus'][$i], $scholarData['sReligion'][$i], $scholarData['sEattained'][$i]]);
+                }
+
+                for ($i = 0; $i < count($scholarData['sub']); $i++) {
+                    // Prepare an SQL statement
+                    $stmt4 = $this->database->getConnection()->prepare("INSERT INTO scholar_grade (scholar_id, subject, unit, grade) VALUES (?, ?, ?, ?)");
+
+                    // Bind parameters and execute the statement
+                    $stmt4->execute([$scholarId ,$scholarData['sub'][$i], $scholarData['totalUnits'][$i], $scholarData['gAverage'][$i]]);
+                }
+
+                for ($i = 0; $i < count($scholarData['collegeChoice']); $i++) {
+                    // Prepare an SQL statement
+                    $stmt5 = $this->database->getConnection()->prepare("INSERT INTO scholar_college_choices (scholar_id, univ, course, entrance_exam, exam_taken) VALUES (?,?,?,?,?)");
+
+                    if($scholarData['entranceExam'][$i] == 'yes'){
+                        $exam_taken = $scholarData['ifYes'][$i];
+                    }else{
+                        $exam_taken = $scholarData['ifNo'][$i];
+                    }
+                    // Bind parameters and execute the statement
+                    $stmt5->execute([$scholarId ,$scholarData['collegeChoice'][$i], $scholarData['collegeCourse'][$i], $scholarData['entranceExam'][$i], $exam_taken]);
+                }
+
 
         // prepare insert statement for employee_details table
         // $sql2 = "INSERT INTO scholar_files (scholar_id, id_pic, copy_grades, psa, good_moral, e_Form) 
@@ -292,7 +323,7 @@ class Scholar{
         // $this->database->sendEmail($scholarData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
 
         //if sucess uploading file, go to this 👇 page
-        header("Location: ../index.php?scholar=success"); 
+        header("Location: ../index.php?error=success"); 
         exit();
 
     }
@@ -331,7 +362,7 @@ class Scholar{
             
         }
         //send email employee his/her id and password
-    $emailSubject = "Congratulations! Your Scholar Application has been Submit";
+    $emailSubject = "Your Scholar Application has been Submit";
     $emailBody = "Dear Applicant,\n\n"
     . "Username: " . $scholarUser . "\n"
     . "Password: " . $scholarPass . "\n\n"

@@ -209,7 +209,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Mother Name:</label>
-                    <input type="text" name="motherName" class="form-control form-control-sm" placeholder="Father Name">
+                    <input type="text" name="motherName" class="form-control form-control-sm" placeholder="Mother Name">
                 </div>
              
 
@@ -309,7 +309,7 @@
 
                         <div class="col-md-3 mb-3">
                         <label class="form-label">Educational Attainment:</label>
-                        <input type="text" name="sEattained" class="form-control form-control-sm" placeholder="Educational Attainment">
+                        <input type="text" name="sEattained[]" class="form-control form-control-sm" placeholder="Educational Attainment">
                         </div>
                         
                         <hr class="border border-2" style="color: black;">
@@ -610,12 +610,12 @@
                     <div class="row">
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Application Form</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="appForm" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="appForm" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">2x2 ID photo</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="idPhoto" accept="image/jpeg,image/jpg,image/png">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="idPhoto" accept="image/jpeg,image/jpg,image/png" required>
                     </div>
 
                     <!-- <div class="col-md-4 mb-3">
@@ -625,67 +625,67 @@
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Family Profile</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="famProf" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="famProf" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Letter of Intent</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="letterIntent" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="letterIntent" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Written Parent Consent</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="parentConsent" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="parentConsent" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Latest Copy of Grades</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="copyGrades" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="copyGrades" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy of Birth Certificate</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="copyBirthCert" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="copyBirthCert" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Certificate of Indigency</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="certIndigency" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="certIndigency" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Recommendation Letter from Adviser/Principal</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="recommendationLetter" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="recommendationLetter" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Certificate of Good Moral</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="goodMoral" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="goodMoral" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy of High School Diploma</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="copyhsDiploma" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="copyhsDiploma" accept="application/pdf" required> 
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy of Form 137/138</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="form137" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="form137" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy of College/University Acceptance Letter</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="acceptanceLetter" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="acceptanceLetter" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy ofEnrollment Form</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="eForm" accept="application/pdf">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="eForm" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-6 mb-3">
                     <label for="formFile" class="form-label">Family Picture</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="famPic" accept="image/jpeg,image/jpg,image/png">
+                    <input class="form-control form-control-sm border-bottom" type="file" name="famPic" accept="image/jpeg,image/jpg,image/png" required>
                     </div>
 
                     <div class="col-md-6 mb-3">

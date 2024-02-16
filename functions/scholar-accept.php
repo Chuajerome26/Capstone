@@ -26,18 +26,23 @@ if(isset($_POST["accept"])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
     
-    $acceptanceMessage = "Dear " . $user['f_name'] . " " . $user['l_name'] . ",<br><br>"
-    . "We are delighted to inform you that your application has been accepted by our organization. Congratulations!<br><br>"
-    . "We look forward to having you as a part of our foundation and working together towards our shared goals.<br><br>"
-    . "If you have any questions or need further information, please do not hesitate to contact us.<br><br>"
-    . "Best Regards,<br>"
-    . "Socorro L. Bautista<br>"
-    . "Executive Director<br>"
-    . "Consuelo Chito Madrigal Foundation<br>"
-    . "Incorporation";
+    $acceptanceMessage = '
+Dear '.$user['l_name'].',
+
+We are delighted to inform you that your application for the Consuelo "CHITO" Madrigal Foundation, Inc. has been successful. Your academic achievements, aspirations, and dedication stood out among the applicants, making you a deserving recipient.
+    
+Details regarding the disbursement of funds and any additional requirements will be communicated to you shortly. If you have any questions or need further assistance, please do not hesitate to reach out to us at 2-8289-8795.
+    
+Once again, congratulations on this well-deserved achievement. We look forward to witnessing your continued success.
+    
+Best regards,
+    
+Executive Director
+Consuelo "CHITO" Madrigal Foundation, Inc.
+ccmf2015main@gmail.com';
 
 
-    $sentEmail = $database->sendEmail($email,"Your Scholarship Application Has been Accepted!", $acceptanceMessage);
+    $sentEmail = $database->sendEmail($email,"Congratulations! Scholarship Acceptance", $acceptanceMessage);
     header('Location: ../Pages-admin/admin-application.php?status=success');
 
 }
