@@ -16,6 +16,21 @@
 
                 <dt class="col-sm-4">Last Name:</dt>
                 <dd class="col-sm-8"><?php echo $a["l_name"];?></dd>
+
+                <dt class="col-sm-4">Suffix:</dt>
+                <dd class="col-sm-8"><?php echo $a["suffix"];?></dd>
+
+                <dt class="col-sm-4">Gender:</dt>
+                <dd class="col-sm-8"><?php echo $a["gender"];?></dd>
+
+                <dt class="col-sm-4">Age:</dt>
+                <dd class="col-sm-8"><?php echo $a["age"];?></dd>
+
+                <dt class="col-sm-4">Date of Birth:</dt>
+                <dd class="col-sm-8"><?php echo $a["date_of_birth"];?></dd>
+
+                <dt class="col-sm-4">Address:</dt>
+                <dd class="col-sm-8"><?php echo $a["address"];?></dd>
             </dl>
         </div>
 
@@ -23,42 +38,30 @@
             <h4>Contact Information</h4>
             <dl class="row">
                 <dt class="col-sm-4">Mobile Number:</dt>
-                <dd class="col-sm-8"><?php echo $a["mobile_num"];?></dd>
+                <dd class="col-sm-8"><?php echo $a["mobile_number"];?></dd>
 
                 <dt class="col-sm-4">Email Address:</dt>
                 <dd class="col-sm-8"><?php echo $a["email"];?></dd>
+
+                <dt class="col-sm-4">Facebook Link:</dt>
+                <dd class="col-sm-8"><?php echo $a["fb_link"];?></dd>
             </dl>
         </div>
     </div>
-
-    <h4>Educational Information</h4>
+    
+    <h4>Academic Information</h4>
     <dl class="row">
-        <dt class="col-sm-4">Total Subjects:</dt>
-        <dd class="col-sm-8"><?php echo $a["total_sub"];?></dd>
+        <dt class="col-sm-4">Elementary School:</dt>
+        <dd class="col-sm-8"><?php echo $a["e_school"];?></dd>
 
-        <dt class="col-sm-4">Total Units:</dt>
-        <dd class="col-sm-8"><?php echo $a["total_units"];?></dd>
+        <dt class="col-sm-4">Junior High School:</dt>
+        <dd class="col-sm-8"><?php echo $a["jh_school"];?></dd>
 
-        <dt class="col-sm-4">General Weighted Average:</dt>
-        <dd class="col-sm-8"><?php echo $a["gwa"];?></dd>
-    </dl>
+        <dt class="col-sm-4">Senior High School:</dt>
+        <dd class="col-sm-8"><?php echo $a["sh_school"];?></dd>
 
-    <h4>Document Uploads</h4>
-    <dl class="row">
-        <dt class="col-sm-4">ID Photo:</dt>
-        <dd class="col-sm-8"><a href="../Uploads_pic/<?php echo $a["id_pic"]?>" target="_blank"><?php echo $a["id_pic"]?></a></dd>
-
-        <dt class="col-sm-4">Copy of Grades:</dt>
-        <dd class="col-sm-8"><a href="../Uploads_cog/<?php echo $a["copy_grades"]?>" target="_blank"><?php echo $a["copy_grades"]?></a></dd>
-
-        <dt class="col-sm-4">Copy of Birth Certificate/PSA:</dt>
-        <dd class="col-sm-8"><a href="../Uploads_psa/<?php echo $a["psa"]?>" target="_blank"><?php echo $a["psa"]?></a></dd>
-
-        <dt class="col-sm-4">Certificate of Good Moral:</dt>
-        <dd class="col-sm-8"><a href="../Uploads_gm/<?php echo $a["good_moral"]?>" target="_blank"><?php echo $a["good_moral"]?></a></dd>
-        
-        <dt class="col-sm-4">Copy of Enrollment Form:</dt>
-        <dd class="col-sm-8"><a href="../Uploads_ef/<?php echo $a["e_Form"]?>" target="_blank"><?php echo $a["e_Form"]?></a></dd>
+        <dt class="col-sm-4">College:</dt>
+        <dd class="col-sm-8"><?php echo $a["c_school"];?></dd>
     </dl>
 </div>
 

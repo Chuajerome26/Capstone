@@ -286,34 +286,24 @@ class Admin
     }
 }
 
-public function editApplicants($id, $f_name, $l_name, $mobile_num, $email, $total_sub, $total_units, $gwa) {
-    // Update personal information in scholars_info table
-    $stmt = $this->database->getConnection()->prepare("UPDATE scholars_info SET f_name = ?, l_name = ?, mobile_num = ?, email = ?, total_sub = ?, total_units = ?, gwa = ? WHERE id = ?");
-    $stmt->execute([$f_name, $l_name, $mobile_num, $email, $total_sub, $total_units, $gwa, $id]);
+public function updateScholarFiles($id) {
+    foreach ($_FILES as $columnName => $file) {
+        // Check if a new file is uploaded
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = "../Scholar_files/";
+            $newFileName = $id . " - " . basename($file['name']);
+            $uploadFilePath = $uploadDir . $newFileName;
 
-    // Handle document uploads in scholar_files table
-    $this->handleDocumentUpload($id, 'pic', 'id_pic', 'scholar_files');
-    $this->handleDocumentUpload($id, 'cog', 'copy_grades','scholar_files');
-    $this->handleDocumentUpload($id, 'psa', 'psa','scholar_files');
-    $this->handleDocumentUpload($id, 'gm', 'good_moral','scholar_files');
-    $this->handleDocumentUpload($id, 'e_f', 'e_Form','scholar_files');
-}
+            // Move the uploaded file to the destination
+            move_uploaded_file($file['tmp_name'], $uploadFilePath);
 
-private function handleDocumentUpload($id, $folder, $columnName, $tableName) {
-    // Check if a new file is uploaded
-    if (isset($_FILES[$columnName]) && $_FILES[$columnName]['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = "../Uploads_{$folder}/";
-        $newFileName = $id ." - " . basename($_FILES[$columnName]['name']);
-        $uploadFilePath = $uploadDir . $newFileName;
-
-        // Move the uploaded file to the destination
-        move_uploaded_file($_FILES[$columnName]['tmp_name'], $uploadFilePath);
-
-        // Update the database with the new file name
-        $stmt = $this->database->getConnection()->prepare("UPDATE $tableName SET $columnName = ? WHERE scholar_id = ?");
-        $stmt->execute([$newFileName, $id]);
+            // Update the database with the new file name
+            $stmt = $this->database->getConnection()->prepare("UPDATE scholar_file SET file_name = ? WHERE scholar_id = ? AND requirement_name = ?");
+            $stmt->execute([$newFileName, $id, $columnName]);
+        }
     }
 }
+
 
 public function acceptScholar($id){
         // prepared statement

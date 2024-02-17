@@ -309,7 +309,7 @@ if (isset($_SESSION['id'])) {
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-5" style="font-size: 22px;">
-                                            Edit Details</div>
+                                        Edit Uploaded Documents</div>
                                             <div>
                                                 </div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
@@ -329,7 +329,7 @@ if (isset($_SESSION['id'])) {
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="editDetailsModalLabel">Edit Details</h5>
+                                    <h5 class="modal-title" id="editDetailsModalLabel">Edit Uploaded Documents</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -340,7 +340,6 @@ if (isset($_SESSION['id'])) {
                             </div>
                         </div>
                     </div>
-                </div>
 
                       <!-- View Remarrks-->
                       <div class="col-xl-3 col-md- mb-8">
