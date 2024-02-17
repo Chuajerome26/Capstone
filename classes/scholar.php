@@ -133,7 +133,19 @@ class Scholar{
             if (move_uploaded_file($filesAndPicture['fileTmpName'],$fileDestination) &&
                 move_uploaded_file($filesAndPicture['fileTmpName1'],$fileDestination1) &&
                 move_uploaded_file($filesAndPicture['fileTmpName3'],$fileDestination3) &&
-                move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4))  {
+                move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4) &&
+                move_uploaded_file($filesAndPicture['fileTmpName5'],$fileDestination5) &&
+                move_uploaded_file($filesAndPicture['fileTmpName6'],$fileDestination6) &&
+                move_uploaded_file($filesAndPicture['fileTmpName7'],$fileDestination7) &&
+                move_uploaded_file($filesAndPicture['fileTmpName8'],$fileDestination8) &&
+                move_uploaded_file($filesAndPicture['fileTmpName9'],$fileDestination9) && 
+                move_uploaded_file($filesAndPicture['fileTmpName10'],$fileDestination10) &&
+                move_uploaded_file($filesAndPicture['fileTmpName11'],$fileDestination11) &&
+                move_uploaded_file($filesAndPicture['fileTmpName12'],$fileDestination12) && 
+                move_uploaded_file($filesAndPicture['fileTmpName13'],$fileDestination13) &&
+                move_uploaded_file($filesAndPicture['fileTmpName14'],$fileDestination14) &&
+                move_uploaded_file($filesAndPicture['fileTmpName15'],$fileDestination15) && 
+                move_uploaded_file($filesAndPicture['fileTmpName16'],$fileDestination16))  {
 
                 $this->registerEmployee($scholarData, $arrayFiles);
         

@@ -26,13 +26,13 @@ require '../classes/database.php';
     $email = $scholarInfo[0]['email'];
 
     if(!$adminData){
-          header("Location:../index.php?error=errorEmail");
+          header("Location:../index.php?scholar=errorEmail");
         exit();
     }
     $hashed_input_password = password_hash($pass, PASSWORD_DEFAULT);
     if(!password_verify($pass, $adminPass)){
         // if not, create variable error 
-          header("Location:../index.php?error=errorPassword");
+          header("Location:../index.php?scholar=errorPassword");
         exit();
     }
 

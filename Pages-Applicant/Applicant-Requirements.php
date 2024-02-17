@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     require '../classes/admin.php';
     require '../classes/database.php';
 

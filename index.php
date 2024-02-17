@@ -53,7 +53,7 @@
                         <div class="toolbar-social">
                             <ul>
                                 <li><span class="title"><p class="h6">Follow Us On : </p></span></li>
-                                <li><a href="https://www.facebook.com/CCMFI"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <li><a href="https://www.facebook.com/CCMFI" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
                                 </svg></a></li>
                                
@@ -440,8 +440,6 @@
                             <p class="wow fadeInUp" data-wow-delay=".6s">The Consuelo "Chito" Madrigal Foundation Inc. (CCMFI) was established in the Philippines in 1997 by Consuelo "Chito" Madrigal Collantes, a prominent philanthropist and social activist. The foundation was created to address various social issues such as education, healthcare, community development, and environmental conservation. Over the years, CCMFI has implemented numerous programs and projects aimed at improving the lives of marginalized communities across the country. These initiatives often focus on empowering women and children, promoting sustainable livelihoods, and supporting education and healthcare infrastructure in underserved areas. Through its holistic approach to development, CCMFI has made significant contributions to the welfare of Filipino communities, earning recognition for its impactful work in the field of social development.</p>
                             <p class="qote wow fadeInUp" data-wow-delay=".8s"></p>
                             <div class="button wow fadeInUp" data-wow-delay="1s">
-                               
-                                
                             </div>
                         </div>
                     </div>
@@ -538,10 +536,6 @@
         </div>
     </section>
     <!-- End Achivement Area -->
-
-   
-             
-    
     <!-- Start Clients Area -->
     
     <!-- Start Footer Area -->
@@ -572,25 +566,20 @@
                         </div>
                         <!-- End Single Widget -->
                     </div>
-                   
-                             
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <!-- Single Widget -->
-                                    <div class="single-footer sm-custom-border recent-blog">
-                                      
-                                         <p class="fw-bold fs-5">CONTACT INFORMATION</p>
-                                        <ul>
-                                            <li>
-                                                <p style="font-size: 17px"><b>Phone:</b>+63-2-848-0981</p>
-                                                <br>
-                                                <p style="font-size: 17px"><b>Email:</b>ccmf2015main@gmail.com</p>
-                                                <br>
-                                                <p style="font-size: 17px"><b>Open Hours:</b>Mon - Fri : 9am - 5pm</p>
-                                            </li>
-                                        
-                                          
-                                        </ul>
-                                    </div>
+                            <div class="col-lg-3 col-md-6 col-12">
+                                <!-- Single Widget -->
+                                <div class="single-footer sm-custom-border recent-blog">
+                                        <p class="fw-bold fs-5">CONTACT INFORMATION</p>
+                                    <ul>
+                                        <li>
+                                            <p style="font-size: 17px"><b>Phone:</b>+63-2-848-0981</p>
+                                            <br>
+                                            <p style="font-size: 17px"><b>Email:</b>ccmf2015main@gmail.com</p>
+                                            <br>
+                                            <p style="font-size: 17px"><b>Open Hours:</b>Mon - Fri : 9am - 5pm</p>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -654,7 +643,6 @@
         </div>
     </div>
 </div>
-         
 <script>
     $(document).ready(function() {
         $("#showPasswordCheckbox").on('change', function() {
@@ -748,7 +736,7 @@
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const successValue = urlParams.get('error');
+    const successValue = urlParams.get('scholar');
     console.log(successValue);
 
     if(successValue === "errorEmail"){

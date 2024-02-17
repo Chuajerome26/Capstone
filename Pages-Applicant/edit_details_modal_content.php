@@ -12,7 +12,7 @@
             <?php if (!empty($a['file_name'])) { ?>
                 <a href="../Scholar_files/<?= $a['file_name'] ?>" target="_blank"><?= $a['file_name'] ?></a>
             <?php } ?>
-            <input class="form-control" type="file" id="<?= $a['requirement_name'] ?>" name="<?= $a['requirement_name'] ?>">
+            <input class="form-control" type="file" id="<?= $a['requirement_name'] ?>" name="<?= $a['requirement_name'] ?>" accept=".pdf">
         </div>
     <?php } ?>
         <input type="hidden" class="text" name="id" value="<?php echo $a['scholar_id'];?>">
