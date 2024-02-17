@@ -58,7 +58,8 @@ if (isset($_POST['submit'])) {
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Custom styles for this template-->
     <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 
 <body id="page-top">
@@ -73,9 +74,8 @@ if (isset($_POST['submit'])) {
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="scholardash.php">
             <div class="sidebar-brand-icon rotate-n-15">
             </div>
-                
 
-<div class="sidebar-brand-text mx-3" style="font-size: 28px; text-shadow: 4px 4px 4px #000;"> CCMFI</div>
+            <div class="sidebar-brand-text mx-3" style="font-size: 28px; text-shadow: 4px 4px 4px #000;"> CCMFI</div>
             </a>
 
             <!-- Divider -->
@@ -394,7 +394,7 @@ if (isset($_POST['submit'])) {
 </div>
 </div>
 </div>
-                    <div class="col-xl-4 col-lg-7">
+                    <div class="col-xl-5 col-lg-7">
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -591,7 +591,6 @@ if (isset($_POST['submit'])) {
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
