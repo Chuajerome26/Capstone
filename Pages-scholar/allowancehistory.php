@@ -307,62 +307,60 @@
                     </div> -->
 
                     <!-- Content Row -->
-                    <div class="row">
-                        
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h4 class="m-0 font-weight-bold text-primary">Allowance Records</h4>
-                            </div>
-                            <div class="card-body">
+                    <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-7">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h4 class="m-0 font-weight-bold text-primary">Allowance Records</h4>
+        </div>
+        <div class="card-body">
+          <style>
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 20px;
+            }
 
-                        <style>
-                            table {
-                              width: 100%;
-                              border-collapse: collapse;
-                              margin-top: 20px;
-                            }
-                        
-                            table, th, td {
-                              border: 1px solid black;
-                            }
-                        
-                            th, td {
-                              padding: 10px;
-                              text-align: center;
-                            }
-                            
-                            
-                        
-                            th {
-                              background-color: #f2f2f2;
-                            }
+            table,
+            th,
+            td {
+              border: 1px solid black;
+            }
 
-                            
-                          </style>
-                        </head>
-                        <body>
-                        
-                         
-                        
-                          <table>
-                            <thead>
-                              <tr>
-                                <th>Date</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>2023-01-01</td>
-                                <td>2, 000.00</td>
-                                <td>Received</td>   
-                            </tr>
-                              </tr>
-                              <!-- Add more rows as needed -->
-                            </tbody>
+            th,
+            td {
+              padding: 10px;
+              text-align: center;
+            }
+
+            th {
+              background-color: #f2f2f2;
+            }
+          </style>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2023-01-01</td>
+                <td>2, 000.00</td>
+                <td>Received</td>
+              </tr>
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- Script for handling file upload -->
   <script>
    document.getElementById('fileInput').addEventListener('change', handleFileSelect);
