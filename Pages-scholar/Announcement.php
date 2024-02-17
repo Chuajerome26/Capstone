@@ -187,35 +187,52 @@ if (isset($_SESSION['id'])) {
                     <!-- Content Row -->
                     
                     <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <div class="card shadow mb-4" style="width:80%; margin: 0 auto;">
-        <!-- Card Header - Dropdown -->
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="margin-bottom: 5%;" >
-          <h4 class="m-0 font-weight-bold text-primary">Announcement</h4>
-        </div>
-        <div class="card-body" style="text-align: left;">
-          <?php
-            $announcements = $admin->getAnnouncements();
-            foreach($announcements as $a): 
-          ?>
-          <div class="card" style="margin-bottom: 2.5%;">
-            <div class="card-header d-flex align-items-center">
-              <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
-              <div class="flex-grow-1 ml-2">Admin's Name here
-                <small><p>Date: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
-              </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow mb-4" style="width:80%; margin: 0 auto;">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="margin-bottom: 1%;">
+                    <h4 class="m-0 font-weight-bold text-primary">Announcement</h4>
+                    
+                </div>
+                <div class="card-body" style="text-align: left;">
+
+                <form class="d-flex ml-auto mr-md-3 my-2 my-md-0" method="get" action="">
+                        <input type="text" class="form-control" name="search" placeholder="Search announcements..." style="margin-right: 10px; width: 30%;">
+                        <button class="btn btn-primary" type="submit" style="margin-bottom: 10px;">Search</button>
+                    </form>
+                    <!-- Date picker input field -->
+                    <!-- <form class="d-flex ml-auto mr-md-3 my-2 my-md-0" method="get" action="">
+                        <input type="date" class="form-control" name="date" placeholder="Select date..." style="margin-right: 10px;  width: 30%;">
+                        <button class="btn btn-primary" type="submit" style="margin-bottom: 10px;">Filter</button>
+                    </form> -->
+                    <?php
+                    $search = isset($_GET['search']) ? $_GET['search'] : '';
+                    $date = isset($_GET['date']) ? $_GET['date'] : '';
+                    $announcements = $admin->getAnnouncements($search, $date);
+                    foreach ($announcements as $a): ?>
+                        <div class="card" style="margin-bottom: 2.5%;">
+                            <div class="card-header d-flex align-items-center">
+                                <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
+                                <div class="flex-grow-1 ml-2">Admin's Name here
+                                    <small><p>Date Post on: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <?= $a['announcement'] ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
             </div>
-            <div class="card-body">
-              <?= $a['announcement'] ?>
-            </div>
-          </div>
-          <?php endforeach; ?>
         </div>
-      </div>
     </div>
-  </div>
 </div>
+
+
+
+  
+                           
   
   <script>
   const dateTime = document.querySelectorAll( 'time');
