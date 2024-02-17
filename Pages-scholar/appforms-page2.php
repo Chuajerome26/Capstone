@@ -217,7 +217,7 @@
   <div class="column" style="font-weight: bold; border: 1px solid black;">        
         <form action="/download" method="POST" enctype="multipart/form-data">
         <label for="words">Type College/University:</label>
-        <input type="text" name="degree" id="degree" style="display: block; height: 80%; width: 100%; margin-bottom: 10px;">
+        <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
     </div>
         <div class="column" style="font-weight: bold; border: 1px solid black;">        
         <form action="/download" method="POST" enctype="multipart/form-data">

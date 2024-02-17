@@ -194,37 +194,37 @@ if (isset($_SESSION['id'])) {
                     </div> -->
 
                     <!-- Content Row -->
-                    <div class="row">
-                        
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h4 class="m-0 font-weight-bold text-primary">Announcement</h4>
-                            </div>
-                            <div class="card-body">
-                            <?php 
-                            $announcements = $admin->getAnnouncements();
-                            foreach($announcements as $a): 
-                            ?>
-                            <div class="card">
-                                <div class="card-header d-flex align-items-center">
-                                    <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
-                                    <div class="flex-grow-1 ml-2">Admin's Name here
-                                    <div>
-                                    <small>Last updated on <time datetime="2023-03-21T15:30:00"></time></small>
-                                </div>
-                                    </div>
-                                    </div>
-
-                                <div class="card-body">
-                                <blockquote class="blockquote mb-0;">
-                                <p><?= $a['announcement'] ?></p>
-                                <p>Date: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p>
-                                </blockquote>
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
+                    
+                    <div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow mb-4" style="width:80%; margin: 0 auto;">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="margin-bottom: 5%;" >
+          <h4 class="m-0 font-weight-bold text-primary">Announcement</h4>
+        </div>
+        <div class="card-body" style="text-align: left;">
+          <?php
+            $announcements = $admin->getAnnouncements();
+            foreach($announcements as $a): 
+          ?>
+          <div class="card" style="margin-bottom: 2.5%;">
+            <div class="card-header d-flex align-items-center">
+              <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
+              <div class="flex-grow-1 ml-2">Admin's Name here
+                <small><p>Date: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
+              </div>
+            </div>
+            <div class="card-body">
+              <?= $a['announcement'] ?>
+            </div>
+          </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   
   <script>
   const dateTime = document.querySelectorAll( 'time');
