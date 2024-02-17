@@ -1,21 +1,35 @@
 <?php 
 // start session
-// session_start();
+session_start();
 
-// if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
-//     require '../classes/admin.php';
-//     require '../classes/database.php';
+if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
+    require '../classes/admin.php';
+    require '../classes/database.php';
 
-//     $database = new Database();
-//     $admin = new Admin($database);
+    $database = new Database();
+    $admin = new Admin($database);
 
-//     $id = $_SESSION['id'];
+    // Check if the Post button is clicked and announcement is not empty
+    if (isset($_POST['post']) && !empty($_POST['announcement'])) {
+        $announcement = $_POST['announcement'];
 
-//     $admin_info = $admin->scholarInfo($id);
+        // Insert the announcement
+        $result = $admin->postAnnouncement($announcement);
 
-// } else {
-//     header("Location: ../index.php");
-// }
+        // Check if the announcement was successfully posted
+        if ($result) {
+            echo "Announcement posted successfully!";
+            // Optionally redirect or refresh the page
+        } else {
+            echo "Failed to post announcement.";
+        }
+    }
+
+    $announcements = $admin->getAnnouncements();
+
+} else {
+    header("Location: ../index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -226,24 +240,46 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Post Announcement</h6>
                                 </div>
                                 <div class="card-body">
-                                    
-    
                                 <div class="card">
-      <div class="card-header d-flex align-items-center">
-        <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
-        <div class="flex-grow-1 ml-2">Admin's Name here
-        
-        </div>
-        
-        </div>
-                    <div class="card-body">
-                    <div class="input-group mb-3">
-  <input type="textarea" class="form-control" placeholder="Announce something here..." aria-label="Comment" aria-describedby="button-addon2">
-  <button class="btn btn-primary" type="button" id="button-addon2">Post</button>
-</div>
+                                <div class="card-header d-flex align-items-center">
+                                    <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
+                                    <div class="flex-grow-1 ml-2">Admin's Name here 
+                                </div> 
+                                </div>
+
+                            <div class="card-body">
+                            <div class="input-group mb-3">
+                                <form action="" method="post">
+                                    <input type="textarea" name="announcement" class="form-control" placeholder="Announce something here..." aria-label="Comment" aria-describedby="button-addon2">
+                                    <button type="submit" class="btn btn-primary" name="post">Post</button>
+                                </form>
+                            </div>
+                        </div>
                  </div>
             </div>
-      
+            
+            <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
+                </div>
+                <div class="card-body">
+                    <?php foreach($announcements as $a): ?>
+                        <div class="card mb-3">
+                            <div class="card-header d-flex align-items-center">
+                                <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
+                                <div class="flex-grow-1 ml-2">Admin's Name here</div> 
+                            </div>
+                            <div class="card-body">
+                                <p><?= $a['announcement'] ?></p>
+                                <p>Date: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
       <script>
       const dateTime = document.querySelectorAll( 'time');
     

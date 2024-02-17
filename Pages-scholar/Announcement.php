@@ -1,3 +1,18 @@
+<?php 
+// start session
+session_start();
+
+if (isset($_SESSION['id'])) {
+    require '../classes/admin.php';
+    require '../classes/database.php';
+
+    $database = new Database();
+    $admin = new Admin($database);
+
+} else {
+    header("Location: ../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -188,23 +203,28 @@
                                 <h4 class="m-0 font-weight-bold text-primary">Announcement</h4>
                             </div>
                             <div class="card-body">
-
+                            <?php 
+                            $announcements = $admin->getAnnouncements();
+                            foreach($announcements as $a): 
+                            ?>
                             <div class="card">
-  <div class="card-header d-flex align-items-center">
-    <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
-    <div class="flex-grow-1 ml-2">Admin's Name here
-    <div>
-    <small>Last updated on <time datetime="2023-03-21T15:30:00"></time></small>
-  </div>
-    </div>
-    
-    </div>
-                <div class="card-body">
-                <blockquote class="blockquote mb-0;">
-  <p style="font-size: 18px;">Sample Announcement appear here.</p>
-</blockquote>
-             </div>
-        </div>
+                                <div class="card-header d-flex align-items-center">
+                                    <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
+                                    <div class="flex-grow-1 ml-2">Admin's Name here
+                                    <div>
+                                    <small>Last updated on <time datetime="2023-03-21T15:30:00"></time></small>
+                                </div>
+                                    </div>
+                                    </div>
+
+                                <div class="card-body">
+                                <blockquote class="blockquote mb-0;">
+                                <p><?= $a['announcement'] ?></p>
+                                <p>Date: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p>
+                                </blockquote>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
   
   <script>
   const dateTime = document.querySelectorAll( 'time');

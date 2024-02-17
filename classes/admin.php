@@ -518,5 +518,22 @@ public function getScholarAndRenewalFiles(){
                                                     WHERE scholar_info.status = '1'")->fetchAll();
     return $stmt;
 }
+public function getAnnouncements(){
+    $stmt = $this->database->getConnection()->query("SELECT * FROM admin_announcement ORDER BY ann_date DESC, ann_time DESC")->fetchAll();
+    return $stmt;
+}
+public function postAnnouncement($announcement) {
+    $sql = "INSERT INTO admin_announcement (announcement, ann_date, ann_time) VALUES (?, CURDATE(), CURTIME())";
+
+    // prepared statement
+    $stmt = $this->database->getConnection()->prepare($sql);
+
+    // Execute the statement
+    if ($stmt->execute([$announcement])) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 }
