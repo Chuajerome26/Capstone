@@ -24,10 +24,35 @@ class Admin
     }
     function getInitialInterviews(){
         $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview WHERE i_f_interview = 0 AND status = 0")->fetchAll();
-        return $stmt;
-        exit();
+
+        if ($stmt === null || empty($stmt)) {
+            return array(
+                "hasData" => false,
+                "data" => array()
+            );
+        }
+    
+        return array(
+            "hasData" => true,
+            "data" => $stmt
+        );
     }
-    function insertDateWithCheck($date) {
+    function getFinalInterviews(){
+        $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview WHERE i_f_interview = 1 AND status = 0")->fetchAll();
+
+        if ($stmt === null || empty($stmt)) {
+            return array(
+                "hasData" => false,
+                "data" => array()
+            );
+        }
+    
+        return array(
+            "hasData" => true,
+            "data" => $stmt
+        );
+    }
+    public function insertDateWithCheck($date) {
         while (true) {
             // Prepare the SQL query to count the number of rows for the given date
             $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) FROM admin_schedule_interview WHERE date = :date");
@@ -44,7 +69,7 @@ class Admin
             }
         }
     }
-    function selectAndInsertSchedules($scholarData, $start, $end, $excludeStart, $excludeEnd, $appointmentDuration, $maxSchedules, $date) {
+    public function selectAndInsertSchedules($scholarData, $start, $end, $excludeStart, $excludeEnd, $appointmentDuration, $maxSchedules, $date) {
         $startTime = strtotime($start);
         $endTime = strtotime($end);
         $excludeStartTime = strtotime($excludeStart);
@@ -534,6 +559,90 @@ public function postAnnouncement($announcement) {
     } else {
         return false;
     }
+}
+public function gradeInterviewInitial($id, $totalGrade){
+    $stmt = $this->database->getConnection()->prepare("UPDATE admin_schedule_interview SET grade = ?, status = 1 WHERE id =?");
+
+    if ($stmt->execute([$totalGrade, $id])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+public function editFinalInterview($date, $newDate){
+    $stmt = $this->database->getConnection()->prepare("UPDATE admin_schedule_interview SET date = ? WHERE date = ? AND i_f_interview = 1");
+
+    if ($stmt->execute([$newDate, $date])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+public function getInterviewsByDate($date){
+    $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_schedule_interview WHERE date = ?");
+
+    if (!$stmt->execute([$date])) {
+        header("Location: ../Pages-admin/schedule-task.php?error=stmtfail");
+        exit();
+    }
+    //fetch the result
+    $result = $stmt->fetchAll();
+    
+      //if has result return it, else return false
+    if ($result) {
+        return $result;
+    } else {
+        $result = false;
+        return $result;
+    }
+}
+
+public function selectAndInsertSchedulesforFinal($scholarData, $start, $end, $excludeStart, $excludeEnd, $appointmentDuration, $maxSchedules, $date) {
+    $startTime = strtotime($start);
+    $endTime = strtotime($end);
+    $excludeStartTime = strtotime($excludeStart);
+    $excludeEndTime = strtotime($excludeEnd);
+    $formattedDate = $this->insertDateWithCheck($date);
+
+    $insertedSchedules = [];
+
+    while ($startTime < $endTime && count($insertedSchedules) < $maxSchedules) {
+        if ($startTime >= $excludeStartTime && $startTime < $excludeEndTime) {
+            // Skip the excluded time range
+            $startTime = $excludeEndTime;
+        }
+
+        $endTimeSlot = strtotime("+$appointmentDuration minutes", $startTime);
+
+        // Check if the end time of the slot is beyond the end time of the schedule
+        if ($endTimeSlot > $endTime) {
+            break;
+        }
+
+        // Check if the schedule already exists in the database
+        $sql = "SELECT COUNT(*) FROM admin_schedule_interview WHERE date = :date AND time_start = :start AND time_end = :end";
+        $stmt = $this->database->getConnection()->prepare($sql);
+        $stmt->execute([':date' => $formattedDate, ':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
+        $count = $stmt->fetchColumn();
+
+        if($count == 0){
+            // The schedule doesn't exist in the database, insert it
+            $sql = "INSERT INTO admin_schedule_interview (scholar_id, date, i_f_interview, time_start, time_end) VALUES (:id, :date, :type, :start, :end)";
+            $stmt = $this->database->getConnection()->prepare($sql);
+            $stmt->execute([':id' => $scholarData['scholar_id'],':date' => $formattedDate,'type' => $scholarData['type'],':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
+
+            // Add the inserted schedule to the array
+            $insertedSchedules[] = [
+                'date' => $formattedDate,
+                'start' => date('H:i', $startTime),
+                'end' => date('H:i', $endTimeSlot)
+            ];
+        }
+
+        $startTime = $endTimeSlot;
+    }
+
+    return $insertedSchedules;
 }
 
 }

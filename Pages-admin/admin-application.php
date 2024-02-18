@@ -295,7 +295,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-lg-15 mb-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -310,10 +310,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                             ?>
                                             <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
                                                 <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Card Title</h5>
+                                                    <div class="card-body d-flex flex-column align-items-center">
+                                                        <div class="d-flex justify-content-center">
+                                                            <img src="path/to/your/image.jpg" alt="Profile Picture" class="img-thumbnail rounded-circle" width="100" height="100">
+                                                        </div>
+                                                        <h5 class="card-title mt-3">First Name</h5>
                                                         <p class="card-text">Some quick example text to build on the card.</p>
-                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                    </div>
+                                                    <div class="card-footer d-flex justify-content-center">
+                                                        <button type="button" class="btn btn-primary">Go somewhere</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -840,6 +845,7 @@ $appliData2 = $admin->getApplicants();
   </div>
 </div>
 <?php } ?>
+
 <!-- Modal end -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->

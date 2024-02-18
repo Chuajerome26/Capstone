@@ -14,8 +14,20 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     $admin_info = $admin->scholarInfo($id);
 
     $initialInterview = $admin->getInitialInterviews();
+    
+    if($initialInterview["hasData"]){
+        $initialInterview1 = $initialInterview["data"];
+    }else{
+        $initialInterview1 = [];
+    }
 
+    $finalInterview = $admin->getFinalInterviews();
 
+    if($finalInterview["hasData"]){
+        $finalInterview1 = $finalInterview["data"];
+    }else{
+        $finalInterview1 = [];
+    }
 } else {
     header("Location: ../index.php");
 }
@@ -245,8 +257,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                         // Initialize an array to keep track of displayed dates
                                         $displayedDates = [];
 
-                                        // Loop to generate a square for each date
-                                        foreach ($initialInterview as $it) {
+                                    if($initialInterview["hasData"]){
+                                        foreach ($initialInterview1 as $it) {
                                             $date = $it['date'];
                                             $dateTime = new DateTime($date);
                                             $formattedDate = $dateTime->format("F j, Y");
@@ -261,7 +273,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                             <h5 class="card-title"><?php echo $formattedDate; ?></h5>
                                                             <?php
                                                             // Loop to display data entries with the same date within the same card
-                                                            foreach ($initialInterview as $entry) { 
+                                                            foreach ($initialInterview1 as $entry) { 
                                                                 if ($entry['date'] == $date) {
                                                                     $info = $admin->getApplicantById($entry['scholar_id']);
                                                                     ?>
@@ -271,7 +283,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                             }
                                                             ?>
                                                             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $it["id"];?>">View</button>
-                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $it["id"];?>">Edit</button>
+                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editInitialModal<?php echo $it["date"];?>">Edit</button>
 
                                                         </div>
                                                     </div>
@@ -279,7 +291,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <?php
                                             }
                                         }
+                                    }else{
                                         ?>
+                                        <div>
+                                            <h1>No Interview For Now.</h1>
+                                        </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
 
@@ -300,22 +317,49 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                             <div class="card-body">
                                 <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
                                     <div class="row">
-                                        <?php
-                                        // Loop to generate 9 cards (3 cards per row, 3 rows)
-                                            
-                                            ?>
-                                            <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
-                                                <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Card Title</h5>
-                                                        <p class="card-text">Some quick example text to build on the card.</p>
-                                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <?php
+                                        // Initialize an array to keep track of displayed dates
+                                        $displayedDates = [];
+
+                                    if($finalInterview["hasData"]){
+                                        foreach ($finalInterview1 as $final) {
+                                            $date = $final['date'];
+                                            $dateTime = new DateTime($date);
+                                            $formattedDate = $dateTime->format("F j, Y");
+                                            // Check if the date has already been displayed
+                                            if (!in_array($date, $displayedDates)) {
+                                                // Add the date to the list of displayed dates
+                                                $displayedDates[] = $date;
+                                                ?>
+                                                <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
+                                                    <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
+                                                        <div class="card-body">
+                                                            <h5 class="card-title"><?php echo $formattedDate; ?></h5>
+                                                            <?php
+                                                            // Loop to display data entries with the same date within the same card
+                                                            foreach ($finalInterview1 as $final1) { 
+                                                                if ($final1['date'] == $date) {
+                                                                    $info = $admin->getApplicantById($final1['scholar_id']);
+                                                                    ?>
+                                                                    <p class="card-text"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></p>
+                                                                    <?php
+                                                                }
+                                                            }
+                                                            ?>
+                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editFinalModal<?php echo $final["date"];?>">Edit</button>
+
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        <?php
-                                        
+                                                <?php
+                                            }
+                                        }
+                                    }else{
                                         ?>
+                                        <div>
+                                            <h1>No Interview For Now.</h1>
+                                        </div>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -361,7 +405,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     <!-- Modal For View Details -->
     <?php 
         $displayedDatesforModal = [];
-        foreach($initialInterview as $a){
+        foreach($initialInterview1 as $a){
             $date1 = $a['date'];
             if (!in_array($date, $displayedDatesforModal)) {
                 // Add the date to the list of displayed dates
@@ -371,7 +415,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
         <div class="modal-dialog" style="max-width:600px;">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
+                <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -383,7 +427,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                         </tr> 
                     </thead>
                     <tbody>
-                        <?php foreach($initialInterview as $b){
+                        <?php foreach($initialInterview1 as $b){
                                 if($b['date'] == $date1){
                                     $info1 = $admin->getApplicantById($b['scholar_id']);
                                     ?>
@@ -391,7 +435,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                             <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#questionModal<?php echo $b["id"];?>">Start</button>
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $b["id"];?>">Edit</button>
                             </td>
                         </tr>
                         <?php }
@@ -412,16 +455,24 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
     <!-- Modal Start Question -->
     <?php 
-    foreach($initialInterview as $z){
+    foreach($initialInterview1 as $z){
     ?>
     <div class="modal fade" id="questionModal<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $z["id"];?>l" aria-hidden="true">
         <div class="modal-dialog" style="max-width:600px;">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailsModal<?php echo $z["id"];?>">Scholar Details</h5>
+                <h5 class="modal-title" id="detailsModal<?php echo $z["id"];?>">Questioner</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div class="row" style="margin-10px">
+                    <div class="col-12">
+                        <strong>Instructions: </strong>Rate the applicants on every Question 1 to 10.
+                    </div>
+                    <div class="col-12">
+                        <strong>(1 - lowest, 10 - Highest)</strong>
+                    </div>
+                </div>
                 <table id="applicant-modal<?php echo $z["id"]?>" class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -430,32 +481,135 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                         </tr> 
                     </thead>
                     <tbody>
+                        <form method="post" action="../functions/interview-grade.php">
                         <tr>
-                            <td>Sample ?</td>
-                            <td><input class="form-control" type="text" name="q1"></td>
+                            <td>Tell us about yourself</td>
+                            <td><input class="form-control" type="text" name="q1" required></td>
                         </tr>
                         <tr>
-                            <td>Sample ?</td>
-                            <td><input class="form-control" type="text" name="q2"></td>
+                            <td>Tell us about your Greatest Strength</td>
+                            <td><input class="form-control" type="text" name="q2" required></td>
                         </tr>
                         <tr>
-                            <td>Sample ?</td>
-                            <td><input class="form-control" type="text" name="q3"></td>
+                            <td>Why do you deserve this scholarship ?</td>
+                            <td><input class="form-control" type="text" name="q3" required></td>
                         </tr>
                         <tr>
-                            <td>Sample ?</td>
-                            <td><input class="form-control" type="text" name="q4"></td>
+                            <td>Why did you choose this scholarship ?</td>
+                            <td><input class="form-control" type="text" name="q4" required></td>
                         </tr>
                         <tr>
-                            <td>Sample ?</td>
-                            <td><input class="form-control" type="text" name="q5"></td>
+                            <td>Imagine yourself Five years Form now ?</td>
+                            <td><input class="form-control" type="text" name="q5" required></td>
                         </tr>
                     </tbody>
                 </table>    
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <input type="hidden" name="id" value="<?php echo $z['id']; ?>">
+                <input type="hidden" name="scholar_id" value="<?php echo $z['scholar_id']; ?>">
+                <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    <?php }?>
+    <!-- Modal End -->
+    <!-- Modal for Final Interview Edit -->
+    <?php 
+    foreach($finalInterview1 as $fT){
+    ?>
+    <div class="modal fade" id="editFinalModal<?php echo $fT["date"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $fT["date"];?>l" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:600px;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModal<?php echo $fT["id"];?>">Edit </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <h2>Interview Form</h2>
+                    <form method="post" action="../functions/editFinalInterview.php">
+                    <div class="form-group">
+                        <label for="interviewDate">Interview Date:</label>
+                        <input type="date" class="form-control" id="interviewDate" name="interviewDate" required>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="modeOfTnterview">Mode of Interview:</label>
+                        <select class="form-control" id="modeOfTnterview" name="modeOfTnterview" required>
+                        <option value="">Select Mode</option>
+                        <option value="In-person">Onsite</option>
+                        <option value="Phone">Online</option>
+                        </select>
+                    </div> -->
+                    <!-- <div class="form-group">
+                        <label for="additionalInfo">Additional Information:</label>
+                        <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3"></textarea>
+                    </div> -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="hidden" name="date" value="<?php echo $fT['date']; ?>">
+                <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    <?php }?>
+    <!-- Modal End -->
+
+    <!-- Modal for Initial Interview Edit -->
+    <?php 
+    foreach($initialInterview1 as $p){
+    ?>
+    <div class="modal fade" id="editInitialModal<?php echo $p["date"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $p["date"];?>l" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:600px;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModal<?php echo $p["date"];?>">Edit </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <h2>Interview Form</h2>
+                    <form method="post" action="../functions/editFinalInterview.php">
+                    <div class="form-group">
+                        <label for="interviewDate">Interview Date:</label>
+                        <input type="date" class="form-control" id="interviewDate" name="interviewDate" required>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-floating">
+                            <select class="form-select" id="modeOfTnterview" name="modeOfTnterview" aria-label="Floating label select example">
+                                <option selected>Open this select menu</option>
+                                <option value="Online">Online</option>
+                                <option value="Onsite">Onsite</option>
+                            </select>
+                            <label for="floatingSelect">Mode of Interview</label>
+                        </div>
+                    </div>
+                    <div id="additionalInput" style="display: none;">
+                        <div class="form-group">
+                        <div class="form-floating">
+                            <select class="form-select" id="additionalInput" name="additionalInput" aria-label="Floating label select example">
+                                <option selected>Open this select menu</option>
+                                <option value="Meet">Meet</option>
+                                <option value="Zoom">Zoom</option>
+                            </select>
+                            <label for="floatingSelect">Online Platform</label>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="hidden" name="date" value="<?php echo $p['date']; ?>">
+                <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+                </form>
             </div>
             </div>
         </div>
@@ -486,7 +640,21 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <!-- DataTables Bootstrap 5 JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+        $('#modeOfTnterview').change(function() {
+            if ($(this).val() === "Online") {
+                $('#additionalInput').show();
+            } else {
+                $('#additionalInput').hide();
+            }
+        });
+    });
+    </script>
     <script>
     const urlParams = new URLSearchParams(window.location.search);
     const successValue = urlParams.get('status');
@@ -552,6 +720,16 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     });
     }
 
+    function showAdditionalInput() {
+        var modeOfInterview = document.getElementById("modeOfInterview");
+        var additionalInput = document.getElementById("additionalInput");
+
+        if (modeOfInterview.value === "Onsite") {
+            additionalInput.style.display = "block";
+        } else {
+            additionalInput.style.display = "none";
+        }
+    }
 </script>
 </body>
 

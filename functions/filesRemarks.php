@@ -22,7 +22,6 @@ if(isset($_POST['submit'])){
             $remarks[$name] = "";
         }
     }
-    var_dump($remarks);
     // $id_remarks = $_POST['id_remarks'];
     // $cog_remarks = $_POST['cog_remarks'];
     // $psa_remarks = $_POST['psa_remarks'];
@@ -67,8 +66,6 @@ if(isset($_POST['submit'])){
             $status[$name] = $currentStatus;
         }
     }
-
-    var_dump($status);
     $admin->updateFilesRemarks($scholar_id, $status, $arrayNames);
 
     $scholar_infor = $admin->getApplicantById($scholar_id); 
@@ -103,7 +100,6 @@ Thank you for your interest in the John Poul B. Galen. We wish you the best of l
 
 Best regards,
 
-Executive Director
 Consuelo "CHITO" Madrigal Foundation Inc
 ccmf2015main@gmail.com
 ';
@@ -135,8 +131,6 @@ We appreciate your prompt attention to this matter and value your commitment to 
 
 Best regards,
 
-
-Executive Director
 Consuelo "CHITO" Madrigal Foundation Inc
 ccmf2015main@gmail.com
         ';
