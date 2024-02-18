@@ -87,13 +87,6 @@ if(isset($_POST['submit'])){
     );
 
     //file data
-    $fileData = array(
-        'fileName' => $_FILES['appForm']['name'],
-        'fileTmpName' => $_FILES['appForm']['tmp_name'],
-        'fileSize' => $_FILES['appForm']['size'],
-        'fileError' => $_FILES['appForm']['error'],
-        'fileType' => $_FILES['appForm']['type'],
-    );
     $fileData1 = array(
         'fileName' => $_FILES['idPhoto']['name'],
         'fileTmpName' => $_FILES['idPhoto']['tmp_name'],
@@ -210,9 +203,6 @@ if(isset($_POST['submit'])){
     $allowedFile1 = array('pdf');
     $allowedFile3 = array('pdf', 'jpg', 'jpeg', 'png');
     //seperate the filename and its extension - file
-    $fileExt = explode('.', $fileData['fileName']);
-    $fileActualExt = strtolower(end($fileExt));
-
     $fileExt1 = explode('.', $fileData1['fileName']);
     $fileActualExt1= strtolower(end($fileExt1));
 
@@ -266,7 +256,6 @@ if(isset($_POST['submit'])){
         'allowed1' => $allowedFile1,  
         'allowed2' => $allowedFile2,
         'allowed3' => $allowedFile3,
-        'fileActualExt' => $fileActualExt,
         'fileActualExt1' => $fileActualExt1,
         'fileActualExt3' => $fileActualExt3,
         'fileActualExt4' => $fileActualExt4,
@@ -282,7 +271,6 @@ if(isset($_POST['submit'])){
         'fileActualExt14' => $fileActualExt14,
         'fileActualExt15' => $fileActualExt15,
         'fileActualExt16' => $fileActualExt16,
-        'fileName' => $fileData['fileName'],
         'fileName1' => $fileData1['fileName'],
         'fileName3' => $fileData3['fileName'],
         'fileName4' => $fileData4['fileName'],
@@ -298,7 +286,6 @@ if(isset($_POST['submit'])){
         'fileName14' => $fileData14['fileName'],
         'fileName15' => $fileData15['fileName'],
         'fileName16' => $fileData16['fileName'],
-        'fileTmpName' => $fileData['fileTmpName'],
         'fileTmpName1' => $fileData1['fileTmpName'],
         'fileTmpName3' => $fileData3['fileTmpName'],
         'fileTmpName4' => $fileData4['fileTmpName'],
@@ -336,7 +323,7 @@ if(isset($_POST['submit'])){
 
 
     //if theres no error from the resume file
-    if ( $fileData['fileError'] === 0 && $fileData1['fileError'] === 0 && $fileData3['fileError'] === 0 && $fileData4['fileError'] === 0
+    if ( $fileData1['fileError'] === 0 && $fileData3['fileError'] === 0 && $fileData4['fileError'] === 0
     && $fileData5['fileError'] === 0 && $fileData6['fileError'] === 0 && $fileData7['fileError'] === 0 && $fileData8['fileError'] === 0 && $fileData9['fileError'] === 0
     && $fileData10['fileError'] === 0 && $fileData11['fileError'] === 0 && $fileData12['fileError'] === 0 && $fileData13['fileError'] === 0 && $fileData14['fileError'] === 0
     && $fileData15['fileError'] === 0 && $fileData16['fileError'] === 0) {

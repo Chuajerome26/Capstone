@@ -35,7 +35,7 @@ class Scholar{
 
     public function checkData($filesAndPicture, $scholarData){
          //check if the file extension is in the array $allowed
-        if (in_array($filesAndPicture['fileActualExt'], $filesAndPicture['allowed3']) &&
+        if (
             in_array($filesAndPicture['fileActualExt1'], $filesAndPicture['allowed3']) &&
             in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed3']) &&
             in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed3']) && 
@@ -53,9 +53,7 @@ class Scholar{
             in_array($filesAndPicture['fileActualExt16'], $filesAndPicture['allowed3'])) {
 
             //seperate filename
-            $newFileName = explode('.',$filesAndPicture['fileName']);
             $newFileName1 = explode('.',$filesAndPicture['fileName1']);
-            
             $newFileName3 = explode('.',$filesAndPicture['fileName3']);
             $newFileName4 = explode('.',$filesAndPicture['fileName4']);
             $newFileName5 = explode('.',$filesAndPicture['fileName5']);
@@ -71,11 +69,6 @@ class Scholar{
             $newFileName15 = explode('.',$filesAndPicture['fileName15']);
             $newFileName16 = explode('.',$filesAndPicture['fileName16']);
             
-            //2x2 Pic
-            $fileNameNew = uniqid('', true) . "." . $filesAndPicture['fileActualExt'];
-           //file destination
-            $fileDestination = '../Scholar_files/' . $fileNameNew;
-
             //Copy of Grades
             $fileNameNew1 = uniqid('', true) . "." . $filesAndPicture['fileActualExt1'];
               //file destination
@@ -130,7 +123,7 @@ class Scholar{
             $fileNameNew7, $fileNameNew8, $fileNameNew9, $fileNameNew10, $fileNameNew11, $fileNameNew12, $fileNameNew13, $fileNameNew14,
             $fileNameNew15, $fileNameNew16);
             // if (move_uploaded_file($fileTmpName, $fileDestination) ) {
-            if (move_uploaded_file($filesAndPicture['fileTmpName'],$fileDestination) &&
+            if (
                 move_uploaded_file($filesAndPicture['fileTmpName1'],$fileDestination1) &&
                 move_uploaded_file($filesAndPicture['fileTmpName3'],$fileDestination3) &&
                 move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4) &&

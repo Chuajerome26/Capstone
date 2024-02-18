@@ -608,10 +608,7 @@
             <div class="border-bottom mb-3 border border-1"></div>
 
                     <div class="row">
-                    <div class="col-md-4 mb-3">
-                    <label for="formFile" class="form-label">Application Form</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="appForm" accept="application/pdf" required>
-                    </div>
+                    
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">2x2 ID photo</label>
@@ -683,12 +680,12 @@
                     <input class="form-control form-control-sm border-bottom" type="file" name="eForm" accept="application/pdf" required>
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Family Picture</label>
                     <input class="form-control form-control-sm border-bottom" type="file" name="famPic" accept="image/jpeg,image/jpg,image/png" required>
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Sketch of House Area and Directions for Commuting from CCMF site</label>
                     <input class="form-control form-control-sm border-bottom" type="file" name="sketch" accept="application/pdf,image/jpeg,image/jpg,image/png">
                     </div>
