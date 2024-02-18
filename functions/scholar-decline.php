@@ -27,24 +27,24 @@ if(isset($_POST['submit'])){
     if(!$stmt1->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
     }
-    $declineMessage = "Dear " . $user['f_name'] . " " . $user['l_name'] . ",<br><br>"
-    . "We regret to inform you that your application has been declined by the administrator.<br>"
-    . "Reason for Decline:<br>"
-    . $remarks . "<br><br>"
-    . "Thank you for your application for the Educational Assistant. After careful review,<br>"
-    . "we regret to inform you that your application was not selected.<br>"
-    . "We appreciate your interest and commend your efforts. Wishing you success in your<br>"
-    . "academic and future endeavors.<br><br>"
-    . "If you have any questions or need further information, please feel free to contact us.<br><br>"
-    . "Sincerely,<br>"
-    . "CCMF<br><br>"
-    . "Best Regards,<br>"
-    . "Socorro L. Bautista<br>"
-    . "Executive Director<br>"
-    . "Consuelo Chito Madrigal Foundation<br>"
-    . "Incorporation";
+    $declineMessage = '
+Dear '.$user["l_name"].',
 
-    $sentEmail = $database->sendEmail($email,"Your Scholarship Application Has been Declined!", $declineMessage);
+We appreciate the time and effort you invested in applying for the Consuelo Chito Scholarship Program. After careful consideration, we regret to inform you that your application has not been selected for the next stage of the selection process.
+
+We received many qualified applications, making the decision-making process challenging. While your application did not move forward, we commend your dedication and wish you continued success in your academic and personal endeavors.
+
+If you have any questions or would like feedback on your application, please don\'t hesitate to reach out to us at Consuelo "CHITO" Madrigal Foundation, Inc.
+
+Thank you for your interest in our scholarship program, and we wish you the very best in your future pursuits.
+
+Sincerely,
+
+Consuelo "CHITO" Madrigal Foundation, Inc.
+ccmf2015main@gmail.com
+    ';
+
+    $sentEmail = $database->sendEmail($email,"Scholarship Application Status Update", $declineMessage);
 
     header('Location: ../Pages-admin/admin-application.php?status=successDecline');
 }

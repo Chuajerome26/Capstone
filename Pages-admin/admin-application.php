@@ -485,7 +485,7 @@ $appliData1 = $admin->getApplicants();
         $count = 1;
 ?>
 <div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:800px;">
+  <div class="modal-dialog" style="max-width:600px;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
@@ -585,7 +585,7 @@ $appliData1 = $admin->getApplicants();
                 <tr>
                     <td><?php echo $count++; ?></td>
                     <td>Fb Link</td>
-                    <td><?php echo $a["fb_link"];?></td>
+                    <td><a href="<?php echo $a["fb_link"];?>"><?php echo $a["fb_link"];?></a></td>
                 </tr>
                 <tr>
                     <td><?php echo $count++; ?></td>
@@ -942,26 +942,26 @@ $appliData2 = $admin->getApplicants();
         $('#applicant').parent().parent().css('max-height', '500px');
     });
 
-    $(document).ready(function() {
-        $('#applicant1').DataTable();
+    // $(document).ready(function() {
+    //     $('#applicant1').DataTable();
 
-        $('#applicant1').parent().parent().css('overflow', 'auto');
-        $('#applicant1').parent().parent().css('max-height', '500px');
-    });
+    //     $('#applicant1').parent().parent().css('overflow', 'auto');
+    //     $('#applicant1').parent().parent().css('max-height', '500px');
+    // });
 
-    $(document).ready(function() {
-        $('#applicant-modal-remarks').DataTable();
+    // $(document).ready(function() {
+    //     $('#applicant-modal-remarks').DataTable();
 
-        $('#applicant-modal-remarks').parent().parent().css('overflow', 'auto');
-        $('#applicant-modal-remarks').parent().parent().css('max-height', '500px');
-    });
+    //     $('#applicant-modal-remarks').parent().parent().css('overflow', 'auto');
+    //     $('#applicant-modal-remarks').parent().parent().css('max-height', '500px');
+    // });
     
-    $(document).ready(function() {
-        $('#applicant-modal-details').DataTable();
+    // $(document).ready(function() {
+    //     $('#applicant-modal-details').DataTable();
         
-        $('#applicant-modal-remarks').parent().parent().css('overflow', 'auto');
-        $('#applicant-modal-remarks').parent().parent().css('max-height', '500px');
-    });
+    //     $('#applicant-modal-remarks').parent().parent().css('overflow', 'auto');
+    //     $('#applicant-modal-remarks').parent().parent().css('max-height', '500px');
+    // });
 
     function modal(id){
         $(document).ready(function() {
