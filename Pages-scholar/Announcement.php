@@ -217,6 +217,16 @@ if (isset($_SESSION['id'])) {
                                 <div class="flex-grow-1 ml-2">Admin's Name here
                                     <small><p>Date Posted on: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
                                 </div>
+                                <div class="dropdown">
+                                 <button class="btn btn-white" style="border-radius: 50%;" type="button" id="dropdownMenuButton-<?= $a['id'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                                 </svg>
+                             </button>
+                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-<?= $a['id'] ?>">
+                             <a class="dropdown-item" href="#" onclick="copyLink(<?= $a['id'] ?>)">Copy link</a>
+                                </div>
+                            </div>
                             </div>
                             <div class="card-body">
                                 <?= $a['announcement'] ?>
@@ -229,12 +239,19 @@ if (isset($_SESSION['id'])) {
     </div>
 </div>
 
-
-
-  
-                           
-  
   <script>
+
+function copyLink(id) {
+    const url = window.location.href + '?id=' + id;
+    const textarea = document.createElement('textarea');
+    document.body.appendChild(textarea);
+    textarea.value = url;
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    alert('Link copied to clipboard');
+}
+
   const dateTime = document.querySelectorAll( 'time');
 
 function updateDateTime() {
