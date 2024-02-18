@@ -77,7 +77,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                 <div class="sidebar-brand-icon rotate-n-15">
                     
                 </div>
-                <div class="sidebar-brand-text mx-3">CCMFI</div>
+                <div class="sidebar-brand-text mx-3" style="font-size: 28px; text-shadow: 4px 4px 4px #000;"> CCMFI</div>
             </a>
 
             <!-- Divider -->
