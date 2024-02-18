@@ -390,14 +390,17 @@ class Scholar{
         exit();
     }
 
-    public function insertData($scholarID, $yearLvl, $uploadedFileName1, $uploadedFileName2) {
+    public function insertData($scholarID, $firstName, $lastName, $email, $yearLvl, $uploadedFileName1, $uploadedFileName2) {
         try {
             // Insert data into the database using a single query
-            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_renew (scholarID, yearLvl, file1, file2, date_renew) VALUES ( ?, ?, ?, ?, NOW())");
+            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_renew (scholarID, Firstname, Lastname, Email, yearLvl, file1, file2, date_renew) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
             $stmt->bindParam(1, $scholarID);
-            $stmt->bindParam(2, $yearLvl);
-            $stmt->bindParam(3, $uploadedFileName1);
-            $stmt->bindParam(4, $uploadedFileName2);
+            $stmt->bindParam(2, $firstName);
+            $stmt->bindParam(3, $lastName);
+            $stmt->bindParam(4, $email);
+            $stmt->bindParam(5, $yearLvl);
+            $stmt->bindParam(6, $uploadedFileName1);
+            $stmt->bindParam(7, $uploadedFileName2);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
@@ -405,7 +408,6 @@ class Scholar{
             return false;
         }
     }
-
     public function getRenewalInfo() {
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew")->fetchAll();
 
@@ -424,7 +426,13 @@ class Scholar{
             return false;
         }
     }
-
+    public function getScholars($scholarsId){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
+                                                           WHERE id = ? AND status = '1'");
+        $stmt->execute([$scholarsId]);
+        $scholars = $stmt->fetchAll();
+        return $scholars;
+    }    
     public function hasSubmittedRenewal($scholarsId) {
         $query = "SELECT COUNT(*) FROM scholar_renew AS sr 
                 JOIN scholar_renewal_date AS srd ON sr.date_renew BETWEEN srd.renewal_date_start AND srd.renewal_date_end

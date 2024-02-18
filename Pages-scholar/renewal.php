@@ -14,6 +14,9 @@ $scholarsId = $_SESSION["id"];
 if (isset($_POST['submit'])) {
     $scholarID = $_POST['scholarID'];
     $yearLvl = ($_POST['yearLvl'] === 'other') ? $_POST['otherYearLevel'] : $_POST['yearLvl'];
+    $firstName = $_POST['Firstname'];
+    $lastName = $_POST['Lastname'];
+    $email = $_POST['Email'];
 
     // Handle file upload
     $uploadDir = "../Uploads_gslip/";
@@ -24,8 +27,8 @@ if (isset($_POST['submit'])) {
 
     if (move_uploaded_file($_FILES['file1']['tmp_name'], $uploadDir . $uploadedFileName1) &&
         move_uploaded_file($_FILES['file2']['tmp_name'], $uploadDir . $uploadedFileName2)) {
-        if ($database->insertData($scholarID, $yearLvl, $uploadedFileName1, $uploadedFileName2)) {
-            echo '<script>alert("Data uploaded successfully!"); window.location.href = "scholardash.php";</script>';
+        if ($database->insertData($scholarID, $firstName, $lastName, $email, $yearLvl, $uploadedFileName1, $uploadedFileName2)) {
+            echo '<script>alert("Data uploaded successfully!"); window.location.href = "renewal.php";</script>';
             exit;
         } else {
             echo "Error inserting data.";
@@ -35,6 +38,7 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -354,43 +358,54 @@ if (isset($_POST['submit'])) {
                                 <h4 class="m-0 font-weight-bold text-primary">Renewal</h4>
                             </div>
                             <div class="card-body">
-        <?php
-        $renewalDates = $database->getRenewalDates();
-        $currentDate = date('Y-m-d');
-        if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
-            // Before displaying the renewal form, check if the scholar has already submitted
-        if (!$database->hasSubmittedRenewal($scholarsId)) {
-        ?>
-    <form action="renewal.php" method="post" enctype="multipart/form-data">
-        <label for="gwa">Scholar ID:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" value="<?php echo $scholarsId; ?>" readonly><br>
-        <label for="gwa">Year Level:</label>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select name="yearLvl" id="yearLvlSelect" onchange="checkOtherOption()">
-            <option value="1st">1st</option>
-            <option value="2nd">2nd</option>
-            <option value="3rd">3rd</option>
-            <option value="4th">4th</option>
-            <option value="other">Other</option>
-        </select><br>
-        <div id="otherOption" style="display: none;">
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="otherYearLevel" id="otherYearLevelInput" placeholder="Enter your year level">
-        </div>
-        <label for="gradeslip">Upload Grade Slip:</label>
-        <input type="file" id="gradeslip" name="file1" required><br>
-        <label for="gradeslip">Upload Registration Form:</label>
-        <input type="file" id="regform" name="file2" required><br>
-        <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
-    </form>
-    <?php
-    } else {
-        // Display a message indicating that the scholar has already submitted
-        echo '<p>You have already submitted a renewal entry.</p>';
-    }
-    }else {
-        // Display a message indicating that renewal is not allowed at the current date
-        echo '<p>Renewal is not allowed at the current date.</p>';
-        }
-    ?>
+                            <?php
+                            $renewalDates = $database->getRenewalDates();
+                            $currentDate = date('Y-m-d');
+                            if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
+                                // Before displaying the renewal form, check if the scholar has already submitted
+                                if (!$database->hasSubmittedRenewal($scholarsId)) {
+                            ?>
+                            <form action="renewal.php" method="post" enctype="multipart/form-data">
+                                <?php
+                                    $scholarInfo = $database->getScholars($scholarsId);
+                                    foreach($scholarInfo as $s){
+                                ?>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" value="<?php echo $s["id"]?>" hidden><br>
+                                <label for="firstname">First Name:</label>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="Firstname" name="Firstname" value="<?php echo $s["f_name"]?>" readonly><br>
+                                <label for="lastname">Last Name:</label>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="Lastname" name="Lastname" value="<?php echo $s["l_name"]?>" readonly><br>
+                                <label for="email">Email:</label>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="Email" name="Email" value="<?php echo $s["email"]?>" readonly><br>
+                                <?php } ?>
+
+                                <label for="gwa">Year Level:</label>
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<select name="yearLvl" id="yearLvlSelect" onchange="checkOtherOption()">
+                                    <option value="1st">1st</option>
+                                    <option value="2nd">2nd</option>
+                                    <option value="3rd">3rd</option>
+                                    <option value="4th">4th</option>
+                                    <option value="other">Other</option>
+                                </select><br>
+                                <div id="otherOption" style="display: none;">
+                                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="otherYearLevel" id="otherYearLevelInput" placeholder="Enter your year level">
+                                </div>
+                                <label for="gradeslip">Upload Grade Slip:</label>
+                                <input type="file" id="gradeslip" name="file1" required><br>
+                                <label for="gradeslip">Upload Registration Form:</label>
+                                <input type="file" id="regform" name="file2" required><br>
+                                <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            <?php
+                                } else {
+                                    // Display a message indicating that the scholar has already submitted
+                                    echo '<p>You have already submitted a renewal entry.</p>';
+                                }
+                            } else {
+                                // Display a message indicating that renewal is not allowed at the current date
+                                echo '<p>Renewal is not allowed at the current date.</p>';
+                            }
+                            ?>
 </div>
 </div>
 </div>

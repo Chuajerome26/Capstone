@@ -300,9 +300,9 @@ ccmf2015main@gmail.com';
                                         </thead>
                                         <tbody class="table-group-divider">
                                         <?php
-                                        $applicantsData = $admin->getScholarAndRenewalFiles();
+                                        $scholarInfo = $scholar->getRenewalInfo();
                                         $num = 1;
-                                        foreach($applicantsData as $s){
+                                        foreach($scholarInfo as $s){
 
                                             if($s['renew_status'] == 0){
                                                 $status = "Pending";
@@ -312,21 +312,16 @@ ccmf2015main@gmail.com';
                                     ?>
                                             <tr>
                                                 <th scope="col"><?php echo $num; ?></th>
-                                                <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
-                                                <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
+                                                <td style="white-space: nowrap;"><?php echo $s["Firstname"]." ".$s["Lastname"]; ?></td>
+                                                <td style="white-space: nowrap;"><?php echo $s["Email"];?></td>
                                                 <td><?php echo $s["date_renew"];?></td>
                                                 <td><?php echo $status;?></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["scholar_id"];?>">Files</button></td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["id"];?>">Files</button></td>
                                                 <td style="white-space: nowrap;">
                                                     <form method="post" action="../functions/scholar-accept.php">
-                                                        <input class="btn btn-primary mb-2" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
+                                                        <input class="btn btn-primary mb-2" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['id']?>">
                                                     </form>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["scholar_id"];?>">Decline</button>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#tentativeModal<?php echo $s["scholar_id"];?>">Tentative</button>
-
-                                                    <!-- <form method="post" action="../functions/scholar-accept.php">
-                                                        <input class="btn btn-danger" type="submit" value="decline"><input type="hidden" name="declineId" value="<?php echo $s['scholar_id']?>">
-                                                    </form> -->
+                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#tentativeModal<?php echo $s["id"];?>">Tentative</button>
                                             </td>
                                             </tr>
                                             <?php 
@@ -397,27 +392,52 @@ ccmf2015main@gmail.com';
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Files</th>
-                            <th>Details</th>
-                        </tr> 
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Grade Slip</td>
-                        <td><a href="../Uploads_gslip/<?php echo $a["file1"]; ?>" target="_blank"><?php echo $a["file1"]?></a></td>
-                    </tr>
-                    <tr>
-                        <td>Registration Form</td>
-                        <td><a href="../Uploads_gslip/<?php echo $a["file2"]; ?>" target="_blank"><?php echo $a["file2"]?></a></td>
-                    </tr>
-                    </tbody>
-                </table>    
+            <div class="table-responsive">
+        <table id="applicant-modal-files" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Requirements</th>
+                    <th>Details</th>
+                    <th>Evaluation</th>
+                    <th>Remarks</th>
+                </tr> 
+            </thead>
+            <form id="formRemarks" method="post" action="../functions/filesRemarks.php">
+            <tbody>
+                <tr>
+                    <td>Grade Slip</td>
+                    <td><a href="../Uploads_gslip/<?php echo $a["file1"]?>" target="_blank"><?php echo $a["file1"]?></a></td>
+                    <?php if($a["file1_status"] == 0): ?>
+                        <td align="center"><input type="checkbox" name="Grade Slip" value="1"></td>
+                    <?php else: ?>
+                        <td align="center">Done</td>
+                    <?php endif; ?>
+                    <td><input type="text" class="form-control" name="Grade Slip" placeholder="Grade Slip Remarks">
+                        <input type="hidden" name="file_id" value="<?php echo $a['id']; ?>">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Registration Form</td>
+                    <td><a href="../Uploads_gslip/<?php echo $a["file2"]?>" target="_blank"><?php echo $a["file2"]?></a></td>
+                    <?php if($a["file2_status"] == 0): ?>
+                        <td align="center"><input type="checkbox" name="Registration Form" value="1"></td>
+                    <?php else: ?>
+                        <td align="center">Done</td>
+                    <?php endif; ?>
+                    <td><input type="text" class="form-control" name="Registration Form" placeholder="Registration Form Remarks">
+                        <input type="hidden" name="file_id" value="<?php echo $a['id']; ?>">
+                    </td>
+                </tr>
+            </tbody>
+        </table>   
+        </div> 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <input type="hidden" name="scholar_id" value="<?php echo $b['id'] ?>">
+            <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
+            </form>
             </div>
             </div>
         </div>

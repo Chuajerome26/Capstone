@@ -537,12 +537,6 @@ public function giveRate($id, $rate) {
     $stmt->execute([$rate, $id]);
 
 }
-public function getScholarAndRenewalFiles(){
-    $stmt = $this->database->getConnection()->query("SELECT scholar_info.id AS scholar_id, scholar_info.*, scholar_renew.* FROM scholar_info 
-                                                    JOIN scholar_renew ON scholar_info.id = scholar_renew.scholarID
-                                                    WHERE scholar_info.status = '1'")->fetchAll();
-    return $stmt;
-}
 public function getAnnouncements(){
     $stmt = $this->database->getConnection()->query("SELECT * FROM admin_announcement ORDER BY ann_date DESC, ann_time DESC")->fetchAll();
     return $stmt;
