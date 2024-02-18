@@ -7,7 +7,7 @@ if(isset($_POST['submit'])){
     $database = new Database();
     $admin = new Admin($database);
 
-    $arrayNames = array('ApplicationForm', 'IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
+    $arrayNames = array('IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
                     'BirthCertificate', 'Indigency', 'RecommendationLetter', 'GoodMoral', 'SchoolDiploma', 'Form137/138', 'AcceptanceLetter'
                 , 'EnrollmentForm', 'FamilyPicture', 'SketchofHouseArea');
     $remarks = array();

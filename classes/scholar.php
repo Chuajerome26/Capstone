@@ -255,7 +255,7 @@ class Scholar{
         //fetch the employeeID
         $scholarId = $stmtScholarID->fetchColumn();
 
-        $arrayNames = array('ApplicationForm', 'IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
+        $arrayNames = array('IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
                     'BirthCertificate', 'Indigency', 'RecommendationLetter', 'GoodMoral', 'SchoolDiploma', 'Form137/138', 'AcceptanceLetter'
                 , 'EnrollmentForm', 'FamilyPicture', 'SketchofHouseArea');
 
