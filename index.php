@@ -77,7 +77,7 @@
                 <div class="col-lg-12">
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.php">
+                        <a class="navbar-brand" >
                             <img src="assets1/images/logo/Logo2.png" alt="Logo">
                         </a>
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
@@ -549,7 +549,7 @@
                         <!-- Single Widget -->
                         <div class="f-about single-footer">
                             <div class="logo">
-                                <a href="index.php"><img src="assets1/images/logo/Logo2.png" alt="Logo"></a>
+                                <img src="assets1/images/logo/Logo2.png" alt="Logo"></a>
                             </div>
                             <p class="fw-bold fs-5">INQUIRIES</p>
 
@@ -627,15 +627,20 @@
                         <label class="fw-bold" for="password">Password:</label>
                         <div class="input-group">
                             <input type="password" class="form-control" style="height: 50px;" name="psw" id="password" placeholder="Enter password" required>
+                            
                         </div>
                         <div class="mt-2 pl-0 form-check">
+                            
                             <input type="checkbox" onclick="showPassword()">
                             <label class="form-check-label" for="showPassword">Show Password</label>
-                        </div>
+</div>
+                       
                     </div>
                     <button type="submit" name="submitBtn" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;">Login</button>
+
                     
-                    <p style="margin-top: 20px" class="pl-0"> Don't have an account? <a href="Pages-scholar/appforms.php">Sign up here</a>
+                    
+                    
                     
                 </div>
                 </form>
