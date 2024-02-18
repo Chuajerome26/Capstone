@@ -119,7 +119,7 @@ class Scholar{
             $fileNameNew16 = uniqid('', true) . "." . $filesAndPicture['fileActualExt16'];
             $fileDestination16 = '../Scholar_files/' . $fileNameNew16;
 
-            $arrayFiles = array($fileNameNew, $fileNameNew1, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6,
+            $arrayFiles = array($fileNameNew1, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6,
             $fileNameNew7, $fileNameNew8, $fileNameNew9, $fileNameNew10, $fileNameNew11, $fileNameNew12, $fileNameNew13, $fileNameNew14,
             $fileNameNew15, $fileNameNew16);
             // if (move_uploaded_file($fileTmpName, $fileDestination) ) {
@@ -249,7 +249,7 @@ class Scholar{
 
          //if execution fail
         if (!$stmtScholarID->execute([$scholarData['email']])) {
-            header("Location: ../Pages-scholar/appforms.php?scholar=stmtfail");
+            header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
             exit();
         }
         //fetch the employeeID
@@ -286,18 +286,40 @@ class Scholar{
                     $stmt4->execute([$scholarId ,$scholarData['sub'][$i], $scholarData['totalUnits'][$i], $scholarData['gAverage'][$i]]);
                 }
 
-                for ($i = 0; $i < count($scholarData['collegeChoice']); $i++) {
-                    // Prepare an SQL statement
-                    $stmt5 = $this->database->getConnection()->prepare("INSERT INTO scholar_college_choices (scholar_id, univ, course, entrance_exam, exam_taken) VALUES (?,?,?,?,?)");
+                // for ($i = 0; $i < count($scholarData['collegeChoice']); $i++) {
+                //     // Prepare an SQL statement
+                //     $stmt5 = $this->database->getConnection()->prepare("INSERT INTO scholar_college_choices (scholar_id, univ, course, entrance_exam, exam_taken) VALUES (?,?,?,?,?)");
 
-                    if($scholarData['entranceExam'][$i] == 'yes'){
-                        $exam_taken = $scholarData['ifYes'][$i];
-                    }else{
-                        $exam_taken = $scholarData['ifNo'][$i];
-                    }
-                    // Bind parameters and execute the statement
-                    $stmt5->execute([$scholarId ,$scholarData['collegeChoice'][$i], $scholarData['collegeCourse'][$i], $scholarData['entranceExam'][$i], $exam_taken]);
-                }
+                //     if($scholarData['entranceExam'][$i] == 'yes'){
+                //         $exam_taken = $scholarData['ifYes'][$i];
+                //     }else{
+                //         $exam_taken = $scholarData['ifNo'][$i];
+                //     }
+                //     // Bind parameters and execute the statement
+                //     $stmt5->execute([$scholarId ,$scholarData['collegeChoice'][$i], $scholarData['collegeCourse'][$i], $scholarData['entranceExam'][$i], $exam_taken]);
+                // }
+                        $totalRows = $scholarData['rowCount'];
+                        
+                        // Loop through each row
+                        for ($i = 0; $i <= $totalRows; $i++) {
+                            $stmt5 = $this->database->getConnection()->prepare("INSERT INTO scholar_college_choices (scholar_id, univ, course, entrance_exam, exam_taken) VALUES (?,?,?,?,?)");
+
+                            $schoolName = isset($scholarData['collegeChoice'][$i]) ? $scholarData['collegeChoice'][$i]:"";
+                            $courseMajor = isset($scholarData['collegeCourse'][$i]) ? $scholarData['collegeCourse'][$i]:"";
+                            $entranceExam = $scholarData['entranceExam'][$i];
+
+                            if($scholarData['entranceExam'][$i] == 'yes'){
+                                $exam_taken = $scholarData['ifYes'][$i];
+                            }else{
+                                $exam_taken = $scholarData['ifNo'][$i];
+                            }
+
+                            if($schoolName == '' && $courseMajor == '' && $entranceExam == '' && $exam_taken == ''){
+                                
+                            }else{
+                                $stmt5->execute([$scholarId ,$schoolName, $courseMajor, $entranceExam, $exam_taken]);
+                            }
+                        }
 
 
         // prepare insert statement for employee_details table
@@ -310,7 +332,7 @@ class Scholar{
 
         //  //if execution fail
         // if (!$stmt2->execute([$scholarId, $id_pic, $copy_grades, $psa, $good_moral, $eForm])) {
-        //     header("Location: ../Pages-scholar/appforms.php?scholar=stmtfail");
+        //     header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
         //     //close connection
         //     unset($this->database);
         //     exit();
@@ -362,7 +384,7 @@ class Scholar{
         $hashedpwd = password_hash($scholarPass, PASSWORD_DEFAULT);
          //if execution fail
         if (!$stmt->execute([$scholarUser, $hashedpwd, $user_id, $user_type])) {
-            header("Location: ../Pages-scholar/appforms.php?scholar=stmtfail");
+            header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
             exit();
             
         }

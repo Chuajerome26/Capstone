@@ -481,8 +481,8 @@ foreach($applicantsss as $pogiko){
 
 <?php
 $appliData1 = $admin->getApplicants();
-$count = 1;
     foreach($appliData1 as $a){
+        $count = 1;
 ?>
 <div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>" aria-hidden="true">
   <div class="modal-dialog" style="max-width:800px;">
@@ -958,6 +958,9 @@ $appliData2 = $admin->getApplicants();
     
     $(document).ready(function() {
         $('#applicant-modal-details').DataTable();
+        
+        $('#applicant-modal-remarks').parent().parent().css('overflow', 'auto');
+        $('#applicant-modal-remarks').parent().parent().css('max-height', '500px');
     });
 
     function modal(id){

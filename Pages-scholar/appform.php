@@ -457,61 +457,58 @@
     </div>
 </div>
 
-<div class="school-rows">
+<div id="school-rows">
     <!-- Existing input row -->
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <label class="form-label">College/University of Choice:</label>
-            <input type="text" name="collegeChoice[]" class="form-control form-control-sm" placeholder="College/University of Choice">
+        <div class="col-md-3 mb-3">
+            <label class="form-label">School Name</label>
+            <input type="text" name="collegeSchool[]" class="form-control form-control-sm" placeholder="School Name">
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-md-3 mb-3">
             <label class="form-label">Course/Degree Major</label>
             <input type="text" name="collegeCourse[]" class="form-control form-control-sm" placeholder="Course/Degree Major">
         </div>
-        <!-- <div class="col-md-2 mb-3">
-            <label class="form-label hidden">Remove Input:</label>
-            <button class="btn btn-outline-danger btn-sm w-100 border-2" onclick="removeSchoolRow(this)">Remove</button>
-        </div> -->
         <div class="col-md-3 mb-3">
-    <label class="form-label">Entrance Exam Taken?</label><br>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="entranceExam[]" value="yes" id="radioYes" onclick="showInputFieldYes(1)">
-        <label class="form-check-label">Yes</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="entranceExam[]" value="no" id="radioNo" onclick="showInputFieldNo(1)">
-        <label class="form-check-label">No</label>
-    </div>
-
-
-</div>
-
-<div class="col-md-6 input-fields">
-    <div id="inputFieldYes1" style="display: none;">
-        <div class="col-md-12 mb-3">
-            <label class="form-label">If "YES":</label> <br>
+            <label class="form-label">Entrance Exam Taken?</label><br>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="yesStats[]" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">PASS</label>
+                <input class="form-check-input" type="radio" name="entranceExam_0" value="yes" onclick="showInputField(this)" id="radioYes0">
+                <label class="form-check-label">Yes</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="yesStats[]" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">FAIL</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="yesStats[]" id="inlineRadio3" value="option3">
-                <label class="form-check-label" for="inlineRadio3">WAITLIST</label>
+                <input class="form-check-input" type="radio" name="entranceExam_0" value="no" onclick="showInputField(this)" id="radioNo0">
+                <label class="form-check-label">No</label>
             </div>
         </div>
-    </div>
+        <div class="col-md-3 mb-3">
+            <button type="button" class="btn btn-danger" onclick="removeSchoolRow(this)">Remove</button>
+        </div>
+        <div class="col-md-6 input-fields">
+            <div class="inputFieldYes" style="display: none;">
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">If "YES":</label> <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="yesStats_0" value="Pass">
+                        <label class="form-check-label">PASS</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="yesStats_0" value="Failed">
+                        <label class="form-check-label">FAIL</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="yesStats_0" value="Waitlist">
+                        <label class="form-check-label">WAITLIST</label>
+                    </div>
+                </div>
+            </div>
 
-    <div id="inputFieldNo1" style="display: none;">
-        <div class="col-md-12 mb-3">
-            <label class="form-label">If "NO", When:</label>
-            <input type="date" name="noDate[]" class="form-control form-control-sm" id="inputFieldNoDate">
+            <div class="inputFieldNo" style="display: none;">
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">If "NO", When:</label>
+                    <input type="date" name="noDate_0" class="form-control form-control-sm">
+                </div>
+            </div>
         </div>
-    </div>
-        </div>
+        <input type="hidden" name="rowCount" id="rowCount" value="0">
         <hr class="border border-2" style="color: black;">
     </div>
 </div>
@@ -608,11 +605,10 @@
             <div class="border-bottom mb-3 border border-1"></div>
 
                     <div class="row">
-                    
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">2x2 ID photo</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="idPhoto" accept="image/jpeg,image/jpg,image/png" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="idPhoto" accept="image/jpeg,image/jpg,image/png" >
                     </div>
 
                     <!-- <div class="col-md-4 mb-3">
@@ -622,67 +618,67 @@
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Family Profile</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="famProf" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="famProf" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Letter of Intent</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="letterIntent" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="letterIntent" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Written Parent Consent</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="parentConsent" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="parentConsent" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Latest Copy of Grades</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="copyGrades" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="copyGrades" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy of Birth Certificate</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="copyBirthCert" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="copyBirthCert" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Certificate of Indigency</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="certIndigency" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="certIndigency" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Recommendation Letter from Adviser/Principal</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="recommendationLetter" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="recommendationLetter" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Certificate of Good Moral</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="goodMoral" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="goodMoral" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy of High School Diploma</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="copyhsDiploma" accept="application/pdf" required> 
+                    <input class="form-control form-control-sm border-bottom" type="file" name="copyhsDiploma" accept="application/pdf" > 
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy of Form 137/138</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="form137" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="form137" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy of College/University Acceptance Letter</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="acceptanceLetter" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="acceptanceLetter" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Copy ofEnrollment Form</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="eForm" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="eForm" accept="application/pdf" >
                     </div>
 
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Family Picture</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="famPic" accept="image/jpeg,image/jpg,image/png" required>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="famPic" accept="image/jpeg,image/jpg,image/png" >
                     </div>
 
                     <div class="col-md-4 mb-3">
@@ -698,7 +694,7 @@
               
             <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-secondary w-25 prev-step" type="button">Previous</button>
-            <button class="btn btn-primary w-25" type="submit" name="submit">Submit</button>
+            <button class="btn btn-primary w-25" type="submit" name="submit" onclick="updateRowCount()">Submit</button>
             </div>
 
         </div>  
@@ -884,81 +880,103 @@ function addGradeRow(event) {
         document.getElementById(inputFieldId).style.display = 'none';
     }
 
-    // Define a global counter variable to keep track of the IDs
-    let schoolRowCounter = 2;
+    var rowCount = 1; // Initialize rowCount
 
     function addSchoolRow() {
-    event.preventDefault();
+        if (rowCount <= 2) { // Check if the maximum limit is not reached
+            const schoolRows = document.getElementById('school-rows');
+            const newRow = document.createElement('div');
+            newRow.classList.add('row');
+            newRow.innerHTML = `
+            <div class="col-md-3 mb-3">
+                <label class="form-label">School Name</label>
+                <input type="text" name="collegeSchool[]" class="form-control form-control-sm" placeholder="School Name">
+            </div>
+            <div class="col-md-3 mb-3">
+                <label class="form-label">Course/Degree Major</label>
+                <input type="text" name="collegeCourse[]" class="form-control form-control-sm" placeholder="Course/Degree Major">
+            </div>
+            <div class="col-md-3 mb-3">
+                <label class="form-label">Entrance Exam Taken?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="entranceExam_${rowCount}" value="yes" onclick="showInputField(this)" id="radioYes${rowCount}">
+                    <label class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="entranceExam_${rowCount}" value="no" onclick="showInputField(this)" id="radioNo${rowCount}">
+                    <label class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <button type="button" class="btn btn-danger" onclick="removeSchoolRow(this)">Remove</button>
+            </div>
+            <div class="col-md-6 input-fields">
+                <div class="inputFieldYes" style="display: none;">
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">If "YES":</label> <br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="yesStats_${rowCount}" value="Pass">
+                            <label class="form-check-label">PASS</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="yesStats_${rowCount}" value="Failed">
+                            <label class="form-check-label">FAIL</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="yesStats_${rowCount}" value="Waitlist">
+                            <label class="form-check-label">WAITLIST</label>
+                        </div>
+                    </div>
+                </div>
 
-    // Clone the existing input row
-    var existingRow = document.querySelector('.school-rows .row');
-    var newRow = existingRow.cloneNode(true);
+                <div class="inputFieldNo" style="display: none;">
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">If "NO", When:</label>
+                        <input type="date" name="noDate_${rowCount}" class="form-control form-control-sm">
+                    </div>
+                </div>
+            </div>`;
 
-    // Clear the input values in the new row
-    var inputs = newRow.querySelectorAll('input');
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].value = '';
-    }
-
-    // Update IDs for the input fields and radio buttons in the new row using the counter
-    var inputFieldYes = newRow.querySelector('#inputFieldYes1');
-    var inputFieldNo = newRow.querySelector('#inputFieldNo1');
-    var radioYes = newRow.querySelector('#radioYes');
-    var radioNo = newRow.querySelector('#radioNo');
-
-    inputFieldYes.id = 'inputFieldYes' + schoolRowCounter;
-    inputFieldNo.id = 'inputFieldNo' + schoolRowCounter;
-
-    // Update onclick function of the radio buttons
-    radioYes.setAttribute('onclick', 'showInputFieldYes(' + schoolRowCounter + ')');
-    radioNo.setAttribute('onclick', 'showInputFieldNo(' + schoolRowCounter + ')');
-
-    // Create a remove button
-    var removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
-    removeButton.classList.add('btn', 'btn-danger', 'remove-btn');
-    removeButton.setAttribute('onclick', 'removeSchoolRow(this)'); // Set onclick attribute to call removeSchoolRow function
-    newRow.appendChild(removeButton); // Append the remove button to the new row
-
-    // Increment the counter for the next row
-    console.log(schoolRowCounter);
-    schoolRowCounter++;
-
-    // Add the new row to the school-rows div
-    var schoolRowsContainer = document.querySelector('.school-rows');
-    schoolRowsContainer.appendChild(newRow);
-}
-
-function removeSchoolRow(button) {
-    var rowToRemove = button.closest('.row');
-    rowToRemove.remove();
-}
-
-    function showInputField(inputFieldId) {
-        // Hide all input fields first
-        var inputFields = document.querySelectorAll('.input-fields > div');
-        for (var i = 0; i < inputFields.length; i++) {
-            inputFields[i].style.display = 'none';
+            schoolRows.appendChild(newRow);
+            rowCount++;
+        } else {
+            alert("Maximum limit reached.");
         }
-
-        // Show the selected input field
-        document.getElementById(inputFieldId).style.display = 'block';
     }
 
-    function showInputFieldYes(rowCounter) {
-        var inputFieldId = 'inputFieldYes' + rowCounter;
-        showInputField(inputFieldId);
+    function removeSchoolRow(button) {
+        var rowToRemove = button.closest('.row');
+        rowToRemove.remove();
+        rowCount--;
     }
 
-    function showInputFieldNo(rowCounter) {
-        var inputFieldId = 'inputFieldNo' + rowCounter;
-        showInputField(inputFieldId);
+    function showInputField(radio) {
+        var row = radio.closest('.row');
+        var inputFieldYes = row.querySelector('.inputFieldYes');
+        var inputFieldNo = row.querySelector('.inputFieldNo');
+
+        if (radio.value === 'yes') {
+            inputFieldYes.style.display = 'block';
+            inputFieldNo.style.display = 'none';
+        } else if (radio.value === 'no') {
+            inputFieldYes.style.display = 'none';
+            inputFieldNo.style.display = 'block';
+        }
     }
+
+
 
     function logout(){
         window.location.href = "../index.php";
     }
 
+    function updateRowCount() {
+        document.getElementById('rowCount').value = rowCount - 1; // Subtract 1 to account for the initial row
+    }
+</script>
+
 </script>
 </body>
 </html>
+
+    

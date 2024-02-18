@@ -9,6 +9,14 @@ if(isset($_POST['submit'])){
     $scholar = new Scholar($database);
 
     //scholar data
+
+    $entranceExam = array(isset($_POST['entranceExam_0']) ? $_POST['entranceExam_0']:"", 
+                        isset($_POST['entranceExam_1']) ? $_POST['entranceExam_1']:"", 
+                        isset($_POST['entranceExam_2']) ? $_POST['entranceExam_2']:""
+                    );
+    $ifYes = array(isset($_POST['yesStats_0']) ? $_POST['yesStats_0']:"", isset($_POST['yesStats_1']) ? $_POST['yesStats_1']:"", isset($_POST['yesStats_2']) ? $_POST['yesStats_2']:"");
+    $ifNo = array(isset($_POST['noDate_0']) ? $_POST['noDate_0']:"", isset($_POST['noDate_1']) ? $_POST['noDate_1']:"", isset($_POST['noDate_2']) ? $_POST['noDate_2']:"");
+
     $scholarData = array(
         'fName' => trim($_POST["fName"]) ?? '',
         'mName' => trim($_POST["mName"]) ?? '',
@@ -78,15 +86,15 @@ if(isset($_POST['submit'])){
         'sub' => $_POST["sub"] ?? '',
         'totalUnits' => $_POST["totalUnits"] ?? '',
         'gAverage' => $_POST["gAverage"] ?? '',
-        'collegeChoice' => $_POST["collegeChoice"] ?? '',
-        'collegeCourse' => $_POST["collegeCourse"] ?? '',
-        'entranceExam' => $_POST["entranceExam"] ?? '',
-        'ifYes' => $_POST['yesStats'] ?? '',
-        'ifNo' => $_POST['noDate'] ?? '',
         
-    );
+        'collegeChoice' => $_POST["collegeSchool"] ?? [],
+        'collegeCourse' => $_POST["collegeCourse"] ?? [],
 
-    //file data
+        'entranceExam' => $entranceExam ?? [],
+        'ifYes' => $ifYes ?? [],
+        'ifNo' => $ifNo ?? [],
+        'rowCount' => $_POST['rowCount']
+    );
     $fileData1 = array(
         'fileName' => $_FILES['idPhoto']['name'],
         'fileTmpName' => $_FILES['idPhoto']['tmp_name'],
