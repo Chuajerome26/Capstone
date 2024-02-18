@@ -215,7 +215,7 @@ if (isset($_SESSION['id'])) {
                             <div class="card-header d-flex align-items-center">
                                 <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
                                 <div class="flex-grow-1 ml-2">Admin's Name here
-                                    <small><p>Date Post on: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
+                                    <small><p>Date Posted on: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
                                 </div>
                             </div>
                             <div class="card-body">

@@ -266,23 +266,63 @@ rel="stylesheet">
                 <h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
             </div>
             <div class="card-body">
-                <?php foreach($announcements as $a): ?>
-                    <div class="card mb-3">
-                        <div class="card-header d-flex align-items-center">
-                            <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
-                            <div class="flex-grow-1 ml-2">Admin's Name here</div> 
-                        </div>
-                        <div class="card-body">
-                            <p><?= $a['announcement'] ?></p>
-                            <p>Date: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p>
-                        </div>
+    <?php foreach($announcements as $a): ?>
+        <div class="card" style="margin-bottom: 2.5%;">
+            <div class="card-header d-flex align-items-center">
+                <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image" width="50" height="50" style="border-radius: 50%;">
+                <div class="flex-grow-1 ml-2">Admin's Name here
+                    <small><p>Date Posted on: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-white" style="border-radius: 50%;" type="button" id="dropdownMenuButton-<?= $a['id'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                    </svg>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton-<?= $a['id'] ?>">
+                        <a class="dropdown-item edit-button" href="#" data-announcement-id="<?= $a['id'] ?>">Edit</a>
+                        <a class="dropdown-item delete-button text-danger" href="#" data-announcement-id="<?= $a['id'] ?>">Delete</a>
                     </div>
-                <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="card-body">
+                <?= $a['announcement'] ?>
             </div>
         </div>
-    </div>
+    <?php endforeach; ?>
 </div>
+
       <script>
+        // Function to handle edit button click event
+function handleEditButtonClick(event) {
+    event.preventDefault();
+    const announcementId = event.target.dataset.announcementId;
+    alert(`Editing announcement with ID ${announcementId}`);
+    // Add your own implementation here
+}
+
+// Function to handle delete button click event
+function handleDeleteButtonClick(event) {
+    event.preventDefault();
+    const result = confirm('Are you sure you want to delete this announcement?');
+    if (result) {
+        const announcementId = event.target.dataset.announcementId;
+        alert(`Deleting announcement with ID ${announcementId}`);
+        // Add your own implementation here
+    }
+}
+
+// Add event listeners to the buttons
+const editButtons = document.querySelectorAll('.edit-button');
+editButtons.forEach(function(button) {
+    button.addEventListener('click', handleEditButtonClick);
+});
+
+const deleteButtons = document.querySelectorAll('.delete-button');
+deleteButtons.forEach(function(button) {
+    button.addEventListener('click', handleDeleteButtonClick);
+});
+
       const dateTime = document.querySelectorAll( 'time');
     
     function updateDateTime() {
