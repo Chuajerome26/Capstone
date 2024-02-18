@@ -423,6 +423,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <thead>
                         <tr>
                             <th>Requirements</th>
+                            <th>Time</th>
                             <th>Actions</th>
                         </tr> 
                     </thead>
@@ -433,6 +434,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                     ?>
                         <tr>
                             <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
+                            <td><?php echo $b['time_start']?> - <?php echo $b['time_end'];?></td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#questionModal<?php echo $b["id"];?>">Start</button>
                             </td>
@@ -534,7 +536,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <form method="post" action="../functions/editFinalInterview.php">
                     <div class="form-group">
                         <label for="interviewDate">Interview Date:</label>
-                        <input type="date" class="form-control" id="interviewDate" name="interviewDate" required>
+                        <input type="date" class="form-control" id="interviewDate1" name="interviewDate"  min="<?php echo date('Y-m-d'); ?>" value="<?php echo $fT['date']; ?>" required>
                     </div>
                     <!-- <div class="form-group">
                         <label for="modeOfTnterview">Mode of Interview:</label>
@@ -576,15 +578,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             <div class="modal-body">
                 <div class="container">
                     <h2>Interview Form</h2>
-                    <form method="post" action="../functions/editFinalInterview.php">
+                    <form method="post" action="../functions/editInitialInterview.php">
                     <div class="form-group">
                         <label for="interviewDate">Interview Date:</label>
-                        <input type="date" class="form-control" id="interviewDate" name="interviewDate" required>
+                        <input type="date" class="form-control" id="interviewDate" name="interviewDate"  min="<?php echo date('Y-m-d'); ?>" value="<?php echo $p['date']; ?>" required>
                     </div>
                     <div class="form-group">
                         <div class="form-floating">
-                            <select class="form-select" id="modeOfTnterview" name="modeOfTnterview" aria-label="Floating label select example">
-                                <option selected>Open this select menu</option>
+                            <select class="form-select" id="modeOfTnterview" name="modeOfTnterview" aria-label="Floating label select example" required>
+                                <option>Open this select menu</option>
                                 <option value="Online">Online</option>
                                 <option value="Onsite">Onsite</option>
                             </select>
@@ -595,7 +597,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                         <div class="form-group">
                         <div class="form-floating">
                             <select class="form-select" id="additionalInput" name="additionalInput" aria-label="Floating label select example">
-                                <option selected>Open this select menu</option>
+                                <option>Open this select menu</option>
                                 <option value="Meet">Meet</option>
                                 <option value="Zoom">Zoom</option>
                             </select>
@@ -645,6 +647,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
     <script>
+
         $(document).ready(function() {
         $('#modeOfTnterview').change(function() {
             if ($(this).val() === "Online") {

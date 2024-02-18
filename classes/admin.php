@@ -99,9 +99,9 @@ class Admin
 
             if($count == 0){
                 // The schedule doesn't exist in the database, insert it
-                $sql = "INSERT INTO admin_schedule_interview (scholar_id, date, i_f_interview, time_start, time_end) VALUES (:id, :date, :type, :start, :end)";
+                $sql = "INSERT INTO admin_schedule_interview (scholar_id, date, mode_interview, i_f_interview, time_start, time_end) VALUES (:id, :date, :mode, :type, :start, :end)";
                 $stmt = $this->database->getConnection()->prepare($sql);
-                $stmt->execute([':id' => $scholarData['scholar_id'],':date' => $formattedDate,'type' => $scholarData['type'],':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
+                $stmt->execute([':id' => $scholarData['scholar_id'],':date' => $formattedDate,'mode' => 'Online Interview','type' => $scholarData['type'],':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
     
                 // Add the inserted schedule to the array
                 $insertedSchedules[] = [
@@ -563,6 +563,15 @@ public function gradeInterviewInitial($id, $totalGrade){
         return false;
     }
 }
+public function editInitialInterview($date, $newDate, $mode, $additional){
+    $stmt = $this->database->getConnection()->prepare("UPDATE admin_schedule_interview SET date = ?, mode_interview = ?, venue = ? WHERE date = ? AND i_f_interview = 0");
+
+    if ($stmt->execute([$newDate, $mode, $additional, $date])) {
+        return true;
+    } else {
+        return false;
+    }
+}
 public function editFinalInterview($date, $newDate){
     $stmt = $this->database->getConnection()->prepare("UPDATE admin_schedule_interview SET date = ? WHERE date = ? AND i_f_interview = 1");
 
@@ -571,6 +580,11 @@ public function editFinalInterview($date, $newDate){
     } else {
         return false;
     }
+}
+public function getAllDates(){
+    $stmt = $this->database->getConnection()->query("SELECT date FROM admin_schedule_interview")->fetchAll();
+    
+    return $stmt;
 }
 public function getInterviewsByDate($date){
     $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_schedule_interview WHERE date = ?");
@@ -621,9 +635,9 @@ public function selectAndInsertSchedulesforFinal($scholarData, $start, $end, $ex
 
         if($count == 0){
             // The schedule doesn't exist in the database, insert it
-            $sql = "INSERT INTO admin_schedule_interview (scholar_id, date, i_f_interview, time_start, time_end) VALUES (:id, :date, :type, :start, :end)";
+            $sql = "INSERT INTO admin_schedule_interview (scholar_id, date, mode_interview, i_f_interview, time_start, time_end) VALUES (:id, :date, :mode,:type, :start, :end)";
             $stmt = $this->database->getConnection()->prepare($sql);
-            $stmt->execute([':id' => $scholarData['scholar_id'],':date' => $formattedDate,'type' => $scholarData['type'],':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
+            $stmt->execute([':id' => $scholarData['scholar_id'],':date' => $formattedDate,'mode' => 'Onsite Interview','type' => $scholarData['type'],':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
 
             // Add the inserted schedule to the array
             $insertedSchedules[] = [

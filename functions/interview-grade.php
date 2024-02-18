@@ -60,8 +60,8 @@ Please find below the details for your final interview:
 
 Date: '.$newDate1.'
 Time: '.$time_start.' to '.$time_end.'
-Platform: Face to Face/Onsite Interview
-Location: Consuelo "CHITO" Madrigal Foundation, Inc.
+Platform: Onsite Interview
+Location: AREA 6 SITIO VETERANS, BRGY. BAGONG SILANGAN, QUEZON CITY 1119 Quezon City, Philippines
 
 During the interview, you can expect questions related to your academic achievements, extracurricular activities, career goals, and your understanding of how this scholarship will contribute to your personal and professional development.
 

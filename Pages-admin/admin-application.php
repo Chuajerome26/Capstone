@@ -223,7 +223,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
                                 </div>
-                                < class="card-body">
+                                <div class="card-body">
                                     
                                     <table id="applicant" class="table table-striped table-hover">
                                         <thead>
