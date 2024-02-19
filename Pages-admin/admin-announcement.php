@@ -18,8 +18,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
         // Check if the announcement was successfully posted
         if ($result) {
-            echo "Announcement posted successfully!";
-            // Optionally redirect or refresh the page
+            header('Location: ../Pages-admin/admin-announcement.php');
+            exit();
         } else {
             echo "Failed to post announcement.";
         }
