@@ -37,6 +37,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
 <head>
 
+<div class="loader"></div>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -57,6 +59,7 @@ rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets1/css/1.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -389,6 +392,7 @@ deleteButtons.forEach(function(button) {
 
     <!-- Custom scripts for all pages-->
     <script src="../assets/js/sb-admin-2.min.js"></script>
+    <script src="../assets1/js/1.js"></script>
 
     <!-- Page level plugins -->
     <script src="../vendor/chart.js/Chart.min.js"></script>

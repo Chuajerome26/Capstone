@@ -25,6 +25,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
 <head>
 
+<div class="loader"></div>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,6 +47,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
     <!-- Custom styles for this template-->
     <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets1/css/1.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -871,7 +874,7 @@ $appliData2 = $admin->getApplicants();
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <!-- DataTables Bootstrap 5 JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-
+    <script src="../assets1/js/1.js"></script>                    
     <script>
     const urlParams = new URLSearchParams(window.location.search);
     const successValue = urlParams.get('status');
