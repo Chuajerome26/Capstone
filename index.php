@@ -23,8 +23,9 @@
     <link rel="stylesheet" href="assets1/css/tiny-slider.css" />
     <link rel="stylesheet" href="assets1/css/glightbox.min.css" />
     <link rel="stylesheet" href="assets1/css/main.css" />
-
+    <link rel="stylesheet" href="assets1/css/2.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 </head>
@@ -610,7 +611,7 @@
     <!-- Modal for Login -->
     
     <div class="modal fade" id="loginModal">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-login">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title fw-bold text-center">Sign in</h5>
@@ -620,17 +621,17 @@
                 <!-- Add your login form here -->
                 <form action="functions/admin-login.php" method="post">
                     <div class="form-group">
-                        <label class="fw-bold" for="username">Username:</label>
-                        <input type="text" class="form-control" style="height: 50px;" name="uname" placeholder="Enter username" required>
+                    <i class="fa fa-user"></i>
+                        <label class="fw-bold" for="username"></label>
+                        <input type="text" class="form-control" name="uname" placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                        <label class="fw-bold" for="password">Password:</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" style="height: 50px;" name="psw" id="password" placeholder="Enter password" required>
+                    <i class="fa fa-lock"></i>
+                        <label class="fw-bold" for="password"></label>
+                            <input type="password" class="form-control" name="psw" id="password" placeholder="Password" required>
                             
                         </div>
                         <div class="mt-2 pl-0 form-check">
-                            
                             <input type="checkbox" onclick="showPassword()">
                             <label class="form-check-label" for="showPassword">Show Password</label>
 </div>
@@ -640,10 +641,14 @@
 
                     
                     
-                    
+                    <div class="modal-footer">
+				<a href="Pages-scholar/appform.php">Create Account</a>
+			</div>
                     
                 </div>
                 </form>
+
+                
             </div>
         </div>
     </div>
@@ -666,6 +671,7 @@
         <i class="lni lni-chevron-up"></i>
     </a>
 
+</style>
     <!-- ========================= JS here ========================= -->
     <script src="assets1/js/bootstrap.min.js"></script>
     <script src="assets1/js/count-up.min.js"></script>
@@ -677,6 +683,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript">
         //========= Hero Slider 
         tns({
