@@ -308,17 +308,26 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                 <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
                                     <div class="row">
                                         <?php
-                                        // Loop to generate 9 cards (3 cards per row, 3 rows)
-                                            
+                                            $applicantsData1 = $admin->getApplicants();
+                                            foreach($applicantsData1 as $applicant){
+                                                $income = $applicant['father_income'] + $applicant['mother_income'];
+                                                $appliGrade = $admin->getGrade($applicant['id']);
+                                                $pic = $admin->getApplicants2x2($applicant['id']);
+                                                // $interviewGrade = $admin->getInterviews($applicant['id']);
+
+                                                $prediction = $admin->predictAcceptanceOfApplicant($appliGrade[0]['average'], $income);
+
+                                                if($prediction <= 100 && $prediction >= 75){
                                             ?>
                                             <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
                                                 <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
                                                     <div class="card-body d-flex flex-column align-items-center">
                                                         <div class="d-flex justify-content-center">
-                                                            <img src="path/to/your/image.jpg" alt="Profile Picture" class="img-thumbnail rounded-circle" width="100" height="100">
+                                                            <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" alt="Profile Picture" class="img-thumbnail rounded-circle" width="200" height="200">
                                                         </div>
-                                                        <h5 class="card-title mt-3">First Name</h5>
-                                                        <p class="card-text">Some quick example text to build on the card.</p>
+                                                        <h5 class="card-title mt-3"><?php echo $applicant['f_name']; ?></h5>
+                                                        <p class="card-text">Age:<?php echo $applicant['age']; ?></p>
+                                                        <p class="card-text">Percentage:<?php echo $prediction; ?></p>
                                                     </div>
                                                     <div class="card-footer d-flex justify-content-center">
                                                         <button type="button" class="btn btn-primary">Go somewhere</button>
@@ -326,7 +335,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 </div>
                                             </div>
                                         <?php
-                                        
+                                                }else{
+
+                                                }
+                                            }
                                         ?>
                                     </div>
                                 </div>

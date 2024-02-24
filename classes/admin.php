@@ -37,6 +37,21 @@ class Admin
             "data" => $stmt
         );
     }
+    function getInterviews($id){
+        $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview WHERE i_f_interview = 0 AND status = 0 AND scholar_id = ".$id."")->fetchAll();
+
+        if ($stmt === null || empty($stmt)) {
+            return array(
+                "hasData" => false,
+                "data" => array()
+            );
+        }
+    
+        return array(
+            "hasData" => true,
+            "data" => $stmt
+        );
+    }
     function getFinalInterviews(){
         $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview WHERE i_f_interview = 1 AND status = 0")->fetchAll();
 
@@ -178,7 +193,9 @@ class Admin
         exit();
     }
     public function getDataforAreaChart(){
-        $stmt = $this->database->getConnection()->query("SELECT date_added, amount FROM admin_funds")->fetchAll();
+        $stmt = $this->database->getConnection()->query("SELECT date_apply, COUNT(*) AS applicant_count
+        FROM scholar_info
+        GROUP BY date_apply")->fetchAll();
 
         return $stmt;
         exit();
@@ -188,6 +205,43 @@ class Admin
                                                         WHERE status = '0'")->fetchAll();
         return $stmt;
         exit();
+    }
+    public function getGrade($scholar_id){
+        $stmt = $this->database->getConnection()->prepare("SELECT ROUND(AVG(grade), 2) as average FROM scholar_grade WHERE scholar_id = ?");
+
+        if (!$stmt->execute([$scholar_id])) {
+            header("Location: ../index.php?error=stmtfail");
+            exit();
+        }
+        //fetch the result
+        $result = $stmt->fetchAll();
+        
+          //if has result return it, else return false
+        if ($result) {
+            return $result;
+        } else {
+            $result = false;
+            return $result;
+        }
+    }
+    public function getApplicants2x2($scholar_id){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_file WHERE scholar_id=? AND requirement_name = 'IdPhoto'");
+
+       //if execution fail
+      if (!$stmt->execute([$scholar_id])) {
+          header("Location: ../index.php?error=stmtfail");
+          exit();
+      }
+      //fetch the result
+      $result = $stmt->fetchAll();
+      
+        //if has result return it, else return false
+      if ($result) {
+          return $result;
+      } else {
+          $result = false;
+          return $result;
+      }
     }
     public function getApplicantsFiles($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_file WHERE scholar_id=?");
@@ -390,39 +444,46 @@ function convertToDecimalFivePointScale($grade) {
     }
 }
 
-function predictAcceptanceOfApplicant($gwa, $ratings) {
+function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
     // Assuming 1 is the highest GWA and 5 is the lowest
-    if($gwa >= 75 && $gwa <= 100){
-        $gwa = $this->convertToDecimalFivePointScale($gwa);
+    if ($gwa >= 75 && $gwa <= 100) {
+        $grade = $this->convertToDecimalFivePointScale($gwa);
+    }else{
+        $grade = $gwa;
     }
 
     $maxGwa = 5.0; 
     $minGwa = 1.0;  // Hypothetical maximum attendance hours for full weight
-    $totalRatings = 100; // Total number of required ratings
+    $maxIncome = 200000; // Updated maximum monthly income
 
     // Weights for each factor
-    $gwaWeight = 0.40;
-    $ratingsWeight = 0.60; // Updated weight variable name
+    $gwaWeight = 0.70; // Adjusted weight for GWA
+    $incomeWeight = 0.30; // Weight for monthly income
 
     // Normalize scores
     // Higher GWA (closer to 5) results in a lower score, and vice versa
-    $normalizedGwaScore = ($maxGwa - $gwa) / ($maxGwa - $minGwa); //5 - 1 / 5 - 1
-    $normalizedRatingsScore = $ratings / $totalRatings; // Updated variable name
-    $normalizedRatingsScore = min($normalizedRatingsScore, 1); // Cap at 1 
-    
+    $normalizedGwaScore = ($maxGwa - $grade) / ($maxGwa - $minGwa); //5 - 1 / 5 - 1
+
+    // Adjust monthly income to be within a range that affects acceptance chance
+    $monthlyIncome = max(0, min($monthlyIncome, $maxIncome)); // Ensure monthly income is between 0 and $maxIncome
+
+    // Higher income (closer to 0) results in a lower score
+    $normalizedIncomeScore = ($maxIncome - $monthlyIncome) / $maxIncome;
+
     // Weighted scores
     $weightedGwaScore = $normalizedGwaScore * $gwaWeight;
-    $weightedRatingsScore = $normalizedRatingsScore * $ratingsWeight; // Updated variable name
-    
+    $weightedIncomeScore = $normalizedIncomeScore * $incomeWeight; // Weighted score for monthly income
 
     // Total weighted score
-    $totalWeightedScore = $weightedGwaScore + $weightedRatingsScore; // Updated variable name
+    $totalWeightedScore = $weightedGwaScore + $weightedIncomeScore; // Updated variable name
 
     // Convert the score to a percentage and round to 2 decimal places
     $acceptanceChance = round($totalWeightedScore * 100, 2);
 
     return $acceptanceChance;
 }
+
+
 
 public function addFunds($amount, $donors, $date){
 

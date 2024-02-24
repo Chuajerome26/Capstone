@@ -310,7 +310,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="m-0 font-weight-bold text-primary">Funds</h5>
+                                    <h5 class="m-0 font-weight-bold text-primary">Applicants</h5>
                                     <div class="dropdown no-arrow">
                                         <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -445,20 +445,21 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
     <script src="../assets/js/demo/chart-area-demo.js"></script>
     <script src="../assets/js/demo/chart-pie-demo.js"></script>
     <script src="../assets1/js/1.js"></script>
-    <!-- <script>
+    <script>
         fetch('../functions/get_chart_data.php')
             .then(response => response.json())
             .then(monthData => {
-                const labels = Object.keys(monthData);
+                const labels = Object.keys(monthData).map(month => month.slice(0, 3)); // Convert full month names to three-letter abbreviations
                 const amounts = Object.values(monthData);
 
                 myLineChart.data.labels = labels;
                 myLineChart.data.datasets[0].data = amounts;
-                myLineChart.data.datasets[0].label = "Total Funds";
+                myLineChart.data.datasets[0].label = "Total Applicants";
                 myLineChart.update();
             })
             .catch(error => console.error('Error:', error));
-    </script> -->
+
+    </script>
 
 </body>
 

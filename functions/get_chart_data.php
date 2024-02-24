@@ -12,13 +12,13 @@ $data = $admin->getDataforAreaChart();
 
   foreach ($data as $row) {
     // Convert the date to a DateTime object
-    $dateObj = DateTime::createFromFormat('Y-m-d', $row['date_added']);
+    $dateObj = DateTime::createFromFormat('Y-m-d', $row['date_apply']);
     
     // Get the month name
     $monthName = $dateObj->format('F');
   
     // Set the amount for the month
-    $monthData[$monthName] += (int)$row['amount'];
+    $monthData[$monthName] += (int)$row['applicant_count'];
   }
 
   echo json_encode($monthData);
