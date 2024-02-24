@@ -298,7 +298,6 @@ ccmf2015main@gmail.com';
                                                 <th scope="col">Date Renewed</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Files</th>
-                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
@@ -320,12 +319,6 @@ ccmf2015main@gmail.com';
                                                 <td><?php echo $s["date_renew"];?></td>
                                                 <td><?php echo $status;?></td>
                                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["id"];?>">Files</button></td>
-                                                <td style="white-space: nowrap;">
-                                                    <form method="post" action="../functions/scholar-accept.php">
-                                                        <input class="btn btn-primary mb-2" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['id']?>">
-                                                    </form>
-                                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#tentativeModal<?php echo $s["id"];?>">Tentative</button>
-                                            </td>
                                             </tr>
                                             <?php 
                                         $num++;
@@ -405,18 +398,18 @@ ccmf2015main@gmail.com';
                     <th>Remarks</th>
                 </tr> 
             </thead>
-            <form id="formRemarks" method="post" action="../functions/filesRemarks.php">
+            <form id="formRemarks" method="post" action="../functions/renewalEvaluation.php">
             <tbody>
                 <tr>
                     <td>Grade Slip</td>
                     <td><a href="../Uploads_gslip/<?php echo $a["file1"]?>" target="_blank"><?php echo $a["file1"]?></a></td>
                     <?php if($a["file1_status"] == 0): ?>
-                        <td align="center"><input type="checkbox" name="Grade Slip" value="1"></td>
+                        <td align="center"><input type="checkbox" name="GradeSlip" value="1" onchange="toggleInput(this, 'GradeSlip_remarks')"></td>
+                        <td><input type="text" class="form-control" name="GradeSlip_remarks" id="GradeSlip_remarks" placeholder="Grade Slip Remarks" required>
                     <?php else: ?>
                         <td align="center">Done</td>
+                        <td><input type="text" class="form-control" name="GradeSlip_remarks" id="GradeSlip_remarks" placeholder="Grade Slip Remarks" disabled>
                     <?php endif; ?>
-                    <td><input type="text" class="form-control" name="Grade Slip" placeholder="Grade Slip Remarks">
-                        <input type="hidden" name="file_id" value="<?php echo $a['id']; ?>">
                     </td>
                 </tr>
 
@@ -424,12 +417,11 @@ ccmf2015main@gmail.com';
                     <td>Registration Form</td>
                     <td><a href="../Uploads_gslip/<?php echo $a["file2"]?>" target="_blank"><?php echo $a["file2"]?></a></td>
                     <?php if($a["file2_status"] == 0): ?>
-                        <td align="center"><input type="checkbox" name="Registration Form" value="1"></td>
+                        <td align="center"><input type="checkbox" name="RegistrationForm" value="1" onchange="toggleInput(this, 'RegistrationForm_remarks')"></td>
                     <?php else: ?>
                         <td align="center">Done</td>
                     <?php endif; ?>
-                    <td><input type="text" class="form-control" name="Registration Form" placeholder="Registration Form Remarks">
-                        <input type="hidden" name="file_id" value="<?php echo $a['id']; ?>">
+                    <td><input type="text" class="form-control" name="RegistrationForm_remarks" id="RegistrationForm_remarks" placeholder="Registration Form Remarks" required>
                     </td>
                 </tr>
             </tbody>
@@ -438,7 +430,7 @@ ccmf2015main@gmail.com';
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <input type="hidden" name="scholar_id" value="<?php echo $b['id'] ?>">
+            <input type="hidden" name="renewal_id" value="<?php echo $a['id'] ?>">
             <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
             </form>
             </div>
@@ -514,7 +506,18 @@ ccmf2015main@gmail.com';
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <!-- DataTables Bootstrap 5 JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-
+    <script>
+        function toggleInput(checkbox, inputId) {
+            var inputField = document.getElementById(inputId);
+            inputField.disabled = checkbox.checked;
+            if (checkbox.checked) {
+                inputField.removeAttribute("required"); // Remove the 'required' attribute when checkbox is checked
+                inputField.value = ""; // Clear the input field when checkbox is checked
+            } else {
+                inputField.setAttribute("required", true); // Add the 'required' attribute back when checkbox is unchecked
+            }
+        }
+    </script>
     <script>
     const urlParams = new URLSearchParams(window.location.search);
     const successValue = urlParams.get('status');

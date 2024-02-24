@@ -10,7 +10,26 @@ class Scholar{
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
+    public function findById($id){
+            // prepare the SQL statement using the database property
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE id=? AND status = 1");
 
+        //if execution fail
+        if (!$stmt->execute([$id])) {
+            header("Location: ../Pages-admin/renewal.php?scholar=error");
+            exit();
+        }
+
+        //fetch the result
+        $result = $stmt->fetch();
+        
+            //if has result true, else return false
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
     public function findByEmail($email){
           // prepare the SQL statement using the database property
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE email=?");
@@ -36,20 +55,20 @@ class Scholar{
     public function checkData($filesAndPicture, $scholarData){
          //check if the file extension is in the array $allowed
         if (
-            in_array($filesAndPicture['fileActualExt1'], $filesAndPicture['allowed3']) &&
-            in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed3']) &&
-            in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed3']) && 
-            in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed3']) &&
-            in_array($filesAndPicture['fileActualExt6'], $filesAndPicture['allowed3']) && 
-            in_array($filesAndPicture['fileActualExt7'], $filesAndPicture['allowed3']) &&
-            in_array($filesAndPicture['fileActualExt8'], $filesAndPicture['allowed3']) &&
-            in_array($filesAndPicture['fileActualExt9'], $filesAndPicture['allowed3']) && 
-            in_array($filesAndPicture['fileActualExt10'], $filesAndPicture['allowed3']) && 
-            in_array($filesAndPicture['fileActualExt11'], $filesAndPicture['allowed3']) &&
-            in_array($filesAndPicture['fileActualExt12'], $filesAndPicture['allowed3']) && 
-            in_array($filesAndPicture['fileActualExt13'], $filesAndPicture['allowed3']) &&
-            in_array($filesAndPicture['fileActualExt14'], $filesAndPicture['allowed3']) &&
-            in_array($filesAndPicture['fileActualExt15'], $filesAndPicture['allowed3']) &&
+            in_array($filesAndPicture['fileActualExt1'], $filesAndPicture['allowed2']) &&
+            in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed1']) && 
+            in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt6'], $filesAndPicture['allowed1']) && 
+            in_array($filesAndPicture['fileActualExt7'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt8'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt9'], $filesAndPicture['allowed1']) && 
+            in_array($filesAndPicture['fileActualExt10'], $filesAndPicture['allowed1']) && 
+            in_array($filesAndPicture['fileActualExt11'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt12'], $filesAndPicture['allowed1']) && 
+            in_array($filesAndPicture['fileActualExt13'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt14'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt15'], $filesAndPicture['allowed2']) &&
             in_array($filesAndPicture['fileActualExt16'], $filesAndPicture['allowed3'])) {
 
             //seperate filename
@@ -428,6 +447,23 @@ class Scholar{
 
         return $stmt;
     }
+    public function getRenewalInfoById($id) {
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE id = ?")->fetchAll();
+        if (!$stmt->execute([$id])) {
+            header("Location: ../Pages-admin/renewal.php?scholar=renewalDoesNotExist");
+            exit();
+        }
+
+        //fetch the result
+        $result = $stmt->fetch();
+        
+          //if has result true, else return false
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }
     
     public function getRenewalDates() {
         $query = "SELECT renewal_date_start, renewal_date_end FROM scholar_renewal_date WHERE id = 1";
@@ -443,7 +479,7 @@ class Scholar{
     }
     public function getScholars($scholarsId){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
-                                                           WHERE id = ? AND status = '1'");
+                                                        WHERE id = ? AND status = '1'");
         $stmt->execute([$scholarsId]);
         $scholars = $stmt->fetchAll();
         return $scholars;
@@ -458,6 +494,16 @@ class Scholar{
     
         $count = $stmt->fetchColumn();
         return ($count > 0);
+    }
+    public function updateRenewalStatus($id, $file1, $file2){
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET file1_status = ?, file2_status = ? WHERE id = ? ");
+        
+        if(!$stmt->execute([$file1, $file2, $id])){
+            header('Location: ../Pages-admin/renewal.php?scholar=error');
+            exit();
+        }
+
+        return true;
     }
     
 }

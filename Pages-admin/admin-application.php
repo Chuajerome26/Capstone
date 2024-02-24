@@ -42,7 +42,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Custom styles for this template-->
     <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets1/css/1.css" />
@@ -376,7 +376,7 @@ $appliData = $admin->getApplicants();
 foreach($appliData as $z){
 ?>
 <div class="modal fade" id="declineModal<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="declineModal<?php echo $z["id"];?>" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
+  <div class="modal-dialog" style="max-width:8000px;">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="declineModal<?php echo $z["id"];?>">Scholar Details</h5>
@@ -404,7 +404,7 @@ foreach($applicantss as $z){
     $id = $z["id"];
 ?>
             <div class="modal fade" id="remarks<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="remarks<?php echo $z["id"];?>l" aria-hidden="true">
-            <div class="modal-dialog" style="max-width:600px;">
+            <div class="modal-dialog modal-lg" >
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="remarks<?php echo $z["id"];?>">Remarks</h5>
@@ -488,303 +488,124 @@ $appliData1 = $admin->getApplicants();
         $count = 1;
 ?>
 <div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:600px;">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="table-responsive">
-        <table id="applicant-modal-details" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Requirements</th>
-                    <th>Details</th>
-                </tr> 
-            </thead>
-            <tbody>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Name</td>
-                    <td><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Nick Name</td>
-                    <td><?php echo $a['nick_name'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Gender</td>
-                    <td><?php echo $a["gender"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Age</td>
-                    <td><?php echo $a['age'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Civil Status</td>
-                    <td><?php echo $a["c_status"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Religion</td>
-                    <td><?php echo $a['religion'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Citizenship</td>
-                    <td><?php echo $a["citizenship"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Height</td>
-                    <td><?php echo $a['height'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Birthday</td>
-                    <td><?php echo $a["date_of_birth"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Weight</td>
-                    <td><?php echo $a['weight'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Place of Birth</td>
-                    <td><?php echo $a["b_place"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Mobile Number</td>
-                    <td><?php echo $a['mobile_number'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Email</td>
-                    <td><?php echo $a["email"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Address</td>
-                    <td><?php echo $a['address'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Province</td>
-                    <td><?php echo $a["province"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Medical Condition</td>
-                    <td><?php echo $a['med_condition'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Fb Link</td>
-                    <td><a href="<?php echo $a["fb_link"];?>"><?php echo $a["fb_link"];?></a></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Skills</td>
-                    <td><?php echo $a['skills'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Father Name</td>
-                    <td><?php echo $a["father_name"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Father Age</td>
-                    <td><?php echo $a['father_age'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Father Occupation</td>
-                    <td><?php echo $a["father_occupation"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Father Income</td>
-                    <td><?php echo $a['father_income'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Mother Name</td>
-                    <td><?php echo $a["mother_name"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Mother Age</td>
-                    <td><?php echo $a['mother_age'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Mother Occupation</td>
-                    <td><?php echo $a["mother_occupation"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Mother Income</td>
-                    <td><?php echo $a['mother_income'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Father Attained</td>
-                    <td><?php echo $a["father_attained"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Mother Attained</td>
-                    <td><?php echo $a['mother_attained'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Guardian</td>
-                    <td><?php echo $a["guardian"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Guardian Contact</td>
-                    <td><?php echo $a['guardian_contact'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Emergency Contact</td>
-                    <td><?php echo $a["emergency_contact"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Guardian Relationship</td>
-                    <td><?php echo $a['guardian_rs'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Elementary School</td>
-                    <td><?php echo $a["e_school"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Elementary Average</td>
-                    <td><?php echo $a['e_ave'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Elementary Achievements</td>
-                    <td><?php echo $a["e_achievements"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Junior High School</td>
-                    <td><?php echo $a['jh_school'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Junior High School Average</td>
-                    <td><?php echo $a["jh_ave"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Junior High School Achievements</td>
-                    <td><?php echo $a['jh_achievements'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Senior High School</td>
-                    <td><?php echo $a["sh_school"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Senior High School Average</td>
-                    <td><?php echo $a['sh_ave'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Senior High School Achievements</td>
-                    <td><?php echo $a["sh_achievements"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Senior High School Course/Strand</td>
-                    <td><?php echo $a['sh_course'];?></td>
-                </tr>
-                <tr>    
-                    <td><?php echo $count++; ?></td>
-                    <td>College School</td>
-                    <td><?php echo $a["c_school"];?></td>
-                    </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>College School Average</td>
-                    <td><?php echo $a['c_ave'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>College School Achievements</td>
-                    <td><?php echo $a["c_achievements"];?></td>
-                    </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>College School Course</td>
-                    <td><?php echo $a['c_course'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Did you apply for/ are you a recipient of another Scholarship?</td>
-                    <td><?php echo $a["other_scho"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Type</td>
-                    <td><?php echo $a['other_scho_type'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Coverage</td>
-                    <td><?php echo $a["other_scho_coverage"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Status</td>
-                    <td><?php echo $a['other_scho_status'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>How did you learn about CCMFI Scholarship?</td>
-                    <td><?php echo $a["q1"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Why are you applying for this Scholarship?</td>
-                    <td><?php echo $a['q2'];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Will you pursue your studies even without this Scholarship?</td>
-                    <td><?php echo $a["apply_scho"];?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $count++; ?></td>
-                    <td>Explanation</td>
-                    <td><?php echo $a['apply_scho_explain'];?></td>
-                </tr>
-            </tbody>
-        </table>    
-        </div>
+        
+      
+            <div class="row g-0 p-2">
+                <div class="col-md-4">
+                    <div class="card shadow" style="height: 350px;">
+                        <div class="card-body">
+
+                        <div class="d-flex justify-content-center">
+                        <img src="path/to/default-image.jpg" alt="Profile Picture" class="img-thumbnail rounded-circle mt-2 shadow" width="150" height="150">
+                        
+                    </div>
+                    <h5 class="text-center mt-4"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
+                        <div class="text-center text-muted"><?php echo $a["email"];?></div>
+                        <div class="text-center text-muted"><?php echo $a['mobile_number'];?></div>
+                        <div class="text-center text-muted"><?php echo $a["nick_name"];?></div>
+                        <div class="text-center">
+                        <a href="<?php echo $a["fb_link"];?>" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook text-primary fs-6 mt-1"></i> Facebook Link
+                        </a>
+                    </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                <div class="card shadow "  style="height: 350px;">
+                  <div class="card-body">
+
+                    <h5>Personal Information</h5>
+
+                    <div class= "ms-2 g-1 border-0">
+                                <div class="row ">
+                                <div class="col-12 ">
+                                        <p>Address: <?php echo $a['address'];?></p>
+                                </div>
+
+
+                                <div class="col-6 ">
+                                        <p>Date of Birth: <?php echo $a['date_of_birth'];?></p>
+                                        <p>Birth Place: <?php echo $a['b_place'];?></p>
+                                        <p>Citizenship: <?php echo $a['citizenship'];?></p>
+                                        <p>Religion: <?php echo $a['religion'];?></p>
+                                        <p>Province: <?php echo $a["province"];?></p>
+                                      
+                                      
+                                </div>
+
+                                <div class="col-6 ">
+                                     <p>Gender: <?php echo $a["gender"];?></p>
+                                     <p>Status: <?php echo $a["c_status"];?></p>
+                                     <p>Age: <?php echo $a['age'];?></p>
+                                     <p>Height: <?php echo $a['height'];?> | Weight: <?php echo $a['weight'];?></p>
+                                     <p>Medical Condition: <?php echo $a['med_condition'];?></p>
+                                    
+                                    
+                                </div>
+
+                                <div class="col-12">
+                                <p>Skills: <?php echo $a['skills'];?></p>
+                                </div>
+                                </div>
+
+                        
+                        </div>
+                </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6 mt-3 p-2">
+                <div class="card border p-4">
+                    <h5 >Family Information</h5>
+
+                            <div class="row">
+                                    <div class="col-12 ms-3">
+                                        <div>Father Name: <?php echo $a["father_name"];?> </div>
+                                        <div>Occupation: <?php echo $a["father_occupation"];?> </div>
+                                        <div>Montly Income: <?php echo $a["father_income"];?> </div>
+                                        <div>Age: <?php echo $a['father_age'];?> </div>
+                                    </div>
+                                    <div class="col-6">
+                                     
+                                    </div>
+
+                            </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-6 mt-3 p-2">
+                <div class="card border">
+                <h5>Academic Information</h5>
+                </div>
+            </div>
+
+
+
+
+
+
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
+
     </div>
   </div>
 </div>
+    </div>
+
+
 <?php $count++;} ?>
 <!-- Modal end -->
 <!-- Modal for Files -->

@@ -522,19 +522,19 @@ if (isset($_POST['submit'])) {
      }
    }
  </script>
-                          </table>
+                        </table>
 
-                      
+                    
                         
 
                         <!-- Earnings (Monthly) Card Example -->
-                      
+                    
 
                         <!-- Earnings (Monthly) Card Example -->
                 
 
                         <!-- Pending Requests Card Example -->
-                       
+                    
 
                     <!-- Content Row -->
 

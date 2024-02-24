@@ -207,8 +207,8 @@ if(isset($_POST['submit'])){
         'fileError' => $_FILES['sketch']['error'],
         'fileType' => $_FILES['sketch']['type'],
     );
-    $allowedFile2 = array('jpg', 'jpeg', 'png');
     $allowedFile1 = array('pdf');
+    $allowedFile2 = array('jpg', 'jpeg', 'png');
     $allowedFile3 = array('pdf', 'jpg', 'jpeg', 'png');
     //seperate the filename and its extension - file
     $fileExt1 = explode('.', $fileData1['fileName']);
@@ -223,40 +223,40 @@ if(isset($_POST['submit'])){
     $fileExt4 = explode('.', $fileData4['fileName']);
     $fileActualExt4 = strtolower(end($fileExt4));
 
-    $fileExt5 = explode('.', $fileData4['fileName']);
+    $fileExt5 = explode('.', $fileData5['fileName']);
     $fileActualExt5 = strtolower(end($fileExt5));
     
-    $fileExt6 = explode('.', $fileData4['fileName']);
+    $fileExt6 = explode('.', $fileData6['fileName']);
     $fileActualExt6 = strtolower(end($fileExt6));
 
-    $fileExt7 = explode('.', $fileData4['fileName']);
+    $fileExt7 = explode('.', $fileData7['fileName']);
     $fileActualExt7 = strtolower(end($fileExt7));
 
-    $fileExt8 = explode('.', $fileData4['fileName']);
+    $fileExt8 = explode('.', $fileData8['fileName']);
     $fileActualExt8 = strtolower(end($fileExt8));
 
-    $fileExt9 = explode('.', $fileData4['fileName']);
+    $fileExt9 = explode('.', $fileData9['fileName']);
     $fileActualExt9 = strtolower(end($fileExt9));
 
-    $fileExt10 = explode('.', $fileData4['fileName']);
+    $fileExt10 = explode('.', $fileData10['fileName']);
     $fileActualExt10 = strtolower(end($fileExt10));
 
-    $fileExt11 = explode('.', $fileData4['fileName']);
+    $fileExt11 = explode('.', $fileData11['fileName']);
     $fileActualExt11 = strtolower(end($fileExt11));
 
-    $fileExt12 = explode('.', $fileData4['fileName']);
+    $fileExt12 = explode('.', $fileData12['fileName']);
     $fileActualExt12 = strtolower(end($fileExt12));
 
-    $fileExt13 = explode('.', $fileData4['fileName']);
+    $fileExt13 = explode('.', $fileData13['fileName']);
     $fileActualExt13 = strtolower(end($fileExt13));
 
-    $fileExt14 = explode('.', $fileData4['fileName']);
+    $fileExt14 = explode('.', $fileData14['fileName']);
     $fileActualExt14 = strtolower(end($fileExt14));
 
-    $fileExt15 = explode('.', $fileData4['fileName']);
+    $fileExt15 = explode('.', $fileData15['fileName']);
     $fileActualExt15 = strtolower(end($fileExt15));
 
-    $fileExt16 = explode('.', $fileData4['fileName']);
+    $fileExt16 = explode('.', $fileData16['fileName']);
     $fileActualExt16 = strtolower(end($fileExt16));
 
     //resume and picture data

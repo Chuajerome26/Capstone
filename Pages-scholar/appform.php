@@ -55,29 +55,29 @@
                 <!--- Personal Infomartion --->
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">First Name:</label>
-                    <input type="text" name="fName" class="form-control form-control-sm" placeholder="First Name">
+                    <input type="text" name="fName" class="form-control form-control-sm" placeholder="First Name" required>
                 </div>
 
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Middle Name:</label>
-                    <input type="text" name="mName" class="form-control form-control-sm" placeholder="Middle Name">
+                    <input type="text" name="mName" class="form-control form-control-sm" placeholder="Middle Name" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Last Name:</label>
-                    <input type="text" name="lName" class="form-control form-control-sm" placeholder="Last Name">
+                    <input type="text" name="lName" class="form-control form-control-sm" placeholder="Last Name" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Suffix:</label>
-                    <input type="text" name="suffix" class="form-control form-control-sm" placeholder="Suffix">
+                    <input type="text" name="suffix" class="form-control form-control-sm" placeholder="Suffix" required>
                 </div>
 
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Gender:</label>
-                    <select class="form-select form-select-sm" name="gender" aria-label="Default select example">
+                    <select class="form-select form-select-sm" name="gender" aria-label="Default select example" required>
                     <option selected>Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -88,88 +88,88 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Age:</label>
-                    <input type="text" name="age" class="form-control form-control-sm" placeholder="Age">
+                    <input type="text" name="age" class="form-control form-control-sm" placeholder="Age" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Nickname:</label>
-                    <input type="text" name="nName" class="form-control form-control-sm" placeholder="Nickname">
+                    <input type="text" name="nName" class="form-control form-control-sm" placeholder="Nickname" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Civil Status:</label>
-                    <input type="text" name="cStatus" class="form-control form-control-sm" placeholder="Civil Status">
+                    <input type="text" name="cStatus" class="form-control form-control-sm" placeholder="Civil Status" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Citizenship:</label>
-                    <input type="text" name="citizenship" class="form-control form-control-sm" placeholder="Citizenship">
+                    <input type="text" name="citizenship" class="form-control form-control-sm" placeholder="Citizenship" required>
                 </div>
 
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Date of Birth:</label>
-                    <input type="date" name="dofBirth" class="form-control form-control-sm" >
+                    <input type="date" name="dofBirth" class="form-control form-control-sm" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Birth place:</label>
-                    <input type="text" name="bPlace" class="form-control form-control-sm" placeholder="Birthplace">
+                    <input type="text" name="bPlace" class="form-control form-control-sm" placeholder="Birthplace" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Height:</label>
-                    <input type="text" name="height" class="form-control form-control-sm" placeholder="Height">
+                    <input type="text" name="height" class="form-control form-control-sm" placeholder="Height" required>
                 </div>
 
                 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Weight:</label>
-                    <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight">
+                    <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight" required>
                 </div>
             
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Religion:</label>
-                    <input type="text" name="religion" class="form-control form-control-sm" placeholder="Religion">
+                    <input type="text" name="religion" class="form-control form-control-sm" placeholder="Religion" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Mobile Number:</label>
-                    <input type="number" name="mNumber" class="form-control form-control-sm" placeholder="Mobile Number">
+                    <input type="number" name="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Email Address:</label>
-                    <input type="email" name="email" class="form-control form-control-sm" placeholder="Email Address">
+                    <input type="email" name="email" class="form-control form-control-sm" placeholder="Email Address" required>
                 </div>
 
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Address:</label>
-                    <input type="text" name="address" class="form-control form-control-sm" placeholder="Address">
+                    <input type="text" name="address" class="form-control form-control-sm" placeholder="Address" required>
                 </div>
             
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Province:</label>
-                    <input type="text" name="province" class="form-control form-control-sm" placeholder="Province">
+                    <input type="text" name="province" class="form-control form-control-sm" placeholder="Province" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Medical Conditions:</label>
-                    <input type="text" name="mCondition" class="form-control form-control-sm" placeholder="Medical Conditions">
+                    <input type="text" name="mCondition" class="form-control form-control-sm" placeholder="Medical Conditions" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Facebook Account Link:</label>
-                    <input type="text" name="fbLink" class="form-control form-control-sm" placeholder="Facebook Link">
+                    <input type="text" name="fbLink" class="form-control form-control-sm" placeholder="Facebook Link" required>
                 </div>
 
 
                 <div class="col-md-12 mb-3">
                     <label class="form-label">Skills/Hobbies/Interest/Talents</label>
-                    <textarea class="form-control" name="skills" placeholder="Skills/Hobbies/Interest/Talents"></textarea>
+                    <textarea class="form-control" name="skills" placeholder="Skills/Hobbies/Interest/Talents" required></textarea>
                 </div>
 
                 </div>
@@ -183,76 +183,76 @@
                             
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Father Name:</label>
-                    <input type="text" name="fatherName" class="form-control form-control-sm" placeholder="Father Name">
+                    <input type="text" name="fatherName" class="form-control form-control-sm" placeholder="Father Name" required>
                 </div>
             
 
                 <div class="col-md-1 mb-3">
                     <label  class="form-label">Age:</label>
-                    <input type="number" name="fAge" class="form-control form-control-sm" placeholder="Age">
+                    <input type="number" name="fAge" class="form-control form-control-sm" placeholder="Age" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Occupation:</label>
-                    <input type="text" name="fOccupation" class="form-control form-control-sm" placeholder="Occupation">
+                    <input type="text" name="fOccupation" class="form-control form-control-sm" placeholder="Occupation" required>
                 </div>
 
                 <div class="col-md-2 mb-3">
                     <label  class="form-label">Monthly Income:</label>
-                    <input type="text" name="fatherIncome" class="form-control form-control-sm" placeholder="Monthly Income">
+                    <input type="text" name="fatherIncome" class="form-control form-control-sm" placeholder="Monthly Income" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Highest Level Attained:</label>
-                    <input type="text" name="fatherAttained" class="form-control form-control-sm" placeholder="Highest Level Attained">
+                    <input type="text" name="fatherAttained" class="form-control form-control-sm" placeholder="Highest Level Attained" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Mother Name:</label>
-                    <input type="text" name="motherName" class="form-control form-control-sm" placeholder="Mother Name">
+                    <input type="text" name="motherName" class="form-control form-control-sm" placeholder="Mother Name" required>
                 </div>
              
 
                 <div class="col-md-1 mb-3">
                     <label  class="form-label">Age:</label>
-                    <input type="number" name="motherAge" class="form-control form-control-sm" placeholder="Age">
+                    <input type="number" name="motherAge" class="form-control form-control-sm" placeholder="Age" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Occupation:</label>
-                    <input type="text" name="motherOccupation" class="form-control form-control-sm" placeholder="Occupation">
+                    <input type="text" name="motherOccupation" class="form-control form-control-sm" placeholder="Occupation" required>
                 </div>
 
                 <div class="col-md-2 mb-3">
                     <label  class="form-label">Monthly Income:</label>
-                    <input type="text" name="motherIncome" class="form-control form-control-sm" placeholder="Monthly Income">
+                    <input type="text" name="motherIncome" class="form-control form-control-sm" placeholder="Monthly Income" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Highest Level Attained:</label>
-                    <input type="text" name="motherAttained" class="form-control form-control-sm" placeholder="Highest Level Attained">
+                    <input type="text" name="motherAttained" class="form-control form-control-sm" placeholder="Highest Level Attained" required>
                 </div>
 
 
                 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Guardian:</label>
-                    <input type="text" name="guardian" class="form-control form-control-sm" placeholder="Gurdian">
+                    <input type="text" name="guardian" class="form-control form-control-sm" placeholder="Gurdian" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Emergency Contact:</label>
-                    <input type="text" name="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact">
+                    <input type="text" name="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Relationship:</label>
-                    <input type="text" name="relationship" class="form-control form-control-sm" placeholder="Relationship">
+                    <input type="text" name="relationship" class="form-control form-control-sm" placeholder="Relationship" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
-                    <input type="number" name="guardiancNumber" class="form-control form-control-sm" placeholder="Contact Number">
+                    <input type="number" name="guardiancNumber" class="form-control form-control-sm" placeholder="Contact Number" required>
                 </div>
 
                     
@@ -334,72 +334,72 @@
                     <div class="row"> 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Elementary School:</label>
-                    <input type="text" name="eSchool" class="form-control form-control-sm" placeholder="Elementary School">
+                    <input type="text" name="eSchool" class="form-control form-control-sm" placeholder="Elementary School" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="eAve" class="form-control form-control-sm" placeholder="Academic Average">
+                    <input type="text" name="eAve" class="form-control form-control-sm" placeholder="Academic Average" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Achievements::</label>
-                    <input type="text" name="eAchievements" class="form-control form-control-sm" placeholder="Achievements:">
+                    <input type="text" name="eAchievements" class="form-control form-control-sm" placeholder="Achievements:" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Junior High School:</label>
-                    <input type="text" name="jhSchool" class="form-control form-control-sm" placeholder="Junior High School">
+                    <input type="text" name="jhSchool" class="form-control form-control-sm" placeholder="Junior High School" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="jhAve" class="form-control form-control-sm" placeholder="Academic Average">
+                    <input type="text" name="jhAve" class="form-control form-control-sm" placeholder="Academic Average" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Achievements:</label>
-                    <input type="text" name="jhAchievements" class="form-control form-control-sm" placeholder="Achievement">
+                    <input type="text" name="jhAchievements" class="form-control form-control-sm" placeholder="Achievement" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Senior High School:</label>
-                    <input type="text" name="shSchool" class="form-control form-control-sm" placeholder="Senior High School">
+                    <input type="text" name="shSchool" class="form-control form-control-sm" placeholder="Senior High School" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="shAve" class="form-control form-control-sm" placeholder="Academic Average">
+                    <input type="text" name="shAve" class="form-control form-control-sm" placeholder="Academic Average"required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Achievements:</label>
-                    <input type="text" name="shAchievements" class="form-control form-control-sm" placeholder="Achievements">
+                    <input type="text" name="shAchievements" class="form-control form-control-sm" placeholder="Achievements" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Course and Year Level:</label>
-                    <input type="text" name="shCourse" class="form-control form-control-sm" placeholder="Course and Year Level">
+                    <label  class="form-label">Strand and Year Level:</label>
+                    <input type="text" name="shCourse" class="form-control form-control-sm" placeholder="Strand and Year Level" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">College:</label>
-                    <input type="text" name="cSchool" class="form-control form-control-sm" placeholder="College">
+                    <input type="text" name="cSchool" class="form-control form-control-sm" placeholder="College" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="cAve" class="form-control form-control-sm" placeholder="Academic Average">
+                    <input type="text" name="cAve" class="form-control form-control-sm" placeholder="Academic Average" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Achievements:</label>
-                    <input type="text" name="cAchievements" class="form-control form-control-sm" placeholder="Achievements">
+                    <input type="text" name="cAchievements" class="form-control form-control-sm" placeholder="Achievements" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Course and Year Level:</label>
-                    <input type="text" name="cCourse" class="form-control form-control-sm" placeholder="Course and Year Level:">
+                    <input type="text" name="cCourse" class="form-control form-control-sm" placeholder="Course and Year Level:" required>
                 </div>
 
 
@@ -419,15 +419,15 @@
     <div class="row">
         <div class="col-md-4 mb-3">
             <label class="form-label">Subject:</label>
-            <input type="text" name="sub[]" class="form-control form-control-sm" placeholder="Subject">
+            <input type="text" name="sub[]" class="form-control form-control-sm" placeholder="Subject" required>
         </div>
         <div class="col-md-3 mb-3">
             <label class="form-label">Unit:</label>
-            <input type="text" name="totalUnits[]" class="form-control form-control-sm" placeholder="Unit">
+            <input type="text" name="totalUnits[]" class="form-control form-control-sm" placeholder="Unit" required>
         </div>
         <div class="col-md-3 mb-3">
             <label class="form-label">Grade:</label>
-            <input type="text" name="gAverage[]" class="form-control form-control-sm" placeholder="Grade">
+            <input type="text" name="gAverage[]" class="form-control form-control-sm" placeholder="Grade" required>
         </div>
         <hr class="border border-2" style="color: black;">
     </div>
@@ -550,11 +550,11 @@
 <div class="row">
 <div class="col-md-6 mb-3">
             <label class="form-label">How did you learn about CCMFI Scholarship?</label>
-            <input type="text" class="form-control form-control-sm" name="q1" id="otherScholarshipYesField" placeholder="How did you learn about CCMFI Scholarship">
+            <input type="text" class="form-control form-control-sm" name="q1" id="otherScholarshipYesField" placeholder="How did you learn about CCMFI Scholarship" required>
         </div>
         <div class="col-md-6 mb-3">
             <label class="form-label">Why are you applying for this scholarship?</label>
-            <input type="text" class="form-control form-control-sm" name="q2" id="otherScholarshipYesField" placeholder="How did you learn about CCMFI Scholarship">
+            <input type="text" class="form-control form-control-sm" name="q2" id="otherScholarshipYesField" placeholder="How did you learn about CCMFI Scholarship" required>
         </div>
       
         
@@ -729,13 +729,55 @@
         });
     }
 
+    // Function to reset border color of input fields
+    function resetInputBorders(stepNumber) {
+        const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
+        currentStepInputs.forEach(input => {
+            input.style.borderColor = ''; // Reset border color to default
+        });
+    }
+
+    // Function to remove error message span
+    function removeErrorMessage(stepNumber) {
+        const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
+        currentStepInputs.forEach(input => {
+            const errorMessage = input.parentNode.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+        });
+    }
+
     // Initial setup
     showStep(currentStep);
 
     // Event listeners for Next buttons
     nextBtns.forEach((nextBtn, index) => {
         nextBtn.addEventListener('click', () => {
-            if (currentStep < steps.length) {
+            // Check if there are any required fields in the current step that are empty
+            const currentStepInputs = steps[currentStep - 1].querySelectorAll('input[required]');
+            let canProceed = true;
+
+            for (let i = 0; i < currentStepInputs.length; i++) {
+                const input = currentStepInputs[i];
+                if (!input.value.trim()) { // Check if the input value is empty after trimming whitespace
+                    canProceed = false;
+                    // Add a visual indicator to the empty input field (e.g., change border color to red)
+                    input.style.borderColor = 'red';
+                    // Optionally, you can also display an error message next to the input field
+                    const errorMessage = document.createElement('span');
+                    errorMessage.textContent = 'This field is required';
+                    errorMessage.classList.add('error-message');
+                    errorMessage.style.color = 'red';
+                    input.parentNode.appendChild(errorMessage);
+                    break; // Break out of the loop if any required field is empty
+                }
+            }
+
+            // If all required fields are filled, proceed to the next step
+            if (canProceed && currentStep < steps.length) {
+                resetInputBorders(currentStep); // Reset border color of input fields for the current step
+                removeErrorMessage(currentStep); // Remove error message span for the current step
                 currentStep++;
                 showStep(currentStep);
             }
@@ -748,22 +790,24 @@
         });
     });
 
-    // Event listeners for Previous buttons
-    prevBtns.forEach((prevBtn, index) => {
-        prevBtn.addEventListener('click', () => {
-            if (currentStep > 1) {
-                currentStep--;
-                showStep(currentStep);
-            }
-
-            // Update button visibility based on the current step
-            if (currentStep === 1) {
-                prevBtn.style.display = 'none';
-            }
-            nextBtns[index].style.display = 'block';
+    // Event listeners for input fields
+    steps.forEach((step, index) => {
+        const stepInputs = step.querySelectorAll('input[required]');
+        stepInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.value.trim()) {
+                    input.style.borderColor = ''; // Reset border color if input is not null
+                    const errorMessage = input.parentNode.querySelector('.error-message');
+                    if (errorMessage) {
+                        errorMessage.remove(); // Remove error message if input is not null
+                    }
+                }
+            });
         });
     });
+
 </script>
+
 
 
 
@@ -777,6 +821,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script type="text/javascript">
    
 </script>

@@ -61,10 +61,9 @@ rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
-<div class="loader"></div>
-
 <body id="page-top">
 
+<div class="loader"></div>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
