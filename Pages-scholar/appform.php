@@ -88,7 +88,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Age:</label>
-                    <input type="text" name="age" class="form-control form-control-sm" placeholder="Age" required>
+                    <input type="text" name="age" id="ageko" class="form-control form-control-sm" placeholder="Age" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -136,7 +136,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Mobile Number:</label>
-                    <input type="number" name="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
+                    <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -189,7 +189,7 @@
 
                 <div class="col-md-1 mb-3">
                     <label  class="form-label">Age:</label>
-                    <input type="number" name="fAge" class="form-control form-control-sm" placeholder="Age" required>
+                    <input type="text" name="fAge" id="fAge" class="form-control form-control-sm" placeholder="Age" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -199,7 +199,7 @@
 
                 <div class="col-md-2 mb-3">
                     <label  class="form-label">Monthly Income:</label>
-                    <input type="text" name="fatherIncome" class="form-control form-control-sm" placeholder="Monthly Income" required>
+                    <input type="text" name="fatherIncome" id="fatherIncome" class="form-control form-control-sm" placeholder="Monthly Income" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -215,7 +215,7 @@
 
                 <div class="col-md-1 mb-3">
                     <label  class="form-label">Age:</label>
-                    <input type="number" name="motherAge" class="form-control form-control-sm" placeholder="Age" required>
+                    <input type="text" name="motherAge" id="motherAge" class="form-control form-control-sm" placeholder="Age" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -225,7 +225,7 @@
 
                 <div class="col-md-2 mb-3">
                     <label  class="form-label">Monthly Income:</label>
-                    <input type="text" name="motherIncome" class="form-control form-control-sm" placeholder="Monthly Income" required>
+                    <input type="text" name="motherIncome" id="motherIncome" class="form-control form-control-sm" placeholder="Monthly Income" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -242,7 +242,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Emergency Contact:</label>
-                    <input type="text" name="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact" required>
+                    <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -252,7 +252,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
-                    <input type="number" name="guardiancNumber" class="form-control form-control-sm" placeholder="Contact Number" required>
+                    <input type="text" name="guardiancNumber" id="guardiancNumber" class="form-control form-control-sm" placeholder="Contact Number" required>
                 </div>
 
                     
@@ -284,7 +284,7 @@
 
                         <div class="col-md-3 mb-3">
                         <label class="form-label">Age:</label>
-                        <input type="text" name="sAge[]" class="form-control form-control-sm" placeholder="Age">
+                        <input type="text" name="sAge[]" id="sAge" class="form-control form-control-sm" placeholder="Age">
                         </div>
 
                         <!-- <div class="col-md-3 mb-3">
@@ -705,7 +705,27 @@
     </div>
 
 
+    <script>
+        // Function to enforce numeric-only input in specified element
+        function allowNumbersOnly(inputId) {
+            document.getElementById(inputId).addEventListener('input', function(e) {
+                // Replace any non-digit character with an empty string
+                this.value = this.value.replace(/\D/g, '');
+            });
+        }
 
+        // Apply the function to your input elements
+        allowNumbersOnly('mNumber');
+        allowNumbersOnly('emergencyContact');
+        allowNumbersOnly('motherIncome');
+        allowNumbersOnly('fatherIncome');
+        allowNumbersOnly('ageko');
+        allowNumbersOnly('fAge');
+        allowNumbersOnly('sAge');
+        allowNumbersOnly('motherAge');
+        allowNumbersOnly('guardiancNumber');
+
+    </script>
 
 
 
@@ -751,44 +771,47 @@
     // Initial setup
     showStep(currentStep);
 
-    // Event listeners for Next buttons
     nextBtns.forEach((nextBtn, index) => {
-        nextBtn.addEventListener('click', () => {
-            // Check if there are any required fields in the current step that are empty
-            const currentStepInputs = steps[currentStep - 1].querySelectorAll('input[required]');
-            let canProceed = true;
+    nextBtn.addEventListener('click', () => {
+        // Check if there are any required fields in the current step that are empty
+        const currentStepInputs = steps[currentStep - 1].querySelectorAll('input[required]');
+        let canProceed = true;
 
-            for (let i = 0; i < currentStepInputs.length; i++) {
-                const input = currentStepInputs[i];
-                if (!input.value.trim()) { // Check if the input value is empty after trimming whitespace
-                    canProceed = false;
-                    // Add a visual indicator to the empty input field (e.g., change border color to red)
-                    input.style.borderColor = 'red';
-                    // Optionally, you can also display an error message next to the input field
+        for (let i = 0; i < currentStepInputs.length; i++) {
+            const input = currentStepInputs[i];
+            if (!input.value.trim()) { // Check if the input value is empty after trimming whitespace
+                canProceed = false;
+                // Add a visual indicator to the empty input field (e.g., change border color to red)
+                input.style.borderColor = 'red';
+                // Optionally, you can also display an error message next to the input field if it doesn't already exist
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (!errorMessage) {
                     const errorMessage = document.createElement('span');
                     errorMessage.textContent = 'This field is required';
                     errorMessage.classList.add('error-message');
                     errorMessage.style.color = 'red';
                     input.parentNode.appendChild(errorMessage);
-                    break; // Break out of the loop if any required field is empty
                 }
+                break; // Break out of the loop if any required field is empty
             }
+        }
 
-            // If all required fields are filled, proceed to the next step
-            if (canProceed && currentStep < steps.length) {
-                resetInputBorders(currentStep); // Reset border color of input fields for the current step
-                removeErrorMessage(currentStep); // Remove error message span for the current step
-                currentStep++;
-                showStep(currentStep);
-            }
+        // If all required fields are filled, proceed to the next step
+        if (canProceed && currentStep < steps.length) {
+            resetInputBorders(currentStep); // Reset border color of input fields for the current step
+            removeErrorMessage(currentStep); // Remove error message span for the current step
+            currentStep++;
+            showStep(currentStep);
+        }
 
-            // Update button visibility based on the current step
-            if (currentStep === steps.length) {
-                nextBtn.style.display = 'none';
-            }
-            prevBtns[index].style.display = 'block';
-        });
+        // Update button visibility based on the current step
+        if (currentStep === steps.length) {
+            nextBtn.style.display = 'none';
+        }
+        prevBtns[index].style.display = 'block';
     });
+});
+
 
     // Event listeners for input fields
     steps.forEach((step, index) => {
