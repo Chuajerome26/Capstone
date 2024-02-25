@@ -340,7 +340,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                         <p class="card-text">Percentage:<?php echo $prediction; ?></p>
                                                     </div>
                                                     <div class="card-footer d-flex justify-content-center">
-                                                        <button type="button" class="btn btn-primary">Go somewhere</button>
+                                                        <button type="button" class="btn btn-info mx-1" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $applicant["id"];?>">Details</button>
+                                                        <form method="post" action="../functions/scholar-accept.php">
+                                                            <button class="btn btn-primary" type="submit" name="accept">Accept</button>
+                                                            <input type="hidden" name="acceptId" value="<?php echo $applicant['id']?>">
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -506,7 +510,7 @@ foreach($applicantsss as $pogiko){
 <?php
 $appliData1 = $admin->getApplicants();
     foreach($appliData1 as $a){
-        $count = 1;
+        $pic1=$admin->getApplicants2x2($a['id']);
 ?>
 <div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -517,14 +521,14 @@ $appliData1 = $admin->getApplicants();
       </div>
       <div class="modal-body">
         
-      
             <div class="row g-0 p-2">
                 <div class="col-md-4">
                     <div class="card shadow" style="height: 350px;">
                         <div class="card-body">
 
                         <div class="d-flex justify-content-center">
-                        <img src="<?php echo !empty($a['profile_image']) ? $a['profile_image'] : '../images/images.png'; ?>" alt="Profile Picture" class="img-thumbnail rounded-circle shadow" width="150" height="150">
+
+                        <img src="../Scholar_files/<?php echo $pic1[0]['file_name'];?>" alt="Profile Picture" class="img-thumbnail rounded-circle shadow" width="150" height="150">
                         
                     </div>
                     <h5 class="text-center mt-4"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
@@ -671,7 +675,7 @@ $appliData1 = $admin->getApplicants();
                         <table class="table p-0 w-100">
                             <thead>
                                 <tr>
-                                <th >Name</th>
+                                <th>Name</th>
                                 <th>Age</th>
                                 <th>Occupation</th>
                                 <th>Civil Status</th>
@@ -774,19 +778,30 @@ $appliData1 = $admin->getApplicants();
                             <dl class="row mt-3 ms-3" >
 
                             <dt class="col-sm-12">Did you apply for / are you a recipient of another scholarship?:</dt>
-                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+                            <dd class="col-sm-12"><?php echo $a["other_scho"];?></dd>
+
+                            <?php if($a["other_scho"] == "yes"): ?>
+                                <dt class="col-sm-12">Type:</dt>
+                                <dd class="col-sm-12"><?php echo $a["other_scho_type"];?></dd>
+
+                                <dt class="col-sm-12">Coverage</dt>
+                                <dd class="col-sm-12"><?php echo $a["other_scho_coverage"];?></dd>
+
+                                <dt class="col-sm-12">Status:</dt>
+                                <dd class="col-sm-12"><?php echo $a["other_scho_status"];?></dd>
+                            <?php else: endif;?>
 
                             <dt class="col-sm-12">How did you learn about CCMFI Schoolarship?</dt>
-                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+                            <dd class="col-sm-12"><?php echo $a["q1"];?></dd>
 
                             <dt class="col-sm-12">Why are you applying for this scholarship</dt>
-                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+                            <dd class="col-sm-12"><?php echo $a["q2"];?></dd>
 
                             <dt class="col-sm-12">Will you pursue your studies event without this scholarship?</dt>
-                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+                            <dd class="col-sm-12"><?php echo $a["apply_scho"];?></dd>
 
                             <dt class="col-sm-12">Explain your Answer:</dt>
-                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+                            <dd class="col-sm-12"><?php echo $a["apply_scho_explain"];?></dd>
             
                             </dl> 
 
@@ -824,12 +839,15 @@ $appliData1 = $admin->getApplicants();
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $gradeInfo = $admin->getAllGrade($a['id']);
+                                    foreach($gradeInfo as $gi){
+                                ?>
                                 <tr>
-                                <td>English</th>
-                                <td>69</td>
-                                <td>3.02</td>
+                                <td><?php echo $gi['subject']; ?></th>
+                                <td><?php echo $gi['unit']; ?></td>
+                                <td><?php echo $gi['grade']; ?></td>
                                 </tr>
-                                
+                                <?php }?>
                                 </tr>
                             </tbody>
                             </table>
@@ -851,25 +869,31 @@ $appliData1 = $admin->getApplicants();
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                    $choice = $admin->getAllChoice($a['id']);
+                                    foreach($choice as $ce){
+                                ?>
                                 <tr>
-                                <td>QCU</th>
-                                <td>BSIT</td>
-                                <td>YES, Testing</td>
+                                <td><?php echo $ce['univ']; ?></th>
+                                <td><?php echo $ce['course']; ?></td>
+                                <td><?php echo $ce['entrance_exam']; ?>, <?php echo $ce['exam_taken']; ?></td>
                                 </tr>
+                                <?php }?>
                                 
                                 </tr>
                             </tbody>
                             </table>
-
                 </div>
             </div>
 
   </div>
 </div>
-    </div>
+</div>
+</div>
+</div>
 
 
-<?php $count++;} ?>
+<?php } ?>
 <!-- Modal end -->
 <!-- Modal for Files -->
 <?php

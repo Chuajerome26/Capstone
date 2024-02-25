@@ -264,24 +264,43 @@ class Admin
             return $result;
         }
     }
+    public function getAllGrade($scholar_id){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_grade WHERE scholar_id = ?");
+
+        if (!$stmt->execute([$scholar_id])) {
+            header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+            exit();
+        }
+        //fetch the result
+        $result = $stmt->fetchAll();
+    
+        return $result;
+        
+    }
+    public function getAllChoice($scholar_id){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_college_choices WHERE scholar_id = ?");
+
+        if (!$stmt->execute([$scholar_id])) {
+            header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+            exit();
+        }
+        //fetch the result
+        $result = $stmt->fetchAll();
+        
+        return $result;
+
+    }
     public function getApplicants2x2($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_file WHERE scholar_id=? AND requirement_name = 'IdPhoto'");
 
        //if execution fail
-      if (!$stmt->execute([$scholar_id])) {
-          header("Location: ../index.php?error=stmtfail");
-          exit();
-      }
+    if (!$stmt->execute([$scholar_id])) {
+        header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+        exit();
+    }
       //fetch the result
-      $result = $stmt->fetchAll();
-      
-        //if has result return it, else return false
-      if ($result) {
-          return $result;
-      } else {
-          $result = false;
-          return $result;
-      }
+        $result = $stmt->fetchAll();
+        return $result;
     }
     public function getApplicantsFiles($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_file WHERE scholar_id=?");
