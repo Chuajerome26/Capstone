@@ -829,6 +829,24 @@
         });
     });
 
+    prevBtns.forEach((prevBtn, index) => {
+        prevBtn.addEventListener('click', () => {
+            // Go to the previous step
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+
+            // Update button visibility based on the current step
+            if (currentStep < steps.length) {
+                nextBtns[index].style.display = 'block';
+            }
+            if (currentStep === 1) {
+                prevBtn.style.display = 'none';
+            }
+        });
+    });
+
 </script>
 
 
