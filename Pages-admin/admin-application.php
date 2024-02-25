@@ -47,6 +47,16 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets1/css/1.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+  .table {
+    border: none; /* Remove border from the table */
+  }
+
+  .table th,
+  .table td {
+    border: none; /* Remove border from table cells */
+  }
+</style>
 </head>
 
 <div class="loader"></div>
@@ -412,57 +422,54 @@ foreach($appliData as $z){
 <!-- Modal for Remarks -->
 <?php
 $applicantss = $admin->getApplicants();
-foreach($applicantss as $z){
+foreach($applicantss as $z) {
     $id = $z["id"];
 ?>
-            <div class="modal fade" id="remarks<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="remarks<?php echo $z["id"];?>l" aria-hidden="true">
-            <div class="modal-dialog modal-lg" >
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="remarks<?php echo $z["id"];?>">Remarks</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                <div class="table-responsive">
-                <table id="applicant-modal-remarks" class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Remarks</th>
-                            </tr> 
-                        </thead>
-                        <?php 
+
+<div class="modal fade" id="remarks<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="remarksTitle<?php echo $z["id"];?>" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="remarksTitle<?php echo $z["id"];?>">Remarks</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-3 text-dark">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-11">
+                            <?php 
                             $getRemarks = $admin->getRemarks($id);
-                                if($getRemarks):
-                                    $number = 1;
-                                    foreach($getRemarks as $pogi):
-                                        
-                        ?>
-                        <tbody>
-                            <tr>
-                                <td><?php echo $number; ?></td>
-                                <td><?php echo $pogi["remarks"];?></td>
-                            </tr>
-                        </tbody>
-                                    <?php $number++; endforeach;?>
-                        <?php else: ?>
-                            <tbody>
-                            <tr>
-                                <td colspan="2"><center>No Remarks</center></td>
-                            </tr>
-                        </tbody>
-                        <?php endif;?>
-                    </table>    
+                            if($getRemarks):
+                                foreach($getRemarks as $pogi):
+                            ?>
+                            <div class="d-flex flex-row align-items-start mb-4">
+                                <img class="img-thumbnail rounded-circle shadow border me-3" src="../images/images.png" alt="avatar" width="50" height="55" />
+                                <div class="card w-100 shadow">
+                                    <div class="card-body p-4">
+                                        <div class="">
+                                            <h5>Admin</h5>
+                                            <p class="small">February 25, 2024</p>
+                                            <p><?php echo $pogi["remarks"];?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                            <?php else: ?>
+                            <div class="alert alert-primary" role="alert">No Remarks</div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z["id"];?>" onclick="modal(<?php echo $z['id']; ?>)">Give Remarks</button>
-                </div>
-                </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z["id"];?>" onclick="modal(<?php echo $z['id']; ?>)">Give Remarks</button>
             </div>
-<!-- End -->
-<?php }?>
+        </div>
+    </div>
+</div>
+<?php } ?>
+
 
 <?php
 $applicantsss = $admin->getApplicants();
@@ -479,7 +486,9 @@ foreach($applicantsss as $pogiko){
       </div>
       <div class="modal-body">
         <form method="post" action="../functions/remarks.php">
-            <textarea rows="8" cols="50" placeholder="Remarks" name="remarks"></textarea>
+        <label for="floatingTextarea">Comments</label>
+            <textarea class="form-control" name="remarks" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+          
             <input type="hidden" name="scholar_id" value="<?php echo $pogiko['id']?>">
       </div>
       <div class="modal-footer">
@@ -515,7 +524,7 @@ $appliData1 = $admin->getApplicants();
                         <div class="card-body">
 
                         <div class="d-flex justify-content-center">
-                        <img src="path/to/default-image.jpg" alt="Profile Picture" class="img-thumbnail rounded-circle mt-2 shadow" width="150" height="150">
+                        <img src="<?php echo !empty($a['profile_image']) ? $a['profile_image'] : '../images/images.png'; ?>" alt="Profile Picture" class="img-thumbnail rounded-circle shadow" width="150" height="150">
                         
                     </div>
                     <h5 class="text-center mt-4"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
@@ -541,32 +550,32 @@ $appliData1 = $admin->getApplicants();
                     <div class= "ms-2 g-1 border-0">
                                 <div class="row ">
                                 <div class="col-12 ">
-                                        <p>Address: <?php echo $a['address'];?></p>
+                                        <p><strong>Address: </strong><?php echo $a['address'];?></p>
                                 </div>
 
 
                                 <div class="col-6 ">
-                                        <p>Date of Birth: <?php echo $a['date_of_birth'];?></p>
-                                        <p>Birth Place: <?php echo $a['b_place'];?></p>
-                                        <p>Citizenship: <?php echo $a['citizenship'];?></p>
-                                        <p>Religion: <?php echo $a['religion'];?></p>
-                                        <p>Province: <?php echo $a["province"];?></p>
+                                        <p><strong>Date of Birth: </strong><?php echo $a['date_of_birth'];?></p>
+                                        <p><strong>Birth Place: </strong><?php echo $a['b_place'];?></p>
+                                        <p><strong>Citizenship: </strong><?php echo $a['citizenship'];?></p>
+                                        <p><strong>Religion: </strong><?php echo $a['religion'];?></p>
+                                        <p><strong>Province: </strong><?php echo $a["province"];?></p>
                                       
                                       
                                 </div>
 
                                 <div class="col-6 ">
-                                     <p>Gender: <?php echo $a["gender"];?></p>
-                                     <p>Status: <?php echo $a["c_status"];?></p>
-                                     <p>Age: <?php echo $a['age'];?></p>
-                                     <p>Height: <?php echo $a['height'];?> | Weight: <?php echo $a['weight'];?></p>
-                                     <p>Medical Condition: <?php echo $a['med_condition'];?></p>
+                                     <p><strong>Gender: </strong><?php echo $a["gender"];?></p>
+                                     <p><strong>Status: </strong><?php echo $a["c_status"];?></p>
+                                     <p><strong>Age: </strong><?php echo $a['age'];?></p>
+                                     <p><strong>Height: </strong><?php echo $a['height'];?> | Weight: <?php echo $a['weight'];?></p>
+                                     <p><strong>Medical Condition: </strong><?php echo $a['med_condition'];?></p>
                                     
                                     
                                 </div>
 
                                 <div class="col-12">
-                                <p>Skills: <?php echo $a['skills'];?></p>
+                                <p><strong>Skills:</strong> <?php echo $a['skills'];?></p>
                                 </div>
                                 </div>
 
@@ -578,30 +587,122 @@ $appliData1 = $admin->getApplicants();
             </div>
 
 
-            <div class="col-md-6 mt-3 p-2">
-                <div class="card border p-4">
-                    <h5 >Family Information</h5>
+            <div class="col-md-7 mt-3 ">
+            <div class="card border shadow">
+                <div class="card-header">
+                    <h5>Family Information</h5>
+                </div>
+                <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <h6>Father Details</h6>
+                        <div class="ms-2"><strong>Name: </strong><?php echo $a["father_name"]; ?></div>
+                        <div class="ms-2"><strong>Occupation: </strong><?php echo $a["father_occupation"]; ?></div>
+                        <div class="ms-2"><strong>Monthly Income: </strong><?php echo $a["father_income"]; ?></div>
+                        <div class="ms-2"><strong>Age: </strong><?php echo $a['father_age']; ?></div>
+                        <div class="ms-2"><strong>Educational Attained:</strong> <?php echo $a['father_attained']; ?></div>
+                    </div>
 
-                            <div class="row">
-                                    <div class="col-12 ms-3">
-                                        <div>Father Name: <?php echo $a["father_name"];?> </div>
-                                        <div>Occupation: <?php echo $a["father_occupation"];?> </div>
-                                        <div>Montly Income: <?php echo $a["father_income"];?> </div>
-                                        <div>Age: <?php echo $a['father_age'];?> </div>
-                                    </div>
-                                    <div class="col-6">
-                                     
-                                    </div>
+                    <div class="col-md-6">
+                        <h6 >Mother Details</h6>
+                        <div class="ms-2"><strong>Name: </strong><?php echo $a["mother_name"]; ?></div>
+                        <div class="ms-2"><strong>Occupation: </strong><?php echo $a["mother_occupation"]; ?></div>
+                        <div class="ms-2"><strong>Monthly Income: </strong><?php echo $a["mother_income"]; ?></div>
+                        <div class="ms-2"><strong>Age: </strong><?php echo $a['mother_age']; ?></div>
+                        <div class="ms-2"><strong>Educational Attained: </strong><?php echo $a['mother_attained']; ?></div>
+                    </div>
+                </div>
 
-                            </div>
+                <div class="col-md-12 border mt-3 mb-3"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6>Guardian Details</h6>
+                        <div class="ms-2"><strong>Name: </strong><?php echo $a["guardian"]; ?></div>
+                        <div class="ms-2"><strong>Contact No.: </strong><?php echo $a['guardian_contact']; ?></div>
+                        <div class="ms-2"><strong>Emergency Contact: </strong><?php echo $a["emergency_contact"]; ?></div>
+                        <div class="ms-2"><strong>Relationship: </strong><?php echo $a['guardian_rs']; ?></div>
+            
+                    </div>
+
+                    <div class="col-md-12 border mt-3 mb-3"></div>  
+                    <div class="col-md-12   " >
+                        <h6>Sibling Details</h6>
+                        <table class="table p-0 w-100">
+                            <thead>
+                                <tr>
+                                <th style="font-size: 13px;">Name</th>
+                                <th style="font-size: 13px;">Age</th>
+                                <th style="font-size: 13px;">Occupation</th>
+                                <th style="font-size: 13px;">Civil Status</th>
+                                <th style="font-size: 13px;">Religion</th>
+                                <th style="font-size: 13px;">Educational Attainment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th style="font-size: 13px;">Wats ur name bro</th>
+                                <td style="font-size: 13px;">69</td>
+                                <td style="font-size: 13px;">Basketball Player</td>
+                                <td style="font-size: 13px;">Undecided</td>
+                                <td style="font-size: 13px;">Iglesia ni Jordan Clarskon</td>
+                                <td style="font-size: 13px;">Kindeer</td>
+                                </tr>
+                                
+                                </tr>
+                            </tbody>
+                            </table>
+                    </div>
+                </div>
+    </div>
+            </div>
+        </div>
+
+            <div class="col-md-5 mt-3 ">
+                <div class="card border">
+                    <div class="card-header">
+                <h5>Academic Information</h5>
+                </div>
+                
+                <div class="p-3 mt-3">
+                <h6 class="ms-3">Elementary School</h6>
+                <div class="ms-4"><strong>School: </strong><?php echo $a["e_school"];?></div>
+                <div class="ms-4"><strong>Average: </strong><?php echo $a['e_ave'];?></div>
+                <div class="ms-4"><strong>Achievements: </strong><?php echo $a["e_achievements"];?></div>
+                </div>
+
+                
+                <div class="p-3 mt-3">
+                <h6 class="ms-3">Junior School</h6>
+                <div class="ms-4"><strong>School: </strong><?php echo $a["jh_school"];?></div>
+                <div class="ms-4"><strong>Average: </strong><?php echo $a['jh_ave'];?></div>
+                <div class="ms-4"><strong>Achievements:</strong> <?php echo $a["jh_achievements"];?></div>
+                </div>
+
+                
+                <div class="p-3 mt-3">
+                <h6 class="ms-3">Senior School</h6>
+                <div class="ms-4"><strong>School: </strong><?php echo $a["sh_school"];?></div>
+                <div class="ms-4"><strong>Average:</strong> <?php echo $a['sh_ave'];?></div>
+                <div class="ms-4"><strong>Achievements: </strong><?php echo $a["sh_achievements"];?></div>
+                </div>
+
+                
+                <div class="p-3 mt-3 mb-2">
+                <h6 class="ms-3">College School</h6>
+                <div class="ms-4"><strong>School: </strong><?php echo $a["c_school"];?></div>
+                <div class="ms-4"><strong>Average: </strong><?php echo $a['c_ave'];?></div>
+                <div class="ms-4"><strong>Achievements:</strong> <?php echo $a["c_achievements"];?></div>
+                </div>
+
+
+
 
 
                 </div>
-            </div>
 
-            <div class="col-md-6 mt-3 p-2">
-                <div class="card border">
-                <h5>Academic Information</h5>
+                    <div class="card-body">
+                         </div>
                 </div>
             </div>
 
