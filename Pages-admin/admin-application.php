@@ -550,7 +550,7 @@ $appliData1 = $admin->getApplicants();
                     <div class= "ms-2 g-1 border-0">
                                 <div class="row ">
                                 <div class="col-12 ">
-                                        <p><strong>Address: </strong><?php echo $a['address'];?></p>
+                                        <p class=""><strong>Address: </strong><?php echo $a['address'];?></p>
                                 </div>
 
 
@@ -587,7 +587,7 @@ $appliData1 = $admin->getApplicants();
             </div>
 
 
-            <div class="col-md-7 mt-3 ">
+            <div class="col-md-12 mt-3 ">
             <div class="card border shadow">
                 <div class="card-header">
                     <h5>Family Information</h5>
@@ -596,32 +596,72 @@ $appliData1 = $admin->getApplicants();
                 <div class="row">
                     <div class="col-md-6 ">
                         <h6>Father Details</h6>
-                        <div class="ms-2"><strong>Name: </strong><?php echo $a["father_name"]; ?></div>
-                        <div class="ms-2"><strong>Occupation: </strong><?php echo $a["father_occupation"]; ?></div>
-                        <div class="ms-2"><strong>Monthly Income: </strong><?php echo $a["father_income"]; ?></div>
-                        <div class="ms-2"><strong>Age: </strong><?php echo $a['father_age']; ?></div>
-                        <div class="ms-2"><strong>Educational Attained:</strong> <?php echo $a['father_attained']; ?></div>
+
+                        <dl class="row">
+                            <dt class="col-sm-5 ">Name:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_name"];?></dd>
+
+
+                            <dt class="col-sm-5">Occupation:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_occupation"];?></dd>
+
+                            <dt class="col-sm-5">Monthly Income:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_income"];?></dd>
+
+                            <dt class="col-sm-5">Age:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_age"];?></dd>
+
+                            
+                            <dt class="col-sm-5">Educational Attained:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_attained"];?></dd>
+                        </dl>
                     </div>
 
                     <div class="col-md-6">
+                        <dl class="row">
                         <h6 >Mother Details</h6>
-                        <div class="ms-2"><strong>Name: </strong><?php echo $a["mother_name"]; ?></div>
-                        <div class="ms-2"><strong>Occupation: </strong><?php echo $a["mother_occupation"]; ?></div>
-                        <div class="ms-2"><strong>Monthly Income: </strong><?php echo $a["mother_income"]; ?></div>
-                        <div class="ms-2"><strong>Age: </strong><?php echo $a['mother_age']; ?></div>
-                        <div class="ms-2"><strong>Educational Attained: </strong><?php echo $a['mother_attained']; ?></div>
-                    </div>
+                            <dt class="col-sm-5">Name:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_name"];?></dd>
+
+
+                            <dt class="col-sm-5">Occupation:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_occupation"];?></dd>
+
+                            <dt class="col-sm-5">Monthly Income:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_income"];?></dd>
+
+                            <dt class="col-sm-5">Age:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_age"];?></dd>
+
+                            
+                            <dt class="col-sm-5">Educational Attained:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_attained"];?></dd>
+                        </dl>
+                        </div>
                 </div>
 
                 <div class="col-md-12 border mt-3 mb-3"></div>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <h6>Guardian Details</h6>
-                        <div class="ms-2"><strong>Name: </strong><?php echo $a["guardian"]; ?></div>
-                        <div class="ms-2"><strong>Contact No.: </strong><?php echo $a['guardian_contact']; ?></div>
-                        <div class="ms-2"><strong>Emergency Contact: </strong><?php echo $a["emergency_contact"]; ?></div>
-                        <div class="ms-2"><strong>Relationship: </strong><?php echo $a['guardian_rs']; ?></div>
+                        <dl class="row">
+                        <h6 >Guardian Details</h6>
+                        <dt class="col-sm-3">Name:</dt>
+                            <dd class="col-sm-9"><?php echo $a["guardian"];?></dd>
+
+
+                            <dt class="col-sm-3">Contact No.:</dt>
+                            <dd class="col-sm-9"><?php echo $a["guardian_contact"];?></dd>
+
+                            <dt class="col-sm-3">Emergency Contact:</dt>
+                            <dd class="col-sm-9"><?php echo $a["emergency_contact"];?></dd>
+
+                            <dt class="col-sm-3">Relationship:</dt>
+                            <dd class="col-sm-9"><?php echo $a["guardian_rs"];?></dd>
+
+            
+                        </dl> 
+                        
             
                     </div>
 
@@ -631,22 +671,22 @@ $appliData1 = $admin->getApplicants();
                         <table class="table p-0 w-100">
                             <thead>
                                 <tr>
-                                <th style="font-size: 13px;">Name</th>
-                                <th style="font-size: 13px;">Age</th>
-                                <th style="font-size: 13px;">Occupation</th>
-                                <th style="font-size: 13px;">Civil Status</th>
-                                <th style="font-size: 13px;">Religion</th>
-                                <th style="font-size: 13px;">Educational Attainment</th>
+                                <th >Name</th>
+                                <th>Age</th>
+                                <th>Occupation</th>
+                                <th>Civil Status</th>
+                                <th>Religion</th>
+                                <th>Educational Attainment</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                <th style="font-size: 13px;">Wats ur name bro</th>
-                                <td style="font-size: 13px;">69</td>
-                                <td style="font-size: 13px;">Basketball Player</td>
-                                <td style="font-size: 13px;">Undecided</td>
-                                <td style="font-size: 13px;">Iglesia ni Jordan Clarskon</td>
-                                <td style="font-size: 13px;">Kindeer</td>
+                                <td>Wats ur name bro</th>
+                                <td>69</td>
+                                <td>Basketball Player</td>
+                                <td>Undecided</td>
+                                <td>Iglesia ni Jordan Clarskon</td>
+                                <td>Kindeer</td>
                                 </tr>
                                 
                                 </tr>
@@ -658,62 +698,172 @@ $appliData1 = $admin->getApplicants();
             </div>
         </div>
 
-            <div class="col-md-5 mt-3 ">
-                <div class="card border">
+            <div class="col-md-6 mt-3 ">
+                <div class="card border shadow">
                     <div class="card-header">
                 <h5>Academic Information</h5>
                 </div>
+
+                <dl class="row ms-3">
+                <h6 class="mt-3">Elementary School</h6>
+                            <dt class="col-sm-5">School:</dt>
+                            <dd class="col-sm-7"><?php echo $a["e_school"];?></dd>
+
+
+                            <dt class="col-sm-5">Average:</dt>
+                            <dd class="col-sm-7"><?php echo $a["e_ave"];?></dd>
+
+                            <dt class="col-sm-5">Achievements:</dt>
+                            <dd class="col-sm-7"><?php echo $a["e_achievements"];?></dd>
+                        </dl>
                 
-                <div class="p-3 mt-3">
-                <h6 class="ms-3">Elementary School</h6>
-                <div class="ms-4"><strong>School: </strong><?php echo $a["e_school"];?></div>
-                <div class="ms-4"><strong>Average: </strong><?php echo $a['e_ave'];?></div>
-                <div class="ms-4"><strong>Achievements: </strong><?php echo $a["e_achievements"];?></div>
-                </div>
 
+                        <dl class="row ms-3">
+                <h6 >Junior High School</h6>
+                            <dt class="col-sm-5">School:</dt>
+                            <dd class="col-sm-7"><?php echo $a["jh_school"];?></dd>
+
+
+                            <dt class="col-sm-5">Average:</dt>
+                            <dd class="col-sm-7"><?php echo $a["jh_ave"];?></dd>
+
+                            <dt class="col-sm-5">Achievements:</dt>
+                            <dd class="col-sm-7"><?php echo $a["jh_achievements"];?></dd>
+                        </dl>
                 
-                <div class="p-3 mt-3">
-                <h6 class="ms-3">Junior School</h6>
-                <div class="ms-4"><strong>School: </strong><?php echo $a["jh_school"];?></div>
-                <div class="ms-4"><strong>Average: </strong><?php echo $a['jh_ave'];?></div>
-                <div class="ms-4"><strong>Achievements:</strong> <?php echo $a["jh_achievements"];?></div>
-                </div>
 
+                        <dl class="row ms-3" >
+                <h6 >Senior High School</h6>
+                            <dt class="col-sm-5">School:</dt>
+                            <dd class="col-sm-7"><?php echo $a["sh_school"];?></dd>
+
+
+                            <dt class="col-sm-5">Average:</dt>
+                            <dd class="col-sm-7"><?php echo $a["sh_ave"];?></dd>
+
+                            <dt class="col-sm-5">Achievements:</dt>
+                            <dd class="col-sm-7"><?php echo $a["sh_achievements"];?></dd>
+                        </dl>
                 
-                <div class="p-3 mt-3">
-                <h6 class="ms-3">Senior School</h6>
-                <div class="ms-4"><strong>School: </strong><?php echo $a["sh_school"];?></div>
-                <div class="ms-4"><strong>Average:</strong> <?php echo $a['sh_ave'];?></div>
-                <div class="ms-4"><strong>Achievements: </strong><?php echo $a["sh_achievements"];?></div>
-                </div>
 
-                
-                <div class="p-3 mt-3 mb-2">
-                <h6 class="ms-3">College School</h6>
-                <div class="ms-4"><strong>School: </strong><?php echo $a["c_school"];?></div>
-                <div class="ms-4"><strong>Average: </strong><?php echo $a['c_ave'];?></div>
-                <div class="ms-4"><strong>Achievements:</strong> <?php echo $a["c_achievements"];?></div>
-                </div>
+                        <dl class="row ms-3">
+                <h6 >College School</h6>
+                            <dt class="col-sm-5">School:</dt>
+                            <dd class="col-sm-7"><?php echo $a["c_school"];?></dd>
 
 
+                            <dt class="col-sm-5">Average:</dt>
+                            <dd class="col-sm-7"><?php echo $a["c_ave"];?></dd>
 
-
-
+                            <dt class="col-sm-5">Achievements:</dt>
+                            <dd class="col-sm-7"><?php echo $a["c_achievements"];?></dd>
+                        </dl>
                 </div>
 
                     <div class="card-body">
-                         </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 mt-3 ">
+                <div class="card border shadow" style="min-height: 635px;">
+                    <div class="card-header">
+                <h5>Incoming Freshmen</h5>
+                </div>
+
+                            <dl class="row mt-3 ms-3" >
+
+                            <dt class="col-sm-12">Did you apply for / are you a recipient of another scholarship?:</dt>
+                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+
+                            <dt class="col-sm-12">How did you learn about CCMFI Schoolarship?</dt>
+                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+
+                            <dt class="col-sm-12">Why are you applying for this scholarship</dt>
+                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+
+                            <dt class="col-sm-12">Will you pursue your studies event without this scholarship?</dt>
+                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+
+                            <dt class="col-sm-12">Explain your Answer:</dt>
+                            <dd class="col-sm-12"><?php echo $a["guardian_rs"];?></dd>
+            
+                            </dl> 
+
+
+
+
+
+            <div>
+            </div>
+
+            
+    
+
+
+            
+           
+
+
+    </div>
+
+    
+    </div>
+    <div class="col-md-12  ">
+                <div class="card border shadow">
+                    <div class="card-header">
+                <h5>Grade Information</h5>
+                 </div>
+                <table class="table p-0 w-100">
+                            <thead>
+                                <tr>
+                                <th >Subject</th>
+                                <th>Unit</th>
+                                <th>Grade</th>
+                            
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>English</th>
+                                <td>69</td>
+                                <td>3.02</td>
+                                </tr>
+                                
+                                </tr>
+                            </tbody>
+                            </table>
+
                 </div>
             </div>
 
+            <div class="col-md-12 mt-2 ">
+                <div class="card border shadow">
+                    <div class="card-header">
+                <h5>School Choices</h5>
+                 </div>
+                 <table class="table p-0 w-100">
+                            <thead>
+                                <tr>
+                                <th >School Name</th>
+                                <th>Course/Degree Major</th>
+                                <th>Entrance Exam Taken?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>QCU</th>
+                                <td>BSIT</td>
+                                <td>YES, Testing</td>
+                                </tr>
+                                
+                                </tr>
+                            </tbody>
+                            </table>
 
+                </div>
+            </div>
 
-
-
-
-    </div>
-
-    </div>
   </div>
 </div>
     </div>
