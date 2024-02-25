@@ -10,6 +10,46 @@ class Admin
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
+    public function deleteApplicantInterview($id){
+        $stmt = $this->database->getConnection()->prepare("DELETE FROM admin_schedule_interview WHERE id=?");
+
+         //if execution fail
+        if (!$stmt->execute([$id])) {
+            header("Location: ../Pages-admin/schedule-task.php?error=stmtfail");
+            exit();
+        }
+
+        //fetch the result
+        $result = $stmt->fetch();
+        
+          //if has result return it, else return false
+        if ($result) {
+            return true;
+        } else {
+            $result = false;
+            return $result;
+        }
+    }
+    public function checkIfApplicant($id){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE id=? AND status=0");
+
+         //if execution fail
+        if (!$stmt->execute([$id])) {
+            header("Location: ../Pages-admin/schedule-task.php?error=stmtfail");
+            exit();
+        }
+
+        //fetch the result
+        $result = $stmt->fetch();
+        
+          //if has result return it, else return false
+        if ($result) {
+            return true;
+        } else {
+            $result = false;
+            return $result;
+        }
+    }
     public function updateNotif1($id){
         // prepared statement
         $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE id =?");

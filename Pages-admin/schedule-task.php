@@ -278,10 +278,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                             // Loop to display data entries with the same date within the same card
                                                             foreach ($initialInterview1 as $entry) { 
                                                                 if ($entry['date'] == $date) {
-                                                                    $info = $admin->getApplicantById($entry['scholar_id']);
+                                                                    if($admin->checkIfApplicant($entry['scholar_id'])){
+                                                                        $info = $admin->getApplicantById($entry['scholar_id']);
                                                                     ?>
                                                                     <p class="card-text"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></p>
                                                                     <?php
+                                                                    }else{
+                                                                        $admin->deleteApplicantInterview($entry['id']);
+                                                                    }
                                                                 }
                                                             }
                                                             ?>
