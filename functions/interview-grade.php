@@ -79,5 +79,6 @@ ccmf2015main@gmail.com
 
         $database->sendEmail($email,"Invitation to Final Interview for Scholarship", $message);
         header('Location: ../Pages-admin/schedule-task.php?status=successGrade');
+        exit();
     }
 }

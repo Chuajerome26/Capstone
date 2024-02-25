@@ -21,6 +21,7 @@ if(isset($_POST['submit'])){
 
     if(!$stmt->execute(['id' => $id, 'remarks' => $remarks, 'date' => $date])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
+        exit();
     }
     
     $declineMessage = "Dear ".$user['f_name']." ".$user['l_name'].",
@@ -42,6 +43,7 @@ Incorporation
     $sentEmail = $database->sendEmail($email,"Update on Your Application", $declineMessage);
 
     header('Location: ../Pages-admin/admin-application.php?status=successRemarks');
+    exit();
 }
 
 

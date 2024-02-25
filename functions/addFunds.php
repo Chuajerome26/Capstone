@@ -17,6 +17,7 @@ if(isset($_POST['submit'])){
 
     if($admin){
         header('Location: ../Pages-admin/admin-funds.php?status=successSave');
+        exit();
     }
 
 }

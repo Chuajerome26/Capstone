@@ -13,5 +13,6 @@ if (isset($_POST['submit'])) {
     $admin->updateScholarFiles($id);
     
     header('Location: ../Pages-Applicant/Applicant-Requirements2.php?status=editSuccess');
+    exit();
 }
 

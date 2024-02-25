@@ -22,6 +22,8 @@ if(isset($_POST['submit'])){
     }
     
     header("Location: ../Pages-admin/admin-scholar.php?success=emailSent");
+    exit();
 }else{
     header("Location: ../Pages-admin/admin-scholar.php?success=emailSentError");
+    exit();
 }

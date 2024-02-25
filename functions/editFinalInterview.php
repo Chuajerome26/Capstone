@@ -65,10 +65,12 @@ ccmf2015main@gmail.com
             $database->sendEmail($appliEmail, "Final Interview Schedule for Scholarship Application", $message);
         }
         header('Location: ../Pages-admin/schedule-task.php?success');
+        exit();
     }
 }else{
         // The new date already exists in the database
         header('Location: ../Pages-admin/schedule-task.php?message=date_exists');
+        exit();
     
 }
 }

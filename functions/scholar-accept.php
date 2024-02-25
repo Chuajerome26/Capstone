@@ -18,12 +18,14 @@ if(isset($_POST["accept"])){
 
     if(!$stmt->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
+        exit();
     }
 
     $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE user_id = :id');
 
     if(!$stmt1->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
+        exit();
     }
     
     $acceptanceMessage = '
@@ -44,5 +46,5 @@ ccmf2015main@gmail.com';
 
     $sentEmail = $database->sendEmail($email,"Congratulations! Scholarship Acceptance", $acceptanceMessage);
     header('Location: ../Pages-admin/admin-application.php?status=success');
-
+    exit();
 }

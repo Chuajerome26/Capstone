@@ -484,7 +484,7 @@ function convertToDecimalFivePointScale($grade) {
     }
 }
 
-function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
+public function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
     // Assuming 1 is the highest GWA and 5 is the lowest
     if ($gwa >= 75 && $gwa <= 100) {
         $grade = $this->convertToDecimalFivePointScale($gwa);
@@ -523,50 +523,49 @@ function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
     return $acceptanceChance;
 }
 
+// public function addFunds($amount, $donors, $date){
+
+//     // prepare insert statement for employee table
+//      $sql = "INSERT INTO admin_funds (amount, donors, date_added)
+//         VALUES (?,?,?);";
+
+//      // prepared statement
+//     $stmt = $this->database->getConnection()->prepare($sql);
+
+//     //if execution fail
+//     if (!$stmt->execute([$amount, $donors, $date])) {
+//         header("Location: ../Pages-admin/admin-funds.php?status=error");
+//         exit();
+//     }
+
+//     $stmtTotalAmount = $this->database->getConnection()->prepare("SELECT total_funds FROM totalFunds");
+
+//          //if execution fail
+//         if (!$stmtTotalAmount->execute()) {
+//             header("Location: ../Pages-admin/admin-funds.php?status=error");
+//             exit();
+//         }
+//         //fetch the employeeID
+//     $totalFunds = $stmtTotalAmount->fetchColumn();
+
+//     $updateTotalAmount = $totalFunds + $amount;
 
 
-public function addFunds($amount, $donors, $date){
-
-    // prepare insert statement for employee table
-     $sql = "INSERT INTO admin_funds (amount, donors, date_added)
-        VALUES (?,?,?);";
-
-     // prepared statement
-    $stmt = $this->database->getConnection()->prepare($sql);
-
-    //if execution fail
-    if (!$stmt->execute([$amount, $donors, $date])) {
-        header("Location: ../Pages-admin/admin-funds.php?status=error");
-        exit();
-    }
-
-    $stmtTotalAmount = $this->database->getConnection()->prepare("SELECT total_funds FROM totalFunds");
-
-         //if execution fail
-        if (!$stmtTotalAmount->execute()) {
-            header("Location: ../Pages-admin/admin-funds.php?status=error");
-            exit();
-        }
-        //fetch the employeeID
-    $totalFunds = $stmtTotalAmount->fetchColumn();
-
-    $updateTotalAmount = $totalFunds + $amount;
+//     $sql1 = "UPDATE totalFunds SET total_funds = ?, last_date_added = ? WHERE id = 1";
+//      // prepared statement
+//     $stmt1 = $this->database->getConnection()->prepare($sql1);
 
 
-    $sql1 = "UPDATE totalFunds SET total_funds = ?, last_date_added = ? WHERE id = 1";
-     // prepared statement
-    $stmt1 = $this->database->getConnection()->prepare($sql1);
+//     if (!$stmt1->execute([$updateTotalAmount, $this->date])) {
+//         header("Location: ../Pages-admin/admin-funds.php?status=error");
+//         exit();
+//     }
 
 
-    if (!$stmt1->execute([$updateTotalAmount, $this->date])) {
-        header("Location: ../Pages-admin/admin-funds.php?status=error");
-        exit();
-    }
+//     header("Location: ../Pages-admin/admin-funds.php?status=success");
+//     exit();
 
-
-    header("Location: ../Pages-admin/admin-funds.php?status=success");
-
-}
+// }
 public function getRemarks($id){
     if (!$id) {
         return false;
@@ -585,11 +584,11 @@ public function getRemarks($id){
     return $result ? $result : false;
 }
 
-public function getDonorsFunds(){
-    $stmt = $this->database->getConnection()->query("SELECT * FROM admin_funds")->fetchAll();
-    return $stmt;
-    exit();
-}
+// public function getDonorsFunds(){
+//     $stmt = $this->database->getConnection()->query("SELECT * FROM admin_funds")->fetchAll();
+//     return $stmt;
+//     exit();
+// }
 public function setSchedule($scholar_id, $date, $time_start, $time_end, $venue){
 
     // prepare insert statement for employee table
@@ -604,6 +603,7 @@ public function setSchedule($scholar_id, $date, $time_start, $time_end, $venue){
         exit();
     }
     header("Location: ../Pages-admin/admin-funds.php?status=success");
+    exit();
 
 }
 public function getSchedule(){

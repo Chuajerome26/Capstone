@@ -14,8 +14,10 @@ if(isset($_POST['submit'])){
 
     if(!$stmt->execute(['start' => $start,'end' => $end])){
         header('Location: ../Pages-admin/renewal.php?status=error');
+        exit();
     }
 
     header('Location: ../Pages-admin/renewal.php?status=success');
+    exit();
 
 }

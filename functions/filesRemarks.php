@@ -139,4 +139,5 @@ ccmf2015main@gmail.com
     }
 
     header('Location: ../Pages-admin/admin-application.php?status=UpdatedRemarks');
+    exit();
 }

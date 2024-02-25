@@ -46,4 +46,5 @@ if(isset($_POST['submit'])){
     $sentEmail = $database->sendEmail($email,"Interview Schedule Confirmation", $message);
 
     header('Location: ../Pages-admin/schedule-task.php?status=success');
+    exit();
 }

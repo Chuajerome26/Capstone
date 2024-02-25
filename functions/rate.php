@@ -12,4 +12,5 @@ if(isset($_POST['submit'])){
     $save = $admin->giveRate($scholar_id,$rate);
 
     header('Location: ../Pages-admin/schedule-task.php?status=success');
+    exit();
 }

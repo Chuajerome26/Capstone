@@ -20,12 +20,14 @@ if(isset($_POST['submit'])){
 
     if(!$stmt->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
+        exit();
     }
 
     $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 5 WHERE id = :id');
 
     if(!$stmt1->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
+        exit();
     }
     $declineMessage = '
 Dear '.$user["l_name"].',
@@ -47,6 +49,7 @@ ccmf2015main@gmail.com
     $sentEmail = $database->sendEmail($email,"Scholarship Application Status Update", $declineMessage);
 
     header('Location: ../Pages-admin/admin-application.php?status=successDecline');
+    exit();
 }
 
 

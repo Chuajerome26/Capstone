@@ -325,7 +325,7 @@ if(isset($_POST['submit'])){
     if($scholar->findByEmail($scholarData['email'])){
 
          //return to employee register page
-        header("Location: ../Pages-scholar/appforms.php?scholar=alreadyExist");
+        header("Location: ../Pages-scholar/appform.php?scholar=alreadyExist");
         exit();
     }
 
