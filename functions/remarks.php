@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../classes/admin.php';
 require '../classes/database.php';
 

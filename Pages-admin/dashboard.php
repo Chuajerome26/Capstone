@@ -447,17 +447,31 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
     <script src="../assets1/js/1.js"></script>
     <script>
         fetch('../functions/get_chart_data.php')
-            .then(response => response.json())
-            .then(monthData => {
-                const labels = Object.keys(monthData).map(month => month.slice(0, 3)); // Convert full month names to three-letter abbreviations
-                const amounts = Object.values(monthData);
+    .then(response => response.json())
+    .then(monthData => {
+        const labels = Object.keys(monthData).map(month => month.slice(0, 3)); // Convert full month names to three-letter abbreviations
+        const amounts = Object.values(monthData);
 
-                myLineChart.data.labels = labels;
-                myLineChart.data.datasets[0].data = amounts;
-                myLineChart.data.datasets[0].label = "Total Applicants";
-                myLineChart.update();
-            })
-            .catch(error => console.error('Error:', error));
+        myLineChart.data.labels = labels;
+        myLineChart.data.datasets[0].data = amounts;
+        myLineChart.data.datasets[0].label = "Total Applicants";
+        
+        // Update y-axis ticks to remove the dollar sign
+        myLineChart.options.scales.yAxes[0].ticks.callback = function(value, index, values) {
+            return value.toString().replace(/\$/g, ''); 
+        };
+        
+        // Update tooltips callback to remove the dollar sign
+        myLineChart.options.tooltips.callbacks.label = function(tooltipItem, chart) {
+            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+            return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+        };
+
+        myLineChart.update();
+    })
+    .catch(error => console.error('Error:', error));
+
+
 
     </script>
 

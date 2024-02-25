@@ -686,15 +686,16 @@
                     <input class="form-control form-control-sm border-bottom" type="file" name="sketch" accept="application/pdf,image/jpeg,image/jpg,image/png" required>
                     </div>
 
+                    <div class="col-md-12 mb-3 my-2">
+                    <div class="mx-1"><input type="checkbox" class="mx-20" id="checkConfirm" name="checkConfirm">    I hereby declare that all information provided and documents submitted in support of my scholarship application are true and accurate. I give my consent to CCMF to collect, use and process my personal information. Furthermore, I confirm my compliance with the Data Privacy Act of 2012, ensuring the confidentiality and protection of any personal data shared in this application process.</div>
                     </div>
-             
+                    </div>
 
-                    
 
               
             <div class="d-flex justify-content-center gap-2">
             <button class="btn btn-secondary w-25 prev-step" type="button">Previous</button>
-            <button class="btn btn-primary w-25" type="submit" name="submit" onclick="updateRowCount()">Submit</button>
+            <button class="btn btn-primary w-25" type="submit" name="submit" id="submitForm" onclick="updateRowCount()" disabled>Submit</button>
             </div>
 
         </div>  
@@ -706,6 +707,18 @@
 
 
     <script>
+        const checkbox = document.getElementById("checkConfirm");
+        const submitBtn = document.getElementById("submitForm");
+
+        // Add event listener to the checkbox
+        checkbox.addEventListener("change", function() {
+            // If checkbox is checked, enable submit button, otherwise disable it
+            if (this.checked) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        });
         // Function to enforce numeric-only input in specified element
         function allowNumbersOnly(inputId) {
             document.getElementById(inputId).addEventListener('input', function(e) {
