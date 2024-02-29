@@ -1,20 +1,27 @@
-window.onscroll = () => {
-    sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
 
-        if (top >= offset && top < offset + height) {
-            navLinks.forEach(link => {
-                link.classList.remove('active'); // First, remove 'active' from all links
-            });
+    function onScroll() {
+        let currentSection = "";
 
-            // Now, select the correct link based on the section ID and add 'active'
-            let activeLink = document.querySelector(`#nav .nav-link[href*="${id}"]`);
-            if (activeLink) {
-                activeLink.classList.add('active');
+        // Find the current section in view
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                currentSection = section.getAttribute("id");
             }
-        }
-    });
-};
+        });
+
+        // Update nav links based on the current section
+        navLinks.forEach(link => {
+            link.classList.remove("active");
+            if (link.href.includes(currentSection)) {
+                link.classList.add("active");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", onScroll);
+});
