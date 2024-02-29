@@ -181,8 +181,8 @@
             </div>
             <!--/ End Single Slider -->
         </div>
-    </section>
-
+    </div>
+    
     <!--/ End Hero Area -->
 
     <!-- Start About Us Area -->
@@ -210,7 +210,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
     </section>
     <!-- /End About Us Area -->
 
