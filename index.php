@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Consuelo Chito Madrigal Foundation</title>
     <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <link rel="shortcut icon" type="image/x-icon" href="images/logo.jpg" />
     <!-- Place favicon.ico in the root directory -->
@@ -89,12 +89,11 @@
                             <span class="toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                            
                             <ul id="nav" class="navbar-nav ms-auto">
-                                <li class="nav-item" class="scroll-to-section"><a class="nav-link active" href="#top">Home</a></li>
-                                <li class="nav-item" class="scroll-to-section"><a class ="nav-link" href="#Programs">Programs</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#About">About</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#Contact">Contact</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#programs">Programs</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                             </ul>
                             <form class="d-flex search-form">
                                 <input class="form-control me-2" type="search" placeholder="Search"
@@ -112,8 +111,8 @@
     <!-- End Header Area -->
 
     <!-- Start Hero Area -->
-    <section id="Top"></section>
-    <section class="hero-area">
+    <section class="home" id="home">
+    <div class="hero-area">
         <div class="hero-slider">
             <!-- Single Slider -->
             <div class="hero-inner overlay" style="background-image: url('assets1/images/hero/slider-bg1.jpg');">
@@ -183,6 +182,7 @@
             <!--/ End Single Slider -->
         </div>
     </section>
+</section>
     <!--/ End Hero Area -->
 
     <!-- Start About Us Area -->
@@ -214,8 +214,8 @@
     <!-- /End About Us Area -->
 
     <!-- Start Programs Area -->
-    <section id="Programs"></section>
-    <section class="courses section">
+    <section class="programs" id="programs">
+    <div class="courses section">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -234,12 +234,12 @@
                         <!-- Start Single Course -->
                         <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                             <div class="course-image">
-                                <img src="assets1/images/courses/chito.png"
+                                <img src="assets1/images/courses/Demo.jpg" height="260px";
                                         alt="#"></a>
                                 
                             </div>
                             <div class="content">
-                                <h3><a href="course-details.php">CHITO MADRIGAL LEARNING AND LIVELIHOOD VILLAGE: PAYATAS CSR DEMO CAMPUS</a></h3>
+                                <h3><a href="#programs">CHITO MADRIGAL LEARNING AND LIVELIHOOD VILLAGE: PAYATAS CSR DEMO CAMPUS</a></h3>
                                 <p>The Payatas community in Metro Manila, the Philippine mega city, has long served as a symbol of the debilitating and dehumanizing effects of poverty. Metro Manila’s 12 million residents dump their garbage in Payatas, where thousands of distressed families making a living scavenging from the garbage mountain.</p>
                             </div>
                             <div class="bottom-content">
@@ -268,7 +268,7 @@
                                 
                             </div>
                             <div class="content">
-                                <h3><a href="course-details.php">Scholarship</a></h3>
+                                <h3><a href="#programs">Scholarship</a></h3>
                                 <p>Education is one of the highest values among Filipinos, in general, which is why CCMF offers various forms of assistance...</p>
                             </div>
                             <div class="bottom-content">
@@ -297,7 +297,7 @@
                                 
                             </div>
                             <div class="content">
-                                <h3><a href="course-details.php">Nutrition Program</a></h3>
+                                <h3><a href="#programs">Nutrition Program</a></h3>
                                 <p>Nutrition Program through its network, CCMF prepares 57,000 meals per month.</p>
                             </div>
                             <div class="bottom-content">
@@ -326,7 +326,7 @@
                                 
                             </div>
                             <div class="content">
-                                <h3><a href="course-details.php">Livelihood</a></h3>
+                                <h3><a href="#programs">Livelihood</a></h3>
                                 <p>CCMF supports ongoing livelihood activities by providing additional capital through microfinance loans. With the injection of additional funds, the recipients’ businesses are strengthened and the viability of these concerns as sources of income reinforced. Close to 2,000 micro-entrepreneurs have benefitted from this program.</p>
                             </div>
                             <div class="bottom-content">
@@ -355,7 +355,7 @@
                                
                             </div>
                             <div class="content">
-                                <h3><a href="course-details.php">CCMF Bulacan</a></h3>
+                                <h3><a href="#programs">CCMF Bulacan</a></h3>
                                 <p>North of Metro Manila, CCMF is beginning to make its presence felt in the city of San Jose del Monte through the San Lorenzo Ruiz parish. The foundation has established the following: a credit line to finance livelihood projects; services to benefit a group of homeless urban poor being organized into a community; and scholarships for students in elementary, high school and college.</p>
                             </div>
                             <div class="bottom-content">
@@ -384,7 +384,7 @@
                                
                             </div>
                             <div class="content">
-                                <h3><a href="course-details.php">Pagsulay</a></h3>
+                                <h3><a href="#programs">Pagsulay</a></h3>
                                 <p>Bohol church restoration through scholarship with Escuella Taller Foundation.</p>
                             </div>
                             <div class="bottom-content">
@@ -408,9 +408,10 @@
             </div>
         </div>
     </section>
+</section>
     <!-- End Courses Area -->
 
-    <section id="About"></section>
+    <section class="about" id="about">
     <div class="breadcrumbs overlay">
         <div class="container">
             <div class="row align-items-center">
@@ -430,7 +431,7 @@
     <!-- End Breadcrumbs -->
 
     <!-- Start About Us Area -->
-    <section class="about-us section">
+    <div class="about-us section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-12">
@@ -452,11 +453,13 @@
                 </div>
             </div>
         </div>
-    </section>
+</section>
+    
     <!-- /End About Us Area -->
 
     <!-- Start Newsletter Area -->
-    <section class="newsletter-area section">
+    
+    <div class="newsletter-area section">
         <div class="container">
             <div class="row ">
                 <div class="col-lg-6 offset-lg-3 col-md-12 col-12">
@@ -477,7 +480,7 @@
     <!-- /End Newsletter Area -->
 
     <!-- Start Call To Action Area -->
-    <section class="call-action section overlay">
+    <div class="call-action section overlay">
         <div class="container">
             <div class="row ">
                 <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
@@ -501,6 +504,7 @@
                 </div>
             </div>
         </div>
+    </section>
     </section>
     <!-- /End Call To Action Area -->
 
@@ -540,7 +544,7 @@
     <!-- Start Clients Area -->
     
     <!-- Start Footer Area -->
-    <section id="Contact"></section>
+    <section class="contact" id="contact">
     <footer class="footer style2">
         <!-- Start Middle Top -->
         <div class="footer-middle">
@@ -605,6 +609,7 @@
                 </div>
             </div>
         </div>
+    </section>
         <!-- End Footer Middle -->
     </footer>
     <!--/ End Footer Area -->
@@ -653,6 +658,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function() {
         $("#showPasswordCheckbox").on('change', function() {
@@ -679,6 +685,7 @@
     <script src="assets1/js/tiny-slider.js"></script>
     <script src="assets1/js/glightbox.min.js"></script>
     <script src="assets1/js/main.js"></script>
+    <script src="assets1/js/2.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -734,8 +741,7 @@
             'autoplayVideos': true,
         });
     </script>
-
-    <script>
+     <script>
   $(document).ready(function() {
     $('#nav .nav-link').click(function() {
       // Remove 'active' class from all links
