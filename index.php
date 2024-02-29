@@ -126,7 +126,7 @@
                                     <p class="wow fadeInUp" data-wow-delay=".7s">Education is one of the highest values among Filipinos, 
                                         <br>in general, which is why CCMF offers various forms of assistance...</p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="#About" class="btn">Learn More</a>
+                                        <a href="#about" class="btn">Learn More</a>
                                         
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@
                                     <p class="wow fadeInUp" data-wow-delay=".7s">CCMF offers various forms of assistance ranging from allowances to tuition support to close to 100 scholars in various schools. Beneficiaries are bright but economically challenged students. 
                                         </p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="#About" class="btn">Learn More</a>
+                                        <a href="#about" class="btn">Learn More</a>
                                        
                                     </div>
                                 </div>
@@ -170,7 +170,7 @@
                                     <p class="wow fadeInUp" data-wow-delay=".7s">CCMF has offered a 7.5 hectares property it owns in the Payatas area as a resource of the community, using it as a training venue for skills development and programs.
                                         </p>
                                     <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="#About" class="btn">Learn More</a>
+                                        <a href="#about" class="btn">Learn More</a>
                                         
                                     </div>
                                 </div>
@@ -182,11 +182,11 @@
             <!--/ End Single Slider -->
         </div>
     </section>
-</section>
+
     <!--/ End Hero Area -->
 
     <!-- Start About Us Area -->
-    <section class="about-us section">
+    <div class="about-us section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-12">
@@ -197,7 +197,7 @@
                             <p class="wow fadeInUp" data-wow-delay=".6s">The foundation seeks to enhance the human dignity and self-esteem of individuals and families through various poverty alleviation interventions - from livelihood and housing assistance, microfinance. It applies a more holistic approach by promoting "social entrepreneurship" as a way out of poverty.</p>
                             <p class="qote wow fadeInUp" data-wow-delay=".8s"></p>
                             <div class="button wow fadeInUp" data-wow-delay="1s">
-                                <a href="#About" class="btn">Read More</a>
+                                <a href="#about" class="btn">Read More</a>
                                 
                             </div>
                         </div>
@@ -210,6 +210,7 @@
                 </div>
             </div>
         </div>
+    </section>
     </section>
     <!-- /End About Us Area -->
 
@@ -741,16 +742,7 @@
             'autoplayVideos': true,
         });
     </script>
-     <script>
-  $(document).ready(function() {
-    $('#nav .nav-link').click(function() {
-      // Remove 'active' class from all links
-      $('#nav .nav-link').removeClass('active');
-      // Add 'active' class to the clicked link
-      $(this).addClass('active');
-    });
-  });
-</script>
+ 
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
