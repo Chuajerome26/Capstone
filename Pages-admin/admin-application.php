@@ -47,6 +47,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     <link href="../assets/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets1/css/1.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
+
     <style>
   .table {
     border: none; /* Remove border from the table */
@@ -56,6 +59,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
   .table td {
     border: none; /* Remove border from table cells */
   }
+  .text-camel-case::first-letter {
+        text-transform: uppercase; /* Convert the first letter of each word to uppercase */
+    }
 </style>
 </head>
 
@@ -214,24 +220,77 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <p class="h3 mb-0 font-weight-bold text-gray-800">Scholar Applicants</p>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+
+                <div class="hstack gap-3">
+                <div class="p-2"><p class="h3 mb-0 font-weight-bold text-gray-800">Scholar Applicants</p></div>
+                <div class="p-2 ms-auto">
+                <a href="#" class=" btn  btn-primary shadow-sm"><i
+                            class="fas fa-download fa-sm text-white-50"></i> <div class="d-none d-sm-inline-block">Generate Report</div></a>
+
+                </div>
+
+                </div>
+                    
+                        
+                       
+                    
+
+                                
+                    <div class="container ">
+    <div class="row">
+        <div class="splide">
+            <div class="splide__track">
+                <div class="splide__list">
+                    <?php
+                    $applicantsData1 = $admin->getApplicants();
+                    foreach($applicantsData1 as $applicant) {
+                        $income = $applicant['father_income'] + $applicant['mother_income'];
+                        $appliGrade = $admin->getGrade($applicant['id']);
+                        $pic = $admin->getApplicants2x2($applicant['id']);
+                        $prediction = $admin->predictAcceptanceOfApplicant($appliGrade[0]['average'], $income);
+
+                        if($prediction <= 100 && $prediction >= 75) {
+                    ?>
+                    <div class="col-sm-4 splide__slide m-2">
+                        <div class="card shadow">
+                            <div class="hstack gap-2">
+                                
+                            <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" alt="Profile Picture" class="img-thumbnail rounded-circle ms-4" style="width: 60px; height: 60px;">
+                           
+                            <div class="p-2 ms-2s">
+                                    <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $applicant['f_name']; ?></div>
+                                    <div class="text-muted"><small>Age: <?php echo $applicant['age']; ?></small></div>
+                                    <div class="text-muted"><small>Percentage: <?php echo $prediction; ?></small></div>
+                                </div>
+                                <div class="p-2 ms-auto d-grid gap-2">
+                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $applicant["id"];?>">Details</button>
+                                    <form method="post" action="../functions/scholar-accept.php">
+                                        <button class="btn btn-primary" type="submit" name="accept">Accept</button>
+                                        <input type="hidden" name="acceptId" value="<?php echo $applicant['id']?>">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <?php
+                        } else {
+                            // If the prediction is not in the specified range, you can add an alternative action here
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
                     <!-- Content Row -->
-                    <div class="row">
-
-
-                    <!-- Content Row -->
-
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-lg-15 mb-4">
-                            <div class="card shadow mb-4">
+                        <div class="col-lg-12 mb-4 p-2">
+                            <div class="card shadow mb-4 ">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
@@ -247,9 +306,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <th scope="col">Date Applied</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Details</th>
-                                                <th scope="col">Files</th>
-                                                <th scope="col">Remarks</th>
-                                                
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -280,16 +336,18 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <th scope="col"><?php echo $num; ?></th>
                                                 <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                                 <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                                                <td><?php echo $s["date_apply"];?></td>
+                                                <td><?php echo $s["date_apply"];?></td> 
                                                 <td><?php echo $status;?></td>
-                                                <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button></td>
-                                                <td><button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#remarks<?php echo $s["id"];?>">Remarks</button></td>
-                                                <td style="white-space: nowrap;">
+                                                <td class="text-center"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>"><i class="fa-solid fa-circle-info"></i></button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>"><i class="fa-solid fa-file"></i></button>
+                                            </td>
+                                                <td class="d-flex gap-1" style="white-space: nowrap;">
                                                     <form method="post" action="../functions/scholar-accept.php">
-                                                        <input class="btn btn-primary mb-2" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['id']?>">
+                                                        <input class="btn btn-primary " type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['id']?>">
                                                     </form>
                                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["id"];?>">Decline</button>
+                                                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#remarks<?php echo $s["id"];?>"><i class="fa-solid fa-comment text-white"></i></button>
+
                                             </td>
                                             </tr>
                                             <?php 
@@ -305,64 +363,28 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
                         <!-- Pie Chart -->
                     </div>
-                    <div class="row">
 
-                        <!-- Area Chart -->
-                        <div class="col-lg-15 mb-4">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Suggested Applicants</h6>
-                                </div>
-                                <div class="card-body">
-                                <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
-                                    <div class="row">
-                                        <?php
-                                            $applicantsData1 = $admin->getApplicants();
-                                            foreach($applicantsData1 as $applicant){
-                                                $income = $applicant['father_income'] + $applicant['mother_income'];
-                                                $appliGrade = $admin->getGrade($applicant['id']);
-                                                $pic = $admin->getApplicants2x2($applicant['id']);
-                                                // $interviewGrade = $admin->getInterviews($applicant['id']);
 
-                                                $prediction = $admin->predictAcceptanceOfApplicant($appliGrade[0]['average'], $income);
 
-                                                if($prediction <= 100 && $prediction >= 75){
-                                            ?>
-                                            <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
-                                                <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
-                                                    <div class="card-body d-flex flex-column align-items-center">
-                                                        <div class="d-flex justify-content-center">
-                                                            <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" alt="Profile Picture" class="img-thumbnail rounded-circle" width="200" height="200">
-                                                        </div>
-                                                        <h5 class="card-title mt-3"><?php echo $applicant['f_name']; ?></h5>
-                                                        <p class="card-text">Age:<?php echo $applicant['age']; ?></p>
-                                                        <p class="card-text">Percentage:<?php echo $prediction; ?></p>
-                                                    </div>
-                                                    <div class="card-footer d-flex justify-content-center">
-                                                        <button type="button" class="btn btn-info mx-1" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $applicant["id"];?>">Details</button>
-                                                        <form method="post" action="../functions/scholar-accept.php">
-                                                            <button class="btn btn-primary" type="submit" name="accept">Accept</button>
-                                                            <input type="hidden" name="acceptId" value="<?php echo $applicant['id']?>">
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        <?php
-                                                }else{
-
-                                                }
-                                            }
-                                        ?>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                    </div>
-            </div>
+        
+<!-- Initialize Splide slider -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Splide('.splide', {
+            perPage: 3,
+            pagination: false,
+            breakpoints: {
+                992: {
+                    perPage: 2,
+                },
+                768: {
+                    perPage: 1,
+                }
+            }
+        }).mount();
+    });
+</script>
+                    
             <!-- End of Main Content -->
 
 
@@ -522,15 +544,22 @@ $appliData1 = $admin->getApplicants();
       <div class="modal-body">
         
             <div class="row g-0 p-2">
-                <div class="col-md-4">
-                    <div class="card shadow" style="height: 350px;">
+
+                <div class="col-md-12 ">
+                    
+                    <div class="card shadow">
+
+                        <div class="card-header">
+                            <strong>Personal Information</strong>
+                        </div>
                         <div class="card-body">
 
+                        <div class="row">
+                            <div class="col-md-4">
                         <div class="d-flex justify-content-center">
-
                         <img src="../Scholar_files/<?php echo $pic1[0]['file_name'];?>" alt="Profile Picture" class="img-thumbnail rounded-circle shadow" width="150" height="150">
-                        
-                    </div>
+                        </div>
+
                     <h5 class="text-center mt-4"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
                         <div class="text-center text-muted"><?php echo $a["email"];?></div>
                         <div class="text-center text-muted"><?php echo $a['mobile_number'];?></div>
@@ -539,63 +568,82 @@ $appliData1 = $admin->getApplicants();
                         <a href="<?php echo $a["fb_link"];?>" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-facebook text-primary fs-6 mt-1"></i> Facebook Link
                         </a>
-                    </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-                <div class="card shadow "  style="height: 350px;">
-                  <div class="card-body">
-
-                    <h5>Personal Information</h5>
-
-                    <div class= "ms-2 g-1 border-0">
-                                <div class="row ">
-                                <div class="col-12 ">
-                                        <p class=""><strong>Address: </strong><?php echo $a['address'];?></p>
-                                </div>
-
-
-                                <div class="col-6 ">
-                                        <p><strong>Date of Birth: </strong><?php echo $a['date_of_birth'];?></p>
-                                        <p><strong>Birth Place: </strong><?php echo $a['b_place'];?></p>
-                                        <p><strong>Citizenship: </strong><?php echo $a['citizenship'];?></p>
-                                        <p><strong>Religion: </strong><?php echo $a['religion'];?></p>
-                                        <p><strong>Province: </strong><?php echo $a["province"];?></p>
-                                      
-                                      
-                                </div>
-
-                                <div class="col-6 ">
-                                     <p><strong>Gender: </strong><?php echo $a["gender"];?></p>
-                                     <p><strong>Status: </strong><?php echo $a["c_status"];?></p>
-                                     <p><strong>Age: </strong><?php echo $a['age'];?></p>
-                                     <p><strong>Height: </strong><?php echo $a['height'];?> | Weight: <?php echo $a['weight'];?></p>
-                                     <p><strong>Medical Condition: </strong><?php echo $a['med_condition'];?></p>
-                                    
-                                    
-                                </div>
-
-                                <div class="col-12">
-                                <p><strong>Skills:</strong> <?php echo $a['skills'];?></p>
-                                </div>
-                                </div>
-
-                        
                         </div>
                 </div>
-                </div>
 
+                      
+                                <div class="col-md-8 d-flex justify-content-center align-items-center ">
+                        <div class= "g-1 border-0">
+                            <div class="row ">
+                                
+                            <div class="col-12 ">
+                                <div class="row">
+                                    <dt class="col-sm-3">Address:</dt>
+                                    <dd class="col-sm-9"><?php echo $a['address'];?></dd>
+                                </div>
+                            </div>
+
+                                
+                            <div class="col-6 ">
+                                <div class="row">
+                                    <dt class="col-sm-6 ">Date of Birth:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['date_of_birth'];?></dd>
+
+                                    <dt class="col-sm-6 ">Birth Place:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['b_place'];?></dd>
+
+                                    <dt class="col-sm-6 ">Citizenship:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['citizenship'];?></dd>
+
+                                    <dt class="col-sm-6 ">Religion:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['religion'];?></dd>
+
+                                    <dt class="col-sm-6 ">Province:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['province'];?></dd>        
+                                </div>
+                            </div>
+
+                            <div class="col-6 ">
+                                <div class="row">
+                                    <dt class="col-sm-6 ">Gender:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['gender'];?></dd>
+                                    
+                                    <dt class="col-sm-6 ">Status:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['c_status'];?></dd>
+
+                                    <dt class="col-sm-6 ">Age:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['age'];?></dd>
+                                
+                                    <dt class="col-sm-6 ">Height & Weight: </dt>
+                                    <dd class="col-sm-6"><?php echo $a['height'];?> | <?php echo $a['weight'];?></dd>
+
+                                    <dt class="col-sm-6 ">Medical Condition: </dt>
+                                    <dd class="col-sm-6"><?php echo $a['med_condition'];?></dd>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="row">
+                                    <dt class="col-sm-3">Skills:</dt>
+                                    <dd class="col-sm-9"><?php echo $a['skills'];?></dd>
+                                </div>
+                            </div>
+
+                            </div>
+
+                    </div>
+                </div>
+                </div>
             </div>
+        </div>
+    </div>
 
 
             <div class="col-md-12 mt-3 ">
             <div class="card border shadow">
-                <div class="card-header">
-                    <h5>Family Information</h5>
-                </div>
+            <div class="card-header">
+                            <strong>Family Information</strong>
+                        </div>
                 <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 ">
@@ -672,6 +720,7 @@ $appliData1 = $admin->getApplicants();
                     <div class="col-md-12 border mt-3 mb-3"></div>  
                     <div class="col-md-12   " >
                         <h6>Sibling Details</h6>
+                        <div class="table-responsive">
                         <table class="table p-0 w-100">
                             <thead>
                                 <tr>
@@ -696,6 +745,7 @@ $appliData1 = $admin->getApplicants();
                                 </tr>
                             </tbody>
                             </table>
+    </div>
                     </div>
                 </div>
     </div>
@@ -704,9 +754,9 @@ $appliData1 = $admin->getApplicants();
 
             <div class="col-md-6 mt-3 ">
                 <div class="card border shadow">
-                    <div class="card-header">
-                <h5>Academic Information</h5>
-                </div>
+                <div class="card-header">
+                            <strong>Academic Information</strong>
+                        </div>
 
                 <dl class="row ms-3">
                 <h6 class="mt-3">Elementary School</h6>
@@ -771,37 +821,37 @@ $appliData1 = $admin->getApplicants();
 
                 <div class="col-md-6 mt-3 ">
                 <div class="card border shadow" style="min-height: 635px;">
-                    <div class="card-header">
-                <h5>Incoming Freshmen</h5>
-                </div>
+                <div class="card-header">
+                            <strong>Incoming Freshment</strong>
+                        </div>
 
                             <dl class="row mt-3 ms-3" >
 
-                            <dt class="col-sm-12">Did you apply for / are you a recipient of another scholarship?:</dt>
-                            <dd class="col-sm-12"><?php echo $a["other_scho"];?></dd>
+                            <dt class="col-sm-12 ">Did you apply for / are you a recipient of another scholarship?:</dt>
+                            <dd class="col-sm-12 mb-3"><?php echo $a["other_scho"];?></dd>
 
                             <?php if($a["other_scho"] == "yes"): ?>
-                                <dt class="col-sm-12">Type:</dt>
-                                <dd class="col-sm-12"><?php echo $a["other_scho_type"];?></dd>
+                                <dt class="col-sm-12 ">Type:</dt>
+                                <dd class="col-sm-12 mb-4 "><?php echo $a["other_scho_type"];?></dd>
 
-                                <dt class="col-sm-12">Coverage</dt>
-                                <dd class="col-sm-12"><?php echo $a["other_scho_coverage"];?></dd>
+                                <dt class="col-sm-12 ">Coverage</dt>
+                                <dd class="col-sm-12 mb-4"><?php echo $a["other_scho_coverage"];?></dd>
 
-                                <dt class="col-sm-12">Status:</dt>
-                                <dd class="col-sm-12"><?php echo $a["other_scho_status"];?></dd>
+                                <dt class="col-sm-12 ">Status:</dt>
+                                <dd class="col-sm-12 mb-4"><?php echo $a["other_scho_status"];?></dd>
                             <?php else: endif;?>
 
-                            <dt class="col-sm-12">How did you learn about CCMFI Schoolarship?</dt>
-                            <dd class="col-sm-12"><?php echo $a["q1"];?></dd>
+                            <dt class="col-sm-12 ">How did you learn about CCMFI Schoolarship?</dt>
+                            <dd class="col-sm-12 mb-4"><?php echo $a["q1"];?></dd>
 
-                            <dt class="col-sm-12">Why are you applying for this scholarship</dt>
-                            <dd class="col-sm-12"><?php echo $a["q2"];?></dd>
+                            <dt class="col-sm-12 ">Why are you applying for this scholarship</dt>
+                            <dd class="col-sm-12 mb-4"><?php echo $a["q2"];?></dd>
 
-                            <dt class="col-sm-12">Will you pursue your studies event without this scholarship?</dt>
-                            <dd class="col-sm-12"><?php echo $a["apply_scho"];?></dd>
+                            <dt class="col-sm-12 ">Will you pursue your studies event without this scholarship?</dt>
+                            <dd class="col-sm-12 mb-4"><?php echo $a["apply_scho"];?></dd>
 
                             <dt class="col-sm-12">Explain your Answer:</dt>
-                            <dd class="col-sm-12"><?php echo $a["apply_scho_explain"];?></dd>
+                            <dd class="col-sm-12 mb-4"><?php echo $a["apply_scho_explain"];?></dd>
             
                             </dl> 
 
@@ -826,9 +876,10 @@ $appliData1 = $admin->getApplicants();
     </div>
     <div class="col-md-12  ">
                 <div class="card border shadow">
-                    <div class="card-header">
-                <h5>Grade Information</h5>
-                 </div>
+                <div class="card-header">
+                            <strong>Grade Information</strong>
+                        </div>
+                        <div class="table-responsive">
                 <table class="table p-0 w-100">
                             <thead>
                                 <tr>
@@ -851,15 +902,17 @@ $appliData1 = $admin->getApplicants();
                                 </tr>
                             </tbody>
                             </table>
+                                    </div>
 
                 </div>
             </div>
 
             <div class="col-md-12 mt-2 ">
                 <div class="card border shadow">
-                    <div class="card-header">
-                <h5>School Choices</h5>
-                 </div>
+                <div class="card-header">
+                            <strong>School Choices Information</strong>
+                        </div>
+                        <div class="table-responsive">
                  <table class="table p-0 w-100">
                             <thead>
                                 <tr>
@@ -883,6 +936,7 @@ $appliData1 = $admin->getApplicants();
                                 </tr>
                             </tbody>
                             </table>
+                                    </div>
                 </div>
             </div>
 
@@ -902,7 +956,7 @@ $appliData2 = $admin->getApplicants();
         $appliFiles = $admin->getApplicantsFiles($b['id']);
 ?>
 <div class="modal fade" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
-  <div class="modal-dialog" style="max-width:900px;">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Modal title</h5>
@@ -982,7 +1036,8 @@ $appliData2 = $admin->getApplicants();
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <!-- DataTables Bootstrap 5 JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-    <script src="../assets1/js/1.js"></script>                    
+    <script src="../assets1/js/1.js"></script>       
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>             
     <script>
     const urlParams = new URLSearchParams(window.location.search);
     const successValue = urlParams.get('status');

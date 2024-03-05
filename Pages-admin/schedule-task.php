@@ -53,6 +53,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
 
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -240,15 +242,26 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                
+                    <ul class="nav nav-underline">
+                    <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="#" onclick="showTab('initial-interview')">Initial Interview</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="showTab('final-interview')">Final Interview</a>
+                    </li>
+                
+                    </li>
+                    </ul>
+
 
 
                     <!-- Content Row -->
 
                     <div class="row">
     <!-- Area Chart -->
-                    <div class="col-lg-15 mb-4">
-                        <div class="card shadow mb-4">
+                    <div  id="initial-interview-card" class="col-lg-12 mb-4 mt-3">
+                        <div class="card shadow mb-4 ">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Initial Interview</h6>
@@ -270,10 +283,24 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 // Add the date to the list of displayed dates
                                                 $displayedDates[] = $date;
                                                 ?>
-                                                <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
-                                                    <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"><?php echo $formattedDate; ?></h5>
+                                                
+                                                <div class="col-4">
+
+                                                    <div class="card" style="width: 22rem;">
+                                                    <div class="hstack gap-1 d-flex align-items-center ms-4 mt-1">
+                                                        <div class="p-1 text-center"><i class="fa-regular fa-calendar-days fs-2"></i></div>
+                                                        <div class="ms-2">
+                                                            <div ><strong>Wednesday</strong></div> 
+                                                            <div><small class="text-muted"><?php echo $formattedDate; ?></small></div>
+                                                        </div>
+                                                    </div>
+                                                        
+                                                    <div class="card border mt-2 mb-2"></div>
+
+                                                        <div class="card-body " style="max-height: 200px; overflow-y: auto; min-height: 180px;">
+
+
+                                                    <div class="scrollable-content">
                                                             <?php
                                                             // Loop to display data entries with the same date within the same card
                                                             foreach ($initialInterview1 as $entry) { 
@@ -281,7 +308,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                                     if($admin->checkIfApplicant($entry['scholar_id'])){
                                                                         $info = $admin->getApplicantById($entry['scholar_id']);
                                                                     ?>
-                                                                    <p class="card-text"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></p>
+                                                                    <li class="card-text ms-3"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></li>
                                                                     <?php
                                                                     }else{
                                                                         $admin->deleteApplicantInterview($entry['id']);
@@ -289,20 +316,28 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                                 }
                                                             }
                                                             ?>
-                                                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $it["id"];?>">View</button>
-                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editInitialModal<?php echo $it["date"];?>">Edit</button>
-
-                                                        </div>
+                                                          <!-- Add more content if needed -->
                                                     </div>
                                                 </div>
+                                                <div class="card-footer bg-light border-0 d-flex gap-1">
+
+                                                <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $it["id"];?>">View</button>
+                                                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#editInitialModal<?php echo $it["date"];?>">Edit</button>
+
+
+                                            </div>
+                                            </div>
+                                                    </div>
                                                 <?php
                                             }
                                         }
                                     }else{
                                         ?>
-                                        <div>
-                                            <h1>No Interview For Now.</h1>
-                                        </div>
+                                        
+                                        <div class="alert alert-primary text-center" role="alert">
+                                            No Interview for now.
+                                            </div>
+                                        
                                         <?php } ?>
                                     </div>
                                 </div>
@@ -311,19 +346,19 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                         </div>
                     </div>
                     <!-- Pie Chart -->
-                </div>
+                
 
-                <div class="row">
+                
                     <!-- Area Chart -->
-                    <div class="col-lg-15 mb-4">
-                        <div class="card shadow mb-4">
+                    <div id="final-interview-card" class="col-lg-12 mb-4 mt-3 " style="display: none;">
+                        <div class="card shadow mb-4 ">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h6 class="m-0 font-weight-bold text-primary">Final Interview</h6>
                             </div>
                             <div class="card-body">
                                 <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
-                                    <div class="row">
+                                    <div class="row g-1">
                                     <?php
                                         // Initialize an array to keep track of displayed dates
                                         $displayedDates = [];
@@ -338,33 +373,56 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 // Add the date to the list of displayed dates
                                                 $displayedDates[] = $date;
                                                 ?>
-                                                <div class="col-sm-6 col-md-4 col-lg-4" style="margin-top: 20px;">
-                                                    <div class="card custom-card shadow p-3 mb-5 bg-body-tertiary rounded">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title"><?php echo $formattedDate; ?></h5>
-                                                            <?php
+                                                
+                                                    <div class="col-4">
+
+                                                    <div class="card" style="width: 22rem;">
+                                                    <div class="hstack gap-1 d-flex align-items-center ms-4 mt-1">
+                                                        <div class="p-1 text-center"><i class="fa-regular fa-calendar-days fs-2"></i></div>
+                                                        <div class="ms-2">
+                                                            <div ><strong>Wednesday</strong></div> 
+                                                            <div><small class="text-muted"><?php echo $formattedDate; ?></small></div>
+                                                        </div>
+                                                    </div>
+                                                         
+                                                    <div class="card border mt-2 mb-2"></div>
+
+                                                        <div class="card-body " style="max-height: 200px; overflow-y: auto; min-height: 180px;">
+
+                                                  
+                                                    <div class="scrollable-content">
+
+                                                        <?php
                                                             // Loop to display data entries with the same date within the same card
                                                             foreach ($finalInterview1 as $final1) { 
                                                                 if ($final1['date'] == $date) {
                                                                     $info = $admin->getApplicantById($final1['scholar_id']);
                                                                     ?>
-                                                                    <p class="card-text"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></p>
+                                                                    <li class="card-text ms-3"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></li>
                                                                     <?php
-                                                                }
-                                                            }
-                                                            ?>
-                                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editFinalModal<?php echo $final["date"];?>">Edit</button>
+                                                                        }
+                                                                    }
+                                                                    ?>
 
-                                                        </div>
+                                                        <!-- Add more content if needed -->
                                                     </div>
                                                 </div>
+                                                <div class="card-footer bg-light border-0">
+                                                <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#editFinalModal<?php echo $final["date"];?>">Edit</button>
+                                                </div>
+                                            </div>
+                                                    </div>
+
+
                                                 <?php
                                             }
                                         }
                                     }else{
                                         ?>
                                         <div>
-                                            <h1>No Interview For Now.</h1>
+                                        <div class="alert alert-primary" role="alert">
+                                            No Interview for now.
+                                            </div>
                                         </div>
                                         <?php } ?>
                                     </div>
@@ -375,7 +433,18 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     <!-- Pie Chart -->
                 </div>
 
-            </div>
+
+                <script>
+    function showTab(tabId) {
+        // Hide all card containers
+        document.getElementById('initial-interview-card').style.display = 'none';
+        document.getElementById('final-interview-card').style.display = 'none';
+        
+        // Show the selected tab's card container
+        document.getElementById(tabId + '-card').style.display = 'block';
+    }
+</script>
+        
             <!-- End of Main Content -->
 
 

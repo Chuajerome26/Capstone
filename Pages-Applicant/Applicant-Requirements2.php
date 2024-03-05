@@ -48,7 +48,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <div id="wrapper">
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column vh-100">
 
             <!-- Main Content -->
             <div id="content">
@@ -251,150 +251,60 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Welcome to Landing Page</h1>
-                    </div>
-                    <!-- Content Row -->
-
-                    
-                     <!-- View Details -->
-                    <div class="row">
-                        <div class="col-xl-3 col-md-8 mb-8">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-5" style="font-size: 22px;">
-                                                View Details</div>
-                                            <div>
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                                        </div>
-                                       
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewDetailsModal">
-                                            Click Here
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                        <div class="modal fade" id="viewDetailsModal" tabindex="-1" role="dialog" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
-                        <!-- Include the content of the "View Details" modal from an external file -->
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <!-- You can include the content of the modal here -->
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="viewDetailsModalLabel">View Details</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- Include the content from an external file here -->
-                                    <?php include("view_details_modal_content.php"); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Edit Details -->
-                    <div class="col-xl-3 col-md-8 mb-8">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-5" style="font-size: 22px;">
-                                        Edit Uploaded Documents</div>
-                                            <div>
-                                                </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-auto">
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editDetailsModal">
-                                        Click Here
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-
-                    <div class="modal fade" id="editDetailsModal" tabindex="-1" role="dialog" aria-labelledby="editDetailsModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="editDetailsModalLabel">Edit Uploaded Documents</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <?php include("edit_details_modal_content.php"); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                      <!-- View Remarrks-->
-                      <div class="col-xl-3 col-md- mb-8">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-5" style="font-size: 22px;">
-                                            View Remarks</div>
-                                            <div>
-                                                </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#viewRemarksModal">Click Here</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="viewRemarksModal" tabindex="-1" role="dialog" aria-labelledby="viewRemarksModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="viewRemarksModalLabel">View Remarks</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <?php include("view_remarks_modal_content.php"); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-                            
-            </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                    </div>
+    <div class="row">
+        <!-- Left column with fixed position -->
+        <div class="col-md-4">
+            <div class="card">
+                <!-- Content for left column -->
+                <div class="card-body">
+                    <!-- Add your content here -->
+                    <!-- This column will remain fixed -->
                 </div>
-            </footer>
-            End of Footer -->
-
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
+
+        <!-- Right column with scrollable content -->
+        <div class="col-md-8">
+            <div class="card">
+                <!-- Content for right column -->
+                <div class="card-body" style="overflow-y: auto; max-height: 400px;">
+                    
+                            <h5>Applicants Information</h5>
+                            <hr>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <!-- Content for right column -->
+                <div class="card-body" style="overflow-y: auto; max-height: 400px;">
+                    
+                            <h5>Applicants Information</h5>
+                            <hr>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <!-- Content for right column -->
+                <div class="card-body" style="overflow-y: auto; max-height: 400px;">
+                    
+                            <h5>Applicants Information</h5>
+                            <hr>
+
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
+</div>  
+
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
