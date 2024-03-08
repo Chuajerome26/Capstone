@@ -3,18 +3,19 @@ require '../classes/admin.php';
 require '../classes/database.php';
 
 $database = new Database;
+$admin = new Admin($database);
 
 if(isset($_POST["accept"])){
     
-    $database = new Database;
     $id = $_POST["acceptId"];
+    $currentDate = date('Y-m-d');
 
     $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
     $stmt->execute(['id' => $id]);
     $user = $stmt->fetch();
 
     $email = $user['email'];
-    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 1 WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 1, application_status = 3 WHERE id = :id');
 
     if(!$stmt->execute(['id' => $id])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
@@ -43,7 +44,7 @@ Executive Director
 Consuelo "CHITO" Madrigal Foundation, Inc.
 ccmf2015main@gmail.com';
 
-
+    $addRemarks = $admin->addRemarks($id, 3, $acceptanceMessage, $currentDate);
     $sentEmail = $database->sendEmail($email,"Congratulations! Scholarship Acceptance", $acceptanceMessage);
     header('Location: ../Pages-admin/admin-application.php?status=success');
     exit();

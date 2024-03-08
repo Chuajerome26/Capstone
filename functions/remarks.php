@@ -18,9 +18,9 @@ if(isset($_POST['submit'])){
 
     $email = $user['email'];
 
-    $stmt = $database->getConnection()->prepare('INSERT INTO admin_remarks (scholar_id, remarks, date) VALUES (:id, :remarks, :date)');
+    $stmt = $database->getConnection()->prepare('INSERT INTO admin_remarks (scholar_id, remarks, remarks_mess, date) VALUES (:id, :remarks, :remarks_mess, :date)');
 
-    if(!$stmt->execute(['id' => $id, 'remarks' => $remarks, 'date' => $date])){
+    if(!$stmt->execute(['id' => $id, 'remarks' => 0, 'remarks_mess' => $remarks, 'date' => $date])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
         exit();
     }

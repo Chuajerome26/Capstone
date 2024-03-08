@@ -467,15 +467,26 @@ foreach($applicantss as $z) {
                             $getRemarks = $admin->getRemarks($id);
                             if($getRemarks):
                                 foreach($getRemarks as $pogi):
+                                    if($pogi['remarks'] == 0){
+                                        $remarks123 = 'Evaluate By';
+                                    }else if($pogi['remarks'] == 1){
+                                        $remarks123 = 'Schedule Interview for Initial - Evaluation Completed By';
+                                    }else if($pogi['remarks'] == 2){
+                                        $remarks123 = 'Schedule Interview for Final - Interview Completed By';
+                                    }else if($pogi['remarks'] == 3){
+                                        $remarks123 = 'Accepted By';
+                                    }else if($pogi['remarks'] == 5){
+                                        $remarks123 = 'Declined By';
+                                    }
                             ?>
                             <div class="d-flex flex-row align-items-start mb-4">
-                                <img class="img-thumbnail rounded-circle shadow border me-3" src="../images/images.png" alt="avatar" width="50" height="55" />
+                                <img class="img-thumbnail rounded-circle shadow border me-3" src="../images/logo.jpg" alt="avatar" width="50" height="55" />
                                 <div class="card w-100 shadow">
                                     <div class="card-body p-4">
                                         <div class="">
-                                            <h5>Admin</h5>
-                                            <p class="small">February 25, 2024</p>
-                                            <p><?php echo $pogi["remarks"];?></p>
+                                            <h5><?php echo $remarks123;?> Admin</h5>
+                                            <p class="small"><?php echo date('M d, Y', strtotime($pogi["date"])); ?></p>
+                                            <p><?php echo nl2br($pogi["remarks_mess"]);?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -981,17 +992,19 @@ $appliData2 = $admin->getApplicants();
                     <td><?php echo $files['requirement_name'];?></td>
                     <td><a href="../Scholar_files/<?php echo $files["file_name"]?>" target="_blank"><?php echo $files["file_name"]?></a></td>
                     <?php if($files["status"] == 0): ?>
-                        <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" value="1"></td>
+                        <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" id="<?php echo $files['requirement_name'];?>" value="1" onchange="toggleInput(this, '<?php echo $files['requirement_name'];?>_remarks')"></td>
                         <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" value="2" disabled></td>
+                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" required></td>
                     <?php elseif($files["status"] == 1): ?>
                         <td align="center">Done</td>
                         <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" value="2"></td>
+                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
                     <?php else: ?>
                         <td align="center">Done</td>
                         <td align="center">Done</td>
+                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
                     <?php endif; ?>
-                    <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks">
-                        <input type="hidden" name="file_id" value="<?php echo $files['id']; ?>">
+                        <td><input type="hidden" name="file_id" value="<?php echo $files['id']; ?>">
                     </td>
 
                 </tr>
@@ -1037,7 +1050,19 @@ $appliData2 = $admin->getApplicants();
     <!-- DataTables Bootstrap 5 JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script src="../assets1/js/1.js"></script>       
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>             
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>    
+    <script>
+        function toggleInput(checkbox, inputId) {
+            var inputField = document.getElementById(inputId);
+            inputField.disabled = checkbox.checked;
+            if (checkbox.checked) {
+                inputField.removeAttribute("required"); // Remove the 'required' attribute when checkbox is checked
+                inputField.value = ""; // Clear the input field when checkbox is checked
+            } else {
+                inputField.setAttribute("required", true); // Add the 'required' attribute back when checkbox is unchecked
+            }
+        }
+    </script>
     <script>
     const urlParams = new URLSearchParams(window.location.search);
     const successValue = urlParams.get('status');

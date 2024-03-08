@@ -586,21 +586,39 @@ public function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
 
 // }
 public function getRemarks($id){
-    if (!$id) {
-        return false;
-    }
-    $stmt = $this->database->getConnection()->prepare("SELECT remarks FROM admin_remarks WHERE scholar_id=?");
-    if (!$stmt) {
-        return false;
-    }
+
+    $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_remarks WHERE scholar_id=?");
+
+       //if execution fail
     if (!$stmt->execute([$id])) {
-        return false;
+        header("Location: ../index.php?error=stmtfail");
+        exit();
     }
-    $result = [];
-    while ($row = $stmt->fetch()) {
-        $result[] = $row;
+
+      //fetch the result
+    $result = $stmt->fetchAll();
+    
+        //if has result return it, else return false
+    if ($result) {
+        return $result;
+    } else {
+        $result = false;
+        return $result;
     }
-    return $result ? $result : false;
+}
+public function addRemarks($scholar_id, $remarks, $remarks_mess, $date){
+
+    // prepare insert statement for employee table
+     $sql = "INSERT INTO admin_remarks (scholar_id, remarks, remarks_mess, date) VALUES (?,?,?,?)";
+
+     // prepared statement
+    $stmt = $this->database->getConnection()->prepare($sql);
+
+    //if execution fail
+    if (!$stmt->execute([$scholar_id, $remarks, $remarks_mess, $date])) {
+        header("Location: ../Pages-admin/admin-application.php?status=error");
+        exit();
+    }
 }
 
 // public function getDonorsFunds(){
@@ -608,23 +626,6 @@ public function getRemarks($id){
 //     return $stmt;
 //     exit();
 // }
-public function setSchedule($scholar_id, $date, $time_start, $time_end, $venue){
-
-    // prepare insert statement for employee table
-     $sql = "INSERT INTO admin_schedule (scholar_id, date, time_start, time_end, venue) VALUES (?,?,?,?,?)";
-
-     // prepared statement
-    $stmt = $this->database->getConnection()->prepare($sql);
-
-    //if execution fail
-    if (!$stmt->execute([$scholar_id, $date, $time_start, $time_end, $venue])) {
-        header("Location: ../Pages-admin/admin-funds.php?status=error");
-        exit();
-    }
-    header("Location: ../Pages-admin/admin-funds.php?status=success");
-    exit();
-
-}
 public function getSchedule(){
     $stmt = $this->database->getConnection()->query("SELECT * FROM admin_schedule_interview")->fetchAll();
     return $stmt;
@@ -650,12 +651,6 @@ public function getScheduleById($id){
        $result = false;
        return $result;
    }
-}
-public function giveRate($id, $rate) {
-    // Update personal information in scholar_info table
-    $stmt = $this->database->getConnection()->prepare("UPDATE admin_schedule SET rate = ? WHERE id = ?");
-    $stmt->execute([$rate, $id]);
-
 }
 public function getAnnouncements(){
     $stmt = $this->database->getConnection()->query("SELECT * FROM admin_announcement ORDER BY ann_date DESC, ann_time DESC")->fetchAll();

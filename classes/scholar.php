@@ -369,8 +369,8 @@ class Scholar{
         // $this->database->sendEmail($scholarData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
 
         //if sucess uploading file, go to this 👇 page
-        header("Location: ../index.php?error=success"); 
-        exit();
+            header("Location: ../index.php?scholar=success");
+            exit();
 
     }
 
@@ -419,9 +419,6 @@ class Scholar{
         //send email employee his/her id and password 
         $this->database->sendEmail($scholarEmail,$emailSubject, $emailBody);
     
-        //if success saving account 
-        header("Location: ../index.php?scholar=success");
-        exit();
     }
 
     public function insertData($scholarID, $firstName, $lastName, $email, $yearLvl, $uploadedFileName1, $uploadedFileName2) {

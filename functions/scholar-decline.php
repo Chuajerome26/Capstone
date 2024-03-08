@@ -9,6 +9,7 @@ if(isset($_POST['submit'])){
 
     $id = $_POST["declineId"];
     $remarks = $_POST['remarks'];
+    $currentDate = date('Y-m-d');
 
     $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
     $stmt->execute(['id' => $id]);
@@ -29,6 +30,7 @@ if(isset($_POST['submit'])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
         exit();
     }
+    
     $declineMessage = '
 Dear '.$user["l_name"].',
 
@@ -45,7 +47,7 @@ Sincerely,
 Consuelo "CHITO" Madrigal Foundation, Inc.
 ccmf2015main@gmail.com
     ';
-
+    $addRemarks = $admin->addRemarks($id, 5, $remarks, $currentDate);
     $sentEmail = $database->sendEmail($email,"Scholarship Application Status Update", $declineMessage);
 
     header('Location: ../Pages-admin/admin-application.php?status=successDecline');

@@ -103,8 +103,9 @@ Best regards,
 Consuelo "CHITO" Madrigal Foundation Inc
 ccmf2015main@gmail.com
 ';
-
+        $addRemarks = $admin->addRemarks($scholar_id, 1, $message, $currentDate);
         $database->sendEmail($email,"Scholarship Application Evaluation - Completed", $message);
+        
     }else{
         $counter = 1;
         $wrongFiles = "";
@@ -134,6 +135,8 @@ Best regards,
 Consuelo "CHITO" Madrigal Foundation Inc
 ccmf2015main@gmail.com
         ';
+
+        $addRemarks = $admin->addRemarks($scholar_id, 0, $message, $currentDate);
 
         $database->sendEmail($email,"Scholarship Application - File Evaluation Update", $message);
     }

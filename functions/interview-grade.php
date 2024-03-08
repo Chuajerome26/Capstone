@@ -76,7 +76,7 @@ Best regards,
 Consuelo "CHITO" Madrigal Foundation, Inc.
 ccmf2015main@gmail.com
 ';
-
+        $addRemarks = $admin->addRemarks($id, 2, $message, $currentDate);
         $database->sendEmail($email,"Invitation to Final Interview for Scholarship", $message);
         header('Location: ../Pages-admin/schedule-task.php?status=successGrade');
         exit();
