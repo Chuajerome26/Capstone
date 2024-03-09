@@ -476,7 +476,7 @@ foreach($applicantss as $z) {
                                     }else if($pogi['remarks'] == 3){
                                         $remarks123 = 'Accepted By';
                                     }else if($pogi['remarks'] == 5){
-                                        $remarks123 = 'Declined By';
+                                        $remarks123 = 'Declined By Test';
                                     }
                             ?>
                             <div class="d-flex flex-row align-items-start mb-4">
