@@ -672,7 +672,7 @@
                     </div>
 
                     <div class="col-md-4 mb-3">
-                    <label for="formFile" class="form-label">Copy ofEnrollment Form</label>
+                    <label for="formFile" class="form-label">Copy of Enrollment Form</label>
                     <input class="form-control form-control-sm border-bottom" type="file" name="eForm" accept="application/pdf" required>
                     </div>
 

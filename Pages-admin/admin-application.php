@@ -199,7 +199,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
                                 <img class="img-profile rounded-circle"
-                                    src="../Uploads_pic/<?php echo $admin_info[0]['id_pic']; ?>">
+                                    src="../images/images.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -997,22 +997,30 @@ $appliData2 = $admin->getApplicants();
             </thead>
             <form id="formRemarks" method="post" action="../functions/filesRemarks.php">
             <tbody>
-                <?php foreach($appliFiles as $files){ ?>
+                <?php foreach($appliFiles as $files){
+                    $name = $files['requirement_name'];
+                    if($name == "FamilyProfile"){
+                        $text = preg_replace('/(?<!^)([A-Z])/', ' $1', $name);
+                    }else{
+                        $text = preg_replace('/(?<!^)([A-Z])/', ' $1', $name);
+                        $text = str_replace('of', ' of', $text);
+                    }
+                    ?>
                 <tr>
-                    <td><?php echo $files['requirement_name'];?></td>
+                    <td><?php echo $text; ?></td>
                     <td><a href="../Scholar_files/<?php echo $files["file_name"]?>" target="_blank"><?php echo $files["file_name"]?></a></td>
                     <?php if($files["status"] == 0): ?>
                         <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" id="<?php echo $files['requirement_name'];?>" value="1" onchange="toggleInput(this, '<?php echo $files['requirement_name'];?>_remarks')"></td>
                         <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" value="2" disabled></td>
-                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" required></td>
+                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $text;?> Remarks" required></td>
                     <?php elseif($files["status"] == 1): ?>
                         <td align="center">Done</td>
                         <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" value="2"></td>
-                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
+                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $text;?> Remarks" disabled></td>
                     <?php else: ?>
                         <td align="center">Done</td>
                         <td align="center">Done</td>
-                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
+                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['requirement_name'];?>_remarks" placeholder="<?php echo $text;?> Remarks" disabled></td>
                     <?php endif; ?>
                         <td><input type="hidden" name="file_id" value="<?php echo $files['id']; ?>">
                     </td>
