@@ -61,7 +61,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Middle Name:</label>
-                    <input type="text" name="mName" class="form-control form-control-sm" placeholder="Middle Name" required>
+                    <input type="text" name="mName" class="form-control form-control-sm" placeholder="Optional">
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -71,7 +71,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Suffix:</label>
-                    <input type="text" name="suffix" class="form-control form-control-sm" placeholder="Suffix" required>
+                    <input type="text" name="suffix" class="form-control form-control-sm" placeholder="Optional">
                 </div>
 
 
