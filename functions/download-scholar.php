@@ -3,12 +3,12 @@
 require '../classes/database.php';
 $database = new Database();
 
-$data = "SELECT * FROM scholar_info WHERE status = 0 ORDER BY id ASC";
+$data = "SELECT * FROM scholar_info WHERE status = 1 ORDER BY id ASC";
 $query = $database->getConnection()->query($data);
 
 if ($query->rowCount() > 0) {
     $delimeter = ",";
-    $filename = "applicant-data_" . date('Y-m-d') . ".csv";
+    $filename = "scholar-data_" . date('Y-m-d') . ".csv";
 
     $f = fopen('php://memory', 'w');
 

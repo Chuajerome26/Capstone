@@ -220,15 +220,20 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                  
 
                     <div class="hstack g-1 mb-3">
-                    <div class="p-2"><p class="h3 mb-0 font-weight-bold text-gray-800">Scholars</p></div>
-                    <div class="p-2 ms-auto">
-                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Send Email</div>
-                    </button>
-                    </div>
-                    <div class="p-2">
-                    <a href="#" class=" btn  btn-primary shadow-sm "><i
-                            class="fas fa-download fa-sm text-white "></i> <div class="d-none d-sm-inline-block">Generate Report</div></a></div>
+                        <div class="p-2"><p class="h3 mb-0 font-weight-bold text-gray-800">Scholars</p></div>
+                        <div class="p-2 ms-auto">
+                        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Send Email</div>
+                        </button>
+                        </div>
+                        <div class="p-2">
+                            <form action="../functions/download-scholar.php" method="post">
+                                <button type="submit" class=" btn  btn-primary shadow-sm">
+                                    <i class="fas fa-download fa-sm text-white-50"></i> 
+                                    <div class="d-none d-sm-inline-block">Generate Report</div>
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
                         
@@ -632,14 +637,19 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php 
+                                            $sibling = $admin->getAllSibling($a['id']);
+                                            foreach($sibling as $sb){
+                                        ?>
                                         <tr>
-                                        <td>Wats ur name bro</th>
-                                        <td>69</td>
-                                        <td>Basketball Player</td>
-                                        <td>Undecided</td>
-                                        <td>Iglesia ni Jordan Clarskon</td>
-                                        <td>Kindeer</td>
+                                            <td><?php echo $sb['name']; ?></th>
+                                            <td><?php echo $sb['age']; ?></td>
+                                            <td><?php echo $sb['occupation']; ?></td>
+                                            <td><?php echo $sb['civil_status']; ?></td>
+                                            <td><?php echo $sb['religion']; ?></td>
+                                            <td><?php echo $sb['educational_attained']; ?></td>
                                         </tr>
+                                        <?php }?>
                                         
                                         </tr>
                                     </tbody>

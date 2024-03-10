@@ -222,11 +222,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
 
                 <div class="hstack gap-3">
-                <div class="p-2"><p class="h3 mb-0 font-weight-bold text-gray-800">Scholar Applicants</p></div>
+                <div class="p-2"><p class="h3 mb-0 font-weight-bold text-gray-800">Suggested Applicants</p></div>
                 <div class="p-2 ms-auto">
-                <a href="#" class=" btn  btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> <div class="d-none d-sm-inline-block">Generate Report</div></a>
-
+                    <form action="../functions/download-applicant.php" method="post">
+                        <button type="submit" class=" btn  btn-primary shadow-sm">
+                            <i class="fas fa-download fa-sm text-white-50"></i> 
+                            <div class="d-none d-sm-inline-block">Generate Report</div>
+                        </button>
+                    </form>
                 </div>
 
                 </div>
@@ -744,13 +747,20 @@ $appliData1 = $admin->getApplicants();
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                    $sibling = $admin->getAllSibling($a['id']);
+                                    foreach($sibling as $sb){
+                                ?>
                                 <tr>
-                                <td>Wats ur name bro</th>
-                                <td>69</td>
-                                <td>Basketball Player</td>
-                                <td>Undecided</td>
-                                <td>Iglesia ni Jordan Clarskon</td>
-                                <td>Kindeer</td>
+                                    <td><?php echo $sb['name']; ?></th>
+                                    <td><?php echo $sb['age']; ?></td>
+                                    <td><?php echo $sb['occupation']; ?></td>
+                                    <td><?php echo $sb['civil_status']; ?></td>
+                                    <td><?php echo $sb['religion']; ?></td>
+                                    <td><?php echo $sb['educational_attained']; ?></td>
+                                </tr>
+                                <?php }?>
+                                
                                 </tr>
                                 
                                 </tr>
