@@ -12,9 +12,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $info = $admin->getApplicantById($id);
     $pic = $admin->getApplicants2x2($id);
 
-    var_dump($pic);
-
-
 } else {
     header("Location: ../index.php");
 }
