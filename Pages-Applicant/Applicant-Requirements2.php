@@ -9,6 +9,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $admin = new Admin($database);
 
     $id = $_SESSION['id'];
+    $info = $admin->getApplicantById($id);
+    $pic = $admin->getApplicants2x2($id);
+
 
 } else {
     header("Location: ../index.php");
@@ -214,9 +217,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Scholar</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $info[0]['l_name']; ?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="Scholar_files/<?php echo $pic[0]['file_name']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -705,25 +708,44 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
       </div>
       <div class="modal-body">
         
-      <?php
-        if(isset($id)) {
-            $remarks = $admin->getRemarks($id);
-
-            // Check if $remarks is an array or object before iterating
-            if(is_array($remarks) || is_object($remarks)) {
-                foreach($remarks as $r){
-        ?>
-                    <h4>Admin Remarks</h4>
-                    <dd class="col-sm-8"> - <?php echo $r["remarks"];?></dd>
-        <?php
-                }
-            } else {
-                echo "No remarks found for the provided Scholar ID.";
-            }
-        } else {
-            echo "Scholar ID not provided.";
-        }
-        ?>
+        <div class="container mt-3 text-dark">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-11">
+                            <?php 
+                            $getRemarks = $admin->getRemarks($id);
+                            if($getRemarks):
+                                foreach($getRemarks as $pogi):
+                                    if($pogi['remarks'] == 0){
+                                        $remarks123 = 'Evaluate By';
+                                    }else if($pogi['remarks'] == 1){
+                                        $remarks123 = 'Schedule Interview for Initial - Evaluation Completed By';
+                                    }else if($pogi['remarks'] == 2){
+                                        $remarks123 = 'Schedule Interview for Final - Interview Completed By';
+                                    }else if($pogi['remarks'] == 3){
+                                        $remarks123 = 'Accepted By';
+                                    }else if($pogi['remarks'] == 5){
+                                        $remarks123 = 'Declined By';
+                                    }
+                            ?>
+                            <div class="d-flex flex-row align-items-start mb-4">
+                                <img class="img-thumbnail rounded-circle shadow border me-3" src="../images/logo.jpg" alt="avatar" width="50" height="55" />
+                                <div class="card w-100 shadow">
+                                    <div class="card-body p-4">
+                                        <div class="">
+                                            <h5><?php echo $remarks123;?> Admin</h5>
+                                            <p class="small"><?php echo date('M d, Y', strtotime($pogi["date"])); ?></p>
+                                            <p><?php echo nl2br($pogi["remarks_mess"]);?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                            <?php else: ?>
+                            <div class="alert alert-primary" role="alert">No Remarks</div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
 
 
       </div>
@@ -819,7 +841,9 @@ document.addEventListener('DOMContentLoaded', function () {
    
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
