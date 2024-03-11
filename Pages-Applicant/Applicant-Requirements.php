@@ -10,7 +10,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
     $id = $_SESSION['id'];
 
-} else {
+ } else {
     header("Location: ../index.php");
 }
 

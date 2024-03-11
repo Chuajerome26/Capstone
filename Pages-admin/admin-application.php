@@ -62,6 +62,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
   .text-camel-case::first-letter {
         text-transform: uppercase; /* Convert the first letter of each word to uppercase */
     }
+       /* Custom CSS to remove spacing between Splide slides */
+       .splide__list {
+            margin-right: 0; /* Remove right margin */
+            padding-right: 0; /* Remove right padding */
+        }
+        .splide__slide {
+            margin-right: 0; /* Remove right margin */
+            padding-right: 0; /* Remove right padding */
+        }
 </style>
 </head>
 
@@ -239,9 +248,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                     
 
                                 
-                    <div class="container ">
-    <div class="row">
+                    <div class="container-fluid ">
+    <div class="row no-gutters">
+    <div class="col-sm-12">
         <div class="splide">
+       
             <div class="splide__track">
                 <div class="splide__list">
                     <?php
@@ -254,8 +265,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
                         if($prediction <= 100 && $prediction >= 75) {
                     ?>
-                    <div class="col-sm-4 splide__slide m-2">
-                        <div class="card shadow">
+                    <div class="col-sm-4 splide__slide p-0 px-3 d-flex justify-content-center align-items-center">
+                        <div class="card shadow ">
                             <div class="hstack gap-2">
                                 
                             <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" alt="Profile Picture" class="img-thumbnail rounded-circle ms-4" style="width: 60px; height: 60px;">
@@ -286,6 +297,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
         </div>
     </div>
 </div>
+                </div>
 
 
                     <!-- Content Row -->
@@ -341,9 +353,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
                                                 <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
                                                 <td><?php echo $s["date_apply"];?></td> 
                                                 <td><?php echo $status;?></td>
-                                                <td class="text-center"><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>"><i class="fa-solid fa-circle-info"></i></button>
+                                                <td class="text-center">
+                                                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>"><i class="fa-solid fa-circle-info"></i></button>
                                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>"><i class="fa-solid fa-file"></i></button>
-                                            </td>
+                                             </td>
                                                 <td class="d-flex gap-1" style="white-space: nowrap;">
                                                     <form method="post" action="../functions/scholar-accept.php">
                                                         <input class="btn btn-primary " type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['id']?>">
