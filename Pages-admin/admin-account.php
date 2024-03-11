@@ -87,7 +87,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="admin-scholar.php">
                     <!-- SCHO TAB ICON -->
                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
@@ -148,7 +148,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="admin-account.php">
                     <!-- SCHO TAB ICON -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
@@ -158,6 +158,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                 <span class ="ml-2">Admin Accounts</span>
                 </a>
             </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
