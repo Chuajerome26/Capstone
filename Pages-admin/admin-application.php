@@ -645,7 +645,7 @@ $appliData1 = $admin->getApplicants();
                                     <dt class="col-sm-6 ">Gender:</dt>
                                     <dd class="col-sm-6"><?php echo $a['gender'];?></dd>
                                     
-                                    <dt class="col-sm-6 ">Status:</dt>
+                                    <dt class="col-sm-6 ">Civil Status:</dt>
                                     <dd class="col-sm-6"><?php echo $a['c_status'];?></dd>
 
                                     <dt class="col-sm-6 ">Age:</dt>

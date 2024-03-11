@@ -333,8 +333,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                             <dt class="col-sm-5">Gender:</dt>
                             <dd class="col-sm-7"><?php echo $a['gender'];?></dd>
 
-                            <dt class="col-sm-5">Status:</dt>
-                            <dd class="col-sm-7"><?php echo $a['status'];?></dd>
+                            <dt class="col-sm-5">Civil Status:</dt>
+                            <dd class="col-sm-7"><?php echo $a['c_status'];?></dd>
 
                             <dt class="col-sm-5">Age:</dt>
                             <dd class="col-sm-7"><?php echo $a['age'];?></dd>
