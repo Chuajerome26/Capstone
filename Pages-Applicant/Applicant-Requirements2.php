@@ -268,7 +268,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <nav class="nav nav-pills flex-column">
                         <a class="nav-link ms-3 my-1" href="#item-3-1">Grade Information</a>
                         <a class="nav-link ms-3 my-1" href="#item-3-2">Incoming Freshments</a>
-                        <a class="nav-link ms-3 my-1" href="#item-3-2">School Choice Information</a>
+                        <a class="nav-link ms-3 my-1" href="#item-3-3">School Choice Information</a>
                     </nav>
                     <a class="nav-link" href="#item-4">Requirements</a>
                    
@@ -612,21 +612,26 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="card mb-3"></div>
 
 
-
+                    <dl class="row ms-3">
                     <?php 
-    $applifiles = $admin->getApplicantsFiles($id);
-    
-    foreach($applifiles as $a){
-        
-  ?>
-            <div class="form-group">
-            <label for="<?= $a['requirement_name'] ?>"><?= $a['requirement_name'] ?></label>
-            <?php if (!empty($a['file_name'])) { ?>
-                <a href="../Scholar_files/<?= $a['file_name'] ?>" target="_blank"><?= $a['file_name'] ?></a>
-            <?php } ?>
-            
-        </div>
-    <?php } ?>
+                        $applifiles = $admin->getApplicantsFiles($id);
+                        
+                        foreach($applifiles as $a){
+                            
+                    ?>
+                                
+                                <dt class="col-sm-5" for="<?= $a['requirement_name'] ?>"><?= $a['requirement_name'] ?></dt>
+                                <dd class="col-sm-7 mb-4">
+                                <?php if (!empty($a['file_name'])) { ?>
+                                    <a href="../Scholar_files/<?= $a['file_name'] ?>" target="_blank"><?= $a['file_name'] ?></a>
+                                <?php } ?>
+                                </dd>
+                                
+                                
+                        <?php } ?>
+
+                        </dl>
+
                 </div>
                 
 
@@ -733,16 +738,16 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 document.addEventListener('DOMContentLoaded', function () {
     const scrollspy = new bootstrap.ScrollSpy(document.body, {
         target: '#navbar-example3',
-        offset: 50,
+        offset: 0,
     });
 
     const scrollspyNavLinks = document.querySelectorAll('#navbar-example3 .nav-link');
 
-    window.addEventListener('scroll', function () {
-        let fromTop = window.scrollY + 50; // Add an offset for better visualization
+    function setActiveNavLinks() {
+        let fromTop = window.scrollY;
 
         scrollspyNavLinks.forEach(link => {
-            let section = document.querySelector(link.getAttribute('href'));
+            let section = document.querySelector(link.hash);
 
             if (
                 section.offsetTop <= fromTop &&
@@ -753,7 +758,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 link.classList.remove('active');
             }
         });
+    }
+
+    function handleClickEvent(event) {
+        event.preventDefault();
+
+        // Remove active class from all nav links
+        scrollspyNavLinks.forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Add active class to clicked link
+        event.target.classList.add('active');
+
+        // Scroll to the target item smoothly
+        const targetId = event.target.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        targetElement.scrollIntoView({
+            behavior: 'smooth'
+        });
+    }
+
+    // Add click event listener to each nav link
+    scrollspyNavLinks.forEach(link => {
+        link.addEventListener('click', handleClickEvent);
     });
+
+    window.addEventListener('scroll', setActiveNavLinks);
+
+    setActiveNavLinks(); // Set active links initially
 });
 </script>
     <!-- End of Page Wrapper -->
@@ -783,9 +816,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
