@@ -2,7 +2,7 @@
 <div class="container mt-5">
     <form method="post" enctype="multipart/form-data" action="../functions/edit-applicant-info.php">
     <?php 
-    $applifiles = $admin->scholarInfo($id);
+    $applifiles = $admin->getApplicantsFiles($id);
     
     foreach($applifiles as $a){
         

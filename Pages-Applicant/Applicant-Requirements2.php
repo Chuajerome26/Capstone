@@ -613,55 +613,20 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 
 
-                    <dl class="row ms-3">
-                  
-                            <dt class="col-sm-5">ID Photo:</dt>
-                            <dd class="col-sm-7 mb-4">Test 1</dd>
-
-
-                            <dt class="col-sm-5">Family Profile:</dt>
-                            <dd class="col-sm-7 mb-4">Test 1</dd>
-
-                            <dt class="col-sm-5">Letter of Intent:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Parent Consent:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Copy of Grades:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Birth Certificate:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Indigency:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Reccommendation Letter:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Good Moral:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">School Diploma:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Form 137/138:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Acceptance Letter:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Enrollment Form:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Family Picture:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-
-                            <dt class="col-sm-5">Sketch of House Area:</dt>
-                            <dd class="col-sm-7 mb-4">test 1</dd>
-                           
-                        </dl>
+                    <?php 
+    $applifiles = $admin->getApplicantsFiles($id);
+    
+    foreach($applifiles as $a){
+        
+  ?>
+            <div class="form-group">
+            <label for="<?= $a['requirement_name'] ?>"><?= $a['requirement_name'] ?></label>
+            <?php if (!empty($a['file_name'])) { ?>
+                <a href="../Scholar_files/<?= $a['file_name'] ?>" target="_blank"><?= $a['file_name'] ?></a>
+            <?php } ?>
+            
+        </div>
+    <?php } ?>
                 </div>
                 
 
