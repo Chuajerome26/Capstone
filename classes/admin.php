@@ -660,9 +660,9 @@ public function addAdminAccount($first_name, $last_name, $email, $token){
 
 public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email){
 
-    $stmt = $this->database->getConnection()->prepare("UPDATE admin_account SET pic = ? WHERE token = ?");
+    $stmt = $this->database->getConnection()->prepare("UPDATE admin_info SET pic = ? WHERE token = ?");
 
-    if (!$stmt->execute([$newDate, $date])) {
+    if (!$stmt->execute([$pic, $token])) {
         header("Location: ../index.php?status=error");
         exit();
     }

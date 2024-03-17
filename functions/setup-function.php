@@ -43,8 +43,10 @@ require '../classes/database.php';
         exit();
     }
 
-    if(move_uploaded_file($filesData1['fileTmpName'],$fileDestination1)){
-        $admin->setUpAdminPass($adminId, $user, $pass, $fileNameNew1, $token, $email);
+    if(move_uploaded_file($fileData1['fileTmpName'],$fileDestination1)){
+        $admin->setUpAdminPass($adminId, $user, $pass, $fileNameNew1, $token, $adminEmail);
+        header('Location: ../index.php?scholar=setUp');
+        exit();
     }
 
 
