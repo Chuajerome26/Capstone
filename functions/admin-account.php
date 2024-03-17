@@ -17,7 +17,7 @@ require '../classes/database.php';
     }
 
     $verificationToken = md5(uniqid(rand(), true));
-    $message = "https://ccmf.website/functions/setup-account.php?token=$verificationToken";
+    $message = "https://ccmf.website/Pages-admin/setup-account.php?token=$verificationToken";
 
     $condition = $admin->addAdminAccount($fname, $lname, $email, $verificationToken);
 

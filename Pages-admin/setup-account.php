@@ -35,7 +35,7 @@
                 
                     <div class="col-md-11 mx-auto">
                      <span><p class="text-center fs-4 fw-bold">SET UP YOUR ACCOUNT</p></span>
-                        <form id="signupForm" method="post" action="rate.php" onsubmit="return validateForm()" enctype="multipart/form-data">
+                        <form id="signupForm" method="post" action="../functions/setup-function.php" onsubmit="return validateForm()" enctype="multipart/form-data">
                             <div class="row">
                             <div class="col-md-12 mb-3">
                                     <label for="password" class="form-label">Username</label>
