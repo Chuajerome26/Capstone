@@ -231,15 +231,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                  
 
                     <div class="hstack g-1 mb-3">
-                        <div class="p-2"><p class="h3 mb-0 font-weight-bold text-gray-800">Scholars</p></div>
+                        <div class="p-2"><p class="h3 mb-0 font-weight-bold text-gray-800">Admins</p></div>
                         <div class="p-2 ms-auto">
                         <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Send Email</div>
+                        <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Add Account</div>
                         </button>
                         </div>
                         <div class="p-2">
-                            <form action="../functions/download-scholar.php" method="post">
-                                <button type="submit" class=" btn  btn-primary shadow-sm">
+                            <form action="" method="post">
+                                <button type="type" class=" btn  btn-primary shadow-sm">
                                     <i class="fas fa-download fa-sm text-white-50"></i> 
                                     <div class="d-none d-sm-inline-block">Generate Report</div>
                                 </button>
@@ -259,7 +259,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Scholar list</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Admin list</h6>
                                 </div>
                                 <div class="card-body">
                                     <table id="scholars" class="table table-striped table-hover">
@@ -379,36 +379,22 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
 
             <div class="container ">
-                    <form enctype="multipart/form-data" method="post" action="../functions/admin-sendEmail.php">
-                        <div class="form-group">
-                            <label for="recipientEmail">Recipient's Email:</label>
-                            <select name="email" class="form-control" required>
-                                <option value="0">Select Scholar</option>
-                                <?php
-                                $scholar = $admin->getScholars();
-                                foreach($scholar as $s){
-                                    echo "<option value='" . $s['email'] . "'>" . $s['f_name'] . " " . $s['l_name'] . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Subject:</label>
-                            <input type="text" class="form-control" name="subject" placeholder="Enter email subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message:</label>
-                            <textarea class="form-control" name="message" rows="5" placeholder="Enter your message" required></textarea>
-                        </div>
-
-                        <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04" name="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
-                            </div>
-                        
-                        
-                    </form>
-                </div>
+                <form enctype="multipart/form-data" method="post" action="../functions/admin-account.php">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" name="firstName" placeholder="Enter first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" name="lastName" placeholder="Enter last name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="addAdmin">Submit</button>
+                </form>
+            </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

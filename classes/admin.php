@@ -619,6 +619,102 @@ public function getRemarks($id){
         return $result;
     }
 }
+
+public function findAdminByEmail($email){
+    // prepare the SQL statement using the database property
+  $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_info WHERE email=?");
+
+   //if execution fail
+  if (!$stmt->execute([$email])) {
+      header("Location: ../Pages-admin/admin-account.php?scholar=emailExist");
+      exit();
+  }
+
+  //fetch the result
+  $result = $stmt->fetch();
+  
+    //if has result true, else return false
+  if ($result) {
+      return true;
+  } else {
+      return false;
+  }
+
+}
+public function addAdminAccount($first_name, $last_name, $email, $token){
+
+    // prepare insert statement for employee table
+    $date = date('Y-m-d');
+    $sql = "INSERT INTO admin_info (f_name, l_name, email, token,date) VALUES (?,?,?,?,?)";
+
+     // prepared statement
+    $stmt = $this->database->getConnection()->prepare($sql);
+
+    //if execution fail
+    if (!$stmt->execute([$first_name, $last_name, $email, $token, $date])) {
+        header("Location: ../Pages-admin/admin-application.php?status=error");
+        exit();
+    }
+    return true;
+}
+
+public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email){
+
+    $stmt = $this->database->getConnection()->prepare("UPDATE admin_account SET pic = ? WHERE token = ?");
+
+    if (!$stmt->execute([$newDate, $date])) {
+        header("Location: ../index.php?status=error");
+        exit();
+    }
+
+    $sql = "INSERT INTO login (user,pass,admin_id,user_type) VALUES (?,?,?,?);";
+    $stmt1 = $stmt = $this->database->getConnection()->prepare($sql);
+
+    $hashedpwd = password_hash($pass, PASSWORD_DEFAULT);
+        //if execution fail
+    if (!$stmt->execute([$username, $hashedpwd, $id, 2])) {
+        header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
+        exit();
+    }
+
+    $emailSubject = "Your Set Up for your Account has been done!";
+    $emailBody = "Dear Admin,\n\n"
+    . "Username: " . $username . "\n"
+    . "Password: " . $pass . "\n\n"
+    . "Please let us know if you have any questions or concerns, and we will be more than happy to help.\n\n"
+    . "Best regards,\n"
+    . "CCMF";
+    
+        //send email employee his/her id and password 
+        $this->database->sendEmail($email,$emailSubject, $emailBody);
+}
+
+public function findAdminByToken($token){
+
+        
+    // prepare the SQL statement using the database property
+  $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_info WHERE token = ?");
+
+   //if execution fail
+  if (!$stmt->execute([$token])) {
+      header("Location: ../index.php?error=stmtfail");
+      exit();
+  }
+
+  //fetch the result
+  $result = $stmt->fetchAll();
+  
+    //if has result return it, else return false
+  if ($result) {
+      return $result;
+  } else {
+      $result = false;
+      return $result;
+  }
+
+
+}
+
 public function addRemarks($scholar_id, $remarks, $remarks_mess, $date){
 
     // prepare insert statement for employee table
