@@ -828,6 +828,11 @@ public function getInterviewsByDate($date){
         return $result;
     }
 }
+public function getAdminlogs()
+{
+    $stmt = $this->database->getConnection()->query("SELECT id, scholar_id, admin_id, remarks, date FROM admin_remarks")->fetchAll();
+    return $stmt;
+}
 
 public function selectAndInsertSchedulesforFinal($scholarData, $start, $end, $excludeStart, $excludeEnd, $appointmentDuration, $maxSchedules, $date) {
     $startTime = strtotime($start);
