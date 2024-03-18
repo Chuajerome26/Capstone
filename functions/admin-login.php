@@ -50,7 +50,6 @@ require '../classes/database.php';
     $get_admin = $admin->checkAdmin();
 
     if($get_admin[0]['count'] == 0 && $userType == 3){
-        $_SESSION["user_type"] = 3;
         header('Location: ../Pages-admin/setup-superAdmin.php?type='.$userType);
         exit();
         

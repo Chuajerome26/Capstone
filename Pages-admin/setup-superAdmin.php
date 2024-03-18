@@ -1,13 +1,4 @@
-<?php 
-// start session
-session_start();
 
-if ($_SESSION['user_type'] === 3) {
-
-} else {
-    header("Location: ../index.php");
-}
-?>
 <!doctype html>
 <html lang="en">
   <head>
