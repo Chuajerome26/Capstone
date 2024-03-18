@@ -1,3 +1,10 @@
+<?php 
+    require '../classes/admin.php';
+    require '../classes/database.php';
+
+    $database = new Database();
+    $admin = new Admin($database);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +53,10 @@
     <div class="container d-flex justify-content-center align-items-center vh-max-100">
 
         <div class="card w-100 p-4 mt-5 shadow">
+        <?php 
+        $isLimitReached = $admin->isApplicantLimitReached();
+        if(!$isLimitReached){
+        ?>
         <form id="ccmfForm" method="POST" action="../functions/applicants-register.php" enctype="multipart/form-data">
             <!------- STEP 1 ------->
         <div class="step" id="step1">
@@ -702,6 +713,11 @@
 
 
         </form>
+        <?php
+        } else {
+            echo '<p>The applicant limit has been reached.</p>';
+        }
+        ?>
         </div>
     </div>
 

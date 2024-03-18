@@ -250,6 +250,10 @@ class Admin
         $applicants = $this->getApplicants();
         return count($applicants);
     }
+    public function isApplicantLimitReached() {
+        $applicantsCount = $this->getApplicantsCount();
+        return $applicantsCount >= 50;
+    }    
     public function getTotalFunds(){
         $stmt = $this->database->getConnection()->query("SELECT total_funds FROM totalFunds WHERE id = 1")->fetchAll();
 
