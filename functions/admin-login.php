@@ -53,6 +53,7 @@ require '../classes/database.php';
         $_SESSION["user_type"] = 3;
         header('Location: ../Pages-admin/setup-superAdmin.php?type='.$userType);
         exit();
+        
     }elseif($get_admin[0]['count'] == 0 && $userType == 1){
         header('Location: ../index.php?scholar='.$userType);
         exit();

@@ -2,7 +2,7 @@
 // start session
 session_start();
 
-if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
+if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_type'] === 2)) {
     require '../classes/admin.php';
     require '../classes/database.php';
 
@@ -205,7 +205,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $admin_info[0]['l_name']; ?></span>
                                 <img class="img-profile rounded-circle"
                                     src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>">
                             </a>
@@ -286,7 +286,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                     ?>
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>
-                                            <td><img class="img-profile rounded-circle" src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" style="height:40px;width:40px;"></td>
+                                            <td><img class="img-profile rounded-circle" src="../Scholar_files/<?php echo $s['pic']; ?>" style="height:40px;width:40px;"></td>
                                             <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                             <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
                                             <td><?php echo $s["date"];?></td>

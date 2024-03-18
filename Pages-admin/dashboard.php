@@ -2,7 +2,7 @@
 // start session
 session_start();
 
-if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
+if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_type'] === 2)) {
     require '../classes/admin.php';
     require '../classes/database.php';
 
@@ -11,7 +11,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
     $id = $_SESSION['id'];
 
-    $admin_info = $admin->scholarInfo($id);
+    $admin_info = $admin->adminInfo($id);
 
     $today = $admin->getInterviewCountForToday();
     $renewal = $admin->getRenewalCount();
@@ -211,9 +211,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $admin_info[0]['l_name']; ?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="../Scholar_files/<?php echo $admin_info[0]['id_pic']; ?>">
+                                    src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -340,7 +340,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -371,13 +371,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                         </div>
 
                         <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
+                        <!-- <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4"> -->
                                 <!-- Card Header - Dropdown -->
-                                <div
+                                <!-- <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h5 class="m-0 font-weight-bold text-primary">Recommended Home Visit</h5>
-                                    <div class="dropdown no-arrow">
+                                    <div class="dropdown no-arrow"> -->
                                         <!-- <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -390,10 +390,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Something else here</a>
                                         </div> -->
-                                    </div>
-                                </div>
+                                    <!-- </div>
+                                </div> -->
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <!-- <div class="card-body">
                                     <div class="chart-pie pt-4 pb-2">
                                         <canvas id="myPieChart"></canvas>
                                     </div>
@@ -410,7 +410,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- Content Row -->
