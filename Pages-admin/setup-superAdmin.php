@@ -1,3 +1,13 @@
+<?php 
+// start session
+session_start();
+
+if ($_SESSION['user_type'] === 3) {
+
+} else {
+    header("Location: ../index.php");
+}
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -35,34 +45,41 @@
                 
                     <div class="col-md-11 mx-auto">
                      <span><p class="text-center fs-4 fw-bold">SET UP YOUR ACCOUNT</p></span>
-                        <form id="signupForm" method="post" action="../functions/setup-function.php" onsubmit="return validateForm()" enctype="multipart/form-data">
-                            <div class="row">
+                     <form id="signupForm" method="post" action="../functions/setup-superAdminfunction.php" onsubmit="return validateForm()" enctype="multipart/form-data">
+                        <div class="row">
                             <div class="col-md-12 mb-3">
-                                    <label for="password" class="form-label">Username</label>
-                                    <input type="password" class="form-control" name="username" id="username" placeholder="Username" required>
-                                </div>
-                                <div class="col-md-12 mb-3">
+                                <label for="firstName" class="form-label">First Name</label>
+                                <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="lastName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-                                    <div id="emailHelp" class="form-text">Your password must be 8-20 characters long, contain letters and numbers.</div>
-                                </div>
-                                <div class="col-md-12 mb-3">
+                            </div>
+                            <div class="col-md-12 mb-3">
                                     <label for="confirmPassword" class="form-label">Confirm Password</label>
                                     <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required>
-                                    <div id="emailHelp" class="form-text">Your password and confirmation password must match.</div>
                                 </div>
-                                <div class="input-group mb-3">
-                                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                                    <input class="form-control" type="file" name="idPhoto" accept=".jpg, .jpeg">
-                                </div>
-                                <div class="input-group mb-3">
-                                    <input class="form-control" type="hidden" name="token" value="<?php echo $_GET['token'];?>">
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" name="submit" class="btn btn-primary col-md-9 mx-auto shadow">Submit</button>
-                                </div>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupFile02">Upload Picture</label>
+                                <input class="form-control" type="file" name="idPhoto" accept=".jpg, .jpeg">
                             </div>
-                        </form>
+                            <div class="input-group mb-3">
+                                <input class="form-control" type="hidden" name="type" value="<?php echo $_GET['type']; ?>">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" name="submit" class="btn btn-primary col-md-9 mx-auto shadow">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+
                     </div>
                 </div>
             </div>

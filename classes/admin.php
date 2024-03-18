@@ -218,6 +218,30 @@ class Admin
         return $stmt;
         exit();
     }
+    public function getAdmins(){
+        $stmt = $this->database->getConnection()->query("SELECT * FROM admin_info")->fetchAll();
+        return $stmt;
+        exit();
+    }
+    public function checkAdmin(){
+        $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) as count FROM admin_info");
+
+       //if execution fail
+      if (!$stmt->execute()) {
+          header("Location: ../index.php?error=stmtfail");
+          exit();
+      }
+      //fetch the result
+      $result = $stmt->fetchAll();
+      
+        //if has result return it, else return false
+      if ($result) {
+          return $result;
+      } else {
+          $result = false;
+          return $result;
+      }
+    }
     public function getScholarCount() {
         $scholars = $this->getScholars();
         return count($scholars);
@@ -548,7 +572,7 @@ public function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
 
     $maxGwa = 5.0; 
     $minGwa = 1.0;  // Hypothetical maximum attendance hours for full weight
-    $maxIncome = 200000; // Updated maximum monthly income
+    $maxIncome = 100000  ; // Updated maximum monthly income
 
     // Weights for each factor
     $gwaWeight = 0.70; // Adjusted weight for GWA
@@ -678,6 +702,48 @@ public function addAdminAccount($first_name, $last_name, $email, $token){
         exit();
     }
     return true;
+}
+public function setUpSuperAdmin($fname, $lname, $email, $fileName, $pass, $type){
+
+    $sql = "INSERT INTO admin_info (f_name,l_name,email,pic,date) VALUES (?,?,?,?,NOW());";
+    $stmt1 = $stmt = $this->database->getConnection()->prepare($sql);
+
+    $hashedpwd = password_hash($pass, PASSWORD_DEFAULT);
+        //if execution fail
+    if (!$stmt->execute([$fname, $lname, $email, $fileName])) {
+        header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
+        exit();
+    }
+    
+    $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM admin_info WHERE email=?");
+
+        //if execution fail
+    if (!$stmtScholarID->execute([$email])) {
+        header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
+        exit();
+    }
+    //fetch the employeeID
+    $adminId = $stmtScholarID->fetchColumn();
+
+
+    $hashedpwd = password_hash($pass, PASSWORD_DEFAULT);
+    $stmt = $this->database->getConnection()->prepare("UPDATE login SET user = ?, pass = ?, admin_id = ? WHERE user_type = ?");
+
+    if (!$stmt->execute([$email, $hashedpwd, $adminId,$type])) {
+        header("Location: ../index.php?status=error");
+        exit();
+    }
+
+    $emailSubject = "Your Set Up for your Account has been done!";
+    $emailBody = "Dear Admin,\n\n"
+    . "Username: " . $email . "\n"
+    . "Password: " . $pass . "\n\n"
+    . "Please let us know if you have any questions or concerns, and we will be more than happy to help.\n\n"
+    . "Best regards,\n"
+    . "CCMF";
+    
+        //send email employee his/her id and password 
+        $this->database->sendEmail($email,$emailSubject, $emailBody);
 }
 
 public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email){

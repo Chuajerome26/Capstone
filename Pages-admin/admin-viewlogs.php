@@ -147,7 +147,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                     <span class="ml-2">Announcement</span>
                 </a>
             </li>
-
+            <?php if($_SESSION["user_type"] == 3):?>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="admin-account.php">
                     <!-- SCHO TAB ICON -->
@@ -168,6 +168,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                     <span class="ml-2">Admin logs</span>
                 </a>
             </li>
+            <?php endif; ?>
 
 
             <!-- Divider -->
@@ -206,7 +207,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
                                 <img class="img-profile rounded-circle"
-                                    src="../Uploads_pic/<?php echo $admin_info[0]['pic']; ?>">
+                                    src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -263,6 +264,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                     <?php
                                     $num = 1;
                                     foreach ($admin_logs as $log): 
+
+                                        $scholar_info = $admin->scholarInfo($log['scholar_id']);
                                         if($log['remarks'] == 0){
                                             $remarks = '<span class="badge badge-primary">Evaluate</span>';
                                         }
@@ -276,7 +279,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                         ?>
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>
-                                            <td style="white-space: nowrap;"><?php echo $log["scholar_id"]?></td>
+                                            <td style="white-space: nowrap;"><?php echo $scholar_info[0]['f_name'];?></td>
                                             <td style="white-space: nowrap;"><?php echo $log["admin_id"];?></td>
                                             <td style="white-space: nowrap;"><?php echo $remarks;?></td>
                                             <td style="white-space: nowrap;"><?php echo $log["date"];?></td>

@@ -148,6 +148,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                 </a>
             </li>
 
+            <?php if($_SESSION["user_type"] == 3):?>
             <li class="nav-item active">
                 <a class="nav-link collapsed" href="admin-account.php">
                     <!-- SCHO TAB ICON -->
@@ -158,6 +159,17 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                 <span class ="ml-2">Admin Accounts</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="admin-viewlogs.php">
+                    <!-- LOGS TAB ICON -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-journal" viewBox="0 0 16 16">
+                        <path d="M5 0h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v1h8V2a1 1 0 0 0-1-1H5zm0 2h6v1H5V3zm0 2h6v1H5V5zm8 7H3v1h10v-1zM3 9h10v1H3V9zm10-2H3v1h10V7z"/>
+                    </svg>
+                    <span class="ml-2">Admin logs</span>
+                </a>
+            </li>
+            <?php endif; ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -195,7 +207,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
                                 <img class="img-profile rounded-circle"
-                                    src="../Uploads_pic/<?php echo $admin_info[0]['pic']; ?>">
+                                    src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -237,14 +249,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                         <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Add Account</div>
                         </button>
                         </div>
-                        <div class="p-2">
-                            <form action="" method="post">
-                                <button type="type" class=" btn  btn-primary shadow-sm">
-                                    <i class="fas fa-download fa-sm text-white-50"></i> 
-                                    <div class="d-none d-sm-inline-block">Generate Report</div>
-                                </button>
-                            </form>
-                        </div>
                     </div>
 
                         
@@ -266,37 +270,26 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
+                                            <th scope="col">Pic</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Date Applied</th>
-                                            
-                                            <th scope="col">Details</th>
+                                            <th scope="col">Date Added</th>
                                     
                                             
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-dividercar">
                                     <?php
-                                    $applicantsData = $admin->getScholars();
+                                    $applicantsData = $admin->getAdmins();
                                     $num = 1;
                                     foreach($applicantsData as $s){
-                                        if($s['status'] == 0){
-                                            $status = "Pending";
-                                        }else{
-                                            $status = "Accepted";
-                                        }
                                     ?>
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>
+                                            <td><img class="img-profile rounded-circle" src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" style="height:40px;width:40px;"></td>
                                             <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                             <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                                            <td><?php echo $s["date_apply"];?></td>
-                                            
-                                            <td class="d-flex gap-2">
-                                                
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button>
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button>
-                                        </td>
+                                            <td><?php echo $s["date"];?></td>
                                             
                                             
                                         </tr>

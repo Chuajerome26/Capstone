@@ -1,7 +1,7 @@
 <?php
 
 if ($_POST['uname'] !== '' && $_POST['psw'] !== '' && isset($_POST['submitBtn'])){
-
+session_start();
 require '../classes/admin.php';
 require '../classes/database.php';
 
@@ -25,8 +25,6 @@ require '../classes/database.php';
     $scholarInfo = $admin->scholarInfo($user_id);
     $adminInfo = $admin->adminInfo($admin_id);
 
-    $email = $scholarInfo[0]['email'];
-
     if(!$adminData){
           header("Location:../index.php?scholar=errorEmail");
         exit();
@@ -34,7 +32,7 @@ require '../classes/database.php';
     $hashed_input_password = password_hash($pass, PASSWORD_DEFAULT);
     if(!password_verify($pass, $adminPass)){
         // if not, create variable error 
-          header("Location:../index.php?scholar=errorPassword");
+        header("Location:../index.php?scholar=errorPassword");
         exit();
     }
 
@@ -48,7 +46,19 @@ require '../classes/database.php';
     // $sentEmail = $database->sendEmail($email,"Your Code For Authentication", "Your code is ". $token);
 
      //start session 
-    session_start();
+    
+    $get_admin = $admin->checkAdmin();
+
+    if($get_admin[0]['count'] == 0 && $userType == 3){
+        $_SESSION["user_type"] = 3;
+        header('Location: ../Pages-admin/setup-superAdmin.php?type='.$userType);
+        exit();
+    }elseif($get_admin[0]['count'] == 0 && $userType == 1){
+        header('Location: ../index.php?scholar='.$userType);
+        exit();
+    }
+
+
 
     if($userType == 3){
         $_SESSION["id"] = $admin_id;

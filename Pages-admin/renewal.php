@@ -195,6 +195,7 @@ ccmf2015main@gmail.com';
                 </a>
             </li>
 
+            <?php if($_SESSION["user_type"] == 3):?>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="admin-account.php">
                     <!-- SCHO TAB ICON -->
@@ -205,6 +206,17 @@ ccmf2015main@gmail.com';
                 <span class ="ml-2">Admin Accounts</span>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="admin-viewlogs.php">
+                    <!-- LOGS TAB ICON -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-journal" viewBox="0 0 16 16">
+                        <path d="M5 0h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v1h8V2a1 1 0 0 0-1-1H5zm0 2h6v1H5V3zm0 2h6v1H5V5zm8 7H3v1h10v-1zM3 9h10v1H3V9zm10-2H3v1h10V7z"/>
+                    </svg>
+                    <span class="ml-2">Admin logs</span>
+                </a>
+            </li>
+            <?php endif; ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -242,7 +254,7 @@ ccmf2015main@gmail.com';
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
                                 <img class="img-profile rounded-circle"
-                                    src="../Uploads_pic/<?php echo $admin_info[0]['pic']; ?>">
+                                    src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
