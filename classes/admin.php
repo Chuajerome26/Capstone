@@ -363,9 +363,31 @@ class Admin
     public function scholarInfo($id){
         
         // prepare the SQL statement using the database property
-      $stmt = $this->database->getConnection()->prepare("SELECT scholar_info.id AS scholar_id, scholar_info.*,scholar_file.* FROM scholar_info
-                                                    JOIN scholar_file ON scholar_info.id = scholar_file.scholar_id
-                                                   WHERE scholar_info.id=?");
+      $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info
+                                                   WHERE id=?");
+
+       //if execution fail
+      if (!$stmt->execute([$id])) {
+          header("Location: ../index.php?error=stmtfail");
+          exit();
+      }
+
+      //fetch the result
+      $result = $stmt->fetchAll();
+      
+        //if has result return it, else return false
+      if ($result) {
+          return $result;
+      } else {
+          $result = false;
+          return $result;
+      }
+    } 
+    public function adminInfo($id){
+        
+        // prepare the SQL statement using the database property
+      $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_info
+                                                   WHERE id=?");
 
        //if execution fail
       if (!$stmt->execute([$id])) {

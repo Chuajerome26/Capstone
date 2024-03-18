@@ -4,6 +4,16 @@ session_start();
 require '../classes/scholar.php';
 require '../classes/database.php';
 
+if (isset($_SESSION['id'])) {
+    require '../classes/admin.php';
+    require '../classes/database.php';
+
+    $database = new Database();
+    $admin = new Admin($database);
+
+} else {
+    header("Location: ../index.php");
+}
 // Create a new instance of the Database class
 $database = new Scholar(new Database());
 
@@ -98,14 +108,14 @@ if (isset($_POST['submit'])) {
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="allowancehistory.php">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
                 <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1"/>
                 </svg>
                     <span>Allowance</span>
                 </a>
-            </li>
+            </li> -->
 
              <!-- Nav Item - Utilities Collapse Menu -->
              <li class="nav-item active">
@@ -590,7 +600,7 @@ if (isset($_POST['submit'])) {
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../index.php">Logout</a>
+                    <a class="btn btn-primary" href="../Pages-admin/admin-logout.php">Logout</a>
                 </div>
             </div>
         </div>

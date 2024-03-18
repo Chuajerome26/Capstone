@@ -1,3 +1,23 @@
+<?php 
+// start session
+session_start();
+
+if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
+    require '../classes/admin.php';
+    require '../classes/database.php';
+
+    $database = new Database();
+    $admin = new Admin($database);
+
+    $id = $_SESSION['id'];
+
+    $admin_info = $admin->adminInfo($id);
+
+} else {
+    header("Location: ../index.php");
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>

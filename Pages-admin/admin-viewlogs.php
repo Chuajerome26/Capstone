@@ -10,6 +10,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
     $id = $_SESSION['id'];
 
+    $admin_info = $admin->adminInfo($id);
     $admin_logs = $admin->getAdminlogs();
 
 } else {
@@ -205,7 +206,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">ADMIN</span>
                                 <img class="img-profile rounded-circle"
-                                    src="../Uploads_pic/<?php echo $admin_info[0]['id_pic']; ?>">
+                                    src="../Uploads_pic/<?php echo $admin_info[0]['pic']; ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -261,12 +262,23 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                     <tbody class="table-group-dividercar">
                                     <?php
                                     $num = 1;
-                                    foreach ($admin_logs as $log): ?>
+                                    foreach ($admin_logs as $log): 
+                                        if($log['remarks'] == 0){
+                                            $remarks = '<span class="badge badge-primary">Evaluate</span>';
+                                        }
+                                        else if($log['remarks'] == 1){
+                                            $remarks = '<span class="badge badge-success">Evaluation Complete</span>';
+                                        }else if($log['remarks'] == 2){
+                                            $remarks = '<span class="badge badge-success">Done Initial Interview</span>';
+                                        }else if($log['remarks'] == 3){
+                                            $remarks = '<span class="badge badge-success">Accepted</span>';
+                                        }
+                                        ?>
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>
                                             <td style="white-space: nowrap;"><?php echo $log["scholar_id"]?></td>
                                             <td style="white-space: nowrap;"><?php echo $log["admin_id"];?></td>
-                                            <td style="white-space: nowrap;"><?php echo $log["remarks"];?></td>
+                                            <td style="white-space: nowrap;"><?php echo $remarks;?></td>
                                             <td style="white-space: nowrap;"><?php echo $log["date"];?></td>
                                         </tr>
                                         <?php 
