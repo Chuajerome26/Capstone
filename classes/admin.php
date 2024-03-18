@@ -855,6 +855,19 @@ public function getAdminlogs()
     $stmt = $this->database->getConnection()->query("SELECT id, scholar_id, admin_id, remarks, date FROM admin_remarks")->fetchAll();
     return $stmt;
 }
+public function getRenewal()
+{
+    $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew")->fetchAll();
+    return $stmt;
+}
+public function getRenewalCount() {
+    $renewal = $this->getRenewal();
+    return count($renewal);
+}
+public function getInterviewCountForToday() {
+    $stmt = $this->database->getConnection()->query("SELECT COUNT(*) FROM admin_schedule_interview WHERE date = CURDATE()")->fetchColumn();
+    return $stmt;
+}
 
 public function selectAndInsertSchedulesforFinal($scholarData, $start, $end, $excludeStart, $excludeEnd, $appointmentDuration, $maxSchedules, $date) {
     $startTime = strtotime($start);

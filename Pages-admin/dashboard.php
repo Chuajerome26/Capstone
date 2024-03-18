@@ -13,6 +13,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 
     $admin_info = $admin->scholarInfo($id);
 
+    $today = $admin->getInterviewCountForToday();
+    $renewal = $admin->getRenewalCount();
     $scholar = $admin->getScholarCount();
     $applicants = $admin->getApplicantsCount();
     // $funds = $admin->getTotalFunds();
@@ -268,13 +270,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-s font-weight-bold text-success text-uppercase mb-1">
-                                                Total Funds</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">₱ 1</div>
+                                                Scheduled Interview Today</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $today; ?></div>
                                         </div>
                                         <div class="col-auto">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
-                   <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
-                 </svg>
+                                        <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                                    </svg>
                                             
                                     
                                         </div>
@@ -293,7 +296,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">89</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $renewal; ?></div>
                                                 </div>
                                             </div>
                                         </div>
