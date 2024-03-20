@@ -661,10 +661,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
     <form method="post" enctype="multipart/form-data" action="../functions/edit-applicant-info.php">
     <?php 
-    $applifiles = $admin->scholarInfo($id);
+    $applifiles = $admin->getApplicantsFiles($id);
     
     foreach($applifiles as $a){
-        
   ?>
             <div class="form-group">
             <label for="<?= $a['requirement_name'] ?>"><?= $a['requirement_name'] ?></label>
