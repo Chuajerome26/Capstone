@@ -29,7 +29,7 @@ require '../classes/database.php';
           header("Location:../index.php?scholar=errorEmail");
         exit();
     }
-    $hashed_input_password = password_hash($pass, PASSWORD_DEFAULT);
+    $hashed_input_password = password_hash('admin', PASSWORD_DEFAULT);
     if(!password_verify($pass, $adminPass)){
         // if not, create variable error 
         header("Location:../index.php?scholar=errorPassword");
@@ -50,7 +50,7 @@ require '../classes/database.php';
     $get_admin = $admin->checkAdmin();
 
     if($get_admin[0]['count'] == 0 && $userType == 3){
-        header('Location: ../Pages-admin/setup-superAdmin.php?type='.$userType);
+        // header('Location: ../Pages-admin/setup-superAdmin.php?type='.$userType);
         exit();
         
     }elseif($get_admin[0]['count'] == 0 && $userType == 1){
