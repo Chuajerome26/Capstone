@@ -169,22 +169,30 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
             </div>
 
 
-
-                 
+        
+                 <hr class="d-lg-none"> 
                     <div class="row mt-2">
                         <div class="col-md-12">
                             <ul class="nav nav-tabs" id="myTabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active fw-bold " style="font-size:15px" id="overview-tab" data-bs-toggle="tab"
-                                        href="#overview"> Personal Information </a>
+                                    <a class="nav-link active fw-bold " style="font-size:15px" id="overview-tab" data-bs-toggle="tab" href="#overview">
+                                     
+                                    <span class="d-none d-lg-block">Personal Information</span>
+                                        <span class="d-lg-none">Personal</span>
+
+                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold" style="font-size:15px" id="agenda-tab" data-bs-toggle="tab" href="#agenda">
-                                        Academic Information</a>
+                                    <span class="d-none d-lg-block">Academic Information</span>
+                                        <span class="d-lg-none">Academic</span>
+                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold" style="font-size:15px" id="sponsors-tab" data-bs-toggle="tab" href="#sponsors">
-                                        Requirements List</a>
+                                    <span class="d-none d-lg-block">Requirements List</span>
+                                        <span class="d-lg-none">Files</span>
+                                    </a>
                                 </li>
 
                             </ul>
@@ -494,7 +502,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 
                         <div class="row mx-2 mt-2" style="font-size: 14px;">
-                        <div class="col-3 border-0 border-end">
+                        <div class="col-12 col-lg-3  d-none d-lg-block  border-0 border-end">
                             <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy ">
                             <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-1"><h6>Academic Information</h6></a>
                             <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-2"><h6>Grade Information</h6></a>
@@ -503,7 +511,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                            
                             </div>
                         </div>
-                        <div class="col-9 ">
+                        <div class="col-12 col-lg-9 ">
                             <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
                             <h6 id="simple-list-item-1">Academic Information</h6>
                             <hr>
@@ -658,13 +666,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="p-2"><h6>Requirement List</h6></div>
                     <div class="p-2 ms-auto">
                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="fa-solid fa-pen-to-square me-2"></i> Edit Requirements
+                    <i class="fa-solid fa-pen-to-square me-2 d-none d-lg-inline-block"></i> <div class="d-inline-block">Edit Requirements</div>
                      </button>
                     </div>
                    
                     </div>
                                             
-                        <div class="row ms-3">
+                        <div class="row ">
                             <?php 
                                 $applifiles = $admin->getApplicantsFiles($id);
                                 
