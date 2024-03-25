@@ -388,6 +388,12 @@ class Admin
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }
+    public function getScholarById($id){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
+                                                        WHERE status = '1' AND id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
     public function scholarInfo($id){
         
         // prepare the SQL statement using the database property

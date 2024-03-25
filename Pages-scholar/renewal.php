@@ -1,21 +1,20 @@
 <?php
 // Start the session
 session_start();
-require '../classes/scholar.php';
-require '../classes/database.php';
-
 if (isset($_SESSION['id'])) {
     require '../classes/admin.php';
     require '../classes/database.php';
+    require '../classes/scholar.php';
 
     $database = new Database();
     $admin = new Admin($database);
+    $scholar = new Scholar($database);
 
 } else {
     header("Location: ../index.php");
 }
 // Create a new instance of the Database class
-$database = new Scholar(new Database());
+
 
 // Fetch scholar ID from the session
 $scholarsId = $_SESSION["id"];
@@ -369,7 +368,7 @@ if (isset($_POST['submit'])) {
                             </div>
                             <div class="card-body">
                             <?php
-                            $renewalDates = $database->getRenewalDates();
+                            $renewalDates = $scholar->getRenewalDates();
                             $currentDate = date('Y-m-d');
                             if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
                                 // Before displaying the renewal form, check if the scholar has already submitted
@@ -438,7 +437,7 @@ if (isset($_POST['submit'])) {
                                         </thead>
                                         <tbody class="table-group-divider">
                                         <?php
-                                        $rewalInfo = $database->getRenewalInfo();
+                                        $rewalInfo = $scholar->getRenewalInfo();
                                         $num = 1;
                                         foreach($rewalInfo as $s){
 
@@ -608,7 +607,7 @@ if (isset($_POST['submit'])) {
 
 <!-- RenewFiles Modal-->
     <?php
-    $renewalFiless = $database->getRenewalInfo();
+    $renewalFiless = $scholar->getRenewalInfo();
         foreach($renewalFiless as $a){
     ?>
         <div class="modal fade" id="renewFilesModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $a["id"];?>l" aria-hidden="true">

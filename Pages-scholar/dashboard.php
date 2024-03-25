@@ -1,7 +1,6 @@
-<?php
+<?php 
 session_start();
-
-if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
+if (isset($_SESSION['id'])) {
     require '../classes/admin.php';
     require '../classes/database.php';
 
@@ -9,14 +8,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $admin = new Admin($database);
 
     $id = $_SESSION['id'];
-    $info = $admin->getApplicantById($id);
+    $info = $admin->getScholarById($id);
     $pic = $admin->getApplicants2x2($id);
 
 } else {
     header("Location: ../index.php");
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -137,7 +134,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
             <div class="card shadow">
                 <div class="card-body px-4">
                                   <?php 
-                      $applicants = $admin->getApplicantById($id);
+                      $applicants = $admin->getScholarById($id);
                       
                       foreach($applicants as $a){
 
@@ -161,6 +158,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="mb-1 ms-1">
                             <span class="card-text"><i class="fab fa-facebook me-1"></i> <a href="<?php echo $a["fb_link"];?>" target="_blank"><?php echo $a["fb_link"];?></a>
                         </div>
+
+
                         <div class="mb-1 ms-1">
                             <span class="card-text"><i class="fa-solid fa-location-dot me-1"></i> <?php echo $a['address'];?> </span>
                         </div>
@@ -177,15 +176,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                 <li class="nav-item">
                                     <a class="nav-link active fw-bold " style="font-size:15px" id="overview-tab" data-bs-toggle="tab" href="#overview">
                                      
-                                    <span class="d-none d-lg-block">Personal Information</span>
-                                        <span class="d-lg-none">Personal</span>
+                                    <span class="d-none d-lg-block">Announcement</span>
+                                        <span class="d-lg-none">Announcement</span>
 
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link fw-bold" style="font-size:15px" id="agenda-tab" data-bs-toggle="tab" href="#agenda">
-                                    <span class="d-none d-lg-block">Academic Information</span>
-                                        <span class="d-lg-none">Academic</span>
+                                    <span class="d-none d-lg-block">Personal Information</span>
+                                        <span class="d-lg-none">Personal</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -211,11 +210,99 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="col-md-8">
                             <div class="card shadow">
                                 <div class="card-body px-4">
-                                    <h6 class="fw-bold mb-1">Personal Information</h6>
+                                    <h6 class="fw-bold mb-1">Announcement</h6>
                                     <hr>
 
 
-                                    <div class="row mt-2 mx-2" style="font-size: 14px;">
+
+
+
+
+
+
+
+
+
+                                    
+
+                                   
+
+
+
+
+
+
+
+
+
+
+                                   
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card shadow mb-2">
+                                        <div class="card-body">
+                                            <h6 class="fw-bold mb-3">Renewal</h6>
+                                            <hr>
+                                            <!-- Description -->
+                           
+                                            <!-- Button -->
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card shadow">
+                                        <div class="card-body">
+                                            <h6 class="fw-bold mb-3">Done Renewal</h6>
+                                            <hr>
+                                            <!-- Description for online registered participants -->
+                                          
+                                           
+            
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Agenda Tab Content -->
+                <div class="tab-pane fade" id="agenda" role="tabpanel" aria-labelledby="agenda-tab">
+                    <!-- Agenda content goes here -->
+                    <div class="card mb-3 shadow">
+                        <div class="card-body">
+
+
+                        <div class="row mx-2 mt-2" style="font-size: 14px;">
+                        <div class="col-12 col-lg-3  d-none d-lg-block  border-0 border-end">
+                            <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy ">
+                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-1"><h6>Personal Information</h6></a>
+                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-2"><h6>Family Information</h6></a>
+                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-3"><h6>Guardian Information</h6></a>
+                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-4"><h6>Siblings Information</h6></a>
+                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-5"><h6>Academic Information</h6></a>
+                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-6"><h6>Grade Information</h6></a>
+                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-7"><h6>Incoming Freshments</h6></a>
+                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-8"><h6>School Choice Information</h6></a>
+                           
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-9 ">
+                            <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+                            <h6 id="simple-list-item-1">Personal Information</h6>
+                            <hr>
+
+                            <div class="row mt-2 mx-2" style="font-size: 14px;">
 
                                     <div class="col-md-6 ">
                                                 <dl class="row">
@@ -271,80 +358,68 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                                             </div>
 
+                            <h6 id="simple-list-item-2">Family Information</h6>
+                            <hr>
+
+                            <div class="row mt-2 mx-2" style="font-size: 14px;">
+
+                            <div class="col-md-6 ">
+                            <dl class="row">
+                            <p class="mb-3 fw-bold">Father Information</p> 
+
+                            <dt class="col-sm-5 ">Name:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_name"];?></dd>
+
+
+                            <dt class="col-sm-5">Occupation:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_occupation"];?></dd>
+
+                            <dt class="col-sm-5">Monthly Income:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_income"];?></dd>
+
+                            <dt class="col-sm-5">Age:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_age"];?></dd>
+
+                            
+                            <dt class="col-sm-5">Educational Attained:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_attained"];?></dd>
+
+                                                            
+                            </dl>
+                            </div>
 
 
 
+                            <div class="col-md-6">
+                            <dl class="row">
+                            <p class="mb-3 fw-bold">Mother Information</p> 
 
-                                    <h6 class="fw-bold mb-1">Family Information</h6>
-                                    <hr>
-
-                                    <div class="row mt-2 mx-2" style="font-size: 14px;">
-
-                                      <div class="col-md-6 ">
-                                        <dl class="row">
-                                        <p class="mb-3 fw-bold">Father Information</p> 
-
-                                        <dt class="col-sm-5 ">Name:</dt>
-                                        <dd class="col-sm-7"><?php echo $a["father_name"];?></dd>
+                            <dt class="col-sm-5">Name:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_name"];?></dd>
 
 
-                                        <dt class="col-sm-5">Occupation:</dt>
-                                        <dd class="col-sm-7"><?php echo $a["father_occupation"];?></dd>
+                            <dt class="col-sm-5">Occupation:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_occupation"];?></dd>
 
-                                        <dt class="col-sm-5">Monthly Income:</dt>
-                                        <dd class="col-sm-7"><?php echo $a["father_income"];?></dd>
+                            <dt class="col-sm-5">Monthly Income:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_income"];?></dd>
 
-                                        <dt class="col-sm-5">Age:</dt>
-                                        <dd class="col-sm-7"><?php echo $a["father_age"];?></dd>
-
-                                        
-                                        <dt class="col-sm-5">Educational Attained:</dt>
-                                        <dd class="col-sm-7"><?php echo $a["father_attained"];?></dd>
-
-                                                                      
-                                        </dl>
-                                    </div>
+                            <dt class="col-sm-5">Age:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_age"];?></dd>
 
 
-
-                                    <div class="col-md-6">
-                                        <dl class="row">
-                                        <p class="mb-3 fw-bold">Mother Information</p> 
-
-                                        <dt class="col-sm-5">Name:</dt>
-                                      <dd class="col-sm-7"><?php echo $a["mother_name"];?></dd>
+                            <dt class="col-sm-5">Educational Attained:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_attained"];?></dd>
+                            
+                            </dl>
+                            </div>
 
 
-                                      <dt class="col-sm-5">Occupation:</dt>
-                                      <dd class="col-sm-7"><?php echo $a["mother_occupation"];?></dd>
+                            </div>
+                            <h6 id="simple-list-item-3">Guardian Information</h6>
+                            <hr>
 
-                                      <dt class="col-sm-5">Monthly Income:</dt>
-                                      <dd class="col-sm-7"><?php echo $a["mother_income"];?></dd>
-
-                                      <dt class="col-sm-5">Age:</dt>
-                                      <dd class="col-sm-7"><?php echo $a["mother_age"];?></dd>
-
-                                      
-                                      <dt class="col-sm-5">Educational Attained:</dt>
-                                      <dd class="col-sm-7"><?php echo $a["mother_attained"];?></dd>
-                                        
-                                        </dl>
-                                    </div>
-
-
-                                    </div>
-
-                                   
-
-
-
-
-
-
-
-                                    <h6 class="fw-bold mb-3 mt-2">Guardian Information</h6>
-                                    <hr>
-                                    <div class="col-md-12" style="font-size: 14px;">
+                            <div class="col-md-12" style="font-size: 14px;">
                                     <dl class="row ms-2">
                                        
                                         <dt class="col-sm-5">Name:</dt>
@@ -364,14 +439,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                         
                                     </div>
                                         
-                                      
+                            <h6 id="simple-list-item-4">Siblings Information</h6>
+                            <hr>
 
-
-
-                                    <h6 class="fw-bold mt-2">Siblings Details:</h6>
-                                    <hr>
-                                                        
-                                        <dl class="row ms-3" style="font-size: 14px;">
+                            <dl class="row ms-3" style="font-size: 14px;">
                                             <?php 
                                                         $sibling = $admin->getAllSibling($a['id']);
                                                         foreach($sibling as $sb){
@@ -399,121 +470,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 <?php }?>                  
                                             </dl> 
 
-
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card shadow mb-2">
-                                        <div class="card-body">
-                                            <h6 class="fw-bold mb-3">Requested Status</h6>
-                                            <hr>
-                                            <!-- Description -->
-                                            <div class="card-text " style="font-size: 14px ;">
-                                            <dl class="row ms-2">
-                                                <dt class="col-sm-7 fw-bold mb-1">
-                                                <i class="fa-solid fa-calendar-minus me-2"></i>Date Registered: 
-                                                </dt>
-                                                <dd class="col-sm-5">
-                                                <?php echo date("F j, Y", strtotime($a["date_apply"])); ?>
-                                                </dd>
-
-                                                <dt class="col-sm-7 fw-bold mb-1">
-                                                <i class="fa-solid fa-calendar-check me-2"></i>Status: 
-                                                </dt>
-                                                <dd class="col-sm-5">
-                                               test
-                                                </dd>
-                                            </dl>
-                                            </div>
-                                            <!-- Button -->
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card shadow">
-                                        <div class="card-body">
-                                            <h6 class="fw-bold mb-3">Remarks</h6>
-                                            <hr>
-                                            <!-- Description for online registered participants -->
-                                            <div class="d-flex justify-content-between" style=" font-size: 14px ;">
-                                            
-                                            <div class="container mt-1 text-dark" style="overflow: auto; height: 300px;">
-                                                        <div class="row d-flex justify-content-center">
-                                                            <div class="w-100">
-                                                                <?php 
-                                                                $getRemarks = $admin->getRemarks($id);
-                                                                if($getRemarks):
-                                                                    foreach($getRemarks as $pogi):
-                                                                        if($pogi['remarks'] == 0){
-                                                                            $remarks123 = 'Evaluate By';
-                                                                        }else if($pogi['remarks'] == 1){
-                                                                            $remarks123 = 'Schedule Interview for Initial - Evaluation Completed By';
-                                                                        }else if($pogi['remarks'] == 2){
-                                                                            $remarks123 = 'Schedule Interview for Final - Interview Completed By';
-                                                                        }else if($pogi['remarks'] == 3){
-                                                                            $remarks123 = 'Accepted By';
-                                                                        }else if($pogi['remarks'] == 5){
-                                                                            $remarks123 = 'Declined By';
-                                                                        }
-                                                                ?>
-                                                                <div class="d-flex flex-row align-items-start mb-4">
-                                                                    <img class="img-fluid rounded-circle shadow border me-2" src="../images/logo.jpg" alt="avatar" width="35" height="35" />
-                                                                    <div class="card w-100 shadow">
-                                                                        <div class="card-body p-3">
-                                                                            <div class="">
-                                                                                <div class="fw-bold"><?php echo $remarks123;?> Admin</div>
-                                                                                <div class="small"><?php echo date('M d, Y', strtotime($pogi["date"])); ?></div>
-                                                                                <p class="mt-2"><?php echo nl2br($pogi["remarks_mess"]);?></p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <?php endforeach; ?>
-                                                                <?php else: ?>
-                                                                <div class="alert alert-primary" role="alert">No Remarks</div>
-                                                                <?php endif; ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-
-                                            
-                                            </div>
-                                           
-            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Agenda Tab Content -->
-                <div class="tab-pane fade" id="agenda" role="tabpanel" aria-labelledby="agenda-tab">
-                    <!-- Agenda content goes here -->
-                    <div class="card mb-3 shadow">
-                        <div class="card-body">
-
-
-                        <div class="row mx-2 mt-2" style="font-size: 14px;">
-                        <div class="col-12 col-lg-3  d-none d-lg-block  border-0 border-end">
-                            <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy ">
-                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-1"><h6>Academic Information</h6></a>
-                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-2"><h6>Grade Information</h6></a>
-                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-3"><h6>Incoming Freshments</h6></a>
-                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-4"><h6>School Choice Information</h6></a>
-                           
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-9 ">
-                            <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-                            <h6 id="simple-list-item-1">Academic Information</h6>
+                            <h6 id="simple-list-item-5">Academic Information</h6>
                             <hr>
                             
                             <dl class="row ms-3">
@@ -572,7 +529,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </dl>
 
 
-                            <h6 id="simple-list-item-2">Grade Information</h6>
+                            <h6 id="simple-list-item-6">Grade Information</h6>
                             <hr>
                             <dl class="row ms-3">
                             <?php $gradeInfo = $admin->getAllGrade($a['id']);
@@ -591,7 +548,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </dl>
                         
                             
-                            <h6 id="simple-list-item-3">Incoming Freshments</h6>
+                            <h6 id="simple-list-item-7">Incoming Freshments</h6>
                             <hr>
                             <dl class="row mt-3 ms-3" >
 
@@ -624,7 +581,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                             </dl> 
 
 
-                            <h6 id="simple-list-item-4">School Choice Information</h6>
+                            <h6 id="simple-list-item-8">School Choice Information</h6>
                             <hr>
                             
                             <dl class="row ms-3">
@@ -665,9 +622,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="hstack gap-3">
                     <div class="p-2"><h6>Requirement List</h6></div>
                     <div class="p-2 ms-auto">
-                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <i class="fa-solid fa-pen-to-square me-2 d-none d-lg-inline-block"></i> <div class="d-inline-block">Edit Requirements</div>
-                     </button>
+                  
                     </div>
                    
                     </div>
@@ -848,7 +803,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="applicant-logout.php">Logout</a>
+                    <a class="btn btn-primary" href="../Pages-Applicant/applicant-logout.php">Logout</a>
                 </div>
             </div>
         </div>
