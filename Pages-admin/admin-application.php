@@ -262,6 +262,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         </button>
                     </form>
                 </div>
+                <div>
+                <button type="button" class="btn btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#famTempModal">
+                    <i class="fas fa-download fa-sm text-white-50"></i>
+                    <span class="d-none d-sm-inline-block">Update Family Profile Template</span>
+                </button>
+                </div>
 
                 </div>
                     
@@ -456,6 +462,30 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
             </div>
         </div>
     </div>
+<!-- Modal for Family Profile Template -->
+<div class="modal fade" id="famTempModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload Family Profile Template</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data" action="../functions/edit-applicant-template.php">
+                    <div class="mb-3">
+                        <label for="fileInput" class="form-label">Select File</label>
+                        <input type="file" class="form-control" id="fileInput" name="file" accept="application/pdf" required>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" name="submit" class="btn btn-primary">Save</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal end -->
 <!-- Modal for Decline -->
 <?php
 $appliData = $admin->getApplicants();

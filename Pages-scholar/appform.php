@@ -636,12 +636,17 @@
                     <label for="formFile" class="form-label">Affectivity Test</label>
                     <input class="form-control form-control-sm border-bottom" type="file" name="affectTest" accept="application/pdf,image/jpeg,image/jpg">
                     </div> -->
-
+                    <?php
+                    $appliTemp = $admin->getFamTemp();
+                        foreach($appliTemp as $a){
+                    ?>
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Family Profile</label>
                     <input class="form-control form-control-sm border-bottom" type="file" name="famProf" accept="application/pdf" required>
+                    <a href="../Uploads_gslip/<?php echo $a["fam_temp"]; ?>" target="_blank">Download for template</a>
                     </div>
-
+                    <?php } ?>
+                    
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Letter of Intent</label>
                     <input class="form-control form-control-sm border-bottom" type="file" name="letterIntent" accept="application/pdf" required>

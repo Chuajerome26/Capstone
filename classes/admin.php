@@ -922,6 +922,28 @@ public function getInterviewsByDate($date){
         return $result;
     }
 }
+public function updateFamTemp($id) {
+    foreach ($_FILES as $columnName => $file) {
+        // Check if a new file is uploaded
+        if ($file['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = "../Uploads_gslip/";
+            $newFileName = $id . " - " . basename($file['name']);
+            $uploadFilePath = $uploadDir . $newFileName;
+
+            // Move the uploaded file to the destination
+            move_uploaded_file($file['tmp_name'], $uploadFilePath);
+
+            // Update the database with the new file name
+            $stmt = $this->database->getConnection()->prepare("UPDATE applicant_temp SET fam_temp = ? WHERE id = ?");
+            $stmt->execute([$newFileName, $id, $columnName]);
+        }
+    }
+}
+public function getFamTemp()
+{
+    $stmt = $this->database->getConnection()->query("SELECT * FROM applicant_temp")->fetchAll();
+    return $stmt;
+}
 public function getAdminlogs()
 {
     $stmt = $this->database->getConnection()->query("SELECT id, scholar_id, admin_id, remarks, date FROM admin_remarks")->fetchAll();
