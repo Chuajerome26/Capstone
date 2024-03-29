@@ -372,11 +372,11 @@ if (isset($_POST['submit'])) {
                             $currentDate = date('Y-m-d');
                             if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
                                 // Before displaying the renewal form, check if the scholar has already submitted
-                                if (!$database->hasSubmittedRenewal($scholarsId)) {
+                                if (!$scholar->hasSubmittedRenewal($scholarsId)) {
                             ?>
                             <form action="renewal.php" method="post" enctype="multipart/form-data">
                                 <?php
-                                    $scholarInfo = $database->getScholars($scholarsId);
+                                    $scholarInfo = $scholar->getScholars($scholarsId);
                                     foreach($scholarInfo as $s){
                                 ?>
                                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" id="scholarid" name="scholarID" value="<?php echo $s["id"]?>" hidden><br>

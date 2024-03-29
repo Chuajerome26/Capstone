@@ -53,10 +53,6 @@
     <div class="container d-flex justify-content-center align-items-center vh-max-100">
 
         <div class="card w-100 p-4 mt-5 shadow">
-        <?php 
-        $isLimitReached = $admin->isApplicantLimitReached();
-        if(!$isLimitReached){
-        ?>
         <form id="ccmfForm" method="POST" action="../functions/applicants-register.php" enctype="multipart/form-data">
             <!------- STEP 1 ------->
         <div class="step" id="step1">
@@ -82,9 +78,15 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Suffix:</label>
-                    <input type="text" name="suffix" class="form-control form-control-sm" placeholder="Optional">
+                    <select class="form-select form-select-sm" name="suffix" aria-label="Default select example">
+                    <option selected>Suffix(Optional)</option>
+                    <option value="Jr.">Jr.</option>
+                    <option value="Sr.">Sr.</option>
+                    <option value="II">II</option>
+                    <option value="III">III</option>
+                    <option value="IV">IV</option>
+                    </select>
                 </div>
-
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Gender:</label>
@@ -96,7 +98,6 @@
                     </select>
                 </div>
                
-
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Age:</label>
                     <input type="text" name="age" id="ageko" class="form-control form-control-sm" placeholder="Age" required>
@@ -109,7 +110,13 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Civil Status:</label>
-                    <input type="text" name="cStatus" class="form-control form-control-sm" placeholder="Civil Status" required>
+                    <select class="form-select form-select-sm" name="cStatus" aria-label="Default select example" required>
+                    <option selected>Civil Status</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Widowed">Widowed</option>
+                    <option value="Legally Separated">Legally Separated</option>
+                    </select>
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -152,7 +159,10 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Email Address:</label>
-                    <input type="email" name="email" class="form-control form-control-sm" placeholder="Email Address" required>
+                    <input type="email" id="email" name="email" class="form-control form-control-sm" placeholder="Email Address" required>
+                    <div id="emailFeedback" class="invalid-feedback">
+                        Please enter a valid email address.
+                    </div>
                 </div>
 
 
@@ -331,7 +341,7 @@
 
 
         <div class="d-flex justify-content-center">
-        <button type="button" class="btn btn-primary w-25 next-step" type="button">Next</button>
+        <button type="button" id="next" class="btn btn-primary w-25 next-step" type="button">Next</button>
         </div>
 
         </div>  
@@ -713,19 +723,43 @@
 
 
         </form>
-        <?php
-        } else {
-            echo '<p>The applicant limit has been reached.</p>';
-        }
-        ?>
         </div>
     </div>
 
+    <script>
+        //Function for email validation
+        document.addEventListener("DOMContentLoaded", function() {
+        let emailInput = document.getElementById("email");
+
+        function validateEmailInput(input) {
+            let inputValue = input.value.trim();
+            let isValid = true;
+
+            if (!/\S+@\S+\.\S+/.test(inputValue)) {
+                isValid = false;
+            }
+
+            if (!isValid) {
+                input.classList.remove("is-valid");
+                input.classList.add("is-invalid");
+                document.getElementById("emailFeedback").style.display = "block";
+            } else {
+                input.classList.remove("is-invalid");
+                input.classList.add("is-valid");
+                document.getElementById("emailFeedback").style.display = "none";
+            }
+        }
+
+        // Add event listener to email input for validation
+        emailInput.addEventListener("input", function() {
+            validateEmailInput(emailInput);
+        });
+    });
+    </script>
 
     <script>
         const checkbox = document.getElementById("checkConfirm");
         const submitBtn = document.getElementById("submitForm");
-
         // Add event listener to the checkbox
         checkbox.addEventListener("change", function() {
             // If checkbox is checked, enable submit button, otherwise disable it
