@@ -471,10 +471,10 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" enctype="multipart/form-data" action="../functions/edit-applicant-template.php">
+                <form method="post" action="../functions/edit-applicant-template.php" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="fileInput" class="form-label">Select File</label>
-                        <input type="file" class="form-control" id="fileInput" name="file" accept="application/pdf" required>
+                        <input type="file" class="form-control" id="fileInput" name="fileUpdate" accept="application/pdf" required>
                     </div>
             </div>
             <div class="modal-footer">

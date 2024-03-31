@@ -922,22 +922,19 @@ public function getInterviewsByDate($date){
         return $result;
     }
 }
-public function updateFamTemp($id) {
-    foreach ($_FILES as $columnName => $file) {
+public function updateFamTemp($files) {
         // Check if a new file is uploaded
-        if ($file['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = "../Uploads_gslip/";
-            $newFileName = $id . " - " . basename($file['name']);
-            $uploadFilePath = $uploadDir . $newFileName;
+        if ($files['fileError'] === UPLOAD_ERR_OK) {
+            $newFileName = uniqid('', true) . " - " . basename($files['fileName1']);
 
+            $fileDestination1 = '../Uploads_gslip/' . $newFileName;
             // Move the uploaded file to the destination
-            move_uploaded_file($file['tmp_name'], $uploadFilePath);
+            move_uploaded_file($files['fileTmpName1'], $fileDestination1);
 
             // Update the database with the new file name
-            $stmt = $this->database->getConnection()->prepare("UPDATE applicant_temp SET fam_temp = ? WHERE id = ?");
-            $stmt->execute([$newFileName, $id, $columnName]);
+            $stmt = $this->database->getConnection()->prepare("UPDATE applicant_temp SET fam_temp = ? WHERE id = 1");
+            $stmt->execute([$newFileName]);
         }
-    }
 }
 public function getFamTemp()
 {

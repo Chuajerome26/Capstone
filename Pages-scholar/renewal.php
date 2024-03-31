@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 
     if (move_uploaded_file($_FILES['file1']['tmp_name'], $uploadDir . $uploadedFileName1) &&
         move_uploaded_file($_FILES['file2']['tmp_name'], $uploadDir . $uploadedFileName2)) {
-        if ($database->insertData($scholarID, $firstName, $lastName, $email, $yearLvl, $uploadedFileName1, $uploadedFileName2)) {
+        if ($scholar->insertData($scholarID, $firstName, $lastName, $email, $yearLvl, $uploadedFileName1, $uploadedFileName2)) {
             echo '<script>alert("Data uploaded successfully!"); window.location.href = "renewal.php";</script>';
             exit;
         } else {

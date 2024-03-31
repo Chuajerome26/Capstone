@@ -427,6 +427,19 @@
                     </div>
 
                     <div class="hstack gap-3">
+
+                    <div>
+    <label class="form-label">Student Type:</label>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="studentType" id="collegeRadio" value="college" checked>
+        <label class="form-check-label" for="collegeRadio">College</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="studentType" id="freshmenRadio" value="freshmen">
+        <label class="form-check-label" for="freshmenRadio">Freshmen</label>
+    </div>
+</div>
+
     <div class="p-2">
         <h4 class="text-primary">Grade Information </h4>
     </div>
@@ -442,9 +455,9 @@
             <label class="form-label">Subject:</label>
             <input type="text" name="sub[]" class="form-control form-control-sm" placeholder="Subject" required>
         </div>
-        <div class="col-md-3 mb-3">
+        <div class="col-md-3 mb-3" id="unitDiv">
             <label class="form-label">Unit:</label>
-            <input type="text" name="totalUnits[]" class="form-control form-control-sm" placeholder="Unit" required>
+            <input type="text" name="totalUnits[]" class="form-control form-control-sm" placeholder="Unit">
         </div>
         <div class="col-md-3 mb-3">
             <label class="form-label">Grade:</label>
@@ -1130,6 +1143,23 @@ function addGradeRow(event) {
     }
 </script>
 
+</script>
+
+<script>
+    //Script for grade radio button
+    document.addEventListener("DOMContentLoaded", function() {
+        const collegeRadio = document.getElementById('collegeRadio');
+        const freshmenRadio = document.getElementById('freshmenRadio');
+        const unitDiv = document.getElementById('unitDiv');
+
+        collegeRadio.addEventListener('change', function() {
+            unitDiv.style.display = 'block';
+        });
+
+        freshmenRadio.addEventListener('change', function() {
+            unitDiv.style.display = 'none';
+        });
+    });
 </script>
 </body>
 </html>
