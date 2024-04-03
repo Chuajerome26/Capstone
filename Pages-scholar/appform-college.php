@@ -54,8 +54,6 @@
 
         <div class="card w-100 p-4 mt-5 shadow">
         <form id="ccmfForm" method="POST" action="../functions/applicants-register.php" enctype="multipart/form-data">
-            <!------- STEP 1 ------->
-        <div class="step" id="step1">
             <h4 class="text-primary"> Personal Information </h4>
             <div class="border-bottom mb-3 border border-1"></div>
                 <div class="row">
@@ -89,13 +87,17 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Gender:</label>
-                    <select class="form-select form-select-sm" name="gender" aria-label="Default select example" required>
-                    <option selected>Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-
-                    </select>
+                    <label class="form-label">Gender:</label>
+                    <select class="form-select form-select-sm" name="gender" id="genderSelect" aria-label="Default select example" onchange="checkOtherOption('genderSelect', 'otherOption', 'otherGenderInput')" required>
+                        <option selected>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="LGBTQIA+">LGBTQIA+</option>
+                        <option value="Others">Others</option>
+                    </select><br>
+                    <div id="otherOption" style="display: none;">
+                        <input type="text" name="genderOtherOption" id="otherGenderInput" placeholder="Gender preference">
+                    </div>
                 </div>
                
                 <div class="col-md-3 mb-3">
@@ -120,8 +122,18 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Citizenship:</label>
-                    <input type="text" name="citizenship" class="form-control form-control-sm" placeholder="Citizenship" required>
+                    <label class="form-label">Citizenship:</label>
+                    <select class="form-select form-select-sm" name="citizenship" id="citizenshipSelect" aria-label="Default select example" onchange="checkOtherOption('citizenshipSelect', 'otherCitizenshipOption', 'otherCitizenshipInput')" required>
+                        <option selected>Citizenship</option>
+                        <option value="Filipino">Filipino</option>
+                        <option value="Korean">Korean</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="Others">Others</option>
+                    </select><br>
+                    <div id="otherCitizenshipOption" style="display: none;">
+                        <input type="text" name="citizenshipOtherOption" id="otherCitizenshipInput" placeholder="Other Citizenship">
+                    </div>
                 </div>
 
 
@@ -149,11 +161,20 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Religion:</label>
-                    <input type="text" name="religion" class="form-control form-control-sm" placeholder="Religion" required>
+                    <select class="form-select form-select-sm" name="religion" aria-label="Default select example" required>
+                    <option selected>Religion</option>
+                    <option value="Roman Catholicism">Roman Catholicism</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Protestantism">Protestantism</option>
+                    <option value="Iglesia ni Cristo (Church of Christ)">Iglesia ni Cristo (Church of Christ)</option>
+                    <option value="Buddhism">Buddhism</option>
+                    <option value="Hinduism">Hinduism</option>
+                    <option value="Indigenous">Indigenous</option>
+                    </select>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Mobile Number:</label>
+                    <label  class="form-label">Active Contact Number:</label>
                     <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
                 </div>
 
@@ -167,26 +188,121 @@
 
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Address:</label>
-                    <input type="text" name="address" class="form-control form-control-sm" placeholder="Address" required>
+                    <label  class="form-label">Present Address:</label>
+                    <select class="form-select form-select-sm" name="address" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()" required>
+                    <option selected>Barangay</option>
+                    <option value="Apolonio Samson" data-district="1">Apolonio Samson</option>
+                    <option value="Baesa" data-district="1">Baesa</option>
+                    <option value="Bagong Pag-asa" data-district="1">Bagong Pag-asa</option>
+                    <option value="Bagong Silangan" data-district="1">Bagong Silangan</option>
+                    <option value="Bagumbuhay" data-district="1">Bagumbuhay</option>
+                    <option value="Bahay Toro" data-district="1">Bahay Toro</option>
+                    <option value="Balingasa" data-district="1">Balingasa</option>
+                    <option value="Balon Bato" data-district="1">Balon Bato</option>
+                    <option value="Bungad" data-district="1">Bungad</option>
+                    <option value="Damar" data-district="1">Damar</option>
+                    <option value="Damayan" data-district="1">Damayan</option>
+                    <option value="Del Monte" data-district="1">Del Monte</option>
+                    <option value="Katipunan" data-district="1">Katipunan</option>
+                    <option value="Mariblo" data-district="1">Mariblo</option>
+                    <option value="Masambong" data-district="1">Masambong</option>
+                    <option value="Manresa" data-district="1">Manresa</option>
+                    <option value="Nayong Kanluran" data-district="1">Nayong Kanluran</option>
+                    <option value="Paang Bundok" data-district="1">Paang Bundok</option>
+                    <option value="Pag-ibig sa Nayon" data-district="1">Pag-ibig sa Nayon</option>
+                    <option value="Paltok" data-district="1">Paltok</option>
+                    <option value="Paraiso" data-district="1">Paraiso</option>
+                    <option value="Phil-Am" data-district="1">Phil-Am</option>
+                    <option value="Pinyahan" data-district="1">Pinyahan</option>
+                    <option value="Project 6" data-district="1">Project 6</option>
+                    <option value="Ramon Magsaysay" data-district="1">Ramon Magsaysay</option>
+                    <option value="Saint Peter" data-district="1">Saint Peter</option>
+                    <option value="San Antonio" data-district="1">San Antonioaesa</option>
+                    <option value="San Isidro Labrador" data-district="1">San Isidro Labrador</option>
+                    <option value="Baesa" data-district="1">Santa Cruz</option>
+                    <option value="Santa Monica" data-district="1">Santa Monica</option>
+                    <option value="Santa Teresita" data-district="1">Santa Teresita</option>
+                    <option value="Santo Cristo" data-district="1">Santo Cristo</option>
+                    <option value="Santo Niño" data-district="1">Santo Niño</option>
+                    <option value="Sauyo" data-district="1">Sauyo</option>
+                    <option value="Talipapa" data-district="1">Talipapa</option>
+                    <option value="Unang Sigaw" data-district="1">Unang Sigaw</option>
+                    <option value="Veterans Village" data-district="1">Veterans Village</option>
+                    <option value="West Triangle" data-district="1">West Triangle</option>
+                    <!--End of District 1-->
+                    <option value="Bagong Silangan" data-district="2">Bagong Silangan</option>
+                    <option value="Batasan Hills" data-district="2">Batasan Hills</option>
+                    <option value="Commonwealth" data-district="2">Commonwealth</option>
+                    <option value="Holy Spirit" data-district="2">Holy Spirit</option>
+                    <option value="Payatas" data-district="2">Payatas</option>
+                    <option value="Sangandaan" data-district="2">Sangandaan</option>
+                    <option value="Tandang Sora" data-district="2">Tandang Sora</option>
+                    <!--End of District 2-->
+                    <option value="Alicia" data-district="3">Alicia</option>
+                    <option value="Amihan" data-district="3">Amihan</option>
+                    <option value="Bahay Toro" data-district="3">Bahay Toro</option>
+                    <option value="Balingasa" data-district="3">Balingasa</option>
+                    <option value="Balong Bato" data-district="3">Balong Bato</option>
+                    <option value="Bungad" data-district="3">Bungad</option>
+                    <option value="Damayan" data-district="3">Damayan</option>
+                    <option value="Damar" data-district="3">Damar</option>
+                    <option value="Del Monte" data-district="3">Del Monte</option>
+                    <option value="Katipunan" data-district="3">Katipunan</option>
+                    <option value="Mariblo" data-district="3">Mariblo</option>
+                    <option value="Masambong" data-district="3">Masambong</option>
+                    <option value="Manresa" data-district="3">Manresa</option>
+                    <option value="Paligsahan" data-district="3">Paligsahan</option>
+                    <option value="Paltok" data-district="3">Paltok</option>
+                    <option value="Paraiso" data-district="3">Paraiso</option>
+                    <option value="Phil-Am" data-district="3">Phil-Am</option>
+                    <option value="Pinahan" data-district="3">Pinahan</option>
+                    <option value="Project 7" data-district="3">Project 7</option>
+                    <option value="Ramon Magsaysay" data-district="3">Ramon Magsaysay</option>
+                    <option value="San Antonio" data-district="3">San Antonio</option>
+                    <option value="San Isidro Labrador" data-district="3">San Isidro Labrador</option>
+                    <option value="Santa Cruz" data-district="3">Santa Cruz</option>
+                    <option value="Sta. Mesa Heights" data-district="3">Sta. Mesa Heights</option>
+                    <!--End of District 3-->
+                    </select>
+                    <input type="text" name="present_district" id="districtField" class="form-control form-control-sm" placeholder="District" required>
+                    <input type="text" name="present_city" class="form-control form-control-sm" value="Quezon City" readonly>
+                    <input type="text" name="present_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
                 </div>
-            
+                    <!--Auto Fill na to young padre-->
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Permanent Address:</label>
+                    <input type="text" name="permanent_barangay" class="form-control form-control-sm" placeholder="Barangay" required>
+                    <input type="text" name="permanent_district" class="form-control form-control-sm" placeholder="District" required>
+                    <input type="text" name="permanent_city" class="form-control form-control-sm" placeholder="City" required>
+                    <input type="text" name="permanent_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
+                    <input type="checkbox" id="sameAsPresent"> <label for="sameAsPresent">Same as Present Address</label>
+                </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Province:</label>
-                    <input type="text" name="province" class="form-control form-control-sm" placeholder="Province" required>
+                    <label class="form-label">Medical Conditions:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pwdOption" value="yes" onclick="showOtherScholarshipField('inputeMedical')">
+                        <label class="form-check-label">Yes</label>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="form-check-input" type="radio" name="pwdOption" value="no" onclick="hideOtherScholarshipField('inputeMedical')">
+                        <label class="form-check-label">No</label>
+                    </div>
                 </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Medical Conditions:</label>
-                    <input type="text" name="mCondition" class="form-control form-control-sm" placeholder="Medical Conditions" required>
+                <!--Lalabas lang to gar kapag nag yes-->
+                <div class="col-md-3 mb-3" id="inputeMedical" style="display: none;">
+                    <label  class="form-label">Please specify(if applicable):</label>
+                    <select class="form-select form-select-sm" name="pwd" aria-label="Default select example">
+                    <option selected>Options</option>
+                    <option value="Physical Disabilities">Physical Disabilities</option>
+                    <option value="Visual Impairments">Visual Impairments</option>
+                    <option value="Hearing Impairments">Hearing Impairments</option>
+                    <option value="Intellectual Disabilities">Intellectual Disabilities</option>
+                    <option value="Psychological or Mental Health Disabilities">Psychological or Mental Health Disabilities</option>
+                    <option value="Learning Disabilities">Learning Disabilities</option>
+                    <option value="Neurological Disabilities">Neurological Disabilities</option>
+                    <option value="Chronic Health Conditions">Chronic Health Conditions</option>
+                    <option value="Speech or Communication Disorders">Speech or Communication Disorders</option>
+                    </select>
                 </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Facebook Account Link:</label>
-                    <input type="text" name="fbLink" class="form-control form-control-sm" placeholder="Facebook Link" required>
-                </div>
-
 
                 <div class="col-md-12 mb-3">
                     <label class="form-label">Skills/Hobbies/Interest/Talents</label>
@@ -339,15 +455,6 @@
                 </div>
                 </div>
 
-
-        <div class="d-flex justify-content-center">
-        <button type="button" id="next" class="btn btn-primary w-25 next-step" type="button">Next</button>
-        </div>
-
-        </div>  
-
-          <!----- STEP 2 ------->
-        <div class="step" id="step2" style="display: none;">
             <h4 class="text-primary"> Academic Information </h4>
             <div class="border-bottom mb-3 border border-1"></div>
 
@@ -453,25 +560,52 @@
         <hr class="border border-2" style="color: black;">
     </div>
 </div>
-            <div class="d-flex justify-content-center gap-2">
-            <button class="btn btn-secondary w-25 prev-step" type="button">Previous</button>
-            <button  class="btn btn-primary w-25 next-step" type="button">Next</button>
+
+            <h4 class="text-primary">COLLEGES/UNIVERSITIES OF CHOICE  </h4>
+            <div class="border-bottom mb-3 border border-1"></div>
+        
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Did you stop attending college? </label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="stop_attend" value="yes" onclick="showOtherScholarshipField('inputAttend')">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="stop_attend" value="no" onclick="hideOtherScholarshipField('inputAttend')">
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3" id="inputAttend" style="display: none;">
+                            <label class="form-label">If yes, type your reason here</label>
+                            <input type="text" name="reason_attend" class="form-control form-control-sm" placeholder="Reason">
+                </div>
+                <div class="col-md-3 mb-3">
+                <label  class="form-label">Year Level:</label>
+                    <select class="form-select form-select-sm" name="yrlvl" aria-label="Default select example" required>
+                    <option selected>Year Level</option>
+                    <option value="First year">First year</option>
+                    <option value="Second year">Second year</option>
+                    <option value="Third year">Third year</option>
+                    <option value="Fourth year">Fourth year</option>
+                    <option value="Fifth year">Fifth year</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                <label  class="form-label">Semester:</label>
+                    <select class="form-select form-select-sm" name="semester" aria-label="Default select example" required>
+                    <option selected>Semester</option>
+                    <option value="First semester">First semester</option>
+                    <option value="Second semester">Second semester</option>
+                    <option value="Third semester">Third semester</option>
+                    </select>
+                </div>
             </div>
 
 
-        </div>  
-
-   
-
-
-          <!------- STEP 3 ------->
-          <div class="step" id="step3" style="display: none;">
-            <h4 class="text-primary">COLLEGES/UNIVERSITIES OF CHOICE  </h4>
-            <div class="border-bottom mb-3 border border-1"></div>
-
             <div class="hstack gap-3">
     <div class="p-2">
-        <h6 class="text-primary"> (IF INCOMING FRESHMAN) </h6>
+        <h6 class="text-primary"> (Add more rows for school if needed) </h6>
     </div>
     <div class="p-2">
         <button class="btn btn-primary btn-sm shadow" type="button" onclick="addSchoolRow()">Add Row</button>
@@ -609,19 +743,6 @@
         </div>
         </div>
 
-
-<div class="d-flex justify-content-center gap-2">
-    <button class="btn btn-secondary w-25 prev-step" type="button">Previous</button>
-    <button class="btn btn-primary w-25 next-step" type="button">Next</button>
-</div>
-
-
-        </div>  
-
-
-
-          <!------- STEP 4 ------->
-          <div class="step" id="step4" style="display: none;">
             <h4 class="text-primary"> Requirements </h4>
             <div class="border-bottom mb-3 border border-1"></div>
 
@@ -720,7 +841,6 @@
 
               
             <div class="d-flex justify-content-center gap-2">
-            <button class="btn btn-secondary w-25 prev-step" type="button">Previous</button>
             <button class="btn btn-primary w-25" type="submit" name="submit" id="submitForm" onclick="updateRowCount()" disabled>Submit</button>
             </div>
 
@@ -731,7 +851,63 @@
         </div>
     </div>
 
-    <script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script type="text/javascript">
+   
+</script>
+<script>
+            //function for same as present address
+            document.getElementById('sameAsPresent').addEventListener('change', function() {
+        if (this.checked) {
+            // Copy values from present address to permanent address
+            document.querySelector('input[name="permanent_barangay"]').value = document.querySelector('select[name="address"]').value;
+            document.querySelector('input[name="permanent_district"]').value = document.querySelector('#districtField').value;
+            document.querySelector('input[name="permanent_city"]').value = "Quezon City";
+            document.querySelector('input[name="permanent_zip"]').value = document.querySelector('input[name="present_zip"][placeholder="Zip Code"]').value;
+        } else {
+            // Clear permanent address fields if unchecked
+            document.querySelector('input[name="permanent_barangay"]').value = '';
+            document.querySelector('input[name="permanent_district"]').value = '';
+            document.querySelector('input[name="permanent_city"]').value = '';
+            document.querySelector('input[name="permanent_zip"]').value = '';
+        }
+    });
+    //function for District Auto Fill
+    function updateDistrict() {
+    var selectElement = document.getElementById("areaSelect");
+    var districtField = document.getElementById("districtField");
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var district = selectedOption.getAttribute('data-district');
+
+    if (district) {
+        districtField.value = "District " + district;
+    } else {
+        districtField.value = ""; // Clear the field or handle as needed
+    }
+}
+    //function for other option
+    function checkOtherOption(selectId, otherOptionId, otherInputId) {
+        var selectElement = document.getElementById(selectId);
+        var otherOptionDiv = document.getElementById(otherOptionId);
+        var otherInput = document.getElementById(otherInputId);
+
+        if (selectElement.value === "Others") {
+            otherOptionDiv.style.display = "block";
+            otherInput.required = true; // Make the textbox required
+        } else {
+            otherOptionDiv.style.display = "none";
+            otherInput.required = false; // Make the textbox not required
+        }
+    }
+
         //Function for email validation
         document.addEventListener("DOMContentLoaded", function() {
         let emailInput = document.getElementById("email");
@@ -793,150 +969,7 @@
         allowNumbersOnly('motherAge');
         allowNumbersOnly('guardiancNumber');
 
-    </script>
 
-
-
-
-    <script>
-    // Initialize variables
-    let currentStep = 1;
-    const form = document.getElementById('ccmfForm');
-    const steps = document.querySelectorAll('.step');
-    const nextBtns = document.querySelectorAll('.next-step');
-    const prevBtns = document.querySelectorAll('.prev-step');
-
-    // Function to show the current step and hide others
-    function showStep(stepNumber) {
-        steps.forEach((step, index) => {
-            if (index + 1 === stepNumber) {
-                step.style.display = 'block';
-            } else {
-                step.style.display = 'none';
-            }
-        });
-    }
-
-    // Function to reset border color of input fields
-    function resetInputBorders(stepNumber) {
-        const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
-        currentStepInputs.forEach(input => {
-            input.style.borderColor = ''; // Reset border color to default
-        });
-    }
-
-    // Function to remove error message span
-    function removeErrorMessage(stepNumber) {
-        const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
-        currentStepInputs.forEach(input => {
-            const errorMessage = input.parentNode.querySelector('.error-message');
-            if (errorMessage) {
-                errorMessage.remove();
-            }
-        });
-    }
-
-    // Initial setup
-    showStep(currentStep);
-
-    nextBtns.forEach((nextBtn, index) => {
-    nextBtn.addEventListener('click', () => {
-        // Check if there are any required fields in the current step that are empty
-        const currentStepInputs = steps[currentStep - 1].querySelectorAll('input[required]');
-        let canProceed = true;
-
-        for (let i = 0; i < currentStepInputs.length; i++) {
-            const input = currentStepInputs[i];
-            if (!input.value.trim()) { // Check if the input value is empty after trimming whitespace
-                canProceed = false;
-                // Add a visual indicator to the empty input field (e.g., change border color to red)
-                input.style.borderColor = 'red';
-                // Optionally, you can also display an error message next to the input field if it doesn't already exist
-                const errorMessage = input.parentNode.querySelector('.error-message');
-                if (!errorMessage) {
-                    const errorMessage = document.createElement('span');
-                    errorMessage.textContent = 'This field is required';
-                    errorMessage.classList.add('error-message');
-                    errorMessage.style.color = 'red';
-                    input.parentNode.appendChild(errorMessage);
-                }
-                break; // Break out of the loop if any required field is empty
-            }
-        }
-
-        // If all required fields are filled, proceed to the next step
-        if (canProceed && currentStep < steps.length) {
-            resetInputBorders(currentStep); // Reset border color of input fields for the current step
-            removeErrorMessage(currentStep); // Remove error message span for the current step
-            currentStep++;
-            showStep(currentStep);
-        }
-
-        // Update button visibility based on the current step
-        if (currentStep === steps.length) {
-            nextBtn.style.display = 'none';
-        }
-        prevBtns[index].style.display = 'block';
-    });
-});
-
-
-    // Event listeners for input fields
-    steps.forEach((step, index) => {
-        const stepInputs = step.querySelectorAll('input[required]');
-        stepInputs.forEach(input => {
-            input.addEventListener('input', () => {
-                if (input.value.trim()) {
-                    input.style.borderColor = ''; // Reset border color if input is not null
-                    const errorMessage = input.parentNode.querySelector('.error-message');
-                    if (errorMessage) {
-                        errorMessage.remove(); // Remove error message if input is not null
-                    }
-                }
-            });
-        });
-    });
-
-    prevBtns.forEach((prevBtn, index) => {
-        prevBtn.addEventListener('click', () => {
-            // Go to the previous step
-            if (currentStep > 1) {
-                currentStep--;
-                showStep(currentStep);
-            }
-
-            // Update button visibility based on the current step
-            if (currentStep < steps.length) {
-                nextBtns[index].style.display = 'block';
-            }
-            if (currentStep === 1) {
-                prevBtn.style.display = 'none';
-            }
-        });
-    });
-
-</script>
-
-
-
-
-
-
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-<script type="text/javascript">
-   
-</script>
-
-<script>
   // Function to add a new row of sibling information
   function addSiblingRow(event) {
     event.preventDefault(); // Prevent the default form submission behavior

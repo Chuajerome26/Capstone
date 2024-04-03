@@ -64,7 +64,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="toolbar-login">
                             <div class="button">
-                                <a href="Pages-scholar/appform.php"><p class="h6"> Create an Account </p></a>
+                                <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">Create an Account</button>
                                 <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button>
                             </div>
                         </div>
@@ -614,8 +614,25 @@
         <!-- End Footer Middle -->
     </footer>
     <!--/ End Footer Area -->
+
+<!-- Modal for Account Create -->
+<div class="modal fade" id="applyModal">
+    <div class="modal-dialog modal-dialog-centered modal-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold text-center">Are you a Freshmen or a College student?</h5>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform.php';">Freshman</button>
+                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform-college.php';">College</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!-- Modal for Login -->
-    
     <div class="modal fade" id="loginModal">
     <div class="modal-dialog modal-dialog-centered modal-login">
         <div class="modal-content">
@@ -645,16 +662,12 @@
                     </div>
                     <button type="submit" name="submitBtn" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;">Login</button>
 
-                    
-                    
                     <div class="modal-footer">
 				<a href="Pages-scholar/appform.php">Create Account</a>
 			</div>
                     
                 </div>
                 </form>
-
-                
             </div>
         </div>
     </div>
