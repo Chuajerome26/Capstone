@@ -10,6 +10,13 @@ class Admin
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
+    public function isFormOpen() {
+        $currentTime = date('H:i');
+        $startTime = '08:00';
+        $endTime = '17:00'; // 5:00 PM in 24-hour format
+        //Ah sarado, kelan magbubukas? Ah mga alas singko
+        return ($currentTime >= $startTime && $currentTime <= $endTime);
+    }
     public function deleteApplicantInterview($id){
         $stmt = $this->database->getConnection()->prepare("DELETE FROM admin_schedule_interview WHERE id=?");
 

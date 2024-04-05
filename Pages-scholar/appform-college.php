@@ -53,7 +53,11 @@
     <div class="container d-flex justify-content-center align-items-center vh-max-100">
 
         <div class="card w-100 p-4 mt-5 shadow">
+        <!--- Di bale mamaya nalang mga alas singko --->
+        <?php if($admin->isFormOpen()) {?>
         <form id="ccmfForm" method="POST" action="../functions/applicants-register.php" enctype="multipart/form-data">
+        <!------- STEP 1 ------->
+        <div class="step" id="step1">
             <h4 class="text-primary"> Personal Information </h4>
             <div class="border-bottom mb-3 border border-1"></div>
                 <div class="row">
@@ -456,6 +460,13 @@
                 </div>
                 </div>
 
+        <div class="d-flex justify-content-center">
+        <button type="button" id="next" class="btn btn-primary w-25 next-step" type="button">Next</button>
+        </div>
+    </div>  
+
+          <!----- STEP 2 ------->
+          <div class="step" id="step2" style="display: none;">
             <h4 class="text-primary"> Academic Information </h4>
             <div class="border-bottom mb-3 border border-1"></div>
 
@@ -562,6 +573,14 @@
     </div>
 </div>
 
+        <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-secondary w-25 prev-step" type="button">Previous</button>
+        <button  class="btn btn-primary w-25 next-step" type="button">Next</button>
+        </div>
+    </div>  
+
+          <!------- STEP 3 ------->
+          <div class="step" id="step3" style="display: none;">
             <h4 class="text-primary">COLLEGES/UNIVERSITIES OF CHOICE  </h4>
             <div class="border-bottom mb-3 border border-1"></div>
         
@@ -583,7 +602,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                 <label  class="form-label">Year Level:</label>
-                    <select class="form-select form-select-sm" name="yrlvl" aria-label="Default select example" required>
+                    <select class="form-select form-select-sm" name="yrlvl" aria-label="Default select example">
                     <option selected>Year Level</option>
                     <option value="First year">First year</option>
                     <option value="Second year">Second year</option>
@@ -594,7 +613,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                 <label  class="form-label">Semester:</label>
-                    <select class="form-select form-select-sm" name="semester" aria-label="Default select example" required>
+                    <select class="form-select form-select-sm" name="semester" aria-label="Default select example">
                     <option selected>Semester</option>
                     <option value="First semester">First semester</option>
                     <option value="Second semester">Second semester</option>
@@ -744,6 +763,13 @@
         </div>
         </div>
 
+        <div class="d-flex justify-content-center gap-2">
+        <button class="btn btn-secondary w-25 prev-step" type="button">Previous</button>
+        <button class="btn btn-primary w-25 next-step" type="button">Next</button>
+    </div>
+</div>  
+          <!------- STEP 4 ------->
+          <div class="step" id="step4" style="display: none;">
             <h4 class="text-primary"> Requirements </h4>
             <div class="border-bottom mb-3 border border-1"></div>
 
@@ -849,6 +875,12 @@
 
 
         </form>
+        <?php
+        } else {
+            // Ah sarado, bibili sana ko mighty yung sigariryo
+            echo '<p>The application form is currently closed. It is open from 8:00 AM to 5:00 PM.</p>';
+        }
+        ?>
         </div>
     </div>
 
@@ -970,6 +1002,121 @@
         allowNumbersOnly('motherAge');
         allowNumbersOnly('guardiancNumber');
 
+    // Initialize variables
+    let currentStep = 1;
+    const form = document.getElementById('ccmfForm');
+    const steps = document.querySelectorAll('.step');
+    const nextBtns = document.querySelectorAll('.next-step');
+    const prevBtns = document.querySelectorAll('.prev-step');
+
+    // Function to show the current step and hide others
+    function showStep(stepNumber) {
+        steps.forEach((step, index) => {
+            if (index + 1 === stepNumber) {
+                step.style.display = 'block';
+            } else {
+                step.style.display = 'none';
+            }
+        });
+    }
+
+    // Function to reset border color of input fields
+    function resetInputBorders(stepNumber) {
+        const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
+        currentStepInputs.forEach(input => {
+            input.style.borderColor = ''; // Reset border color to default
+        });
+    }
+
+    // Function to remove error message span
+    function removeErrorMessage(stepNumber) {
+        const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
+        currentStepInputs.forEach(input => {
+            const errorMessage = input.parentNode.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+        });
+    }
+
+    // Initial setup
+    showStep(currentStep);
+
+    nextBtns.forEach((nextBtn, index) => {
+    nextBtn.addEventListener('click', () => {
+        // Check if there are any required fields in the current step that are empty
+        const currentStepInputs = steps[currentStep - 1].querySelectorAll('input[required]');
+        let canProceed = true;
+
+        for (let i = 0; i < currentStepInputs.length; i++) {
+            const input = currentStepInputs[i];
+            if (!input.value.trim()) { // Check if the input value is empty after trimming whitespace
+                canProceed = false;
+                // Add a visual indicator to the empty input field (e.g., change border color to red)
+                input.style.borderColor = 'red';
+                // Optionally, you can also display an error message next to the input field if it doesn't already exist
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (!errorMessage) {
+                    const errorMessage = document.createElement('span');
+                    errorMessage.textContent = 'This field is required';
+                    errorMessage.classList.add('error-message');
+                    errorMessage.style.color = 'red';
+                    input.parentNode.appendChild(errorMessage);
+                }
+                break; // Break out of the loop if any required field is empty
+            }
+        }
+
+        // If all required fields are filled, proceed to the next step
+        if (canProceed && currentStep < steps.length) {
+            resetInputBorders(currentStep); // Reset border color of input fields for the current step
+            removeErrorMessage(currentStep); // Remove error message span for the current step
+            currentStep++;
+            showStep(currentStep);
+        }
+
+        // Update button visibility based on the current step
+        if (currentStep === steps.length) {
+            nextBtn.style.display = 'none';
+        }
+        prevBtns[index].style.display = 'block';
+    });
+});
+
+
+    // Event listeners for input fields
+    steps.forEach((step, index) => {
+        const stepInputs = step.querySelectorAll('input[required]');
+        stepInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.value.trim()) {
+                    input.style.borderColor = ''; // Reset border color if input is not null
+                    const errorMessage = input.parentNode.querySelector('.error-message');
+                    if (errorMessage) {
+                        errorMessage.remove(); // Remove error message if input is not null
+                    }
+                }
+            });
+        });
+    });
+
+    prevBtns.forEach((prevBtn, index) => {
+        prevBtn.addEventListener('click', () => {
+            // Go to the previous step
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+
+            // Update button visibility based on the current step
+            if (currentStep < steps.length) {
+                nextBtns[index].style.display = 'block';
+            }
+            if (currentStep === 1) {
+                prevBtn.style.display = 'none';
+            }
+        });
+    });
 
   // Function to add a new row of sibling information
   function addSiblingRow(event) {
