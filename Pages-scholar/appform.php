@@ -53,6 +53,8 @@
     <div class="container d-flex justify-content-center align-items-center vh-max-100">
 
         <div class="card w-100 p-4 mt-5 shadow">
+        <!--- Di bale mamaya nalang mga alas singko --->
+        <?php if($admin->isFormOpen()) {?>
         <form id="ccmfForm" method="POST" action="../functions/applicants-register.php" enctype="multipart/form-data">
             <!------- STEP 1 ------->
         <div class="step" id="step1">
@@ -165,28 +167,201 @@
                     </div>
                 </div>
 
+                <div class="col-md-3 mb-3">
+                    <label  class="form-label">Present Address:</label>
+                    <select class="form-select form-select-sm" name="address" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()" required>
+                    <option selected>Barangay</option>
+                    <!--District 1-->
+                    <option value="Alicia" data-district="1">Alicia</option>
+                    <option value="Bagong Pag-asa" data-district="1">Bagong Pag-asa</option>
+                    <option value="Bahay Toro" data-district="1">Bahay Toro</option>
+                    <option value="Balingasa" data-district="1">Balingasa</option>
+                    <option value="Bungad" data-district="1">Bungad</option>
+                    <option value="Damar" data-district="1">Damar</option>
+                    <option value="Damayan" data-district="1">Damayan</option>
+                    <option value="Del Monte" data-district="1">Del Monte</option>
+                    <option value="Katipunan" data-district="1">Katipunan</option>
+                    <option value="Lourdes" data-district="1">Lourdes</option>
+                    <option value="Maharlika" data-district="1">Maharlika</option>
+                    <option value="Manresa" data-district="1">Manresa</option>
+                    <option value="Mariblo" data-district="1">Mariblo</option>
+                    <option value="Masambong" data-district="1">Masambong</option>
+                    <option value="N.S Amoranto" data-district="1">N.S Amoranto</option>
+                    <option value="Nayong Kanluran" data-district="1">Nayong Kanluran</option>
+                    <option value="Paang Bundok" data-district="1">Paang Bundok</option>
+                    <option value="Pag-ibig sa Nayon" data-district="1">Pag-ibig sa Nayon</option>
+                    <option value="Paltok" data-district="1">Paltok</option>
+                    <option value="Paraiso" data-district="1">Paraiso</option>
+                    <option value="Phil-Am" data-district="1">Phil-Am</option>
+                    <option value="Project 6" data-district="1">Project 6</option>
+                    <option value="Ramon Magsaysay" data-district="1">Ramon Magsaysay</option>
+                    <option value="Saint Peter" data-district="1">Saint Peter</option>
+                    <option value="Salvacion" data-district="1">Salvacion</option>
+                    <option value="San Antonio" data-district="1">San Antonio</option>
+                    <option value="San Isidro Labrador" data-district="1">San Isidro Labrador</option>
+                    <option value="San Jose" data-district="1">San Jose</option>
+                    <option value="Baesa" data-district="1">Santa Cruz</option>
+                    <option value="Santa Teresita" data-district="1">Santa Teresita</option>
+                    <option value="Santo Cristo" data-district="1">Santo Cristo</option>
+                    <option value="Santo Domingo" data-district="1">Santo Domingo</option>
+                    <option value="Siena" data-district="1">Siena</option>
+                    <option value="Talayan" data-district="1">Talayan</option>
+                    <option value="Vasra" data-district="1">Vasra</option>
+                    <option value="Veterans Village" data-district="1">Veterans Village</option>
+                    <option value="West Triangle" data-district="1">West Triangle</option>
+                    <!--District 2-->
+                    <option value="Bagong Silangan" data-district="2">Bagong Silangan</option>
+                    <option value="Batasan Hills" data-district="2">Batasan Hills</option>
+                    <option value="Commonwealth" data-district="2">Commonwealth</option>
+                    <option value="Holy Spirit" data-district="2">Holy Spirit</option>
+                    <option value="Payatas" data-district="2">Payatas</option>
+                    <!--District 3-->
+                    <option value="Amihan" data-district="3">Amihan</option>
+                    <option value="Bagumbayan" data-district="3">Bagumbayan</option>
+                    <option value="Bagumbuhay" data-district="3">Bagumbuhay</option>
+                    <option value="Bayanihan" data-district="3">Bayanihan</option>
+                    <option value="Blue Ridge A" data-district="3">Blue Ridge A</option>
+                    <option value="Blue Ridge B" data-district="3">Blue Ridge B</option>
+                    <option value="Camp Aguinaldo" data-district="3">Camp Aguinaldo</option>
+                    <option value="Dioquino Zobel" data-district="3">Dioquino Zobel</option>
+                    <option value="Duyan duyan" data-district="3">Duyan duyan</option>
+                    <option value="E. Rodriguez" data-district="3">E. Rodriguez</option>
+                    <option value="East Kamias" data-district="3">East Kamias</option>
+                    <option value="Escopa I" data-district="3">Escopa I</option>
+                    <option value="Escopa II" data-district="3">Escopa II</option>
+                    <option value="Escopa III" data-district="3">Escopa III</option>
+                    <option value="Escopa IV" data-district="3">Escopa IV</option>
+                    <option value="Libis" data-district="3">Libis</option>
+                    <option value="Loyola Heights" data-district="3">Loyola Heights</option>
+                    <option value="Mangga" data-district="3">Mangga</option>
+                    <option value="Marilag" data-district="3">Marilag</option>
+                    <option value="Masagana" data-district="3">Masagana</option>
+                    <option value="Matandang Balara" data-district="3">Matandang Balara</option>
+                    <option value="Milagrosa" data-district="3">Milagrosa</option>
+                    <option value="Pansol" data-district="3">Pansol</option>
+                    <option value="Quirino 2-A" data-district="3">Quirino 2-A</option>
+                    <option value="Quirino 2-B" data-district="3">Quirino 2-B</option>
+                    <option value="Quirino 2-C" data-district="3">Quirino 2-C</option>
+                    <option value="Quirino 3-A" data-district="3">Quirino 3-A</option>
+                    <option value="Quirino 3-B" data-district="3">Quirino 3-B (Claro)</option>
+                    <option value="San Roque" data-district="3">San Roque</option>
+                    <option value="Silangan" data-district="3">Silangan</option>
+                    <option value="Socorro" data-district="3">Socorro</option>
+                    <option value="St. Ignatius" data-district="3">St. Ignatius</option>
+                    <option value="Tagumpay" data-district="3">Tagumpay</option>
+                    <option value="Ugong Norte" data-district="3">Ugong Norte</option>
+                    <option value="Villa Mara Clara" data-district="3">Villa Mara Clara</option>
+                    <option value="West Kamias" data-district="3">West Kamias</option>
+                    <option value="White Plains" data-district="3">White Plains</option>
+                    <!--District 4-->
+                    <option value="Bagong Lipunan ng Crame" data-district="4">Bagong Lipunan ng Crame</option>
+                    <option value="Botocan" data-district="4">Botocan</option>
+                    <option value="Central" data-district="4">Central</option>
+                    <option value="Damayang Lagi" data-district="4">Damayang Lagi</option>
+                    <option value="Don Manuel" data-district="4">Don Manuel</option>
+                    <option value="Doña Aurora" data-district="4">Doña Aurora</option>
+                    <option value="Doña Imelda" data-district="4">Doña Imelda</option>
+                    <option value="Doña Josefa" data-district="4">Doña Josefa</option>
+                    <option value="Duyan duyan" data-district="4">Duyan duyan</option>
+                    <option value="Horseshoe" data-district="4">Horseshoe</option>
+                    <option value="Immaculate Concepcion" data-district="4">Immaculate Concepcion</option>
+                    <option value="Kalusugan" data-district="4">Kalusugan</option>
+                    <option value="Kamuning" data-district="4">Kamuning</option>
+                    <option value="Kaunlaran" data-district="4">Kaunlaran</option>
+                    <option value="Kristong Hari" data-district="4">Kristong Hari</option>
+                    <option value="Krus na Ligas" data-district="4">Krus na Ligas</option>
+                    <option value="Laging Handa " data-district="4">Laging Handa </option>
+                    <option value="Malaya" data-district="4">Malaya</option>
+                    <option value="Mariana" data-district="4">Mariana</option>
+                    <option value="Obrero" data-district="4">Obrero</option>
+                    <option value="Old Capitol Site" data-district="4">Old Capitol Site</option>
+                    <option value="Paligsahan" data-district="4">Paligsahan</option>
+                    <option value="Pinagkaisahan" data-district="4">Pinagkaisahan</option>
+                    <option value="Pinyahan" data-district="4">Pinyahan</option>
+                    <option value="Roxas" data-district="4">Roxas</option>
+                    <option value="Sacred Heart" data-district="4">Sacred Heart</option>
+                    <option value="San Isidro Galas" data-district="4">San Isidro Galas</option>
+                    <option value="San Martin de Porres" data-district="4">San Martin de Porres</option>
+                    <option value="San Vicente" data-district="4">San Vicente</option>
+                    <option value="Santol" data-district="4">Santol</option>
+                    <option value="Sikatuna Village" data-district="4">Sikatuna Village</option>
+                    <option value="South Triangle" data-district="4">South Triangle</option>
+                    <option value="Sto. Niño" data-district="4">Sto. Niño</option>
+                    <option value="Tatalon" data-district="4">Tatalon</option>
+                    <option value="Teacher's Village East" data-district="4">Teacher's Village East</option>
+                    <option value="Teacher's Village West" data-district="4">Teacher's Village West</option>
+                    <option value="UP Campus" data-district="4">UP Campus</option>
+                    <option value="UP Village" data-district="4">UP Village</option>
+                    <option value="Valencia" data-district="4">Valencia</option>
+                    <!--District 5-->
+                    <option value="Bagbag" data-district="5">Bagbag</option>
+                    <option value="Capri" data-district="5">Capri</option>
+                    <option value="Fairview" data-district="5">Fairview</option>
+                    <option value="Greater Lagro" data-district="5">Greater Lagro</option>
+                    <option value="Gulod" data-district="5">Gulod</option>
+                    <option value="Kaligayahan" data-district="5">Kaligayahan</option>
+                    <option value="Nagkaisang Nayon" data-district="5">Nagkaisang Nayon</option>
+                    <option value="North Fairview" data-district="5">North Fairview</option>
+                    <option value="Novaliches" data-district="5">Novaliches</option>
+                    <option value="Pasong Putik" data-district="5">Pasong Putik</option>
+                    <option value="San Agustin" data-district="5">San Agustin</option>
+                    <option value="San Bartolome" data-district="5">San Bartolome</option>
+                    <option value="Sta. Lucia" data-district="5">Sta. Lucia</option>
+                    <option value="Sta. Monica" data-district="5">Sta. Monica</option>
+                    <!--District 6-->
+                    <option value="Apolonio Samson" data-district="6">Apolonio Samson</option>
+                    <option value="Baesa" data-district="6">Baesa</option>
+                    <option value="Balon Bato" data-district="6">Balon Bato</option>
+                    <option value="Culiat" data-district="6">Culiat</option>
+                    <option value="New Era" data-district="6">New Era</option>
+                    <option value="Pasong Tamo" data-district="6">Pasong Tamo</option>
+                    <option value="Sangandaan" data-district="6">Sangandaan</option>
+                    <option value="Sauyo" data-district="6">Sauyo</option>
+                    <option value="Talipapa" data-district="6">Talipapa</option>
+                    <option value="Tandang Sora" data-district="6">Tandang Sora</option>
+                    <option value="Unang Sigaw" data-district="6">Unang Sigaw</option>
+                    </select>
+                    <input type="text" name="present_district" id="districtField" class="form-control form-control-sm" placeholder="District" required>
+                    <input type="text" name="present_city" class="form-control form-control-sm" value="Quezon City" readonly>
+                    <input type="text" name="present_province" class="form-control form-control-sm" value="Metro Manila" readonly>
+                    <input type="text" name="present_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
+                </div>
+                    <!--Auto Fill na to young padre-->
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">Permanent Address:</label>
+                    <input type="text" name="permanent_barangay" class="form-control form-control-sm" placeholder="Barangay" required>
+                    <input type="text" name="permanent_district" class="form-control form-control-sm" placeholder="District" required>
+                    <input type="text" name="permanent_city" class="form-control form-control-sm" placeholder="City" required>
+                    <input type="text" name="permanent_province" class="form-control form-control-sm" placeholder="Province" required>
+                    <input type="text" name="permanent_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
+                    <input type="checkbox" id="sameAsPresent"> <label for="sameAsPresent">Same as Present Address</label>
+                </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Address:</label>
-                    <input type="text" name="address" class="form-control form-control-sm" placeholder="Address" required>
+                    <label class="form-label">Medical Conditions:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="pwdOption" value="yes" onclick="showOtherScholarshipField('inputeMedical')">
+                        <label class="form-check-label">Yes</label>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="form-check-input" type="radio" name="pwdOption" value="no" onclick="hideOtherScholarshipField('inputeMedical')">
+                        <label class="form-check-label">No</label>
+                    </div>
                 </div>
-            
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Province:</label>
-                    <input type="text" name="province" class="form-control form-control-sm" placeholder="Province" required>
+                <!--Lalabas lang to gar kapag nag yes-->
+                <div class="col-md-3 mb-3" id="inputeMedical" style="display: none;">
+                    <label  class="form-label">Please specify(if applicable):</label>
+                    <select class="form-select form-select-sm" name="pwd" aria-label="Default select example">
+                    <option selected>Options</option>
+                    <option value="Physical Disabilities">Physical Disabilities</option>
+                    <option value="Visual Impairments">Visual Impairments</option>
+                    <option value="Hearing Impairments">Hearing Impairments</option>
+                    <option value="Intellectual Disabilities">Intellectual Disabilities</option>
+                    <option value="Psychological or Mental Health Disabilities">Psychological or Mental Health Disabilities</option>
+                    <option value="Learning Disabilities">Learning Disabilities</option>
+                    <option value="Neurological Disabilities">Neurological Disabilities</option>
+                    <option value="Chronic Health Conditions">Chronic Health Conditions</option>
+                    <option value="Speech or Communication Disorders">Speech or Communication Disorders</option>
+                    </select>
                 </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Medical Conditions:</label>
-                    <input type="text" name="mCondition" class="form-control form-control-sm" placeholder="Medical Conditions" required>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Facebook Account Link:</label>
-                    <input type="text" name="fbLink" class="form-control form-control-sm" placeholder="Facebook Link" required>
-                </div>
-
 
                 <div class="col-md-12 mb-3">
                     <label class="form-label">Skills/Hobbies/Interest/Talents</label>
@@ -441,10 +616,6 @@
         <div class="col-md-4 mb-3">
             <label class="form-label">Subject:</label>
             <input type="text" name="sub[]" class="form-control form-control-sm" placeholder="Subject" required>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label class="form-label">Unit:</label>
-            <input type="text" name="totalUnits[]" class="form-control form-control-sm" placeholder="Unit">
         </div>
         <div class="col-md-3 mb-3">
             <label class="form-label">Grade:</label>
@@ -728,6 +899,12 @@
 
 
         </form>
+        <?php
+        } else {
+            // Ah sarado, bibili sana ko mighty yung sigariryo
+            echo '<p>The application form is currently closed. It is open from 8:00 AM to 5:00 PM.</p>';
+        }
+        ?>
         </div>
     </div>
 
@@ -760,6 +937,38 @@
             validateEmailInput(emailInput);
         });
     });
+
+        //function for same as present address
+        document.getElementById('sameAsPresent').addEventListener('change', function() {
+        if (this.checked) {
+            // Copy values from present address to permanent address
+            document.querySelector('input[name="permanent_barangay"]').value = document.querySelector('select[name="address"]').value;
+            document.querySelector('input[name="permanent_district"]').value = document.querySelector('#districtField').value;
+            document.querySelector('input[name="permanent_city"]').value = "Quezon City";
+            document.querySelector('input[name="permanent_province"]').value = "Metro Manila";
+            document.querySelector('input[name="permanent_zip"]').value = document.querySelector('input[name="present_zip"][placeholder="Zip Code"]').value;
+        } else {
+            // Clear permanent address fields if unchecked
+            document.querySelector('input[name="permanent_barangay"]').value = '';
+            document.querySelector('input[name="permanent_district"]').value = '';
+            document.querySelector('input[name="permanent_city"]').value = '';
+            document.querySelector('input[name="permanent_province"]').value = '';
+            document.querySelector('input[name="permanent_zip"]').value = '';
+        }
+    });
+    //function for District Auto Fill
+    function updateDistrict() {
+    var selectElement = document.getElementById("areaSelect");
+    var districtField = document.getElementById("districtField");
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    var district = selectedOption.getAttribute('data-district');
+
+    if (district) {
+        districtField.value = "District " + district;
+    } else {
+        districtField.value = ""; // Clear the field or handle as needed
+    }
+}
     </script>
 
     <script>
