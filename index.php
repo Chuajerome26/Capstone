@@ -578,11 +578,11 @@
                                         <p class="fw-bold fs-5">CONTACT INFORMATION</p>
                                     <ul>
                                         <li>
-                                            <p style="font-size: 17px"><b>Phone:</b>+63-2-848-0981</p>
+                                            <p style="font-size: 17px"><b>Phone:</b>    +63-2-848-0981</p>
                                             <br>
                                             <p style="font-size: 17px"><b>Email:</b>ccmf2015main@gmail.com</p>
                                             <br>
-                                            <p style="font-size: 17px"><b>Open Hours:</b>Mon - Fri : 9am - 5pm</p>
+                                            <p style="font-size: 17px"><b>Open Hours:</b>   Mon - Fri : 8:00am - 5:00pm</p>
                                         </li>
                                     </ul>
                                 </div>
