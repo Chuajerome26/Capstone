@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST['submit']) && $_POST['modeOfTnterview'] == ""){
+if(isset($_POST['submit']) && isset($_POST['modeOfTnterview'])){
     require '../classes/admin.php';
     require '../classes/database.php';
 

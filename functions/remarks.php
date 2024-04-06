@@ -27,8 +27,6 @@ if(isset($_POST['submit'])){
     
     $declineMessage = "Dear ".$user['f_name']." ".$user['l_name'].",
 
-Remarks,
-
 ".$remarks."
 
 
