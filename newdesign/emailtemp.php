@@ -198,7 +198,7 @@
                             <tbody>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#212b35;">Croft's in Austin is opening December 20th</div>
+                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#212b35;">zzzzzzzzzzzzzzzzzzzzzzzzzzzz</div>
                                 </td>
                               </tr>
                               <tr>
@@ -208,7 +208,9 @@
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia a assumenda nulla in quisquam optio quibusdam fugiat perspiciatis nobis, ad tempora culpa porro labore. Repudiandae accusamus obcaecati voluptatibus accusantium perspiciatis.</div>
+                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
+                                  
+                                </div>
                                 </td>
                               </tr>
                               <tr>
@@ -234,24 +236,12 @@
                               </tr>
                               <tr>
                                 <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:300px;line-height:100%;">
-                                    <tr>
-                                      <td align="center" bgcolor="#5e6ebf" role="presentation" style="border:none;border-radius:3px;cursor:auto;mso-padding-alt:10px 25px;background:#5e6ebf;" valign="middle">
-                                        <a href="https://google.com" style="display:inline-block;width:250px;background:#5e6ebf;color:#ffffff;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:17px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:3px;" target="_blank"> RSVP Today </a>
-                                      </td>
-                                    </tr>
-                                  </table>
+                                  
                                 </td>
                               </tr>
                               <tr>
                                 <td align="center" vertical-align="middle" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:300px;line-height:100%;">
-                                    <tr>
-                                      <td align="center" bgcolor="#5e6ebf" role="presentation" style="border:none;border-radius:3px;cursor:auto;mso-padding-alt:10px 25px;background:#5e6ebf;" valign="middle">
-                                        <a href="https://google.com" style="display:inline-block;width:250px;background:#5e6ebf;color:#ffffff;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:17px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:3px;" target="_blank"> Book an Appointment </a>
-                                      </td>
-                                    </tr>
-                                  </table>
+                                
                                 </td>
                               </tr>
                               <tr>
@@ -285,15 +275,7 @@
                             <tbody>
                               <tr>
                                 <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                                    <tbody>
-                                      <tr>
-                                        <td style="width:235px;">
-                                          <img alt height="auto" src="https://res.cloudinary.com/dheck1ubc/image/upload/v1544153577/Email/Images/AnnouncementOffset/Image_1.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="235">
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
+                                  
                                 </td>
                               </tr>
                             </tbody>
@@ -305,15 +287,7 @@
                             <tbody>
                               <tr>
                                 <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
-                                    <tbody>
-                                      <tr>
-                                        <td style="width:235px;">
-                                          <img alt height="auto" src="https://res.cloudinary.com/dheck1ubc/image/upload/v1544153578/Email/Images/AnnouncementOffset/Image_2.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="235">
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
+                                  
                                 </td>
                               </tr>
                             </tbody>
@@ -516,12 +490,12 @@
                                               </tr>
                                               <tr>
                                                 <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:bold;line-height:24px;text-align:center;color:#445566;">View this email in your browser</div>
+                                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:bold;line-height:24px;text-align:center;color:#445566;">View the site in your browser</div>
                                                 </td>
                                               </tr>
                                               <tr>
                                                 <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#445566;">Should you wish to know more about our programs, how to donate or volunteer, please fill up the form on the right and we will get back to you.</div>
+                                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#445566;">The Consuelo Chito Madrigal Foundation (CCMF) is dedicated to improving the quality of life of distressed families in selected communities in the Philippines. Established by banker, philanthropist and Papal awardee Dona Consuelo Chito Madrigal-Collantes in 1997, it supports programs designed to respond to the needs of these communities to be self-sustaining.</div>
                                                 </td>
                                               </tr>
                                               <tr>
