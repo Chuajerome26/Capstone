@@ -84,7 +84,7 @@ ccmf2015main@gmail.com';
 
     <title>Consuelo Chito Madrigal Foundation</title>
     <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -520,25 +520,11 @@ ccmf2015main@gmail.com';
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../assets/js/sb-admin-2.min.js"></script>
-    <script src="../assets1/js/1.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../assets/js/demo/chart-area-demo.js"></script>
-    <script src="../assets/js/demo/chart-pie-demo.js"></script>
+   
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- DataTables JS -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <!-- DataTables Bootstrap 5 JS -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script>
         function toggleInput(checkbox, inputId) {
             var inputField = document.getElementById(inputId);
@@ -586,18 +572,10 @@ ccmf2015main@gmail.com';
         })
     }
 
-    $(document).ready(function() {
-        $('#applicant').DataTable();
-
-        $('#applicant').parent().parent().css('overflow', 'auto');
-        $('#applicant').parent().parent().css('max-height', '500px');
-    });
-
-    $(document).ready(function () {
-        $("#openModalLink").click(function () {
-        $("#myModal").modal("show");
+   $(document).ready(function() {
+            $('#applicant').DataTable();
         });
-    });
+
 
 </script>
 </body>

@@ -35,7 +35,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
             crossorigin="anonymous" />
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
-            <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+            <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
 
     </head>
     <body>
@@ -55,10 +55,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
 
 
 <div class="hstack gap-3">
-<div class="p-2"><p class="h4 mb-0 font-weight-bold text-gray-800">Suggested Applicants</p></div>
+<div class="p-2"><p class="h5 mb-0 font-weight-bold text-gray-800">Suggested Applicants</p></div>
 <div class="p-2 ms-auto">
     <form action="../functions/download-applicant.php" method="post">
-        <button type="submit" class=" btn  btn-primary shadow-sm">
+        <button type="submit" class=" btn  btn-sm btn-primary shadow-sm">
             <i class="fas fa-download fa-sm text-white-50"></i> 
             <div class="d-none d-sm-inline-block">Generate Report</div>
         </button>
@@ -130,11 +130,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
         <!-- Area Chart -->
         <div class="col-lg-12 mb-4 p-2">
             <div class="card shadow mb-4 " style="font-size: 14px;">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Scholar Applicants</h6>
-                </div>
+              
                 <div class="card-body">
+                <h5 class="p-2 font-weight-bold text-black mb-2">Scholar Applicants</h5>
+
                     <div class="table-responsive">
                     <table id="applicant" class="table table-striped table-hover">
                         <thead>
@@ -371,7 +370,6 @@ foreach($applicantsss as $pogiko){
 <!-- End -->
 
 <!-- Modal for Details -->
-
 <?php
 $appliData1 = $admin->getApplicants();
     foreach($appliData1 as $a){
@@ -894,13 +892,8 @@ $appliData2 = $admin->getApplicants();
          <!-- Page level plugins -->
     <script src="../vendor/chart.js/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>    
-
      
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <!-- DataTables Bootstrap 5 JS -->
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script>
         function toggleInput(checkbox, inputId) {
             var inputField = document.getElementById(inputId);
@@ -979,27 +972,6 @@ $appliData2 = $admin->getApplicants();
     $(document).ready(function() {
             $('#applicant').DataTable();
         });
-
-    // $(document).ready(function() {
-    //     $('#applicant1').DataTable();
-
-    //     $('#applicant1').parent().parent().css('overflow', 'auto');
-    //     $('#applicant1').parent().parent().css('max-height', '500px');
-    // });
-
-    // $(document).ready(function() {
-    //     $('#applicant-modal-remarks').DataTable();
-
-    //     $('#applicant-modal-remarks').parent().parent().css('overflow', 'auto');
-    //     $('#applicant-modal-remarks').parent().parent().css('max-height', '500px');
-    // });
-    
-    // $(document).ready(function() {
-    //     $('#applicant-modal-details').DataTable();
-        
-    //     $('#applicant-modal-remarks').parent().parent().css('overflow', 'auto');
-    //     $('#applicant-modal-remarks').parent().parent().css('max-height', '500px');
-    // });
 
 
 </script>

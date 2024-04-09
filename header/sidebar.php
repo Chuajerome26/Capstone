@@ -1,3 +1,6 @@
+<header>
+<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+</header>
 <style>   
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
@@ -126,8 +129,17 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                     </a>
                     <hr class="sidebar-divider d-none d-md-block">
 
+                    <a href="../newdesign/admin-account.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'logs') ? 'active-nav-item' : ''; ?>">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
+                        <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913z"/>
+                        <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z"/>
+                        </svg>
+                        <span class ="ms-2">Admin Logs</span>                  
+                    </a>
 
                   
+                
+
 
                     <li class="nav-item dropdown text-decoration-none list-unstyled pt-3  d-block d-md-none">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -144,6 +156,10 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         </form>
                     </ul>
                     </li>
+
+
+               
+
                     
                     <!-- Add more sidebar items as needed -->
                 </div>
@@ -154,6 +170,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         <!-- Navbar -->
         <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light px-3 bg-white fixed-top">
             <div class="container-fluid">
+            
                 <!-- Toggle button -->
                 <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
                     aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -168,25 +185,165 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 </a>
                 <hr class="sidebar-divider d-none d-md-block">
 
-                <!-- Right links -->
-                <ul class="navbar-nav ms-auto d-flex flex-row   d-none d-lg-block me-5">
-                <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="me-2 rounded-circle shadow-sm" src="../images/images.png" alt="Bootstrap" width="30" height="30"> 
-                    <span>Test</span>
-                </a>
-                <ul class="dropdown-menu w-100">
-                    <li class="text-center w-100 col-10"> <br> <small class="text-muted"></small></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li class="mb-1"><a class="dropdown-item" href="../../Pages/system/profile.php"><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
 
-                    <li><hr class="dropdown-divider"></li>
-                    <form action="../../header/Functionality.php" method="POST">
-                        <li><button class="dropdown-item" type="submit"><i class="fa-solid fa-right-from-bracket me-3"></i>Sign Out</button></li>
-                    </form>
-                 </ul>
+                <div class="d-flex gap-2">
+                
+                <div class="dropdown">
+                <button class="btn border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bell fa-fw text-gray-400 mt-1 ms-2" style="font-size: 18px;"></i>
+                </button>
+                <span class="position-absolute top-0 end-0 badge rounded-pill bg-danger" style="font-size: 11px;">
+                    <span>4</span>
+                </span>
+                
+                <ul class="dropdown-menu  dropdown-menu-end" >
+                <h6 class="px-2 mt-2 mb-2 ms-3"><i class="fas fa-bell me-2 " ></i> Notification</h6>
+                <hr>
+                <div style="width:350px;  max-height: 400px; overflow-y: auto; font-size: 14px;">
+                       
+                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                        class="rounded-circle" />
+                    <div class="ms-3">
+                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                    </div>
+                    </div>
                 </li>
+                <hr>
+
+                         
+                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                        class="rounded-circle" />
+                    <div class="ms-3">
+                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                    </div>
+                    </div>
+                </li>
+                <hr>
+
+                         
+                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                        class="rounded-circle" />
+                    <div class="ms-3">
+                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                    </div>
+                    </div>
+                </li>
+                <hr>
+                         
+                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                        class="rounded-circle" />
+                    <div class="ms-3">
+                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                    </div>
+                    </div>
+                </li>
+                <hr>
+                         
+                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                        class="rounded-circle" />
+                    <div class="ms-3">
+                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                    </div>
+                    </div>
+                </li>
+                <hr>
+
+                         
+                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                        class="rounded-circle" />
+                    <div class="ms-3">
+                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                    </div>
+                    </div>
+                </li>
+                <hr>
+                         
+                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                        class="rounded-circle" />
+                    <div class="ms-3">
+                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                    </div>
+                    </div>
+                </li>
+                <hr>
+                         
+                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                    <div class="d-flex align-items-center">
+                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                        class="rounded-circle" />
+                    <div class="ms-3">
+                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                    </div>
+                    </div>
+                </li>
+                <hr>
+
+
+                                
+
+
+                    </div>
                 </ul>
+                </div>
+                    
+
+                    <div>
+
+
+                    <div class="dropdown me-4 mt-1">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img class="me-2 rounded-circle shadow-sm" src="../images/images.png" alt="Bootstrap" width="30" height="30"> 
+                            <span>Test</span>
+                        </a>
+                        <ul class="dropdown-menu  dropdown-menu-end  w-100">
+                            <li class="text-center w-100 col-10"> <br> <small class="text-muted"></small></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li class="mb-1"><a class="dropdown-item" href="../../Pages/system/profile.php"><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <form action="../../header/Functionality.php" method="POST">
+                                <li><button class="dropdown-item" type="submit"><i class="fa-solid fa-right-from-bracket me-3"></i>Sign Out</button></li>
+                            </form>
+                        </ul>
+                    </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
             </div>
         </nav>
         <!-- Navbar -->
