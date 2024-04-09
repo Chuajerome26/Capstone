@@ -54,7 +54,7 @@
 
         <div class="card w-100 p-4 mt-5 shadow">
         <!--- Di bale mamaya nalang mga alas singko --->
-        <?php if($admin->isFormOpen()) {?>
+        <!-- <?php ?> -->
         <form id="ccmfForm" method="POST" action="../functions/applicants-register.php" enctype="multipart/form-data">
         <!------- STEP 1 ------->
         <div class="step" id="step1">
@@ -62,9 +62,11 @@
             <div class="border-bottom mb-3 border border-1"></div>
                 <div class="row">
                 <!--- Personal Infomartion --->
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">First Name:</label>
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">First Name:<span class="text-danger">*</span></label>
                     <input type="text" name="fName" class="form-control form-control-sm" placeholder="First Name" required>
+                    <span class="error-message"></span>
+
                 </div>
 
 
@@ -73,15 +75,15 @@
                     <input type="text" name="mName" class="form-control form-control-sm" placeholder="Optional">
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Last Name:</label>
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">Last Name:<span class="text-danger">*</span></label>
                     <input type="text" name="lName" class="form-control form-control-sm" placeholder="Last Name" required>
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <div class="col-md-1 mb-3">
                     <label  class="form-label">Suffix:</label>
                     <select class="form-select form-select-sm" name="suffix" aria-label="Default select example">
-                    <option selected>Suffix(Optional)</option>
+                    <option selected><p class="text-secondary">Ex</p></option>
                     <option value="Jr.">Jr.</option>
                     <option value="Sr.">Sr.</option>
                     <option value="II">II</option>
@@ -90,32 +92,41 @@
                     </select>
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <label class="form-label">Gender:</label>
+
+                <div class="col-md-5 mb-3">
+                    <label  class="form-label">Active Contact Number: <span class="text-danger">*</span></label>
+                    <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
+                </div>
+
+                <div class="col-md-5 mb-3">
+                    <label  class="form-label">Email Address: <span class="text-danger">*</span></label>
+                    <input type="email" id="email" name="email" class="form-control form-control-sm" placeholder="Email Address" required>
+                    <div id="emailFeedback" class="invalid-feedback">
+                        Please enter a valid email address.
+                    </div>
+                </div>
+
+
+            
+
+                <div class="col-md-2 mb-3">
+                    <label class="form-label">Gender: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="gender" id="genderSelect" aria-label="Default select example" onchange="checkOtherOption('genderSelect', 'otherOption', 'otherGenderInput')" required>
                         <option selected>Gender</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="LGBTQIA+">LGBTQIA+</option>
                         <option value="Others">Others</option>
-                    </select><br>
-                    <div id="otherOption" style="display: none;">
-                        <input type="text" name="genderOtherOption" id="otherGenderInput" placeholder="Gender preference">
+                    </select>
+                    <div class="mt-2" id="otherOption" style="display: none;">
+                        <input class="form-control form-control-sm" type="text" name="genderOtherOption" id="otherGenderInput" placeholder="Gender preference">
                     </div>
                 </div>
+                  
                
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Age:</label>
-                    <input type="text" name="age" id="ageko" class="form-control form-control-sm" placeholder="Age" required>
-                </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Nickname:</label>
-                    <input type="text" name="nName" class="form-control form-control-sm" placeholder="Nickname" required>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Civil Status:</label>
+                    <label  class="form-label">Civil Status: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="cStatus" aria-label="Default select example" required>
                     <option selected>Civil Status</option>
                     <option value="Single">Single</option>
@@ -126,7 +137,7 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label class="form-label">Citizenship:</label>
+                    <label class="form-label">Citizenship: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="citizenship" id="citizenshipSelect" aria-label="Default select example" onchange="checkOtherOption('citizenshipSelect', 'otherCitizenshipOption', 'otherCitizenshipInput')" required>
                         <option selected>Citizenship</option>
                         <option value="Filipino">Filipino</option>
@@ -134,37 +145,25 @@
                         <option value="Japanese">Japanese</option>
                         <option value="Chinese">Chinese</option>
                         <option value="Others">Others</option>
-                    </select><br>
-                    <div id="otherCitizenshipOption" style="display: none;">
-                        <input type="text" name="citizenshipOtherOption" id="otherCitizenshipInput" placeholder="Other Citizenship">
+                    </select>
+                    <div class="mt-2" id="otherCitizenshipOption" style="display: none;">
+                        <input class="form-control form-control-sm" type="text" name="citizenshipOtherOption" id="otherCitizenshipInput" placeholder="Other Citizenship">
                     </div>
                 </div>
 
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Date of Birth:</label>
+                    <label  class="form-label">Date of Birth: <span class="text-danger">*</span></label>
                     <input type="date" name="dofBirth" class="form-control form-control-sm" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Birth place:</label>
+                    <label  class="form-label">Birth place: <span class="text-danger">*</span></label>
                     <input type="text" name="bPlace" class="form-control form-control-sm" placeholder="Birthplace" required>
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Height:</label>
-                    <input type="text" name="height" class="form-control form-control-sm" placeholder="Height" required>
-                </div>
-
-                
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Weight:</label>
-                    <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight" required>
-                </div>
-            
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Religion:</label>
+                    <label  class="form-label">Religion: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="religion" aria-label="Default select example" required>
                     <option selected>Religion</option>
                     <option value="Roman Catholicism">Roman Catholicism</option>
@@ -177,22 +176,41 @@
                     </select>
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Active Contact Number:</label>
-                    <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
+                <div class="col-md-2 mb-3">
+                    <label  class="form-label">Height: <span class="text-danger">*</span></label>
+                    <input type="text" name="height" class="form-control form-control-sm" placeholder="Height" required>
                 </div>
 
+                
+                <div class="col-md-2 mb-3">
+                    <label  class="form-label">Weight: <span class="text-danger">*</span></label>
+                    <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight" required>
+                </div>
+            
+
+             
+
+               <hr>
+
+               <h5 class="mb-2"> Address Information </h5>
+
+
+               <h6> Present Address </h6>
+
+               <div class="col-md-3 mb-3">
+                    <label  class="form-label">Province: <span class="text-danger">*</span></label>
+                    <input type="text" name="present_province" class="form-control form-control-sm" value="Metro Manila" readonly>
+                </div>
+                
+
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Email Address:</label>
-                    <input type="email" id="email" name="email" class="form-control form-control-sm" placeholder="Email Address" required>
-                    <div id="emailFeedback" class="invalid-feedback">
-                        Please enter a valid email address.
-                    </div>
+                    <label  class="form-label">City: <span class="text-danger">*</span></label>
+                    <input type="text" name="present_city" class="form-control form-control-sm" value="Quezon City" readonly>
                 </div>
 
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Present Address:</label>
+              
+                <div class="col-md-2 mb-3">
+                    <label  class="form-label">Barangay: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="address" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()" required>
                     <option selected>Barangay</option>
                     <!--District 1-->
@@ -345,24 +363,70 @@
                     <option value="Tandang Sora" data-district="6">Tandang Sora</option>
                     <option value="Unang Sigaw" data-district="6">Unang Sigaw</option>
                     </select>
-                    <input type="text" name="present_district" id="districtField" class="form-control form-control-sm" placeholder="District" required>
-                    <input type="text" name="present_city" class="form-control form-control-sm" value="Quezon City" readonly>
-                    <input type="text" name="present_province" class="form-control form-control-sm" value="Metro Manila" readonly>
-                    <input type="text" name="present_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
-                </div>
-                    <!--Auto Fill na to young padre-->
-                <div class="col-md-3 mb-3">
-                    <label class="form-label">Permanent Address:</label>
-                    <input type="text" name="permanent_barangay" class="form-control form-control-sm" placeholder="Barangay" required>
-                    <input type="text" name="permanent_district" class="form-control form-control-sm" placeholder="District" required>
-                    <input type="text" name="permanent_city" class="form-control form-control-sm" placeholder="City" required>
-                    <input type="text" name="permanent_province" class="form-control form-control-sm" placeholder="Province" required>
-                    <input type="text" name="permanent_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
-                    <input type="checkbox" id="sameAsPresent"> <label for="sameAsPresent">Same as Present Address</label>
+                   
                 </div>
 
+
+              
+                   
+                <div class="col-md-2 mb-3">
+                    <label  class="form-label">District: <span class="text-danger">*</span></label>
+                    <input type="text" name="present_district" id="districtField" class="form-control form-control-sm" placeholder="District" required>
+                </div>
+
+
+    
+
+                <div class="col-md-2 mb-3">
+                    <label  class="form-label">Zip Code: <span class="text-danger">*</span></label>
+                    <input type="text" name="present_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
+                </div>
+
+
+
+                <h6> Permanent Address</h6>
+
+
                 <div class="col-md-3 mb-3">
-                    <label class="form-label">Medical Conditions:</label>
+                    <label  class="form-label">Province: <span class="text-danger">*</span></label>
+                    <input type="text" name="permanent_province" class="form-control form-control-sm" placeholder="Province" required>
+                    <input type="checkbox" id="sameAsPresent"> <label for="sameAsPresent" class="text-muted">Same as Present Address</label>
+
+                </div>
+
+                
+
+                <div class="col-md-3 mb-3">
+                    <label  class="form-label">City: <span class="text-danger">*</span></label>
+                    <input type="text" name="permanent_city" class="form-control form-control-sm" placeholder="City" required>
+                </div>
+
+                
+                    <!--Auto Fill na to young padre-->
+                    <div class="col-md-2 mb-3">
+                    <label class="form-label">Barangaay: <span class="text-danger">*</span></label>
+                    <input type="text" name="permanent_barangay" class="form-control form-control-sm" placeholder="Barangay" required>
+                   
+                </div>
+
+                
+                   
+                <div class="col-md-2 mb-3">
+                    <label  class="form-label">District: <span class="text-danger">*</span></label>
+                    <input type="text" name="permanent_district" class="form-control form-control-sm" placeholder="District" required>
+                </div>
+
+
+    
+
+                <div class="col-md-2 mb-3">
+                    <label  class="form-label">Zip Code: <span class="text-danger">*</span></label>
+                    <input type="text" name="permanent_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
+                </div>
+
+    <hr>
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Do you have medical conditions? (If yes please specify) <span class="text-danger">*</span></label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="pwdOption" value="yes" onclick="showOtherScholarshipField('inputeMedical')">
                         <label class="form-check-label">Yes</label>
@@ -395,13 +459,80 @@
         </div>
         </form>
         <?php
-        } else {
-            // Ah sarado, bibili sana ko mighty yung sigariryo
-            echo '<p>The application form is currently closed. It is open from 8:00 AM to 5:00 PM.</p>';
-        }
+        
         ?>
         </div>
     </div>
+
+
+    <script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const nextButtonStep1 = document.querySelector('.step1 .next');
+    const requiredInputsStep1 = document.querySelectorAll('.step1 input[required], .step1 select[required], .step1 textarea[required]');
+    const submitButton = document.getElementById('submitForm');
+
+    function checkInputsStep1() {
+        let hasErrorStep1 = false;
+
+        requiredInputsStep1.forEach(input => {
+            if (!input.value.trim()) {
+                showErrorMessageStep1(input, 'This field is required');
+                hasErrorStep1 = true;
+            } else {
+                removeErrorMessageStep1(input);
+            }
+        });
+
+        return !hasErrorStep1; // Return true if there are no errors
+    }
+
+    function updateSubmitButton() {
+        if (checkInputsStep1()) {
+            submitButton.removeAttribute('disabled');
+        } else {
+            submitButton.setAttribute('disabled', 'disabled');
+        }
+    }
+
+    // Check inputs on page load
+    updateSubmitButton();
+
+    // Check inputs when the submit button is clicked
+    nextButtonStep1.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Check if all required fields are filled out
+        updateSubmitButton();
+    });
+
+    // Check inputs when any input is changed
+    requiredInputsStep1.forEach(input => {
+        input.addEventListener('input', updateSubmitButton);
+    });
+
+    function showErrorMessageStep1(input, message) {
+        let errorMessageStep1 = input.parentNode.querySelector('.error-message');
+        if (!errorMessageStep1) {
+            errorMessageStep1 = document.createElement('span');
+            errorMessageStep1.textContent = message;
+            errorMessageStep1.classList.add('error-message');
+            errorMessageStep1.style.color = 'red';
+            input.parentNode.appendChild(errorMessageStep1);
+        } else {
+            errorMessageStep1.textContent = message;
+        }
+    }
+
+    function removeErrorMessageStep1(input) {
+        const errorMessageStep1 = input.parentNode.querySelector('.error-message');
+        if (errorMessageStep1) {
+            errorMessageStep1.remove();
+        }
+    }
+});
+
+</script>
+
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
