@@ -53,7 +53,7 @@
                                     <h6 class="display-7 text-center ms-2 mt-1 fw-bold"><span class="d-none d-lg-block">Consuelo Chito Madrigal Foundation Inc.(CCMFI)</span><span class="d-lg-none">CCMFI</span></h6>
                                 </a>
                             </div>
-                            <div class="p-2 ms-auto"><a> <i class='bx bx-arrow-back me-2'></i>Back</a></div>
+                            <div class="p-2 ms-auto"> <a href="../index.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
                         </div>
 
 
@@ -100,6 +100,17 @@
                                     </select>
                                 </div>
 
+
+                                
+                                <div class="col-md-6 mb-3">
+                                    <label  class="form-label">Email Address: <span class="text-danger">*</span></label>
+                                    <input type="email" id="email" name="email" class="form-control form-control-sm" placeholder="Email Address" required>
+                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                    <div id="emailFeedback" class="invalid-feedback">
+                                        Please enter a valid email address.
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label  class="form-label">Active Contact Number: <span class="text-danger">*</span></label>
                                     <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
@@ -108,13 +119,6 @@
 
                             
 
-                                <div class="col-md-6 mb-3">
-                                    <label  class="form-label">Email Address: <span class="text-danger">*</span></label>
-                                    <input type="email" id="email" name="email" class="form-control form-control-sm" placeholder="Email Address" required>
-                                    <div id="emailFeedback" class="invalid-feedback">
-                                        Please enter a valid email address.
-                                    </div>
-                                </div>
 
 
                             
@@ -125,7 +129,7 @@
                                     <!--- End Personal Infomartion --->
                         </div>
                             <div class="d-flex justify-content-center gap-2 mt-2">
-                                <button class="btn btn-primary w-25 btn-sm" type="submit" name="submit" id="submitForm">Submit</button>
+                                <button class="btn btn-primary col-lg-5 col-12 btn-sm shadow" type="submit" name="submit" id="submitForm">Submit</button>
                             </div>
                         </form>
 
