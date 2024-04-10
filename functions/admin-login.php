@@ -29,7 +29,7 @@ require '../classes/database.php';
           header("Location:../index.php?scholar=errorEmail");
         exit();
     }
-    $hashed_input_password = password_hash('admin', PASSWORD_DEFAULT);
+    $hashed_input_password = password_hash($pass, PASSWORD_DEFAULT);
     if(!password_verify($pass, $adminPass)){
         // if not, create variable error 
         header("Location:../index.php?scholar=errorPassword");
