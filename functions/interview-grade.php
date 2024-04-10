@@ -1,14 +1,17 @@
 <?php
-
+session_start();
 if(isset($_POST['submit'])){
     require '../classes/admin.php';
     require '../classes/database.php';
 
     $database = new Database();
     $admin = new Admin($database);
+
+    $user_id = $_SESSION["id"];
     
 
     $currentDate = date('Y-m-d');
+    $currentDate1 = date('Y-m-d H:i:s');
     $newDate = date('Y-m-d', strtotime($currentDate . ' +7 days'));
     $id = $_POST['id'];
     $scholar_id = $_POST['scholar_id'];
@@ -76,7 +79,7 @@ Best regards,
 Consuelo "CHITO" Madrigal Foundation, Inc.
 ccmf2015main@gmail.com
 ';
-        $addRemarks = $admin->addRemarks($id, 2, $message, $currentDate);
+        $addRemarks = $admin->addRemarks($id, $user_id, 2, $message, $currentDate1);
         $database->sendEmail($email,"Invitation to Final Interview for Scholarship", $message);
         header('Location: ../Pages-admin/schedule-task.php?status=successGrade');
         exit();

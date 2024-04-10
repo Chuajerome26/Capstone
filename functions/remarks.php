@@ -6,6 +6,8 @@ require '../classes/database.php';
 $database = new Database;
 $admin = new Admin($database);
 
+$user_id = $_SESSION["id"];
+
 if(isset($_POST['submit'])){
 
     $id = $_POST["scholar_id"];
@@ -18,9 +20,9 @@ if(isset($_POST['submit'])){
 
     $email = $user['email'];
 
-    $stmt = $database->getConnection()->prepare('INSERT INTO admin_remarks (scholar_id, remarks, remarks_mess, date) VALUES (:id, :remarks, :remarks_mess, :date)');
+    $stmt = $database->getConnection()->prepare('INSERT INTO admin_remarks (scholar_id, admin_id, remarks, remarks_mess, date) VALUES (:id, :admin_id, :remarks, :remarks_mess, :date)');
 
-    if(!$stmt->execute(['id' => $id, 'remarks' => 0, 'remarks_mess' => $remarks, 'date' => $date])){
+    if(!$stmt->execute(['id' => $id, 'admin_id' => $user_id, 'remarks' => 0, 'remarks_mess' => $remarks, 'date' => $date])){
         header('Location: ../Pages-admin/admin-application.php?status=error');
         exit();
     }

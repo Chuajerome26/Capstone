@@ -1,11 +1,13 @@
 <?php
-
+session_start();
 if(isset($_POST['submit'])){
     require '../classes/admin.php';
     require '../classes/database.php';
 
     $database = new Database();
     $admin = new Admin($database);
+
+    $user_id = $_SESSION['id'];
 
     $arrayNames = array('IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
                     'BirthCertificate', 'Indigency', 'RecommendationLetter', 'GoodMoral', 'SchoolDiploma', 'Form137/138', 'AcceptanceLetter'
@@ -73,6 +75,7 @@ if(isset($_POST['submit'])){
     $email = $scholar_infor[0]['email'];
     $countCorrect = $admin->getApplicantsFilesCorrect($scholar_id);
     $currentDate = date('Y-m-d');
+    $currentDate1 = date('Y-m-d H:i:s');
     // Add 7 days to the current date
     $newDate = date('Y-m-d', strtotime($currentDate . ' +7 days'));
 
@@ -103,7 +106,7 @@ Best regards,
 Consuelo "CHITO" Madrigal Foundation Inc
 ccmf2015main@gmail.com
 ';
-        $addRemarks = $admin->addRemarks($scholar_id, 1, $message, $currentDate);
+        $addRemarks = $admin->addRemarks($scholar_id, $user_id, 1, $message, $currentDate1);
         $database->sendEmail($email,"Scholarship Application Evaluation - Completed", $message);
         
     }else{
@@ -136,7 +139,7 @@ Consuelo "CHITO" Madrigal Foundation Inc
 ccmf2015main@gmail.com
         ';
 
-        $addRemarks = $admin->addRemarks($scholar_id, 0, $message, $currentDate);
+        $addRemarks = $admin->addRemarks($scholar_id, $user_id, 0, $message, $currentDate1);
 
         $database->sendEmail($email,"Scholarship Application - File Evaluation Update", $message);
     }

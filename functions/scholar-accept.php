@@ -1,13 +1,17 @@
 <?php
+session_start();
 require '../classes/admin.php';
 require '../classes/database.php';
 
 $database = new Database;
 $admin = new Admin($database);
 
+$user_id = $_SESSION["id"];
+
 if(isset($_POST["accept"])){
     
     $id = $_POST["acceptId"];
+    $currentDate1 = date('Y-m-d H:i:s');
     $currentDate = date('Y-m-d');
 
     $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
@@ -44,7 +48,7 @@ Executive Director
 Consuelo "CHITO" Madrigal Foundation, Inc.
 ccmf2015main@gmail.com';
 
-    $addRemarks = $admin->addRemarks($id, 3, $acceptanceMessage, $currentDate);
+    $addRemarks = $admin->addRemarks($id, $user_id, 3, $acceptanceMessage, $currentDate1);
     $sentEmail = $database->sendEmail($email,"Congratulations! Scholarship Acceptance", $acceptanceMessage);
     header('Location: ../Pages-admin/admin-application.php?status=success');
     exit();

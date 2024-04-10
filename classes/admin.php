@@ -704,7 +704,7 @@ public function addAdminAccount($first_name, $last_name, $email, $token){
 
     // prepare insert statement for employee table
     $date = date('Y-m-d');
-    $sql = "INSERT INTO admin_info (f_name, l_name, email, token,date) VALUES (?,?,?,?,?)";
+    $sql = "INSERT INTO admin_info (f_name, l_name, email, token, date) VALUES (?,?,?,?,?)";
 
      // prepared statement
     $stmt = $this->database->getConnection()->prepare($sql);
@@ -816,16 +816,16 @@ public function findAdminByToken($token){
 
 }
 
-public function addRemarks($scholar_id, $remarks, $remarks_mess, $date){
+public function addRemarks($scholar_id, $admin_id, $remarks, $remarks_mess, $date){
 
     // prepare insert statement for employee table
-     $sql = "INSERT INTO admin_remarks (scholar_id, remarks, remarks_mess, date) VALUES (?,?,?,?)";
+     $sql = "INSERT INTO admin_remarks (scholar_id, admin_id, remarks, remarks_mess, date) VALUES (?,?,?,?,?)";
 
      // prepared statement
     $stmt = $this->database->getConnection()->prepare($sql);
 
     //if execution fail
-    if (!$stmt->execute([$scholar_id, $remarks, $remarks_mess, $date])) {
+    if (!$stmt->execute([$scholar_id, $admin_id, $remarks, $remarks_mess, $date])) {
         header("Location: ../Pages-admin/admin-application.php?status=error");
         exit();
     }
@@ -866,14 +866,14 @@ public function getAnnouncements(){
     $stmt = $this->database->getConnection()->query("SELECT * FROM admin_announcement ORDER BY ann_date DESC, ann_time DESC")->fetchAll();
     return $stmt;
 }
-public function postAnnouncement($announcement) {
-    $sql = "INSERT INTO admin_announcement (announcement, ann_date, ann_time) VALUES (?, CURDATE(), CURTIME())";
+public function postAnnouncement($admin_id, $announcement) {
+    $sql = "INSERT INTO admin_announcement (admin_id, announcement, ann_date, ann_time) VALUES (?,?, CURDATE(), CURTIME())";
 
     // prepared statement
     $stmt = $this->database->getConnection()->prepare($sql);
 
     // Execute the statement
-    if ($stmt->execute([$announcement])) {
+    if ($stmt->execute([$admin_id, $announcement])) {
         return true;
     } else {
         return false;

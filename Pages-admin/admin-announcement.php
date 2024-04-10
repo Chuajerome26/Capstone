@@ -18,7 +18,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         $announcement = $_POST['announcement'];
 
         // Insert the announcement
-        $result = $admin->postAnnouncement($announcement);
+        $result = $admin->postAnnouncement($id, $announcement);
 
         // Check if the announcement was successfully posted
         if ($result) {

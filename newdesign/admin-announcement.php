@@ -10,12 +10,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
     $database = new Database();
     $admin = new Admin($database);
 
+    $id = $_SESSION['id'];
+
     // Check if the Post button is clicked and announcement is not empty
     if (isset($_POST['post']) && !empty($_POST['announcement'])) {
         $announcement = $_POST['announcement'];
 
         // Insert the announcement
-        $result = $admin->postAnnouncement($announcement);
+        $result = $admin->postAnnouncement($id, $announcement);
 
         // Check if the announcement was successfully posted
         if ($result) {

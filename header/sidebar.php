@@ -77,7 +77,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
                     <hr class="sidebar-divider d-none d-md-block ">
 
-                    <a href="../newdesign/scholartabs.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'announcement') ? 'active-nav-item' : ''; ?>">
+                    <a href="../newdesign/admin-scholar.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'announcement') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
                         <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913z"/>
                         <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z"/>
@@ -85,7 +85,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class="ms-2">Scholar Tabs</span>
                     </a>
 
-                    <a href="../newdesign/scholarship_application.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'requestpending') ? 'active-nav-item' : ''; ?>">
+                    <a href="../newdesign/admin-application.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'requestpending') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
                         <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
                         <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z"/>
@@ -103,7 +103,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class="ms-2">Renewal</span>
                     </a>
 
-                    <a href="../newdesign/schedule-interview.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'eventcalendar') ? 'active-nav-item' : ''; ?>">
+                    <a href="../newdesign/schedule-task.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'eventcalendar') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
                         <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                         <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
@@ -111,7 +111,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class="ms-2">Schedule Interview</span>
                     </a>
 
-                    <a href="../newdesign/announcement.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'userlist') ? 'active-nav-item' : ''; ?>">
+                    <a href="../newdesign/admin-announcement.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'userlist') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-megaphone-fill" viewBox="0 0 16 16">
                         <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0zm-1 .724c-2.067.95-4.539 1.481-7 1.656v6.237a25 25 0 0 1 1.088.085c2.053.204 4.038.668 5.912 1.56zm-8 7.841V4.934c-.68.027-1.399.043-2.008.053A2.02
                         2.02 0 0 0 0 7v2c0 1.106.896 1.996 1.994 2.009l.496.008a64 64 0 0 1 1.51.048m1.39 1.081q.428.032.85.078l.253 1.69a1 1 0 0 1-.983 1.187h-.548a1 1 0 0 1-.916-.599l-1.314-2.48a66 66 0 0 1 1.692.064q.491.026.966.06"/>
@@ -330,7 +330,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                             <li><hr class="dropdown-divider"></li>
                             <li class="mb-1"><a class="dropdown-item" href="../../Pages/system/profile.php"><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <form action="../../header/Functionality.php" method="POST">
+                            <form action="../newdesign/admin-logout.php" method="POST">
                                 <li><button class="dropdown-item" type="submit"><i class="fa-solid fa-right-from-bracket me-3"></i>Sign Out</button></li>
                             </form>
                         </ul>

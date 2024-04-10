@@ -1,15 +1,18 @@
 <?php
+session_start();
 require '../classes/admin.php';
 require '../classes/database.php';
 
 $database = new Database;
 $admin = new Admin($database);
 
+$user_id = $_SESSION["id"];
+
 if(isset($_POST['submit'])){
 
     $id = $_POST["declineId"];
     $remarks = $_POST['remarks'];
-    $currentDate = date('Y-m-d');
+    $currentDate1 = date('Y-m-d H:i:s');
 
     $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
     $stmt->execute(['id' => $id]);
@@ -47,7 +50,7 @@ Sincerely,
 Consuelo "CHITO" Madrigal Foundation, Inc.
 ccmf2015main@gmail.com
     ';
-    $addRemarks = $admin->addRemarks($id, 5, $remarks, $currentDate);
+    $addRemarks = $admin->addRemarks($id, $user_id, 5, $remarks, $currentDate1);
     $sentEmail = $database->sendEmail($email,"Scholarship Application Status Update", $declineMessage);
 
     header('Location: ../Pages-admin/admin-application.php?status=successDecline');
