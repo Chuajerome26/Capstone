@@ -123,8 +123,6 @@
 
                             
 
-
-
                                 </div>
                                     <!--- End Personal Infomartion --->
                         </div>
