@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 
 
@@ -34,6 +35,20 @@
   <link rel="stylesheet"
   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
+
+  <style>
+    .broken-border {
+    border: none;
+    border-bottom: 2px dashed black; /* Customize as needed */
+    outline: none;
+}
+
+/* Optionally, you can style the label for better alignment */
+.form-label {
+    display: block;
+    margin-bottom: 5px; /* Adjust as needed */
+}   
+  </style>
 </head>
 <body class="bg-body-teritory">
 
@@ -252,37 +267,88 @@
                     <label  class="form-label">Weight: <span class="text-danger">*</span></label>
                     <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight" required>
                 </div>
+                <div class="fileUpload container">
+    <div class="hstack gap-3">
+        <div class="p-2">
+            <h5>Upload 2x2 Picture</h5>
+            <label class="fileSelect btn btn-sm  btn-primary">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event)"></label>
+        </div>
+        <div class="p-2 ms-auto">
+            <h4 class="mt-3">Usage</h4>
+            <div class="Preview mb-3" id="previewContainer1">
+                <!-- Your uploaded image preview will appear here -->
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Function to handle file upload
-    function handleFileUpload(event) {
-      const fileInput = event.target;
-      const files = fileInput.files;
-      
-      // Process each selected file
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        console.log("File name:", file.name);
-        console.log("File type:", file.type);
-        console.log("File size:", file.size, "bytes");
-      }
+    function handleFiles(event) {
+        const fileList = event.target.files;
+        const previewContainer = document.getElementById('previewContainer1');
+        previewContainer.innerHTML = '';
+
+        for (let i = 0; i < fileList.length; i++) {
+            const file = fileList[i];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                const img = document.createElement('img');
+                img.src = reader.result;
+                img.alt = file.name;
+                img.classList.add('previewImage');
+                previewContainer.appendChild(img);
+            }
+
+            reader.readAsDataURL(file);
+        }
     }
+</script>
 
-    // File input element
-    const fileInput = document.getElementById('file-upload');
+    <div class="fileUpload container">
+        <div class="hstack gap-3">
+            <div class="p-2">
+                <h5>Upload PDF Picture</h5>
+                <label class="fileSelect btn btn-sm btn-primary">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event)"></label>
+            </div>
+            <div class="p-2 ms-auto">
+                <h4 class="mt-3">Usage</h4>
+                <div class="Preview mb-3" id="previewContainer">
+                    <!-- File names will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+   
 
-    // Event listener for file input change
-    fileInput.addEventListener('change', handleFileUpload);
 
-    // Event listener for file browser link click
-    const fileBrowserLink = document.getElementById('file-browser');
-    fileBrowserLink.addEventListener('click', function(event) {
-      event.preventDefault();
-      fileInput.click();
-    });
-  });
-        </script>
+    <script>
+    function handleFiles1(event) {
+        const fileList = event.target.files;
+        const previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = '';
+
+        for (let i = 0; i < fileList.length; i++) {
+            const file = fileList[i];
+            if (file.type === 'application/pdf') {
+                if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                    const fileName = document.createElement('a');
+                    fileName.textContent = file.name;
+                    fileName.href = URL.createObjectURL(file);
+                    fileName.target = '_blank';
+                    fileName.style.display = 'block';
+                    previewContainer.appendChild(fileName);
+                } else {
+                    alert('File size exceeds the maximum limit of 25MB.');
+                }
+            } else {
+                alert('Please select only PDF files.');
+            }
+        }
+    }
+</script>
+
+
 
                
               <hr>
@@ -973,7 +1039,7 @@
                     
                     <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Letter of Intent</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="letterIntent" accept="application/pdf" required>
+                    <input class="form-control form-control-sm border-bottom border-bottom broken-border" type="file" name="letterIntent" accept="application/pdf" required>
                     </div>
 
                     <div class="col-md-4 mb-3">
@@ -1044,8 +1110,8 @@
 
               
             <div class="d-flex justify-content-center gap-2">
-                            <button class="btn btn-secondary btn-sm col-lg-4 col-6 prev-step" type="button">Previous</button>
-            <button class="btn btn-primary w-25" type="submit" name="submit" id="submitForm" onclick="updateRowCount()" disabled>Submit</button>
+                <button class="btn btn-secondary btn-sm col-lg-4 col-6 prev-step" type="button">Previous</button>
+            <button class="btn btn-primary col-lg-4 col-6 btn-sm" type="submit" name="submit" id="submitForm" onclick="updateRowCount()" disabled>Submit</button>
             </div>
 
         </div>  

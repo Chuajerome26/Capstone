@@ -84,7 +84,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                    <table id="scholars" class="table table-striped table-hover">
+                                    <table id="scholars" class="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
