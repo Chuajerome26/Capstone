@@ -35,7 +35,28 @@
   <link rel="stylesheet"
   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
+  <style>
+.fileBox {
+    border: 1px solid #ccc; /* Add a border */
+    padding: 5px; /* Add padding */
+    margin-bottom: 10px; /* Add some spacing between boxes */
+}
 
+
+.Preview {
+        width: 200px; /* Set the width and height to the same value to make it a circle */
+        height: 200px; /* Adjust this value as needed */
+        margin: auto; /* Center the circular container horizontally */
+    }
+
+
+
+    .Preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
   
 </head>
 <body class="bg-body-teritory">
@@ -129,911 +150,795 @@
     </script>
         <form id="ccmfForm" method="POST" action="../functions/applicants-register.php" enctype="multipart/form-data">
         <!------- STEP 1 ------->
-            
-        <div class="step" id="step1">
-            <h5 class="text-primary"> Personal Information </h5>
-            <div class="border-bottom mb-3 border border-1"></div>
-                <div class="row">
-                <!--- Personal Infomartion --->
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">First Name:<span class="text-danger">*</span></label>
-                    <input type="text" name="fName" class="form-control form-control-sm" placeholder="First Name" required>
-                </div>
-
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Middle Name:</label>
-                    <input type="text" name="mName" class="form-control form-control-sm" placeholder="Optional">
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Last Name:<span class="text-danger">*</span></label>
-                    <input type="text" name="lName" class="form-control form-control-sm" placeholder="Last Name" required>
-                </div>
-
-                <div class="col-md-1 mb-3">
-                    <label  class="form-label">Suffix:</label>
-                    <select class="form-select form-select-sm" name="suffix" aria-label="Default select example">
-                    <option selected>SF</option>
-                    <option value="Jr.">Jr.</option>
-                    <option value="Sr.">Sr.</option>
-                    <option value="II">II</option>
-                    <option value="III">III</option>
-                    <option value="IV">IV</option>
-                    </select>
-                </div>
-
-                <div class="col-md-2 mb-3">
-                    <label class="form-label">Gender: <span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="gender" id="genderSelect" aria-label="Default select example" onchange="checkOtherOption('genderSelect', 'otherOption', 'otherGenderInput')" required>
-                        <option selected>Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="LGBTQIA+">LGBTQIA+</option>
-                        <option value="Others">Others</option>
-                    </select>
-                    <div id="otherOption" style="display: none;">
-                        <input class="form-control form-control-sm mt-2" type="text" name="genderOtherOption" id="otherGenderInput" placeholder="Gender preference">
-                    </div>
-                </div>
-               
-
-                <div class="col-md-5  mb-3">
-                    <label  class="form-label">Date of Birth: <span class="text-danger">*</span></label>
-                    <input type="date" name="dofBirth" class="form-control form-control-sm" required>
-                </div>
-
-                <div class="col-md-5 mb-3">
-                    <label  class="form-label">Birth place: <span class="text-danger">*</span></label>
-                    <input type="text" name="bPlace" class="form-control form-control-sm" placeholder="Birthplace" required>
-                </div>
-             
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Civil Status: <span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="cStatus" aria-label="Default select example" required>
-                    <option selected>Civil Status</option>
-                    <option value="Single">Single</option>
-                    <option value="Married">Married</option>
-                    <option value="Widowed">Widowed</option>
-                    <option value="Legally Separated">Legally Separated</option>
-                    </select>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Citizenship: <span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="citizenship" id="citizenshipSelect" aria-label="Default select example" onchange="checkOtherOption('citizenshipSelect', 'otherCitizenshipOption', 'otherCitizenshipInput')" required>
-                        <option selected>Citizenship</option>
-                        <option value="Filipino">Filipino</option>
-                        <option value="Korean">Korean</option>
-                        <option value="Japanese">Japanese</option>
-                        <option value="Chinese">Chinese</option>
-                        <option value="Others">Others</option>
-                    </select>
-                    <div id="otherCitizenshipOption" style="display: none;">
-                        <input class="form-control form-control-sm mt-2" type="text" name="citizenshipOtherOption" id="otherCitizenshipInput" placeholder="Other Citizenship">
-                    </div>
-                </div>
-
-
-               
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Religion: <span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="religion" aria-label="Default select example" required>
-                    <option selected>Religion</option>
-                    <option value="Roman Catholicism">Roman Catholicism</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Protestantism">Protestantism</option>
-                    <option value="Iglesia ni Cristo (Church of Christ)">Iglesia ni Cristo (Church of Christ)</option>
-                    <option value="Buddhism">Buddhism</option>
-                    <option value="Hinduism">Hinduism</option>
-                    <option value="Indigenous">Indigenous</option>
-                    </select>
-                </div>
-
-
-                <div class="col-md-6 mb-3">
-                    <label  class="form-label">Active Contact Number: <span class="text-danger">*</span></label>
-                    <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label  class="form-label">Email Address: <span class="text-danger">*</span></label>
-                    <input type="email" id="email" name="email" class="form-control form-control-sm" placeholder="Email Address" required>
-                    <div id="emailFeedback" class="invalid-feedback">
-                        Please enter a valid email address.
-                    </div>
-                </div>
-
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Height: <span class="text-danger">*</span></label>
-                    <input type="text" name="height" class="form-control form-control-sm" placeholder="Height" required>
-                </div>
-
-                
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Weight: <span class="text-danger">*</span></label>
-                    <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight" required>
-                </div>
-
-
-                <div class="fileUpload container">
-                    <div class="p-2">
-                        <div class="Preview mb-3 max-width-10 rounded-circle overflow-hidden" id="previewContainer1">
-                        <img src="../images/consuelo.jpg" alt="Image">
-                        </div>
-                        <h5>Upload 2x2 Picture</h5>
-                        <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event)"></label>
-                    </div>
-                </div>
-
-<script>
-    function handleFiles(event) {
-        const fileList = event.target.files;
-        const previewContainer = document.getElementById('previewContainer1');
-        previewContainer.innerHTML = '';
-
-        const imageSize = 200; // Set the desired size for the preview images
-
-        for (let i = 0; i < fileList.length; i++) {
-            const file = fileList[i];
-            const reader = new FileReader();
-
-            reader.onload = function() {
-                const img = document.createElement('img');
-                img.src = reader.result;
-                img.alt = file.name;
-                img.classList.add('previewImage');
-                img.style.width = imageSize + 'px'; // Set width
-                img.style.height = imageSize + 'px'; // Set height
-                previewContainer.appendChild(img);
-            }
-
-            reader.readAsDataURL(file);
-        }
-    }
-</script>
-
-<style>
-    .Preview {
-        width: 200px; /* Set the width and height to the same value to make it a circle */
-        height: 200px; /* Adjust this value as needed */
-    }
-</style>
-
-
-
-<style>
-    .Preview1 {
-        width: 200px; /* Set the width and height to the same value to make it a circle */
-         /* Adjust this value as needed */
-    }
-</style>
-
-
-    <div class="fileUpload container">
-            <div class="p-2">
-                <div class="Preview1 " id="previewContainer">
-                    <div class="card">
-                        <div class="card-body">
-                        <div class="hstack gap-3">
-                            <div class="p-2">First item</div>
-                            <div class="p-2">Second item</div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-                <h5>Upload PDF Picture</h5>
-                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event)"></label>
-            </div>
-    </div>
-   
-
-
-    <script>
-    function handleFiles1(event) {
-        const fileList = event.target.files;
-        const previewContainer = document.getElementById('previewContainer');
-        previewContainer.innerHTML = '';
-
-        for (let i = 0; i < fileList.length; i++) {
-            const file = fileList[i];
-            if (file.type === 'application/pdf') {
-                if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                    const fileName = document.createElement('a');
-                    fileName.textContent = file.name;
-                    fileName.href = URL.createObjectURL(file);
-                    fileName.target = '_blank';
-                    fileName.style.display = 'block';
-                    previewContainer.appendChild(fileName);
-                } else {
-                    alert('File size exceeds the maximum limit of 25MB.');
-                }
-            } else {
-                alert('Please select only PDF files.');
-            }
-        }
-    }
-</script>
-
-
-
-               
-              <hr>
-
-              <h6>Present Address</h6>
-
-                    <div class="col-md-3 mb-3">
-                                <label  class="form-label">Province: <span class="text-danger">*</span></label>
-                                <input type="text" name="present_province" class="form-control form-control-sm" value="Metro Manila" readonly>
-                        </div>
-                    
-                        <div class="col-md-3 mb-3">
-                                    <label  class="form-label">City: <span class="text-danger">*</span></label>
-                                    <input type="text" name="present_city" class="form-control form-control-sm" value="Quezon City" readonly>
-                        </div>
-
-                    
-
-                    <div class="col-md-2 mb-3">
-                    <label  class="form-label">Barangay:<span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="address" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()" required>
-                    <option selected>Barangay</option>
-                    <!--District 1-->
-                    <option value="Alicia" data-district="1">Alicia</option>
-                    <option value="Bagong Pag-asa" data-district="1">Bagong Pag-asa</option>
-                    <option value="Bahay Toro" data-district="1">Bahay Toro</option>
-                    <option value="Balingasa" data-district="1">Balingasa</option>
-                    <option value="Bungad" data-district="1">Bungad</option>
-                    <option value="Damar" data-district="1">Damar</option>
-                    <option value="Damayan" data-district="1">Damayan</option>
-                    <option value="Del Monte" data-district="1">Del Monte</option>
-                    <option value="Katipunan" data-district="1">Katipunan</option>
-                    <option value="Lourdes" data-district="1">Lourdes</option>
-                    <option value="Maharlika" data-district="1">Maharlika</option>
-                    <option value="Manresa" data-district="1">Manresa</option>
-                    <option value="Mariblo" data-district="1">Mariblo</option>
-                    <option value="Masambong" data-district="1">Masambong</option>
-                    <option value="N.S Amoranto" data-district="1">N.S Amoranto</option>
-                    <option value="Nayong Kanluran" data-district="1">Nayong Kanluran</option>
-                    <option value="Paang Bundok" data-district="1">Paang Bundok</option>
-                    <option value="Pag-ibig sa Nayon" data-district="1">Pag-ibig sa Nayon</option>
-                    <option value="Paltok" data-district="1">Paltok</option>
-                    <option value="Paraiso" data-district="1">Paraiso</option>
-                    <option value="Phil-Am" data-district="1">Phil-Am</option>
-                    <option value="Project 6" data-district="1">Project 6</option>
-                    <option value="Ramon Magsaysay" data-district="1">Ramon Magsaysay</option>
-                    <option value="Saint Peter" data-district="1">Saint Peter</option>
-                    <option value="Salvacion" data-district="1">Salvacion</option>
-                    <option value="San Antonio" data-district="1">San Antonio</option>
-                    <option value="San Isidro Labrador" data-district="1">San Isidro Labrador</option>
-                    <option value="San Jose" data-district="1">San Jose</option>
-                    <option value="Baesa" data-district="1">Santa Cruz</option>
-                    <option value="Santa Teresita" data-district="1">Santa Teresita</option>
-                    <option value="Santo Cristo" data-district="1">Santo Cristo</option>
-                    <option value="Santo Domingo" data-district="1">Santo Domingo</option>
-                    <option value="Siena" data-district="1">Siena</option>
-                    <option value="Talayan" data-district="1">Talayan</option>
-                    <option value="Vasra" data-district="1">Vasra</option>
-                    <option value="Veterans Village" data-district="1">Veterans Village</option>
-                    <option value="West Triangle" data-district="1">West Triangle</option>
-                    <!--District 2-->
-                    <option value="Bagong Silangan" data-district="2">Bagong Silangan</option>
-                    <option value="Batasan Hills" data-district="2">Batasan Hills</option>
-                    <option value="Commonwealth" data-district="2">Commonwealth</option>
-                    <option value="Holy Spirit" data-district="2">Holy Spirit</option>
-                    <option value="Payatas" data-district="2">Payatas</option>
-                    <!--District 3-->
-                    <option value="Amihan" data-district="3">Amihan</option>
-                    <option value="Bagumbayan" data-district="3">Bagumbayan</option>
-                    <option value="Bagumbuhay" data-district="3">Bagumbuhay</option>
-                    <option value="Bayanihan" data-district="3">Bayanihan</option>
-                    <option value="Blue Ridge A" data-district="3">Blue Ridge A</option>
-                    <option value="Blue Ridge B" data-district="3">Blue Ridge B</option>
-                    <option value="Camp Aguinaldo" data-district="3">Camp Aguinaldo</option>
-                    <option value="Dioquino Zobel" data-district="3">Dioquino Zobel</option>
-                    <option value="Duyan duyan" data-district="3">Duyan duyan</option>
-                    <option value="E. Rodriguez" data-district="3">E. Rodriguez</option>
-                    <option value="East Kamias" data-district="3">East Kamias</option>
-                    <option value="Escopa I" data-district="3">Escopa I</option>
-                    <option value="Escopa II" data-district="3">Escopa II</option>
-                    <option value="Escopa III" data-district="3">Escopa III</option>
-                    <option value="Escopa IV" data-district="3">Escopa IV</option>
-                    <option value="Libis" data-district="3">Libis</option>
-                    <option value="Loyola Heights" data-district="3">Loyola Heights</option>
-                    <option value="Mangga" data-district="3">Mangga</option>
-                    <option value="Marilag" data-district="3">Marilag</option>
-                    <option value="Masagana" data-district="3">Masagana</option>
-                    <option value="Matandang Balara" data-district="3">Matandang Balara</option>
-                    <option value="Milagrosa" data-district="3">Milagrosa</option>
-                    <option value="Pansol" data-district="3">Pansol</option>
-                    <option value="Quirino 2-A" data-district="3">Quirino 2-A</option>
-                    <option value="Quirino 2-B" data-district="3">Quirino 2-B</option>
-                    <option value="Quirino 2-C" data-district="3">Quirino 2-C</option>
-                    <option value="Quirino 3-A" data-district="3">Quirino 3-A</option>
-                    <option value="Quirino 3-B" data-district="3">Quirino 3-B (Claro)</option>
-                    <option value="San Roque" data-district="3">San Roque</option>
-                    <option value="Silangan" data-district="3">Silangan</option>
-                    <option value="Socorro" data-district="3">Socorro</option>
-                    <option value="St. Ignatius" data-district="3">St. Ignatius</option>
-                    <option value="Tagumpay" data-district="3">Tagumpay</option>
-                    <option value="Ugong Norte" data-district="3">Ugong Norte</option>
-                    <option value="Villa Mara Clara" data-district="3">Villa Mara Clara</option>
-                    <option value="West Kamias" data-district="3">West Kamias</option>
-                    <option value="White Plains" data-district="3">White Plains</option>
-                    <!--District 4-->
-                    <option value="Bagong Lipunan ng Crame" data-district="4">Bagong Lipunan ng Crame</option>
-                    <option value="Botocan" data-district="4">Botocan</option>
-                    <option value="Central" data-district="4">Central</option>
-                    <option value="Damayang Lagi" data-district="4">Damayang Lagi</option>
-                    <option value="Don Manuel" data-district="4">Don Manuel</option>
-                    <option value="Doña Aurora" data-district="4">Doña Aurora</option>
-                    <option value="Doña Imelda" data-district="4">Doña Imelda</option>
-                    <option value="Doña Josefa" data-district="4">Doña Josefa</option>
-                    <option value="Duyan duyan" data-district="4">Duyan duyan</option>
-                    <option value="Horseshoe" data-district="4">Horseshoe</option>
-                    <option value="Immaculate Concepcion" data-district="4">Immaculate Concepcion</option>
-                    <option value="Kalusugan" data-district="4">Kalusugan</option>
-                    <option value="Kamuning" data-district="4">Kamuning</option>
-                    <option value="Kaunlaran" data-district="4">Kaunlaran</option>
-                    <option value="Kristong Hari" data-district="4">Kristong Hari</option>
-                    <option value="Krus na Ligas" data-district="4">Krus na Ligas</option>
-                    <option value="Laging Handa " data-district="4">Laging Handa </option>
-                    <option value="Malaya" data-district="4">Malaya</option>
-                    <option value="Mariana" data-district="4">Mariana</option>
-                    <option value="Obrero" data-district="4">Obrero</option>
-                    <option value="Old Capitol Site" data-district="4">Old Capitol Site</option>
-                    <option value="Paligsahan" data-district="4">Paligsahan</option>
-                    <option value="Pinagkaisahan" data-district="4">Pinagkaisahan</option>
-                    <option value="Pinyahan" data-district="4">Pinyahan</option>
-                    <option value="Roxas" data-district="4">Roxas</option>
-                    <option value="Sacred Heart" data-district="4">Sacred Heart</option>
-                    <option value="San Isidro Galas" data-district="4">San Isidro Galas</option>
-                    <option value="San Martin de Porres" data-district="4">San Martin de Porres</option>
-                    <option value="San Vicente" data-district="4">San Vicente</option>
-                    <option value="Santol" data-district="4">Santol</option>
-                    <option value="Sikatuna Village" data-district="4">Sikatuna Village</option>
-                    <option value="South Triangle" data-district="4">South Triangle</option>
-                    <option value="Sto. Niño" data-district="4">Sto. Niño</option>
-                    <option value="Tatalon" data-district="4">Tatalon</option>
-                    <option value="Teacher's Village East" data-district="4">Teacher's Village East</option>
-                    <option value="Teacher's Village West" data-district="4">Teacher's Village West</option>
-                    <option value="UP Campus" data-district="4">UP Campus</option>
-                    <option value="UP Village" data-district="4">UP Village</option>
-                    <option value="Valencia" data-district="4">Valencia</option>
-                    <!--District 5-->
-                    <option value="Bagbag" data-district="5">Bagbag</option>
-                    <option value="Capri" data-district="5">Capri</option>
-                    <option value="Fairview" data-district="5">Fairview</option>
-                    <option value="Greater Lagro" data-district="5">Greater Lagro</option>
-                    <option value="Gulod" data-district="5">Gulod</option>
-                    <option value="Kaligayahan" data-district="5">Kaligayahan</option>
-                    <option value="Nagkaisang Nayon" data-district="5">Nagkaisang Nayon</option>
-                    <option value="North Fairview" data-district="5">North Fairview</option>
-                    <option value="Novaliches" data-district="5">Novaliches</option>
-                    <option value="Pasong Putik" data-district="5">Pasong Putik</option>
-                    <option value="San Agustin" data-district="5">San Agustin</option>
-                    <option value="San Bartolome" data-district="5">San Bartolome</option>
-                    <option value="Sta. Lucia" data-district="5">Sta. Lucia</option>
-                    <option value="Sta. Monica" data-district="5">Sta. Monica</option>
-                    <!--District 6-->
-                    <option value="Apolonio Samson" data-district="6">Apolonio Samson</option>
-                    <option value="Baesa" data-district="6">Baesa</option>
-                    <option value="Balon Bato" data-district="6">Balon Bato</option>
-                    <option value="Culiat" data-district="6">Culiat</option>
-                    <option value="New Era" data-district="6">New Era</option>
-                    <option value="Pasong Tamo" data-district="6">Pasong Tamo</option>
-                    <option value="Sangandaan" data-district="6">Sangandaan</option>
-                    <option value="Sauyo" data-district="6">Sauyo</option>
-                    <option value="Talipapa" data-district="6">Talipapa</option>
-                    <option value="Tandang Sora" data-district="6">Tandang Sora</option>
-                    <option value="Unang Sigaw" data-district="6">Unang Sigaw</option>
-                    </select>
-                    </div>
-
-
-                    <div class="col-md-2 mb-3">
-                            <label  class="form-label">District: <span class="text-danger">*</span></label>
-                            <input type="text" name="present_district" id="districtField" class="form-control form-control-sm" placeholder="District" required>
-                    </div>
-
-
-                    <div class="col-md-2 mb-3">
-                            <label  class="form-label">Zip Code:<span class="text-danger">*</span></label>
-                            <input type="text" name="present_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
-                    </div>
-
-
-                    <h6 class="mt-3"> Permanent Address</h6>
-                    <!--Auto Fill na to young padre-->
-                    <div class="col-md-3 mb-3">
-                    <label class="form-label">Province:<span class="text-danger">*</span></label>
-                    <input type="text" name="permanent_province" class="form-control form-control-sm" placeholder="Province" required>
-                    <input type="checkbox" id="sameAsPresent"> <label for="sameAsPresent"><small class="text-muted">Same as Present Address</small></label>
-
-                    </div>
-
-
-                    <div class="col-md-3 mb-3">
-                            <label  class="form-label">City:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_city" class="form-control form-control-sm" placeholder="City" required>
-                    </div>
-
-                    <div class="col-md-2 mb-3">
-                            <label  class="form-label">Barangay:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_barangay" class="form-control form-control-sm" placeholder="Barangay" required>
-                    </div>
-
-                    <div class="col-md-2 mb-3">
-                            <label  class="form-label">District:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_district" class="form-control form-control-sm" placeholder="District" required>
-                    </div>
-
-                    <div class="col-md-2 mb-3">
-                            <label  class="form-label">Zip Code:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
-                    </div>
-
-                <br>
-
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Do you have Medical Conditions? <span class="text-secondary">(If yes, please specify) </span></label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="pwdOption" value="yes" onclick="showOtherScholarshipField('inputeMedical')">
-                        <label class="form-check-label">Yes</label>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="form-check-input" type="radio" name="pwdOption" value="no" onclick="hideOtherScholarshipField('inputeMedical')">
-                        <label class="form-check-label">No</label>
-                    </div>
-                </div>
-                <!--Lalabas lang to gar kapag nag yes-->
-                <div class="col-md-6 mb-6" id="inputeMedical" style="display: none;">
-                    <label  class="form-label">Please specify <span class="text-secondary">(if applicable) </span>:</label>
-                    <select class="form-select form-select-sm" name="pwd" aria-label="Default select example">
-                    <option selected>Options</option>
-                    <option value="Physical Disabilities">Physical Disabilities</option>
-                    <option value="Visual Impairments">Visual Impairments</option>
-                    <option value="Hearing Impairments">Hearing Impairments</option>
-                    <option value="Intellectual Disabilities">Intellectual Disabilities</option>
-                    <option value="Psychological or Mental Health Disabilities">Psychological or Mental Health Disabilities</option>
-                    <option value="Learning Disabilities">Learning Disabilities</option>
-                    <option value="Neurological Disabilities">Neurological Disabilities</option>
-                    <option value="Chronic Health Conditions">Chronic Health Conditions</option>
-                    <option value="Speech or Communication Disorders">Speech or Communication Disorders</option>
-                    </select>
-                </div>
-
-               
-                </div>
-
-                <br>
-
-                <h5 class="text-primary"> Academic Information </h5>
-                <div class="border-bottom mb-3 border border-1"></div>
-
-
-                <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Elementary School:</label>
-                    <input type="text" name="eSchool" class="form-control form-control-sm" placeholder="Elementary School" required>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="eAve" class="form-control form-control-sm" placeholder="Academic Average" required>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Achievements::</label>
-                    <input type="text" name="eAchievements" class="form-control form-control-sm" placeholder="Achievements:" >
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Junior High School:</label>
-                    <input type="text" name="jhSchool" class="form-control form-control-sm" placeholder="Junior High School" required>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="jhAve" class="form-control form-control-sm" placeholder="Academic Average" required>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Achievements:</label>
-                    <input type="text" name="jhAchievements" class="form-control form-control-sm" placeholder="Achievement" >
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Senior High School:</label>
-                    <input type="text" name="shSchool" class="form-control form-control-sm" placeholder="Senior High School" required>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="shAve" class="form-control form-control-sm" placeholder="Academic Average"required>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Achievements:</label>
-                    <input type="text" name="shAchievements" class="form-control form-control-sm" placeholder="Achievements">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Strand and Year Level:</label>
-                    <input type="text" name="shCourse" class="form-control form-control-sm" placeholder="Strand and Year Level" required>
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">College:</label>
-                    <input type="text" name="cSchool" class="form-control form-control-sm" placeholder="College">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="cAve" class="form-control form-control-sm" placeholder="Academic Average">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Achievements:</label>
-                    <input type="text" name="cAchievements" class="form-control form-control-sm" placeholder="Achievements">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Course and Year Level:</label>
-                    <input type="text" name="cCourse" class="form-control form-control-sm" placeholder="Course and Year Level:">
-                </div>
-
-
-                
-                <div class="hstack gap-3">
-
-                    <div>
-                        <h5 class="text-primary mt-4">Grade Information </h5>
-                    </div>
-                    <div >
-                    <button class="btn btn-primary btn-sm shadow mb-1 mt-4" onclick="addGradeRow(event)">Add Row</button>
-                    </div>
-                    </div>
-                    <div class="border-bottom mb-3 border border-1"></div>
-
-                    <div class="sub">
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <label class="form-label">Subject:</label>
-                            <input type="text" name="sub[]" class="form-control form-control-sm" placeholder="Subject" required>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Unit:</label>
-                            <input type="text" name="totalUnits[]" class="form-control form-control-sm" placeholder="Unit">
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label class="form-label">Grade:</label>
-                            <input type="text" name="gAverage[]" class="form-control form-control-sm" placeholder="Grade" required>
-                        </div>
-
-                        <div class="col-md-2  button-column">
-                        <label class="form-label text-white">1</label>
-                        </div>
-                        <hr class="border border-2" style="color: black;">
-                    </div>
-                    </div>
-
-
-                </div>
-
-
-
-
-                    <!--- End Personal Infomartion --->
-
-        <div class="d-flex justify-content-center">
-        <button type="button" id="next" class="btn btn-primary btn-sm col-lg-4 col-12 next-step" type="button">Next</button>
-        </div>
-    </div>  
-
-          <!----- STEP 2 ------->
-          <div class="step" id="step2" style="display: none;">
-               <!-- - Family Infomartion --->
-                
-                <div class="row mt-4">
-                    <h5 class="text-primary"> Family Information (if applicable) </h5>
-                    <div class="border-bottom mb-3 border border-1"></div>
-                            
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Father Name:</label>
-                    <input type="text" name="fatherName" class="form-control form-control-sm" placeholder="Father Name">
-                </div>
-            
-
-                <div class="col-md-1 mb-3">
-                    <label  class="form-label">Age:</label>
-                    <input type="text" name="fAge" id="fAge" class="form-control form-control-sm" placeholder="Age">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Occupation:</label>
-                    <input type="text" name="fOccupation" class="form-control form-control-sm" placeholder="Occupation">
-                </div>
-
-                <div class="col-md-2 mb-3">
-                    <label  class="form-label">Monthly Income:</label>
-                    <input type="text" name="fatherIncome" id="fatherIncome" class="form-control form-control-sm" placeholder="Monthly Income">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Contact Number:</label>
-                    <input type="text" name="fatherAttained" class="form-control form-control-sm" placeholder="Contact Number">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Mother Name:</label>
-                    <input type="text" name="motherName" class="form-control form-control-sm" placeholder="Mother Name">
-                </div>
-             
-
-                <div class="col-md-1 mb-3">
-                    <label  class="form-label">Age:</label>
-                    <input type="text" name="motherAge" id="motherAge" class="form-control form-control-sm" placeholder="Age">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Occupation:</label>
-                    <input type="text" name="motherOccupation" class="form-control form-control-sm" placeholder="Occupation">
-                </div>
-
-                <div class="col-md-2 mb-3">
-                    <label  class="form-label">Monthly Income:</label>
-                    <input type="text" name="motherIncome" id="motherIncome" class="form-control form-control-sm" placeholder="Monthly Income">
-                </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Contact Number:</label>
-                    <input type="text" name="motherAttained" class="form-control form-control-sm" placeholder="Contact Number">
-                </div>
-
-
-                
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Guardian:</label>
-                    <input type="text" name="guardian" class="form-control form-control-sm" placeholder="Gurdian">
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Emergency Contact:</label>
-                    <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact">
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label  class="form-label">Relationship:</label>
-                    <input type="text" name="relationship" class="form-control form-control-sm" placeholder="Relationship">
-                </div>
-
-                
-
-                    
-            
-                </div> 
-                        <!--- End Family Infomartion --->
-
-                        <!--- Siblings Information --->
-            <div class="row mt-4">
-                <div class="hstack gap-3">
-                    <div class="mt-1">
-                    <h5 class="text-primary"> Sibling/s Information </h5>
-                    </div>
-                    <div class="">
-                        <button class="btn btn-primary btn-sm shadow " onclick="addSiblingRow(event)">Add Row</button>
-                    </div>
-                </div>
-
-                <div class="border-bottom mb-3 border border-1"></div>
-
-                <div id="siblingsContainer">
-                    <div class="box sibling-row">
-                    <div class="row">
-                    
-                        <div class="col-md-3 mb-3">
-                        <label class="form-label">Name:</label>
-                        <input type="text" name="sName[]" class="form-control form-control-sm" placeholder="Name">
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                        <label class="form-label">Age:</label>
-                        <input type="text" name="sAge[]" id="sAge" class="form-control form-control-sm" placeholder="Age">
-                        </div>
-
-
-                        <div class="col-md-3 mb-3">
-                        <label class="form-label">Occupation:</label>
-                        <input type="text" name="sOccupation[]" class="form-control form-control-sm" placeholder="Occupation">
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                        <label class="form-label">Civil Status:</label>
-                        <input type="text" name="sCstatus[]" class="form-control form-control-sm" placeholder="Civil Status">
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                        <label class="form-label">Religion:</label>
-                        <input type="text" name="sReligion[]" class="form-control form-control-sm" placeholder="Religion">
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                        <label class="form-label">Educational Attainment:</label>
-                        <input type="text" name="sEattained[]" class="form-control form-control-sm" placeholder="Educational Attainment">
-                        </div>
-                        
-                        <hr class="border border-2" style="color: black;">
-                    </div>
-                    </div>
-                </div>
-                </div>
-
-
-
-            <div class="d-flex justify-content-center gap-2">
-            <button class="btn btn-secondary btn-sm col-lg-4 col-6 prev-step" type="button">Previous</button>
-            <button  class="btn btn-primary btn-sm col-lg-4  col-6 next-step" type="button">Next</button>
-            </div>
-        </div>  
-        
-
-          <!------- STEP 3 ------->
-          <div class="step" id="step3" style="display: block;">
-            <h5 class="text-primary">COLLEGES/UNIVERSITIES OF CHOICE  </h5>
-            <div class="border-bottom mb-3 border border-1"></div>
-        
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                    <label class="form-label">Did you stop attending college? </label><br>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="stop_attend" value="yes" onclick="showOtherScholarshipField('inputAttend')">
-                        <label class="form-check-label">Yes</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="stop_attend" value="no" onclick="hideOtherScholarshipField('inputAttend')">
-                        <label class="form-check-label">No</label>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-3" id="inputAttend" style="display: none;">
-                            <label class="form-label">If yes, type your reason here</label>
-                            <input type="text" name="reason_attend" class="form-control form-control-sm" placeholder="Reason">
-                </div>
-                <div class="col-md-3 mb-3" >
-                <label  class="form-label">Year Level:</label>
-                    <select class="form-select form-select-sm" name="yrlvl" aria-label="Default select example">
-                    <option selected>Year Level</option>
-                    <option value="First year">First year</option>
-                    <option value="Second year">Second year</option>
-                    <option value="Third year">Third year</option>
-                    <option value="Fourth year">Fourth year</option>
-                    <option value="Fifth year">Fifth year</option>
-                    </select>
-                </div>
-                <div class="col-md-3 mb-3">
-                <label  class="form-label">Semester:</label>
-                    <select class="form-select form-select-sm" name="semester" aria-label="Default select example">
-                    <option selected>Semester</option>
-                    <option value="First semester">First semester</option>
-                    <option value="Second semester">Second semester</option>
-                    <option value="Third semester">Third semester</option>
-                    </select>
-                </div>
-            </div>
-
-
-            <div class="hstack gap-3">
-                <div class="">
-                    <h6 class="text-black mt-2"> Did you take entrance exam? <span class="text-secondary">(If you take the entrance exam, click 'Yes.')</span></h6>
-                </div>
-              
-            </div>
-            <div class="p-2">
-            <button class="btn btn-primary btn-sm shadow me-3 col-lg-1 " type="button" onclick="addSchoolRow()">Yes</button><span class="text-secondary">(To add more rows, click 'Yes' again.)</span>
-            </div>
-
-            <div id="school-rows">
-                <!-- Existing input row -->
-                
-            </div>
-
-
-
-
-<div class="col-md-12 mb-2 px-0 mt-4">
-    <h6 class="">Did you apply for / are you a recipient of another scholarship?</h6>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="otherScholarship" value="yes" onclick="showOtherScholarshipField('inputYes')">
-        <label class="form-check-label">Yes</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="otherScholarship" value="no" onclick="hideOtherScholarshipField('inputYes')">
-        <label class="form-check-label">No</label>
-    </div>
-</div>
-<div class="col-md-12 mb-3 px-0">
-<div class="input-fields">
-    <div id="inputYes" style="display: none;">
-    <div class="row">
-        <div class="col-md-4 mb-2">
-            <label class="form-label">Type:</label>
-            <input type="text" class="form-control form-control-sm" name="otherScholarType" id="otherScholarshipYesField" placeholder="Type">
-        </div>
-        <div class="col-md-4 mb-2">
-            <label class="form-label">Coverage:</label>
-            <input type="text" class="form-control form-control-sm" name="otherScholarCoverage" id="otherScholarshipYesField" placeholder="Coverage">
-        </div>
-        <div class="col-md-4 mb-2">
-            <label class="form-label">Status:</label>
-            <input type="text" class="form-control form-control-sm" name="otherScholarStatus" id="otherScholarshipYesField" placeholder="Status">
-        </div>
-        </div>
-    </div>
-</div>
-</div>
-<div class="row">
-        <div class="col-md-12 mb-3">
-            <label class="form-label">How did you learn about CCMFI Scholarship?</label>
-            <textarea class="form-control" name="q1" id="otherScholarshipYesField" placeholder="How did you learn about CCMFI Scholarship" required rows="3"></textarea>
-        </div>
-        <div class="col-md-12 mb-3">
-            <label class="form-label">Why are you applying for this scholarship?</label>
-            <textarea class="form-control" name="q2" id="otherScholarshipYesField" placeholder="Why are you applying for this scholarship?" requiredrequired rows="3"></textarea>   
-        </div>
-      
-        
-        <div class="col-md-6 mb-3">
-            <label class="form-label">Will you pursue your studies even without this scholarship?</label>
-                <br>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="applyScho" id="exampleRadios1" value="yes" checked>
-                <label class="form-check-label" for="exampleRadios1">
-                    Yes
-                </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="applyScho" id="exampleRadios2" value="no">
-                <label class="form-check-label" for="exampleRadios2">
-                    No
-                </label>
-                </div>
-                <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="applyScho" id="exampleRadios3" value="i dont know" >
-                <label class="form-check-label" for="exampleRadios3">
-                    I Dont know
-                </label>
-                </div>
-              
-
-        </div>
-
-        <div class="col-md-12 mb-3">
-            <label for="otherScholarshipYesField" class="form-label">Explain your Answer:</label>
-            <textarea class="form-control" name="applySchoExplain" id="otherScholarshipYesField" placeholder="Answer" rows="3"></textarea>
-        </div>
-    
-        </div>
-
-        <div class="d-flex justify-content-center gap-2">
-        <button class="btn btn-secondary btn-sm col-lg-4  col-6 prev-step" type="button">Previous</button>
-        <button class="btn btn-primary btn-sm col-lg-4  col-6 next-step" type="button">Next</button>
-    </div>
-</div>  
+     
           <!------- STEP 4 ------->
-          <div class="step" id="step4" style="display: none;">
+          <div class="step" id="step4" style="display: block;">
             <h4 class="text-primary"> Requirements </h4>
             <div class="border-bottom mb-3 border border-1"></div>
 
                     <div class="row">
 
-                    <div class="col-md-4 mb-3">
-                    <label for="formFile" class="form-label">2x2 ID photo</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="idPhoto" accept="image/jpeg,image/jpg,image/png" required>
+                    <div class="col-md-6 m-auto mb-3">
+                                <div class="fileUpload container">
+                                <div class="p-2">
+                                    <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
+                                    <img src="../images/no-images.jpg" alt="Image">
+                                    </div>
+                                    <h6 class="text-center">Upload 2x2 Picture</h6>
+                                    <div class="text-center"> <!-- Centering the button -->
+                            <label class="fileSelect btn btn-sm btn-primary col-lg-5 col-12 text-center">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event)"></label>
+                        </div>                    
+                    </div>
+                            </div>
+
+
+                            </div>
+
+
+
+                            <div class="col-md-6 m-auto mb-3">
+                                <div class="fileUpload container">
+                                <div class="p-2">
+                                    <div class="Preview mb-3 max-width-8  overflow-hidden" id="previewContainer2">
+                                    <img src="../images/no-images.jpg" alt="Image">
+                                    </div>
+                                    <h6 class="text-center">Family Picture</h6>
+                                    <div class="text-center"> <!-- Centering the button -->
+                            <label class="fileSelect btn btn-sm btn-primary col-lg-5 col-12 text-center">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles2(event)"></label>
+                        </div>                    
+                    </div>
+                            </div>
+
+
+                            </div>
+
+                    <!-- <label for="formFile" class="form-label">2x2 ID photo</label>
+                    <input class="form-control form-control-sm border-bottom" type="file" name="idPhoto" accept="image/jpeg,image/jpg,image/png" required> -->
+                    
+
+
+
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Letter of Intent</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event)"></label>
+                                <div class="Preview1 " id="previewContainer">
+                                </div>
+                        </div> 
                     </div>
 
-                    <!-- <div class="col-md-4 mb-3">
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Family Profile</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles3(event)"></label>
+                                <div class="Preview1 " id="previewContainer3">
+                                </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Written Parent Consent</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles4(event)"></label>
+                                <div class="Preview1 " id="previewContainer4">
+                                </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Latest Copy of Grades</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles5(event)"></label>
+                                <div class="Preview1 " id="previewContainer5">
+                                </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Copy of Birth Certificate</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles6(event)"></label>
+                                <div class="Preview1 " id="previewContainer6">
+                                </div>
+                        </div> 
+                    </div>
+
+                     <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Certificate of Indigency</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles7(event)"></label>
+                                <div class="Preview1 " id="previewContainer7">
+                                </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Recommendation Letter from Adviser/Principal</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles8(event)"></label>
+                                <div class="Preview1 " id="previewContainer8">
+                                </div>
+                        </div> 
+                    </div>
+
+
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Certificate of Indigency</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles9(event)"></label>
+                                <div class="Preview1 " id="previewContainer9">
+                                </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Recommendation Letter from Adviser/Principal</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles10(event)"></label>
+                                <div class="Preview1 " id="previewContainer10">
+                                </div>
+                        </div> 
+                    </div>
+
+
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Certificate of Good Moral</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles11(event)"></label>
+                                <div class="Preview1 " id="previewContainer11">
+                                </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Copy of High School Diploma</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles12(event)"></label>
+                                <div class="Preview1 " id="previewContainer12">
+                                </div>
+                        </div> 
+                    </div>
+
+
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Copy of Form 137/138</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles13(event)"></label>
+                                <div class="Preview1 " id="previewContainer13">
+                                </div>
+                        </div> 
+                    </div>
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Copy of College/University Acceptance Letter</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles14(event)"></label>
+                                <div class="Preview1 " id="previewContainer14">
+                                </div>
+                        </div> 
+                    </div>
+
+                    <div class="col-lg-4 col-12 mb-2 mt-4">               
+                        <div class="fileUpload container">
+                                <h6>Copy of Enrollment Form</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles15(event)"></label>
+                                <div class="Preview1 " id="previewContainer15">
+                                </div>
+                        </div> 
+                    </div>
+
+                  
+
+                    <div class="col-lg-4 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Sketch of House Area and Directions for Commuting from CCMF site</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles16(event)"></label>
+                                <div class="Preview1 " id="previewContainer16">
+                                </div>
+                        </div> 
+                    </div>
+
+
+
+                 
+
+
+                    
+
+
+                <script>
+
+                function handleFiles(event) {
+                        const fileList = event.target.files;
+                        const previewContainer = document.getElementById('previewContainer1');
+                        previewContainer.innerHTML = '';
+
+                        const imageSize = 200; // Set the desired size for the preview images
+
+                        for (let i = 0; i < fileList.length; i++) {
+                            const file = fileList[i];
+                            const reader = new FileReader();
+
+                            reader.onload = function() {
+                                const img = document.createElement('img');
+                                img.src = reader.result;
+                                img.alt = file.name;
+                                img.classList.add('previewImage');
+                                img.style.width = imageSize + 'px'; // Set width
+                                img.style.height = imageSize + 'px'; // Set height
+                                previewContainer.appendChild(img);
+                            }
+
+                            reader.readAsDataURL(file);
+                        }
+                    }
+
+                    function handleFiles2(event) {
+                        const fileList = event.target.files;
+                        const previewContainer = document.getElementById('previewContainer2');
+                        previewContainer.innerHTML = '';
+
+                        const imageSize = 200; // Set the desired size for the preview images
+
+                        for (let i = 0; i < fileList.length; i++) {
+                            const file = fileList[i];
+                            const reader = new FileReader();
+
+                            reader.onload = function() {
+                                const img = document.createElement('img');
+                                img.src = reader.result;
+                                img.alt = file.name;
+                                img.classList.add('previewImage');
+                                img.style.width = imageSize + 'px'; // Set width
+                                img.style.height = imageSize + 'px'; // Set height
+                                previewContainer.appendChild(img);
+                            }
+
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                    
+                function handleFiles1(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+
+
+                function handleFiles3(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer3');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+
+
+                
+                function handleFiles4(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer4');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+                
+                function handleFiles5(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer5');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+
+                
+                function handleFiles6(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer6');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+                
+                function handleFiles7(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer7');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+                
+                function handleFiles8(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer8');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+                
+                function handleFiles9(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer9');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+                
+                function handleFiles10(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer10');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+
+                
+                function handleFiles12(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer12');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+
+                
+                function handleFiles13(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer13');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+
+                
+                function handleFiles14(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer14');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+                
+                function handleFiles15(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer15');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+
+                
+                function handleFiles16(event) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById('previewContainer16');
+                    previewContainer.innerHTML = '';
+
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+
+                                const logo = document.createElement('img');
+                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '50px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
+
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                alert('File size exceeds the maximum limit of 25MB.');
+                            }
+                        } else {
+                            alert('Please select only PDF files.');
+                        }
+                    }
+                }
+                </script>
+
+                    
+
+
+
+                   
+                     <!-- <div class="col-md-4 mb-3">
                     <label for="formFile" class="form-label">Affectivity Test</label>
                     <input class="form-control form-control-sm border-bottom" type="file" name="affectTest" accept="application/pdf,image/jpeg,image/jpg">
-                    </div> -->
+                    </div>
                     <?php
                     $appliTemp = $admin->getFamTemp();
                         foreach($appliTemp as $a){
@@ -1113,7 +1018,7 @@
                     <div class="col-md-12 mb-3 my-2">
                     <div class="mx-1"><input type="checkbox" class="mx-20" id="checkConfirm" name="checkConfirm">    I hereby declare that all information provided and documents submitted in support of my scholarship application are true and accurate. I give my consent to CCMF to collect, use and process my personal information. Furthermore, I confirm my compliance with the Data Privacy Act of 2012, ensuring the confidentiality and protection of any personal data shared in this application process.</div>
                     </div>
-                    </div>
+                    </div> -->
 
 
               
