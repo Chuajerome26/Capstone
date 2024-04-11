@@ -36,19 +36,7 @@
   href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
 
-  <style>
-    .broken-border {
-    border: none;
-    border-bottom: 2px dashed black; /* Customize as needed */
-    outline: none;
-}
-
-/* Optionally, you can style the label for better alignment */
-.form-label {
-    display: block;
-    margin-bottom: 5px; /* Adjust as needed */
-}   
-  </style>
+  
 </head>
 <body class="bg-body-teritory">
 
@@ -267,26 +255,25 @@
                     <label  class="form-label">Weight: <span class="text-danger">*</span></label>
                     <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight" required>
                 </div>
+
+
                 <div class="fileUpload container">
-    <div class="hstack gap-3">
-        <div class="p-2">
-            <h5>Upload 2x2 Picture</h5>
-            <label class="fileSelect btn btn-sm  btn-primary">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event)"></label>
-        </div>
-        <div class="p-2 ms-auto">
-            <h4 class="mt-3">Usage</h4>
-            <div class="Preview mb-3" id="previewContainer1">
-                <!-- Your uploaded image preview will appear here -->
-            </div>
-        </div>
-    </div>
-</div>
+                    <div class="p-2">
+                        <div class="Preview mb-3 max-width-10 rounded-circle overflow-hidden" id="previewContainer1">
+                        <img src="../images/consuelo.jpg" alt="Image">
+                        </div>
+                        <h5>Upload 2x2 Picture</h5>
+                        <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event)"></label>
+                    </div>
+                </div>
 
 <script>
     function handleFiles(event) {
         const fileList = event.target.files;
         const previewContainer = document.getElementById('previewContainer1');
         previewContainer.innerHTML = '';
+
+        const imageSize = 200; // Set the desired size for the preview images
 
         for (let i = 0; i < fileList.length; i++) {
             const file = fileList[i];
@@ -297,6 +284,8 @@
                 img.src = reader.result;
                 img.alt = file.name;
                 img.classList.add('previewImage');
+                img.style.width = imageSize + 'px'; // Set width
+                img.style.height = imageSize + 'px'; // Set height
                 previewContainer.appendChild(img);
             }
 
@@ -305,19 +294,38 @@
     }
 </script>
 
+<style>
+    .Preview {
+        width: 200px; /* Set the width and height to the same value to make it a circle */
+        height: 200px; /* Adjust this value as needed */
+    }
+</style>
+
+
+
+<style>
+    .Preview1 {
+        width: 200px; /* Set the width and height to the same value to make it a circle */
+         /* Adjust this value as needed */
+    }
+</style>
+
+
     <div class="fileUpload container">
-        <div class="hstack gap-3">
             <div class="p-2">
-                <h5>Upload PDF Picture</h5>
-                <label class="fileSelect btn btn-sm btn-primary">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event)"></label>
-            </div>
-            <div class="p-2 ms-auto">
-                <h4 class="mt-3">Usage</h4>
-                <div class="Preview mb-3" id="previewContainer">
-                    <!-- File names will appear here -->
+                <div class="Preview1 " id="previewContainer">
+                    <div class="card">
+                        <div class="card-body">
+                        <div class="hstack gap-3">
+                            <div class="p-2">First item</div>
+                            <div class="p-2">Second item</div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
+                <h5>Upload PDF Picture</h5>
+                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event)"></label>
             </div>
-        </div>
     </div>
    
 
