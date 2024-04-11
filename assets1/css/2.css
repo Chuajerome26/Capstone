@@ -73,3 +73,66 @@
 		display: inline-block;
 		margin: 100px auto;
 	}
+	.input-group-append {
+		position: relative;
+		top: -63.5px; 
+		right: -380px; 
+		z-index: 2;
+	}
+	.forgot-password {
+		color: #007bff; 
+		text-decoration: none;
+		font-size: 15px;
+	}
+	
+	.forgot-password:hover {
+		text-decoration: underline;
+	}
+	/* Forgot Password Modal Styles */
+#forgotPasswordModal .modal-content {
+    border-radius: 10px;
+}
+
+#forgotPasswordModal .modal-header {
+    border-bottom: none;
+}
+
+#forgotPasswordModal .modal-title {
+    color: #333;
+}
+
+#forgotPasswordModal .modal-body {
+    padding: 20px;
+}
+
+#forgotPasswordModal .form-group {
+    margin-bottom: 20px;
+}
+
+#forgotPasswordModal .form-control {
+    border-radius: 25px;
+}
+
+#forgotPasswordModal .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 25px;
+    width: 100%;
+    padding: 10px 0;
+}
+
+#forgotPasswordModal .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+#forgotPasswordModal .modal-footer {
+    border-top: none;
+    padding: 10px 20px;
+}
+
+#forgotPasswordModal .btn-secondary {
+    border-radius: 25px;
+}
+
+	

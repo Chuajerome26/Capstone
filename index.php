@@ -633,8 +633,8 @@
 </div>
 
 
-    <!-- Modal for Login -->
-    <div class="modal fade" id="loginModal">
+<!-- Modal for Login -->
+<div class="modal fade" id="loginModal">
     <div class="modal-dialog modal-dialog-centered modal-login">
         <div class="modal-content">
             <div class="modal-header">
@@ -645,46 +645,72 @@
                 <!-- Add your login form here -->
                 <form action="functions/admin-login.php" method="post">
                     <div class="form-group">
-                    <i class="fa fa-user"></i>
+                        <i class="fa fa-user"></i>
                         <label class="fw-bold" for="username"></label>
                         <input type="text" class="form-control" name="uname" placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                    <i class="fa fa-lock"></i>
+                        <i class="fa fa-lock"></i>
                         <label class="fw-bold" for="password"></label>
-                            <input type="password" class="form-control" name="psw" id="password" placeholder="Password" required>
-                            
+                        <input type="password" class="form-control" name="psw" id="password" placeholder="Password" required>
+                        <div class="input-group-append">
+                            <i id="showPasswordIcon" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
                         </div>
-                        <div class="mt-2 pl-0 form-check">
-                            <input type="checkbox" onclick="showPassword()">
-                            <label class="form-check-label" for="showPassword">Show Password</label>
-</div>
-                       
+                    </div>
+                    <div class="forgot">
+                        <a href="#" class="forgot-password" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
                     </div>
                     <button type="submit" name="submitBtn" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;">Login</button>
-
-                    <div class="modal-footer">
-				<a href="Pages-scholar/appform.php">Create Account</a>
-			</div>
-                    
-                </div>
                 </form>
+                <div class="modal-footer">
+                    <a href="Pages-scholar/appform.php">Create Account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ <!-- Modal for Forgot Password -->
+ <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="forgotPasswordModalLabel">Forgot Password?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email address below and we'll send you instructions on how to reset your password.</p>
+                <form action="forgot_password.php" method="post">
+                    <div class="form-group">
+                        <label class="fw-bold" for="forgotEmail">Email Address:</label>
+                        <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Reset Password</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
+
 <script>
-    $(document).ready(function() {
-        $("#showPasswordCheckbox").on('change', function() {
-            if (this.checked) {
-                $("#password").attr("type", "text");
-            } else {
-                $("#password").attr("type", "password");
-            }
-            $("#password").val($("#password").val());
-        });
-    });
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password");
+        var passwordIcon = document.getElementById("showPasswordIcon");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            passwordIcon.classList.remove("fa-eye");
+            passwordIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            passwordIcon.classList.remove("fa-eye-slash");
+            passwordIcon.classList.add("fa-eye");
+        }
+    }
 </script>
     <!-- End of Modal -->
     <!-- ========================= scroll-top ========================= -->
