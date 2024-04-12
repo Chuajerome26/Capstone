@@ -214,7 +214,32 @@ if (isset($_SESSION['id'])) {
                                     <hr>
 
 
+                                    <div class="card shadow-sm">
+                                    <div class="card-body">
 
+                                    <div class="hstack gap-3">
+                                        <div class="p-1"> 
+                                            <img src="../images/images.png" alt="" style="width: 50px; height: 50px" class="rounded-circle" />
+                                        </div>
+                                        <div class="p-1">
+                                            <div class="">Jerome Chua Cute </div>
+                                            <div class="text-muted" style="font-size:12px;">April 20, 2024 </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="p-1">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec elit ut quam tempor iaculis. Integer id diam a lorem congue ultricies. Vivamus vestibulum metus vitae semper interdum. In hac habitasse platea dictumst. Duis auctor tellus a est tincidunt, sit amet sagittis lorem aliquet. Phasellus nec turpis eget urna imperdiet mattis. Sed vel metus eget lacus sodales vehicula. Sed vulputate semper eros, non efficitur quam convallis id. Morbi et risus eu ipsum vulputate gravida non nec leo. Sed id sapien non tortor hendrerit dignissim eu at metus. Aliquam erat volutpat. Proin at lectus vitae quam iaculis posuere eget vitae lorem. Integer eget tempor ante.
+
+                                    Praesent ultricies metus eget nisi euismod, vitae bibendum orci elementum. Nullam eget faucibus lectus. Pellentesque quis justo nunc. Nullam id magna nec mi tristique volutpat nec a urna. In at leo auctor, bibendum justo id, vestibulum lectus. Nulla facilisi. Integer eget suscipit tortor. Nullam varius felis in nisi fermentum, at lobortis odio tempor. Nulla non dui sit amet quam suscipit vehicula nec ac ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in sodales justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam id dui vel sapien suscipit suscipit. Vivamus euismod, felis ut vestibulum ullamcorper, turpis odio hendrerit sapien, vel suscipit sapien justo ac orci. Morbi ac diam risus. Vestibulum consequat quam vel tortor fermentum efficitur. Sed id leo nec eros condimentum posuere nec vel nunc.
+
+                                    Suspendisse potenti. Donec sed augue id elit mattis auctor. Maecenas consequat nisl nec tellus dictum efficitur. Sed a lectus et quam posuere ullamcorper. Duis aliquet augue ac nunc consequat volutpat. Maecenas rhoncus neque in lorem aliquam, vel elementum purus aliquet. Duis rutrum tortor eu ligula lobortis, at hendrerit dolor interdum. Sed vitae risus magna. Nulla facilisi. Sed ultricies erat at velit finibus, id varius purus consequat. Cras viverra augue vitae eros malesuada pharetra. Aenean convallis urna eget risus dictum, nec ultrices arcu tempor. Nulla luctus efficitur massa, ac egestas odio vehicula non. Curabitur ac sapien sit amet quam malesuada efficitur a nec libero. Suspendisse nec est eget sapien bibendum finibus. Ut volutpat vestibulum quam id placerat.
+
+                                    </div>
+
+                                    </div>
+                                    </div>
 
 
 
@@ -250,11 +275,31 @@ if (isset($_SESSION['id'])) {
                                 <div class="col-md-12">
                                     <div class="card shadow mb-2">
                                         <div class="card-body">
-                                            <h6 class="fw-bold mb-3">Renewal</h6>
+                                            <h6 class="fw-bold mb-1">Renewal</h6>
                                             <hr>
-                                            <!-- Description -->
-                           
-                                            <!-- Button -->
+                                           
+
+
+                                            <div class="card shadow-sm">
+                                                <div class="card-body py-1 px-3 p-0 m-0">
+                                                    <div class="hstack gap-3">
+                                                        <div class=" ms-2 text-center"> <span class="fw-bold"> 30 </span><br>  <span class="text-danger fw-bold"> Thurs </span></div>
+                                                        <div class="ms-2">
+                                                        <div class="ms-2 d-flex align-items-center">
+                                                            <small class="text-muted">Renewal Dates</small>
+                                                        </div>
+                                                        <div class="ms-2 d-flex justify-content-center align-items-center">
+                                                            <small class="text-muted fw-bold">April 21, 2023 - April 22, 2023</small>
+                                                        </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
                                             
                                         </div>
                                     </div>
@@ -262,10 +307,32 @@ if (isset($_SESSION['id'])) {
                                 <div class="col-md-12">
                                     <div class="card shadow">
                                         <div class="card-body">
-                                            <h6 class="fw-bold mb-3">Done Renewal</h6>
+                                            <h6 class="fw-bold mb-1">Done Renewal</h6>
                                             <hr>
                                             <!-- Description for online registered participants -->
                                           
+                                            <div class="card shadow-sm">
+                                                <div class="card-body py-1 px-3 p-0 m-0">
+                                                   
+                                                        <div class="ms-1">
+                                                        <div class="p-0 m-0 mb-2 mt-2">
+                                                            <div><small class="text-muted">Renewal Dates: April 21, 2023 - April 22, 2023</small> </div>
+                                                        </div>
+                                                        <div class="card"></div>
+                                                        <div class="p-0 m-0 mt-2">
+                                                            <div><small class="text-muted">Date Renewed:<strong> April 21, 2023 - 11:00Pm </strong></small></div>
+                                                            <div><small class="text-muted">Status: <strong> Pending</strong></small> </div>
+                                                            <!-- Modal to boss --->
+                                                            <button type="button" class="btn btn-primary btn-sm w-100 mt-2 mb-2">View Files</button>
+                                                        </div>
+
+                                                        </div>
+                                                      
+
+                                                           
+
+                                                </div>
+                                            </div>
                                            
             
                                         </div>

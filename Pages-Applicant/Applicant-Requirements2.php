@@ -108,8 +108,40 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                      
                     </ul>
-                    <span class="navbar-text">
+                    <span class="navbar-text d-flex">
                    
+                    <li class="dropdown list-unstyled">
+                            <button class="btn border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw text-gray-400 mt-1 ms-2" style="font-size: 16px;"></i>
+                            </button>
+                            <span class="position-absolute top-0 end-0 badge rounded-pill bg-danger" style="font-size: 11px;">
+                                <span>4</span>
+                            </span>
+                            
+                            <ul class="dropdown-menu  dropdown-menu-end" >
+                            <h6 class="px-2 mt-2 mb-2 ms-3"><i class="fas fa-bell me-2 " ></i> Notification</h6>
+                            <hr>
+                            <div style="width:350px;  max-height: 400px; overflow-y: auto; font-size: 14px;">
+
+
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-3">
+                                <div class="d-flex align-items-center">
+                                <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
+                                    class="rounded-circle" />
+                                <div class="ms-3">
+                                    <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
+                                    <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
+                                    <div style="font-size: 13px;">Your request has been Approve by Admin</div>
+                                </div>
+                                </div>
+                            </li>
+                            <hr>
+                
+                    </div>
+                </ul>
+                </li>
+
+
                     <div class="dropdown">
                     <button class="btn btn-transparents dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img class="img-profile rounded-circle me-2"  width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>"> <?php echo $info[0]['l_name']; ?>
@@ -443,7 +475,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                             <!-- Description for online registered participants -->
                                             <div class="d-flex justify-content-between" style=" font-size: 14px ;">
                                             
-                                            <div class="container mt-1 text-dark" style="overflow: auto; height: 300px;">
+                                            <div class="container mt-1 text-dark" style="overflow: auto; max-height: 300px;">
                                                         <div class="row d-flex justify-content-center">
                                                             <div class="w-100">
                                                                 <?php 
