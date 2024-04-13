@@ -40,6 +40,7 @@ class Database
     $mail->Password = 'oftm hnec gkiw mddd';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
+    $mail->isHTML(true);//Set email format to HTML
 
     //recipients
     $mail->setFrom('ccmf91740@gmail.com','CCMF');

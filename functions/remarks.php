@@ -2,6 +2,7 @@
 session_start();
 require '../classes/admin.php';
 require '../classes/database.php';
+include '../email-design/remarks-design.php';
 
 $database = new Database;
 $admin = new Admin($database);
@@ -27,19 +28,7 @@ if(isset($_POST['submit'])){
         exit();
     }
     
-    $declineMessage = "Dear ".$user['f_name']." ".$user['l_name'].",
-
-".$remarks."
-
-
-
-Best Regards,
-Socorro L. Bautista
-Executive Director
-Consuelo Chito Madrigal Foundation
-Incorporation
-    
-    ";
+    $declineMessage = remarksEmail($user, $remarks);
 
     $sentEmail = $database->sendEmail($email,"Update on Your Application", $declineMessage);
 

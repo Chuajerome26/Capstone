@@ -3,6 +3,7 @@
 if(isset($_POST['submit'])){
     require '../classes/admin.php';
     require '../classes/database.php';
+    include '../email-design/editFinalInterview-design.php';
 
     $database = new Database();
     $admin = new Admin($database);
@@ -39,28 +40,7 @@ if(isset($_POST['submit'])){
             $convertedTime = date("h:i A", strtotime($start));
             $convertedTime1 = date("h:i A", strtotime($end));
 
-            $message = '
-Dear '.$last_name.',
-
-This message is to inform you that the final interview schedule for the scholarship application is currently in edit. Below are the details that can be modified:
-
-    Time: '.$convertedTime.' - '.$convertedTime1.'
-    Date: '.$newDate1.'
-    Mode of Interview: '.$mode.'
-    Information: AREA 6 SITIO VETERANS, BRGY. BAGONG SILANGAN, QUEZON CITY 1119 Quezon City, Philippines
-
-Location: Consuelo "CHITO" Madrigal Foundation, Inc.
-
-Please make the necessary adjustments as needed and ensure that the updated information is accurately reflected.
-
-Thank you for your attention to this matter.
-
-Best regards,
-
-
-Consuelo "CHITO" Madrigal Foundation, Inc.
-ccmf2015main@gmail.com
-            ';
+            $message = editFinalIntEmail($last_name, $convertedTime, $convertedTime1, $newDate1, $mode);
 
             $database->sendEmail($appliEmail, "Final Interview Schedule for Scholarship Application", $message);
         }

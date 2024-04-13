@@ -116,7 +116,7 @@
                                   <tbody>
                                     <tr>
                                       <td style="width:100px;">
-                                      <img src="../images/logo.jpg" alt="Logo" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;">
+                                      <img src="https:ccmf.website/images/logo.jpg" alt="Logo" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;">
                                       </td>
                                     </tr>
                                   </tbody>
@@ -125,14 +125,14 @@
                             </tr>
                             <tr>
                               <td align="center" style="font-size:0px;padding:10px 25px;padding-top:30px;word-break:break-word;">
-                                <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:bold;letter-spacing:1px;line-height:24px;text-align:center;text-transform:uppercase;color:#ffffff;">Consuelo Chito Madrigal Foundation, Inc. (CCMFI) <br>
+                                <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:bold;letter-spacing:1px;line-height:24px;text-align:center;text-transform:uppercase;color:#ffffff;">Consuelo Chito Madrigal Foundation, Inc. (CCMFI) <br>
                                   <span style="color: #979797; font-weight: normal">-</span>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td align="center" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
-                                <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;line-height:20px;text-align:center;text-transform:uppercase;color:#17CBC4;">Area 6 Sitio Veterans <br> Brgy. Bagong Silangan, Quezon City</div>
+                                <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;line-height:20px;text-align:center;text-transform:uppercase;color:#17CBC4;">Area 6 Sitio Veterans <br> Brgy. Bagong Silangan, Quezon City</div>
                               </td>
                             </tr>
                             <tr>
@@ -198,29 +198,29 @@
                             <tbody>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#212b35;">zzzzzzzzzzzzzzzzzzzzzzzzzzzz</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#212b35;">zzzzzzzzzzzzzzzzzzzzzzzzzzzz</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Hi Jane,</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Hi Jane,</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
                                   
                                 </div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Tempora culpa porro labore. Repudiandae accusamus obcaecati voluptatibus accusantium perspiciatis:</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Tempora culpa porro labore. Repudiandae accusamus obcaecati voluptatibus accusantium perspiciatis:</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
                                     <ul>
                                       <li style="padding-bottom: 20px"><strong>Lorem ipsum dolor:</strong> Sit amet consectetur adipisicing elit.</li>
                                       <li style="padding-bottom: 20px"><strong>Quia a assumenda nulla:</strong> Repudiandae accusamus obcaecati voluptatibus accusantium perspiciatis.</li>
@@ -231,7 +231,7 @@
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Lorem ipsum dolor <a class="text-link" href="https://google.com" style="color: #5e6ebf;">sit amet consectetur</a> adipisicing elit. Earum eaque sunt nulla in, id eveniet quae unde ad ipsam ut, harum autem porro reiciendis minus libero illo. Vero, fugiat reprehenderit.</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Lorem ipsum dolor <a class="text-link" href="https://google.com" style="color: #5e6ebf;">sit amet consectetur</a> adipisicing elit. Earum eaque sunt nulla in, id eveniet quae unde ad ipsam ut, harum autem porro reiciendis minus libero illo. Vero, fugiat reprehenderit.</div>
                                 </td>
                               </tr>
                               <tr>
@@ -246,12 +246,12 @@
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-top:30px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Lorem ipsum dolor <a class="text-link" href="https://google.com" style="color: #5e6ebf;">sit amet consectetur</a> adipisicing elit. Earum eaque sunt nulla in, id eveniet quae unde ad ipsam ut, harum autem porro reiciendis minus libero illo. Vero, fugiat reprehenderit.</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Lorem ipsum dolor <a class="text-link" href="https://google.com" style="color: #5e6ebf;">sit amet consectetur</a> adipisicing elit. Earum eaque sunt nulla in, id eveniet quae unde ad ipsam ut, harum autem porro reiciendis minus libero illo. Vero, fugiat reprehenderit.</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
                                 </td>
                               </tr>
                             </tbody>
@@ -338,12 +338,12 @@
                             <tbody>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#212b35;">Come see us!</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:20px;font-weight:bold;line-height:24px;text-align:left;color:#212b35;">Come see us!</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We're looking forward to meeting you.</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We're looking forward to meeting you.</div>
                                 </td>
                               </tr>
                             </tbody>
@@ -367,12 +367,12 @@
                             <tbody>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:24px;text-align:left;text-transform:uppercase;color:#212b35;">address</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:24px;text-align:left;text-transform:uppercase;color:#212b35;">address</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Area 6 Sitio Veterans <br> Brgy. Bagong Silangan, Quezon City</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Area 6 Sitio Veterans <br> Brgy. Bagong Silangan, Quezon City</div>
                                 </td>
                               </tr>
                             </tbody>
@@ -384,12 +384,12 @@
                             <tbody>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:24px;text-align:left;text-transform:uppercase;color:#212b35;">Hours of Operation</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:12px;font-weight:bold;line-height:24px;text-align:left;text-transform:uppercase;color:#212b35;">Hours of Operation</div>
                                 </td>
                               </tr>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
-                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Monday - Friday, 8:00AM - 5:00PM</div>
+                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Monday - Friday, 8:00AM - 5:00PM</div>
                                 </td>
                               </tr>
                             </tbody>
@@ -490,17 +490,17 @@
                                               </tr>
                                               <tr>
                                                 <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:bold;line-height:24px;text-align:center;color:#445566;">View the site in your browser</div>
+                                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:11px;font-weight:bold;line-height:24px;text-align:center;color:#445566;">View the site in your browser</div>
                                                 </td>
                                               </tr>
                                               <tr>
                                                 <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#445566;">The Consuelo Chito Madrigal Foundation (CCMF) is dedicated to improving the quality of life of distressed families in selected communities in the Philippines. Established by banker, philanthropist and Papal awardee Dona Consuelo Chito Madrigal-Collantes in 1997, it supports programs designed to respond to the needs of these communities to be self-sustaining.</div>
+                                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#445566;">The Consuelo Chito Madrigal Foundation (CCMF) is dedicated to improving the quality of life of distressed families in selected communities in the Philippines. Established by banker, philanthropist and Papal awardee Dona Consuelo Chito Madrigal-Collantes in 1997, it supports programs designed to respond to the needs of these communities to be self-sustaining.</div>
                                                 </td>
                                               </tr>
                                               <tr>
                                                 <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                                  <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#445566;">&copy; 2024 Chito Madrigal Foundation. All Rights Reserved.</div>
+                                                  <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:16px;text-align:center;color:#445566;">&copy; 2024 Chito Madrigal Foundation. All Rights Reserved.</div>
                                                 </td>
                                               </tr>
                                             </tbody>
@@ -534,7 +534,7 @@
                                               <tbody>
                                                 <tr>
                                                   <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                                    <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:11px;font-weight:bold;line-height:16px;text-align:center;color:#445566;"><a class="footer-link" href="https://www.google.com" style="color: #888888;">Privacy</a>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<a class="footer-link" href="https://www.google.com" style="color: #888888;"></a></div>
+                                                    <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:11px;font-weight:bold;line-height:16px;text-align:center;color:#445566;"><a class="footer-link" href="https://www.google.com" style="color: #888888;">Privacy</a>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<a class="footer-link" href="https://www.google.com" style="color: #888888;"></a></div>
                                                   </td>
                                                 </tr>
                                               </tbody>

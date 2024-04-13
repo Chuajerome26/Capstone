@@ -3,6 +3,8 @@ session_start();
 if(isset($_POST['submit'])){
     require '../classes/admin.php';
     require '../classes/database.php';
+    include '../email-design/filesRemarksSuccess-design.php';
+    include '../email-design/filesRemarksFail-design.php';
 
     $database = new Database();
     $admin = new Admin($database);
@@ -88,24 +90,8 @@ if(isset($_POST['submit'])){
 
         $convertedTime = date("h:i A", strtotime($time_start));
         $convertedTime1 = date("h:i A", strtotime($time_end));
-        $message = '
-Dear '.$last_name.',
 
-I trust this message finds you well. We wanted to inform you that the evaluation of your scholarship application has been successfully completed.
-
-    NOTE: Date and Time for Initial Interview 
-    Date: '.$date.'
-    Time: '.$convertedTime.' - '.$convertedTime1.'
-
-Our committee thoroughly reviewed your academic achievements, extracurricular activities, and personal statements. We appreciate the time and effort you invested in your application.
-
-Thank you for your interest in the John Poul B. Galen. We wish you the best of luck in the final stages of the selection process.
-
-Best regards,
-
-Consuelo "CHITO" Madrigal Foundation Inc
-ccmf2015main@gmail.com
-';
+        $message = fileRemarkSuccess($last_name, $date, $convertedTime, $convertedTime1);
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 1, $message, $currentDate1);
         $database->sendEmail($email,"Scholarship Application Evaluation - Completed", $message);
         
@@ -121,23 +107,7 @@ ccmf2015main@gmail.com
             }
         }
 
-        $message = '
-Dear '.$last_name.',
-
-Thank you for submitting your application for the Consuelo "CHITO" Madrigal Foundation, Inc. We have begun the evaluation process, and we regret to inform you that there are discrepancies or missing information in your submitted files.
-
-To ensure a fair assessment, we kindly request you to review your application and rectify the issues identified below:
-'.$wrongFiles.'
-
-Please make the necessary corrections and resubmit your updated files by '.$newDate.'. If you encounter any challenges or have questions regarding the requested changes, feel free to contact our scholarship office at 2-8289-8795.
-
-We appreciate your prompt attention to this matter and value your commitment to the scholarship application process.
-
-Best regards,
-
-Consuelo "CHITO" Madrigal Foundation Inc
-ccmf2015main@gmail.com
-        ';
+        $message = fileRemarkFail($last_name, $wrongFiles, $newDate);
 
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 0, $message, $currentDate1);
 
