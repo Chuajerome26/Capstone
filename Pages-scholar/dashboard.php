@@ -3,9 +3,11 @@ session_start();
 if (isset($_SESSION['id'])) {
     require '../classes/admin.php';
     require '../classes/database.php';
+    require '../classes/scholar.php';
 
     $database = new Database();
     $admin = new Admin($database);
+    $scholar = new Scholar($database);
 
     $id = $_SESSION['id'];
     $info = $admin->getScholarById($id);
@@ -216,55 +218,30 @@ if (isset($_SESSION['id'])) {
 
                                     <div class="card shadow-sm">
                                     <div class="card-body">
-
+                                    <?php
+                                    $date = isset($_GET['date']) ? $_GET['date'] : '';
+                                    $announcements= $admin->getAnnouncements($date);
+                                    foreach ($announcements as $b){
+                                    ?>
                                     <div class="hstack gap-3">
                                         <div class="p-1"> 
                                             <img src="../images/images.png" alt="" style="width: 50px; height: 50px" class="rounded-circle" />
                                         </div>
                                         <div class="p-1">
-                                            <div class="">Jerome Chua Cute </div>
-                                            <div class="text-muted" style="font-size:12px;">April 20, 2024 </div>
+                                            <div class="">Admin</div>
+                                            <div class="text-muted" style="font-size:12px;"><strong>Date Posted on:</strong> <?= $b['ann_date'] ?> <strong>Time:</strong> <?= $b['ann_time'] ?></div>
                                         </div>
+                                    </div>
+
+                                    <div class="p-1">
+                                    <?= $b['announcement'] ?>
                                     </div>
 
                                     <hr>
 
-                                    <div class="p-1">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec elit ut quam tempor iaculis. Integer id diam a lorem congue ultricies. Vivamus vestibulum metus vitae semper interdum. In hac habitasse platea dictumst. Duis auctor tellus a est tincidunt, sit amet sagittis lorem aliquet. Phasellus nec turpis eget urna imperdiet mattis. Sed vel metus eget lacus sodales vehicula. Sed vulputate semper eros, non efficitur quam convallis id. Morbi et risus eu ipsum vulputate gravida non nec leo. Sed id sapien non tortor hendrerit dignissim eu at metus. Aliquam erat volutpat. Proin at lectus vitae quam iaculis posuere eget vitae lorem. Integer eget tempor ante.
-
-                                    Praesent ultricies metus eget nisi euismod, vitae bibendum orci elementum. Nullam eget faucibus lectus. Pellentesque quis justo nunc. Nullam id magna nec mi tristique volutpat nec a urna. In at leo auctor, bibendum justo id, vestibulum lectus. Nulla facilisi. Integer eget suscipit tortor. Nullam varius felis in nisi fermentum, at lobortis odio tempor. Nulla non dui sit amet quam suscipit vehicula nec ac ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in sodales justo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nullam id dui vel sapien suscipit suscipit. Vivamus euismod, felis ut vestibulum ullamcorper, turpis odio hendrerit sapien, vel suscipit sapien justo ac orci. Morbi ac diam risus. Vestibulum consequat quam vel tortor fermentum efficitur. Sed id leo nec eros condimentum posuere nec vel nunc.
-
-                                    Suspendisse potenti. Donec sed augue id elit mattis auctor. Maecenas consequat nisl nec tellus dictum efficitur. Sed a lectus et quam posuere ullamcorper. Duis aliquet augue ac nunc consequat volutpat. Maecenas rhoncus neque in lorem aliquam, vel elementum purus aliquet. Duis rutrum tortor eu ligula lobortis, at hendrerit dolor interdum. Sed vitae risus magna. Nulla facilisi. Sed ultricies erat at velit finibus, id varius purus consequat. Cras viverra augue vitae eros malesuada pharetra. Aenean convallis urna eget risus dictum, nec ultrices arcu tempor. Nulla luctus efficitur massa, ac egestas odio vehicula non. Curabitur ac sapien sit amet quam malesuada efficitur a nec libero. Suspendisse nec est eget sapien bibendum finibus. Ut volutpat vestibulum quam id placerat.
-
-                                    </div>
-
+                                    <?php } ?>
                                     </div>
                                     </div>
-
-
-
-
-
-
-
-
-                                    
-
-                                   
-
-
-
-
-
-
-
-
-
-
-                                   
-
-
-
                                 </div>
                             </div>
                         </div>
@@ -277,30 +254,91 @@ if (isset($_SESSION['id'])) {
                                         <div class="card-body">
                                             <h6 class="fw-bold mb-1">Renewal</h6>
                                             <hr>
-                                           
+                                            <?php
+                                            $renewalDates = $scholar->getRenewalDates();
+                                            $currentDate = date('Y-m-d');
+                                            if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
+                                                // Before displaying the renewal form, check if the scholar has already submitted
+                                                if (!$scholar->hasSubmittedRenewal($id)) {
+                                            ?>
+                                            <form action="../functions/scholarRenewal.php" method="post" enctype="multipart/form-data">
+                                                <?php
+                                                    $scholarInfo = $admin->getScholarById($id);
+                                                    foreach($scholarInfo as $c){
+                                                ?>
+                                                <input type="text" id="scholarid" name="scholarID" value="<?php echo $c["id"]?>" hidden><br>
+                                                <label for="firstname">First Name:</label>
+                                                <input type="text" id="Firstname" name="Firstname" value="<?php echo $c["f_name"]?>" readonly><br>
+                                                <label for="lastname">Last Name:</label>
+                                                <input type="text" id="Lastname" name="Lastname" value="<?php echo $c["l_name"]?>" readonly><br>
+                                                <label for="email">Email:</label>
+                                                <input type="text" id="Email" name="Email" value="<?php echo $c["email"]?>" readonly><br>
+                                                <?php } ?>
 
-
-                                            <div class="card shadow-sm">
-                                                <div class="card-body py-1 px-3 p-0 m-0">
-                                                    <div class="hstack gap-3">
-                                                        <div class=" ms-2 text-center"> <span class="fw-bold"> 30 </span><br>  <span class="text-danger fw-bold"> Thurs </span></div>
-                                                        <div class="ms-2">
-                                                        <div class="ms-2 d-flex align-items-center">
-                                                            <small class="text-muted">Renewal Dates</small>
-                                                        </div>
-                                                        <div class="ms-2 d-flex justify-content-center align-items-center">
-                                                            <small class="text-muted fw-bold">April 21, 2023 - April 22, 2023</small>
-                                                        </div>
-
-                                                        </div>
-                                                    </div>
+                                                <label for="gwa">Year Level:</label>
+                                                <select name="yearLvl" id="yearLvlSelect" onchange="checkOtherOption()">
+                                                    <option value="1st">1st</option>
+                                                    <option value="2nd">2nd</option>
+                                                    <option value="3rd">3rd</option>
+                                                    <option value="4th">4th</option>
+                                                    <option value="other">Other</option>
+                                                </select><br>
+                                                <div id="otherOption" style="display: none;">
+                                                <input type="text" name="otherYearLevel" id="otherYearLevelInput" placeholder="Enter your year level">
                                                 </div>
-                                            </div>
-
-
-
-
-                                            
+                                                <label for="gradeslip">Upload Grade Slip:</label>
+                                                <input type="file" id="gradeslip" name="file1" required><br>
+                                                <label for="gradeslip">Upload Registration Form:</label>
+                                                <input type="file" id="regform" name="file2" required><br>
+                                                <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                            <?php
+                                                } else {
+                                                    echo '
+                                                    <div class="card shadow-sm">
+                                                        <div class="card-body py-1 px-3 p-0 m-0">
+                                                            <div class="hstack gap-3">
+                                                                <div class="ms-2 text-center">
+                                                                    <span class="fw-bold">' . date('d', strtotime($currentDate)) . '</span><br>
+                                                                    <span class="text-danger fw-bold">' . date('D', strtotime($currentDate)) . '</span>
+                                                                </div>
+                                                                <div class="ms-2">
+                                                                    <div class="ms-2 d-flex align-items-center">
+                                                                        <small class="text-muted">Renewal Dates</small>
+                                                                    </div>
+                                                                    <div class="ms-2 d-flex justify-content-center align-items-center">
+                                                                        <small class="text-muted fw-bold">' . $renewalDates['renewal_date_start'] . ' - ' . $renewalDates['renewal_date_end'] . '</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>';
+                                                }
+                                            } else {
+                                                echo '
+                                                    <div class="card shadow-sm">
+                                                        <div class="card-body py-1 px-3 p-0 m-0">
+                                                            <div class="hstack gap-3">
+                                                                <div class="ms-2 text-center">
+                                                                    <span class="fw-bold">' . date('d', strtotime($currentDate)) . '</span><br>
+                                                                    <span class="text-danger fw-bold">' . date('D', strtotime($currentDate)) . '</span>
+                                                                </div>
+                                                                <div class="ms-2">
+                                                                    <div class="ms-2 d-flex align-items-center">
+                                                                        <small class="text-muted">Renewal Dates</small>
+                                                                    </div>
+                                                                    <div class="ms-2 d-flex justify-content-center align-items-center">
+                                                                        <small class="text-muted fw-bold">' . $renewalDates['renewal_date_start'] . ' - ' . $renewalDates['renewal_date_end'] . '</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>';
+                                                // Display a message indicating that renewal is not allowed at the current date
+                                                echo '<p>Renewal is not allowed at the current date.</p>';
+                                            }                                            
+                                            ?>
+ 
                                         </div>
                                     </div>
                                 </div>
@@ -313,23 +351,34 @@ if (isset($_SESSION['id'])) {
                                           
                                             <div class="card shadow-sm">
                                                 <div class="card-body py-1 px-3 p-0 m-0">
-                                                   
-                                                        <div class="ms-1">
-                                                        <div class="p-0 m-0 mb-2 mt-2">
-                                                            <div><small class="text-muted">Renewal Dates: April 21, 2023 - April 22, 2023</small> </div>
-                                                        </div>
-                                                        <div class="card"></div>
-                                                        <div class="p-0 m-0 mt-2">
-                                                            <div><small class="text-muted">Date Renewed:<strong> April 21, 2023 - 11:00Pm </strong></small></div>
-                                                            <div><small class="text-muted">Status: <strong> Pending</strong></small> </div>
-                                                            <!-- Modal to boss --->
-                                                            <button type="button" class="btn btn-primary btn-sm w-100 mt-2 mb-2">View Files</button>
-                                                        </div>
-
-                                                        </div>
-                                                      
-
-                                                           
+                                                <?php
+                                                    $rewalInfo = $scholar->getRenewalInfo();
+                                                    if (empty($rewalInfo)) {
+                                                        echo "No data";
+                                                    } else {
+                                                        foreach ($rewalInfo as $d) {
+                                                            if ($d['renew_status'] == 0) {
+                                                                $status = "Pending";
+                                                            } else {
+                                                                $status = "Accepted";
+                                                            }
+                                                    ?>
+                                                            <div class="ms-1">
+                                                                <div class="p-0 m-0 mb-2 mt-2">
+                                                                    <div><small class="text-muted">Renewal Dates: April 21, 2023 - April 22, 2023</small> </div>
+                                                                </div>
+                                                                <div class="card"></div>
+                                                                <div class="p-0 m-0 mt-2">
+                                                                    <div><small class="text-muted">Date Renewed:<strong><?php echo $d["date_renew"]; ?></strong></small></div>
+                                                                    <div><small class="text-muted">Status: <strong><?php echo $status; ?></strong></small> </div>
+                                                                    <!-- Modal to boss --->
+                                                                    <button type="button" class="btn btn-primary btn-sm w-100 mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $d["id"]; ?>">View Files</button>
+                                                                </div>
+                                                            </div>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
 
                                                 </div>
                                             </div>
@@ -733,16 +782,49 @@ if (isset($_SESSION['id'])) {
                     </div>
                 </div>
             </div>
-
-
-                 
-               
-
-
             <?php } ?>
         </div>
 
-        
+<!-- RenewFiles Modal-->
+<?php
+    $renewalFiless = $scholar->getRenewalInfo();
+        foreach($renewalFiless as $e){
+    ?>
+        <div class="modal fade" id="renewFilesModal<?php echo $e["id"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $e["id"];?>l" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:600px;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModal<?php echo $e["id"];?>">Scholar Details</h5>
+            </div>
+            <div class="modal-body">
+                <table id="applicant-modal<?php echo $e["id"]?>" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Files</th>
+                            <th>Details</th>
+                        </tr> 
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Grade Slip</td>
+                        <td><a href="../Uploads_gslip/<?php echo $e["file1"]; ?>" target="_blank"><?php echo $e["file1"]?></a></td>
+                    </tr>
+                    <tr>
+                        <td>Registration Form</td>
+                        <td><a href="../Uploads_gslip/<?php echo $e["file2"]; ?>" target="_blank"><?php echo $e["file2"]?></a></td>
+                    </tr>
+                    </tbody>
+                </table>    
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+        </div>
+    <?php } ?>
+<!-- Modal end -->
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -797,6 +879,21 @@ if (isset($_SESSION['id'])) {
 
 
 <script>
+//Script for Year level other options
+function checkOtherOption() {
+        var selectElement = document.getElementById("yearLvlSelect");
+        var otherOptionDiv = document.getElementById("otherOption");
+        var otherYearLevelInput = document.getElementById("otherYearLevelInput");
+
+        if (selectElement.value === "other") {
+            otherOptionDiv.style.display = "block";
+            otherYearLevelInput.required = true; // Make the textbox required
+        } else {
+            otherOptionDiv.style.display = "none";
+            otherYearLevelInput.required = false; // Make the textbox not required
+        }
+    }
+
 document.addEventListener('DOMContentLoaded', function () {
     const scrollspy = new bootstrap.ScrollSpy(document.body, {
         target: '#navbar-example3',

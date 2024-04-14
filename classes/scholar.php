@@ -466,19 +466,19 @@ class Scholar{
             return false;
         }
     }
-    public function getScholars($scholarsId){
+    public function getScholars($id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
                                                         WHERE id = ? AND status = '1'");
-        $stmt->execute([$scholarsId]);
+        $stmt->execute([$id]);
         $scholars = $stmt->fetchAll();
         return $scholars;
     }    
-    public function hasSubmittedRenewal($scholarsId) {
+    public function hasSubmittedRenewal($id) {
         $query = "SELECT COUNT(*) FROM scholar_renew AS sr 
                 JOIN scholar_renewal_date AS srd ON sr.date_renew BETWEEN srd.renewal_date_start AND srd.renewal_date_end
                 WHERE sr.scholarID = :scholarID";
         $stmt = $this->database->getConnection()->prepare($query);
-        $stmt->bindParam(':scholarID', $scholarsId, PDO::PARAM_STR);
+        $stmt->bindParam(':scholarID', $id, PDO::PARAM_STR);
         $stmt->execute();
     
         $count = $stmt->fetchColumn();
