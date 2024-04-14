@@ -526,15 +526,15 @@ foreach($appliData as $z){
 <!-- Modal for Remarks -->
 <?php
 $applicantss = $admin->getApplicants();
-foreach($applicantss as $z) {
-    $id = $z["id"];
+foreach($applicantss as $z1) {
+    $id = $z1["id"];
 ?>
 
-<div class="modal fade" id="remarks<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="remarksTitle<?php echo $z["id"];?>" aria-hidden="true">
+<div class="modal fade" id="remarks<?php echo $z1["id"];?>" tabindex="-1" aria-labelledby="remarksTitle<?php echo $z1["id"];?>" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="remarksTitle<?php echo $z["id"];?>">Remarks</h5>
+                <h5 class="modal-title" id="remarksTitle<?php echo $z1["id"];?>">Remarks</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -1101,6 +1101,8 @@ $appliData2 = $admin->getApplicants();
 </div>
 <?php } ?>
 
+                    </div>
+                    </div>
 <!-- Modal end -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <!-- Bootstrap core JavaScript-->

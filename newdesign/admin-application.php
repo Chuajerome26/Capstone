@@ -803,7 +803,7 @@ $appliData2 = $admin->getApplicants();
     foreach($appliData2 as $b){
         $appliFiles = $admin->getApplicantsFiles($b['id']);
 ?>
-<div class="modal" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
+<div class="modal fade" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" >
     <div class="modal-content">
       <div class="modal-header">
