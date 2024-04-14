@@ -125,7 +125,7 @@
 
                                 </div>
                                     <!--- End Personal Infomartion --->
-                        </div>
+                        </div> 
                             <div class="d-flex justify-content-center gap-2 mt-2">
                                 <button class="btn btn-primary col-lg-5 col-12 btn-sm shadow" type="submit" name="submit" id="submitForm">Submit</button>
                             </div>
@@ -152,7 +152,7 @@
 
 <script>
             //function for same as present address
-            document.getElementById('sameAsPresent').addEventListener('change', function() {
+        document.getElementById('sameAsPresent').addEventListener('change', function() {
         if (this.checked) {
             // Copy values from present address to permanent address
             document.querySelector('input[name="permanent_barangay"]').value = document.querySelector('select[name="address"]').value;
@@ -236,6 +236,54 @@
         document.getElementById(inputFieldId).style.display = 'none';
     }
     </script>
+
+
+<script>
+    function validateForm() {
+    let isValid = true;
+
+    // Check required fields for null inputs
+    const requiredInputs = document.querySelectorAll('input[required]');
+    requiredInputs.forEach(input => {
+        if (!input.value.trim()) {
+            isValid = false;
+            input.classList.add("is-invalid");
+            const errorMessage = input.parentNode.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.textContent = 'This field is required';
+                errorMessage.style.color = 'red';
+            }
+        }
+    });
+
+    // Check email field for invalid format
+    const emailInput = document.getElementById('email');
+    if (emailInput && emailInput.value.trim() && !isValidEmail(emailInput.value.trim())) {
+        isValid = false;
+        emailInput.classList.add("is-invalid");
+        const errorMessage = emailInput.parentNode.querySelector('.error-message');
+        if (errorMessage) {
+            errorMessage.textContent = 'Please enter a valid email address';
+            errorMessage.style.color = 'red';
+        }
+    }
+
+    return isValid;
+}
+
+// Submit form if validation passes
+document.getElementById('ccmfForm').addEventListener('submit', function(event) {
+    if (!validateForm()) {
+        event.preventDefault(); // Prevent form submission if validation fails
+    }
+});
+
+// Function to validate email format
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+</script>
 </body>
 </html>
 

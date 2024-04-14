@@ -1,6 +1,3 @@
-<header>
-<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-</header>
 <style>   
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 

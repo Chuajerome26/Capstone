@@ -268,13 +268,13 @@
 
 
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Height: <span class="text-danger">*</span></label>
+                    <label  class="form-label">Height (in cm): <span class="text-danger">*</span></label>
                     <input type="text" name="height" class="form-control form-control-sm" placeholder="Height" required>
                 </div>
 
                 
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Weight: <span class="text-danger">*</span></label>
+                    <label  class="form-label">Weight (in kg): <span class="text-danger">*</span></label>
                     <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight" required>
                 </div>
 
@@ -550,7 +550,7 @@
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Achievements::</label>
+                    <label  class="form-label">Academic Achievements:</label>
                     <input type="text" name="eAchievements" class="form-control form-control-sm" placeholder="Achievements:" >
                 </div>
 
@@ -565,28 +565,81 @@
                 </div>
 
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Achievements:</label>
+                    <label  class="form-label">Academic Achievements:</label>
                     <input type="text" name="jhAchievements" class="form-control form-control-sm" placeholder="Achievement" >
                 </div>
+                
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Did you go to Senior High?</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="shStatus" id="shYes" value="yes" required>
+                        <label class="form-check-label" for="shYes">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="shStatus" id="shNo" value="no" required>
+                        <label class="form-check-label" for="shNo">No</label>
+                    </div>
+                </div>
+
+                <script>
+                
+                    document.addEventListener("DOMContentLoaded", function() {
+                        const shYesRadio = document.getElementById("shYes");
+                        const shNoRadio = document.getElementById("shNo");
+                        const shSchoolInput = document.getElementsByName("shSchool")[0];
+                        const shAveInput = document.getElementsByName("shAve")[0];
+                        const shAchievementsInput = document.getElementsByName("shAchievements")[0];
+                        const shCourseInput = document.getElementsByName("shCourse")[0];
+
+                        // Function to enable or disable input fields based on radio button selection
+                        function toggleSHInputs() {
+                            if (shYesRadio.checked) {
+                                shSchoolInput.disabled = false;
+                                shAveInput.disabled = false;
+                                shAchievementsInput.disabled = false;
+                                shCourseInput.disabled = false;
+                                shSchoolInput.required = true;
+                                shAveInput.required = true;
+                            } else {
+                                shSchoolInput.disabled = true;
+                                shAveInput.disabled = true;
+                                shAchievementsInput.disabled = true;
+                                shCourseInput.disabled = true;
+                                shSchoolInput.required = false;
+                                shAveInput.required = false;
+                            }
+                        }
+
+                        // Add event listeners to radio buttons
+                        shYesRadio.addEventListener("change", toggleSHInputs);
+                        shNoRadio.addEventListener("change", toggleSHInputs);
+
+                        // Initialize input fields based on initial radio button state
+                        toggleSHInputs();
+                    });
+
+
+
+                </script>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Senior High School:</label>
-                    <input type="text" name="shSchool" class="form-control form-control-sm" placeholder="Senior High School" required>
+                    <input type="text" name="shSchool" class="form-control form-control-sm" placeholder="Senior High School">
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="shAve" class="form-control form-control-sm" placeholder="Academic Average"required>
+                    <input type="text" name="shAve" class="form-control form-control-sm" placeholder="Academic Average">
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Achievements:</label>
+                    <label  class="form-label">Academic Achievements:</label>
                     <input type="text" name="shAchievements" class="form-control form-control-sm" placeholder="Achievements">
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Strand and Year Level:</label>
-                    <input type="text" name="shCourse" class="form-control form-control-sm" placeholder="Strand and Year Level" required>
+                    <input type="text" name="shCourse" class="form-control form-control-sm" placeholder="Strand and Year Level">
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -600,7 +653,7 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Achievements:</label>
+                    <label  class="form-label">Academic Achievements:</label>
                     <input type="text" name="cAchievements" class="form-control form-control-sm" placeholder="Achievements">
                 </div>
 
@@ -957,11 +1010,11 @@
                                 <div class="fileUpload container">
                                 <div class="p-2">
                                     <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
-                                    <img src="../images/no-images.jpg" alt="Image">
+                                    <img src="../images/no-images.jpg" id="image1" alt="Image">
                                     </div>
                                     <h6 class="text-center">Upload 2x2 Picture</h6>
                                     <div class="text-center"> <!-- Centering the button -->
-                            <label class="fileSelect btn btn-sm btn-primary col-lg-5 col-12 text-center">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event)"></label>
+                            <label class="fileSelect btn btn-sm btn-primary col-lg-5 col-12 text-center">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')"></label>
                         </div>                    
                     </div>
                             </div>
@@ -975,11 +1028,11 @@
                                 <div class="fileUpload container">
                                 <div class="p-2">
                                     <div class="Preview mb-3 max-width-8  overflow-hidden" id="previewContainer2">
-                                    <img src="../images/no-images.jpg" alt="Image">
+                                    <img src="../images/no-images.jpg" id="image2" alt="Image">
                                     </div>
                                     <h6 class="text-center">Family Picture</h6>
                                     <div class="text-center"> <!-- Centering the button -->
-                            <label class="fileSelect btn btn-sm btn-primary col-lg-5 col-12 text-center">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles2(event)"></label>
+                            <label class="fileSelect btn btn-sm btn-primary col-lg-5 col-12 text-center">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer2','image2')"></label>
                         </div>                    
                     </div>
                             </div>
@@ -996,7 +1049,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Letter of Intent</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer')"></label>
                                 <div class="Preview1 " id="previewContainer">
                                 </div>
                         </div> 
@@ -1008,7 +1061,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Family Profile</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles3(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')"></label>
                                 <a href="../Uploads_gslip/<?php echo $a["fam_temp"]; ?>" target="_blank">Download for template</a>
 
                                 <div class="Preview1 " id="previewContainer3">
@@ -1019,7 +1072,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Written Parent Consent</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles4(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer4')"></label>
                                 <div class="Preview1 " id="previewContainer4">
                                 </div>
                         </div> 
@@ -1027,7 +1080,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Latest Copy of Grades</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles5(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer5')"></label>
                                 <div class="Preview1 " id="previewContainer5">
                                 </div>
                         </div> 
@@ -1035,7 +1088,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Copy of Birth Certificate</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles6(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')"></label>
                                 <div class="Preview1 " id="previewContainer6">
                                 </div>
                         </div> 
@@ -1044,7 +1097,7 @@
                      <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Certificate of Indigency</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles7(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')"></label>
                                 <div class="Preview1 " id="previewContainer7">
                                 </div>
                         </div> 
@@ -1052,7 +1105,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Recommendation Letter from Adviser/Principal</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles8(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer8')"></label>
                                 <div class="Preview1 " id="previewContainer8">
                                 </div>
                         </div> 
@@ -1062,7 +1115,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Certificate of Indigency</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles9(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer9')"></label>
                                 <div class="Preview1 " id="previewContainer9">
                                 </div>
                         </div> 
@@ -1070,7 +1123,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Recommendation Letter from Adviser/Principal</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles10(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer10')"></label>
                                 <div class="Preview1 " id="previewContainer10">
                                 </div>
                         </div> 
@@ -1080,7 +1133,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Certificate of Good Moral</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles11(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer11')"></label>
                                 <div class="Preview1 " id="previewContainer11">
                                 </div>
                         </div> 
@@ -1088,7 +1141,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Copy of High School Diploma</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles12(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer12')"></label>
                                 <div class="Preview1 " id="previewContainer12">
                                 </div>
                         </div> 
@@ -1098,7 +1151,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Copy of Form 137/138</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles13(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer13')"></label>
                                 <div class="Preview1 " id="previewContainer13">
                                 </div>
                         </div> 
@@ -1106,7 +1159,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Copy of College/University Acceptance Letter</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles14(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer14')"></label>
                                 <div class="Preview1 " id="previewContainer14">
                                 </div>
                         </div> 
@@ -1115,7 +1168,7 @@
                     <div class="col-lg-4 col-12 mb-2 mt-4">               
                         <div class="fileUpload container">
                                 <h6>Copy of Enrollment Form</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles15(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer15')"></label>
                                 <div class="Preview1 " id="previewContainer15">
                                 </div>
                         </div> 
@@ -1126,7 +1179,7 @@
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Sketch of House Area and Directions for Commuting from CCMF site</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles16(event)"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer16')"></label>
                                 <div class="Preview1 " id="previewContainer16">
                                 </div>
                         </div> 
@@ -1142,598 +1195,104 @@
 
                 <script>
 
-                function handleFiles(event) {
+                    // function handleFiles(event) {
+                    //     const fileList = event.target.files;
+                    //     const previewContainer = document.getElementById('previewContainer1');
+                    //     previewContainer.innerHTML = '';
+
+                    //     const imageSize = 200; // Set the desired size for the preview images
+
+                    //     for (let i = 0; i < fileList.length; i++) {
+                    //         const file = fileList[i];
+                    //         const reader = new FileReader();
+
+                    //         reader.onload = function() {
+                    //             const img = document.createElement('img');
+                    //             img.src = reader.result;
+                    //             img.alt = file.name;
+                    //             img.classList.add('previewImage');
+                    //             img.style.width = imageSize + 'px'; // Set width
+                    //             img.style.height = imageSize + 'px'; // Set height
+                    //             previewContainer.appendChild(img);
+                    //         }
+
+                    //         reader.readAsDataURL(file);
+                    //     }
+                    // }
+
+                    // function handleFiles2(event) {
+                    //     const fileList = event.target.files;
+                    //     const previewContainer = document.getElementById('previewContainer2');
+                    //     previewContainer.innerHTML = '';
+
+                    //     const imageSize = 200; // Set the desired size for the preview images
+
+                    //     for (let i = 0; i < fileList.length; i++) {
+                    //         const file = fileList[i];
+                    //         const reader = new FileReader();
+
+                    //         reader.onload = function() {
+                    //             const img = document.createElement('img');
+                    //             img.src = reader.result;
+                    //             img.alt = file.name;
+                    //             img.classList.add('previewImage');
+                    //             img.style.width = imageSize + 'px'; // Set width
+                    //             img.style.height = imageSize + 'px'; // Set height
+                    //             previewContainer.appendChild(img);
+                    //         }
+
+                    //         reader.readAsDataURL(file);
+                    //     }
+                    // }
+                    function handleFiles(event, previewContainerId) {
                         const fileList = event.target.files;
-                        const previewContainer = document.getElementById('previewContainer1');
+                        const previewContainer = document.getElementById(previewContainerId);
                         previewContainer.innerHTML = '';
 
-                        const imageSize = 200; // Set the desired size for the preview images
+                        const acceptedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+                        const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
 
                         for (let i = 0; i < fileList.length; i++) {
                             const file = fileList[i];
-                            const reader = new FileReader();
 
-                            reader.onload = function() {
-                                const img = document.createElement('img');
-                                img.src = reader.result;
-                                img.alt = file.name;
-                                img.classList.add('previewImage');
-                                img.style.width = imageSize + 'px'; // Set width
-                                img.style.height = imageSize + 'px'; // Set height
-                                previewContainer.appendChild(img);
+                            // Check if the file type is valid
+                            if (acceptedTypes.includes(file.type)) {
+                                // Check if the file size is within the limit
+                                if (file.size <= maxSize) {
+                                    const reader = new FileReader();
+
+                                    reader.onload = function() {
+                                        const img = document.createElement('img');
+                                        img.src = reader.result;
+                                        img.alt = file.name;
+                                        img.classList.add('previewImage');
+                                        previewContainer.appendChild(img);
+                                    }
+
+                                    reader.readAsDataURL(file);
+                                } else {
+                                    alert('File size exceeds the maximum limit of 5 MB.');
+                                        const img = document.createElement('img');
+                                        img.src = '../images/no-images.jpg';
+                                        img.classList.add('previewImage');
+                                        previewContainer.appendChild(img);
+                                }
+                            } else {
+                                alert('Please select only JPEG, PNG, or JPG files.');
+                                    const img = document.createElement('img');
+                                    img.src = '../images/no-images.jpg';
+                                    img.classList.add('previewImage');
+                                    previewContainer.appendChild(img);
                             }
-
-                            reader.readAsDataURL(file);
                         }
                     }
 
-                    function handleFiles2(event) {
-                        const fileList = event.target.files;
-                        const previewContainer = document.getElementById('previewContainer2');
-                        previewContainer.innerHTML = '';
 
-                        const imageSize = 200; // Set the desired size for the preview images
 
-                        for (let i = 0; i < fileList.length; i++) {
-                            const file = fileList[i];
-                            const reader = new FileReader();
-
-                            reader.onload = function() {
-                                const img = document.createElement('img');
-                                img.src = reader.result;
-                                img.alt = file.name;
-                                img.classList.add('previewImage');
-                                img.style.width = imageSize + 'px'; // Set width
-                                img.style.height = imageSize + 'px'; // Set height
-                                previewContainer.appendChild(img);
-                            }
-
-                            reader.readAsDataURL(file);
-                        }
-                    }
                     
-                function handleFiles1(event) {
+                function handleFiles1(event, previewContainerId) {
                     const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-
-
-                function handleFiles3(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer3');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-
-
-                
-                function handleFiles4(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer4');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-                
-                function handleFiles5(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer5');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-
-                
-                function handleFiles6(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer6');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-                
-                function handleFiles7(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer7');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-                
-                function handleFiles8(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer8');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-                
-                function handleFiles9(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer9');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-                
-                function handleFiles10(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer10');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-                  
-                function handleFiles11(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer11');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-
-                
-                function handleFiles12(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer12');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-
-                
-                function handleFiles13(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer13');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-
-                
-                function handleFiles14(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer14');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-                
-                function handleFiles15(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer15');
-                    previewContainer.innerHTML = '';
-
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
-
-                                const logo = document.createElement('img');
-                                logo.src = '../images/folder-removebg-preview.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '50px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
-
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
-
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
-
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
-                            }
-                        } else {
-                            alert('Please select only PDF files.');
-                        }
-                    }
-                }
-
-                
-                function handleFiles16(event) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById('previewContainer16');
+                    const previewContainer = document.getElementById(previewContainerId);
                     previewContainer.innerHTML = '';
 
                     for (let i = 0; i < fileList.length; i++) {
@@ -2028,38 +1587,70 @@
         });
     }
 
+    function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Function to validate inputs for the current step
+function validateInputs(stepNumber) {
+    let isValid = true;
+
+    const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
+    currentStepInputs.forEach(input => {
+        if (!input.value.trim()) { // Check if input is empty after trimming whitespace
+            isValid = false;
+            // Add visual indicator for empty input fields
+            input.style.borderColor = 'red';
+            // Display error message for empty input field
+            let errorMessage = input.parentNode.querySelector('.error-message');
+            if (!errorMessage) {
+                errorMessage = document.createElement('span');
+                errorMessage.textContent = 'This field is required';
+                errorMessage.classList.add('error-message');
+                errorMessage.style.color = 'red';
+                input.parentNode.appendChild(errorMessage);
+            }
+        } else {
+            // Reset border color and remove error message for non-empty input fields
+            input.style.borderColor = '';
+            const errorMessage = input.parentNode.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+        }
+    });
+
+    // Validate email format if email input exists
+    const emailInput = steps[stepNumber - 1].querySelector('input[type="email"]');
+    if (emailInput && emailInput.value.trim() && !isValidEmail(emailInput.value.trim())) {
+        isValid = false;
+        // Add visual indicator for invalid email
+        emailInput.style.borderColor = 'red';
+        // Display error message for invalid email format
+        let errorMessage = emailInput.parentNode.querySelector('.error-message');
+        if (!errorMessage) {
+            errorMessage = document.createElement('span');
+            errorMessage.textContent = 'Please enter a valid email address';
+            errorMessage.classList.add('error-message');
+            errorMessage.style.color = 'red';
+            emailInput.parentNode.appendChild(errorMessage);
+        }
+    }
+
+    return isValid;
+}
+
     // Initial setup
     showStep(currentStep);
 
     nextBtns.forEach((nextBtn, index) => {
     nextBtn.addEventListener('click', () => {
-        // Check if there are any required fields in the current step that are empty
-        const currentStepInputs = steps[currentStep - 1].querySelectorAll('input[required]');
-        let canProceed = true;
+        // Validate inputs for the current step
+        const isValidStep = validateInputs(currentStep);
 
-        for (let i = 0; i < currentStepInputs.length; i++) {
-            const input = currentStepInputs[i];
-            if (!input.value.trim()) { // Check if the input value is empty after trimming whitespace
-                canProceed = false;
-                // Add a visual indicator to the empty input field (e.g., change border color to red)
-                input.style.borderColor = 'red';
-                // Optionally, you can also display an error message next to the input field if it doesn't already exist
-                const errorMessage = input.parentNode.querySelector('.error-message');
-                if (!errorMessage) {
-                    const errorMessage = document.createElement('span');
-                    errorMessage.textContent = 'This field is required';
-                    errorMessage.classList.add('error-message');
-                    errorMessage.style.color = 'red';
-                    input.parentNode.appendChild(errorMessage);
-                }
-                break; // Break out of the loop if any required field is empty
-            }
-        }
-
-        // If all required fields are filled, proceed to the next step
-        if (canProceed && currentStep < steps.length) {
-            resetInputBorders(currentStep); // Reset border color of input fields for the current step
-            removeErrorMessage(currentStep); // Remove error message span for the current step
+        // If all inputs are valid, proceed to the next step
+        if (isValidStep && currentStep < steps.length) {
             currentStep++;
             showStep(currentStep);
         }
@@ -2072,22 +1663,21 @@
     });
 });
 
-
-    // Event listeners for input fields
-    steps.forEach((step, index) => {
-        const stepInputs = step.querySelectorAll('input[required]');
-        stepInputs.forEach(input => {
-            input.addEventListener('input', () => {
-                if (input.value.trim()) {
-                    input.style.borderColor = ''; // Reset border color if input is not null
-                    const errorMessage = input.parentNode.querySelector('.error-message');
-                    if (errorMessage) {
-                        errorMessage.remove(); // Remove error message if input is not null
-                    }
+// Add event listeners for input fields to remove error messages on input
+steps.forEach(step => {
+    const stepInputs = step.querySelectorAll('input[required]');
+    stepInputs.forEach(input => {
+        input.addEventListener('input', () => {
+            if (input.value.trim()) {
+                input.style.borderColor = ''; // Reset border color if input is not empty
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove(); // Remove error message if input is not empty
                 }
-            });
+            }
         });
     });
+});
 
     prevBtns.forEach((prevBtn, index) => {
         prevBtn.addEventListener('click', () => {
