@@ -1,5 +1,5 @@
 <?php
-
+include '../email-design/scholarlogin-design.php';//Sa email design to ya.
 class Scholar{
 
     private $database;
@@ -407,18 +407,9 @@ class Scholar{
             exit();
             
         }
-        //send email employee his/her id and password
-    $emailSubject = "Your Scholar Application has been Submitted";
-    $emailBody = "Dear Applicant,\n\n"
-    . "Here is your login while we process your scholarship application: \n"
-    . "Username: " . $scholarUser . "\n"
-    . "Password: " . $scholarPass . "\n\n"
-    . "Please let us know if you have any questions or concerns, and we will be more than happy to help.\n\n"
-    . "Best regards,\n"
-    . "CCMF";
-    
-        //send email employee his/her id and password 
-        $this->database->sendEmail($scholarEmail,$emailSubject, $emailBody);
+    $emailBody = scholarLoginEmail($scholarUser, $scholarPass);
+    //send email employee his/her id and password 
+    $this->database->sendEmail($scholarEmail,"Your Scholar Application has been Submitted", $emailBody);
     
     }
 

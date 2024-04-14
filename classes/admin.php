@@ -1,5 +1,6 @@
 <?php
-
+include '../email-design/setupSuperAdmin-design.php';//Sa email design to ya.
+include '../email-design/setupAdmin-design.php';//Sa email design to ya.
 class Admin
 {
     private $database;
@@ -746,17 +747,9 @@ public function setUpSuperAdmin($fname, $lname, $email, $fileName, $pass, $type)
         header("Location: ../index.php?status=error");
         exit();
     }
-
-    $emailSubject = "Your Set Up for your Account has been done!";
-    $emailBody = "Dear Admin,\n\n"
-    . "Username: " . $email . "\n"
-    . "Password: " . $pass . "\n\n"
-    . "Please let us know if you have any questions or concerns, and we will be more than happy to help.\n\n"
-    . "Best regards,\n"
-    . "CCMF";
-    
-        //send email employee his/her id and password 
-        $this->database->sendEmail($email,$emailSubject, $emailBody);
+    $emailBody = superAdminSetupEmail($email, $pass);
+    //send email employee his/her id and password 
+    $this->database->sendEmail($email,"Your Set Up for your Account has been done!", $emailBody);
 }
 
 public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email){
@@ -777,17 +770,9 @@ public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email){
         header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
         exit();
     }
-
-    $emailSubject = "Your Set Up for your Account has been done!";
-    $emailBody = "Dear Admin,\n\n"
-    . "Username: " . $username . "\n"
-    . "Password: " . $pass . "\n\n"
-    . "Please let us know if you have any questions or concerns, and we will be more than happy to help.\n\n"
-    . "Best regards,\n"
-    . "CCMF";
-    
-        //send email employee his/her id and password 
-        $this->database->sendEmail($email,$emailSubject, $emailBody);
+    $emailBody = AdminSetupEmail($username, $pass);
+    //send email employee his/her id and password 
+    $this->database->sendEmail($email,"Your Set Up for your Account has been done!", $emailBody);
 }
 
 public function findAdminByToken($token){

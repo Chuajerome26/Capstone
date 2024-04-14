@@ -7,6 +7,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     require '../classes/admin.php';
     require '../classes/database.php';
     require '../classes/scholar.php';
+    include '../email-design/renewalStartEmail-design.php';
+    include '../email-design/renewalEndEmail-design.php';
     date_default_timezone_set('Asia/Manila');
     $database = new Database();
     $admin = new Admin($database);
@@ -24,35 +26,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     $dateFormat = date('M d, Y', strtotime($renewalDates['renewal_date_start']));
     $dateFormat1 = date('M d, Y', strtotime($renewalDates['renewal_date_end']));
 
-    $messageStart = '
-Dear Scholars,
-
-Don\'t forget to renew your scholar program for the upcoming Semester. Kindly review and update attached documents by '.$dateFormat.'. Reach out for assistance at Consuelo "CHITO" Madrigal Foundation Inc.
-    
-We value your commitment to academic achievement and look forward to another year of fostering your growth and success.
-    
-Best regards,
-    
-Executive Director
-Consuelo "CHITO" Madrigal Foundation Inc
-ccmf2015main@gmail.com';
-
-    $messageEnd = '
-Dear Scholars,
-
-We hope this message finds you well. As we approach the end of the scholarship renewal period, we want to remind you to submit your Registration Form to ensure a smooth renewal process.
-
-The deadline for renewal submissions is '.$dateFormat1.'. Please take a moment to review your renewal requirements and provide any necessary documentation. Failure to complete the renewal process by the deadline may result in the discontinuation of your scholarship.
-
-If you have any questions or concerns, please don\'t hesitate to contact our scholarship office at Consuelo "CHITO" Madrigal Foundation Inc.
-
-Thank you for your attention to this matter, and we appreciate your continued commitment to your academic pursuits.
-
-Best regards,
-
-Executive Director
-Consuelo "CHITO" Madrigal Foundation Inc
-ccmf2015main@gmail.com';
+    //Email message
+    $messageStart = renewalStartEmail($dateFormat);
+    $messageEnd = renewalEndEmail($dateFormat1);
 
     if($start == $date){
         foreach($scholars as $data){
