@@ -859,49 +859,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         <?php } ?>
 <!-- Modal end -->
 
-<!-- Modal for Files -->
-<?php
-$appliData2 = $admin->getScholars();
-    foreach($appliData2 as $b){
-        $appliFiles = $admin->getApplicantsFiles($b['id']);
-?>
-<div class="modal fade" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
-  <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="table-responsive">
-        <table id="applicant-modal-files" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Requirements</th>
-                    <th>Details</th>
-                </tr> 
-            </thead>
-            
-            <tbody>
-                <?php foreach($appliFiles as $files){ ?>
-                <tr>
-                    <td><?php echo $files['requirement_name'];?></td>
-                    <td><a href="../Scholar_files/<?php echo $files["file_name"]?>" target="_blank"><?php echo $files["file_name"]?></a></td>
-                </tr>
-                <?php }?>
-            </tbody>
-        </table>   
-        </div> 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="hidden" name="scholar_id" value="<?php echo $b['id'] ?>">
-        <button type="button" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-<?php } ?>
 <!-- Modal end -->
 
     <!-- Bootstrap core JavaScript-->

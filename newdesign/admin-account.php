@@ -157,101 +157,45 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
             </div>
             <!-- End of Main Content -->
 
-             
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Admin</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                            <div class="container ">
+                                <form enctype="multipart/form-data" method="post" action="../functions/admin-account.php">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name:</label>
+                                        <input type="text" class="form-control" name="firstName" placeholder="Enter first name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name:</label>
+                                        <input type="text" class="form-control" name="lastName" placeholder="Enter last name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control" name="email" placeholder="Enter email" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" name="addAdmin">Submit</button>
+                                </form>
+                            </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
 
 
 
             
-<!-- Send Email -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-
-            <div class="container ">
-                    <form enctype="multipart/form-data" method="post" action="../functions/admin-sendEmail.php">
-                        <div class="form-group mb-3">
-                            <label for="recipientEmail">Recipient's Email:</label>
-                            <select name="email" class="form-control" required>
-                                <option value="0">Select Scholar</option>
-                                <?php
-                                $scholar = $admin->getScholars();
-                                foreach($scholar as $s){
-                                    echo "<option value='" . $s['email'] . "'>" . $s['f_name'] . " " . $s['l_name'] . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="subject">Subject:</label>
-                            <input type="text" class="form-control" name="subject" placeholder="Enter email subject" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="message">Message:</label>
-                            <textarea class="form-control" name="message" rows="5" placeholder="Enter your message" required></textarea>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control" id="inputGroupFile04" name="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
-                            </div>
-                        
-                        
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- Send Email -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-
-            <div class="container ">
-                <form enctype="multipart/form-data" method="post" action="../functions/admin-account.php">
-                    <div class="form-group">
-                        <label for="firstName">First Name:</label>
-                        <input type="text" class="form-control" name="firstName" placeholder="Enter first name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name:</label>
-                        <input type="text" class="form-control" name="lastName" placeholder="Enter last name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" class="form-control" name="email" placeholder="Enter email" required>
-                    </div>
-                    
-                
-            </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
-                </form>
-            </div>
-            </div>
-        </div>
-        </div>
-
-
 
                 </div>
                    
