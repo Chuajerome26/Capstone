@@ -140,15 +140,14 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
                     <li class="nav-item dropdown text-decoration-none list-unstyled pt-3  d-block d-md-none">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="me-2 rounded-circle shadow-sm" src="../../images/images.jpg" alt="Bootstrap" width="30" height="30">   
+                        <img class="me-2 rounded-circle shadow-sm" src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" alt="Id" width="30" height="30">   
                     </a>
                     <ul class="dropdown-menu w-100">
-                        <li class="text-center w-100 col-10"> <br> <small class="text-muted"></small></li>
+                        <li class="text-center w-100 col-10"> <?php echo $admin_info[0]['l_name'].', '.$admin_info[0]['f_name']; ?><br> <small class="text-muted"></small></li>
                         <li><hr class="dropdown-divider"></li>
                         <li class="mb-1"><a class="dropdown-item" href="../../Pages/system/profile.php"><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
-                        <li><a class="dropdown-item" href="../../Pages/system/history.php"><i class="fa-solid fa-clock-rotate-left me-3"></i>History</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <form action="../../header/Functionality.php" method="POST">
+                        <form action="../newdesign/admin-logout.php" method="POST">
                             <li><button class="dropdown-item" type="submit"><i class="fa-solid fa-right-from-bracket me-3"></i>Sign Out</button></li>
                         </form>
                     </ul>
@@ -185,7 +184,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
                 <div class="d-flex gap-2">
                 
-                <div class="dropdown">
+                <!-- <div class="dropdown">
                 <button class="btn border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-bell fa-fw text-gray-400 mt-1 ms-2" style="font-size: 18px;"></i>
                 </button>
@@ -214,7 +213,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 
                     </div>
                 </ul>
-                </div>
+                </div> -->
                     
 
                     <div>

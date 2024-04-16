@@ -50,7 +50,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
 
               <div class="container-fluid">
-                    <!-- Content Row -->
+                    
+              <div class="hstack g-1 mb-3">
+                        <div class="p-2"><p class="h4 mb-0 font-weight-bold text-gray-800">Admin Logs</p></div>
+                    </div>
+
+
+
                     <div class="row">
 
                         <!-- Area Chart -->
