@@ -116,7 +116,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class="ms-2">Announcement</span>                   
                     </a>
 
-
+                    <?php if($_SESSION['user_type'] === 3): ?>
                     <a href="../newdesign/admin-account.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'history') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
                         <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913z"/>
@@ -133,6 +133,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         </svg>
                         <span class ="ms-2">Admin Logs</span>                  
                     </a>
+                    <?php endif;?>
 
                   
                 

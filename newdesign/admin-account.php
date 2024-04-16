@@ -181,13 +181,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         <label for="email">Email:</label>
                                         <input type="email" class="form-control" name="email" placeholder="Enter email" required>
                                     </div>
-                                    <button type="submit" class="btn btn-primary" name="addAdmin">Submit</button>
-                                </form>
+                                
                             </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
+                                </form>
                             </div>
                             </div>
                         </div>
