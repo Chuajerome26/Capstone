@@ -113,7 +113,7 @@ foreach($announcements as $a):
  ?>
 <div class="card" style="margin-bottom: 2.5%;">
 <div class="card-header d-flex align-items-center">
-<img src="../images/<?php echo $admin_info1[0]['pic']; ?>" alt="Profile image" class="profile-image me-2 " width="50" height="50" style="border-radius: 50%;">
+<img src="../Scholar_files/<?php echo $admin_info1[0]['pic']; ?>" alt="Profile image" class="profile-image me-2 " width="50" height="50" style="border-radius: 50%;">
 <div class="flex-grow-1 ml-2 mt-2"><?php echo $admin_info1[0]['f_name'].' '.$admin_info1[0]['l_name']; ?>
 <small><p>Date Posted on: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
 </div>
