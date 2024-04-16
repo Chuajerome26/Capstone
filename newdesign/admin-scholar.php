@@ -719,8 +719,6 @@ $appliData2 = $admin->getScholars();
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="hidden" name="scholar_id" value="<?php echo $b['id'] ?>">
-        <button type="button" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
       </div>
     </div>
   </div>
