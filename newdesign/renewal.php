@@ -16,7 +16,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     
     $id = $_SESSION['id'];
     $date = date('Y-m-d');
-    $admin_info = $admin->scholarInfo($id);
+    $admin_info = $admin->adminInfo($id);
     $renewalDates = $scholar->getRenewalDates();
     $scholars = $admin->getScholars();
 

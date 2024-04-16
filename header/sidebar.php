@@ -58,6 +58,10 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
     </style>
 
+    <?php
+
+    ?> 
+
 
     <!-- Main Navigation -->
     <header>
@@ -222,11 +226,11 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
                     <div class="dropdown me-4 mt-1">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="me-2 rounded-circle shadow-sm" src="../images/images.png" alt="Bootstrap" width="30" height="30"> 
-                            <span>Test</span>
+                            <img class="me-2 rounded-circle shadow-sm" src="../images/<?php echo $admin_info[0]['pic']; ?>" alt="Id" width="30" height="30"> 
+                            <span><?php echo $admin_info[0]['l_name']; ?></span>
                         </a>
                         <ul class="dropdown-menu  dropdown-menu-end  w-100">
-                            <li class="text-center w-100 col-10"> <br> <small class="text-muted"></small></li>
+                            <li class="text-center w-100 col-10"> <?php echo $admin_info[0]['l_name'].', '.$admin_info[0]['f_name']; ?><br> <small class="text-muted"></small></li>
                             <li><hr class="dropdown-divider"></li>
                             <li class="mb-1"><a class="dropdown-item" href="../../Pages/system/profile.php"><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
                             <li><hr class="dropdown-divider"></li>

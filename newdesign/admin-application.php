@@ -12,7 +12,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3){
     
     $id = $_SESSION['id'];
 
-    $admin_info = $admin->scholarInfo($id);
+    $admin_info = $admin->adminInfo($id);
 
 
 } else {
