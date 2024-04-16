@@ -222,7 +222,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
                     <div class="dropdown me-4 mt-1">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="me-2 rounded-circle shadow-sm" src="../images/<?php echo $admin_info[0]['pic']; ?>" alt="Id" width="30" height="30"> 
+                            <img class="me-2 rounded-circle shadow-sm" src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" alt="Id" width="30" height="30"> 
                             <span><?php echo $admin_info[0]['l_name']; ?></span>
                         </a>
                         <ul class="dropdown-menu  dropdown-menu-end  w-100">
