@@ -29,6 +29,6 @@ if (isset($_POST['submit'])) {
 
     $admin->updateFamTemp($filesAndPicture);
     
-    header('Location: ../Pages-admin/admin-application.php?status=editSuccess');
+    header('Location: ../newdesign/admin-application.php?status=editSuccess');
     exit();
 }

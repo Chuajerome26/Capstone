@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
     $stmt = $database->getConnection()->prepare('INSERT INTO admin_remarks (scholar_id, admin_id, remarks, remarks_mess, date) VALUES (:id, :admin_id, :remarks, :remarks_mess, :date)');
 
     if(!$stmt->execute(['id' => $id, 'admin_id' => $user_id, 'remarks' => 0, 'remarks_mess' => $remarks, 'date' => $date])){
-        header('Location: ../Pages-admin/admin-application.php?status=error');
+        header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }
     
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
 
     $sentEmail = $database->sendEmail($email,"Update on Your Application", $declineMessage);
 
-    header('Location: ../Pages-admin/admin-application.php?status=successRemarks');
+    header('Location: ../newdesign/admin-application.php?status=successRemarks');
     exit();
 }
 

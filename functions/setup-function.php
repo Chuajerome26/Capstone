@@ -39,7 +39,7 @@ require '../classes/database.php';
     $fileDestination1 = '../Scholar_files/' . $fileNameNew1;
 
     if($pass !==  $confirmPass){
-        header('Location: ../Pages-admin/setup-account.php?token='.$token.'&status=passDoNotMatch');
+        header('Location: ../newdesign/setup-account.php?token='.$token.'&status=passDoNotMatch');
         exit();
     }
 

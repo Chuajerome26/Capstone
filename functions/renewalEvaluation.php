@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
     if($scholar){
         $getStatus1 = $scholar->getRenewalInfo($id);
         if($getStatus1[0]['file1_status'] ==1 && $getStatus1[0]['file2_status'] == 1){
-            header('Location: ../Pages-admin/renewal.php?renewal=complete');
+            header('Location: ../newdesign/renewal.php?renewal=complete');
             exit();
         }else{
             $counter = 1; // Initialize a counter variable
@@ -44,7 +44,7 @@ if(isset($_POST['submit'])){
             ';
 
             $database->sendEmail($email,"Your Renewal is Under Review", $message);
-            header('Location: ../Pages-admin/renewal.php?renewal=evaluation');
+            header('Location: ../newdesign/renewal.php?renewal=evaluation');
             exit();
         }
     }

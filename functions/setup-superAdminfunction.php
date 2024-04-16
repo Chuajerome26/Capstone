@@ -31,7 +31,7 @@ require '../classes/database.php';
     $fileDestination1 = '../Scholar_files/' . $fileNameNew1;
 
     if($pass !==  $confirmPass){
-        header('Location: ../Pages-admin/setup-superAdmin.php?type='.$type.'&status=passDoNotMatch');
+        header('Location: ../newdesign/setup-superAdmin.php?type='.$type.'&status=passDoNotMatch');
         exit();
     }
 

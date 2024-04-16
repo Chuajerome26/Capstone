@@ -21,9 +21,9 @@ if(isset($_POST['submit'])){
         $database->sendEmail($email,$subject,$message);
     }
     
-    header("Location: ../Pages-admin/admin-scholar.php?success=emailSent");
+    header("Location: ../newdesign/admin-scholar.php?success=emailSent");
     exit();
 }else{
-    header("Location: ../Pages-admin/admin-scholar.php?success=emailSentError");
+    header("Location: ../newdesign/admin-scholar.php?success=emailSentError");
     exit();
 }

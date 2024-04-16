@@ -114,6 +114,6 @@ if(isset($_POST['submit'])){
         $database->sendEmail($email,"Scholarship Application - File Evaluation Update", $message);
     }
 
-    header('Location: ../Pages-admin/admin-application.php?status=UpdatedRemarks');
+    header('Location: ../newdesign/admin-application.php?status=UpdatedRemarks');
     exit();
 }

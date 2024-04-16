@@ -56,7 +56,7 @@ if(isset($_POST['submit'])){
         $message = IntGrade($last_name, $newDate1, $time_start, $time_end);
         $addRemarks = $admin->addRemarks($id, $user_id, 2, $message, $currentDate1);
         $database->sendEmail($email,"Invitation to Final Interview for Scholarship", $message);
-        header('Location: ../Pages-admin/schedule-task.php?status=successGrade');
+        header('Location: ../newdesign/schedule-task.php?status=successGrade');
         exit();
     }
 }

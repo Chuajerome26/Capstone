@@ -94,10 +94,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 <div  id="initial-interview-card" class="col-lg-12 mb-4 mt-3">
     <div class="card shadow mb-4 ">
         <!-- Card Header - Dropdown -->
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Initial Interview</h6>
-        </div>
+        
         <div class="card-body">
+        <h6 class="p-2 font-weight-bold text-black mb-2">Initial Interview</h6>
             <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
                 <div class="row">
                     <?php
@@ -184,10 +183,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 <div id="final-interview-card" class="col-lg-12 mb-4 mt-3 " style="display: none;">
     <div class="card shadow mb-4 ">
         <!-- Card Header - Dropdown -->
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Final Interview</h6>
-        </div>
+        
         <div class="card-body">
+        <h6 class="p-2 font-weight-bold text-black mb-2">Final Interview</h6>
             <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
                 <div class="row g-1">
                 <?php

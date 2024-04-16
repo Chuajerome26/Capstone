@@ -23,7 +23,7 @@ class Admin
 
          //if execution fail
         if (!$stmt->execute([$id])) {
-            header("Location: ../Pages-admin/schedule-task.php?error=stmtfail");
+            header("Location: ../newdesign/schedule-task.php?error=stmtfail");
             exit();
         }
 
@@ -43,7 +43,7 @@ class Admin
 
          //if execution fail
         if (!$stmt->execute([$id])) {
-            header("Location: ../Pages-admin/schedule-task.php?error=stmtfail");
+            header("Location: ../newdesign/schedule-task.php?error=stmtfail");
             exit();
         }
 
@@ -300,7 +300,7 @@ class Admin
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_grade WHERE scholar_id = ?");
 
         if (!$stmt->execute([$scholar_id])) {
-            header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+            header("Location: ../newdesign/admin-application.php?error=stmtfail");
             exit();
         }
         //fetch the result
@@ -313,7 +313,7 @@ class Admin
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_college_choices WHERE scholar_id = ?");
 
         if (!$stmt->execute([$scholar_id])) {
-            header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+            header("Location: ../newdesign/admin-application.php?error=stmtfail");
             exit();
         }
         //fetch the result
@@ -326,7 +326,7 @@ class Admin
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_siblings WHERE scholar_id = ?");
 
         if (!$stmt->execute([$scholar_id])) {
-            header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+            header("Location: ../newdesign/admin-application.php?error=stmtfail");
             exit();
         }
         //fetch the result
@@ -340,7 +340,7 @@ class Admin
 
        //if execution fail
     if (!$stmt->execute([$scholar_id])) {
-        header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+        header("Location: ../newdesign/admin-application.php?error=stmtfail");
         exit();
     }
       //fetch the result
@@ -475,7 +475,7 @@ class Admin
     if (count($status) !== count($arrayNames)) {
         // Handle error, such as array size mismatch
         error_log("Array sizes mismatch: Status count = " . count($status) . ", ArrayNames count = " . count($arrayNames));
-        header("Location: ../Pages-admin/admin-application.php?error=array_size_mismatch");
+        header("Location: ../newdesign/admin-application.php?error=array_size_mismatch");
         exit();
     }
 
@@ -522,7 +522,7 @@ public function acceptScholar($id){
 
        //if execution fail
        if (!$stmt->execute([1,$id])) {
-           header("Location: ../Pages-admin/admin-application.php?error=stmtfail");
+           header("Location: ../newdesign/admin-application.php?error=stmtfail");
 
            exit();
        }
@@ -626,7 +626,7 @@ public function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
 
 //     //if execution fail
 //     if (!$stmt->execute([$amount, $donors, $date])) {
-//         header("Location: ../Pages-admin/admin-funds.php?status=error");
+//         header("Location: ../newdesign/admin-funds.php?status=error");
 //         exit();
 //     }
 
@@ -634,7 +634,7 @@ public function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
 
 //          //if execution fail
 //         if (!$stmtTotalAmount->execute()) {
-//             header("Location: ../Pages-admin/admin-funds.php?status=error");
+//             header("Location: ../newdesign/admin-funds.php?status=error");
 //             exit();
 //         }
 //         //fetch the employeeID
@@ -649,12 +649,12 @@ public function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
 
 
 //     if (!$stmt1->execute([$updateTotalAmount, $this->date])) {
-//         header("Location: ../Pages-admin/admin-funds.php?status=error");
+//         header("Location: ../newdesign/admin-funds.php?status=error");
 //         exit();
 //     }
 
 
-//     header("Location: ../Pages-admin/admin-funds.php?status=success");
+//     header("Location: ../newdesign/admin-funds.php?status=success");
 //     exit();
 
 // }
@@ -686,7 +686,7 @@ public function findAdminByEmail($email){
 
    //if execution fail
   if (!$stmt->execute([$email])) {
-      header("Location: ../Pages-admin/admin-account.php?scholar=emailExist");
+      header("Location: ../newdesign/admin-account.php?scholar=emailExist");
       exit();
   }
 
@@ -712,7 +712,7 @@ public function addAdminAccount($first_name, $last_name, $email, $token){
 
     //if execution fail
     if (!$stmt->execute([$first_name, $last_name, $email, $token, $date])) {
-        header("Location: ../Pages-admin/admin-application.php?status=error");
+        header("Location: ../newdesign/admin-application.php?status=error");
         exit();
     }
     return true;
@@ -811,7 +811,7 @@ public function addRemarks($scholar_id, $admin_id, $remarks, $remarks_mess, $dat
 
     //if execution fail
     if (!$stmt->execute([$scholar_id, $admin_id, $remarks, $remarks_mess, $date])) {
-        header("Location: ../Pages-admin/admin-application.php?status=error");
+        header("Location: ../newdesign/admin-application.php?status=error");
         exit();
     }
 }
@@ -900,7 +900,7 @@ public function getInterviewsByDate($date){
     $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_schedule_interview WHERE date = ?");
 
     if (!$stmt->execute([$date])) {
-        header("Location: ../Pages-admin/schedule-task.php?error=stmtfail");
+        header("Location: ../newdesign/schedule-task.php?error=stmtfail");
         exit();
     }
     //fetch the result

@@ -32,13 +32,17 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
     if($start == $date){
         foreach($scholars as $data){
-            $database->sendEmail($data['email'], "Scholar Program Renewal", $messageStart);
-            $admin->updateNotif1($data['id']);
+            if($data['notif_send'] == 0){
+                $database->sendEmail($data['email'], "Scholar Program Renewal", $messageStart);
+                $admin->updateNotif1($data['id']);
+            }
         }
     }elseif($end == $date){
         foreach($scholars as $data){
-            $database->sendEmail($data['email'], "Scholarship Renewal Period Closing", $messageEnd);
-            $admin->updateNotif0($data['id']);
+            if($data['notif_send'] == 1){
+                $database->sendEmail($data['email'], "Scholarship Renewal Period Closing", $messageEnd);
+                $admin->updateNotif0($data['id']);
+            }
         }
     }
 
@@ -98,11 +102,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         <div class="col-lg-15 mb-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Renewal</h6>
-                                </div>
+                              
                                 <div class="card-body">
-                                    
+                                <h6 class="p-2 font-weight-bold text-black mb-2">Renewal</h6>
                                     <table id="applicant" class="table table-striped table-hover">
                                         <thead>
                                             <tr>

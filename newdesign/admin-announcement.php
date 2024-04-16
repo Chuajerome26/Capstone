@@ -22,7 +22,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
         // Check if the announcement was successfully posted
         if ($result) {
-            header('Location: ../Pages-admin/admin-announcement.php');
+            header('Location: ../newdesign/admin-announcement.php');
             exit();
         } else {
             echo "Failed to post announcement.";
@@ -79,10 +79,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 <div class="col-xl-8 col-lg-7">
 <div class="card shadow mb-4">
 <!-- Card Header - Dropdown -->
-<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-<h6 class="m-0 font-weight-bold text-primary">Post Announcement</h6>
-</div>
 <div class="card-body">
+<h6 class="p-2 font-weight-bold text-black mb-2">Post Announcement</h6>
 <div class="card">
 <div class="card-header d-flex align-items-center">
     <img src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" alt="Profile image" class="profile-image me-2" width="50" height="50" style="border-radius: 50%;">
@@ -105,10 +103,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 <div class="col-xl-8 col-lg-7">
 <div class="card shadow mb-4">
 <!-- Card Header - Dropdown -->
-<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-<h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
-</div>
+
 <div class="card-body">
+<h6 class="p-2 font-weight-bold text-black mb-2">Announcements</h6>
 <?php 
 if($countA != 0):
 foreach($announcements as $a):

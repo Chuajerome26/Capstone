@@ -79,10 +79,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         <div class="col-xl-12">
                             <div class="card shadow mb-4" style="font-size: 14px;">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Scholar list</h6>
-                                </div>
                                 <div class="card-body">
+                                <h6 class="p-2 font-weight-bold text-black mb-2">Scholar List</h6>
                                     <div class="table-responsive">
                                     <table id="scholars" class="table">
                                     <thead>

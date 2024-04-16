@@ -79,46 +79,34 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         <div class="col-xl-12">
                             <div class="card shadow mb-4" style="font-size: 14px;">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Scholar list</h6>
-                                </div>
+                                
                                 <div class="card-body">
+                                <h6 class="p-2 font-weight-bold text-black mb-2">Admin Accounts</h6>
                                     <div class="table-responsive">
                                     <table id="scholars" class="table table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
+                                            <th scope="col">Pic</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Date Applied</th>
-                                            
-                                            <th scope="col">Details</th>
+                                            <th scope="col">Date Added</th>
                                     
                                             
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-dividercar">
                                     <?php
-                                    $applicantsData = $admin->getScholars();
+                                    $applicantsData = $admin->getAdmins();
                                     $num = 1;
                                     foreach($applicantsData as $s){
-                                        if($s['status'] == 0){
-                                            $status = "Pending";
-                                        }else{
-                                            $status = "Accepted";
-                                        }
                                     ?>
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>
+                                            <td><img class="img-profile rounded-circle" src="../Scholar_files/<?php echo $s['pic']; ?>" style="height:40px;width:40px;"></td>
                                             <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                             <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                                            <td><?php echo $s["date_apply"];?></td>
-                                            
-                                            <td class="d-flex gap-2">
-                                                
-                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button>
-                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button>
-                                        </td>
+                                            <td><?php echo $s["date"];?></td>
                                             
                                             
                                         </tr>

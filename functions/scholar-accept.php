@@ -23,14 +23,14 @@ if(isset($_POST["accept"])){
     $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 1, application_status = 3 WHERE id = :id');
 
     if(!$stmt->execute(['id' => $id])){
-        header('Location: ../Pages-admin/admin-application.php?status=error');
+        header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }
 
     $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE user_id = :id');
 
     if(!$stmt1->execute(['id' => $id])){
-        header('Location: ../Pages-admin/admin-application.php?status=error');
+        header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }
     
@@ -38,6 +38,6 @@ if(isset($_POST["accept"])){
 
     $addRemarks = $admin->addRemarks($id, $user_id, 3, $acceptanceMessage, $currentDate1);
     $sentEmail = $database->sendEmail($email,"Congratulations! Scholarship Acceptance", $acceptanceMessage);
-    header('Location: ../Pages-admin/admin-application.php?status=success');
+    header('Location: ../newdesign/admin-application.php?status=success');
     exit();
 }

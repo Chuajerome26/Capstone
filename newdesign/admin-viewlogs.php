@@ -13,6 +13,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $id = $_SESSION['id'];
 
     $admin_info = $admin->adminInfo($id);
+    $admin_logs = $admin->getAdminlogs();
+    $count = count($admin_logs);
 
 } else {
     header("Location: ../index.php");
@@ -48,30 +50,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
 
               <div class="container-fluid">
-
-                 
-
-                    <div class="hstack g-1 mb-3">
-                        <div class="p-2"><p class="h4 mb-0 font-weight-bold text-gray-800">Scholars</p></div>
-                        <div class="p-2 ms-auto">
-                        <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Send Email</div>
-                        </button>
-                        </div>
-                        <div class="p-2">
-                            <form action="../functions/download-scholar.php" method="post">
-                                <button type="submit" class=" btn  btn-primary shadow-sm">
-                                    <i class="fas fa-download fa-sm text-white-50"></i> 
-                                    <div class="d-none d-sm-inline-block">Generate Report</div>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                        
-
-  
-
                     <!-- Content Row -->
                     <div class="row">
 
@@ -79,53 +57,51 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         <div class="col-xl-12">
                             <div class="card shadow mb-4" style="font-size: 14px;">
                                 <!-- Card Header - Dropdown -->
-                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Scholar list</h6>
-                                </div>
                                 <div class="card-body">
+                                    <h6 class="p-2 font-weight-bold text-black mb-2">Admin Logs</h6>
                                     <div class="table-responsive">
-                                    <table id="scholars" class="table">
+                                    <table class="table table-striped table-hover">
+                                    <?php if($count != 0): ?>
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Date Applied</th>
-                                            
-                                            <th scope="col">Details</th>
-                                    
-                                            
+                                            <th scope="col">Scholar ID</th>
+                                            <th scope="col">Admin ID</th>
+                                            <th scope="col">Remarks</th>
+                                            <th scope="col">Date</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-dividercar">
                                     <?php
-                                    $applicantsData = $admin->getScholars();
                                     $num = 1;
-                                    foreach($applicantsData as $s){
-                                        if($s['status'] == 0){
-                                            $status = "Pending";
-                                        }else{
-                                            $status = "Accepted";
+                                    foreach ($admin_logs as $log): 
+
+                                        $scholar_info = $admin->scholarInfo($log['scholar_id']);
+                                        $admin_info = $admin->adminInfo($log['admin_id']);
+                                        if($log['remarks'] == 0){
+                                            $remarks = '<span class="badge badge-primary">Evaluate</span>';
                                         }
-                                    ?>
+                                        else if($log['remarks'] == 1){
+                                            $remarks = '<span class="badge badge-success">Evaluation Complete</span>';
+                                        }else if($log['remarks'] == 2){
+                                            $remarks = '<span class="badge badge-success">Done Initial Interview</span>';
+                                        }else if($log['remarks'] == 3){
+                                            $remarks = '<span class="badge badge-success">Accepted</span>';
+                                        }
+                                        ?>
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>
-                                            <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
-                                            <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                                            <td><?php echo $s["date_apply"];?></td>
-                                            
-                                            <td class="d-flex gap-2">
-                                                
-                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button>
-                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button>
-                                        </td>
-                                            
-                                            
+                                            <td style="white-space: nowrap;"><?php echo $scholar_info[0]['f_name'];?></td>
+                                            <td style="white-space: nowrap;"><?php echo $admin_info[0]["f_name"];?></td>
+                                            <td style="white-space: nowrap;"><?php echo $remarks;?></td>
+                                            <td style="white-space: nowrap;"><?php echo $log["date"];?></td>
                                         </tr>
                                         <?php 
                                     $num++;
-                                        } 
-                                    ?>
+                                    endforeach;
+                                    else:?>
+                                        <div class="alert alert-primary" role="alert">No Announcements</div>
+                                    <?php endif; ?>
                                     </tbody>
                                     </table>
                                     </div>

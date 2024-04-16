@@ -16,7 +16,7 @@ class Scholar{
 
         //if execution fail
         if (!$stmt->execute([$id])) {
-            header("Location: ../Pages-admin/renewal.php?scholar=error");
+            header("Location: ../newdesign/renewal.php?scholar=error");
             exit();
         }
 
@@ -439,7 +439,7 @@ class Scholar{
     public function getRenewalInfoById($id) {
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE id = ?")->fetchAll();
         if (!$stmt->execute([$id])) {
-            header("Location: ../Pages-admin/renewal.php?scholar=renewalDoesNotExist");
+            header("Location: ../newdesign/renewal.php?scholar=renewalDoesNotExist");
             exit();
         }
 
@@ -488,7 +488,7 @@ class Scholar{
         $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET file1_status = ?, file2_status = ? WHERE id = ? ");
         
         if(!$stmt->execute([$file1, $file2, $id])){
-            header('Location: ../Pages-admin/renewal.php?scholar=error');
+            header('Location: ../newdesign/renewal.php?scholar=error');
             exit();
         }
 

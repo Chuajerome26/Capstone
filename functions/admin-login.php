@@ -50,7 +50,7 @@ require '../classes/database.php';
     $get_admin = $admin->checkAdmin();
 
     if($get_admin[0]['count'] == 0 && $userType == 3){
-        // header('Location: ../Pages-admin/setup-superAdmin.php?type='.$userType);
+        // header('Location: ../newdesign/setup-superAdmin.php?type='.$userType);
         exit();
         
     }elseif($get_admin[0]['count'] == 0 && $userType == 1){
@@ -63,22 +63,22 @@ require '../classes/database.php';
     if($userType == 3){
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 3;
-        header("Location: ../Pages-admin/dashboard.php");
+        header("Location: ../newdesign/dashboard.php");
     }else if($userType == 2){
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 2;
-        header("Location: ../Pages-admin/dashboard.php");
+        header("Location: ../newdesign/dashboard.php");
     }else if($userType == 1){
         $_SESSION["id"] = $user_id;
         $_SESSION["user_type"] = 1;
-        header("Location: ../Pages-scholar/scholardash.php");
+        header("Location: ../Pages-scholar/dashboard.php");
     }else if($userType == 0){
         $_SESSION["id"] = $user_id;
         $_SESSION["user_type"] = 0;
         header("Location: ../Pages-Applicant/Applicant-Requirements2.php");
     }
 
-    // header("Location: ../Pages-admin/dashboard.php");
+    // header("Location: ../newdesign/dashboard.php");
     exit();
 } else {
     header("Location:../index.php?error=emptyInput");
