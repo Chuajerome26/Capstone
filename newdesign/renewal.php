@@ -252,13 +252,14 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <!-- Modal Header -->
       <div class="modal-header">
         <h4 class="modal-title">Renewal Dates</h4>
-        <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <!-- Modal body -->
       <div class="modal-body">
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-12">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center">Range of Date</h2>
