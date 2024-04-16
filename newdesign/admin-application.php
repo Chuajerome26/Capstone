@@ -894,6 +894,8 @@ $appliData2 = $admin->getApplicants();
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>    
      
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script>
         function toggleInput(checkbox, inputId) {
             var inputField = document.getElementById(inputId);

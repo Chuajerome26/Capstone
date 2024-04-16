@@ -530,6 +530,8 @@ document.getElementById(tabId + '-card').style.display = 'block';
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <!-- DataTables Bootstrap 5 JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     
     <script>
            $(document).ready(function() {
