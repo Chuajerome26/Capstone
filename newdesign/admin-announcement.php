@@ -11,6 +11,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
     $admin = new Admin($database);
 
     $id = $_SESSION['id'];
+    $admin_info = $admin->adminInfo($id);
 
     // Check if the Post button is clicked and announcement is not empty
     if (isset($_POST['post']) && !empty($_POST['announcement'])) {
@@ -29,6 +30,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
     }
 
     $announcements = $admin->getAnnouncements();
+    $countA = count($announcements);
 
 } else {
     header("Location: ../index.php");
@@ -83,8 +85,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 <div class="card-body">
 <div class="card">
 <div class="card-header d-flex align-items-center">
-    <img src="../images/Announcer.jpg" alt="Profile image" class="profile-image me-2" width="50" height="50" style="border-radius: 50%;">
-    <div class="flex-grow-1 ml-2">Admin's Name here</div>
+    <img src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" alt="Profile image" class="profile-image me-2" width="50" height="50" style="border-radius: 50%;">
+    <div class="flex-grow-1 ml-2"><?php echo $admin_info[0]['f_name'].' '.$admin_info[0]['l_name']; ?></div>
 </div>
 
 <div class="card-body">
@@ -107,11 +109,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 <h6 class="m-0 font-weight-bold text-primary">Announcements</h6>
 </div>
 <div class="card-body">
-<?php foreach($announcements as $a): ?>
+<?php 
+if($countA != 0):
+foreach($announcements as $a):
+    $admin_info1 = $admin->adminInfo($a['admin_id']);
+ ?>
 <div class="card" style="margin-bottom: 2.5%;">
 <div class="card-header d-flex align-items-center">
-<img src="../images/Announcer.jpg" alt="Profile image" class="profile-image me-2 " width="50" height="50" style="border-radius: 50%;">
-<div class="flex-grow-1 ml-2 mt-2">Admin's Name here
+<img src="../images/<?php echo $admin_info1[0]['pic']; ?>" alt="Profile image" class="profile-image me-2 " width="50" height="50" style="border-radius: 50%;">
+<div class="flex-grow-1 ml-2 mt-2"><?php echo $admin_info1[0]['f_name'].' '.$admin_info1[0]['l_name']; ?>
 <small><p>Date Posted on: <?= $a['ann_date'] ?> Time: <?= $a['ann_time'] ?></p></time></small>
 </div>
 <div class="dropdown">
@@ -130,7 +136,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
 <?= $a['announcement'] ?>
 </div>
 </div>
-<?php endforeach; ?>
+<?php endforeach;
+else:
+    ?>
+    <div class="alert alert-primary" role="alert">No Announcements</div>
+    <?php endif;  ?>
 </div>
 
 <script>

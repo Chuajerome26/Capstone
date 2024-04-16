@@ -186,7 +186,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Send Email</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -291,7 +291,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 3) {
                             <h5 class="text-center mt-4"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
                                 <div class="text-center text-muted"><?php echo $a["email"];?></div>
                                 <div class="text-center text-muted"><?php echo $a['mobile_number'];?></div>
-                                <div class="text-center text-muted"><?php echo $a["nick_name"];?></div>
+                                
                                 <div class="text-center">
                                 <a href="<?php echo $a["fb_link"];?>" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-facebook text-primary fs-6 mt-1"></i> Facebook Link
@@ -695,7 +695,7 @@ $appliData2 = $admin->getScholars();
   <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Modal title</h5>
+        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Scholar Files</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

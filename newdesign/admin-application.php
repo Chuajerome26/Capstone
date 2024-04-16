@@ -349,7 +349,7 @@ foreach($applicantsss as $pogiko){
   <div class="modal-dialog" style="max-width:600px;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="remarksSend<?php echo $pogiko["id"];?>">Scholar Details</h5>
+        <h5 class="modal-title" id="remarksSend<?php echo $pogiko["id"];?>">Applicant Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -404,7 +404,7 @@ $appliData1 = $admin->getApplicants();
                     <h5 class="text-center mt-4"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
                         <div class="text-center text-muted"><?php echo $a["email"];?></div>
                         <div class="text-center text-muted"><?php echo $a['mobile_number'];?></div>
-                        <div class="text-center text-muted"><?php echo $a["nick_name"];?></div>
+                        
                         <div class="text-center">
                         <a href="<?php echo $a["fb_link"];?>" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-facebook text-primary fs-6 mt-1"></i> Facebook Link
@@ -807,7 +807,7 @@ $appliData2 = $admin->getApplicants();
   <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Modal title</h5>
+        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Applicant Files</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
