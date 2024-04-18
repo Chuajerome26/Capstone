@@ -669,8 +669,8 @@
         </div>
     </div>
 </div>
- <!-- Modal for Forgot Password -->
- <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+<!-- Modal for Forgot Password -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -681,12 +681,12 @@
             </div>
             <div class="modal-body">
                 <p>Enter your email address below and we'll send you instructions on how to reset your password.</p>
-                <form action="forgot_password.php" method="post">
+                <form action="functions/forgot_pass.php" method="post">
                     <div class="form-group">
                         <label class="fw-bold" for="forgotEmail">Email Address:</label>
                         <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Reset Password</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -695,6 +695,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script>
