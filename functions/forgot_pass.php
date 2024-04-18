@@ -1,7 +1,7 @@
 <?php
 require '../classes/admin.php';
 require '../classes/database.php';
-include '../email-design/forgot_pass-design';
+include '../email-design/forgot_pass-design.php';
 
 $database = new Database;
 $admin = new Admin($database);
