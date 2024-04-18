@@ -2,12 +2,14 @@
 require '../classes/admin.php';
 require '../classes/database.php';
 
-// Process form data
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$database = new Database;
+$admin = new Admin($database);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     // Check if all required fields are set
     if (isset($_POST["newpass"]) && isset($_POST["confirmpass"]) && isset($_GET["token"])) {
-        $password = $_POST["password"];
-        $confirmPassword = $_POST["confirmPassword"];
+        $password = $_POST["newpass"];
+        $confirmPassword = $_POST["confirmpass"];
         $token = $_GET["token"];
 
         // Validate password and confirm password
@@ -17,40 +19,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Check if the token is valid and not expired in the login table
-        $stmtLogin = $conn->prepare("SELECT * FROM login WHERE token = ? AND token_expiry > NOW()");
-        $stmtLogin->bind_param("s", $token);
-        $stmtLogin->execute();
-        $resultLogin = $stmtLogin->get_result();
+        $stmt = $database->getConnection()->prepare("SELECT * FROM login WHERE token = :token AND token_expiry > NOW()");
+        $stmt->bindParam(':token', $token);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
 
-        if ($resultLogin->num_rows === 0) {
+        if (count($result) === 0) {
             header('Location: ../functions/reset_pass.php?token='.$token.'&success=invalid');
             exit();
         }
 
         // Update password in the login table
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmtUpdate = $conn->prepare("UPDATE login SET pass = ?, token = NULL, token_expiry = NULL WHERE token = ?");
-        $stmtUpdate->bind_param("ss", $hashed_password, $token);
-        $stmtUpdate->execute();
+        $stmt = $database->getConnection()->prepare("UPDATE login SET pass = :password, token = NULL, token_expiry = NULL WHERE token = :token");
+        $stmt->bindParam(':password', $hashed_password);
+        $stmt->bindParam(':token', $token);
+        $stmt->execute();
 
-        if ($stmtUpdate->affected_rows === 1) {
+        if ($stmt->rowCount() === 1) {
             // Password updated successfully
-            // Redirect the user to the appropriate page after password reset
-            // For example, you can redirect them to the login page
             header('Location: ../index.php?success=reset');
             exit();
         } else {
             // Error updating password
-            echo json_encode(['success' => false, 'message' => 'Error resetting password: ' . $conn->error]);
+            header('Location: ../functions/reset_pass.php?token='.$token.'&success=error');
             exit();
         }
     } else {
         // Missing required fields
-        echo json_encode(['success' => false, 'message' => 'Missing required fields']);
+        header('Location: ../functions/reset_pass.php?token='.$token.'&success=missing');
         exit();
     }
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -107,6 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
