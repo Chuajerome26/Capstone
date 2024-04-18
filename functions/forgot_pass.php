@@ -1,6 +1,7 @@
 <?php
 require '../classes/admin.php';
 require '../classes/database.php';
+include '../email-design/forgot_pass-design';
 
 $database = new Database;
 $admin = new Admin($database);
@@ -35,12 +36,7 @@ if(isset($_POST["submit"])){
         $resetLink = "https://ccmf.website/functions/reset_pass.php?token=$token";
 
         // Email message
-        $forgotMessage = "Dear user,
-
-        Please click on the following link to reset your password: 
-        $resetLink
-
-        If you did not request this, please ignore this email.";
+        $forgotMessage = forgotEmail($resetLink);
 
         $sentEmail = $database->sendEmail($email, "Password Reset Request", $forgotMessage);
 

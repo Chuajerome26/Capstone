@@ -92,11 +92,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                             <div class="col-md-12 mb-3">
                                 <label for="password" class="form-label">New Password</label>
                                 <input type="password" class="form-control" name="newpass" id="password" placeholder="Password" required>
+                                <span class="input-group-text bg-white border-start-0" id="togglePassword"><i class="fas fa-eye-slash"></i></span>
                                 <div id="emailHelp" class="form-text">Your password must be 8-20 characters long, contain letters and numbers.</div>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="confirmPassword" class="form-label">Confirm Password</label>
                                 <input type="password" class="form-control" name="confirmpass" id="confirmpass" placeholder="Confirm Password" required>
+                                <span class="input-group-text bg-white border-start-0" id="toggleConfirmPassword"><i class="fas fa-eye-slash"></i></span>
                                 <div id="emailHelp" class="form-text">Your password and confirmation password must match.</div>
                             </div>
                             <div class="text-center">
@@ -161,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     // Add event listener for toggling password visibility
     document.addEventListener('DOMContentLoaded', function () {
         const passwordInput = document.getElementById('password');
-        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const confirmPasswordInput = document.getElementById('confirmpass');
 
         togglePasswordVisibility('togglePassword', passwordInput);
         togglePasswordVisibility('toggleConfirmPassword', confirmPasswordInput);

@@ -1,4 +1,7 @@
-<!doctype html>
+<?php
+function forgotEmail($resetLink){
+
+    return'<!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     
     <head>
@@ -196,66 +199,26 @@
                             <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                               <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                                 <tbody>
-                                <tr>
-                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Dear, '.$last_name.'</div>
-                                    </td>
-                                  </tr>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
-                                      
-                                    </div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We are delighted to inform you that you have been shortlisted for the final round of interviews for the Scholarship Program. Congratulations on reaching this stage!</div>
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Dear User,</div>
                                     </td>
                                   </tr>
                                   <tr>
                                   <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">The final interview will be a crucial step in the selection process, where we aim to learn more about you, your aspirations, and how you align with the values and objectives of our scholarship program.</div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Please find below the details for your final interview:</div>
-                                </td>
-                              </tr>
-                                  <tr>
-                                  <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
-                                    <ul>
-                                    <li><strong>Time:</strong> '.$convertedTime.' - '.$convertedTime1.'</li>
-                                    <li><strong>Date:</strong> '.$newDate1.'</li>
-                                    <li><strong>Mode of Interview:</strong> '.$mode.'</li>
-                                    <li><strong>Information:</strong> AREA 6 SITIO VETERANS, BRGY. BAGONG SILANGAN, QUEZON CITY 1119 Quezon City, Philippines</li>
-                                    <li><strong>Location:</strong> Consuelo "CHITO" Madrigal Foundation, Inc.</li>
-                                    </ul>
-                                    </div>
-                                  </td>
-                                </tr>
-                                  <tr>
-                                    <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">During the interview, you can expect questions related to your academic achievements, extracurricular activities, career goals, and your understanding of how this scholarship will contribute to your personal and professional development.</div>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                  <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We encourage you to prepare thoroughly and showcase your strengths and passion for your chosen field of study. Feel free to bring any relevant documents or materials that you believe will support your candidacy.</div>
+                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Please click on the following link to reset your password: </div>
                                   </td>
                                 </tr>
                                 <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">If you have any questions or concerns regarding the interview process, please do not hesitate to email us at ccmf2015main@gmail.com.</div>
+                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">'.$resetLink.'</div>
                                 </td>
                               </tr>
-                                  <tr>
-                                  <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Once again, congratulations on reaching this stage, and we look forward to meeting you and learning more about your journey and aspirations.</div>
-                                  </td>
-                                </tr>
+                              <tr>
+                                <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
+                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">If you did not request this, please ignore this email.</div>
+                                </td>
+                              </tr>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
                                       <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Best regards,</div>
@@ -263,7 +226,7 @@
                                   </tr>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Consuelo "CHITO" Madrigal Foundation, Inc.<br>ccmf2015main@gmail.com</div>
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Executive Director<br>Consuelo "CHITO" Madrigal Foundation, Inc.<br>ccmf2015main@gmail.com</div>
                                     </td>
                                   </tr>
                                 </tbody>
@@ -576,4 +539,6 @@
       </div>
     </body>
     
-    </html>
+    </html>';
+}
+?>
