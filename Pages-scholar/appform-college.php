@@ -956,7 +956,7 @@
         <?php
         } else {
             // Ah sarado, bibili sana ko mighty yung sigariryo
-            echo '<p>The application form is currently closed. It is open from 8:00 AM to 5:00 PM.</p>';
+            echo '<p style="font-weight: bold; font-size: larger; text-align:center;">The application form is currently closed. It is open from 8:00 AM to 5:00 PM.</p>';
         }
         ?>
         </div>
