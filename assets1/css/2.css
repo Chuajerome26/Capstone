@@ -75,10 +75,37 @@
 	}
 	.input-group-append {
 		position: relative;
-		top: -63.5px; 
-		right: -380px; 
 		z-index: 2;
+		top: -63.5px; 
+		right: -380px; /* Default position */
+	
+		/* Adjustments for various screen sizes */
+		@media (max-width: 768px) {
+			position: relative;
+			top: -65px; 
+			right: -385px; 
+		}
+		
+		@media (max-width: 576px) {
+			position: relative;
+			top: -65px; 
+			right: -385px; 
+		}
+		
+		@media (max-width: 460px) {
+			top: -65px; 
+			right: -330px; 
+		}
+		
+		@media (max-width: 360px) {
+			position: relative;
+			top: -65px; 
+			right: -240px; 
+		}
 	}
+	
+	
+
 	.forgot-password {
 		color: #007bff; 
 		text-decoration: none;
