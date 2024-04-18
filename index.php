@@ -548,51 +548,73 @@
     <!-- Start Footer Area -->
     <section class="contact" id="contact">
     <footer class="footer style2">
-        <!-- Start Middle Top -->
-        <div class="footer-middle">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <!-- Single Widget -->
-                        <div class="f-about single-footer">
-                            <div class="logo">
-                                <img src="assets1/images/logo/Logo2.png" alt="Logo"></a>
-                            </div>
-                            <p class="fw-bold fs-5">INQUIRIES</p>
-
-
-                                <p>Should you wish to know more about our programs, how to donate or volunteer, please fill up the form on the right and we will get back to you.</p>
-                            <div class="footer-social">
-                                <ul>
-                                <li><a href="https://www.facebook.com/CCMFI"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                                </svg></a></li>
-                               
-                                </ul>
-                            </div>
+    <!-- Start Middle Top -->
+    <div class="footer-middle">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-12">
+                    <!-- Single Widget -->
+                    <div class="f-about single-footer">
+                        <div class="logo">
+                            <img src="assets1/images/logo/Logo2.png" alt="Logo">
                         </div>
-                        <!-- End Single Widget -->
+                        <p class="fw-bold fs-5">INQUIRIES</p>
+                        <p>Should you wish to know more about our programs, how to donate or volunteer, please fill up the form on the right and we will get back to you.</p>
+                        <div class="footer-social">
+                            <ul>
+                                <li>
+                                    <a href="https://www.facebook.com/CCMFI">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                            <div class="col-lg-3 col-md-6 col-12">
-                                <!-- Single Widget -->
-                                <div class="single-footer sm-custom-border recent-blog">
-                                        <p class="fw-bold fs-5">CONTACT INFORMATION</p>
-                                    <ul>
-                                        <li>
-                                            <p style="font-size: 20px"><b>Phone:</b>    +63-2-848-0981</p>
-                                            <br>
-                                            <p style="font-size: 20px"><b>Email:</b>ccmf2015main@gmail.com</p>
-                                            <br>
-                                            <p style="font-size: 20px"><b>Open Hours:</b>   Mon - Fri : 8:00am - 5:00pm</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- End Single Widget -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Single Widget -->
+                    <div class="single-footer sm-custom-border recent-blog">
+                        <p class="fw-bold fs-5">CONTACT INFORMATION</p>
+                        <ul>
+                            <li>
+                                <p style="font-size: 20px"><b>Phone:</b> +63-2-848-0981</p>
+                                <br>
+                                <p style="font-size: 20px"><b>Email:</b> ccmf2015main@gmail.com</p>
+                                <br>
+                                <p style="font-size: 20px"><b>Open Hours:</b> Mon - Fri : 8:00am - 5:00pm</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
+    <div class="col-lg-3 col-md-6 col-12"> <!-- Adjusted class and input -->
+    <!-- Card Element -->
+    <div class="card" style="width: 45rem;">
+        <div class="card-body">
+            <p class="fw-bold fs-5">REQUIREMENT LIST:<p>
+            <div class="list-group">
+    <p class="list-group-item">Letter of Intent &nbsp;&nbsp;|&nbsp;&#160; Family Profile</p>
+    <p class="list-group-item">Written Parent Consent &nbsp;&nbsp;|&nbsp;&#160; Latest Copy of Grades</p>
+    <p class="list-group-item">Birth Certificate &nbsp;&nbsp;|&nbsp;&#160; Certificate of Indigency</p>
+    <p class="list-group-item">High School Diploma&nbsp;&nbsp;|&nbsp;&#160; Form 137/138</p>
+    <p class="list-group-item">College/University Acceptance Letter&nbsp;&nbsp;|&nbsp;&#160; Enrollment Form</p>
+    <p class="list-group-item">Certificate of Good Moral</p>
+    <p class="list-group-item">Recommendation Letter from Adviser/Principal</p>
+    <p class="list-group-item">Sketch of House Area and Directions for Commuting from CCMF site</p>
+</div>
+            <div class="button">
+            <a data-toggle="modal" data-target="#applyModal" class="btn btn-primary mt-3">Apply Now</a>
         </div>
+</div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</footer>
+
         <!--/ End Footer Middle -->
         <!-- Start Footer Bottom -->
         <div class="footer-bottom">
