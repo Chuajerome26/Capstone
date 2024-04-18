@@ -152,7 +152,7 @@
         <!------- STEP 1 ------->
      
              
-        <div class="step" id="step1">
+        <div class="" id="step1">
             <h5 class="text-primary"> Personal Information </h5>
             <div class="border-bottom mb-3 border border-1"></div>
                 <div class="row">
@@ -254,9 +254,10 @@
 
 
                 <div class="col-md-6 mb-3">
-                    <label  class="form-label">Active Contact Number: <span class="text-danger">*</span></label>
-                    <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required>
+                    <label class="form-label">Active Contact Number: <span class="text-danger">*</span></label>
+                    <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="Mobile Number" required maxlength="11">
                 </div>
+                
 
                 <div class="col-md-6 mb-3">
                     <label  class="form-label">Email Address: <span class="text-danger">*</span></label>
@@ -269,13 +270,13 @@
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Height (in cm): <span class="text-danger">*</span></label>
-                    <input type="text" name="height" class="form-control form-control-sm" placeholder="Height" required>
+                    <input type="text" name="height" id="height" class="form-control form-control-sm" placeholder="Height" required>
                 </div>
 
                 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Weight (in kg): <span class="text-danger">*</span></label>
-                    <input type="text" name="weight" class="form-control form-control-sm" placeholder="Weight" required>
+                    <input type="text" name="weight" id="weight" class="form-control form-control-sm" placeholder="Weight" required>
                 </div>
 
 
@@ -290,21 +291,21 @@
 
               <h6>Present Address</h6>
 
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                                 <label  class="form-label">Province: <span class="text-danger">*</span></label>
                                 <input type="text" name="present_province" class="form-control form-control-sm" value="Metro Manila" readonly>
                         </div>
                     
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-4 mb-3">
                                     <label  class="form-label">City: <span class="text-danger">*</span></label>
                                     <input type="text" name="present_city" class="form-control form-control-sm" value="Quezon City" readonly>
                         </div>
 
                     
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                     <label  class="form-label">Barangay:<span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="address" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()" required>
+                    <select class="form-select form-select-sm" name="address" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()">
                     <option selected>Barangay</option>
                     <!--District 1-->
                     <option value="Alicia" data-district="1">Alicia</option>
@@ -459,21 +460,26 @@
                     </div>
 
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                             <label  class="form-label">District: <span class="text-danger">*</span></label>
-                            <input type="text" name="present_district" id="districtField" class="form-control form-control-sm" placeholder="District" required>
+                            <input type="text" name="present_district" id="districtField" class="form-control form-control-sm" placeholder="District">
                     </div>
 
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                             <label  class="form-label">Zip Code:<span class="text-danger">*</span></label>
                             <input type="text" name="present_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                            <label  class="form-label">House Number:<span class="text-danger">*</span></label>
+                            <input type="text" name="present_hnumber" class="form-control form-control-sm" placeholder="House Number" required>
                     </div>
 
 
                     <h6 class="mt-3"> Permanent Address</h6>
                     <!--Auto Fill na to young padre-->
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                     <label class="form-label">Province:<span class="text-danger">*</span></label>
                     <input type="text" name="permanent_province" class="form-control form-control-sm" placeholder="Province" required>
                     <input type="checkbox" id="sameAsPresent"> <label for="sameAsPresent"><small class="text-muted">Same as Present Address</small></label>
@@ -481,24 +487,29 @@
                     </div>
 
 
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                             <label  class="form-label">City:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_city" class="form-control form-control-sm" placeholder="City" required>
+                            <input type="text" name="permanent_city" class="form-control form-control-sm" placeholder="City">
                     </div>
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                             <label  class="form-label">Barangay:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_barangay" class="form-control form-control-sm" placeholder="Barangay" required>
+                            <input type="text" name="permanent_barangay" class="form-control form-control-sm" placeholder="Barangay">
                     </div>
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                             <label  class="form-label">District:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_district" class="form-control form-control-sm" placeholder="District" required>
+                            <input type="text" name="permanent_district" class="form-control form-control-sm" placeholder="District">
                     </div>
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                             <label  class="form-label">Zip Code:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_zip" class="form-control form-control-sm" placeholder="Zip Code" required>
+                            <input type="text" name="permanent_zip" class="form-control form-control-sm" placeholder="Zip Code">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                            <label  class="form-label">House Number:</label>:<span class="text-danger">*</span></label>
+                            <input type="text" name="permanent_hnumber" class="form-control form-control-sm" placeholder="House Number">
                     </div>
 
                 <br>
@@ -546,7 +557,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="eAve" class="form-control form-control-sm" placeholder="Academic Average" required>
+                    <input type="text" name="eAve" id="eAve" class="form-control form-control-sm" placeholder="Academic Average" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -561,7 +572,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="jhAve" class="form-control form-control-sm" placeholder="Academic Average" required>
+                    <input type="text" name="jhAve" id="jhAve" class="form-control form-control-sm" placeholder="Academic Average" required>
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -570,7 +581,7 @@
                 </div>
                 
                 <div class="col-md-12 mb-3">
-                    <label class="form-label">Did you go to Senior High?</label><br>
+                    <label class="form-label">Did you attend senior high school?</label><br>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="shStatus" id="shYes" value="yes" required>
                         <label class="form-check-label" for="shYes">Yes</label>
@@ -629,7 +640,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="shAve" class="form-control form-control-sm" placeholder="Academic Average">
+                    <input type="text" name="shAve" id="shAve" class="form-control form-control-sm" placeholder="Academic Average">
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -649,7 +660,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Academic Average:</label>
-                    <input type="text" name="cAve" class="form-control form-control-sm" placeholder="Academic Average">
+                    <input type="text" name="cAve" id="cAve" class="form-control form-control-sm" placeholder="Academic Average">
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -687,7 +698,7 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Grade:</label>
-                            <input type="text" name="gAverage[]" class="form-control form-control-sm" placeholder="Grade" required>
+                            <input type="text" name="gAverage[]" id="gAve" class="form-control form-control-sm" placeholder="Grade" required>
                         </div>
 
                         <div class="col-md-2  button-column">
@@ -741,7 +752,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
-                    <input type="text" name="fatherAttained" class="form-control form-control-sm" placeholder="Contact Number">
+                    <input type="text" name="fatherContact" id="fatherContact" class="form-control form-control-sm" placeholder="Contact Number">
                 </div>
 
                 <div class="col-md-3 mb-3">
@@ -767,7 +778,7 @@
 
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
-                    <input type="text" name="motherAttained" class="form-control form-control-sm" placeholder="Contact Number">
+                    <input type="text" name="motherContact" id="motherContact" class="form-control form-control-sm" placeholder="Contact Number">
                 </div>
 
 
@@ -1465,6 +1476,7 @@
             document.querySelector('input[name="permanent_city"]').value = "Quezon City";
             document.querySelector('input[name="permanent_province"]').value = "Metro Manila";
             document.querySelector('input[name="permanent_zip"]').value = document.querySelector('input[name="present_zip"][placeholder="Zip Code"]').value;
+            document.querySelector('input[name="permanent_hnumber"]').value = document.querySelector('input[name="present_hnumber"][placeholder="House Number"]').value;
         } else {
             // Clear permanent address fields if unchecked
             document.querySelector('input[name="permanent_barangay"]').value = '';
@@ -1472,6 +1484,8 @@
             document.querySelector('input[name="permanent_city"]').value = '';
             document.querySelector('input[name="permanent_province"]').value = '';
             document.querySelector('input[name="permanent_zip"]').value = '';
+            document.querySelector('input[name="permanent_hnumber"]').value = '';
+
         }
     });
     //function for District Auto Fill
@@ -1502,34 +1516,34 @@
         }
     }
 
-        //Function for email validation
-        document.addEventListener("DOMContentLoaded", function() {
-        let emailInput = document.getElementById("email");
+    //     //Function for email validation
+    //     document.addEventListener("DOMContentLoaded", function() {
+    //     let emailInput = document.getElementById("email");
 
-        function validateEmailInput(input) {
-            let inputValue = input.value.trim();
-            let isValid = true;
+    //     function validateEmailInput(input) {
+    //         let inputValue = input.value.trim();
+    //         let isValid = true;
 
-            if (!/\S+@\S+\.\S+/.test(inputValue)) {
-                isValid = false;
-            }
+    //         if (!/\S+@\S+\.\S+/.test(inputValue)) {
+    //             isValid = false;
+    //         }
 
-            if (!isValid) {
-                input.classList.remove("is-valid");
-                input.classList.add("is-invalid");
-                document.getElementById("emailFeedback").style.display = "block";
-            } else {
-                input.classList.remove("is-invalid");
-                input.classList.add("is-valid");
-                document.getElementById("emailFeedback").style.display = "none";
-            }
-        }
+    //         if (!isValid) {
+    //             input.classList.remove("is-valid");
+    //             input.classList.add("is-invalid");
+    //             document.getElementById("emailFeedback").style.display = "block";
+    //         } else {
+    //             input.classList.remove("is-invalid");
+    //             input.classList.add("is-valid");
+    //             document.getElementById("emailFeedback").style.display = "none";
+    //         }
+    //     }
 
-        // Add event listener to email input for validation
-        emailInput.addEventListener("input", function() {
-            validateEmailInput(emailInput);
-        });
-    });
+    //     // Add event listener to email input for validation
+    //     emailInput.addEventListener("input", function() {
+    //         validateEmailInput(emailInput);
+    //     });
+    // });
     </script>
 
     <script>
@@ -1543,6 +1557,14 @@
 
         // Apply the function to your input elements
         allowNumbersOnly('mNumber');
+        allowNumbersOnly('fatherContact');
+        allowNumbersOnly('motherContact');
+        allowNumbersOnly('eAve');
+        allowNumbersOnly('jhAve');
+        allowNumbersOnly('shAve');
+        allowNumbersOnly('cAve');
+        allowNumbersOnly('height');
+        allowNumbersOnly('weight');
         allowNumbersOnly('emergencyContact');
         allowNumbersOnly('motherIncome');
         allowNumbersOnly('fatherIncome');
@@ -1638,8 +1660,26 @@ function validateInputs(stepNumber) {
         }
     }
 
+    // Validate mNumber format if mNumber input exists
+    const mNumberInput = steps[stepNumber - 1].querySelector('input[name="mNumber"]');
+    if (mNumberInput && mNumberInput.value.trim().length !== 11) {
+        isValid = false;
+        // Add visual indicator for invalid mNumber
+        mNumberInput.style.borderColor = 'red';
+        // Display error message for invalid mNumber length
+        let errorMessage = mNumberInput.parentNode.querySelector('.error-message');
+        if (!errorMessage) {
+            errorMessage = document.createElement('span');
+            errorMessage.textContent = 'Mobile number must be 11 characters';
+            errorMessage.classList.add('error-message');
+            errorMessage.style.color = 'red';
+            mNumberInput.parentNode.appendChild(errorMessage);
+        }
+    }
+
     return isValid;
 }
+
 
     // Initial setup
     showStep(currentStep);
