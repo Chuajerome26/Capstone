@@ -158,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
             timer: 3300
         }).then(() => {
             // Redirect user to index page
-            window.location.href = "index.php"; // Change "index.php" to the appropriate URL
+            window.location.href = "../index.php";
         });
     }
 
