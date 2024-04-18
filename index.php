@@ -589,7 +589,7 @@
                         </ul>
                     </div>
                 </div>
-    <div class="col-lg-3 col-md-6 col-12"> <!-- Adjusted class and input -->
+     <!-- Adjusted class and input -->
     <!-- Card Element -->
     <div class="card" style="width: 45rem;">
         <div class="card-body">
