@@ -88,19 +88,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
                 <div class="col-md-11 mx-auto">
                     <span><p class="text-center fs-4 fw-bold">SET UP YOUR ACCOUNT</p></span>
                     <form id="resetPasswordForm" method="post" action="../functions/reset_pass.php<?php echo isset($_GET['token']) ? '?token=' . $_GET['token'] : ''; ?>">
-                        <div class="row">
-                            <div class="col-md-12 mb-3">
-                                <label for="password" class="form-label">New Password</label>
-                                <input type="password" class="form-control" name="newpass" id="password" placeholder="Password" required>
-                                <span class="input-group-text bg-white border-start-0" id="togglePassword"><i class="fas fa-eye-slash"></i></span>
-                                <div id="emailHelp" class="form-text">Your password must be 8-20 characters long, contain letters and numbers.</div>
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" name="confirmpass" id="confirmpass" placeholder="Confirm Password" required>
-                                <span class="input-group-text bg-white border-start-0" id="toggleConfirmPassword"><i class="fas fa-eye-slash"></i></span>
-                                <div id="emailHelp" class="form-text">Your password and confirmation password must match.</div>
-                            </div>
+                    <h4 class="text-center">Create new password</h4>
+                    <p class="text-center col-10 m-auto text-muted ">Your new password must be different from previous used password</p>
+                    <label for="password" class="form-label mt-3">New Password</label>
+                    <div class="input-group ">
+                        <span class="input-group-text bg-white border-end-0"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control" id="password" name="newpass" required placeholder="Password">
+                        <span class="input-group-text bg-white border-start-0" id="togglePassword"><i class="fas fa-eye-slash"></i></span>
+                    </div>
+                    <div id="passwordHelpBlock" class="form-text mb-3 text-muted"> Your password must be 8-20 characters long, contain letters and numbers</div>
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control" id="confirmpass" name="confirmpass" required placeholder="Confirm Password">
+                        <span class="input-group-text bg-white border-start-0" id="toggleConfirmPassword"><i class="fas fa-eye-slash"></i></span>
+                    </div>
                             <div class="text-center">
                                 <button type="submit" name="submit" class="btn btn-primary col-md-9 mx-auto shadow">Submit</button>
                             </div>
