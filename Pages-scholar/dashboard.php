@@ -222,13 +222,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                     $date = isset($_GET['date']) ? $_GET['date'] : '';
                                     $announcements= $admin->getAnnouncements($date);
                                     foreach ($announcements as $b){
+                                        $adminInfo = $admin->adminInfo($b['admin_id']);
+                            
                                     ?>
                                     <div class="hstack gap-3">
                                         <div class="p-1"> 
-                                            <img src="../images/images.png" alt="" style="width: 50px; height: 50px" class="rounded-circle" />
+                                            <img src="../Scholar_files/<?php echo $adminInfo[0]['pic']; ?>" alt="" style="width: 50px; height: 50px" class="rounded-circle" />
                                         </div>
                                         <div class="p-1">
-                                            <div class="">Admin</div>
+                                            <div class=""><?php echo $adminInfo[0]['f_name']; ?></div>
                                             <div class="text-muted" style="font-size:12px;"><strong>Date Posted on:</strong> <?= $b['ann_date'] ?> <strong>Time:</strong> <?= $b['ann_time'] ?></div>
                                         </div>
                                     </div>
@@ -334,8 +336,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                             </div>
                                                         </div>
                                                     </div>';
-                                                // Display a message indicating that renewal is not allowed at the current date
-                                                echo '<p>Renewal is not allowed at the current date.</p>';
                                             }                                            
                                             ?>
  
