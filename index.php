@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="assets1/css/2.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
 
 </head>
 
@@ -657,7 +657,7 @@
                                 <label class="fw-bold" for="password"></label>
                                 <input type="password" class="form-control form-control-sm" name="psw" id="password" placeholder="Password" required>
                                 <div class="input-group-append">
-                                    <i id="showPasswordIcon" onclick="togglePasswordVisibility()"></i>
+                                    <i id="showPasswordIcon" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
                                 </div>
                             </div>
                         </div>
@@ -668,15 +668,12 @@
                     </div>
                     <button type="submit" name="submitBtn" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;">Login</button>
                 </form>
-                <div class="modal-footer">
-                    <a href="Pages-scholar/appform.php">Create Account</a>
-                </div>
             </div>
         </div>
     </div>
 </div>
-<!-- Modal for Forgot Password -->
-<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+ <!-- Modal for Forgot Password -->
+ <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -687,12 +684,12 @@
             </div>
             <div class="modal-body">
                 <p>Enter your email address below and we'll send you instructions on how to reset your password.</p>
-                <form action="functions/forgot_pass.php" method="post">
+                <form action="forgot_password.php" method="post">
                     <div class="form-group">
                         <label class="fw-bold" for="forgotEmail">Email Address:</label>
                         <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
                     </div>
-                    <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
+                    <button type="submit" class="btn btn-primary">Reset Password</button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -703,21 +700,20 @@
 </div>
 
 
-
 <script>
-function togglePasswordVisibility() {
-    var passwordField = document.getElementById("password");
-    var passwordIcon = document.getElementById("showPasswordIcon");
-    if (passwordField.type === "password") {
-        passwordField.type = "text";
-        passwordIcon.classList.replace("fa-eye", "fa-eye-slash");
-        passwordIcon.style.display = "inline-block";
-    } else {
-        passwordField.type = "password";
-        passwordIcon.classList.replace("fa-eye-slash", "fa-eye");
-        passwordIcon.style.display = "none";
+    function togglePasswordVisibility() {
+        var passwordField = document.getElementById("password");
+        var passwordIcon = document.getElementById("showPasswordIcon");
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            passwordIcon.classList.remove("fa-eye");
+            passwordIcon.classList.add("fa-eye-slash");
+        } else {
+            passwordField.type = "password";
+            passwordIcon.classList.remove("fa-eye-slash");
+            passwordIcon.classList.add("fa-eye");
+        }
     }
-}
 </script>
     <!-- End of Modal -->
     <!-- ========================= scroll-top ========================= -->
