@@ -110,7 +110,73 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])) {
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Get the value of 'success' from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const successValue = urlParams.get('success');
 
+    // Display SweetAlert based on 'success' value
+    if (successValue === "success") {
+        Swal.fire({
+            position: "center",
+            title: "Success",
+            text: "Password reset successfully",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3300
+        });
+    } else if (successValue === "invalid") {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Oops...",
+            text: "Invalid or expired token",
+            showConfirmButton: false,
+            timer: 3300
+        });
+    } else if (successValue === "notmatch") {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Oops...",
+            text: "Passwords do not match",
+            showConfirmButton: false,
+            timer: 3300
+        });
+    } else if (successValue === "reset") {
+        Swal.fire({
+            position: "center",
+            title: "Success",
+            text: "Password reset successfully",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 3300
+        }).then(() => {
+            // Redirect user to index page
+            window.location.href = "index.php"; // Change "index.php" to the appropriate URL
+        });
+    }
+
+    // Add event listener for toggling password visibility
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+
+        togglePasswordVisibility('togglePassword', passwordInput);
+        togglePasswordVisibility('toggleConfirmPassword', confirmPasswordInput);
+    });
+
+    // Function to toggle password visibility
+    function togglePasswordVisibility(toggleBtnId, inputField) {
+        const toggleBtn = document.getElementById(toggleBtnId);
+        toggleBtn.addEventListener('click', function () {
+            const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+            inputField.setAttribute('type', type);
+            toggleBtn.innerHTML = type === 'password' ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+        });
+    }
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
