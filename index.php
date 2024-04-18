@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="assets1/css/2.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    
 
 </head>
 
@@ -650,13 +650,19 @@
                         <input type="text" class="form-control" name="uname" placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                        <i class="fa fa-lock"></i>
-                        <label class="fw-bold" for="password"></label>
-                        <input type="password" class="form-control" name="psw" id="password" placeholder="Password" required>
-                        <div class="input-group-append">
-                            <i id="showPasswordIcon" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <i class="fa fa-lock"></i>
+                                <label class="fw-bold" for="password"></label>
+                                <input type="password" class="form-control form-control-sm" name="psw" id="password" placeholder="Password" required>
+                                <div class="input-group-append">
+                                    <i id="showPasswordIcon" onclick="togglePasswordVisibility()"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
                     <div class="forgot">
                         <a href="#" class="forgot-password" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
                     </div>
@@ -699,19 +705,19 @@
 
 
 <script>
-    function togglePasswordVisibility() {
-        var passwordField = document.getElementById("password");
-        var passwordIcon = document.getElementById("showPasswordIcon");
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            passwordIcon.classList.remove("fa-eye");
-            passwordIcon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            passwordIcon.classList.remove("fa-eye-slash");
-            passwordIcon.classList.add("fa-eye");
-        }
+function togglePasswordVisibility() {
+    var passwordField = document.getElementById("password");
+    var passwordIcon = document.getElementById("showPasswordIcon");
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        passwordIcon.classList.replace("fa-eye", "fa-eye-slash");
+        passwordIcon.style.display = "inline-block";
+    } else {
+        passwordField.type = "password";
+        passwordIcon.classList.replace("fa-eye-slash", "fa-eye");
+        passwordIcon.style.display = "none";
     }
+}
 </script>
     <!-- End of Modal -->
     <!-- ========================= scroll-top ========================= -->
