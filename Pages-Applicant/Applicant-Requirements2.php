@@ -154,7 +154,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="ms-1 ">
                         <h5 class="card-title fw-bold"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
                         <div class="mb-1 ms-1">
-                            <span class='card-text'><i class="fa-solid fa-envelope me-1"></i> <?php echo $a["email"]?></span>;
+                            <span class='card-text'><i class="fa-solid fa-envelope me-1"></i> <?php echo $a["email"]?></span>
                         </div>
                         <div class="mb-1 ms-1">
                             <span class="card-text"><i class="fa-solid fa-phone me-2"></i><?php echo $a['mobile_number'];?></span>
