@@ -19,6 +19,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- JavaScript -->
+
+
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,6 +62,25 @@
         height: 100%;
         object-fit: cover;
     }
+    /* CSS */
+#cameraPreview {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+    overflow: hidden;
+}
+
+#cameraPreview video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 </style>
   
 </head>
@@ -100,7 +125,9 @@
 
 
                     <div class="mx-1 mb-3">    I hereby declare that all information provided and documents submitted in support of my scholarship application are true and accurate. I give my consent to CCMF to collect, use and process my personal information. Furthermore, I confirm my compliance with the Data Privacy Act of 2012, ensuring the confidentiality and protection of any personal data shared in this application process.</div>
-
+                    <div class="mx-1 mb-3 text-danger">Reminder:<span class="text-danger">*</span></div>
+                    <div class="mx-1 mb-3">Ensure you are residence of Quezon City within district 1-6.</div>
+                    <div class="mx-1 mb-3">Ensure that you are Incoming Freshmen or In College Level.</div>
                             <div class="mx-1 mb-3 form-check custom-checkbox">
                                 <input type="checkbox" class="form-check-input" id="checkMeOut">
                                 <label class="form-check-label" for="checkMeOut">I understand and agree to the terms and conditions</label>
@@ -152,7 +179,7 @@
         <!------- STEP 1 ------->
      
              
-        <div class="" id="step1">
+        <div class="step" id="step1">
             <h5 class="text-primary"> Personal Information </h5>
             <div class="border-bottom mb-3 border border-1"></div>
                 <div class="row">
@@ -176,7 +203,7 @@
                 <div class="col-md-1 mb-3">
                     <label  class="form-label">Suffix:</label>
                     <select class="form-select form-select-sm" name="suffix" aria-label="Default select example">
-                    <option selected>SF</option>
+                    <option selected>Suffix</option>
                     <option value="Jr.">Jr.</option>
                     <option value="Sr.">Sr.</option>
                     <option value="II">II</option>
@@ -279,6 +306,10 @@
                     <input type="text" name="weight" id="weight" class="form-control form-control-sm" placeholder="Weight" required>
                 </div>
 
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">Facebook Link: <span class="text-danger">*</span></label>
+                    <input type="text" name="fbLink" id="fbLink" class="form-control form-control-sm" placeholder="Link" required>
+                </div>
 
             
 
@@ -305,7 +336,7 @@
 
                     <div class="col-md-4 mb-3">
                     <label  class="form-label">Barangay:<span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="address" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()">
+                    <select class="form-select form-select-sm" name="present_brgy" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()">
                     <option selected>Barangay</option>
                     <!--District 1-->
                     <option value="Alicia" data-district="1">Alicia</option>
@@ -517,16 +548,16 @@
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Do you have Medical Conditions? <span class="text-secondary">(If yes, please specify) </span></label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="pwdOption" value="yes" onclick="showOtherScholarshipField('inputeMedical')">
+                        <input class="form-check-input" type="radio" name="mCondition" value="yes" onclick="showOtherScholarshipField('inputeMedical')">
                         <label class="form-check-label">Yes</label>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="form-check-input" type="radio" name="pwdOption" value="no" onclick="hideOtherScholarshipField('inputeMedical')">
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="form-check-input" type="radio" name="mCondition" value="no" onclick="hideOtherScholarshipField('inputeMedical')">
                         <label class="form-check-label">No</label>
                     </div>
                 </div>
                 <!--Lalabas lang to gar kapag nag yes-->
                 <div class="col-md-6 mb-6" id="inputeMedical" style="display: none;">
                     <label  class="form-label">Please specify <span class="text-secondary">(if applicable) </span>:</label>
-                    <select class="form-select form-select-sm" name="pwd" aria-label="Default select example">
+                    <select class="form-select form-select-sm" name="pwd" id="pwd" aria-label="Default select example" onchange="checkOtherOption('pwd', 'otherMedical', 'otherMedical1')">
                     <option selected>Options</option>
                     <option value="Physical Disabilities">Physical Disabilities</option>
                     <option value="Visual Impairments">Visual Impairments</option>
@@ -537,7 +568,11 @@
                     <option value="Neurological Disabilities">Neurological Disabilities</option>
                     <option value="Chronic Health Conditions">Chronic Health Conditions</option>
                     <option value="Speech or Communication Disorders">Speech or Communication Disorders</option>
+                    <option value="Others">Others</option>
                     </select>
+                    <div id="otherMedical" style="display: none;">
+                        <input class="form-control form-control-sm mt-2" type="text" name="otherMedical" id="otherMedical1" placeholder="Other Condition">
+                    </div>
                 </div>
 
                
@@ -728,64 +763,150 @@
                 <div class="row mt-4">
                     <h5 class="text-primary"> Family Information (if applicable) </h5>
                     <div class="border-bottom mb-3 border border-1"></div>
-                            
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Father Name:</label>
-                    <input type="text" name="fatherName" class="form-control form-control-sm" placeholder="Father Name">
+                
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Is your father deceased?</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="fatherOption" value="yes" onclick="callBothFunctionFY('inputFatherNo', 'inputFather')">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="fatherOption" value="no" onclick="callBothFunctionFN('inputFather', 'inputFatherNo')">
+                        <label class="form-check-label">No</label>
+                    </div>
                 </div>
-            
+                <script>
+                    function callBothFunctionFY(first, second){
+                        showOtherScholarshipField(first);
+                        hideOtherScholarshipField(second);
+                    }
+                    function callBothFunctionFN(first, second){
+                        showOtherScholarshipField(first);
+                        hideOtherScholarshipField(second);
+                    }
+                </script>
+                <div id="inputFatherNo" style="display:none;">
+                    <div class="row">
+                        <select class="form-select form-select-sm" name="fDeceased" id="fDeceased" aria-label="Default select example" onchange="checkOtherOption('fDeceased', 'otherDecF', 'otherDecF1')">
+                            <option value="Natural">Natural causes (illness, old age, accidents)</option>
+                            <option value="Tragic">Tragic events (accidents, natural disasters, unexpected health complications)</option>
+                            <option value="Health">Health issues (chronic illnesses, terminal conditions)</option>
+                            <option value="Conflict">Conflict or estrangement within the family</option>
+                            <option value="Separation">Separation or divorce of the parents</option>
+                            <option value="Military">Military service and loss in the line of duty</option>
+                            <option value="Criminal">Involvement in criminal activities or legal issues</option>
+                            <option value="Unknown">Unknown circumstances or undisclosed reasons</option>
+                            <option value="Others">Others (please specify)</option>
+                        </select>
+                        <div id="otherDecF" style="display: none;">
+                            <input class="form-control form-control-sm mt-2" type="text" name="otherDecF" id="otherDecF1" placeholder="Specify">
+                        </div>
+                    </div>
+                </div>
 
-                <div class="col-md-1 mb-3">
+                <div id="inputFather" style="display:none;">
+                <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">Father First Name:</label>
+                    <input type="text" name="fatherFName" class="form-control form-control-sm" placeholder="Father Name">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">Father Middle Name:</label>
+                    <input type="text" name="fatherMName" class="form-control form-control-sm" placeholder="Father Name">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">Father Last Name:</label>
+                    <input type="text" name="fatherLName" class="form-control form-control-sm" placeholder="Father Name">
+                </div>
+                <div class="col-md-3 mb-3">
                     <label  class="form-label">Age:</label>
                     <input type="text" name="fAge" id="fAge" class="form-control form-control-sm" placeholder="Age">
                 </div>
-
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Occupation:</label>
                     <input type="text" name="fOccupation" class="form-control form-control-sm" placeholder="Occupation">
                 </div>
-
-                <div class="col-md-2 mb-3">
+                <div class="col-md-3 mb-3">
                     <label  class="form-label">Monthly Income:</label>
                     <input type="text" name="fatherIncome" id="fatherIncome" class="form-control form-control-sm" placeholder="Monthly Income">
                 </div>
-
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
                     <input type="text" name="fatherContact" id="fatherContact" class="form-control form-control-sm" placeholder="Contact Number">
                 </div>
-
-                <div class="col-md-3 mb-3">
-                    <label  class="form-label">Mother Name:</label>
-                    <input type="text" name="motherName" class="form-control form-control-sm" placeholder="Mother Name">
                 </div>
-             
+                </div>
+                <hr>
+                <div class="col-md-12 mb-3">
+                    <label class="form-label">Is your mother Deceased? </label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="motherOption" value="yes" onclick="callBothFunctionFY('inputMotherNo','inputMother')">
+                        <label class="form-check-label">Yes</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="motherOption" value="no" onclick="callBothFunctionFY('inputMother','inputMotherNo')">
+                        <label class="form-check-label">No</label>
+                    </div>
+                </div>    
+                <div id="inputMotherNo" style="display:none;">
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                        <select class="form-select form-select-sm" name="mDeceased" id="mDeceased" aria-label="Default select example" onchange="checkOtherOption('mDeceased', 'otherDecM', 'otherDecM1')">
+                            <option value="Natural">Natural causes (illness, old age, accidents)</option>
+                            <option value="Tragic">Tragic events (accidents, natural disasters, unexpected health complications)</option>
+                            <option value="Health">Health issues (chronic illnesses, terminal conditions)</option>
+                            <option value="Conflict">Conflict or estrangement within the family</option>
+                            <option value="Separation">Separation or divorce of the parents</option>
+                            <option value="Military">Military service and loss in the line of duty</option>
+                            <option value="Criminal">Involvement in criminal activities or legal issues</option>
+                            <option value="Unknown">Unknown circumstances or undisclosed reasons</option>
+                            <option value="Others">Others (please specify)</option>
+                        </select>
+                        <div id="otherDecM" style="display: none;">
+                            <input class="form-control form-control-sm mt-2" type="text" name="otherDecM" id="otherDecM1" placeholder="Specify">
+                        </div>
+                    </div>
+                    </div>
+                </div>
 
-                <div class="col-md-1 mb-3">
+                <div id="inputMother" style="display:none;">
+                <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">Mother First Name:</label>
+                    <input type="text" name="motherFName" class="form-control form-control-sm" placeholder="Mother Name">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">Mother Middle Name:</label>
+                    <input type="text" name="motherMName" class="form-control form-control-sm" placeholder="Mother Name">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label  class="form-label">Mother Last Name:</label>
+                    <input type="text" name="motherLName" class="form-control form-control-sm" placeholder="Mother Name">
+                </div>
+                <div class="col-md-3 mb-3">
                     <label  class="form-label">Age:</label>
                     <input type="text" name="motherAge" id="motherAge" class="form-control form-control-sm" placeholder="Age">
                 </div>
-
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Occupation:</label>
                     <input type="text" name="motherOccupation" class="form-control form-control-sm" placeholder="Occupation">
                 </div>
-
-                <div class="col-md-2 mb-3">
+                <div class="col-md-3 mb-3">
                     <label  class="form-label">Monthly Income:</label>
                     <input type="text" name="motherIncome" id="motherIncome" class="form-control form-control-sm" placeholder="Monthly Income">
                 </div>
-
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
                     <input type="text" name="motherContact" id="motherContact" class="form-control form-control-sm" placeholder="Contact Number">
+                </div>
+                </div>
                 </div>
 
 
                 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Guardian:</label>
-                    <input type="text" name="guardian" class="form-control form-control-sm" placeholder="Gurdian">
+                    <input type="text" name="guardian" class="form-control form-control-sm" placeholder="Guardian">
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -885,9 +1006,11 @@
                         <label class="form-check-label">No</label>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3" id="inputAttend" style="display: none;">
-                            <label class="form-label">If yes, type your reason here</label>
-                            <input type="text" name="reason_attend" class="form-control form-control-sm" placeholder="Reason">
+                <div id="inputAttend" style="display: none;">
+                <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label class="form-label">If yes, type your reason here</label>
+                    <input type="text" name="reason_attend" class="form-control form-control-sm" placeholder="Reason">
                 </div>
                 <div class="col-md-3 mb-3" >
                 <label  class="form-label">Year Level:</label>
@@ -909,12 +1032,14 @@
                     <option value="Third semester">Third semester</option>
                     </select>
                 </div>
+                </div>
+                </div>
             </div>
 
 
-            <div class="hstack gap-3">
+            <!-- <div class="hstack gap-3">
                 <div class="">
-                    <h6 class="text-black mt-2"> Did you take entrance exam? <span class="text-secondary">(If you take the entrance exam, click 'Yes.')</span></h6>
+                    <h6 class="text-black mt-2"> Have you chosen a school already?</h6>
                 </div>
               
             </div>
@@ -923,9 +1048,9 @@
             </div>
 
             <div id="school-rows">
-                <!-- Existing input row -->
                 
-            </div>
+                
+            </div> -->
 
 
 
@@ -947,15 +1072,15 @@
     <div class="row">
         <div class="col-md-4 mb-2">
             <label class="form-label">Type:</label>
-            <input type="text" class="form-control form-control-sm" name="otherScholarType" id="otherScholarshipYesField" placeholder="Type">
+            <input type="text" class="form-control form-control-sm" name="otherScholarType" id="" placeholder="Type">
         </div>
         <div class="col-md-4 mb-2">
             <label class="form-label">Coverage:</label>
-            <input type="text" class="form-control form-control-sm" name="otherScholarCoverage" id="otherScholarshipYesField" placeholder="Coverage">
+            <input type="text" class="form-control form-control-sm" name="otherScholarCoverage" id="" placeholder="Coverage">
         </div>
         <div class="col-md-4 mb-2">
             <label class="form-label">Status:</label>
-            <input type="text" class="form-control form-control-sm" name="otherScholarStatus" id="otherScholarshipYesField" placeholder="Status">
+            <input type="text" class="form-control form-control-sm" name="otherScholarStatus" id="" placeholder="Status">
         </div>
         </div>
     </div>
@@ -964,11 +1089,11 @@
 <div class="row">
         <div class="col-md-12 mb-3">
             <label class="form-label">How did you learn about CCMFI Scholarship?</label>
-            <textarea class="form-control" name="q1" id="otherScholarshipYesField" placeholder="How did you learn about CCMFI Scholarship" required rows="3"></textarea>
+            <textarea class="form-control" name="q1" placeholder="How did you learn about CCMFI Scholarship" rows="3"></textarea>
         </div>
         <div class="col-md-12 mb-3">
             <label class="form-label">Why are you applying for this scholarship?</label>
-            <textarea class="form-control" name="q2" id="otherScholarshipYesField" placeholder="Why are you applying for this scholarship?" requiredrequired rows="3"></textarea>   
+            <textarea class="form-control" name="q2" placeholder="Why are you applying for this scholarship?" rows="3"></textarea>   
         </div>
       
         
@@ -998,8 +1123,8 @@
         </div>
 
         <div class="col-md-12 mb-3">
-            <label for="otherScholarshipYesField" class="form-label">Explain your Answer:</label>
-            <textarea class="form-control" name="applySchoExplain" id="otherScholarshipYesField" placeholder="Answer" rows="3"></textarea>
+            <label for="" class="form-label">Explain your Answer:</label>
+            <textarea class="form-control" name="applySchoExplain" id="" placeholder="Answer" rows="3"></textarea>
         </div>
     
         </div>
@@ -1017,184 +1142,89 @@
 
                     <div class="row">
 
-                    <div class="col-md-6 m-auto mb-3">
-                                <div class="fileUpload container">
-                                <div class="p-2">
-                                    <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
-                                    <img src="../images/no-images.jpg" id="image1" alt="Image">
-                                    </div>
-                                    <h6 class="text-center">Upload 2x2 Picture</h6>
-                                    <div class="text-center"> <!-- Centering the button -->
-                            <label class="fileSelect btn btn-sm btn-primary col-lg-5 col-12 text-center">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')"></label>
-                        </div>                    
-                    </div>
-                            </div>
+                    <!-- HTML -->
+                    <div class="col-md-12 m-auto mb-3">
+    <div class="fileUpload container">
+        <div class="p-2">
+            <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
+                <img src="../images/no-images.jpg" id="image1" alt="Image">
+            </div>
+            <h6 class="text-center">Upload 2x2 Picture</h6>
+            <div class="row justify-content-center">
+                <div class="col-lg-5 col-12 mb-2 text-center">
+                    <label class="fileSelect btn btn-sm btn-primary col-12">
+                        Upload File
+                        <input type="file" id="fileInput" name="idPicture" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')">
+                    </label>
+                    <div id="selectedFileName" class="mt-2"></div> <!-- Display selected file name -->
+                </div>
+                <div class="col-lg-5 col-12 mb-2 text-center">
+                    <button class="btn btn-sm btn-primary col-12" onclick="openCameraInModal()">Open Camera</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Camera Stream</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="cameraPreview"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="captureImage()">Capture</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-                            </div>
-
-
-
-                            <div class="col-md-6 m-auto mb-3">
-                                <div class="fileUpload container">
-                                <div class="p-2">
-                                    <div class="Preview mb-3 max-width-8  overflow-hidden" id="previewContainer2">
-                                    <img src="../images/no-images.jpg" id="image2" alt="Image">
-                                    </div>
-                                    <h6 class="text-center">Family Picture</h6>
-                                    <div class="text-center"> <!-- Centering the button -->
-                            <label class="fileSelect btn btn-sm btn-primary col-lg-5 col-12 text-center">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer2','image2')"></label>
-                        </div>                    
-                    </div>
-                            </div>
-
-
-                            </div>
-
-                    <!-- <label for="formFile" class="form-label">2x2 ID photo</label>
-                    <input class="form-control form-control-sm border-bottom" type="file" name="idPhoto" accept="image/jpeg,image/jpg,image/png" required> -->
                     
-
-
-
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Letter of Intent</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer')"></label>
-                                <div class="Preview1 " id="previewContainer">
-                                </div>
-                        </div> 
-                    </div>
-                    <?php
-                    $appliTemp = $admin->getFamTemp();
-                        foreach($appliTemp as $a){
-                    ?>
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Family Profile</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')"></label>
-                                <a href="../Uploads_gslip/<?php echo $a["fam_temp"]; ?>" target="_blank">Download for template</a>
-
-                                <div class="Preview1 " id="previewContainer3">
-                                </div>
-                        </div> 
-                    </div>
-                    <?php }?>
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Written Parent Consent</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer4')"></label>
-                                <div class="Preview1 " id="previewContainer4">
-                                </div>
-                        </div> 
-                    </div>
-                    <div class="col-lg-4 col-12 mb-3">               
+                    
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Latest Copy of Grades</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer5')"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="cog" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer5')"></label>
                                 <div class="Preview1 " id="previewContainer5">
                                 </div>
                         </div> 
                     </div>
-                    <div class="col-lg-4 col-12 mb-3">               
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
-                                <h6>Copy of Birth Certificate</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')"></label>
+                                <h6>Birth Certificate</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="birth" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')"></label>
                                 <div class="Preview1 " id="previewContainer6">
                                 </div>
                         </div> 
                     </div>
 
-                     <div class="col-lg-4 col-12 mb-3">               
+                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Certificate of Indigency</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="indigency" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')"></label>
                                 <div class="Preview1 " id="previewContainer7">
                                 </div>
                         </div> 
                     </div>
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Recommendation Letter from Adviser/Principal</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer8')"></label>
-                                <div class="Preview1 " id="previewContainer8">
-                                </div>
-                        </div> 
-                    </div>
 
-
-                    <div class="col-lg-4 col-12 mb-3">               
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
-                                <h6>Certificate of Indigency</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer9')"></label>
-                                <div class="Preview1 " id="previewContainer9">
-                                </div>
-                        </div> 
-                    </div>
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Recommendation Letter from Adviser/Principal</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer10')"></label>
-                                <div class="Preview1 " id="previewContainer10">
-                                </div>
-                        </div> 
-                    </div>
-
-
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Certificate of Good Moral</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer11')"></label>
-                                <div class="Preview1 " id="previewContainer11">
-                                </div>
-                        </div> 
-                    </div>
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Copy of High School Diploma</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer12')"></label>
-                                <div class="Preview1 " id="previewContainer12">
-                                </div>
-                        </div> 
-                    </div>
-
-
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Copy of Form 137/138</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer13')"></label>
+                                <h6>Form 137/138</h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="form137" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer13')"></label>
                                 <div class="Preview1 " id="previewContainer13">
                                 </div>
                         </div> 
                     </div>
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Copy of College/University Acceptance Letter</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer14')"></label>
-                                <div class="Preview1 " id="previewContainer14">
-                                </div>
-                        </div> 
-                    </div>
-
-                    <div class="col-lg-4 col-12 mb-2 mt-4">               
-                        <div class="fileUpload container">
-                                <h6>Copy of Enrollment Form</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer15')"></label>
-                                <div class="Preview1 " id="previewContainer15">
-                                </div>
-                        </div> 
-                    </div>
-
-                  
-
-                    <div class="col-lg-4 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Sketch of House Area and Directions for Commuting from CCMF site</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" id="fileInput" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer16')"></label>
-                                <div class="Preview1 " id="previewContainer16">
-                                </div>
-                        </div> 
-                    </div>
+                    
 
 
 
@@ -1203,8 +1233,114 @@
 
                     
 
-
+                <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
                 <script>
+                    // JavaScript
+
+    let isCameraOpen = false;
+    let stream = null;
+
+    function openCamera() {
+        if (isCameraOpen) return;
+
+        // Get the camera video element
+        const video = document.createElement('video');
+        video.id = 'cameraVideo';
+        video.autoplay = true;
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                // Display the camera stream in the video element
+                video.srcObject = stream;
+                document.getElementById('cameraPreview').appendChild(video);
+                isCameraOpen = true;
+                // Store the stream reference
+                stream = stream;
+            })
+            .catch(function (error) {
+                console.error('Error accessing the camera: ', error);
+            });
+    }
+
+    function captureImage() {
+    // Get the video element by ID
+    const video = document.querySelector('#cameraVideo');
+    if (!video || video.readyState !== video.HAVE_ENOUGH_DATA) {
+        console.error('Video not ready');
+        return;
+    }
+
+    // Capture a frame from the video
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // Convert the canvas content to a data URL representing a JPEG image
+    const imageDataURL = canvas.toDataURL('image/jpeg');
+
+    const previewContainer = document.getElementById('previewContainer1');
+    previewContainer.innerHTML = '';
+    const image = document.createElement('img');
+    image.src = imageDataURL;
+    previewContainer.appendChild(image);
+
+    // Create a Blob object from the data URL
+    const blob = dataURItoBlob(imageDataURL);
+
+    // Set the value of the file input to the Blob object
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput) {
+        fileInput.file = [new File([blob], 'captured_image.jpg', { type: 'image/jpeg' })];
+        console.log(fileInput.file);
+    }
+
+    // Close the modal after capturing the image
+    $('#exampleModal').modal('hide');
+}
+
+// Function to convert data URL to Blob
+function dataURItoBlob(dataURI) {
+    const byteString = atob(dataURI.split(',')[1]);
+    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    const ab = new ArrayBuffer(byteString.length);
+    const ia = new Uint8Array(ab);
+    for (let i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+}
+
+
+
+    // Function to close the camera stream
+    function closeCamera() {
+        if (stream) {
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+        }
+        isCameraOpen = false;
+        // Remove the camera video element from the preview container
+        const videoElement = document.getElementById('cameraVideo');
+        if (videoElement && videoElement.parentNode) {
+            videoElement.parentNode.removeChild(videoElement);
+        }
+    }
+
+    function openCameraInModal() {
+        $('#exampleModal').modal('show');
+        openCamera(); // Call the function to open the camera stream
+    }
+
+    function closeModal() {
+        $('#exampleModal').modal('hide');
+        closeCamera(); // Call the function to close the camera stream
+    }
+
+
+
+
 
                     // function handleFiles(event) {
                     //     const fileList = event.target.files;
@@ -1261,7 +1397,7 @@
                         previewContainer.innerHTML = '';
 
                         const acceptedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-                        const maxSize = 5 * 1024 * 1024; // 5 MB in bytes
+                        const maxSize = 10 * 1024 * 1024; // 5 MB in bytes
 
                         for (let i = 0; i < fileList.length; i++) {
                             const file = fileList[i];
@@ -1281,15 +1417,17 @@
                                     }
 
                                     reader.readAsDataURL(file);
+
+                                    document.getElementById('selectedFileName').textContent = file.name;
                                 } else {
-                                    alert('File size exceeds the maximum limit of 5 MB.');
+                                    swal("Error!", "File size exceeds the maximum limit of 10 MB.", "error");
                                         const img = document.createElement('img');
                                         img.src = '../images/no-images.jpg';
                                         img.classList.add('previewImage');
                                         previewContainer.appendChild(img);
                                 }
                             } else {
-                                alert('Please select only JPEG, PNG, or JPG files.');
+                                swal("Error!", "Please select only JPEG, PNG, or JPG files.", "error");
                                     const img = document.createElement('img');
                                     img.src = '../images/no-images.jpg';
                                     img.classList.add('previewImage');
@@ -1309,7 +1447,7 @@
                     for (let i = 0; i < fileList.length; i++) {
                         const file = fileList[i];
                         if (file.type === 'application/pdf') {
-                            if (file.size <= 500 * 1024) { // Check if file size is less than or equal to 25MB
+                            if (file.size <=  3 * 1024 * 1024) { // Check if file size is less than or equal to 25MB
                                 const fileNameContainer = document.createElement('div'); // Create a div container
                                 fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
 
@@ -1330,10 +1468,10 @@
 
                                 previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
                             } else {
-                                alert('File size exceeds the maximum limit of 25MB.');
+                                swal("Error!", "File size exceeds the maximum limit of 3 MB.", "error");
                             }
                         } else {
-                            alert('Please select only PDF files.');
+                            swal("Error!", "Please select only JPEG, PNG, or JPG files.", "error");
                         }
                     }
                 }
@@ -1424,7 +1562,7 @@
               
             <div class="d-flex justify-content-center gap-2">
                 <button class="btn btn-secondary btn-sm col-lg-4 col-6 prev-step" type="button">Previous</button>
-            <button class="btn btn-primary col-lg-4 col-6 btn-sm" type="submit" name="submit" id="submitForm" onclick="updateRowCount()" disabled>Submit</button>
+            <button class="btn btn-primary col-lg-4 col-6 btn-sm" type="submit" name="submit" id="submitForm">Submit</button>
             </div>
 
         </div>  
@@ -1455,10 +1593,11 @@
 
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -1471,7 +1610,7 @@
             document.getElementById('sameAsPresent').addEventListener('change', function() {
         if (this.checked) {
             // Copy values from present address to permanent address
-            document.querySelector('input[name="permanent_barangay"]').value = document.querySelector('select[name="address"]').value;
+            document.querySelector('input[name="permanent_barangay"]').value = document.querySelector('select[name="present_brgy"]').value;
             document.querySelector('input[name="permanent_district"]').value = document.querySelector('#districtField').value;
             document.querySelector('input[name="permanent_city"]').value = "Quezon City";
             document.querySelector('input[name="permanent_province"]').value = "Metro Manila";
@@ -1590,17 +1729,26 @@
         });
     }
 
-    // Function to reset border color of input fields
     function resetInputBorders(stepNumber) {
-        const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
+        const currentStep = steps[stepNumber - 1];
+        if (!currentStep) {
+            console.error(`Step ${stepNumber} is not found.`);
+            return;
+        }
+        const currentStepInputs = currentStep.querySelectorAll('input[required], select[required], textarea[required]');
         currentStepInputs.forEach(input => {
-            input.style.borderColor = ''; // Reset border color to default
+            input.classList.remove('error'); // Remove the error class
         });
     }
 
     // Function to remove error message span
     function removeErrorMessage(stepNumber) {
-        const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
+        const currentStep = steps[stepNumber - 1];
+        if (!currentStep) {
+            console.error(`Step ${stepNumber} is not found.`);
+            return;
+        }
+        const currentStepInputs = currentStep.querySelectorAll('input[required], select[required], textarea[required]');
         currentStepInputs.forEach(input => {
             const errorMessage = input.parentNode.querySelector('.error-message');
             if (errorMessage) {
@@ -1608,6 +1756,8 @@
             }
         });
     }
+
+
 
     function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -1618,27 +1768,53 @@
 function validateInputs(stepNumber) {
     let isValid = true;
 
-    const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required]');
+    const currentStepInputs = steps[stepNumber - 1].querySelectorAll('input[required], select[required], textarea[required]');
     currentStepInputs.forEach(input => {
-        if (!input.value.trim()) { // Check if input is empty after trimming whitespace
-            isValid = false;
-            // Add visual indicator for empty input fields
-            input.style.borderColor = 'red';
-            // Display error message for empty input field
-            let errorMessage = input.parentNode.querySelector('.error-message');
-            if (!errorMessage) {
-                errorMessage = document.createElement('span');
-                errorMessage.textContent = 'This field is required';
-                errorMessage.classList.add('error-message');
-                errorMessage.style.color = 'red';
-                input.parentNode.appendChild(errorMessage);
+        if (input.tagName.toLowerCase() === 'select') {
+            // For select elements, check if an option is selected
+            if (!input.value.trim()) {
+                isValid = false;
+                // Add visual indicator for empty select fields
+                input.style.borderColor = 'red';
+                // Display error message for empty select field
+                let errorMessage = input.parentNode.querySelector('.error-message');
+                if (!errorMessage) {
+                    errorMessage = document.createElement('span');
+                    errorMessage.textContent = 'Please select an option';
+                    errorMessage.classList.add('error-message');
+                    errorMessage.style.color = 'red';
+                    input.parentNode.appendChild(errorMessage);
+                }
+            } else {
+                // Reset border color and remove error message for non-empty select fields
+                input.style.borderColor = '';
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
             }
         } else {
-            // Reset border color and remove error message for non-empty input fields
-            input.style.borderColor = '';
-            const errorMessage = input.parentNode.querySelector('.error-message');
-            if (errorMessage) {
-                errorMessage.remove();
+            // For input and textarea elements, check if they are empty
+            if (!input.value.trim()) {
+                isValid = false;
+                // Add visual indicator for empty input fields
+                input.style.borderColor = 'red';
+                // Display error message for empty input field
+                let errorMessage = input.parentNode.querySelector('.error-message');
+                if (!errorMessage) {
+                    errorMessage = document.createElement('span');
+                    errorMessage.textContent = 'This field is required';
+                    errorMessage.classList.add('error-message');
+                    errorMessage.style.color = 'red';
+                    input.parentNode.appendChild(errorMessage);
+                }
+            } else {
+                // Reset border color and remove error message for non-empty input fields
+                input.style.borderColor = '';
+                const errorMessage = input.parentNode.querySelector('.error-message');
+                if (errorMessage) {
+                    errorMessage.remove();
+                }
             }
         }
     });
@@ -1679,6 +1855,7 @@ function validateInputs(stepNumber) {
 
     return isValid;
 }
+
 
 
     // Initial setup

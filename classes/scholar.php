@@ -52,112 +52,50 @@ class Scholar{
 
     }
 
-    public function checkData($filesAndPicture, $scholarData){
-         //check if the file extension is in the array $allowed
+        public function checkData($filesAndPicture, $scholarData){
+            //check if the file extension is in the array $allowed
         if (
             in_array($filesAndPicture['fileActualExt1'], $filesAndPicture['allowed2']) &&
-            in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed1']) && 
-            in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt6'], $filesAndPicture['allowed1']) && 
-            in_array($filesAndPicture['fileActualExt7'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt8'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt9'], $filesAndPicture['allowed1']) && 
-            in_array($filesAndPicture['fileActualExt10'], $filesAndPicture['allowed1']) && 
-            in_array($filesAndPicture['fileActualExt11'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt12'], $filesAndPicture['allowed1']) && 
-            in_array($filesAndPicture['fileActualExt13'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt14'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt15'], $filesAndPicture['allowed2']) &&
-            in_array($filesAndPicture['fileActualExt16'], $filesAndPicture['allowed3'])) {
+            in_array($filesAndPicture['fileActualExt2'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed1']) && 
+            in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed1'])) {
 
             //seperate filename
             $newFileName1 = explode('.',$filesAndPicture['fileName1']);
+            $newFileName2 = explode('.',$filesAndPicture['fileName2']);
             $newFileName3 = explode('.',$filesAndPicture['fileName3']);
             $newFileName4 = explode('.',$filesAndPicture['fileName4']);
             $newFileName5 = explode('.',$filesAndPicture['fileName5']);
-            $newFileName6 = explode('.',$filesAndPicture['fileName6']);
-            $newFileName7 = explode('.',$filesAndPicture['fileName7']);
-            $newFileName8 = explode('.',$filesAndPicture['fileName8']);
-            $newFileName9 = explode('.',$filesAndPicture['fileName9']);
-            $newFileName10 = explode('.',$filesAndPicture['fileName10']);
-            $newFileName11 = explode('.',$filesAndPicture['fileName11']);
-            $newFileName12 = explode('.',$filesAndPicture['fileName12']);
-            $newFileName13 = explode('.',$filesAndPicture['fileName13']);
-            $newFileName14 = explode('.',$filesAndPicture['fileName14']);
-            $newFileName15 = explode('.',$filesAndPicture['fileName15']);
-            $newFileName16 = explode('.',$filesAndPicture['fileName16']);
             
             //Copy of Grades
             $fileNameNew1 = uniqid('', true) . "." . $filesAndPicture['fileActualExt1'];
-              //file destination
+                //file destination
             $fileDestination1 = '../Scholar_files/' . $fileNameNew1;
 
             //Good Moral
-            $fileNameNew3 = uniqid('', true) . "." . $filesAndPicture['fileActualExt3'];
-            $fileDestination3 = '../Scholar_files/' . $fileNameNew3;
+            $fileNameNew2 = uniqid('', true) . "." . $filesAndPicture['fileActualExt2'];
+            $fileDestination2 = '../Scholar_files/' . $fileNameNew2;
 
             //Enrollment Form
+            $fileNameNew3 = uniqid('', true) . "." . $filesAndPicture['fileActualExt3'];
+                //file destination
+            $fileDestination3 = '../Scholar_files/' . $fileNameNew3;
+
             $fileNameNew4 = uniqid('', true) . "." . $filesAndPicture['fileActualExt4'];
-              //file destination
             $fileDestination4 = '../Scholar_files/' . $fileNameNew4;
 
             $fileNameNew5 = uniqid('', true) . "." . $filesAndPicture['fileActualExt5'];
             $fileDestination5 = '../Scholar_files/' . $fileNameNew5;
 
-            $fileNameNew6 = uniqid('', true) . "." . $filesAndPicture['fileActualExt6'];
-            $fileDestination6 = '../Scholar_files/' . $fileNameNew6;
-
-            $fileNameNew7 = uniqid('', true) . "." . $filesAndPicture['fileActualExt7'];
-            $fileDestination7 = '../Scholar_files/' . $fileNameNew7;
-            
-            $fileNameNew8 = uniqid('', true) . "." . $filesAndPicture['fileActualExt8'];
-            $fileDestination8 = '../Scholar_files/' . $fileNameNew8;
-            
-            $fileNameNew9 = uniqid('', true) . "." . $filesAndPicture['fileActualExt9'];
-            $fileDestination9 = '../Scholar_files/' . $fileNameNew9;
-
-            $fileNameNew10 = uniqid('', true) . "." . $filesAndPicture['fileActualExt10'];
-            $fileDestination10 = '../Scholar_files/' . $fileNameNew10;
-
-            $fileNameNew11 = uniqid('', true) . "." . $filesAndPicture['fileActualExt11'];
-            $fileDestination11 = '../Scholar_files/' . $fileNameNew11;
-
-            $fileNameNew12 = uniqid('', true) . "." . $filesAndPicture['fileActualExt12'];
-            $fileDestination12 = '../Scholar_files/' . $fileNameNew12;
-
-            $fileNameNew13 = uniqid('', true) . "." . $filesAndPicture['fileActualExt13'];
-            $fileDestination13 = '../Scholar_files/' . $fileNameNew13;
-
-            $fileNameNew14 = uniqid('', true) . "." . $filesAndPicture['fileActualExt14'];
-            $fileDestination14 = '../Scholar_files/' . $fileNameNew14;
-
-            $fileNameNew15 = uniqid('', true) . "." . $filesAndPicture['fileActualExt15'];
-            $fileDestination15 = '../Scholar_files/' . $fileNameNew15;
-
-            $fileNameNew16 = uniqid('', true) . "." . $filesAndPicture['fileActualExt16'];
-            $fileDestination16 = '../Scholar_files/' . $fileNameNew16;
-
-            $arrayFiles = array($fileNameNew1, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6,
-            $fileNameNew7, $fileNameNew8, $fileNameNew9, $fileNameNew10, $fileNameNew11, $fileNameNew12, $fileNameNew13, $fileNameNew14,
-            $fileNameNew15, $fileNameNew16);
+            $arrayFiles = array($fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4, $fileNameNew5);
             // if (move_uploaded_file($fileTmpName, $fileDestination) ) {
             if (
                 move_uploaded_file($filesAndPicture['fileTmpName1'],$fileDestination1) &&
+                move_uploaded_file($filesAndPicture['fileTmpName2'],$fileDestination2) &&
                 move_uploaded_file($filesAndPicture['fileTmpName3'],$fileDestination3) &&
                 move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4) &&
-                move_uploaded_file($filesAndPicture['fileTmpName5'],$fileDestination5) &&
-                move_uploaded_file($filesAndPicture['fileTmpName6'],$fileDestination6) &&
-                move_uploaded_file($filesAndPicture['fileTmpName7'],$fileDestination7) &&
-                move_uploaded_file($filesAndPicture['fileTmpName8'],$fileDestination8) &&
-                move_uploaded_file($filesAndPicture['fileTmpName9'],$fileDestination9) && 
-                move_uploaded_file($filesAndPicture['fileTmpName10'],$fileDestination10) &&
-                move_uploaded_file($filesAndPicture['fileTmpName11'],$fileDestination11) &&
-                move_uploaded_file($filesAndPicture['fileTmpName12'],$fileDestination12) && 
-                move_uploaded_file($filesAndPicture['fileTmpName13'],$fileDestination13) &&
-                move_uploaded_file($filesAndPicture['fileTmpName14'],$fileDestination14) &&
-                move_uploaded_file($filesAndPicture['fileTmpName15'],$fileDestination15) && 
-                move_uploaded_file($filesAndPicture['fileTmpName16'],$fileDestination16))  {
+                move_uploaded_file($filesAndPicture['fileTmpName5'],$fileDestination5))  {
 
                 $this->registerEmployee($scholarData, $arrayFiles);
         
@@ -189,13 +127,14 @@ class Scholar{
 
         // prepare insert statement for employee table
         $sql = "INSERT INTO scholar_info 
-        (f_name, m_name, l_name, suffix, gender, age, nick_name, c_status, citizenship, date_of_birth, b_place, height, weight, religion,
-        mobile_number, email, address, province, med_condition, fb_link, skills, father_name, father_age, father_occupation, father_income, father_attained,
-        mother_name, mother_age, mother_occupation, mother_income, mother_attained, guardian, emergency_contact, guardian_rs, guardian_contact, e_school, e_ave
-        , e_achievements, jh_school, jh_ave, jh_achievements, sh_school, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_achievements, c_course, other_scho,
-        other_scho_type, other_scho_coverage, other_scho_status, q1, q2, apply_scho, apply_scho_explain, date_apply) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        (f_name, m_name, l_name, suffix, gender, age, c_status, citizenship, date_of_birth, b_place, height, weight, religion,
+        mobile_number, email, present_address, permanent_address, med_condition, fb_link, isDecF, reasonF, father_name, father_age, father_occupation, father_income, father_contact,
+        isDecM, reasonM, mother_name, mother_age, mother_occupation, mother_income, mother_contact, guardian, emergency_contact, guardian_rs, e_school, e_ave
+        , e_achievements, jh_school, jh_ave, jh_achievements, sh_school, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_achievements, c_course, stopAttend, reason_attend, yrlvl, semester, other_scho,
+        other_scho_type, other_scho_coverage, other_scho_status, q1, q2, apply_scho, apply_scho_explain, date_apply) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
-         // prepared statement
+            // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
 
         //if execution fail
@@ -205,39 +144,44 @@ class Scholar{
                             $scholarData['suffix'],
                             $scholarData['gender'],
                             $scholarData['age'],
-                            $scholarData['nName'],
                             $scholarData['cStatus'],
                             $scholarData['citizenship'],
                             $scholarData['dofBirth'],
                             $scholarData['bPlace'],
+
                             $scholarData['height'],
                             $scholarData['weight'],
                             $scholarData['religion'],
                             $scholarData['mNumber'],
                             $scholarData['email'],
-                            $scholarData['address'],
-                            $scholarData['province'],
+                            $scholarData['present_address'],
+                            $scholarData['permanent_address'],
                             $scholarData['mCondition'],
                             $scholarData['fb_link'],
-                            $scholarData['skills'],
+                            $scholarData['isDecF'],
+
+                            $scholarData['fDeceased'],
                             $scholarData['fatherName'],
                             $scholarData['fAge'],
                             $scholarData['fOccupation'],
                             $scholarData['fatherIncome'],
-                            $scholarData['fatherAttained'],
+                            $scholarData['fatherContact'],
+                            $scholarData['isDecM'],
+                            $scholarData['mDeceased'],
                             $scholarData['motherName'],
                             $scholarData['motherAge'],
+
                             $scholarData['motherOccupation'],
                             $scholarData['motherIncome'],
-                            $scholarData['motherAttained'],
+                            $scholarData['motherContact'], 
                             $scholarData['guardian'],
                             $scholarData['emergencyContact'],
                             $scholarData['relationship'],
-                            $scholarData['guardianNumber'],
                             $scholarData['eSchool'],
                             $scholarData['eAve'],
                             $scholarData['eAchievements'],
                             $scholarData['jhSchool'],
+
                             $scholarData['jhAve'],
                             $scholarData['jhAchievements'],
                             $scholarData['shSchool'],
@@ -248,12 +192,18 @@ class Scholar{
                             $scholarData['cAve'],
                             $scholarData['cAchievements'],
                             $scholarData['cCourse'],
+
+                            $scholarData['stopAttend'],
+                            $scholarData['reason_attend'],
+                            $scholarData['yrlvl'],
+                            $scholarData['semester'],
                             $scholarData['otherScholarship'],
                             $scholarData['otherScholarType'],
                             $scholarData['otherScholarCoverage'],
                             $scholarData['otherScholarStatus'],
                             $scholarData['q1'],
                             $scholarData['q2'],
+
                             $scholarData['applyScho'],
                             $scholarData['applySchoExplain'],
                             $this->date])) {
@@ -266,7 +216,7 @@ class Scholar{
         // prepare the SQL statement using the database property
         $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM scholar_info WHERE email=?");
 
-         //if execution fail
+            //if execution fail
         if (!$stmtScholarID->execute([$scholarData['email']])) {
             header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
             exit();
@@ -274,9 +224,8 @@ class Scholar{
         //fetch the employeeID
         $scholarId = $stmtScholarID->fetchColumn();
 
-        $arrayNames = array('IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
-                    'BirthCertificate', 'Indigency', 'RecommendationLetter', 'GoodMoral', 'SchoolDiploma', 'Form137/138', 'AcceptanceLetter'
-                , 'EnrollmentForm', 'FamilyPicture', 'SketchofHouseArea');
+        $arrayNames = array('IdPhoto', 'Grades', 'BirthCertificate', 'Indigency', 'Form137/138');
+
 
                 for ($i = 0; $i < count($scholarFiles); $i++) {
                     $fileName = $scholarFiles[$i];
