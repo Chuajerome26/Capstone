@@ -995,7 +995,7 @@
 
           <!------- STEP 3 ------->
           <div class="step" id="step3" style="display: block;">
-            <h5 class="text-primary">COLLEGES/UNIVERSITIES OF CHOICE  </h5>
+            <h5 class="text-primary">QUESTIONS </h5>
             <div class="border-bottom mb-3 border border-1"></div>
         
             <!-- <div class="row">
@@ -1139,7 +1139,7 @@
                 <div class="col-lg-5 col-12 mb-2 text-center">
                     <label class="fileSelect btn btn-sm btn-primary col-12">
                         Upload File
-                        <input type="file" id="fileInput" name="idPicture" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')">
+                        <input type="file" id="fileInput" name="idPicture" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')" required>
                     </label>
                     <div id="selectedFileName" class="mt-2"></div> <!-- Display selected file name -->
                 </div>
@@ -1178,7 +1178,7 @@
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Latest Copy of Grades</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="cog" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer5')"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="cog" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer5')" required></label>
                                 <div class="Preview1 " id="previewContainer5">
                                 </div>
                         </div> 
@@ -1186,7 +1186,7 @@
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Birth Certificate</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="birth" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="birth" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')" required></label>
                                 <div class="Preview1 " id="previewContainer6">
                                 </div>
                         </div> 
@@ -1195,7 +1195,7 @@
                      <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Certificate of Indigency</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="indigency" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="indigency" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')" required></label>
                                 <div class="Preview1 " id="previewContainer7">
                                 </div>
                         </div> 
@@ -1204,7 +1204,7 @@
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Form 137/138</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="form137" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer13')"></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="form137" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer13')" required></label>
                                 <div class="Preview1 " id="previewContainer13">
                                 </div>
                         </div> 

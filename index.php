@@ -643,8 +643,8 @@
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
-                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform.php';">Freshman</button>
-                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform-college.php';">College</button>
+                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/freshmen.php';">Freshman</button>
+                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform-college2.php';">College</button>
             </div>
         </div>
     </div>
