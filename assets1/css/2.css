@@ -93,6 +93,7 @@
 		}
 		
 		@media (max-width: 460px) {
+			position:relative;
 			top: -65px; 
 			right: -330px; 
 		}

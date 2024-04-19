@@ -584,8 +584,7 @@
                     </div>
                 </div>
                 
-     <!-- Adjusted class and input -->
-     <div class="col-lg-3 col-md-6 col-12 text-center">
+   
     <!-- Card Element -->
     <div class="card shadow-sm" style="width: 35rem;">
         <div class="card-header bg-white py-3">
