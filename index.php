@@ -96,12 +96,6 @@
                                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                             </ul>
-                            <form class="d-flex search-form">
-                                <input class="form-control me-2" type="search" placeholder="Search"
-                                    aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit"><i
-                                        class="lni lni-search-alt"></i></button>
-                            </form>
                         </div> <!-- navbar collapse -->
                     </nav> <!-- navbar -->
                 </div>
@@ -608,7 +602,7 @@
             <li class="list-group-item">Sketch of House Area and Directions for Commuting from CCMF site</li>
         </ul>
         <div class="card-footer bg-white py-3 text-center">
-            <a data-toggle="modal" data-target="#applyModal" class="btn mt-3" style="background-color: #28a745; color: #ffffff;">Apply Now</a>
+            <a data-toggle="modal" data-target="#applyModal" class="btn mt-3" style="background-color: #024b30; color: #ffffff;">Apply Now</a>
         </div>
     </div>
 </div>

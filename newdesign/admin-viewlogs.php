@@ -87,14 +87,14 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         $scholar_info = $admin->scholarInfo($log['scholar_id']);
                                         $admin_info = $admin->adminInfo($log['admin_id']);
                                         if($log['remarks'] == 0){
-                                            $remarks = '<span class="badge badge-primary">Evaluate</span>';
+                                            $remarks = '<span class="badge bg-primary">Evaluate</span>';
                                         }
                                         else if($log['remarks'] == 1){
-                                            $remarks = '<span class="badge badge-success">Evaluation Complete</span>';
+                                            $remarks = '<span class="badge bg-success">Evaluation Complete</span>';
                                         }else if($log['remarks'] == 2){
-                                            $remarks = '<span class="badge badge-success">Done Initial Interview</span>';
+                                            $remarks = '<span class="badge bg-success">Done Initial Interview</span>';
                                         }else if($log['remarks'] == 3){
-                                            $remarks = '<span class="badge badge-success">Accepted</span>';
+                                            $remarks = '<span class="badge bg-success">Accepted</span>';
                                         }
                                         ?>
                                         <tr>
