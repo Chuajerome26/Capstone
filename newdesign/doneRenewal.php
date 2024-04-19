@@ -20,32 +20,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $renewalDates = $scholar->getRenewalDates();
     $scholars = $admin->getScholars();
 
-    $start = $renewalDates['renewal_date_start'];
-    $end = $renewalDates['renewal_date_end'];
-
-    $dateFormat = date('M d, Y', strtotime($renewalDates['renewal_date_start']));
-    $dateFormat1 = date('M d, Y', strtotime($renewalDates['renewal_date_end']));
-
-    //Email message
-    $messageStart = renewalStartEmail($dateFormat);
-    $messageEnd = renewalEndEmail($dateFormat1);
-
-    if($start == $date){
-        foreach($scholars as $data){
-            if($data['notif_send'] == 0){
-                $database->sendEmail($data['email'], "Scholar Program Renewal", $messageStart);
-                $admin->updateNotif1($data['id']);
-            }
-        }
-    }elseif($end == $date){
-        foreach($scholars as $data){
-            if($data['notif_send'] == 1){
-                $database->sendEmail($data['email'], "Scholarship Renewal Period Closing", $messageEnd);
-                $admin->updateNotif0($data['id']);
-            }
-        }
-    }
-
 } else {
     header("Location: ../index.php");
 }
@@ -87,9 +61,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <p class="h3 mb-0 font-weight-bold text-gray-800">Renewal</p>
-                        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#startRenewal">
-                            Start Renewal
-                        </button>
                     </div>
 
                     <!-- Content Row -->
@@ -120,27 +91,16 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         </thead>
                                         <tbody class="table-group-divider">
                                         <?php
-                                        $scholarInfo = $scholar->getRenewalInfo();
+                                        $scholarInfo = $scholar->getDoneRenewalInfo();
                                         $num = 1;
                                         foreach($scholarInfo as $s){
-
-                                            if($s['renew_status'] == 0){
-                                                $status = "Pending";
-                                            }else if($s['renew_status'] == 1){
-                                                $status = "Submitted";
-                                            }else if($s['renew_status'] == 3){
-                                                $status = "Tentative";
-                                            }
-                                            else if($s['renew_status'] == 4){
-                                                $status = "Non-compliant";
-                                            }
-                                    ?>
+                                        ?>
                                             <tr>
                                                 <th scope="col"><?php echo $num; ?></th>
                                                 <td style="white-space: nowrap;"><?php echo $s["Firstname"]." ".$s["Lastname"]; ?></td>
                                                 <td style="white-space: nowrap;"><?php echo $s["Email"];?></td>
                                                 <td><?php echo $s["date_renew"];?></td>
-                                                <td><?php echo $status;?></td>
+                                                <td>Approved</td>
                                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["id"];?>">Files</button></td>
                                             </tr>
                                             <?php 
@@ -190,7 +150,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     <!-- end -->
 <!-- RenewFiles Modal-->
 <?php
-    $renewalFiless = $scholar->getRenewalInfo();
+    $renewalFiless = $scholar->getDoneRenewalInfo();
         foreach($renewalFiless as $a){
     ?>
         <div class="modal fade" id="renewFilesModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $a["id"];?>l" aria-hidden="true">
@@ -208,7 +168,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     <th>Requirements</th>
                     <th>Details</th>
                     <th>Evaluation</th>
-                    <th>Remarks</th>
                 </tr> 
             </thead>
             <form id="formRemarks" method="post" action="../functions/renewalEvaluation.php">
@@ -216,26 +175,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                 <tr>
                     <td>Grade Slip</td>
                     <td><a href="../Uploads_gslip/<?php echo $a["file1"]?>" target="_blank"><?php echo $a["file1"]?></a></td>
-                    <?php if($a["file1_status"] == 0): ?>
-                        <td align="center"><input type="checkbox" name="GradeSlip" value="1" onchange="toggleInput(this, 'GradeSlip_remarks')"></td>
-                        <td><input type="text" class="form-control" name="GradeSlip_remarks" id="GradeSlip_remarks" placeholder="Grade Slip Remarks" required>
-                    <?php else: ?>
                         <td align="center">Done</td>
-                        <td><input type="text" class="form-control" name="GradeSlip_remarks" id="GradeSlip_remarks" placeholder="Grade Slip Remarks" disabled>
-                    <?php endif; ?>
-                    </td>
                 </tr>
 
                 <tr>
                     <td>Registration Form</td>
                     <td><a href="../Uploads_gslip/<?php echo $a["file2"]?>" target="_blank"><?php echo $a["file2"]?></a></td>
-                    <?php if($a["file2_status"] == 0): ?>
-                        <td align="center"><input type="checkbox" name="RegistrationForm" value="1" onchange="toggleInput(this, 'RegistrationForm_remarks')"></td>
-                    <?php else: ?>
                         <td align="center">Done</td>
-                    <?php endif; ?>
-                    <td><input type="text" class="form-control" name="RegistrationForm_remarks" id="RegistrationForm_remarks" placeholder="Registration Form Remarks" required>
-                    </td>
                 </tr>
             </tbody>
         </table>   
@@ -244,7 +190,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <input type="hidden" name="renewal_id" value="<?php echo $a['id'] ?>">
-            <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
             </form>
             </div>
             </div>
@@ -252,42 +197,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         </div>
     <?php } ?>
 <!-- Modal end -->
-<!-- Modal for Start and end of date renewal -->
-<div class="modal fade" id="startRenewal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Renewal Dates</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <!-- Modal body -->
-      <div class="modal-body">
-        <div class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h2 class="card-title text-center">Range of Date</h2>
-                            <form method="post" action="../functions/setDateRenewal.php">
-                                <div class="form-group">
-                                    <label for="startDate">Start Date:</label>
-                                    <input type="date" class="form-control" id="startDate" name="startDate" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="endDate">End Date:</label>
-                                    <input type="date" class="form-control" id="endDate" name="endDate" required>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
+
       
     </div>
   </div>
@@ -327,41 +237,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         }
     </script>
     <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const successValue = urlParams.get('status');
-    console.log(successValue);
-
-    if(successValue === "success"){
-        Swal.fire({
-            icon:'success',
-            title:'Set Date Successfully',
-            toast:true,
-            position:'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-    }else if(successValue === "successDecline"){
-        Swal.fire({
-            icon:'error',
-            title:'Set Date Failed',
-            toast:true,
-            position:'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
-    }
-
-    
         $(document).ready(function() {
             $('#applicant').DataTable();
         });
@@ -371,12 +246,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         $("#myModal").modal("show");
         });
     });
-
 </script>
-    
-    
-
-    
-    
     </body>
   </html>

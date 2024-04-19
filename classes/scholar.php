@@ -413,26 +413,38 @@ class Scholar{
     
     }
 
-    public function insertData($scholarID, $firstName, $lastName, $email, $yearLvl, $uploadedFileName1, $uploadedFileName2) {
+    public function updateRenewalData($yearLvl, $uploadedFileName1, $uploadedFileName2) {
         try {
-            // Insert data into the database using a single query
-            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_renew (scholarID, Firstname, Lastname, Email, yearLvl, file1, file2, date_renew) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
-            $stmt->bindParam(1, $scholarID);
-            $stmt->bindParam(2, $firstName);
-            $stmt->bindParam(3, $lastName);
-            $stmt->bindParam(4, $email);
-            $stmt->bindParam(5, $yearLvl);
-            $stmt->bindParam(6, $uploadedFileName1);
-            $stmt->bindParam(7, $uploadedFileName2);
-            $stmt->execute();
+            // Begin a transaction
+            $this->database->getConnection()->beginTransaction();
+    
+            // Update renewal data in the database
+            $updateStmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET yearLvl = ?, file1 = ?, file2 = ?, renew_status = 1, date_renew = ?");
+            $updateStmt->bindParam(1, $yearLvl);
+            $updateStmt->bindParam(2, $uploadedFileName1);
+            $updateStmt->bindParam(3, $uploadedFileName2);
+            $updateStmt->bindParam(4, $this->date);
+            $updateStmt->execute();
+    
+            // Commit the transaction
+            $this->database->getConnection()->commit();
+    
             return true;
         } catch (PDOException $e) {
-            echo "Error inserting data: " . $e->getMessage();
+            // Rollback the transaction if an error occurs
+            $this->database->getConnection()->rollBack();
+            echo "Error: " . $e->getMessage();
             return false;
         }
     }
+    
     public function getRenewalInfo() {
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew")->fetchAll();
+
+        return $stmt;
+    }
+    public function getDoneRenewalInfo() {
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_done_renew")->fetchAll();
 
         return $stmt;
     }
@@ -474,22 +486,50 @@ class Scholar{
         return $scholars;
     }    
     public function hasSubmittedRenewal($id) {
-        $query = "SELECT COUNT(*) FROM scholar_renew AS sr 
-                JOIN scholar_renewal_date AS srd ON sr.date_renew BETWEEN srd.renewal_date_start AND srd.renewal_date_end
-                WHERE sr.scholarID = :scholarID";
+        $query = "SELECT renew_status FROM scholar_renew WHERE scholarID = :scholarID";
         $stmt = $this->database->getConnection()->prepare($query);
         $stmt->bindParam(':scholarID', $id, PDO::PARAM_STR);
         $stmt->execute();
-    
-        $count = $stmt->fetchColumn();
-        return ($count > 0);
+
+        $renewStatus = $stmt->fetchColumn();
+        return ($renewStatus == 1);
     }
+
+    public function moveRenewalToDone($id) {
+        // First, fetch the renewal information of the scholar
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_renew WHERE id = ?");
+        $stmt->execute([$id]);
+        $renewalInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+        if ($renewalInfo) {
+            // Insert the renewal information into scholar_done_renew table
+            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_done_renew (scholarID, Firstname, Lastname, Email, yearLvl, file1, file1_status, file2, file2_status, date_renew, renew_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$renewalInfo['scholarID'], $renewalInfo['Firstname'], $renewalInfo['Lastname'], $renewalInfo['Email'], $renewalInfo['yearLvl'], $renewalInfo['file1'], $renewalInfo['file1_status'], $renewalInfo['file2'], $renewalInfo['file2_status'], $renewalInfo['date_renew'], $renewalInfo['renew_status']]);
+    
+            // Delete the renewal information from scholar_renew table
+            $stmt = $this->database->getConnection()->prepare("DELETE FROM scholar_renew WHERE id = ?");
+            $stmt->execute([$id]);
+    
+            return true;
+        } else {
+            // Renewal information not found
+            return false;
+        }
+    }    
+
     public function updateRenewalStatus($id, $file1, $file2){
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET file1_status = ?, file2_status = ? WHERE id = ? ");
+        $renew_status = ($file1 && $file2) ? 2 : 3;
+
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET file1_status = ?, file2_status = ?, renew_status = ? WHERE id = ? ");
         
-        if(!$stmt->execute([$file1, $file2, $id])){
+        if(!$stmt->execute([$file1, $file2, $renew_status, $id])){
             header('Location: ../newdesign/renewal.php?scholar=error');
             exit();
+        }
+
+        if ($renew_status == 2) {
+            // Move renewal information to done table if renew_status is 2
+            $this->moveRenewalToDone($id);
         }
 
         return true;
