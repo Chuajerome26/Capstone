@@ -589,31 +589,34 @@
                         </ul>
                     </div>
                 </div>
+                
      <!-- Adjusted class and input -->
+     <div class="col-lg-3 col-md-6 col-12 text-center">
     <!-- Card Element -->
-    <div class="card" style="width: 45rem;">
-        <div class="card-body">
-            <p class="fw-bold fs-5">REQUIREMENT LIST:<p>
-            <div class="list-group">
-    <p class="list-group-item">Letter of Intent &nbsp;&nbsp;|&nbsp;&#160; Family Profile</p>
-    <p class="list-group-item">Written Parent Consent &nbsp;&nbsp;|&nbsp;&#160; Latest Copy of Grades</p>
-    <p class="list-group-item">Birth Certificate &nbsp;&nbsp;|&nbsp;&#160; Certificate of Indigency</p>
-    <p class="list-group-item">High School Diploma&nbsp;&nbsp;|&nbsp;&#160; Form 137/138</p>
-    <p class="list-group-item">College/University Acceptance Letter&nbsp;&nbsp;|&nbsp;&#160; Enrollment Form</p>
-    <p class="list-group-item">Certificate of Good Moral</p>
-    <p class="list-group-item">Recommendation Letter from Adviser/Principal</p>
-    <p class="list-group-item">Sketch of House Area and Directions for Commuting from CCMF site</p>
-</div>
-            <div class="button">
-            <a data-toggle="modal" data-target="#applyModal" class="btn btn-primary mt-3">Apply Now</a>
+    <div class="card shadow-sm" style="width: 35rem;">
+        <div class="card-header bg-white py-3">
+            <p class="fw-bold h4 mb-0 text-center">REQUIREMENT LIST:</p>
         </div>
-</div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Letter of Intent &nbsp;&nbsp;|&nbsp;&#160; Family Profile</li>
+            <li class="list-group-item">Written Parent Consent &nbsp;&nbsp;|&nbsp;&#160; Latest Copy of Grades</li>
+            <li class="list-group-item">Birth Certificate &nbsp;&nbsp;|&nbsp;&#160; Certificate of Indigency</li>
+            <li class="list-group-item">High School Diploma&nbsp;&nbsp;|&nbsp;&#160; Form 137/138</li>
+            <li class="list-group-item">College/University Acceptance Letter&nbsp;&nbsp;|&nbsp;&#160; Enrollment Form</li>
+            <li class="list-group-item">Certificate of Good Moral</li>
+            <li class="list-group-item">Recommendation Letter from Adviser/Principal</li>
+            <li class="list-group-item">Sketch of House Area and Directions for Commuting from CCMF site</li>
+        </ul>
+        <div class="card-footer bg-white py-3 text-center">
+            <a data-toggle="modal" data-target="#applyModal" class="btn mt-3" style="background-color: #28a745; color: #ffffff;">Apply Now</a>
+        </div>
     </div>
 </div>
+</div>
+</div>
+        </div>
+    </div>
 
-        </div>
-    </div>
-</footer>
 
         <!--/ End Footer Middle -->
         <!-- Start Footer Bottom -->
