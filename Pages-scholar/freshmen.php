@@ -175,7 +175,7 @@
         }
     });
     </script>
-        <form id="ccmfForm" method="POST" action="../functions/applicants-register.php" enctype="multipart/form-data">
+        <form id="ccmfForm" method="POST" action="../functions/applicants-register-freshmen.php" enctype="multipart/form-data">
         <!------- STEP 1 ------->
      
              
@@ -203,7 +203,7 @@
                 <div class="col-md-1 mb-3">
                     <label  class="form-label">Suffix:</label>
                     <select class="form-select form-select-sm" name="suffix" aria-label="Default select example">
-                    <option value=""></option>
+                    <option></option>
                     <option value="Jr.">Jr.</option>
                     <option value="Sr.">Sr.</option>
                     <option value="II">II</option>
@@ -215,7 +215,7 @@
                 <div class="col-md-2 mb-3">
                     <label class="form-label">Gender: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="gender" id="genderSelect" aria-label="Default select example" onchange="checkOtherOption('genderSelect', 'otherOption', 'otherGenderInput')" required>
-                        <option value=""></option>
+                        <option></option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="LGBTQIA+">LGBTQIA+</option>
@@ -240,7 +240,7 @@
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Civil Status: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="cStatus" aria-label="Default select example" required>
-                    <option value=""></option>
+                    <option></option>
                     <option value="Single">Single</option>
                     <option value="Married">Married</option>
                     <option value="Widowed">Widowed</option>
@@ -251,7 +251,7 @@
                 <div class="col-md-4 mb-3">
                     <label class="form-label">Citizenship: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="citizenship" id="citizenshipSelect" aria-label="Default select example" onchange="checkOtherOption('citizenshipSelect', 'otherCitizenshipOption', 'otherCitizenshipInput')" required>
-                        <option value=""></option>
+                        <option></option>
                         <option value="Filipino">Filipino</option>
                         <option value="Korean">Korean</option>
                         <option value="Japanese">Japanese</option>
@@ -268,7 +268,7 @@
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Religion: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="religion" aria-label="Default select example" required>
-                    <option value=""></option>
+                    <option></option>
                     <option value="Roman Catholicism">Roman Catholicism</option>
                     <option value="Islam">Islam</option>
                     <option value="Protestantism">Protestantism</option>
@@ -337,7 +337,7 @@
                     <div class="col-md-4 mb-3">
                     <label  class="form-label">Barangay:<span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="present_brgy" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()">
-                    <option value=""></option>
+                    <option></option>
                     <!--District 1-->
                     <option value="Alicia" data-district="1">Alicia</option>
                     <option value="Bagong Pag-asa" data-district="1">Bagong Pag-asa</option>
@@ -558,7 +558,7 @@
                 <div class="col-md-6 mb-6" id="inputeMedical" style="display: none;">
                     <label  class="form-label">Please specify <span class="text-secondary">(if applicable) </span>:</label>
                     <select class="form-select form-select-sm" name="pwd" id="pwd" aria-label="Default select example" onchange="checkOtherOption('pwd', 'otherMedical', 'otherMedical1')">
-                    <option value=""></option>
+                    <option></option>
                     <option value="Physical Disabilities">Physical Disabilities</option>
                     <option value="Visual Impairments">Visual Impairments</option>
                     <option value="Hearing Impairments">Hearing Impairments</option>
@@ -688,7 +688,7 @@
                     <input type="text" name="shCourse" class="form-control form-control-sm" placeholder="Strand and Year Level">
                 </div>
 
-                <div class="col-md-3 mb-3">
+                <!-- <div class="col-md-3 mb-3">
                     <label  class="form-label">College:</label>
                     <input type="text" name="cSchool" class="form-control form-control-sm" placeholder="College">
                 </div>
@@ -706,7 +706,7 @@
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Course and Year Level:</label>
                     <input type="text" name="cCourse" class="form-control form-control-sm" placeholder="Course and Year Level:">
-                </div>
+                </div> -->
 
 
                 
@@ -720,17 +720,19 @@
                     </div>
                     </div>
                     <div class="border-bottom mb-3 border border-1"></div>
-
+                    <div>
+                        <h5>Instruction: Input your Latest Grades</h5>
+                    </div>
                     <div class="sub">
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="form-label">Subject:</label>
                             <input type="text" name="sub[]" class="form-control form-control-sm" placeholder="Subject" required>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <!-- <div class="col-md-3 mb-3">
                             <label class="form-label">Unit:</label>
                             <input type="text" name="totalUnits[]" class="form-control form-control-sm" placeholder="Unit">
-                        </div>
+                        </div> -->
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Grade:</label>
                             <input type="text" name="gAverage[]" id="gAve" class="form-control form-control-sm" placeholder="Grade" required>
@@ -788,7 +790,7 @@
                 <div id="inputFatherNo" style="display:none;">
                     <div class="row">
                         <select class="form-select form-select-sm" name="fDeceased" id="fDeceased" aria-label="Default select example" onchange="checkOtherOption('fDeceased', 'otherDecF', 'otherDecF1')">
-                            <option value=""></option>
+                            <option></option>
                             <option value="Natural">Natural causes (illness, old age, accidents)</option>
                             <option value="Tragic">Tragic events (accidents, natural disasters, unexpected health complications)</option>
                             <option value="Health">Health issues (chronic illnesses, terminal conditions)</option>
@@ -833,7 +835,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
-                    <input type="text" name="fatherContact" id="fatherContact" class="form-control form-control-sm" placeholder="Contact Number">
+                    <input type="text" name="fatherContact" id="fatherContact" class="form-control form-control-sm" placeholder="Contact Number" maxlength="11">
                 </div>
                 </div>
                 </div>
@@ -853,7 +855,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-3">
                         <select class="form-select form-select-sm" name="mDeceased" id="mDeceased" aria-label="Default select example" onchange="checkOtherOption('mDeceased', 'otherDecM', 'otherDecM1')">
-                            <option value=""></option>
+                            <option></option>
                             <option value="Natural">Natural causes (illness, old age, accidents)</option>
                             <option value="Tragic">Tragic events (accidents, natural disasters, unexpected health complications)</option>
                             <option value="Health">Health issues (chronic illnesses, terminal conditions)</option>
@@ -899,7 +901,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
-                    <input type="text" name="motherContact" id="motherContact" class="form-control form-control-sm" placeholder="Contact Number">
+                    <input type="text" name="motherContact" id="motherContact" class="form-control form-control-sm" placeholder="Contact Number" maxlength="11">
                 </div>
                 </div>
                 </div>
@@ -913,7 +915,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Emergency Contact:</label>
-                    <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact">
+                    <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact" maxlength="11">
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -993,10 +995,10 @@
 
           <!------- STEP 3 ------->
           <div class="step" id="step3" style="display: block;">
-            <h5 class="text-primary">QUESTIONS</h5>
+            <h5 class="text-primary">COLLEGES/UNIVERSITIES OF CHOICE  </h5>
             <div class="border-bottom mb-3 border border-1"></div>
         
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-3 mb-3">
                     <label class="form-label">Did you stop attending college? </label><br>
                     <div class="form-check form-check-inline">
@@ -1017,7 +1019,7 @@
                 <div class="col-md-3 mb-3" >
                 <label  class="form-label">Year Level:</label>
                     <select class="form-select form-select-sm" name="yrlvl" aria-label="Default select example">
-                    <option value=""></option>
+                    <option>Year Level</option>
                     <option value="First year">First year</option>
                     <option value="Second year">Second year</option>
                     <option value="Third year">Third year</option>
@@ -1028,7 +1030,7 @@
                 <div class="col-md-3 mb-3">
                 <label  class="form-label">Semester:</label>
                     <select class="form-select form-select-sm" name="semester" aria-label="Default select example">
-                    <option value=""></option>
+                    <option>Semester</option>
                     <option value="First semester">First semester</option>
                     <option value="Second semester">Second semester</option>
                     <option value="Third semester">Third semester</option>
@@ -1036,26 +1038,7 @@
                 </div>
                 </div>
                 </div>
-            </div>
-
-
-            <!-- <div class="hstack gap-3">
-                <div class="">
-                    <h6 class="text-black mt-2"> Have you chosen a school already?</h6>
-                </div>
-              
-            </div>
-            <div class="p-2">
-            <button class="btn btn-primary btn-sm shadow me-3 col-lg-1 " type="button" onclick="addSchoolRow()">Yes</button><span class="text-secondary">(To add more rows, click 'Yes' again.)</span>
-            </div>
-
-            <div id="school-rows">
-                
-                
             </div> -->
-
-
-
 
 <div class="col-md-12 mb-2 px-0 mt-4">
     <h6 class="">Did you apply for / are you a recipient of another scholarship?</h6>
@@ -1703,7 +1686,7 @@ function dataURItoBlob(dataURI) {
         allowNumbersOnly('eAve');
         allowNumbersOnly('jhAve');
         allowNumbersOnly('shAve');
-        allowNumbersOnly('cAve');
+        // allowNumbersOnly('cAve');
         allowNumbersOnly('height');
         allowNumbersOnly('weight');
         allowNumbersOnly('emergencyContact');

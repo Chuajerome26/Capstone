@@ -131,8 +131,8 @@ class Scholar{
         mobile_number, email, present_address, permanent_address, med_condition, fb_link, isDecF, reasonF, father_name, father_age, father_occupation, father_income, father_contact,
         isDecM, reasonM, mother_name, mother_age, mother_occupation, mother_income, mother_contact, guardian, emergency_contact, guardian_rs, e_school, e_ave
         , e_achievements, jh_school, jh_ave, jh_achievements, sh_school, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_achievements, c_course, stopAttend, reason_attend, yrlvl, semester, other_scho,
-        other_scho_type, other_scho_coverage, other_scho_status, q1, q2, apply_scho, apply_scho_explain, date_apply) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        other_scho_type, other_scho_coverage, other_scho_status, q1, q2, apply_scho, apply_scho_explain, studType, date_apply) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
@@ -206,6 +206,7 @@ class Scholar{
 
                             $scholarData['applyScho'],
                             $scholarData['applySchoExplain'],
+                            $scholarData['studType'],
                             $this->date])) {
             header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
 
@@ -266,28 +267,28 @@ class Scholar{
                 //     // Bind parameters and execute the statement
                 //     $stmt5->execute([$scholarId ,$scholarData['collegeChoice'][$i], $scholarData['collegeCourse'][$i], $scholarData['entranceExam'][$i], $exam_taken]);
                 // }
-                        $totalRows = $scholarData['rowCount'];
+                        // $totalRows = $scholarData['rowCount'];
                         
-                        // Loop through each row
-                        for ($i = 0; $i <= $totalRows; $i++) {
-                            $stmt5 = $this->database->getConnection()->prepare("INSERT INTO scholar_college_choices (scholar_id, univ, course, entrance_exam, exam_taken) VALUES (?,?,?,?,?)");
+                        // // Loop through each row
+                        // for ($i = 0; $i <= $totalRows; $i++) {
+                        //     $stmt5 = $this->database->getConnection()->prepare("INSERT INTO scholar_college_choices (scholar_id, univ, course, entrance_exam, exam_taken) VALUES (?,?,?,?,?)");
 
-                            $schoolName = isset($scholarData['collegeChoice'][$i]) ? $scholarData['collegeChoice'][$i]:"";
-                            $courseMajor = isset($scholarData['collegeCourse'][$i]) ? $scholarData['collegeCourse'][$i]:"";
-                            $entranceExam = $scholarData['entranceExam'][$i];
+                        //     $schoolName = isset($scholarData['collegeChoice'][$i]) ? $scholarData['collegeChoice'][$i]:"";
+                        //     $courseMajor = isset($scholarData['collegeCourse'][$i]) ? $scholarData['collegeCourse'][$i]:"";
+                        //     $entranceExam = $scholarData['entranceExam'][$i];
 
-                            if($scholarData['entranceExam'][$i] == 'yes'){
-                                $exam_taken = $scholarData['ifYes'][$i];
-                            }else{
-                                $exam_taken = $scholarData['ifNo'][$i];
-                            }
+                        //     if($scholarData['entranceExam'][$i] == 'yes'){
+                        //         $exam_taken = $scholarData['ifYes'][$i];
+                        //     }else{
+                        //         $exam_taken = $scholarData['ifNo'][$i];
+                        //     }
 
-                            if($schoolName == '' && $courseMajor == '' && $entranceExam == '' && $exam_taken == ''){
+                        //     if($schoolName == '' && $courseMajor == '' && $entranceExam == '' && $exam_taken == ''){
                                 
-                            }else{
-                                $stmt5->execute([$scholarId ,$schoolName, $courseMajor, $entranceExam, $exam_taken]);
-                            }
-                        }
+                        //     }else{
+                        //         $stmt5->execute([$scholarId ,$schoolName, $courseMajor, $entranceExam, $exam_taken]);
+                        //     }
+                        // }
 
 
         // prepare insert statement for employee_details table

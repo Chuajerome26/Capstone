@@ -90,15 +90,15 @@ if(isset($_POST['submit'])){
         'shAve' => trim(isset($_POST["shAve"]) ? $_POST["shAve"]:'') ?? '',
         'shAchievements' => trim(isset($_POST["shAchievements"]) ? $_POST["shAchievements"]:'') ?? '',
         'shCourse' => trim(isset($_POST["shCourse"]) ? $_POST["shCourse"]:'') ?? '',
-        'cSchool' => trim($_POST["cSchool"]) ?? '',
-        'cAve' => trim($_POST["cAve"]) ?? '',
-        'cAchievements' => trim($_POST["cAchievements"]) ?? '',
-        'cCourse' => trim($_POST["cCourse"]) ?? '',
+        'cSchool' => '',
+        'cAve' => '',
+        'cAchievements' => '',
+        'cCourse' => '',
         
-        'stopAttend' => trim($_POST['stop_attend']) ?? '',
-        'reason_attend' => trim($_POST['reason_attend']) ?? '',
-        'yrlvl' => trim($_POST['yrlvl']) ?? '',
-        'semester' => trim($_POST['semester']),
+        'stopAttend' => '',
+        'reason_attend' => '',
+        'yrlvl' => '',
+        'semester' => '',
 
         'otherScholarship' => trim(isset($_POST["otherScholarship"]) ? $_POST["otherScholarship"]:'') ?? '',
         'otherScholarType' => trim(isset($_POST["otherScholarType"]) ? $_POST["otherScholarType"]:'') ?? '',
@@ -118,10 +118,9 @@ if(isset($_POST['submit'])){
         'sEattained' => $_POST["sEattained"] ?? '',
         
         'sub' => $_POST["sub"] ?? '',
-        'totalUnits' => $_POST["totalUnits"] ?? '',
+        'totalUnits' => '',
         'gAverage' => $_POST["gAverage"] ?? '',
-        
-        'studType' => 'College'
+        'studType' => 'Freshman'
     );
 
     $fileData1 = array(

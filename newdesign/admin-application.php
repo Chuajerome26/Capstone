@@ -420,8 +420,10 @@ $appliData1 = $admin->getApplicants();
                                 
                             <div class="col-12 ">
                                 <div class="row">
-                                    <dt class="col-sm-3">Address:</dt>
-                                    <dd class="col-sm-9"><?php echo $a['address'];?></dd>
+                                    <dt class="col-sm-3">Present Address:</dt>
+                                    <dd class="col-sm-9"><?php echo $a['present_address'];?></dd>
+                                    <dt class="col-sm-3">Permanent Address:</dt>
+                                    <dd class="col-sm-9"><?php echo $a['permanent_address'];?></dd>
                                 </div>
                             </div>
 
@@ -440,8 +442,8 @@ $appliData1 = $admin->getApplicants();
                                     <dt class="col-sm-6 ">Religion:</dt>
                                     <dd class="col-sm-6"><?php echo $a['religion'];?></dd>
 
-                                    <dt class="col-sm-6 ">Province:</dt>
-                                    <dd class="col-sm-6"><?php echo $a['province'];?></dd>        
+                                    <dt class="col-sm-6 ">Student Type:</dt>
+                                    <dd class="col-sm-6"><?php echo $a['studType'];?></dd>
                                 </div>
                             </div>
 
@@ -464,13 +466,6 @@ $appliData1 = $admin->getApplicants();
                                 </div>
                             </div>
 
-                            <div class="col-12">
-                                <div class="row">
-                                    <dt class="col-sm-3">Skills:</dt>
-                                    <dd class="col-sm-9"><?php echo $a['skills'];?></dd>
-                                </div>
-                            </div>
-
                             </div>
 
                     </div>
@@ -490,7 +485,7 @@ $appliData1 = $admin->getApplicants();
                 <div class="row">
                     <div class="col-md-6 ">
                         <h6>Father Details</h6>
-
+                        <?php if($a['isDecF'] == "no"): ?>
                         <dl class="row">
                             <dt class="col-sm-5 ">Name:</dt>
                             <dd class="col-sm-7"><?php echo $a["father_name"];?></dd>
@@ -507,13 +502,26 @@ $appliData1 = $admin->getApplicants();
 
                             
                             <dt class="col-sm-5">Educational Attained:</dt>
-                            <dd class="col-sm-7"><?php echo $a["father_attained"];?></dd>
+                            <dd class="col-sm-7"><?php echo $a["father_contact"];?></dd>
                         </dl>
+                        <?php else: ?>
+                            <dl class="row">
+                            <dt class="col-sm-5">Is your Father Deceased?</dt>
+                            <dd class="col-sm-7"><?php echo $a["isDecF"];?></dd>
+
+
+                            <dt class="col-sm-5">Reason:</dt>
+                            <dd class="col-sm-7"><?php echo $a["reasonF"];?></dd>
+
+                        </dl>
+                        <?php endif;?>
                     </div>
 
                     <div class="col-md-6">
                         <dl class="row">
                         <h6 >Mother Details</h6>
+                            <?php if($a['isDecM'] == "no"):?>
+                            <dl class="row">
                             <dt class="col-sm-5">Name:</dt>
                             <dd class="col-sm-7"><?php echo $a["mother_name"];?></dd>
 
@@ -529,7 +537,19 @@ $appliData1 = $admin->getApplicants();
 
                             
                             <dt class="col-sm-5">Educational Attained:</dt>
-                            <dd class="col-sm-7"><?php echo $a["mother_attained"];?></dd>
+                            <dd class="col-sm-7"><?php echo $a["mother_contact"];?></dd>
+                            </dl>
+                            <?php else: ?>
+                            <dl class="row">
+                            <dt class="col-sm-5">Is your Mother Deceased?</dt>
+                            <dd class="col-sm-7"><?php echo $a["isDecM"];?></dd>
+
+
+                            <dt class="col-sm-5">Reason:</dt>
+                            <dd class="col-sm-7"><?php echo $a["reasonM"];?></dd>
+
+                            </dl>
+                            <?php endif;?>
                         </dl>
                         </div>
                 </div>
@@ -542,10 +562,6 @@ $appliData1 = $admin->getApplicants();
                         <h6 >Guardian Details</h6>
                         <dt class="col-sm-3">Name:</dt>
                             <dd class="col-sm-9"><?php echo $a["guardian"];?></dd>
-
-
-                            <dt class="col-sm-3">Contact No.:</dt>
-                            <dd class="col-sm-9"><?php echo $a["guardian_contact"];?></dd>
 
                             <dt class="col-sm-3">Emergency Contact:</dt>
                             <dd class="col-sm-9"><?php echo $a["emergency_contact"];?></dd>
@@ -577,7 +593,9 @@ $appliData1 = $admin->getApplicants();
                             <tbody>
                                 <?php 
                                     $sibling = $admin->getAllSibling($a['id']);
+                                    $sC = count($sibling);
                                     foreach($sibling as $sb){
+                                        if($sC != 0 && $sb['name'] != ''):
                                 ?>
                                 <tr>
                                     <td><?php echo $sb['name']; ?></th>
@@ -587,8 +605,12 @@ $appliData1 = $admin->getApplicants();
                                     <td><?php echo $sb['religion']; ?></td>
                                     <td><?php echo $sb['educational_attained']; ?></td>
                                 </tr>
-                                <?php }?>
-                                
+                                <?php 
+                                    else:
+                                ?>
+                                    <td colspan="6"><div class="alert alert-primary" role="alert">No Siblings</div></td>
+                                <?php endif;
+                                } ?>
                                 </tr>
                                 
                                 </tr>
@@ -601,7 +623,7 @@ $appliData1 = $admin->getApplicants();
             </div>
         </div>
 
-            <div class="col-md-6 mt-3 ">
+            <div class="col-md-6 mt-3">
                 <div class="card border shadow">
                 <div class="card-header">
                             <strong>Academic Information</strong>
@@ -668,13 +690,29 @@ $appliData1 = $admin->getApplicants();
                 </div>
 
 
-                <div class="col-md-6 mt-3 ">
-                <div class="card border shadow" style="min-height: 635px;">
+                <div class="col-md-6 mt-3">
+                <div class="card border shadow" style="min-height: 598px;">
                 <div class="card-header">
-                            <strong>Incoming Freshment</strong>
+                            <strong>Incoming Freshman</strong>
                         </div>
 
                             <dl class="row mt-3 ms-3" >
+
+                            <?php if($a['studType'] == "College"):?>
+                                <dt class="col-sm-6 ">Did you stop attending college?</dt>
+                                <dd class="col-sm-6 mb-3"><?php echo $a["stopAttend"];?></dd>
+                                <?php if($a['stopAttend'] == "yes"): ?>
+
+                                <dt class="col-sm-6 ">Reason:</dt>
+                                <dd class="col-sm-6 mb-3"><?php echo $a["reason_attend"];?></dd>
+
+                                <dt class="col-sm-6 ">Year Level:</dt>
+                                <dd class="col-sm-6 mb-3"><?php echo $a["yrlvl"];?></dd>
+
+                                <dt class="col-sm-6 ">Semester:</dt>
+                                <dd class="col-sm-6 mb-3"><?php echo $a["semester"];?></dd>
+                                <?php else: endif; ?>
+                            <?php else: endif;?>
 
                             <dt class="col-sm-12 ">Did you apply for / are you a recipient of another scholarship?:</dt>
                             <dd class="col-sm-12 mb-3"><?php echo $a["other_scho"];?></dd>
@@ -756,38 +794,7 @@ $appliData1 = $admin->getApplicants();
                 </div>
             </div>
 
-            <div class="col-md-12 mt-2 ">
-                <div class="card border shadow">
-                <div class="card-header">
-                            <strong>School Choices Information</strong>
-                        </div>
-                        <div class="table-responsive">
-                 <table class="table p-0 w-100">
-                            <thead>
-                                <tr>
-                                <th >School Name</th>
-                                <th>Course/Degree Major</th>
-                                <th>Entrance Exam Taken?</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php 
-                                    $choice = $admin->getAllChoice($a['id']);
-                                    foreach($choice as $ce){
-                                ?>
-                                <tr>
-                                <td><?php echo $ce['univ']; ?></th>
-                                <td><?php echo $ce['course']; ?></td>
-                                <td><?php echo $ce['entrance_exam']; ?>, <?php echo $ce['exam_taken']; ?></td>
-                                </tr>
-                                <?php }?>
-                                
-                                </tr>
-                            </tbody>
-                            </table>
-                                    </div>
-                </div>
-            </div>
+            <!--  -->
 
   </div>
 </div>
