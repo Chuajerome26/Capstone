@@ -943,6 +943,11 @@ public function getRenewal()
     $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew")->fetchAll();
     return $stmt;
 }
+public function getRenewalById($id)
+{
+    $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE scholarID = '$id'")->fetchAll();
+    return $stmt;
+}
 public function getRenewalCount() {
     $renewal = $this->getRenewal();
     return count($renewal);

@@ -22,7 +22,7 @@ require '../classes/database.php';
     $condition = $admin->addAdminAccount($fname, $lname, $email, $verificationToken);
 
     if($condition){
-        $database->sendEmail($email, 'Set Your Account!', $message);
+        $database->sendEmail($email, 'Set Up Your Account!', $message);
         header('Location: ../newdesign/admin-account.php');
         exit();
     }

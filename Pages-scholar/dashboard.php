@@ -262,7 +262,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                         <?php
                                             $renewalDates = $scholar->getRenewalDates();
                                             $currentDate = date('Y-m-d');
-                                            if ($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) {
+
+                                            $nonCom = date('Y-m-d', strtotime($renewalDates['renewal_date_end'] . ' -2 days'));
+                                            if (($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) || $nonCom >= $currentDate) {
                                                 // Before displaying the renewal form, check if the scholar has already submitted
                                                 if (!$scholar->hasSubmittedRenewal($id)) {
                                             ?>

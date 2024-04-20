@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 
     $getStatus = $scholar->getRenewalInfo($id);
     $info = $scholar->findById($getStatus[0]['scholarID']);
-    var_dump($info);
+
     $email = $info['email'];
     
     $file1 = isset($_POST['GradeSlip']) ? $_POST['GradeSlip']:$getStatus[0]['file1_status'];

@@ -36,7 +36,22 @@ if(isset($_POST["accept"])){
     
     $acceptanceMessage = applicantAccept($user['l_name']);
 
-    $addRemarks = $admin->addRemarks($id, $user_id, 3, $acceptanceMessage, $currentDate1);
+    $acceptanceMessage1 = '
+Dear '.$user['l_name'].',
+
+We are delighted to inform you that your application for the Consuelo "CHITO" Madrigal Foundation, Inc. has been successful. Your academic achievements, aspirations, and dedication stood out among the applicants, making you a deserving recipient.
+    
+Details regarding the disbursement of funds and any additional requirements will be communicated to you shortly. If you have any questions or need further assistance, please do not hesitate to reach out to us at 2-8289-8795.
+    
+Once again, congratulations on this well-deserved achievement. We look forward to witnessing your continued success.
+    
+Best regards,
+    
+Executive Director
+Consuelo "CHITO" Madrigal Foundation, Inc.
+ccmf2015main@gmail.com';
+
+    $addRemarks = $admin->addRemarks($id, $user_id, 3, $acceptanceMessage1, $currentDate1);
     $sentEmail = $database->sendEmail($email,"Congratulations! Scholarship Acceptance", $acceptanceMessage);
     header('Location: ../newdesign/admin-application.php?status=success');
     exit();

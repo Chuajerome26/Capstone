@@ -53,8 +53,36 @@ if(isset($_POST['submit'])){
 
         $convertedTime = date("h:i A", strtotime($time_start));
         $convertedTime1 = date("h:i A", strtotime($time_end));
+
+        $message1 = '
+        Dear '.$last_name.',
+        
+        We are delighted to inform you that you have been shortlisted for the final round of interviews for the Scholarship Program. Congratulations on reaching this stage!
+        
+        The final interview will be a crucial step in the selection process, where we aim to learn more about you, your aspirations, and how you align with the values and objectives of our scholarship program.
+        
+        Please find below the details for your final interview:
+        
+        Date: '.$newDate1.'
+        Time: '.$time_start.' to '.$time_end.'
+        Platform: Onsite Interview
+        Location: AREA 6 SITIO VETERANS, BRGY. BAGONG SILANGAN, QUEZON CITY 1119 Quezon City, Philippines
+        
+        During the interview, you can expect questions related to your academic achievements, extracurricular activities, career goals, and your understanding of how this scholarship will contribute to your personal and professional development.
+        
+        We encourage you to prepare thoroughly and showcase your strengths and passion for your chosen field of study. Feel free to bring any relevant documents or materials that you believe will support your candidacy.
+        
+        If you have any questions or concerns regarding the interview process, please do not hesitate to email us at ccmf2015main@gmail.com. 
+        
+        Once again, congratulations on reaching this stage, and we look forward to meeting you and learning more about your journey and aspirations.
+        
+        Best regards,
+        
+        Consuelo "CHITO" Madrigal Foundation, Inc.
+        ccmf2015main@gmail.com
+        ';
         $message = IntGrade($last_name, $newDate1, $time_start, $time_end);
-        $addRemarks = $admin->addRemarks($id, $user_id, 2, $message, $currentDate1);
+        $addRemarks = $admin->addRemarks($id, $user_id, 2, $message1, $currentDate1);
         $database->sendEmail($email,"Invitation to Final Interview for Scholarship", $message);
         header('Location: ../newdesign/schedule-task.php?status=successGrade');
         exit();

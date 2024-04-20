@@ -9,6 +9,8 @@ $admin = new Admin($database);
 
 $user_id = $_SESSION["id"];
 
+$currentDate1 = date('Y-m-d');
+
 if(isset($_POST['submit'])){
 
     $id = $_POST["scholar_id"];
@@ -27,8 +29,24 @@ if(isset($_POST['submit'])){
         header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }
+
+    $declineMessage1 = "Dear ".$user['f_name']." ".$user['l_name'].",
+
+".$remarks."
+
+
+
+Best Regards,
+Socorro L. Bautista
+Executive Director
+Consuelo Chito Madrigal Foundation
+Incorporation
     
+    ";
+
     $declineMessage = remarksEmail($user, $remarks);
+
+    $addRemarks = $admin->addRemarks($id, $user_id, 4, $declineMessage1, $currentDate1);
 
     $sentEmail = $database->sendEmail($email,"Update on Your Application", $declineMessage);
 
