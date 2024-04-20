@@ -147,25 +147,26 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 
             <div class="container-fluid">
-                <div class="hstack gap-3 d-flex flex-column flex-md-row">
-                    <div class="">
+                <div class="row ">
+                    <div class="col-lg-2 col-12 mx-auto text-center mb-2">
                         <img class="img-fluid shadow-sm thumbnail shadow-sm" src='../Scholar_files/<?php echo $pic[0]['file_name'];?>' alt="">
                     </div>
-                    <div class="ms-1 ">
-                        <h5 class="card-title fw-bold"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
-                        <div class="mb-1 ms-1">
+
+                    <div class="col-lg-10 col-12">
+                        <h5 class="card-title fw-bold mt-2"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
+                        <div class="mb-1 ">
                             <span class='card-text'><i class="fa-solid fa-envelope me-1"></i> <?php echo $a["email"]?></span>
                         </div>
-                        <div class="mb-1 ms-1">
+                        <div class="mb-1">
                             <span class="card-text"><i class="fa-solid fa-phone me-2"></i><?php echo $a['mobile_number'];?></span>
                         </div>
-                        <div class="mb-1 ms-1">
+                        <div class="mb-1">
                             <span class="card-text"><i class="fab fa-facebook me-1"></i> <a href="<?php echo $a["fb_link"];?>" target="_blank"><?php echo $a["fb_link"];?></a>
                         </div>
                         <div class="mb-1 ms-1">
                             <span class="card-text"><i class="fa-solid fa-location-dot me-1"></i> <?php echo $a['present_address'];?> </span>
-                        </div>
                     </div>
+
                 </div>
             </div>
 
