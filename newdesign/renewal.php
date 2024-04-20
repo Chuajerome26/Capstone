@@ -10,6 +10,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     include '../email-design/renewalStartEmail-design.php';
     include '../email-design/renewalEndEmail-design.php';
     include '../email-design/renewalReminder-design.php';
+    include '../email-design/renewalWarning1-design.php';
+    include '../email-design/renewalWarning2-design.php';
+    include '../email-design/renewalWarning3-design.php';
     date_default_timezone_set('Asia/Manila');
     $database = new Database();
     $admin = new Admin($database);
@@ -18,8 +21,10 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $id = $_SESSION['id'];
     $date = date('Y-m-d');
     $admin_info = $admin->adminInfo($id);
+    $renewal_info = $scholar->getRenewalInfo();
     $renewalDates = $scholar->getRenewalDates();
     $scholars = $admin->getScholars();
+    $scholar->updateNonComStatus($id);
 
     $start = $renewalDates['renewal_date_start'];
     $end = $renewalDates['renewal_date_end'];
@@ -30,7 +35,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     // Email si user two days before the end date
     $twoDaysBeforeEnd = date('Y-m-d', strtotime($end . ' -2 days'));
 
-    //Email message
+    //Email message for renewal start, end, and reminder
     $messageStart = renewalStartEmail($dateFormat);
     $messageReminder = renewalReminderEmail($dateFormat1);
     $messageEnd = renewalEndEmail($dateFormat1);
@@ -53,11 +58,42 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         foreach ($scholars as $data) {
             if ($data['notif_send'] == 1) {
                 $database->sendEmail($data['email'], "Urgent: Scholarship Renewal Period Closing Soon", $messageReminder);
-                // Optionally update a status to ensure the reminder isn't sent more than once, if needed
-                //$admin->updateReminderSent($data['id']);
+            }
+        }
+    }else {
+
+    //Email message for 1st to final warning
+    $messageWarning1st = renewalWarning1Email();
+    $messageWarning2nd = renewalWarning2Email();
+    $messageWarningFinal = renewalWarningFinalEmail();
+    
+    $endPlus1 = date('Y-m-d', strtotime($end . ' +1 day'));
+    $endPlus2 = date('Y-m-d', strtotime($end . ' +2 days'));
+    $endPlus3 = date('Y-m-d', strtotime($end . ' +3 days'));
+
+    //sending email to scholars who still has status = 0 even after the end of renewal period
+    if ($date >= $endPlus1 && $date < $endPlus2) {
+        foreach ($renewal_info as $status) {
+            if ($status['renew_status'] == 0 && $status['nonCom_notif'] == 0) {
+                $database->sendEmail($status['Email'], "Urgent: Scholarship Renewal Has Ended. 1st Warning", $messageWarning1st);
+                $scholar->updateNonComNotif1($status['id']);
+            }
+        }
+    } elseif ($date >= $endPlus2 && $date < $endPlus3) {
+        foreach ($renewal_info as $status) {
+            if ($status['renew_status'] == 0 && $status['nonCom_notif'] == 1) {
+                $database->sendEmail($status['Email'], "Urgent: Scholarship Renewal Has Ended. 2nd Warning", $messageWarning2nd);
+                $scholar->updateNonComNotif2($status['id']);
+            }
+        }
+    } elseif ($date >= $endPlus3) {
+        foreach ($renewal_info as $status) {
+            if ($status['renew_status'] == 0 && $status['nonCom_notif'] == 2) {
+                $database->sendEmail($status['Email'], "Urgent: Scholarship Renewal Has Ended. Final Warning", $messageWarningFinal);
             }
         }
     }
+}
 
 } else {
     header("Location: ../index.php");
@@ -147,7 +183,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             else if($s['renew_status'] == 4){
                                                 $status = "Non-compliant";
                                             }
-                                    ?>
+                                            // Check and update non-compliance status
+                                            if ($status == "Pending") {
+                                                $scholar->updateNonComStatus($s["id"]);
+                                            }
+                                            ?>
                                             <tr>
                                                 <th scope="col"><?php echo $num; ?></th>
                                                 <td style="white-space: nowrap;"><?php echo $s["Firstname"]." ".$s["Lastname"]; ?></td>

@@ -263,7 +263,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                             $renewalDates = $scholar->getRenewalDates();
                                             $currentDate = date('Y-m-d');
 
-                                            $nonCom = date('Y-m-d', strtotime($renewalDates['renewal_date_end'] . ' -2 days'));
+                                            $nonCom = date('Y-m-d', strtotime($renewalDates['renewal_date_end'] . ' +3 days'));
                                             if (($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) || $nonCom >= $currentDate) {
                                                 // Before displaying the renewal form, check if the scholar has already submitted
                                                 if (!$scholar->hasSubmittedRenewal($id)) {
@@ -344,11 +344,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                         <div class="card-body">
                                         <h6 class="fw-bold mb-1">Done Renewal</h6>
                                             <hr>
-                                        <?php
+                                            <?php
                                             $rewalInfo = $scholar->getRenewalInfo();
                                             $foundData = false;
                                             foreach ($rewalInfo as $d) {
-                                                if ($d['renew_status'] != 0) { // Check if renew_status is not equal to 0
+                                                if ($d['renew_status'] != 0 && $d['renew_status'] != 4) { // Check if renew_status is not pending or non-compliant
                                                     $status = "";
                                                     if ($d['renew_status'] == 1) {
                                                         $status = "Pending for approval";
@@ -358,7 +358,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                         $status = "Update submitted files";
                                                     }
                                                     $foundData = true;
-                                                    ?>
+                                        ?>
                                                     <div class="ms-1">
                                                         <div class="p-0 m-0 mb-2 mt-2">
                                                             <div><small class="text-muted">Renewal History:</small> </div>
@@ -371,13 +371,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                             <button type="button" class="btn btn-primary btn-sm w-100 mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $d["id"]; ?>">View Files</button>
                                                         </div>
                                                     </div>
-                                                <?php
+                                        <?php
                                                 }
                                             }
                                             if (!$foundData) {
                                                 echo "No data";
                                             }
-                                            ?>
+                                        ?>
                                         </div>
                                     </div>
                             </div>

@@ -485,5 +485,35 @@ class Scholar{
         return true;
     }
     
+    public function updateNonComStatus($id) {
+        $renewalDates = $this->getRenewalDates();
+        $currentDate = date('Y-m-d');
+        
+        // Check if current date is beyond the grace period
+        if ($currentDate > date('Y-m-d', strtotime($renewalDates['renewal_date_end'] . ' +3 days'))) {
+            try {
+                // Prepare and execute the SQL query using prepared statements to prevent SQL injection
+                $query = "UPDATE scholar_renew SET renew_status = 4 WHERE id = ? AND renew_status = 0";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->execute([$id]);
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+        }
+    }
+    
+    public function updateNonComNotif1($id){
+        // Update for 1st warning
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET nonCom_notif = ? WHERE id =?");
+       //if execution fail
+        $stmt->execute([1, $id]);
+    }
+    public function updateNonComNotif2($id){
+        // Update for 2nd warning
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET nonCom_notif = ? WHERE id =?");
+       //if execution fail
+        $stmt->execute([2, $id]);
+    }
+    
 }
 

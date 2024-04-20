@@ -174,7 +174,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         </div>
                     </div>
 
-                    <!-- Pie Chart -->
+                    <!-- Recommended Home Visit -->
                     <div class="col-xl-4 col-lg-5">
                         <div class="card shadow mb-2">
                             <!-- Card Header - Dropdown -->
@@ -182,21 +182,19 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                             <!-- Card Body -->
                             <div class="card-body">
                             <h6 class="p-2 font-weight-bold text-black mb-2">Recommended Home Visit</h6>
-
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-primary"></i> <b>Direct</b>
-                                    </span>
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-success"></i> <b>Social</b>
-                                    </span>
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-info"></i> <b>Referral</b>
-                                    </span>
-                                </div>
+                                <div class="table-responsive">
+                                <?php
+                                $scholarPhoto = $admin->getApplicantsFilesCorrect($scholar_id);
+                                $homeVisit = $admin->getNoneCompliantInfo();
+                                foreach ($homeVisit as $visit) {
+                                ?>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <img src="<?php echo $scholarPhoto['IdPhoto']; ?>" alt="Scholar Photo" width="50" height="50">
+                                        <?php echo $visit['Firstname'];?> <?php echo $visit['Firstname'];?>
+                                    </li>
+                                </ul>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

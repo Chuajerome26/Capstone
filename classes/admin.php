@@ -952,6 +952,11 @@ public function getRenewalCount() {
     $renewal = $this->getRenewal();
     return count($renewal);
 }
+public function getNoneCompliantInfo()
+{
+    $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE renew_status = 4")->fetchAll();
+    return $stmt;
+}
 public function getInterviewCountForToday() {
     $stmt = $this->database->getConnection()->query("SELECT COUNT(*) FROM admin_schedule_interview WHERE date = CURDATE()")->fetchColumn();
     return $stmt;
