@@ -64,6 +64,12 @@ class Admin
        //if execution fail
         $stmt->execute([1, $id]);
     }
+    public function updateNotif2($id){
+        // prepared statement
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE id =?");
+       //if execution fail
+        $stmt->execute([2, $id]);
+    }
     public function updateNotif0($id){
         // prepared statement
         $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE id =?");

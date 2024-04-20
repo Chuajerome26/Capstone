@@ -47,20 +47,21 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                 $admin->updateNotif1($data['id']);
             }
         }
+    }elseif ($twoDaysBeforeEnd == $date) {
+        foreach ($scholars as $data) {
+            if ($data['notif_send'] == 1) {
+                $database->sendEmail($data['email'], "Urgent: Scholarship Renewal Period Closing Soon", $messageReminder);
+                $admin->updateNotif2($data['id']);
+            }
+        }
     }elseif($end == $date){
         foreach($scholars as $data){
-            if($data['notif_send'] == 1){
+            if($data['notif_send'] == 2){
                 $database->sendEmail($data['email'], "Scholarship Renewal Period Closing", $messageEnd);
                 $admin->updateNotif0($data['id']);
             }
         }
-    } elseif ($twoDaysBeforeEnd == $date) {
-        foreach ($scholars as $data) {
-            if ($data['notif_send'] == 1) {
-                $database->sendEmail($data['email'], "Urgent: Scholarship Renewal Period Closing Soon", $messageReminder);
-            }
-        }
-    }else {
+    } else {
 
     //Email message for 1st to final warning
     $messageWarning1st = renewalWarning1Email();
@@ -90,6 +91,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         foreach ($renewal_info as $status) {
             if ($status['renew_status'] == 0 && $status['nonCom_notif'] == 2) {
                 $database->sendEmail($status['Email'], "Urgent: Scholarship Renewal Has Ended. Final Warning", $messageWarningFinal);
+                $scholar->updateNonComNotif0($status['id']);
             }
         }
     }

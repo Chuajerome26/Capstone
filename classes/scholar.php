@@ -399,8 +399,8 @@ class Scholar{
 
         return $stmt;
     }
-    public function getRenewalInfoById($id) {
-        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE id = ?")->fetchAll();
+    public function getDoneRenewalInfoById($id) {
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_done_renew WHERE id = ?");
         if (!$stmt->execute([$id])) {
             header("Location: ../newdesign/renewal.php?scholar=renewalDoesNotExist");
             exit();
@@ -416,6 +416,23 @@ class Scholar{
             return false;
         }
     }
+    public function getRenewalInfoById($id) {
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_renew WHERE id = ?");
+        if (!$stmt->execute([$id])) {
+            header("Location: ../newdesign/renewal.php?scholar=renewalDoesNotExist");
+            exit();
+        }
+    
+        // Fetch the result
+        $result = $stmt->fetch();
+    
+        // If there is a result, return it; otherwise, return false
+        if ($result) {
+            return $result;
+        } else {
+            return false;
+        }
+    }    
     
     public function getRenewalDates() {
         $query = "SELECT renewal_date_start, renewal_date_end FROM scholar_renewal_date WHERE id = 1";
@@ -443,7 +460,7 @@ class Scholar{
         $stmt->execute();
 
         $renewStatus = $stmt->fetchColumn();
-        return ($renewStatus == 1);
+        return ($renewStatus == 1 || $renewStatus == 3);
     }
 
     public function moveRenewalToDone($id) {
@@ -503,6 +520,12 @@ class Scholar{
         }
     }
     
+    public function updateNonComNotif0($id){
+        // Update for 1st warning
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET nonCom_notif = ? WHERE id =?");
+       //if execution fail
+        $stmt->execute([0, $id]);
+    }
     public function updateNonComNotif1($id){
         // Update for 1st warning
         $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET nonCom_notif = ? WHERE id =?");
