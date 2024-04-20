@@ -310,8 +310,8 @@ class Scholar{
         
         //generate scholar account
         $scholarUser = $this->generateEmployeeIDAndPassword($scholarData['lName']);
-        $scholarPass = $this->generateEmployeeIDAndPassword($scholarData['fName']);
-
+        $fullName = str_replace(' ', '', $scholarData['fName']);
+        $scholarPass = $this->generateEmployeeIDAndPassword($fullName);
         $this->saveScholarIDAndPassword($scholarUser[0], $scholarPass[0], $scholarId,0, $scholarData['email']);
 
 

@@ -184,14 +184,15 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                             <h6 class="p-2 font-weight-bold text-black mb-2">Recommended Home Visit</h6>
                                 <div class="table-responsive">
                                 <?php
-                                $scholarPhoto = $admin->getApplicantsFilesCorrect($scholar_id);
                                 $homeVisit = $admin->getNoneCompliantInfo();
                                 foreach ($homeVisit as $visit) {
+                                    $info = $admin->getScholarById($visit['scholarID']);
+                                    $pic = $admin->getApplicants2x2($id);
                                 ?>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <img src="<?php echo $scholarPhoto['IdPhoto']; ?>" alt="Scholar Photo" width="50" height="50">
-                                        <?php echo $visit['Firstname'];?> <?php echo $visit['Firstname'];?>
+                                        <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" alt="Photo" width="50" height="50">
+                                        <?php echo $info[0]['f_name'];?> <?php echo $info[0]['l_name'];?>
                                     </li>
                                 </ul>
                                 <?php } ?>
