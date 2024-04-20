@@ -697,8 +697,7 @@ $appliData1 = $admin->getApplicants();
                         </div>
 
                             <dl class="row mt-3 ms-3" >
-
-                            <?php if($a['studType'] == "College"):?>
+<?php if($a['studType'] == "College"):?>
                                 <dt class="col-sm-6 ">Did you stop attending college?</dt>
                                 <dd class="col-sm-6 mb-3"><?php echo $a["stopAttend"];?></dd>
                                 <?php if($a['stopAttend'] == "yes"): ?>
@@ -713,6 +712,7 @@ $appliData1 = $admin->getApplicants();
                                 <dd class="col-sm-6 mb-3"><?php echo $a["semester"];?></dd>
                                 <?php else: endif; ?>
                             <?php else: endif;?>
+                            
 
                             <dt class="col-sm-12 ">Did you apply for / are you a recipient of another scholarship?:</dt>
                             <dd class="col-sm-12 mb-3"><?php echo $a["other_scho"];?></dd>

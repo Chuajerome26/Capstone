@@ -334,7 +334,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                             <dd class="col-sm-7"><?php echo $a["mother_age"];?></dd>
 
                                             
-                                            <dt class="col-sm-5">Educational Attained:</dt>
+                                            <dt class="col-sm-5">Contact Number:</dt>
                                             <dd class="col-sm-7"><?php echo $a["mother_contact"];?></dd>
                                             </dl>
                                             <?php else: ?>
