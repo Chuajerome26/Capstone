@@ -165,6 +165,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div>
                         <div class="mb-1 ms-1">
                             <span class="card-text"><i class="fa-solid fa-location-dot me-1"></i> <?php echo $a['present_address'];?> </span>
+                        </div>
                     </div>
 
                 </div>
