@@ -10,13 +10,8 @@
     <link rel="stylesheet" href="../assets1/css/1.css" />
     <style>
     body {
-        background-color: hsla(23,100%,50%,0.83);
-        background-image:
-        radial-gradient(at 10% 0%, hsla(91,90%,67%,1) 0px, transparent 50%),
-        radial-gradient(at 88% 88%, hsla(45,97%,74%,1) 0px, transparent 50%),
-        radial-gradient(at 50% 25%, hsla(108,65%,69%,1) 0px, transparent 50%),
-        radial-gradient(at 40% 20%, hsla(120,100%,74%,1) 0px, transparent 50%);
-      /* Add any other styles you want for the body */
+        background-color: #D5EFBE;
+       
     }
   </style>
   </head>
@@ -30,7 +25,7 @@
 
         <div class="card col-sm-10 shadow-lg">
             <div class="card-body">
-            <span><a href="../index.php" class="text-black"><i class="fa-solid fa-arrow-left-long ms-2"></i></a></span>
+            
                 <div class="row">
                 
                     <div class="col-md-11 mx-auto">
