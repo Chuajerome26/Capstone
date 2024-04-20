@@ -191,44 +191,13 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 <hr class="sidebar-divider d-none d-md-block">
 
 
-                <div class="d-flex gap-2">
+                <ul class="navbar-nav ms-auto d-flex flex-row   d-none d-lg-block me-5">
                 
-                <!-- <div class="dropdown">
-                <button class="btn border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-bell fa-fw text-gray-400 mt-1 ms-2" style="font-size: 18px;"></i>
-                </button>
-                <span class="position-absolute top-0 end-0 badge rounded-pill bg-danger" style="font-size: 11px;">
-                    <span>4</span>
-                </span>
-                
-                <ul class="dropdown-menu  dropdown-menu-end" >
-                <h6 class="px-2 mt-2 mb-2 ms-3"><i class="fas fa-bell me-2 " ></i> Notification</h6>
-                <hr>
-                <div style="width:350px;  max-height: 400px; overflow-y: auto; font-size: 14px;">
+               
 
+                 
 
-                <li class="list-group-item d-flex justify-content-between align-items-center px-3">
-                    <div class="d-flex align-items-center">
-                    <img src="../images/images.png" alt="" style="width: 40px; height: 40px"
-                        class="rounded-circle" />
-                    <div class="ms-3">
-                        <div class="fw-bold " style="font-size: 13px;">Chua, Jerome </div>
-                        <div class="text-muted mb-1" style="font-size: 11px;">April 21, 2023 - 11:00pm</div>
-                        <div style="font-size: 13px;">Your request has been Approve by Admin</div>
-                    </div>
-                    </div>
-                </li>
-                <hr>
-                
-                    </div>
-                </ul>
-                </div> -->
-                    
-
-                    <div>
-
-
-                    <div class="dropdown me-4 mt-1">
+                    <li class="dropdown me-4 mt-1">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img class="me-2 rounded-circle shadow-sm" src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" alt="Id" width="30" height="30"> 
                             <span><?php echo $admin_info[0]['l_name']; ?></span>
@@ -242,13 +211,13 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                 <li><button class="dropdown-item" type="submit"><i class="fa-solid fa-right-from-bracket me-3"></i>Sign Out</button></li>
                             </form>
                         </ul>
-                    </div>
+                    </li>
 
 
-                    </div>
+                    </ul>
 
 
-                </div>
+                
 
 
 
