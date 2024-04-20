@@ -244,7 +244,8 @@ class Scholar{
                     $stmt3 = $this->database->getConnection()->prepare("INSERT INTO scholar_siblings (scholar_id, name, age, occupation, civil_status, religion, educational_attained) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
                     // Bind parameters and execute the statement
-                    $stmt3->execute([$scholarId ,$scholarData['sName'][$i], $scholarData['sAge'][$i], $scholarData['sOccupation'][$i], $scholarData['sCstatus'][$i], $scholarData['sReligion'][$i], $scholarData['sEattained'][$i]]);
+                    $stmt3->execute([$scholarId ,$scholarData['sName'][$i], $scholarData['sAge'][$i], $scholarData['sOccupation'][$i], $scholarData['sCstatus'][$i], $scholarData['sR'][$i], $scholarData['sEattained'][$i]]);
+
                 }
 
                 for ($i = 0; $i < count($scholarData['sub']); $i++) {

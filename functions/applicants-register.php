@@ -114,7 +114,7 @@ if(isset($_POST['submit'])){
         'sAge' => $_POST["sAge"] ?? '',
         'sOccupation' => $_POST["sOccupation"] ?? '',
         'sCstatus' => $_POST["sCstatus"] ?? '',
-        'sReligion' => $_POST["sReligion"] ?? '',
+        'sR' => $_POST["sR"] ?? '',
         'sEattained' => $_POST["sEattained"] ?? '',
         
         'sub' => $_POST["sub"] ?? '',
@@ -214,7 +214,7 @@ if(isset($_POST['submit'])){
     if($scholar->findByEmail($scholarData['email'])){
 
          //return to employee register page
-        header("Location: ../Pages-scholar/appform.php?scholar=alreadyExist");
+        header("Location: ../index.php?scholar=alreadyExist");
         exit();
     }
 

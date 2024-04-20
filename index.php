@@ -855,6 +855,20 @@
             toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
+    }else if(successValue === "alreadyExist"){
+        Swal.fire({
+            icon:'error',
+            title:'Email Already Exist!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
     }
 
 

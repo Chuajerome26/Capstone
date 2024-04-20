@@ -114,7 +114,7 @@ if(isset($_POST['submit'])){
         'sAge' => $_POST["sAge"] ?? '',
         'sOccupation' => $_POST["sOccupation"] ?? '',
         'sCstatus' => $_POST["sCstatus"] ?? '',
-        'sReligion' => $_POST["sReligion"] ?? '',
+        'sR' => $_POST["sR"] ?? '',
         'sEattained' => $_POST["sEattained"] ?? '',
         
         'sub' => $_POST["sub"] ?? '',

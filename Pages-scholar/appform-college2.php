@@ -269,7 +269,7 @@
                     <label  class="form-label">Religion: <span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="religion" aria-label="Default select example" required>
                     <option value=""></option>
-                    <option value="Roman Catholicism">Roman Catholicism</option>
+                    <option value="Roman Catholic">Roman Catholic</option>
                     <option value="Islam">Islam</option>
                     <option value="Protestantism">Protestantism</option>
                     <option value="Iglesia ni Cristo (Church of Christ)">Iglesia ni Cristo (Church of Christ)</option>
@@ -833,7 +833,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
-                    <input type="text" name="fatherContact" id="fatherContact" class="form-control form-control-sm" placeholder="Contact Number">
+                    <input type="text" name="fatherContact" id="fatherContact" class="form-control form-control-sm" placeholder="Contact Number" maxlength="11">
                 </div>
                 </div>
                 </div>
@@ -899,7 +899,7 @@
                 </div>
                 <div class="col-md-3 mb-3">
                     <label  class="form-label">Contact Number:</label>
-                    <input type="text" name="motherContact" id="motherContact" class="form-control form-control-sm" placeholder="Contact Number">
+                    <input type="text" name="motherContact" id="motherContact" class="form-control form-control-sm" placeholder="Contact Number" maxlength="11">
                 </div>
                 </div>
                 </div>
@@ -913,7 +913,7 @@
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Emergency Contact:</label>
-                    <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact">
+                    <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="Emergency Contact" maxlength="11">
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -962,14 +962,30 @@
                         </div>
 
                         <div class="col-md-3 mb-3">
-                        <label class="form-label">Civil Status:</label>
-                        <input type="text" name="sCstatus[]" class="form-control form-control-sm" placeholder="Civil Status">
+                        <label  class="form-label">Civil Status: <span class="text-danger">*</span></label>
+                            <select class="form-select form-select-sm" name="sCstatus[]" aria-label="Default select example" required>
+                            <option></option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Widowed">Widowed</option>
+                            <option value="Legally Separated">Legally Separated</option>
+                            </select>
                         </div>
 
                         <div class="col-md-3 mb-3">
-                        <label class="form-label">Religion:</label>
-                        <input type="text" name="sReligion[]" class="form-control form-control-sm" placeholder="Religion">
+                            <label class="form-label">Religion: <span class="text-danger">*</span></label>
+                            <select class="form-select form-select-sm" name="sR[]" aria-label="Default select example" required>
+                                <option></option>
+                                <option value="Roman Catholic">Roman Catholic</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Protestantism">Protestantism</option>
+                                <option value="Iglesia ni Cristo (Church of Christ)">Iglesia ni Cristo (Church of Christ)</option>
+                                <option value="Buddhism">Buddhism</option>
+                                <option value="Hinduism">Hinduism</option>
+                                <option value="Indigenous">Indigenous</option>
+                            </select>
                         </div>
+
 
                         <div class="col-md-3 mb-3">
                         <label class="form-label">Educational Attainment:</label>

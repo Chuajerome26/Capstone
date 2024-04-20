@@ -92,6 +92,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             <th scope="col">Date Applied</th>
                                             
                                             <th scope="col">Details</th>
+                                            <th scope="col">Action</th>
                                     
                                             
                                         </tr>
@@ -113,13 +114,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
                                             <td><?php echo $s["date_apply"];?></td>
                                             
-                                            <td class="d-flex gap-2">
-                                                
+                                            <td style="white-space: nowrap;">
                                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button>
                                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button>
-                                        </td>
-                                            
-                                            
+                                            </td>
+                                            <td><button type="button" class="btn btn-sm btn-danger">Revoke</button></td>
                                         </tr>
                                         <?php 
                                     $num++;
