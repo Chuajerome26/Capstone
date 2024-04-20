@@ -11,9 +11,7 @@ if(isset($_POST['submit'])){
 
     $user_id = $_SESSION['id'];
 
-    $arrayNames = array('IdPhoto', 'FamilyProfile', 'LetterofIntent', 'ParentConsent', 'CopyofGrades',
-                    'BirthCertificate', 'Indigency', 'RecommendationLetter', 'GoodMoral', 'SchoolDiploma', 'Form137/138', 'AcceptanceLetter'
-                , 'EnrollmentForm', 'FamilyPicture', 'SketchofHouseArea');
+    $arrayNames = array('IdPhoto', 'Grades', 'BirthCertificate', 'Indigency', 'Form137/138');
     $remarks = array();
     // Iterate through each name and retrieve its value from $_POST
     foreach ($arrayNames as $name) {
@@ -81,7 +79,7 @@ if(isset($_POST['submit'])){
     // Add 7 days to the current date
     $newDate = date('Y-m-d', strtotime($currentDate . ' +7 days'));
 
-    if($countCorrect[0]['count'] == 15){
+    if($countCorrect[0]['count'] == 5){
         
         $sched = $admin->selectAndInsertSchedules($scholarData, $start_time, $end_time, $excluded_start, $excluded_end, $duration, $max10, $newDate);
         $date = $sched[0]['date'];
@@ -112,6 +110,9 @@ ccmf2015main@gmail.com
 
         $message = fileRemarkSuccess($last_name, $date, $convertedTime, $convertedTime1);
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 1, $message1, $currentDate1);
+        $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 1 WHERE id = :id');
+        $update->execute(['id' => $scholar_id]);
+
         $database->sendEmail($email,"Scholarship Application Evaluation - Completed", $message);
         
     }else{
