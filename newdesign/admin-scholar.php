@@ -118,7 +118,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button>
                                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button>
                                             </td>
-                                            <td><button type="button" class="btn btn-sm btn-danger">Revoke</button></td>
+                                            <td>
+                                                <form method="post" action="../functions/revoke.php">
+                                                    <input type="hidden" name="scholar_id" value="<?php echo $s['id']; ?>"> 
+                                                    <button type="submit" name="revoke" class="btn btn-sm btn-danger">Revoke</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                         <?php 
                                     $num++;
