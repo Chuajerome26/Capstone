@@ -9,6 +9,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     require '../classes/scholar.php';
     include '../email-design/renewalStartEmail-design.php';
     include '../email-design/renewalEndEmail-design.php';
+    include '../email-design/renewalReminder-design.php';
     date_default_timezone_set('Asia/Manila');
     $database = new Database();
     $admin = new Admin($database);
@@ -26,8 +27,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $dateFormat = date('M d, Y', strtotime($renewalDates['renewal_date_start']));
     $dateFormat1 = date('M d, Y', strtotime($renewalDates['renewal_date_end']));
 
+    // Email si user two days before the end date
+    $twoDaysBeforeEnd = date('Y-m-d', strtotime($end . ' -2 days'));
+
     //Email message
     $messageStart = renewalStartEmail($dateFormat);
+    $messageReminder = renewalReminderEmail($dateFormat1);
     $messageEnd = renewalEndEmail($dateFormat1);
 
     if($start == $date){
@@ -42,6 +47,14 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
             if($data['notif_send'] == 1){
                 $database->sendEmail($data['email'], "Scholarship Renewal Period Closing", $messageEnd);
                 $admin->updateNotif0($data['id']);
+            }
+        }
+    } elseif ($twoDaysBeforeEnd == $date) {
+        foreach ($scholars as $data) {
+            if ($data['notif_send'] == 1) {
+                $database->sendEmail($data['email'], "Urgent: Scholarship Renewal Period Closing Soon", $messageReminder);
+                // Optionally update a status to ensure the reminder isn't sent more than once, if needed
+                //$admin->updateReminderSent($data['id']);
             }
         }
     }

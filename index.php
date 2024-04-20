@@ -705,12 +705,12 @@
             </div>
             <div class="modal-body">
                 <p>Enter your email address below and we'll send you instructions on how to reset your password.</p>
-                <form action="forgot_password.php" method="post">
+                <form action="functions/forgot_pass.php" method="post">
                     <div class="form-group">
                         <label class="fw-bold" for="forgotEmail">Email Address:</label>
                         <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Reset Password</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
                 </form>
             </div>
             <div class="modal-footer">
