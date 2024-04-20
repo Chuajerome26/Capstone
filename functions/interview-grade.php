@@ -82,7 +82,9 @@ if(isset($_POST['submit'])){
         ccmf2015main@gmail.com
         ';
         $message = IntGrade($last_name, $newDate1, $time_start, $time_end);
-        $addRemarks = $admin->addRemarks($id, $user_id, 2, $message1, $currentDate1);
+        $addRemarks = $admin->addRemarks($scholar_id, $user_id, 2, $message1, $currentDate1);
+        $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 2 WHERE id = :id');
+        $update->execute(['id' => $scholar_id]);
         $database->sendEmail($email,"Invitation to Final Interview for Scholarship", $message);
         header('Location: ../newdesign/schedule-task.php?status=successGrade');
         exit();

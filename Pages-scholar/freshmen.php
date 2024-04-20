@@ -1144,52 +1144,24 @@
 
                     <!-- HTML -->
                     <div class="col-md-12 m-auto mb-3">
-    <div class="fileUpload container">
-        <div class="p-2">
-            <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
-                <img src="../images/no-images.jpg" id="image1" alt="Image">
-            </div>
-            <h6 class="text-center">Upload 2x2 Picture</h6>
-            <div class="row justify-content-center">
-                <div class="col-lg-5 col-12 mb-2 text-center">
-                    <label class="fileSelect btn btn-sm btn-primary col-12">
-                        Upload File
-                        <input type="file" id="fileInput" name="idPicture" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')" required>
-                    </label>
-                    <div id="selectedFileName" class="mt-2"></div> <!-- Display selected file name -->
-                </div>
-                <div class="col-lg-5 col-12 mb-2 text-center">
-                    <button class="btn btn-sm btn-primary col-12" onclick="openCameraInModal()">Open Camera</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Camera Stream</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div id="cameraPreview"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeModal()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="captureImage()">Capture</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-                    
-                    
+                        <div class="fileUpload container">
+                            <div class="p-2">
+                                <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
+                                    <img src="../images/no-images.jpg" id="image1" alt="Image">
+                                </div>
+                                <h6 class="text-center">Upload 2x2 Picture</h6>
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-5 col-12 mb-2 text-center">
+                                        <label class="fileSelect btn btn-sm btn-primary col-12">
+                                            Upload File
+                                            <input type="file" id="fileInput" name="idPicture" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')" required>
+                                        </label>
+                                        <div id="selectedFileName" class="mt-2"></div> <!-- Display selected file name -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Latest Copy of Grades</h6>
@@ -1235,108 +1207,6 @@
 
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
                 <script>
-                    // JavaScript
-
-    let isCameraOpen = false;
-    let stream = null;
-
-    function openCamera() {
-        if (isCameraOpen) return;
-
-        // Get the camera video element
-        const video = document.createElement('video');
-        video.id = 'cameraVideo';
-        video.autoplay = true;
-
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function (stream) {
-                // Display the camera stream in the video element
-                video.srcObject = stream;
-                document.getElementById('cameraPreview').appendChild(video);
-                isCameraOpen = true;
-                // Store the stream reference
-                stream = stream;
-            })
-            .catch(function (error) {
-                console.error('Error accessing the camera: ', error);
-            });
-    }
-
-    function captureImage() {
-    // Get the video element by ID
-    const video = document.querySelector('#cameraVideo');
-    if (!video || video.readyState !== video.HAVE_ENOUGH_DATA) {
-        console.error('Video not ready');
-        return;
-    }
-
-    // Capture a frame from the video
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    // Convert the canvas content to a data URL representing a JPEG image
-    const imageDataURL = canvas.toDataURL('image/jpeg');
-
-    const previewContainer = document.getElementById('previewContainer1');
-    previewContainer.innerHTML = '';
-    const image = document.createElement('img');
-    image.src = imageDataURL;
-    previewContainer.appendChild(image);
-
-    // Create a Blob object from the data URL
-    const blob = dataURItoBlob(imageDataURL);
-
-    // Set the value of the file input to the Blob object
-    const fileInput = document.getElementById('fileInput');
-    if (fileInput) {
-        fileInput.file = [new File([blob], 'captured_image.jpg', { type: 'image/jpeg' })];
-        console.log(fileInput.file);
-    }
-
-    // Close the modal after capturing the image
-    $('#exampleModal').modal('hide');
-}
-
-// Function to convert data URL to Blob
-function dataURItoBlob(dataURI) {
-    const byteString = atob(dataURI.split(',')[1]);
-    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    const ab = new ArrayBuffer(byteString.length);
-    const ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], { type: mimeString });
-}
-
-
-
-    // Function to close the camera stream
-    function closeCamera() {
-        if (stream) {
-            const tracks = stream.getTracks();
-            tracks.forEach(track => track.stop());
-        }
-        isCameraOpen = false;
-        // Remove the camera video element from the preview container
-        const videoElement = document.getElementById('cameraVideo');
-        if (videoElement && videoElement.parentNode) {
-            videoElement.parentNode.removeChild(videoElement);
-        }
-    }
-
-    function openCameraInModal() {
-        $('#exampleModal').modal('show');
-        openCamera(); // Call the function to open the camera stream
-    }
-
-    function closeModal() {
-        $('#exampleModal').modal('hide');
-        closeCamera(); // Call the function to close the camera stream
-    }
 
 
 
