@@ -584,13 +584,14 @@
                     </div>
                 </div>
                 
-   
+     <!-- Adjusted class and input -->
+     <div class="col-lg-5 col-md-6 col-12">
     <!-- Card Element -->
-    <div class="card shadow-sm" style="width: 35rem;">
+    <div class="card shadow-sm">
         <div class="card-header bg-white py-3">
             <p class="fw-bold h4 mb-0 text-center">REQUIREMENT LIST:</p>
         </div>
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush text-center">
             <li class="list-group-item">Letter of Intent &nbsp;&nbsp;|&nbsp;&#160; Family Profile</li>
             <li class="list-group-item">Written Parent Consent &nbsp;&nbsp;|&nbsp;&#160; Latest Copy of Grades</li>
             <li class="list-group-item">Birth Certificate &nbsp;&nbsp;|&nbsp;&#160; Certificate of Indigency</li>
@@ -612,6 +613,7 @@
 
 
         <!--/ End Footer Middle -->
+
         <!-- Start Footer Bottom -->
         <div class="footer-bottom">
             <div class="container">
@@ -643,8 +645,8 @@
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
-                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/freshmen.php';">Freshman</button>
-                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform-college2.php';">College</button>
+                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform.php';">Freshman</button>
+                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform-college.php';">College</button>
             </div>
         </div>
     </div>
@@ -703,12 +705,12 @@
             </div>
             <div class="modal-body">
                 <p>Enter your email address below and we'll send you instructions on how to reset your password.</p>
-                <form action="functions/forgot_pass.php" method="post">
+                <form action="forgot_password.php" method="post">
                     <div class="form-group">
                         <label class="fw-bold" for="forgotEmail">Email Address:</label>
                         <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
                     </div>
-                    <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
+                    <button type="submit" class="btn btn-primary">Reset Password</button>
                 </form>
             </div>
             <div class="modal-footer">
