@@ -58,7 +58,7 @@ $announcement = $_POST['announcement'];
     margin: 0;
     padding-top: 40px;
     color: #2e323c;
-    background: #f5f6fa;
+    background-color: white;
     position: relative;
     height: 100%;
 }
@@ -108,11 +108,11 @@ $announcement = $_POST['announcement'];
 }
 
 .card {
-    background: #ffffff;
+    background-color: white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    border: 0;
+    border: 50;
     margin-bottom: 1rem;
 }
 
@@ -125,7 +125,7 @@ $announcement = $_POST['announcement'];
 <div class="row gutters">
 <div class="col-xl-3 col-lg-3 col-md-12col-sm-12 col-12">
 <div class="card h-100">
-<div class="card-header">
+<div class="card-header" style="background-color: rgb(14, 220, 141)">
     <h5 class="card-title mb-0">Profile</h5>
 </div>
 <div class="card-body">
@@ -141,7 +141,7 @@ $announcement = $_POST['announcement'];
 .user-avatar.green img {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius: 100%;
     object-fit: cover;
     background-color: white;
 }
@@ -173,14 +173,14 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 </div>
 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
 <div class="card h-100">
-<div class="card-header">
-    <h5 class="card-title mb-0">Personal Details</h5>
+<div class="card-header" style="background-color: rgb(14, 220, 141)">
+<h5 class="card-title mb-0">Personal Details</h5>
 </div>
 <div class="card-body">
 <div class="row gutters">
 
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<h6 class="mb-2 text-primary">Profile</h6>
+<h6 class="mb-2 text-success">Profile</h6>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
@@ -205,7 +205,7 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 </div>
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<h6 class="mb-2 text-primary">Address</h6>
+<h6 class="mb-2 text-success">Address</h6>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
@@ -235,7 +235,7 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 
 <!-- Modal -->
 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-        <button type="button" class="btn btn-secondary"onclick="goBack()">Back</button>
+        <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
             Edit Profile
         </button>
@@ -255,7 +255,7 @@ document.getElementById('avatarInput').addEventListener('change', function(event
       <div class="modal-body">
       <div class="row gutters">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<h6 class="mb-2 text-primary">Profile</h6>
+<h6 class="mb-2 text-success">Profile</h6>
 </div>
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
@@ -276,7 +276,7 @@ document.getElementById('avatarInput').addEventListener('change', function(event
     </div>
 </div>
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<h6 class="mb-2 text-primary">Address</h6>
+<h6 class="mb-2 text-success">Address</h6>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
