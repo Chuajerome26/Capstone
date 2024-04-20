@@ -182,20 +182,26 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                             <!-- Card Body -->
                             <div class="card-body">
                             <h6 class="p-2 font-weight-bold text-black mb-2">Recommended Home Visit</h6>
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="height: 225px; max-height: 225px; overflow-y:auto">
                                 <?php
                                 $homeVisit = $admin->getNoneCompliantInfo();
                                 foreach ($homeVisit as $visit) {
                                     $info = $admin->getScholarById($visit['scholarID']);
                                     $pic = $admin->getApplicants2x2($id);
                                 ?>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" alt="Photo" width="50" height="50">
-                                        <?php echo $info[0]['f_name'];?> <?php echo $info[0]['l_name'];?>
-                                    </li>
-                                </ul>
+
+                                    <div class="card" style="font-size: 14px;">
+                                        <div class="card-body p-0 p-0">
+                                            <div class="hstack gap-3">
+                                            <div class="p-2"> <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" alt="Photo" width="50" height="50"></div>
+                                            <div class="p-2 align-items-center"> <?php echo $info[0]['f_name'];?> <?php echo $info[0]['l_name'];?></div>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
                                 <?php } ?>
+
+                                
                             </div>
                         </div>
                     </div>
