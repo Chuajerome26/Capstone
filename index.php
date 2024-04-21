@@ -392,10 +392,6 @@
                         <h1 class="page-title">About Us</h1>
                         <p>The Consuelo Chito Madrigal Foundation (CCMF) is dedicated to improving the quality of life of distressed families in selected communities in the Philippines. Established by banker, philanthropist and Papal awardee Dona Consuelo Chito Madrigal-Collantes in 1997, it supports programs designed to respond to the needs of these communities to be self-sustaining.</p>
                     </div>
-                    <ul class="breadcrumb-nav">
-                        
-                        <li>About Us</li>
-                    </ul>
                 </div>
             </div>
         </div>
