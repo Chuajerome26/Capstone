@@ -260,76 +260,48 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 
 
                                         <?php
-                                            $renewalDates = $scholar->getRenewalDates();
+                                            $renewalDates = $scholar->getRenewalDatesForScholar();
                                             $currentDate = date('Y-m-d');
-
-                                            $nonCom = date('Y-m-d', strtotime($renewalDates['renewal_date_end'] . ' +3 days'));
-                                            if (($currentDate >= $renewalDates['renewal_date_start'] && $currentDate <= $renewalDates['renewal_date_end']) || $nonCom >= $currentDate) {
-                                                // Before displaying the renewal form, check if the scholar has already submitted
-                                                if (!$scholar->hasSubmittedRenewal($id)) {
-                                            ?>
-                                            <form action="../functions/scholarRenewal.php" method="post" enctype="multipart/form-data">
-                                                <label for="gwa">Year Level:</label>
-                                                <select name="yearLvl" id="yearLvlSelect" onchange="checkOtherOption()">
-                                                    <option value="1st">1st</option>
-                                                    <option value="2nd">2nd</option>
-                                                    <option value="3rd">3rd</option>
-                                                    <option value="4th">4th</option>
-                                                    <option value="other">Other</option>
-                                                </select><br>
-                                                <div id="otherOption" style="display: none;">
-                                                <input type="text" name="otherYearLevel" id="otherYearLevelInput" placeholder="Enter your year level">
+                                            foreach ($renewalDates as $date) {
+                                        ?>
+                                            <div class="card shadow-sm">
+                                                <div class="card-body py-1 px-3 p-0 m-0">
+                                                    <div class="hstack gap-3">
+                                                        <div class="ms-2 text-center">
+                                                            <span class="fw-bold"><?php echo date('d', strtotime($currentDate)); ?></span><br>
+                                                            <span class="text-danger fw-bold"><?php echo date('D', strtotime($currentDate)); ?></span>
+                                                        </div>
+                                                        <div class="ms-2">
+                                                            <div class="ms-2 d-flex align-items-center">
+                                                                <small class="text-muted">Renewal Dates</small>
+                                                            </div>
+                                                            <div class="ms-2 d-flex justify-content-center align-items-center">
+                                                                <small class="text-muted fw-bold"><?php echo $date['renewal_date_start'] . ' - ' . $date['renewal_date_end']; ?></small>
+                                                            </div>
+                                                        </div>
+                                                        <?php
+                                                            $nonCom = date('Y-m-d', strtotime($date['renewal_date_end'] . ' +3 days'));
+                                                            if (($currentDate >= $date['renewal_date_start'] && $currentDate <= $date['renewal_date_end']) || $nonCom >= $currentDate) {
+                                                                // Before displaying the renewal form, check if the scholar has already submitted
+                                                                if (!$scholar->hasSubmittedRenewal($id)) {
+                                                        ?>
+                                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#scholarRenewalModal">Submit Renewal</button>
+                                                        <?php
+                                                                } else {
+                                                        ?>
+                                                                    <button type="button" class="btn btn-primary" disabled>Renewal Submitted</button>
+                                                        <?php
+                                                                }
+                                                            } else {
+                                                        ?>
+                                                                <button type="button" class="btn btn-primary" disabled>Renewal Period Over</button>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                    </div>
                                                 </div>
-                                                <label for="gradeslip">Upload Grade Slip:</label>
-                                                <input type="file" id="gradeslip" name="file1" required><br>
-                                                <label for="gradeslip">Upload Registration Form:</label>
-                                                <input type="file" id="regform" name="file2" required><br>
-                                                <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
-                                            </form>
-                                            <?php
-                                                } else {
-                                                    echo '
-                                                    <div class="card shadow-sm">
-                                                        <div class="card-body py-1 px-3 p-0 m-0">
-                                                            <div class="hstack gap-3">
-                                                                <div class="ms-2 text-center">
-                                                                    <span class="fw-bold">' . date('d', strtotime($currentDate)) . '</span><br>
-                                                                    <span class="text-danger fw-bold">' . date('D', strtotime($currentDate)) . '</span>
-                                                                </div>
-                                                                <div class="ms-2">
-                                                                    <div class="ms-2 d-flex align-items-center">
-                                                                        <small class="text-muted">Renewal Dates</small>
-                                                                    </div>
-                                                                    <div class="ms-2 d-flex justify-content-center align-items-center">
-                                                                        <small class="text-muted fw-bold">' . $renewalDates['renewal_date_start'] . ' - ' . $renewalDates['renewal_date_end'] . '</small>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>';
-                                                }
-                                            } else {
-                                                echo '
-                                                    <div class="card shadow-sm">
-                                                        <div class="card-body py-1 px-3 p-0 m-0">
-                                                            <div class="hstack gap-3">
-                                                                <div class="ms-2 text-center">
-                                                                    <span class="fw-bold">' . date('d', strtotime($currentDate)) . '</span><br>
-                                                                    <span class="text-danger fw-bold">' . date('D', strtotime($currentDate)) . '</span>
-                                                                </div>
-                                                                <div class="ms-2">
-                                                                    <div class="ms-2 d-flex align-items-center">
-                                                                        <small class="text-muted">Renewal Dates</small>
-                                                                    </div>
-                                                                    <div class="ms-2 d-flex justify-content-center align-items-center">
-                                                                        <small class="text-muted fw-bold">' . $renewalDates['renewal_date_start'] . ' - ' . $renewalDates['renewal_date_end'] . '</small>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>';
-                                            }                                            
-                                            ?>
+                                            </div>
+                                        <?php } ?>
 
                                         </div>
                                     </div>
@@ -345,39 +317,43 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                         <h6 class="fw-bold mb-1">Done Renewal</h6>
                                             <hr>
                                             <?php
-                                            $rewalInfo = $scholar->getRenewalInfo();
-                                            $foundData = false;
-                                            foreach ($rewalInfo as $d) {
-                                                if ($d['renew_status'] != 0 && $d['renew_status'] != 4) { // Check if renew_status is not pending or non-compliant
-                                                    $status = "";
-                                                    if ($d['renew_status'] == 1) {
-                                                        $status = "Pending for approval";
-                                                    } else if ($d['renew_status'] == 2) {
-                                                        $status = "Approved";
-                                                    } else if ($d['renew_status'] == 3) {
-                                                        $status = "Update submitted files";
+                                            $rewalInfo = $scholar->getRenewalInfoById($id);
+                                            if (empty($rewalInfo)) {
+                                                echo "No data";
+                                            } else {
+                                                $foundData = false;
+                                                foreach ($rewalInfo as $d) {
+                                                    if ($d['renew_status'] != 0 && $d['renew_status'] != 4) { // Check if renew_status is not pending or non-compliant
+                                                        $status = "";
+                                                        if ($d['renew_status'] == 1) {
+                                                            $status = "Pending for approval";
+                                                        } else if ($d['renew_status'] == 2) {
+                                                            $status = "Approved";
+                                                        } else if ($d['renew_status'] == 3) {
+                                                            $status = "For Correction: Please check your email for further instructions";
+                                                        }
+                                                        $foundData = true;
+                                            ?>
+                                                        <div class="ms-1">
+                                                            <div class="p-0 m-0 mb-2 mt-2">
+                                                                <div><small class="text-muted">Renewal History:</small> </div>
+                                                            </div>
+                                                            <div class="card"></div>
+                                                            <div class="p-0 m-0 mt-2">
+                                                                <div><small class="text-muted">Date Renewed:<strong><?php echo $d["date_renew"]; ?></strong></small></div>
+                                                                <div><small class="text-muted">Status: <strong><?php echo $status; ?></strong></small> </div>
+                                                                <!-- Modal to boss --->
+                                                                <button type="button" class="btn btn-primary btn-sm w-100 mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $d["id"]; ?>">View Files</button>
+                                                            </div>
+                                                        </div>
+                                            <?php
                                                     }
-                                                    $foundData = true;
-                                        ?>
-                                                    <div class="ms-1">
-                                                        <div class="p-0 m-0 mb-2 mt-2">
-                                                            <div><small class="text-muted">Renewal History:</small> </div>
-                                                        </div>
-                                                        <div class="card"></div>
-                                                        <div class="p-0 m-0 mt-2">
-                                                            <div><small class="text-muted">Date Renewed:<strong><?php echo $d["date_renew"]; ?></strong></small></div>
-                                                            <div><small class="text-muted">Status: <strong><?php echo $status; ?></strong></small> </div>
-                                                            <!-- Modal to boss --->
-                                                            <button type="button" class="btn btn-primary btn-sm w-100 mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $d["id"]; ?>">View Files</button>
-                                                        </div>
-                                                    </div>
-                                        <?php
+                                                }
+                                                if (!$foundData) {
+                                                    echo "No data";
                                                 }
                                             }
-                                            if (!$foundData) {
-                                                echo "No data";
-                                            }
-                                        ?>
+                                            ?>
                                         </div>
                                     </div>
                             </div>
@@ -795,6 +771,41 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
             </div>
             <?php } ?>
         </div>
+
+<!-- Modal for Renewal -->
+<div class="modal fade" id="scholarRenewalModal" tabindex="-1" role="dialog" aria-labelledby="scholarRenewalModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scholarRenewalModalLabel">Scholar Renewal Form</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Form -->
+                <form action="../functions/scholarRenewal.php" method="post" enctype="multipart/form-data">
+                    <label for="gwa">Year Level:</label>
+                    <select name="yearLvl" id="yearLvlSelect" onchange="checkOtherOption()">
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="other">Other</option>
+                    </select><br>
+                    <div id="otherOption" style="display: none;">
+                        <input type="text" name="otherYearLevel" id="otherYearLevelInput" placeholder="Enter your year level">
+                    </div>
+                    <label for="gradeslip">Upload Grade Slip:</label><br>
+                    <input type="file" id="gradeslip" name="file1" required><br>
+                    <label for="gradeslip">Upload Registration Form:</label>
+                    <input type="file" id="regform" name="file2" required>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" form="scholarRenewalForm" name="submit" value="Submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- RenewFiles Modal-->
 <?php

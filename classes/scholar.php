@@ -400,14 +400,14 @@ class Scholar{
         return $stmt;
     }
     public function getDoneRenewalInfoById($id) {
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_done_renew WHERE id = ?");
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_done_renew WHERE scholarID = ?");
         if (!$stmt->execute([$id])) {
             header("Location: ../newdesign/renewal.php?scholar=renewalDoesNotExist");
             exit();
         }
 
         //fetch the result
-        $result = $stmt->fetch();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
           //if has result true, else return false
         if ($result) {
@@ -417,14 +417,14 @@ class Scholar{
         }
     }
     public function getRenewalInfoById($id) {
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_renew WHERE id = ?");
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_renew WHERE scholarID = ?");
         if (!$stmt->execute([$id])) {
             header("Location: ../newdesign/renewal.php?scholar=renewalDoesNotExist");
             exit();
         }
     
         // Fetch the result
-        $result = $stmt->fetch();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
         // If there is a result, return it; otherwise, return false
         if ($result) {
@@ -433,11 +433,24 @@ class Scholar{
             return false;
         }
     }    
-    
+
+    public function getRenewalDatesForScholar() {
+        $query = "SELECT renewal_date_start, renewal_date_end FROM scholar_renewal_date WHERE id = 1";
+        $stmt = $this->database->getConnection()->query($query);
+
+        if ($stmt) {
+            $renewalDates = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $renewalDates;
+        } else {
+            // Handle the error, you might want to log or return an appropriate value
+            return false;
+        }
+    }
+
     public function getRenewalDates() {
         $query = "SELECT renewal_date_start, renewal_date_end FROM scholar_renewal_date WHERE id = 1";
         $stmt = $this->database->getConnection()->query($query);
-    
+
         if ($stmt) {
             $renewalDates = $stmt->fetch(PDO::FETCH_ASSOC);
             return $renewalDates;
@@ -445,7 +458,7 @@ class Scholar{
             // Handle the error, you might want to log or return an appropriate value
             return false;
         }
-    }
+    }    
     public function getScholars($id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
                                                         WHERE id = ? AND status = '1'");
@@ -469,37 +482,40 @@ class Scholar{
         $stmt->execute([$id]);
         $renewalInfo = $stmt->fetch(PDO::FETCH_ASSOC);
     
-        if ($renewalInfo) {
-            // Insert the renewal information into scholar_done_renew table
-            $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_done_renew (scholarID, Firstname, Lastname, Email, yearLvl, file1, file1_status, file2, file2_status, date_renew, renew_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$renewalInfo['scholarID'], $renewalInfo['Firstname'], $renewalInfo['Lastname'], $renewalInfo['Email'], $renewalInfo['yearLvl'], $renewalInfo['file1'], $renewalInfo['file1_status'], $renewalInfo['file2'], $renewalInfo['file2_status'], $renewalInfo['date_renew'], $renewalInfo['renew_status']]);
+        if ($renewalInfo && $renewalInfo['renew_status'] == 2) {
+            $renewalDates = $this->getRenewalDates();
+            $currentDate = date('Y-m-d');
     
-            // Delete the renewal information from scholar_renew table
-            $stmt = $this->database->getConnection()->prepare("DELETE FROM scholar_renew WHERE id = ?");
-            $stmt->execute([$id]);
+            // Check if current date is beyond the grace period
+            if ($currentDate >= date('Y-m-d', strtotime($renewalDates['renewal_date_end'] . ' +3 days'))) {
+                // Insert the renewal information into scholar_done_renew table
+                $stmt = $this->database->getConnection()->prepare("INSERT INTO scholar_done_renew (scholarID, Firstname, Lastname, Email, yearLvl, file1, file1_status, file2, file2_status, date_renew, renew_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$renewalInfo['scholarID'], $renewalInfo['Firstname'], $renewalInfo['Lastname'], $renewalInfo['Email'], $renewalInfo['yearLvl'], $renewalInfo['file1'], $renewalInfo['file1_status'], $renewalInfo['file2'], $renewalInfo['file2_status'], $renewalInfo['date_renew'], $renewalInfo['renew_status']]);
     
-            return true;
+                // Delete the renewal information from scholar_renew table
+                $stmt = $this->database->getConnection()->prepare("DELETE FROM scholar_renew WHERE id = ?");
+                $stmt->execute([$id]);
+    
+                return true;
+            } else {
+                // Still within the grace period
+                return false;
+            }
         } else {
-            // Renewal information not found
+            // Renewal information not found or renew_status is not 2
             return false;
         }
-    }    
+    }     
 
     public function updateRenewalStatus($id, $file1, $file2){
         $renew_status = ($file1 && $file2) ? 2 : 3;
-
+    
         $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET file1_status = ?, file2_status = ?, renew_status = ? WHERE id = ? ");
         
         if(!$stmt->execute([$file1, $file2, $renew_status, $id])){
             header('Location: ../newdesign/renewal.php?scholar=error');
             exit();
         }
-
-        if ($renew_status == 2) {
-            // Move renewal information to done table if renew_status is 2
-            $this->moveRenewalToDone($id);
-        }
-
         return true;
     }
     

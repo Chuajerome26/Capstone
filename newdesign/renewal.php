@@ -179,10 +179,17 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                                 $status = "Pending";
                                             }else if($s['renew_status'] == 1){
                                                 $status = "Submitted";
+                                            }else if($s['renew_status'] == 2){
+                                                $status = "Approved";
+                                                    // Check if renewal should be moved to done
+                                                    $movedToDone = $scholar->moveRenewalToDone($s["id"]); // Assuming $scholar is the instance of your class
+                                                    if($movedToDone) {
+                                                        // If renewal moved to done, update status
+                                                        $status = "Moved to Done Renewal";
+                                                    }
                                             }else if($s['renew_status'] == 3){
                                                 $status = "Tentative";
-                                            }
-                                            else if($s['renew_status'] == 4){
+                                            }else if($s['renew_status'] == 4){
                                                 $status = "Non-compliant";
                                             }
                                             // Check and update non-compliance status
