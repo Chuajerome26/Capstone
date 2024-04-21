@@ -808,15 +808,15 @@
                 <div id="inputFather" style="display:none;">
                 <div class="row">
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Father First Name:</label>
+                    <label  class="form-label">Father's First Name:</label>
                     <input type="text" name="fatherFName" class="form-control form-control-sm" placeholder="Father Name">
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Father Middle Name:</label>
+                    <label  class="form-label">Father's Middle Name:</label>
                     <input type="text" name="fatherMName" class="form-control form-control-sm" placeholder="Father Name">
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Father Last Name:</label>
+                    <label  class="form-label">Father's Last Name:</label>
                     <input type="text" name="fatherLName" class="form-control form-control-sm" placeholder="Father Name">
                 </div>
                 <div class="col-md-3 mb-3">
@@ -874,15 +874,15 @@
                 <div id="inputMother" style="display:none;">
                 <div class="row">
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Mother First Name:</label>
+                    <label  class="form-label">Mother's First Name:</label>
                     <input type="text" name="motherFName" class="form-control form-control-sm" placeholder="Mother Name">
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Mother Middle Name:</label>
+                    <label  class="form-label">Mother's Middle Name:</label>
                     <input type="text" name="motherMName" class="form-control form-control-sm" placeholder="Mother Name">
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label  class="form-label">Mother Last Name:</label>
+                    <label  class="form-label">Mother's Last Name:</label>
                     <input type="text" name="motherLName" class="form-control form-control-sm" placeholder="Mother Name">
                 </div>
                 <div class="col-md-3 mb-3">

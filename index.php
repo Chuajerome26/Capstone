@@ -247,10 +247,6 @@
                                     <li><i class="lni lni-star-filled"></i></li>
                                     <li>22 Reviews</li>
                                 </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Demo Campus</a>
-                                </span>
                             </div>
                         </div>
                         <!-- End Single Course -->
@@ -276,10 +272,6 @@
                                     <li><i class="lni lni-star-filled"></i></li>
                                     <li>10 Reviews</li>
                                 </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Scholarship</a>
-                                </span>
                             </div>
                         </div>
                         <!-- End Single Course -->
@@ -305,10 +297,6 @@
                                     <li><i class="lni lni-star-filled"></i></li>
                                     <li>55 Reviews</li>
                                 </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Nutrition</a>
-                                </span>
                             </div>
                         </div>
                         <!-- End Single Course -->
@@ -334,10 +322,6 @@
                                     <li><i class="lni lni-star-filled"></i></li>
                                     <li>60 Reviews</li>
                                 </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Livelihood</a>
-                                </span>
                             </div>
                         </div>
                         <!-- End Single Course -->
@@ -363,10 +347,6 @@
                                     <li><i class="lni lni-star-filled"></i></li>
                                     <li>25 Reviews</li>
                                 </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">CCMF Bulacan</a>
-                                </span>
                             </div>
                         </div>
                         <!-- End Single Course -->
@@ -392,10 +372,6 @@
                                     <li><i class="lni lni-star-filled"></i></li>
                                     <li>35 Reviews</li>
                                 </ul>
-                                <span class="tag">
-                                    <i class="lni lni-tag"></i>
-                                    <a href="javascript:void(0)">Pagsulay</a>
-                                </span>
                             </div>
                         </div>
                         <!-- End Single Course -->
