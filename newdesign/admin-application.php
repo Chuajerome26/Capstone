@@ -395,7 +395,7 @@ $appliData1 = $admin->getApplicants();
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
-        <div id="editCancelBtn<?php echo $a['id']; ?>" style="margin-left:10px;">
+        <div id="editCancelBtn<?php echo $a['id']; ?>" style="margin-left:10px;display:none;">
             <button id="editButton" class="btn btn-sm btn-primary" onclick="replaceDetailsWithInputs('detailsContainer'+<?php echo $a['id']; ?>, 'footer'+<?php echo $a['id'];?>, 'editBtn<?php echo $a['id']; ?>')">Edit</button>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
