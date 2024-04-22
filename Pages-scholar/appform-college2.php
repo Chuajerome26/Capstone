@@ -666,8 +666,26 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label  class="form-label">Strand and Year Level:</label>
-                    <input type="text" name="shCourse" class="form-control form-control-sm" placeholder="Strand and Year Level">
+                <label  class="form-label">Strand <span class="text-secondary">*</span>:</label>
+                    <select class="form-select form-select-sm" name="shCourse" id="shCourse" aria-label="Default select example" onchange="checkOtherOption('shCourse', 'otherCourse', 'otherCourse1')">
+                    <option></option>
+                    <option value="AFA">Agri-Fishery Arts (AFA) Strand</option>
+                    <option value="ABM">Accountancy, Business, and Management (ABM) Strand</option>
+                    <option value="GAS">General Academic Strand (GAS)</option>
+                    <option value="HE">Home Economics (HE) Strand</option>
+                    <option value="HUMSS">Humanities and Social Sciences (HUMSS) Strand</option>
+                    <option value="IA">Industrial Arts (IA) Strand</option>
+                    <option value="ICT">Information and Communications Technology (ICT) Strand</option>
+                    <option value="Performing Arts">Performing Arts Strand</option>
+                    <option value="STEM">Science, Technology, Engineering, and Mathematics (STEM) Strand</option>
+                    <option value="Sports">Sports Track</option>
+                    <option value="Visual Arts">Visual Arts Strand</option>
+                    <option value="TVL">Vocational-Livelihood (TVL) Track</option>
+                    <option value="Others">Others</option>
+                    </select>
+                    <div id="otherCourse" style="display: none;">
+                        <input class="form-control form-control-sm mt-2" type="text" name="otherCourse" id="otherCourse1" placeholder="Other Course">
+                    </div>
                 </div>
 
                 <div class="col-md-3 mb-3">
