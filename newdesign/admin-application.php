@@ -72,7 +72,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         <!-- Set the value of the input field to the opposite of the current state -->
                         <input type="hidden" name="state" value="<?php echo ($state == 1) ? '0' : '1'; ?>">
                         <!-- Set the button label to "ON" if the state is 1 and "OFF" if the state is 0 -->
-                        <button id="toggleButton" type="submit" name="submit" style="background-color: <?php echo ($state == 1) ? 'green' : 'red'; ?>; color: white;"><?php echo ($state == 1) ? 'OFF' : 'ON'; ?></button>
+                        <button id="toggleButton" type="submit" name="submit" style="background-color: <?php echo ($state == 1) ? 'red' : 'green'; ?>; color: white;"><?php echo ($state == 1) ? 'OFF' : 'ON'; ?></button>
                     </form>
 
                     <div id="toggleStatus" class="mt-2">
