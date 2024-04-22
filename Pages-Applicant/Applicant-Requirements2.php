@@ -296,7 +296,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                             <dd class="col-sm-7"><?php echo $a["father_age"];?></dd>
 
                                             
-                                            <dt class="col-sm-5">Educational Attained:</dt>
+                                            <dt class="col-sm-5">Educational Contact:</dt>
                                             <dd class="col-sm-7"><?php echo $a["father_contact"];?></dd>
                                         </dl>
                                         <?php else: ?>
@@ -688,9 +688,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="hstack gap-3">
                     <div class="p-2"><h6>Requirement List</h6></div>
                     <div class="p-2 ms-auto">
+                    <?php if($a['application_status'] == 0):?>
                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fa-solid fa-pen-to-square me-2 d-none d-lg-inline-block"></i> <div class="d-inline-block">Edit Requirements</div>
-                     </button>
+                    </button>
+                    <?php endif; ?>
                     </div>
                    
                     </div>

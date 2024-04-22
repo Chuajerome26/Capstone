@@ -51,6 +51,27 @@ class Scholar{
         }
 
     }
+    public function findByEmail1($email){
+        // prepare the SQL statement using the database property
+      $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE email=?");
+
+       //if execution fail
+      if (!$stmt->execute([$email])) {
+          header("Location: ../Pages-scholar/form.php?scholar=emailExist");
+          exit();
+      }
+
+      //fetch the result
+      $result = $stmt->fetch();
+      
+        //if has result true, else return false
+      if ($result) {
+          return $result;
+      } else {
+          return false;
+      }
+
+  }
 
         public function checkData($filesAndPicture, $scholarData){
             //check if the file extension is in the array $allowed

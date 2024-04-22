@@ -224,12 +224,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                             </div>
                         
                         
-                    </form>
+                    
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
+                </form>
             </div>
             </div>
         </div>

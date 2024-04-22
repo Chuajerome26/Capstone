@@ -99,6 +99,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             $remarks = '<span class="badge bg-danger">Declined</span>';
                                         }else if($log['remarks'] == 6){
                                             $remarks = '<span class="badge bg-danger">Revoke</span>';
+                                        }else if($log['remarks'] == 7){
+                                            $remarks = '<span class="badge bg-info">Send Email</span>';
                                         }
                                         ?>
                                         <tr>

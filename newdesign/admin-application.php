@@ -33,7 +33,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
             integrity="sha512-xrbcVZjH2az0FbiCx9A1Gvpy2m1xL/zoVqOz8O3R5gBQVlBwm8AR2wteZbc56l3P5fQQ8HIjTCSxmbWEKeF86A=="
             crossorigin="anonymous" />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+            <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11"> -->
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
             <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
@@ -381,9 +381,14 @@ $appliData1 = $admin->getApplicants();
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
+        <div id="editCancelBtn<?php echo $a['id']; ?>" style="margin-left:10px;">
+            <button id="editButton" class="btn btn-sm btn-primary" onclick="replaceDetailsWithInputs('detailsContainer'+<?php echo $a['id']; ?>, 'footer'+<?php echo $a['id'];?>, 'editBtn<?php echo $a['id']; ?>')">Edit</button>
+        </div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <form method="post" action="../functions/applicant-info-edit.php">
+        <div id="detailsContainer<?php echo $a['id']; ?>">
         
             <div class="row g-0 p-2">
 
@@ -402,7 +407,7 @@ $appliData1 = $admin->getApplicants();
                         <img src="../Scholar_files/<?php echo $pic1[0]['file_name'];?>" alt="Profile Picture" class="img-thumbnail rounded-circle shadow" width="150" height="150">
                         </div>
 
-                    <h5 class="text-center mt-4"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
+                        <h5 class="text-center mt-4"><?php echo $a["f_name"]." ".$a["m_name"] ." ".$a["l_name"]." ".$a["suffix"];?></h5>
                         <div class="text-center text-muted"><?php echo $a["email"];?></div>
                         <div class="text-center text-muted"><?php echo $a['mobile_number'];?></div>
                         
@@ -501,7 +506,7 @@ $appliData1 = $admin->getApplicants();
                             <dd class="col-sm-7"><?php echo $a["father_age"];?></dd>
 
                             
-                            <dt class="col-sm-5">Educational Attained:</dt>
+                            <dt class="col-sm-5">Contact Number:</dt>
                             <dd class="col-sm-7"><?php echo $a["father_contact"];?></dd>
                         </dl>
                         <?php else: ?>
@@ -536,7 +541,7 @@ $appliData1 = $admin->getApplicants();
                             <dd class="col-sm-7"><?php echo $a["mother_age"];?></dd>
 
                             
-                            <dt class="col-sm-5">Educational Attained:</dt>
+                            <dt class="col-sm-5">Contact Number:</dt>
                             <dd class="col-sm-7"><?php echo $a["mother_contact"];?></dd>
                             </dl>
                             <?php else: ?>
@@ -576,7 +581,7 @@ $appliData1 = $admin->getApplicants();
                     </div>
 
                     <div class="col-md-12 border mt-3 mb-3"></div>  
-                    <div class="col-md-12   " >
+                    <div class="col-md-12" >
                         <h6>Sibling Details</h6>
                         <div class="table-responsive">
                         <table class="table p-0 w-100">
@@ -616,7 +621,7 @@ $appliData1 = $admin->getApplicants();
                                 </tr>
                             </tbody>
                             </table>
-    </div>
+                        </div>
                     </div>
                 </div>
     </div>
@@ -670,7 +675,7 @@ $appliData1 = $admin->getApplicants();
                             <dd class="col-sm-7"><?php echo $a["sh_achievements"];?></dd>
                         </dl>
                 
-
+                    <?php if($a['studType'] == "College"): ?>
                         <dl class="row ms-3">
                 <h6 >College School</h6>
                             <dt class="col-sm-5">School:</dt>
@@ -683,6 +688,7 @@ $appliData1 = $admin->getApplicants();
                             <dt class="col-sm-5">Achievements:</dt>
                             <dd class="col-sm-7"><?php echo $a["c_achievements"];?></dd>
                         </dl>
+                        <?php endif; ?>
                 </div>
 
                     <div class="card-body">
@@ -748,15 +754,6 @@ $appliData1 = $admin->getApplicants();
 
             <div>
             </div>
-
-            
-    
-
-
-            
-           
-
-
     </div>
 
     
@@ -771,7 +768,9 @@ $appliData1 = $admin->getApplicants();
                             <thead>
                                 <tr>
                                 <th >Subject</th>
+                                <?php if($a['studType'] == "College"): ?>
                                 <th>Unit</th>
+                                <?php endif; ?>
                                 <th>Grade</th>
                             
                                 </tr>
@@ -782,7 +781,9 @@ $appliData1 = $admin->getApplicants();
                                 ?>
                                 <tr>
                                 <td><?php echo $gi['subject']; ?></th>
+                                <?php if($a['studType'] == "College"): ?>
                                 <td><?php echo $gi['unit']; ?></td>
+                                <?php endif; ?>
                                 <td><?php echo $gi['grade']; ?></td>
                                 </tr>
                                 <?php }?>
@@ -798,6 +799,14 @@ $appliData1 = $admin->getApplicants();
 
   </div>
 </div>
+</div>
+<div class="modal-footer" id="footer<?php echo $a['id'];?>">
+
+    <input type="hidden" name="scholar_id" value="<?php echo $a['id'];?>">
+    <button type="submit" class="btn btn-sm btn-success" name="submit" id="editBtn<?php echo $a['id']; ?>" style="display:none">Save</button>
+</div>
+
+</form>
 </div>
 </div>
 </div>
@@ -880,17 +889,12 @@ $appliData2 = $admin->getApplicants();
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-        <script src="../assets/js/demo/chart-area-demo.js"></script>
-        <script src="../assets/js/demo/chart-pie-demo.js"></script>
-        <script src="../assets1/js/1.js"></script>
+
         <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-         <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>    
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>    
      
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         function toggleInput(checkbox, inputId) {
@@ -975,7 +979,122 @@ $appliData2 = $admin->getApplicants();
 </script>
     
   
+    <script>
+        function replaceDetailsWithInputs(containerId, cancelContainer, editBtn) {
+    // Get all elements inside the specified container
+    var detailsContainer = document.getElementById(containerId);
+    var editBtn = document.getElementById(editBtn);
+    var cancelContainer1 = document.getElementById(cancelContainer);
+    if (!detailsContainer || !cancelContainer1) {
+        console.error("Container with ID '" + containerId + "' or '" + cancelContainer + "' not found.");
+        return;
+    }
 
+    // Check if cancel button already exists in the cancel container
+    var cancelButton = cancelContainer1.querySelector('button[type="button"]');
+    if (cancelButton) {
+        // If cancel button already exists, exit the function
+        return;
+    }
+
+    var detailsElements = detailsContainer.querySelectorAll('dd');
+    var nameCounter = 0; // Initialize counter for unique names
+
+    // Store original content of each dd element
+    var originalContents = [];
+
+    // Iterate through each detail element
+    detailsElements.forEach(function(element) {
+        // Store original content
+        originalContents.push(element.innerHTML);
+
+        // Create input element
+        var input = document.createElement('input');
+        input.value = element.innerText;
+        input.type = "text";
+        input.name = "detail_" + nameCounter++; // Generate unique name for input
+        input.style.width = "100%"; // Set input width to 100% to fit inside the dd element
+        input.classList.add('form-control');
+
+        // Clear existing content of dd element
+        element.innerHTML = '';
+
+        // Append input element to the dd element
+        element.appendChild(input);
+    });
+
+    // Select the elements to edit: name, email, phone number, and Facebook link
+    var nameElement = detailsContainer.querySelector('.card-body h5');
+    var emailElement = detailsContainer.querySelector('.card-body .text-center:nth-of-type(2)');
+    var phoneElement = detailsContainer.querySelector('.card-body .text-center:nth-of-type(3)');
+    var fbLinkElement = detailsContainer.querySelector('.card-body .text-center:last-of-type a');
+
+    // Store original content of each element
+    var originalTextContent = {
+        name: nameElement.textContent.trim(),
+        email: emailElement.textContent.trim(),
+        mNum: phoneElement.textContent.trim(),
+        fbLink: fbLinkElement.textContent.trim()
+    };
+
+    // Function to replace text content with input field
+    function replaceTextWithInput(element, name, originalContent) {
+        // Create input element
+        var input = document.createElement('input');
+        input.value = originalContent;
+        input.type = 'text';
+        input.name = name;
+        input.classList.add('form-control'); // Add Bootstrap class for styling
+
+        // Clear the content of the element
+        element.innerHTML = '';
+
+        // Append input element to the element
+        element.appendChild(input);
+
+        // Focus on the input element
+        input.focus();
+    }
+
+    // Replace content with input fields for each element
+    replaceTextWithInput(nameElement, 'name', originalTextContent.name);
+    replaceTextWithInput(emailElement, 'email', originalTextContent.email);
+    replaceTextWithInput(phoneElement, 'mNum', originalTextContent.mNum);
+    replaceTextWithInput(fbLinkElement, 'fbLink', originalTextContent.fbLink);
+
+    // Create a cancel button
+    var cancelButton = document.createElement('button');
+    cancelButton.className = 'btn btn-sm btn-info'; // Set Bootstrap classes for styling
+    cancelButton.textContent = 'Cancel';
+    cancelButton.type = 'button';
+
+    cancelButton.addEventListener('click', function() {
+        // Restore original content for each element
+        nameElement.textContent = originalTextContent.name;
+        emailElement.textContent = originalTextContent.email;
+        phoneElement.textContent = originalTextContent.mNum;
+        fbLinkElement.textContent = originalTextContent.fbLink;
+
+        detailsElements.forEach(function(element, index) {
+            element.innerHTML = originalContents[index];
+        });
+        cancelButton.parentNode.removeChild(cancelButton);
+
+        editBtn.style.display = "none";
+    });
+
+    cancelContainer1.appendChild(cancelButton);
+
+    editBtn.style.display = "block";
+}
+
+
+
+
+
+
+
+    </script>
     
     
 

@@ -4,6 +4,12 @@
 
     $database = new Database();
     $admin = new Admin($database);
+
+    if(isset($_POST['id'])){
+        $info = $admin->scholarInfo($_POST['id']);
+    }else{
+        header('Location: ../index.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

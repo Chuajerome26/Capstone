@@ -46,8 +46,6 @@ Incorporation
 
     $declineMessage = remarksEmail($user, $remarks);
 
-    $addRemarks = $admin->addRemarks($id, $user_id, 4, $declineMessage1, $currentDate1);
-
     $sentEmail = $database->sendEmail($email,"Update on Your Application", $declineMessage);
 
     header('Location: ../newdesign/admin-application.php?status=successRemarks');

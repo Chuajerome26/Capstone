@@ -426,14 +426,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                             <input type="file" class="form-control" id="inputGroupFile04" name="file" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
                             </div>
-                        
-                        
-                    </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
+                </form>
             </div>
             </div>
         </div>
