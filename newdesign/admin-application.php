@@ -64,15 +64,15 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     </div>
 
                     <?php
-                    $getappform = $admin->getCurrentAppState();
-                    $state = $getappform['state'];
+                        $getappform = $admin->getCurrentAppState();
+                        $state = $getappform['state'];
                     ?>
 
                     <form id="formToggle" method="POST" action="../functions/toggleFormAccess.php">
                         <!-- Set the value of the input field to the opposite of the current state -->
                         <input type="hidden" name="state" value="<?php echo ($state == 1) ? '0' : '1'; ?>">
-                        <!-- Set the button label to "Open" if the state is 1 and "Close" if the state is 0 -->
-                        <button id="toggleButton" type="submit" name="submit" style="background-color: <?php echo ($state == 1) ? 'red' : 'green'; ?>; color: white;"><?php echo ($state == 1) ? 'Close' : 'Open'; ?></button>
+                        <!-- Set the button label to "ON" if the state is 1 and "OFF" if the state is 0 -->
+                        <button id="toggleButton" type="submit" name="submit" style="background-color: <?php echo ($state == 1) ? 'red' : 'green'; ?>; color: white;"><?php echo ($state == 1) ? 'OFF' : 'ON'; ?></button>
                     </form>
 
                     <div id="toggleStatus" class="mt-2">
@@ -1110,24 +1110,24 @@ $appliData2 = $admin->getApplicants();
     </script>
 
 <!--SCRIPT FOR BUTTON TOGGLE-->
-<script>
-function toggleButton() {
-    var form = document.getElementById('formToggle');
-    var button = document.getElementById('toggleButton');
-    var status = document.getElementById('toggleStatus');
+    <script>
+    function toggleButton() {
+        var form = document.getElementById('formToggle');
+        var button = document.getElementById('toggleButton');
+        var status = document.getElementById('toggleStatus');
 
-    // Toggle the value of the hidden input field
-    var currentState = form.querySelector('input[name="state"]').value;
-    var newState = (currentState == 1) ? 0 : 1;
-    form.querySelector('input[name="state"]').value = newState;
+        // Toggle the value of the hidden input field
+        var currentState = form.querySelector('input[name="state"]').value;
+        var newState = (currentState == 1) ? 0 : 1;
+        form.querySelector('input[name="state"]').value = newState;
 
-    // Change button style and text based on new state
-    button.style.backgroundColor = (newState == 1) ? 'green' : 'red';
-    button.textContent = (newState == 1) ? 'Close' : 'Open';
-    
-    // Update status text
-    status.textContent = "Application form is now " + ((newState == 1) ? 'open' : 'closed');
-}
-</script>
+        // Change button style and text based on new state
+        button.style.backgroundColor = (newState == 1) ? 'green' : 'red';
+        button.textContent = (newState == 1) ? 'ON' : 'OFF';
+        
+        // Update status text
+        status.textContent = "Application form is now " + ((newState == 1) ? 'open' : 'closed');
+    }
+    </script>
     </body>
   </html>
