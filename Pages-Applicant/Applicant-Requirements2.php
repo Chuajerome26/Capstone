@@ -444,7 +444,18 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 <i class="fa-solid fa-calendar-check me-2"></i>Status: 
                                                 </dt>
                                                 <dd class="col-sm-5">
-                                               test
+                                                            <?php
+                                                                if($log['application_status'] == 0){
+                                                                    $remarks = '<span class="badge bg-primary">Evaluate</span>';
+                                                                }
+                                                                else if($log['application_status'] == 1){
+                                                                    $remarks = '<span class="badge bg-warning">Initial Interview</span>';
+                                                                }else if($log['remapplication_statusarks'] == 2){
+                                                                    $remarks = '<span class="badge bg-info">Final Interview</span>';
+                                                                }
+
+                                                                echo $remarks;
+                                                            ?>
                                                 </dd>
                                             </dl>
                                             </div>

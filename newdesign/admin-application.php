@@ -52,44 +52,34 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
                  <!-- Begin Page Content -->
                  <div class="container-fluid">
-
-
-                 <div class="hstack gap-3">
-                    <div class="p-2">
-                        <p class="h5 mb-0 font-weight-bold text-gray-800">Suggested Applicants</p>
-                    </div>
-                    <div class="p-2 ms-auto d-flex flex-column align-items-center">
-                    <div class="mb-2">
-                        Button for closing or opening the application form
-                    </div>
-
-                    <?php
+                 <?php
                         $getappform = $admin->getCurrentAppState();
                         $state = $getappform['state'];
                     ?>
 
-                    <form id="formToggle" method="POST" action="../functions/toggleFormAccess.php">
-                        <!-- Set the value of the input field to the opposite of the current state -->
-                        <input type="hidden" name="state" value="<?php echo ($state == 1) ? '0' : '1'; ?>">
-                        <!-- Set the button label to "ON" if the state is 1 and "OFF" if the state is 0 -->
-                        <button id="toggleButton" type="submit" name="submit" style="background-color: <?php echo ($state == 1) ? 'red' : 'green'; ?>; color: white;"><?php echo ($state == 1) ? 'OFF' : 'ON'; ?></button>
-                    </form>
-
-                    <div id="toggleStatus" class="mt-2">
-                        Application form is currently <?php echo ($state == 1) ? 'open' : 'closed'; ?>
-                    </div>
-                        <form action="../functions/download-applicant.php" method="post" class="mt-2">
-                            <button type="submit" class="btn btn-sm btn-primary shadow-sm">
-                                <i class="fas fa-download fa-sm text-white-50"></i> 
-                                <div class="d-none d-sm-inline-block">Generate Report</div>
+                    <div class="hstack g-1 mb-3">
+                        <div class="p-2"><p class="h4 mb-0 font-weight-bold text-gray-800">Suggested Applicants</p></div>
+                        <div id="toggleStatus" class="p-2 ms-auto">
+                            <div class="alert alert-primary" role="alert">Application form is currently <?php echo ($state == 1) ? 'open' : 'closed'; ?></div>
+                        </div>
+                        <div class="p-2 ms-auto">
+                        <form id="formToggle" method="POST" action="../functions/toggleFormAccess.php">
+                            <input type="hidden" name="state" value="<?php echo ($state == 1) ? '0' : '1'; ?>">
+                            <button id="toggleButton" type="submit" class="btn shadow sm" name="submit" style="background-color: <?php echo ($state == 1) ? 'red' : 'green'; ?>; color: white;">
+                            <i class="fa-regular fa-paper-plane "></i><div class="d-none d-sm-inline-block" style="background-color: <?php echo ($state == 1) ? 'red' : 'green'; ?>; color: white;"><?php echo ($state == 1) ? 'OFF' : 'ON'; ?></div>
                             </button>
                         </form>
+                        
+                        </div>
+                        <div class="p-2">
+                            <form action="../functions/download-applicant.php" method="post">
+                                <button type="submit" class=" btn  btn-primary shadow-sm">
+                                    <i class="fas fa-download fa-sm text-white-50"></i> 
+                                    <div class="d-none d-sm-inline-block">Generate Report</div>
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-
-    
-        
-       
     
 
                 
@@ -185,18 +175,22 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                             //     $rate1 = 0;
                             // }
                             // $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], $rate1);
-                            if($s['status'] == 0){
-                                $status = "Pending";
-                            }else{
-                                $status = "Accepted";
+                            if($s['application_status'] == 0){
+                                $remarks = '<span class="badge bg-primary">Evaluate</span>';
                             }
+                            else if($s['application_status'] == 1){
+                                $remarks = '<span class="badge bg-warning">Initial Interview</span>';
+                            }else if($s['remapplication_statusarks'] == 2){
+                                $remarks = '<span class="badge bg-info">Final Interview</span>';
+                            }
+
                     ?>
                             <tr>
                                 <th scope="col"><?php echo $num; ?></th>
                                 <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                 <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
                                 <td><?php echo $s["date_apply"];?></td> 
-                                <td><?php echo $status;?></td>
+                                <td><?php echo $remarks;?></td>
                                 <td class="text-center">
                                     <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>"><i class="fa-solid fa-circle-info"></i></button>
