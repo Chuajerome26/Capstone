@@ -11,13 +11,6 @@ class Admin
         date_default_timezone_set('Asia/Manila');
         $this->date =  date('Y-m-d H:i:s');
     }
-    public function isFormOpen() {
-        $currentTime = date('H:i');
-        $startTime = '08:00';
-        $endTime = '17:00'; // 5:00 PM in 24-hour format
-        //Ah sarado, kelan magbubukas? Ah mga alas singko
-        return ($currentTime >= $startTime && $currentTime <= $endTime);
-    }
     public function deleteApplicantInterview($id){
         $stmt = $this->database->getConnection()->prepare("DELETE FROM admin_schedule_interview WHERE id=?");
 
@@ -284,6 +277,50 @@ class Admin
         return $stmt;
         exit();
     }
+    public function getApplicantsCountToday() {
+        $applicants = $this->getApplicants();
+        $count = 0;
+        $today = date('Y-m-d');
+    
+        foreach ($applicants as $applicant) {
+            if (substr($applicant['timestamp'], 0, 10) === $today) {
+                $count++;
+            }
+        }
+    
+        return $count;
+    }
+    public function isApplicationOpen() {
+        $dailyLimit = 15;
+        $currentTime = date('H:i:s');
+        $currentDate = date('Y-m-d');
+        $applicantsCountToday = $this->getApplicantsCountToday();
+    
+        if ($applicantsCountToday >= $dailyLimit) {
+            // Check if current time is past 8:00am
+            if ($currentTime >= '08:00:00') {
+                // Update the database to set the state to 0 (closed)
+                $this->updateApplicationFormState(0);
+                return false;
+            } else {
+                // Application form is still closed, but will reopen at 8:00am tomorrow
+                return 'The form reached its limit for today. Come back tomorrow at 8:00am';
+            }
+        } else {
+            // Check if current time is past 8:00am
+            if ($currentTime >= '08:00:00') {
+                // Update the database to set the state to 1 (open)
+                $this->updateApplicationFormState(1);
+            }
+            // Application form is open
+            return true;
+        }
+    }
+    private function updateApplicationFormState($state) {
+        $stmt = $this->database->getConnection()->prepare("UPDATE application_form_state SET state = ? WHERE id = 1");
+        $stmt->execute([$state]);
+    }    
+    
     public function getGrade($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT ROUND(AVG(grade), 2) as average FROM scholar_grade WHERE scholar_id = ?");
 

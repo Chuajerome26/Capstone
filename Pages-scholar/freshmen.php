@@ -113,6 +113,7 @@
         <?php
         $currentAppState = $admin->getCurrentAppState();
         if ($currentAppState['state'] == 1) {
+            if ($admin->isApplicationOpen()) {
         ?>
 
 
@@ -1428,6 +1429,13 @@
             echo '
             <div class="alert alert-primary" role="alert">
             Application is currently unavailable, wait for future announcements in our Facebook page.
+            </div>
+            ';
+        }
+        }else{
+            echo '
+            <div class="alert alert-primary" role="alert">
+            Application reached the limit of applicants for today, please come back tommorow at 8:00am onwards.
             </div>
             ';
         }
