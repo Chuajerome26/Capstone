@@ -62,7 +62,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     <!-- Main Navigation -->
     <header>
         <!-- Sidebar -->
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white shadow">
+        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white shadow mt-3">
             <div class="position-sticky">
                 <div class="list-group list-group-flush mx-2 mt-2">
                     <a href="../newdesign/dashboard.php" class="list-group-item list-group-item-action py-2 border-0 ripple  <?php echo ($current_nav == 'dashboard') ? 'active' : ''; ?>">

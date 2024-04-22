@@ -46,17 +46,17 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
             <?php include '../header/sidebar.php'; ?>
           </header>
 
-          <main  style="margin-top: 68px;">
-              <div class="container-fluid p-3">
+            <main  style="margin-top: 68px;">
+                <div class="container-fluid p-3">
 
-              <div class="card bg-transparent border-0">
+                <div class="card bg-transparent border-0">
 
-                       <!-- Begin Page Content -->
-                <div class="container-fluid">
+                        <!-- Begin Page Content -->
+                    <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-3">
-                    <p class="h5 mb-0 font-weight-bold text-gray-800"><i class="fa-solid fa-chart-line me-3"></i>Dashboard</p>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                        <p class="h5 mb-0 font-weight-bold text-gray-800"><i class="fa-solid fa-chart-line me-3"></i>Dashboard</p>
                   
                 </div>
 
