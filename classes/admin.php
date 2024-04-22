@@ -968,6 +968,19 @@ public function getInterviewCountForToday() {
     return $stmt;
 }
 
+public function getCurrentAppState() {
+    $query = "SELECT state FROM application_form_state WHERE id = 1";
+    $stmt = $this->database->getConnection()->query($query);
+
+    if ($stmt) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    } else {
+        // Handle the error, you might want to log or return an appropriate value
+        return false;
+    }
+}
+
 public function selectAndInsertSchedulesforFinal($scholarData, $start, $end, $excludeStart, $excludeEnd, $appointmentDuration, $maxSchedules, $date) {
     $startTime = strtotime($start);
     $endTime = strtotime($end);

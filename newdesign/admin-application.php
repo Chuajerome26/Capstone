@@ -37,7 +37,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/css/splide.min.css">
             <link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
-
     </head>
     <body>
       
@@ -55,18 +54,39 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                  <div class="container-fluid">
 
 
-<div class="hstack gap-3">
-<div class="p-2"><p class="h5 mb-0 font-weight-bold text-gray-800">Suggested Applicants</p></div>
-<div class="p-2 ms-auto">
-    <form action="../functions/download-applicant.php" method="post">
-        <button type="submit" class=" btn  btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i> 
-            <div class="d-none d-sm-inline-block">Generate Report</div>
-        </button>
-    </form>
-</div>
+                 <div class="hstack gap-3">
+                    <div class="p-2">
+                        <p class="h5 mb-0 font-weight-bold text-gray-800">Suggested Applicants</p>
+                    </div>
+                    <div class="p-2 ms-auto d-flex flex-column align-items-center">
+                    <div class="mb-2">
+                        Button for closing or opening the application form
+                    </div>
 
-</div>
+                    <?php
+                        $getappform = $admin->getCurrentAppState();
+                        $state = $getappform['state'];
+                    ?>
+
+                    <form id="formToggle" method="POST" action="../functions/toggleFormAccess.php">
+                        <!-- Set the value of the input field to the opposite of the current state -->
+                        <input type="hidden" name="state" value="<?php echo ($state == 1) ? '0' : '1'; ?>">
+                        <!-- Set the button label to "ON" if the state is 1 and "OFF" if the state is 0 -->
+                        <button id="toggleButton" type="submit" name="submit" style="background-color: <?php echo ($state == 1) ? 'green' : 'red'; ?>; color: white;"><?php echo ($state == 1) ? 'OFF' : 'ON'; ?></button>
+                    </form>
+
+                    <div id="toggleStatus" class="mt-2">
+                        Application form is currently <?php echo ($state == 1) ? 'open' : 'closed'; ?>
+                    </div>
+                        <form action="../functions/download-applicant.php" method="post" class="mt-2">
+                            <button type="submit" class="btn btn-sm btn-primary shadow-sm">
+                                <i class="fas fa-download fa-sm text-white-50"></i> 
+                                <div class="d-none d-sm-inline-block">Generate Report</div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
     
         
        
@@ -1087,18 +1107,27 @@ $appliData2 = $admin->getApplicants();
 
     editBtn.style.display = "block";
 }
-
-
-
-
-
-
-
     </script>
-    
-    
 
-    
-    
+<!--SCRIPT FOR BUTTON TOGGLE-->
+    <script>
+    function toggleButton() {
+        var form = document.getElementById('formToggle');
+        var button = document.getElementById('toggleButton');
+        var status = document.getElementById('toggleStatus');
+
+        // Toggle the value of the hidden input field
+        var currentState = form.querySelector('input[name="state"]').value;
+        var newState = (currentState == 1) ? 0 : 1;
+        form.querySelector('input[name="state"]').value = newState;
+
+        // Change button style and text based on new state
+        button.style.backgroundColor = (newState == 1) ? 'green' : 'red';
+        button.textContent = (newState == 1) ? 'ON' : 'OFF';
+        
+        // Update status text
+        status.textContent = "Application form is now " + ((newState == 1) ? 'open' : 'closed');
+    }
+    </script>
     </body>
   </html>

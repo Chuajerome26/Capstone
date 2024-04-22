@@ -110,7 +110,10 @@
 
                        
         <!--- Di bale mamaya nalang mga alas singko --->
-        <?php if(true) {?>
+        <?php
+        $currentAppState = $admin->getCurrentAppState();
+        if ($currentAppState['state'] == 1) {
+        ?>
 
 
             
@@ -1429,10 +1432,10 @@
         </form>
         <?php
         } else {
-            // Ah sarado, bibili sana ko mighty yung sigariryo
+            //Application closed if the button was turned off from the admin side
             echo '
             <div class="alert alert-primary" role="alert">
-            The application form is currently closed. It is open from 8:00 AM to 5:00 PM.
+            Application is currently unavailable, wait for future announcements in our Facebook page.
             </div>
             ';
         }
