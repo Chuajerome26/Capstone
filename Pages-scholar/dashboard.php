@@ -797,11 +797,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                     <input type="file" id="gradeslip" name="file1" required><br>
                     <label for="gradeslip">Upload Registration Form:</label>
                     <input type="file" id="regform" name="file2" required>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" form="scholarRenewalForm" name="submit" value="Submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
         </div>
     </div>
