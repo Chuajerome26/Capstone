@@ -230,7 +230,7 @@
                         <!-- Start Single Course -->
                         <div class="single-course wow fadeInUp" data-wow-delay=".2s">
                             <div class="course-image">
-                                <img src="assets1/images/courses/Demo.jpg" height="260px";
+                                <img src="assets1/images/courses/chito.png" height="260px";
                                         alt="#"></a>
                                 
                             </div>
@@ -648,9 +648,10 @@
                                 <i class="fa fa-lock"></i>
                                 <label class="fw-bold" for="password"></label>
                                 <input type="password" class="form-control form-control-sm" name="psw" id="password" placeholder="Password" required>
-                                <div class="input-group-append">
-                                    <i id="showPasswordIcon" class="fa fa-eye" onclick="togglePasswordVisibility()"></i>
-                                </div>
+                                <div class="mt-2 pl-0 form-check">
+                            <input type="checkbox" onclick="showPassword()">
+                            <label class="form-check-label" for="showPassword">Show Password</label>
+                            </div>
                             </div>
                         </div>
                     </div>

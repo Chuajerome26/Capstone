@@ -73,13 +73,13 @@
 		display: inline-block;
 		margin: 100px auto;
 	}
-	.input-group-append {
+	/*.input-group-append {
 		position: relative;
 		z-index: 2;
 		top: -63.5px; 
-		right: -380px; /* Default position */
+		right: -380px; 
 	
-		/* Adjustments for various screen sizes */
+	
 		@media (max-width: 768px) {
 			position: relative;
 			top: -65px; 
@@ -93,17 +93,23 @@
 		}
 		
 		@media (max-width: 460px) {
+			position:relative;
 			top: -65px; 
-			right: -330px; 
+			right: -300px; 
 		}
 		
 		@media (max-width: 360px) {
 			position: relative;
 			top: -65px; 
-			right: -240px; 
+			right: -200px; 
 		}
-	}
-	
+		@media (max-width: 280px) {
+			position: relative;
+			top: -65px; 
+			right: -150px; 
+		}
+	} 
+	*/
 	
 
 	.forgot-password {
