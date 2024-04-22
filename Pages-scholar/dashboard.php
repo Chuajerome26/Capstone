@@ -800,7 +800,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" form="scholarRenewalForm" name="submit" value="Submit" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>

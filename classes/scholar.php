@@ -385,27 +385,34 @@ class Scholar{
     
     }
 
-    public function updateRenewalData($yearLvl, $uploadedFileName1, $uploadedFileName2) {
-        try {
-            // Begin a transaction
-            $this->database->getConnection()->beginTransaction();
+    public function updateRenewalData($yearLvl, $uploadedFileName1, $uploadedFileName2, $scholarID) {
+        // try {
+        //     // Begin a transaction
+        //     $this->database->getConnection()->beginTransaction();
     
-            // Update renewal data in the database
-            $updateStmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET yearLvl = ?, file1 = ?, file2 = ?, renew_status = 1, date_renew = ?");
-            $updateStmt->bindParam(1, $yearLvl);
-            $updateStmt->bindParam(2, $uploadedFileName1);
-            $updateStmt->bindParam(3, $uploadedFileName2);
-            $updateStmt->bindParam(4, $this->date);
-            $updateStmt->execute();
+        //     // Update renewal data in the database
+        //     $updateStmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET yearLvl = ?, file1 = ?, file2 = ?, renew_status = 1, date_renew = ?");
+        //     $updateStmt->bindParam(1, $yearLvl);
+        //     $updateStmt->bindParam(2, $uploadedFileName1);
+        //     $updateStmt->bindParam(3, $uploadedFileName2);
+        //     $updateStmt->bindParam(4, $this->date);
+        //     $updateStmt->execute();
     
-            // Commit the transaction
-            $this->database->getConnection()->commit();
+        //     // Commit the transaction
+        //     $this->database->getConnection()->commit();
     
+        //     return true;
+        // } catch (PDOException $e) {
+        //     // Rollback the transaction if an error occurs
+        //     $this->database->getConnection()->rollBack();
+        //     echo "Error: " . $e->getMessage();
+        //     return false;
+        // }
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET yearLvl = ?, file1 = ?, file2 = ?, renew_status = 1, date_renew = ? WHERE scholarID = ?");
+
+        if(!$stmt->execute([$yearLvl, $uploadedFileName1, $uploadedFileName2, $this->date, $scholarID])){
             return true;
-        } catch (PDOException $e) {
-            // Rollback the transaction if an error occurs
-            $this->database->getConnection()->rollBack();
-            echo "Error: " . $e->getMessage();
+        }else{
             return false;
         }
     }

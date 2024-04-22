@@ -595,8 +595,8 @@ public function predictAcceptanceOfApplicant($gwa, $monthlyIncome) {
     $maxIncome = 100000  ; // Updated maximum monthly income
 
     // Weights for each factor
-    $gwaWeight = 0.70; // Adjusted weight for GWA
-    $incomeWeight = 0.30; // Weight for monthly income
+    $gwaWeight = 0.60; // Adjusted weight for GWA
+    $incomeWeight = 0.40; // Weight for monthly income
 
     // Normalize scores
     // Higher GWA (closer to 5) results in a lower score, and vice versa

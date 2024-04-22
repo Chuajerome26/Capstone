@@ -270,7 +270,7 @@
                
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Religion: <span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="religion" aria-label="Default select example" required>
+                    <select class="form-select form-select-sm" name="religion" id="religionN" aria-label="Default select example" onchange="checkOtherOption('religionN', 'otherReligionOption', 'otherReligion')" required>
                     <option value=""></option>
                     <option value="Roman Catholic">Roman Catholic</option>
                     <option value="Islam">Islam</option>
@@ -279,7 +279,11 @@
                     <option value="Buddhism">Buddhism</option>
                     <option value="Hinduism">Hinduism</option>
                     <option value="Indigenous">Indigenous</option>
+                    <option value="Others">Others(Specify)</option>
                     </select>
+                    <div id="otherReligionOption" style="display: none;">
+                        <input class="form-control form-control-sm mt-2" type="text" name="religionOtherOption" id="otherReligion" placeholder="Other Citizenship">
+                    </div>
                 </div>
 
 
@@ -770,8 +774,8 @@
                             <option value="Natural">Natural causes (illness, old age, accidents)</option>
                             <option value="Tragic">Tragic events (accidents, natural disasters, unexpected health complications)</option>
                             <option value="Health">Health issues (chronic illnesses, terminal conditions)</option>
-                            <option value="Conflict">Conflict or estrangement within the family</option>
-                            <option value="Separation">Separation or divorce of the parents</option>
+                            
+                            
                             <option value="Military">Military service and loss in the line of duty</option>
                             <option value="Criminal">Involvement in criminal activities or legal issues</option>
                             <option value="Unknown">Unknown circumstances or undisclosed reasons</option>

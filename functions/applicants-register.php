@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
         'bPlace' => trim($_POST["bPlace"]) ?? '',
         'cStatus' => trim($_POST["cStatus"]) ?? '',
         'citizenship' => trim(isset($_POST["citizenship"]) && $_POST["citizenship"] == "Others" ? $_POST['citizenshipOtherOption'] : ($_POST["citizenship"] ?? '')) ?? '',
-        'religion' => trim($_POST["religion"]) ?? '',
+        'religion' => trim(isset($_POST["religion"]) && $_POST['religion'] == "Others" ? $_POST['religionOtherOption'] : ($_POST['religion'] ?? '') ) ?? '',
         'mNumber' => trim($_POST["mNumber"]) ?? '',
         'email' => trim($_POST["email"]) ?? '',
         'height' => trim($_POST["height"]) ?? '',
