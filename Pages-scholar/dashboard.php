@@ -782,21 +782,30 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
             <div class="modal-body">
                 <!-- Form -->
                 <form action="../functions/scholarRenewal.php" method="post" enctype="multipart/form-data">
-                    <label for="gwa">Year Level:</label>
-                    <select name="yearLvl" id="yearLvlSelect" onchange="checkOtherOption()">
-                        <option value="1st">1st</option>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                        <option value="other">Other</option>
-                    </select><br>
-                    <div id="otherOption" style="display: none;">
-                        <input type="text" name="otherYearLevel" id="otherYearLevelInput" placeholder="Enter your year level">
-                    </div>
-                    <label for="gradeslip">Upload Grade Slip:</label><br>
-                    <input type="file" id="gradeslip" name="file1" required><br>
-                    <label for="gradeslip">Upload Registration Form:</label>
-                    <input type="file" id="regform" name="file2" required>
+                <div class="form-group">
+                <label for="gwa" class="form-label">Year Level:</label>
+                <select name="yearLvl" id="yearLvlSelect" class="form-select" style="width: 50%;" onchange="checkOtherOption()">
+                    <option value="1st">1st</option>
+                    <option value="2nd">2nd</option>
+                    <option value="3rd">3rd</option>
+                    <option value="4th">4th</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div id="otherOption" style="display: none;">
+                <div class="form-group">
+                    <input type="text" name="otherYearLevel" id="otherYearLevelInput" class="form-control" placeholder="Enter your year level">
+                </div>
+            </div>
+            <div class="form-group" style="width: 50%;">
+            <label for="gradeslip" class="form-label">Upload Grade Slip:</label>
+            <input type="file" class="form-control" id="gradeslip" name="file1" required>
+        </div>
+
+        <div class="form-group" style="width: 50%;">
+            <label for="regform" class="form-label">Upload Registration Form:</label>
+            <input type="file" class="form-control" id="regform" name="file2" required>
+        </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
