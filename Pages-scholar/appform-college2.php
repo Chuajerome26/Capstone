@@ -242,13 +242,17 @@
              
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Civil Status: <span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="cStatus" aria-label="Default select example" required>
+                    <select class="form-select form-select-sm" name="cStatus" id="cStatus" aria-label="Default select example" onchange="checkOtherOption('cStatus', 'otherCstatusOption', 'otherCstatusInput')" required>
                     <option value=""></option>
                     <option value="Single">Single</option>
                     <option value="Married">Married</option>
                     <option value="Widowed">Widowed</option>
                     <option value="Legally Separated">Legally Separated</option>
+                    <option value="Others">Others</option>
                     </select>
+                    <div id="otherStatus" style="display: none;">
+                        <input class="form-control form-control-sm mt-2" type="text" name="otherStatus" id="otherStatus1" placeholder="Other Condition">
+                    </div>
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -261,8 +265,8 @@
                         <option value="Chinese">Chinese</option>
                         <option value="Others">Others</option>
                     </select>
-                    <div id="otherCitizenshipOption" style="display: none;">
-                        <input class="form-control form-control-sm mt-2" type="text" name="citizenshipOtherOption" id="otherCitizenshipInput" placeholder="Other Citizenship">
+                    <div id="otherCstatusOption" style="display: none;">
+                        <input class="form-control form-control-sm mt-2" type="text" name="cStatusOtherOption" id="otherCstatusInput" placeholder="Other Citizenship">
                     </div>
                 </div>
 
