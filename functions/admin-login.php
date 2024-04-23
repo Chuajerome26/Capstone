@@ -50,7 +50,7 @@ require '../classes/database.php';
     $get_admin = $admin->checkAdmin();
 
     if($get_admin[0]['count'] == 0 && $userType == 3){
-        // header('Location: ../newdesign/setup-superAdmin.php?type='.$userType);
+        header('Location: ../newdesign/setup-superAdmin.php?type='.$userType);
         exit();
         
     }elseif($get_admin[0]['count'] == 0 && $userType == 1){

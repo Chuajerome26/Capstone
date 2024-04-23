@@ -1558,7 +1558,7 @@
 
     <script>
         // Function to enforce numeric-only input in specified element
-        function allowNumbersAndDotOnly(inputId) {
+        function allowNumbersOnly(inputId) {
             document.getElementById(inputId).addEventListener('input', function(e) {
                 // Replace any character that is not a digit or a dot with an empty string
                 this.value = this.value.replace(/[^\d.]/g, '');

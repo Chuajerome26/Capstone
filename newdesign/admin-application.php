@@ -713,7 +713,7 @@ $appliData1 = $admin->getApplicants();
                 <div class="col-md-6 mt-3">
                 <div class="card border shadow" style="min-height: 598px;">
                 <div class="card-header">
-                            <strong>Incoming Freshman</strong>
+                            <strong>Questions</strong>
                         </div>
 
                             <dl class="row mt-3 ms-3" >
