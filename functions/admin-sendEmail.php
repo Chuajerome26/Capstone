@@ -1,8 +1,8 @@
 <?php
 session_start();
-require '../Classes/admin.php';
-require '../Classes/database.php';
-require '../Classes/scholar.php';
+require '../classes/admin.php';
+require '../classes/database.php';
+require '../classes/scholar.php';
 
 $database = new Database();
 $admin = new Admin($database);
