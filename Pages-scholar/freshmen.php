@@ -242,7 +242,7 @@
              
                 <div class="col-md-4 mb-3">
                 <label  class="form-label">Civil Status: <span class="text-danger">*</span></label>
-                    <select class="form-select form-select-sm" name="cStatus" id="cStatus" aria-label="Default select example" onchange="checkOtherOption('cStatus', 'otherCstatusOption', 'otherCstatusInput')" required>
+                    <select class="form-select form-select-sm" name="cStatus" id="cStatus" aria-label="Default select example" onchange="checkOtherOption('cStatus', 'otherStatus', 'otherStatus1')" required>
                     <option value=""></option>
                     <option value="Single">Single</option>
                     <option value="Married">Married</option>
