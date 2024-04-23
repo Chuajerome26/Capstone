@@ -939,7 +939,7 @@ public function getAdminlogs()
 }
 public function getRenewal()
 {
-    $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE status = 1")->fetchAll();
+    $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE renew_status = 1")->fetchAll();
     return $stmt;
 }
 public function getApplicantsCountToday(){

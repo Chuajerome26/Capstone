@@ -418,7 +418,7 @@ class Scholar{
     }
     
     public function getRenewalInfo() {
-        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew")->fetchAll();
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE renew_status = 1")->fetchAll();
 
         return $stmt;
     }
