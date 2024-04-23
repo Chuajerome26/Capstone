@@ -293,10 +293,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     <td><a href="../Uploads_gslip/<?php echo $a["file2"]?>" target="_blank"><?php echo $a["file2"]?></a></td>
                     <?php if($a["file2_status"] == 0): ?>
                         <td align="center"><input type="checkbox" name="RegistrationForm" value="1" onchange="toggleInput(this, 'RegistrationForm_remarks')"></td>
+                        <td><input type="text" class="form-control" name="RegistrationForm_remarks" id="RegistrationForm_remarks" placeholder="Registration Form Remarks" required>
                     <?php else: ?>
                         <td align="center">Done</td>
+                        <td><input type="text" class="form-control" name="RegistrationForm_remarks" id="RegistrationForm_remarks" placeholder="Registration Form Remarks" disabled>
                     <?php endif; ?>
-                    <td><input type="text" class="form-control" name="RegistrationForm_remarks" id="RegistrationForm_remarks" placeholder="Registration Form Remarks" disabled>
                     </td>
                 </tr>
             </tbody>
