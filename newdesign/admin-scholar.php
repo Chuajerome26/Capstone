@@ -773,7 +773,29 @@ $appliData2 = $admin->getScholars();
         $(document).ready(function() {
             $('#scholars').DataTable();
         });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const successValue = urlParams.get('success');
+    console.log(successValue);
+
+    if(successValue === "emailSent"){
+        Swal.fire({
+            icon:'success',
+            title:'Email Sent!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }
     </script>
+
+    
 
     
     
