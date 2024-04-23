@@ -18,9 +18,6 @@ if(isset($_POST['submit'])){
 
     $info = $scholar->findByEmail1($email);
 
-    var_dump($info);
-
-
     if(isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK){
         $attachmentData = array(
             'name' => $_FILES['file']['name'],
