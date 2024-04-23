@@ -37,7 +37,7 @@ if(isset($_POST['submit'])){
         'age' => trim($age) ?? '',
         'dofBirth' => trim($_POST["dofBirth"]) ?? '',
         'bPlace' => trim($_POST["bPlace"]) ?? '',
-        'cStatus' => trim($_POST["cStatus"]) ?? '',
+        'cStatus' => trim(isset($_POST["cStatus"]) && $_POST['cStatus'] == "Others" ? $_POST['otherStatus']:$_POST['cStatus'] ?? '') ?? '',
         'citizenship' => trim(isset($_POST["citizenship"]) && $_POST["citizenship"] == "Others" ? $_POST['citizenshipOtherOption'] : ($_POST["citizenship"] ?? '')) ?? '',
         'religion' => trim(isset($_POST["religion"]) && $_POST['religion'] == "Others" ? $_POST['religionOtherOption'] : ($_POST['religion'] ?? '') ) ?? '',
         'mNumber' => trim($_POST["mNumber"]) ?? '',
