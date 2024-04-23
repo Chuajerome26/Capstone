@@ -258,7 +258,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
     <!-- Modal for Details -->
 <?php
-$appliData1 = $admin->getApplicants();
+$appliData1 = $admin->getScholars();
     foreach($appliData1 as $a){
         $pic1=$admin->getApplicants2x2($a['id']);
 ?>
