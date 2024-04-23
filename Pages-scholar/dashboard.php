@@ -216,8 +216,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                     <div class="card shadow-sm">
                                     <div class="card-body">
                                     <?php
-                                    $date = isset($_GET['date']) ? $_GET['date'] : '';
-                                    $announcements= $admin->getAnnouncements($date);
+                                    // $date = isset($_GET['date']) ? $_GET['date'] : '';
+                                    $announcements= $admin->getAnnouncements();
+                                    $count = count($announcements);
+                                    if($count != 0){
                                     foreach ($announcements as $b){
                                         $adminInfo = $admin->adminInfo($b['admin_id']);
                             
@@ -238,7 +240,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 
                                     <hr>
 
-                                    <?php } ?>
+                                    <?php }
+                                    }else{
+                                        ?>
+                                        <div class="alert alert-primary text-center" role="alert">No Announcements.</div>
+                                    <?php
+                                    } ?>
                                     </div>
                                     </div>
 
@@ -283,7 +290,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                             $nonCom = date('Y-m-d', strtotime($date['renewal_date_end'] . ' +3 days'));
                                                             if (($currentDate >= $date['renewal_date_start'] && $currentDate <= $date['renewal_date_end']) || $nonCom >= $currentDate) {
                                                                 // Before displaying the renewal form, check if the scholar has already submitted
-                                                                if (!$scholar->hasSubmittedRenewal($id)) {
+                                                                if (!$scholar->hasSubmittedRenewal($id))  {
                                                         ?>
                                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#scholarRenewalModal">Submit Renewal</button>
                                                         <?php
@@ -780,8 +787,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                 <h5 class="modal-title" id="scholarRenewalModalLabel">Scholar Renewal Form</h5>
             </div>
             <div class="modal-body">
+            <?php 
+                $info = $scholar->getRenewalInfoById($id);
+            ?>
                 <!-- Form -->
                 <form action="../functions/scholarRenewal.php" method="post" enctype="multipart/form-data">
+                <?php if($info[0]['renew_status'] == 0): ?>
+
                 <div class="form-group">
                 <label for="gwa" class="form-label">Year Level:</label>
                 <select name="yearLvl" id="yearLvlSelect" class="form-select" style="width: 50%;" onchange="checkOtherOption()">
@@ -797,15 +809,19 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                     <input type="text" name="otherYearLevel" id="otherYearLevelInput" class="form-control" placeholder="Enter your year level">
                 </div>
             </div>
+            <?php endif; ?>
+            <?php if($info[0]['file1_status'] == 0): ?>
             <div class="form-group" style="width: 50%;">
             <label for="gradeslip" class="form-label">Upload Grade Slip:</label>
             <input type="file" class="form-control" id="gradeslip" name="file1" required>
         </div>
-
+        <?php endif;?>
+        <?php if($info[0]['file2_status'] == 0): ?>
         <div class="form-group" style="width: 50%;">
             <label for="regform" class="form-label">Upload Registration Form:</label>
             <input type="file" class="form-control" id="regform" name="file2" required>
         </div>
+        <?php endif; ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

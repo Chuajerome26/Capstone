@@ -411,14 +411,14 @@ class Scholar{
         $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET yearLvl = ?, file1 = ?, file2 = ?, renew_status = 1, date_renew = ? WHERE scholarID = ?");
 
         if(!$stmt->execute([$yearLvl, $uploadedFileName1, $uploadedFileName2, $this->date, $scholarID])){
-            return true;
-        }else{
             return false;
+        }else{
+            return true;
         }
     }
     
     public function getRenewalInfo() {
-        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE renew_status = 1")->fetchAll();
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE renew_status = 1 OR renew_status = 2 OR renew_status = 3 OR renew_status = 4")->fetchAll();
 
         return $stmt;
     }
@@ -501,7 +501,7 @@ class Scholar{
         $stmt->execute();
 
         $renewStatus = $stmt->fetchColumn();
-        return ($renewStatus == 1 || $renewStatus == 3);
+        return ($renewStatus == 1 || $renewStatus == 2);
     }
 
     public function moveRenewalToDone($id) {

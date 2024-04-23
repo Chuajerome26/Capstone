@@ -90,7 +90,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             $remarks = '<span class="badge bg-primary">Evaluate</span>';
                                         }
                                         else if($log['remarks'] == 1){
-                                            $remarks = '<span class="badge bg-warning">Initial Interview</span>';
+                                            $remarks = '<span class="badge bg-secondary">Initial Interview</span>';
                                         }else if($log['remarks'] == 2){
                                             $remarks = '<span class="badge bg-info">Final Interview</span>';
                                         }else if($log['remarks'] == 3){
@@ -100,8 +100,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         }else if($log['remarks'] == 6){
                                             $remarks = '<span class="badge bg-danger">Revoke</span>';
                                         }else if($log['remarks'] == 7){
-                                            $remarks = '<span class="badge bg-info">Send Email</span>';
+                                            $remarks = '<span class="badge bg-secondary">Send Email</span>';
+                                        }else if($log['remarks'] == 8){
+                                            $remarks = '<span class="badge bg-success">Scholar Renew</span>';
+                                        }else if($log['remarks'] == 9){
+                                            $remarks = '<span class="badge bg-info">Scholar Edit Renew </span>';
                                         }
+                                        
                                         ?>
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>

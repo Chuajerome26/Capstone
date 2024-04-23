@@ -296,7 +296,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     <?php else: ?>
                         <td align="center">Done</td>
                     <?php endif; ?>
-                    <td><input type="text" class="form-control" name="RegistrationForm_remarks" id="RegistrationForm_remarks" placeholder="Registration Form Remarks" required>
+                    <td><input type="text" class="form-control" name="RegistrationForm_remarks" id="RegistrationForm_remarks" placeholder="Registration Form Remarks" disabled>
                     </td>
                 </tr>
             </tbody>
