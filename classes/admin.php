@@ -942,6 +942,19 @@ public function getRenewal()
     $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew")->fetchAll();
     return $stmt;
 }
+public function getApplicantsCountToday(){
+    $today = date('Y-m-d');
+    $stmt = $this->database->getConnection()->prepare('SELECT COUNT(*) FROM scholar_info WHERE date_apply = ?');
+
+    $stmt->execute([$today]);
+    $info = $stmt->fetchColumn();
+
+    if($info < 15){
+        return true;
+    }else{
+        return false;
+    }
+}
 public function getRenewalById($id)
 {
     $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE scholarID = '$id'")->fetchAll();

@@ -112,7 +112,10 @@
         <!--- Di bale mamaya nalang mga alas singko --->
         <?php
         $currentAppState = $admin->getCurrentAppState();
+        $count = $admin->getApplicantsCountToday();
+        
         if ($currentAppState['state'] == 1) {
+            if($count){
         ?>
 
 
@@ -1458,11 +1461,18 @@
 
         </form>
         <?php
+            } else {
+                echo '
+                <div class="alert alert-primary" role="alert">
+                Application is currently unavailable. Available slots were filled, wait for future announcements in our Facebook page.
+                </div>
+            ';
+            }
         } else {
             //Application closed if the button was turned off from the admin side
             echo '
             <div class="alert alert-primary" role="alert">
-            Application is currently unavailable, wait for future announcements in our Facebook page.
+            Application is currently on hold, wait for future announcements in our Facebook page.
             </div>
             ';
         }
