@@ -345,6 +345,7 @@
                     <label  class="form-label">Barangay:<span class="text-danger">*</span></label>
                     <select class="form-select form-select-sm" name="present_brgy" id="areaSelect" aria-label="Select Area" onchange="updateDistrict()">
                     <!-- District 1 -->
+                    <option></option>
                     <option value="Alicia" data-district="1">Alicia</option> 
                     <option value="Amihan" data-district="3">Amihan</option>
                     <option value="Apolonio Samson" data-district="6">Apolonio Samson</option>

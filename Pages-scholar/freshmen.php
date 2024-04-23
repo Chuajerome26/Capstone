@@ -486,8 +486,8 @@
                     </div>
 
                     <div class="col-md-4 mb-3">
-                            <label  class="form-label">House Number:<span class="text-danger">*</span></label>
-                            <input type="text" name="present_hnumber" class="form-control form-control-sm" placeholder="House Number" required>
+                            <label  class="form-label">House/Lot & Blk.No./Street:<span class="text-danger">*</span></label>
+                            <input type="text" name="present_hnumber" class="form-control form-control-sm" placeholder="House/Lot & Blk.No./Street" required>
                     </div>
 
 
@@ -522,8 +522,8 @@
                     </div>
 
                     <div class="col-md-4 mb-3">
-                            <label  class="form-label">House Number:</label>:<span class="text-danger">*</span></label>
-                            <input type="text" name="permanent_hnumber" class="form-control form-control-sm" placeholder="House Number">
+                            <label  class="form-label">House/Lot & Blk.No./Street:</label>:<span class="text-danger">*</span></label>
+                            <input type="text" name="permanent_hnumber" class="form-control form-control-sm" placeholder="House/Lot & Blk.No./Street">
                     </div>
 
                 <br>
@@ -1486,7 +1486,7 @@
             document.querySelector('input[name="permanent_city"]').value = "Quezon City";
             document.querySelector('input[name="permanent_province"]').value = "Metro Manila";
             document.querySelector('input[name="permanent_zip"]').value = document.querySelector('input[name="present_zip"][placeholder="Zip Code"]').value;
-            document.querySelector('input[name="permanent_hnumber"]').value = document.querySelector('input[name="present_hnumber"][placeholder="House Number"]').value;
+            document.querySelector('input[name="permanent_hnumber"]').value = document.querySelector('input[name="present_hnumber"][placeholder="House/Lot & Blk.No./Street"]').value;
         } else {
             // Clear permanent address fields if unchecked
             document.querySelector('input[name="permanent_barangay"]').value = '';
