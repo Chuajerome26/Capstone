@@ -115,7 +115,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 <div class="user-profile">
 <div class="user-avatar">
 <div class="user-avatar">
-    <img src="<?php echo $admin_info[0]['pic'];?>">
+        <img src="../Scholar_files/<?php echo $admin_info[0]['pic'];?>">
     <input type="file" id="avatarInput" accept="image/*" style="display: none;">
 </div>
 
@@ -212,6 +212,9 @@ document.getElementById('avatarInput').addEventListener('change', function(event
     </div>
   </div>
 </div>
+
+
+
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
