@@ -154,7 +154,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                     <ul class="dropdown-menu w-100">
                         <li class="text-center w-100 col-10"> <?php echo $admin_info[0]['l_name'].', '.$admin_info[0]['f_name']; ?><br> <small class="text-muted"></small></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li class="mb-1"><a class="dropdown-item" href="../newdesign/admin-my profile.php" ><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
+                        <li class="mb-1"><a class="dropdown-item" href="../newdesign/admin-myprofile.php" ><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <form action="../newdesign/admin-logout.php" method="POST">
                             <li><button class="dropdown-item" type="submit"><i class="fa-solid fa-right-from-bracket me-3"></i>Sign Out</button></li>
@@ -205,7 +205,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <ul class="dropdown-menu  dropdown-menu-end  w-100">
                             <li class="text-center w-100 col-10"> <?php echo $admin_info[0]['l_name'].', '.$admin_info[0]['f_name']; ?><br> <small class="text-muted"></small></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li class="mb-1"><a class="dropdown-item" href="../newdesign/admin-my profile.php" ><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
+                            <li class="mb-1"><a class="dropdown-item" href="../newdesign/admin-myprofile.php" ><i class="fa-solid fa-user me-3"></i>My Profile</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <form action="../newdesign/admin-logout.php" method="POST">
                                 <li><button class="dropdown-item" type="submit"><i class="fa-solid fa-right-from-bracket me-3"></i>Sign Out</button></li>

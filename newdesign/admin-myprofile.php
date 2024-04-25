@@ -10,26 +10,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $admin = new Admin($database);
 
     $id = $_SESSION['id'];
+
     $admin_info = $admin->adminInfo($id);
-
-    // Check if the Post button is clicked and announcement is not empty
-    if (isset($_POST['post']) && !empty($_POST['announcement'])) {
-$announcement = $_POST['announcement'];
-
-        // Insert the announcement
-        $result = $admin->postAnnouncement($id, $announcement);
-
-        // Check if the announcement was successfully posted
-        if ($result) {
-            header('Location: ../newdesign/admin-announcement.php');
-            exit();
-        } else {
-            echo "Failed to post announcement.";
-        }
-    }
-
-    $announcements = $admin->getAnnouncements();
-    $countA = count($announcements);
 
 } else {
     header("Location: ../index.php");
@@ -133,7 +115,7 @@ $announcement = $_POST['announcement'];
 <div class="user-profile">
 <div class="user-avatar">
 <div class="user-avatar">
-    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Maxwell Admin">
+    <img src="<?php echo $admin_info[0]['pic'];?>">
     <input type="file" id="avatarInput" accept="image/*" style="display: none;">
 </div>
 
@@ -163,7 +145,12 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 });
 </script>
 </div>
-<h5 class="user-name">Admin Name</h5>
+<div class="form-group">
+  <?php if (isset($admin_info[0]['l_name']) && isset($admin_info[0]['f_name'])):?>
+    <label for="rawr" class="form-control" style="border: none;">
+    <h5><?php echo $admin_info[0]['f_name'] . " " . $admin_info[0]['l_name'];?></h5>
+  <?php endif;?>
+</div>
 <button type="button" class="btn btn-primary" onclick="triggerFileInput()">Edit Profile Picture</button>
 
 </div>
@@ -172,76 +159,59 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 </div>
 </div>
 <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-<div class="card h-100">
-<div class="card-header" style="background-color: rgb(14, 220, 141)">
-<h5 class="card-title mb-0">Personal Details</h5>
-</div>
-<div class="card-body">
-<div class="row gutters">
-
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<h6 class="mb-2 text-success">Profile</h6>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="fullName">Full Name</label>
-        <input type="text" class="form-control" id="fullName" placeholder="Admin Name" disabled>
+  <div class="card h-100">
+    <div class="card-header" style="background-color: rgb(14, 220, 141)">
+      <h5 class="card-title mb-0">Personal Details</h5>
     </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="eMail">Email</label>
-        <input type="email" class="form-control" id="eMail" placeholder="sampleemail@gmail.com" disabled>
+    <div class="card-body">
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h6 class="mb-2 text-success">Profile</h6>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <?php if (isset($admin_info[0]['f_name'])):?>
+              <input type="text" class="form-control" name="firstName" value="<?php echo $admin_info[0]['f_name'];?>" disabled>
+            <?php else:?>
+              <input type="text" class="form-control" name="firstName" disabled>
+            <?php endif;?>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <?php if (isset($admin_info[0]['l_name'])):?>
+              <input type="text" class="form-control" name="lastName" value="<?php echo $admin_info[0]['l_name'];?>" disabled>
+            <?php else:?>
+              <input type="text" class="form-control" name="lastName" disabled>
+            <?php endif;?>
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <?php if (isset($admin_info[0]['email'])):?>
+              <input type="text" class="form-control" name="email" value="<?php echo $admin_info[0]['email'];?>" disabled>
+            <?php else:?>
+              <input type="text" class="form-control" name="email" disabled>
+            <?php endif;?>
+          </div>
+        </div>
+      </div>
+      <div class="row gutters">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary mr-2" onclick="goBack()">Back</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+              Edit Profile
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="text" class="form-control" id="phone" placeholder="0978-XXX-XXXX" disabled>
-    </div>
-</div>
-</div>
-<div class="row gutters">
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-</div>
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<h6 class="mb-2 text-success">Address</h6>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="Street">Street</label>
-        <input type="name" class="form-control" id="Street" placeholder="Sample Street" disabled>
-    </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="ciTy">City</label>
-        <input type="name" class="form-control" id="ciTy" placeholder="Quezon City" disabled>
-    </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="sTate">Barangay</label>
-        <input type="text" class="form-control" id="sTate" placeholder="San Bartolome" disabled>
-    </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="zIp">Zip Code</label>
-        <input type="text" class="form-control" id="zIp" placeholder="1115" disabled>
-    </div>
-</div>
-</div>
-
-<!-- Modal -->
-<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-        <button type="button" class="btn btn-secondary" onclick="goBack()">Back</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Edit Profile
-        </button>
-    </div>
-</div>
-
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -259,49 +229,23 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 </div>
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
-        <label for="fullName">Full Name</label>
-        <input type="text" class="form-control" id="fullName" placeholder="Admin Name">
+    <label for="firstName">First Name:</label>
+    <input type="text" class="form-control" name="firstName" placeholder="Enter first name">
     </div>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
-        <label for="eMail">Email</label>
-        <input type="email" class="form-control" id="eMail" placeholder="sampleemail@gmail.com">
+    <label for="lastName">Last Name:</label>
+    <input type="text" class="form-control" name="lastName" placeholder="Enter last name">
     </div>
 </div>
 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="form-group">
-        <label for="phone">Phone</label>
-        <input type="text" class="form-control" id="phone" placeholder="Enter Phone">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" name="email" placeholder="Enter email">
     </div>
 </div>
 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<h6 class="mb-2 text-success">Address</h6>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="street">Street</label>
-        <input type="text" class="form-control" id="street" placeholder="Enter Street" value="Enter Street">
-    </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="ciTy">City</label>
-        <input type="name" class="form-control" id="ciTy" placeholder="City" enabled>
-    </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="sTate">Barangay</label>
-        <input type="text" class="form-control" id="sTate" placeholder="Barangay" enabled>
-    </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-        <label for="zIp">Zip Code</label>
-        <input type="text" class="form-control" id="zIp" placeholder="Zip Code" enabled>
-    </div>
-</div>
 
       </div>
       <div class="modal-footer">
@@ -330,11 +274,14 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
-
 function goBack() {
+    if (window.history.length > 1) {
         window.history.back();
+    } else {
+        // Fallback: redirect to a default page or the homepage
+        window.location.href = 'dashboard.php';
     }
-	
+}
 </script>
 </body>
   </html>
