@@ -15,26 +15,32 @@ if (!isset($_SESSION['id']) || ($_SESSION['user_type'] != 3 && $_SESSION['user_t
 
 $id = $_SESSION['id'];
 $message = '';
-
+$admin_info = $admin->adminInfo($id);
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the POST data
-    $firstName = $_POST['firstName'] ?? '';
-    $lastName = $_POST['lastName'] ?? '';
-    $email = $_POST['email'] ?? '';
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $email = $_POST['email'];
 
-    // Update the admin information
-    if ($admin->updateAdminInfo($id, $firstName, $lastName, $email)) {
-        $message = "Information updated successfully!";
-    } else {
-        $message = "Failed to update information.";
-    }
-
-    // Reload admin info after update
-    $admin_info = $admin->adminInfo($id);
+  // Update the admin information
+  if ($admin->updateAdminInfo($id, $firstName, $lastName, $email)) {
+    // Using session to store the success message to avoid form resubmission issues
+    $_SESSION['message'] = "Information updated successfully!";
 } else {
-    // Load the initial admin info
-    $admin_info = $admin->adminInfo($id);
+    $_SESSION['message'] = "Failed to update information.";
+}
+
+
+    header("Location: ../newdesign/admin-myprofile.php", true, 303);
+    exit();
+
+}
+
+// Check if there's a message in session and clear it after displaying
+if (isset($_SESSION['message'])) {
+  $message = $_SESSION['message'];
+  unset($_SESSION['message']);
 }
 
 ?>
@@ -155,16 +161,32 @@ function triggerFileInput() {
     document.getElementById('avatarInput').click();
 }
 
-document.getElementById('avatarInput').addEventListener('change', function(event) {
-    var file = event.target.files[0];
-    var reader = new FileReader();
-    reader.onload = function() {
-        var img = document.querySelector('.user-avatar img');
-        img.src = reader.result;
+document.getElementById('avatarInput').addEventListener('change', function() {
+    var file = this.files[0];
+    if (file) {
+        var formData = new FormData();
+        formData.append('profilePicture', file);
+        formData.append('action', 'uploadProfilePicture');
+
+        fetch('update_profile_picture.php', { // Modify with the correct path to your PHP script
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                document.querySelector('.user-avatar img').src = '../Scholar_files/' + data.fileName;
+                alert('Profile picture updated successfully!');
+            } else {
+                alert('Failed to update profile picture.');
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }
-    reader.readAsDataURL(file);
 });
 </script>
+
+
 </div>
 <div class="form-group">
   <?php if (isset($admin_info[0]['l_name']) && isset($admin_info[0]['f_name'])):?>
@@ -238,7 +260,7 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="myModalLabel">Edit Profile</h5>
@@ -247,33 +269,35 @@ document.getElementById('avatarInput').addEventListener('change', function(event
         </button>
       </div>
       <div class="modal-body">
-      <div class="row gutters">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-<h6 class="mb-2 text-success">Profile</h6>
-</div>
-      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-      <?php if ($message): ?>
-    <p><?php echo $message; ?></p>
-<?php endif; ?>
-
-<form method="post">
-    <div class="form-group">
-        <label for="firstName">First Name:</label>
-        <input type="text" class="form-control" name="firstName" value="<?php echo $admin_info[0]['f_name']; ?>">
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name:</label>
-        <input type="text" class="form-control" name="lastName" value="<?php echo $admin_info[0]['l_name']; ?>">
-    </div>
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" name="email" value="<?php echo $admin_info[0]['email']; ?>">
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-    </div>
-</form>
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-10">
+              <h6 class="mb-2 text-success text-center">Profile</h6>
+              <?php if ($message):?>
+                <p class="text-center"><?php echo $message;?></p>
+              <?php endif;?>
+              <form method="post">
+                <div class="form-group">
+                  <label for="firstName" class="col-form-label col-12">First Name:</label>
+                  <input type="text" class="form-control" name="firstName" value="<?php echo $admin_info[0]['f_name'];?>">
+                </div>
+                <div class="form-group">
+                  <label for="lastName" class="col-form-label col-12">Last Name:</label>
+                  <input type="text" class="form-control" name="lastName" value="<?php echo $admin_info[0]['l_name'];?>">
+                </div>
+                <div class="form-group">
+                  <label for="email" class="col-form-label col-12">Email:</label>
+                  <input type="email" class="form-control" name="email" value="<?php echo $admin_info[0]['email'];?>">
+                </div>
+                <div class="modal-footer justify-content-center">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -298,12 +322,13 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 <script type="text/javascript">
 function goBack() {
     if (window.history.length > 1) {
-        window.history.back();
+        window.history.go(-2); // Goes back two steps in history
     } else {
         // Fallback: redirect to a default page or the homepage
         window.location.href = 'dashboard.php';
     }
 }
+
 </script>
 </body>
   </html>

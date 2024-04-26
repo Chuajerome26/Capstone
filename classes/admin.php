@@ -444,7 +444,7 @@ class Admin
       }
     } 
 
-    public function updateAdminInfo($id, $firstName, $lastName, $email) {
+     public function updateAdminInfo($id, $firstName, $lastName, $email) {
         $sql = "UPDATE admin_info SET f_name = :firstName, l_name = :lastName, email = :email WHERE id = :id";
         try {
             $stmt = $this->database->getConnection()->prepare($sql);
