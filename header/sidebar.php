@@ -198,7 +198,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 <a class="sidebar-brand d-flex align-items-center justify-content-center text-decoration-none text-black" href="dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">    
                 </div>
-                <div class="sidebar-brand-text mx-3 ms-5" style="font-size: 28px; font-weight:bold;"> <img src="../images/Management.png"  style="width: 270px; height: 50px; margin-left: -50px;"></div>
+                <div class="sidebar-brand-text mx-3 ms-5" style="font-size: 28px; font-weight:bold;"> <img src="../images/Management.png"  style="width: 270px; height: 55px; margin-left: -50px;"></div>
                 </a>
                 <hr class="sidebar-divider d-none d-md-block">
 
