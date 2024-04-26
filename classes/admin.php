@@ -444,6 +444,23 @@ class Admin
       }
     } 
 
+    public function updateAdminInfo($id, $firstName, $lastName, $email) {
+        $sql = "UPDATE admin_info SET f_name = :firstName, l_name = :lastName, email = :email WHERE id = :id";
+        try {
+            $stmt = $this->database->getConnection()->prepare($sql);
+            $stmt->bindParam(':firstName', $firstName);
+            $stmt->bindParam(':lastName', $lastName);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return $stmt->rowCount() > 0;
+        } catch (PDOException $e) {
+            // Log error or handle as needed
+            return false;
+        }
+    }
+    
+
     public function findScholarById($id){
 
         

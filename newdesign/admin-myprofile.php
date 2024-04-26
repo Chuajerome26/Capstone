@@ -1,21 +1,42 @@
 <?php 
-// start session
 session_start();
 
-if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_type'] === 2)) {
-    require '../classes/admin.php';
-    require '../classes/database.php';
+// Assuming Database and Admin are classes that manage database operations.
+require '../classes/admin.php';
+require '../classes/database.php';
 
-    $database = new Database();
-    $admin = new Admin($database);
+$database = new Database();
+$admin = new Admin($database);
 
-    $id = $_SESSION['id'];
-
-    $admin_info = $admin->adminInfo($id);
-
-} else {
+if (!isset($_SESSION['id']) || ($_SESSION['user_type'] != 3 && $_SESSION['user_type'] != 2)) {
     header("Location: ../index.php");
+    exit();
 }
+
+$id = $_SESSION['id'];
+$message = '';
+
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the POST data
+    $firstName = $_POST['firstName'] ?? '';
+    $lastName = $_POST['lastName'] ?? '';
+    $email = $_POST['email'] ?? '';
+
+    // Update the admin information
+    if ($admin->updateAdminInfo($id, $firstName, $lastName, $email)) {
+        $message = "Information updated successfully!";
+    } else {
+        $message = "Failed to update information.";
+    }
+
+    // Reload admin info after update
+    $admin_info = $admin->adminInfo($id);
+} else {
+    // Load the initial admin info
+    $admin_info = $admin->adminInfo($id);
+}
+
 ?>
 
 <!doctype html>
@@ -231,30 +252,28 @@ document.getElementById('avatarInput').addEventListener('change', function(event
 <h6 class="mb-2 text-success">Profile</h6>
 </div>
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-    <label for="firstName">First Name:</label>
-    <input type="text" class="form-control" name="firstName" placeholder="Enter first name">
-    </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-    <label for="lastName">Last Name:</label>
-    <input type="text" class="form-control" name="lastName" placeholder="Enter last name">
-    </div>
-</div>
-<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" class="form-control" name="email" placeholder="Enter email">
-    </div>
-</div>
-<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <?php if ($message): ?>
+    <p><?php echo $message; ?></p>
+<?php endif; ?>
 
-      </div>
-      <div class="modal-footer">
+<form method="post">
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" class="form-control" name="firstName" value="<?php echo $admin_info[0]['f_name']; ?>">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" class="form-control" name="lastName" value="<?php echo $admin_info[0]['l_name']; ?>">
+    </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" name="email" value="<?php echo $admin_info[0]['email']; ?>">
+    </div>
+    <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </div>
+</form>
     </div>
   </div>
 </div>
