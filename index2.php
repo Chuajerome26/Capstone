@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+
+<title>login with overlay image - Bootdey.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script>
+        function updateTime() {
+            var now = new Date();
+            var dateTime = now.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+            document.getElementById('datetime').innerHTML = dateTime;
+            setTimeout(updateTime, 1000); // Update every second
+        }
+        </script>
+         <body onload="updateTime()">
+            <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+            <div class="mx-auto text-center" style="width: fit-content;" id="datetime">
+                <?php echo date('l, F j, Y, h:i:s A');?>
+            </div>
+            </div>
+        </nav>
+<style>
+    	.gradient-custom-2 {
+/* fallback for old browsers */
+background: #fccb90;
+
+/* Chrome 10-25, Safari 5.1-6 */
+background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+@media (min-width: 768px) {
+.gradient-form {
+height: 100vh !important;
+}
+}
+@media (min-width: 769px) {
+.gradient-custom-2 {
+border-top-right-radius: .3rem;
+border-bottom-right-radius: .3rem;
+}
+}
+
+.btn-custom-color {
+    
+    border: none;
+    background-color: #0EDC8D;
+    color: white; /* Optionally change the text color */
+}
+
+.btn-custom-color:hover {
+
+    background-color:grey;
+    color:black;
+}
+
+.fade-in {
+    image-resolution: 500dpi;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Apply the animation to the element */
+  .image-container {
+    background-image: url('images/1.jpg');
+    background-size: 459px;
+    background-repeat: no-repeat;
+    animation: fadeIn 1s;
+  }
+
+  /* Add a hover effect */
+  .image-container:hover {
+    animation: none; /* Disable the fadeIn animation */
+    opacity: 0.8; /* Change the opacity on hover */
+    transition: opacity 0.5s; /* Add a smooth transition effect */
+  }
+
+    </style>
+</head>
+<body style="background-color: #41B06E;">
+
+  <div class="container py-0 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img src="images/Management1.png"
+                    style="width: 250px;">
+                  
+                </div>
+</br>
+
+<div style="text-align: center;">
+                <b><p style="font-size: 20px;">Login</p></b>
+</div>
+
+                <form>
+                  
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                  <label class="form-label" for="form2Example11">Username</label>
+                    <input type="email" id="form2Example11" class="form-control"
+                      placeholder="name@example.com" />
+                    
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+                  <label class="form-label" for="form2Example22">Password</label>
+                    <input type="password" id="form2Example22" class="form-control" />
+                    <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" id="showPasswordCheck" onchange="togglePasswordVisibility()">
+        <label class="form-check-label" for="showPasswordCheck">Show Password</label>
+    </div>
+                    
+                  </div>
+
+                  <div class="text-center pt-1 mb-5 pb-1">
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block fa-lg  mb-2 btn-custom-color" type="button">Login</button>
+
+                    <a class="text-muted" href="#!">Forgot password?</a>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">Don't have an account?</p>
+                    <a href="#" > &nbsp; Create new</a>
+                    
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+
+            <div class="col-lg-6 d-flex align-items-center fade-in image-container" style="background-image: url('images/1.jpg'); background-size: 459px; background-repeat: no-repeat; animation: zoomIn 1s;">
+
+           
+           
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+              
+            
+            </p>
+        </div>
+      
+
+        </div>
+        
+
+        </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<?php include 'footer1.php'; ?>
+
+
+
+</html>
+
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById("form2Example22");
+        var checkbox = document.getElementById("showPasswordCheck");
+        
+        if (checkbox.checked) {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+    }
+</script>

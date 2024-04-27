@@ -561,7 +561,7 @@
     <!-- Card Element -->
     <div class="card shadow-sm">
         <div class="card-header bg-white py-3">
-            <p class="fw-bold h4 mb-0 text-center">REQUIREMENT LIST:</p>
+            <p class="fw-bold h4 mb-0 text-center">REQUIREMENT LIST:</p>    
         </div>
         <ul class="list-group list-group-flush text-center">
             <li class="list-group-item">Letter of Intent &nbsp;&nbsp;|&nbsp;&#160; Family Profile</li>
