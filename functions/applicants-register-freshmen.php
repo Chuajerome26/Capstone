@@ -82,39 +82,48 @@ if(isset($_POST['submit'])){
         'fileError' => $_FILES['idPicture']['error'],
         'fileType' => $_FILES['idPicture']['type'],
     );
+
+    
     $fileData2 = array(
-        'fileName' => $_FILES['cog']['name'],
-        'fileTmpName' => $_FILES['cog']['tmp_name'],
-        'fileSize' => $_FILES['cog']['size'],
-        'fileError' => $_FILES['cog']['error'],
-        'fileType' => $_FILES['cog']['type'],
+        'fileName' => $_FILES['cog1']['name'],
+        'fileTmpName' => $_FILES['cog1']['tmp_name'],
+        'fileSize' => $_FILES['cog1']['size'],
+        'fileError' => ($_POST['studentType'] == 'srhigh') ? $_FILES['cog1']['error'] : 0,
+        'fileType' => $_FILES['cog1']['type'],
     );
     $fileData3 = array(
+        'fileName' => $_FILES['cog2']['name'],
+        'fileTmpName' => $_FILES['cog2']['tmp_name'],
+        'fileSize' => $_FILES['cog2']['size'],
+        'fileError' => ($_POST['studentType'] == 'college') ? $_FILES['cog2']['error'] : 0,
+        'fileType' => $_FILES['cog2']['type'],
+    );
+    $fileData4 = array(
         'fileName' => $_FILES['birth']['name'],
         'fileTmpName' => $_FILES['birth']['tmp_name'],
         'fileSize' => $_FILES['birth']['size'],
         'fileError' => $_FILES['birth']['error'],
         'fileType' => $_FILES['birth']['type'],
     );
-    $fileData4 = array(
+    $fileData5 = array(
         'fileName' => $_FILES['indigency']['name'],
         'fileTmpName' => $_FILES['indigency']['tmp_name'],
         'fileSize' => $_FILES['indigency']['size'],
         'fileError' => $_FILES['indigency']['error'],
         'fileType' => $_FILES['indigency']['type'],
     );
-    $fileData5 = array(
+    $fileData6 = array(
         'fileName' => $_FILES['form137']['name'],
         'fileTmpName' => $_FILES['form137']['tmp_name'],
         'fileSize' => $_FILES['form137']['size'],
         'fileError' => $_FILES['form137']['error'],
         'fileType' => $_FILES['form137']['type'],
     );
-    $fileData6 = array(
+    $fileData7 = array(
         'fileName' => $_FILES['shAchievementsFile']['name'],
         'fileTmpName' => $_FILES['shAchievementsFile']['tmp_name'],
         'fileSize' => $_FILES['shAchievementsFile']['size'],
-        'fileError' => $_FILES['shAchievementsFile']['error'],
+        'fileError' => ($_POST['studentType'] == 'srhigh') ? $_FILES['shAchievementsFile']['error'] : 0,
         'fileType' => $_FILES['shAchievementsFile']['type'],
     );
     
@@ -138,6 +147,9 @@ if(isset($_POST['submit'])){
 
     $fileExt6 = explode('.', $fileData6['fileName']);
     $fileActualExt6 = strtolower(end($fileExt6));
+
+    $fileExt7 = explode('.', $fileData7['fileName']);
+    $fileActualExt7 = strtolower(end($fileExt7));
     
 
     //resume and picture data
@@ -150,18 +162,21 @@ if(isset($_POST['submit'])){
         'fileActualExt4' => $fileActualExt4,
         'fileActualExt5' => $fileActualExt5,
         'fileActualExt6' => $fileActualExt6,
+        'fileActualExt7' => $fileActualExt7,
         'fileName1' => $fileData1['fileName'],
         'fileName2' => $fileData2['fileName'],
         'fileName3' => $fileData3['fileName'],
         'fileName4' => $fileData4['fileName'],
         'fileName5' => $fileData5['fileName'],
         'fileName6' => $fileData6['fileName'],
+        'fileName7' => $fileData7['fileName'],
         'fileTmpName1' => $fileData1['fileTmpName'],
         'fileTmpName2' => $fileData2['fileTmpName'],
         'fileTmpName3' => $fileData3['fileTmpName'],
         'fileTmpName4' => $fileData4['fileTmpName'],
         'fileTmpName5' => $fileData5['fileTmpName'],
         'fileTmpName6' => $fileData6['fileTmpName'],
+        'fileTmpName7' => $fileData7['fileTmpName'],
     );
 
     //check if any input is  empty
@@ -185,10 +200,11 @@ if(isset($_POST['submit'])){
 
     //if theres no error from the resume file
     if ( $fileData1['fileError'] === 0 && $fileData2['fileError'] === 0 && $fileData3['fileError'] === 0
-    && $fileData4['fileError'] === 0 && $fileData5['fileError'] === 0 && $fileData6['fileError'] === 0) {
+    && $fileData4['fileError'] === 0 && $fileData5['fileError'] === 0 && $fileData6['fileError'] === 0 && $fileData7['fileError'] === 0) {
 
-        $scholar->checkData($filesAndPicture, $scholarData);
+        $scholar->checkData($filesAndPicture, $scholarData, $_POST['studentType']);
     } else {
+        var_dump($fileData1, $fileData2, $fileData3, $fileData4, $fileData5, $fileData6, $fileData7, $filesAndPicture, $scholarData);
         echo "There was an error while uploading the file";
         exit();
     }
