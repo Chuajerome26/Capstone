@@ -181,12 +181,18 @@ class Scholar{
     }
 
     public function registerEmployee($scholarData, $scholarFiles){
+
+
+
+        if ($studentType == 'srhigh'){
+            
+        }
         // prepare insert statement for employee table
         $sql = "INSERT INTO scholar_info 
         (f_name, m_name, l_name, suffix, gender, c_status, date_of_birth, b_place, height, weight, religion, mobile_number, email, present_address, 
         permanent_address, med_condition, fb_link, father_name, father_attain, father_occupation, mother_name, mother_attain, mother_occupation, guardian, emergency_contact, guardian_rs, numSiblings, 
         sh_school, date_grad, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_course, cschool_years, studType, date_apply) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
