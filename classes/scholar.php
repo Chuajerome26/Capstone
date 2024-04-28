@@ -80,7 +80,8 @@ class Scholar{
             in_array($filesAndPicture['fileActualExt2'], $filesAndPicture['allowed1']) &&
             in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed1']) && 
             in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed1'])) {
+            in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt6'], $filesAndPicture['allowed1'])) {
 
             //seperate filename
             $newFileName1 = explode('.',$filesAndPicture['fileName1']);
@@ -88,6 +89,7 @@ class Scholar{
             $newFileName3 = explode('.',$filesAndPicture['fileName3']);
             $newFileName4 = explode('.',$filesAndPicture['fileName4']);
             $newFileName5 = explode('.',$filesAndPicture['fileName5']);
+            $newFileName6 = explode('.',$filesAndPicture['fileName6']);
             
             //Copy of Grades
             $fileNameNew1 = uniqid('', true) . "." . $filesAndPicture['fileActualExt1'];
@@ -109,14 +111,18 @@ class Scholar{
             $fileNameNew5 = uniqid('', true) . "." . $filesAndPicture['fileActualExt5'];
             $fileDestination5 = '../Scholar_files/' . $fileNameNew5;
 
-            $arrayFiles = array($fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4, $fileNameNew5);
+            $fileNameNew6 = uniqid('', true) . "." . $filesAndPicture['fileActualExt6'];
+            $fileDestination6 = '../Scholar_files/' . $fileNameNew6;
+
+            $arrayFiles = array($fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6);
             // if (move_uploaded_file($fileTmpName, $fileDestination) ) {
             if (
                 move_uploaded_file($filesAndPicture['fileTmpName1'],$fileDestination1) &&
                 move_uploaded_file($filesAndPicture['fileTmpName2'],$fileDestination2) &&
                 move_uploaded_file($filesAndPicture['fileTmpName3'],$fileDestination3) &&
                 move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4) &&
-                move_uploaded_file($filesAndPicture['fileTmpName5'],$fileDestination5))  {
+                move_uploaded_file($filesAndPicture['fileTmpName5'],$fileDestination5) &&
+                move_uploaded_file($filesAndPicture['fileTmpName6'],$fileDestination6))  {
 
                 $this->registerEmployee($scholarData, $arrayFiles);
         
@@ -148,12 +154,10 @@ class Scholar{
 
         // prepare insert statement for employee table
         $sql = "INSERT INTO scholar_info 
-        (f_name, m_name, l_name, suffix, gender, age, c_status, citizenship, date_of_birth, b_place, height, weight, religion,
-        mobile_number, email, present_address, permanent_address, med_condition, fb_link, isDecF, reasonF, father_name, father_age, father_occupation, father_income, father_contact,
-        isDecM, reasonM, mother_name, mother_age, mother_occupation, mother_income, mother_contact, guardian, emergency_contact, guardian_rs, e_school, e_ave
-        , e_achievements, jh_school, jh_ave, jh_achievements, sh_school, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_achievements, c_course, stopAttend, reason_attend, yrlvl, semester, other_scho,
-        other_scho_type, other_scho_coverage, other_scho_status, q1, q2, apply_scho, apply_scho_explain, studType, date_apply) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        (f_name, m_name, l_name, suffix, gender, c_status, date_of_birth, b_place, height, weight, religion, mobile_number, email, present_address, 
+        permanent_address, med_condition, fb_link, father_name, father_attain, father_occupation, mother_name, mother_attain, mother_occupation, guardian, emergency_contact, guardian_rs, numSiblings, 
+        sh_school, date_grad, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_course, cschool_years, studType, date_apply) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
@@ -164,14 +168,12 @@ class Scholar{
                             $scholarData['lName'],
                             $scholarData['suffix'],
                             $scholarData['gender'],
-                            $scholarData['age'],
                             $scholarData['cStatus'],
-                            $scholarData['citizenship'],
                             $scholarData['dofBirth'],
                             $scholarData['bPlace'],
-
                             $scholarData['height'],
                             $scholarData['weight'],
+
                             $scholarData['religion'],
                             $scholarData['mNumber'],
                             $scholarData['email'],
@@ -179,54 +181,27 @@ class Scholar{
                             $scholarData['permanent_address'],
                             $scholarData['mCondition'],
                             $scholarData['fb_link'],
-                            $scholarData['isDecF'],
-
-                            $scholarData['fDeceased'],
                             $scholarData['fatherName'],
-                            $scholarData['fAge'],
+                            $scholarData['fAttain'],
                             $scholarData['fOccupation'],
-                            $scholarData['fatherIncome'],
-                            $scholarData['fatherContact'],
-                            $scholarData['isDecM'],
-                            $scholarData['mDeceased'],
+                            
                             $scholarData['motherName'],
-                            $scholarData['motherAge'],
-
+                            $scholarData['mAttain'],
                             $scholarData['motherOccupation'],
-                            $scholarData['motherIncome'],
-                            $scholarData['motherContact'], 
                             $scholarData['guardian'],
                             $scholarData['emergencyContact'],
                             $scholarData['relationship'],
-                            $scholarData['eSchool'],
-                            $scholarData['eAve'],
-                            $scholarData['eAchievements'],
-                            $scholarData['jhSchool'],
-
-                            $scholarData['jhAve'],
-                            $scholarData['jhAchievements'],
+                            $scholarData['numSiblings'],
                             $scholarData['shSchool'],
+                            $scholarData['dateGrad'],
                             $scholarData['shAve'],
+
                             $scholarData['shAchievements'],
                             $scholarData['shCourse'],
                             $scholarData['cSchool'],
                             $scholarData['cAve'],
-                            $scholarData['cAchievements'],
                             $scholarData['cCourse'],
-
-                            $scholarData['stopAttend'],
-                            $scholarData['reason_attend'],
-                            $scholarData['yrlvl'],
-                            $scholarData['semester'],
-                            $scholarData['otherScholarship'],
-                            $scholarData['otherScholarType'],
-                            $scholarData['otherScholarCoverage'],
-                            $scholarData['otherScholarStatus'],
-                            $scholarData['q1'],
-                            $scholarData['q2'],
-
-                            $scholarData['applyScho'],
-                            $scholarData['applySchoExplain'],
+                            $scholarData['schoYear'],
                             $scholarData['studType'],
                             $this->date])) {
             header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
@@ -246,7 +221,7 @@ class Scholar{
         //fetch the employeeID
         $scholarId = $stmtScholarID->fetchColumn();
 
-        $arrayNames = array('IdPhoto', 'Grades', 'BirthCertificate', 'Indigency', 'Form137/138');
+        $arrayNames = array('IdPhoto', 'Grades', 'BirthCertificate', 'Indigency', 'Form137/138', 'HighScoolAchievement');
 
 
                 for ($i = 0; $i < count($scholarFiles); $i++) {
@@ -258,24 +233,31 @@ class Scholar{
 
                     $stmt123->execute([$scholarId, $name, $fileName]);
                 }
+                
+                for ($i = 0; $i < count($scholarData['earnerName']); $i++) {
+                    // Prepare an SQL statement
+                    $stmt4 = $this->database->getConnection()->prepare("INSERT INTO scholar_earner (scholar_id, earner_name, earner_income, earner_occupation, earner_company) VALUES (?, ?, ?, ?, ?)");
 
+                    // Bind parameters and execute the statement
+                    $stmt4->execute([$scholarId ,$scholarData['earnerName'][$i], $scholarData['earnerIncome'][$i], $scholarData['earnerOccupation'][$i], $scholarData['comName'][$i]]);
+                }
                 // Loop through each set of additional scholar data and insert into the database
-                for ($i = 0; $i < count($scholarData['sName']); $i++) {
-                    // Prepare an SQL statement
-                    $stmt3 = $this->database->getConnection()->prepare("INSERT INTO scholar_siblings (scholar_id, name, age, occupation, civil_status, religion, educational_attained) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                // for ($i = 0; $i < count($scholarData['sName']); $i++) {
+                //     // Prepare an SQL statement
+                //     $stmt3 = $this->database->getConnection()->prepare("INSERT INTO scholar_siblings (scholar_id, name, age, occupation, civil_status, religion, educational_attained) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-                    // Bind parameters and execute the statement
-                    $stmt3->execute([$scholarId ,$scholarData['sName'][$i], $scholarData['sAge'][$i], $scholarData['sOccupation'][$i], $scholarData['sCstatus'][$i], $scholarData['sR'][$i], $scholarData['sEattained'][$i]]);
+                //     // Bind parameters and execute the statement
+                //     $stmt3->execute([$scholarId ,$scholarData['sName'][$i], $scholarData['sAge'][$i], $scholarData['sOccupation'][$i], $scholarData['sCstatus'][$i], $scholarData['sR'][$i], $scholarData['sEattained'][$i]]);
 
-                }
+                // }
 
-                for ($i = 0; $i < count($scholarData['sub']); $i++) {
-                    // Prepare an SQL statement
-                    $stmt4 = $this->database->getConnection()->prepare("INSERT INTO scholar_grade (scholar_id, subject, unit, grade) VALUES (?, ?, ?, ?)");
+                // for ($i = 0; $i < count($scholarData['sub']); $i++) {
+                //     // Prepare an SQL statement
+                //     $stmt4 = $this->database->getConnection()->prepare("INSERT INTO scholar_grade (scholar_id, subject, unit, grade) VALUES (?, ?, ?, ?)");
 
-                    // Bind parameters and execute the statement
-                    $stmt4->execute([$scholarId ,$scholarData['sub'][$i], $scholarData['totalUnits'][$i], $scholarData['gAverage'][$i]]);
-                }
+                //     // Bind parameters and execute the statement
+                //     $stmt4->execute([$scholarId ,$scholarData['sub'][$i], $scholarData['totalUnits'][$i], $scholarData['gAverage'][$i]]);
+                // }
 
                 // for ($i = 0; $i < count($scholarData['collegeChoice']); $i++) {
                 //     // Prepare an SQL statement
@@ -331,10 +313,10 @@ class Scholar{
 
         
         //generate scholar account
-        $scholarUser = $this->generateEmployeeIDAndPassword($scholarData['lName']);
-        $fullName = str_replace(' ', '', $scholarData['fName']);
-        $scholarPass = $this->generateEmployeeIDAndPassword($fullName);
-        $this->saveScholarIDAndPassword($scholarUser[0], $scholarPass[0], $scholarId,0, $scholarData['email']);
+        // $scholarUser = $this->generateEmployeeIDAndPassword($scholarData['lName']);
+        // $fullName = str_replace(' ', '', $scholarData['fName']);
+        // $scholarPass = $this->generateEmployeeIDAndPassword($fullName);
+        // $this->saveScholarIDAndPassword($scholarUser[0], $scholarPass[0], $scholarId,0, $scholarData['email']);
 
 
         // send email

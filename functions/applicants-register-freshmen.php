@@ -9,18 +9,10 @@ if(isset($_POST['submit'])){
     $scholar = new Scholar($database);
 
     //scholar data
-
-    $entranceExam = array(isset($_POST['entranceExam_0']) ? $_POST['entranceExam_0']:"", 
-                        isset($_POST['entranceExam_1']) ? $_POST['entranceExam_1']:"", 
-                        isset($_POST['entranceExam_2']) ? $_POST['entranceExam_2']:""
-                    );
-    $ifYes = array(isset($_POST['yesStats_0']) ? $_POST['yesStats_0']:"", isset($_POST['yesStats_1']) ? $_POST['yesStats_1']:"", isset($_POST['yesStats_2']) ? $_POST['yesStats_2']:"");
-    $ifNo = array(isset($_POST['noDate_0']) ? $_POST['noDate_0']:"", isset($_POST['noDate_1']) ? $_POST['noDate_1']:"", isset($_POST['noDate_2']) ? $_POST['noDate_2']:"");
-
     $dob = $_POST["dofBirth"];
     $dateOfBirth = new DateTime($dob);
     $currentDate = new DateTime();
-    $age = $currentDate->diff($dateOfBirth)->y;
+    // $age = $currentDate->diff($dateOfBirth)->y;
 
     $father_name = $_POST['fatherFName'].' '.$_POST['fatherMName'].' '.$_POST['fatherLName'];
     $mother_name = $_POST['motherFName'].' '.$_POST['motherMName'].' '.$_POST['motherLName'];
@@ -34,93 +26,53 @@ if(isset($_POST['submit'])){
         'lName' => trim($_POST["lName"]) ?? '',
         'suffix' => trim($_POST["suffix"]) ?? '',
         'gender' => trim($_POST["gender"]) ?? '',
-        'age' => trim($age) ?? '',
+        // 'age' => trim($age) ?? '',
         'dofBirth' => trim($_POST["dofBirth"]) ?? '',
         'bPlace' => trim($_POST["bPlace"]) ?? '',
         'cStatus' => trim(isset($_POST["cStatus"]) && $_POST['cStatus'] == "Others" ? $_POST['otherStatus']:$_POST['cStatus'] ?? '') ?? '',
-        'citizenship' => trim(isset($_POST["citizenship"]) && $_POST["citizenship"] == "Others" ? $_POST['citizenshipOtherOption'] : ($_POST["citizenship"] ?? '')) ?? '',
-        'religion' => trim(isset($_POST["religion"]) && $_POST['religion'] == "Others" ? $_POST['religionOtherOption'] : ($_POST['religion'] ?? '') ) ?? '',
-        'mNumber' => trim($_POST["mNumber"]) ?? '',
-        'email' => trim($_POST["email"]) ?? '',
+        'religion' => trim($_POST["religion"]) ?? '',
         'height' => trim($_POST["height"]) ?? '',
         'weight' => trim($_POST["weight"]) ?? '',
-
+        'mCondition' => trim(isset($_POST["mCondition"]) && $_POST['mCondition'] == "yes" ? $_POST['pwd'] == "Others" ? $_POST['otherMedical']:$_POST['pwd']:'No') ?? '',
 
         'present_address' => trim($present_address) ?? '',
         'permanent_address' => trim($permanent_address) ?? '',
 
-        'mCondition' => trim(isset($_POST["mCondition"]) && $_POST['mCondition'] == "yes" ? $_POST['pwd'] == "Others" ? $_POST['otherMedical']:$_POST['pwd']:'No') ?? '',
+        'mNumber' => trim($_POST["mNumber"]) ?? '',
+        'email' => trim($_POST["email"]) ?? '',
         'fb_link' => trim($_POST["fbLink"]) ?? '',
 
-        'isDecF' => trim($_POST['fatherOption']) ?? '',
-        'fDeceased' => trim(
-            (isset($_POST['fDeceased']) && $_POST['fDeceased'] == "Others" 
-            ? $_POST['otherDecF']
-            : ($_POST['fDeceased'] ?? '')) 
-            ?? '') ,       
-        'fatherName' => trim($father_name) ?? '', 
-        'fAge' => trim($_POST["fAge"]) ?? '',
+        'earnerName' => $_POST["earnerName"] ?? '',
+        'earnerIncome' => $_POST["earnerIncome"] ?? '',
+        'earnerOccupation' => $_POST["earnerOccupation"] ?? '',
+        'comName' => $_POST["comName"] ?? '',
+     
+        'fatherName' => trim($father_name) ?? '',
+        'fAttain' => trim(isset($_POST["fAttain"]) && $_POST['fAttain'] == "Others" ? $_POST['FotherAttain']:$_POST['fAttain'] ?? '') ?? '',
         'fOccupation' => trim($_POST["fOccupation"]) ?? '',
-        'fatherIncome' => trim($_POST["fatherIncome"]) ?? '',
-        'fatherContact' => trim($_POST["fatherContact"]) ?? '',
         
-        'isDecM' => trim($_POST['motherOption'] ?? ''),
-        'mDeceased' => trim(
-            (isset($_POST['mDeceased']) && $_POST['mDeceased'] == "Others" 
-            ? $_POST['otherDecM']
-            : ($_POST['mDeceased'] ?? '')) 
-            ?? ''),
         'motherName' => trim($mother_name) ?? '',
-        'motherAge' => trim($_POST["motherAge"]) ?? '',
+        'mAttain' => trim(isset($_POST["mAttain"]) && $_POST['mAttain'] == "Others" ? $_POST['MotherAttain']:$_POST['mAttain'] ?? '') ?? '',
         'motherOccupation' => trim($_POST["motherOccupation"]) ?? '',
-        'motherIncome' => trim($_POST["motherIncome"]) ?? '',
-        'motherContact' => trim($_POST["motherContact"]) ?? '',
 
         'guardian' => trim($_POST["guardian"]) ?? '',
         'emergencyContact' => trim($_POST["emergencyContact"]) ?? '',
         'relationship' => trim($_POST["relationship"]) ?? '',
 
-        'eSchool' => trim($_POST["eSchool"]) ?? '',
-        'eAve' => trim($_POST["eAve"]) ?? '',
-        'eAchievements' => trim($_POST["eAchievements"]) ?? '',
-        'jhSchool' => trim($_POST["jhSchool"]) ?? '',
-        'jhAve' => trim($_POST["jhAve"]) ?? '',
-        'jhAchievements' => trim($_POST["jhAchievements"]) ?? '',
+        'numSiblings' => trim($_POST["numSiblings"]) ?? '',
+
         'shSchool' => trim(isset($_POST["shSchool"]) ? $_POST["shSchool"]:'') ?? '',
+        'dateGrad' => trim($_POST["dateGrad"]) ?? '',
         'shAve' => trim(isset($_POST["shAve"]) ? $_POST["shAve"]:'') ?? '',
         'shAchievements' => trim(isset($_POST["shAchievements"]) ? $_POST["shAchievements"]:'') ?? '',
-        'shCourse' => trim(isset($_POST["shCourse"]) && $_POST['Others'] ? $_POST["otherCourse"]:$_POST['shCourse'] ?? '') ?? '',
-        'cSchool' => '',
-        'cAve' => '',
-        'cAchievements' => '',
-        'cCourse' => '',
-        
-        'stopAttend' => '',
-        'reason_attend' => '',
-        'yrlvl' => '',
-        'semester' => '',
+        'shCourse' => trim(isset($_POST["shCourse"]) && $_POST['shCourse'] == "Others" ? $_POST["otherCourse"]:$_POST['shCourse'] ?? '') ?? '',
 
-        'otherScholarship' => trim(isset($_POST["otherScholarship"]) ? $_POST["otherScholarship"]:'') ?? '',
-        'otherScholarType' => trim(isset($_POST["otherScholarType"]) ? $_POST["otherScholarType"]:'') ?? '',
-        'otherScholarCoverage' => trim(isset($_POST["otherScholarCoverage"]) ? $_POST["otherScholarCoverage"]:'') ?? '',
-        'otherScholarStatus' => trim(isset($_POST["otherScholarStatus"]) ? $_POST["otherScholarStatus"]:'') ?? '',
-
-        'q1' => trim($_POST["q1"]) ?? '',
-        'q2' => trim($_POST["q2"]) ?? '',
-        'applyScho' => trim($_POST["applyScho"]) ?? '',
-        'applySchoExplain' => trim($_POST["applySchoExplain"]) ?? '',
+        'cSchool' => trim($_POST["cSchool"]) ?? '',
+        'cCourse' => trim($_POST["cCourse"]) ?? '',
+        'schoYear' => trim($_POST["schoYear"]) ?? '',
+        'cAve' => trim($_POST["cAve"]) ?? '',
         
-        'sName' => $_POST["sName"] ?? '',
-        'sAge' => $_POST["sAge"] ?? '',
-        'sOccupation' => $_POST["sOccupation"] ?? '',
-        'sCstatus' => $_POST["sCstatus"] ?? '',
-        'sR' => $_POST["sR"] ?? '',
-        'sEattained' => $_POST["sEattained"] ?? '',
-        
-        'sub' => $_POST["sub"] ?? '',
-        'totalUnits' => '',
-        'gAverage' => $_POST["gAverage"] ?? '',
-        'studType' => 'Freshman'
+        'studType' => trim($_POST["studType"]) ?? '',
     );
 
     $fileData1 = array(
@@ -158,6 +110,13 @@ if(isset($_POST['submit'])){
         'fileError' => $_FILES['form137']['error'],
         'fileType' => $_FILES['form137']['type'],
     );
+    $fileData6 = array(
+        'fileName' => $_FILES['shAchievementsFile']['name'],
+        'fileTmpName' => $_FILES['shAchievementsFile']['tmp_name'],
+        'fileSize' => $_FILES['shAchievementsFile']['size'],
+        'fileError' => $_FILES['shAchievementsFile']['error'],
+        'fileType' => $_FILES['shAchievementsFile']['type'],
+    );
     
     $allowedFile1 = array('pdf');
     $allowedFile2 = array('jpg', 'jpeg', 'png');
@@ -176,6 +135,9 @@ if(isset($_POST['submit'])){
 
     $fileExt5 = explode('.', $fileData5['fileName']);
     $fileActualExt5 = strtolower(end($fileExt5));
+
+    $fileExt6 = explode('.', $fileData6['fileName']);
+    $fileActualExt6 = strtolower(end($fileExt6));
     
 
     //resume and picture data
@@ -187,16 +149,19 @@ if(isset($_POST['submit'])){
         'fileActualExt3' => $fileActualExt3,
         'fileActualExt4' => $fileActualExt4,
         'fileActualExt5' => $fileActualExt5,
+        'fileActualExt6' => $fileActualExt6,
         'fileName1' => $fileData1['fileName'],
         'fileName2' => $fileData2['fileName'],
         'fileName3' => $fileData3['fileName'],
         'fileName4' => $fileData4['fileName'],
         'fileName5' => $fileData5['fileName'],
+        'fileName6' => $fileData6['fileName'],
         'fileTmpName1' => $fileData1['fileTmpName'],
         'fileTmpName2' => $fileData2['fileTmpName'],
         'fileTmpName3' => $fileData3['fileTmpName'],
         'fileTmpName4' => $fileData4['fileTmpName'],
         'fileTmpName5' => $fileData5['fileTmpName'],
+        'fileTmpName6' => $fileData6['fileTmpName'],
     );
 
     //check if any input is  empty
@@ -220,11 +185,11 @@ if(isset($_POST['submit'])){
 
     //if theres no error from the resume file
     if ( $fileData1['fileError'] === 0 && $fileData2['fileError'] === 0 && $fileData3['fileError'] === 0
-    && $fileData4['fileError'] === 0 && $fileData5['fileError'] === 0) {
+    && $fileData4['fileError'] === 0 && $fileData5['fileError'] === 0 && $fileData6['fileError'] === 0) {
 
         $scholar->checkData($filesAndPicture, $scholarData);
     } else {
-        echo "There was an error while u ploading the file";
+        echo "There was an error while uploading the file";
         exit();
     }
 
