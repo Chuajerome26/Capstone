@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 
 
-<title>login with overlay image - Bootdey.com</title>
+<title>Log In</title>
+<link rel="icon" type="image/x-icon" href="<?php echo 'images/Management1.png'; ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script>
@@ -57,50 +58,28 @@ border-bottom-right-radius: .3rem;
 
 .btn-custom-color:hover {
 
-    background-color:grey;
-    color:black;
+    background-color:
+    #74E291;
+    color:white;
 }
 
-.fade-in {
-    image-resolution: 500dpi;
-}
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
 
   /* Apply the animation to the element */
   .image-container {
     background-image: url('images/1.jpg');
     background-size: 459px;
     background-repeat: no-repeat;
-    animation: fadeIn 1s;
+    
   }
 
   /* Add a hover effect */
-  .image-container:hover {
-    animation: none; /* Disable the fadeIn animation */
-    opacity: 0.8; /* Change the opacity on hover */
-    transition: opacity 0.5s; /* Add a smooth transition effect */
-  }
+ 
+  
 
     </style>
 </head>
-<body style="background-color: #41B06E;">
+<body style="background-color: #A3FFD6;">
 
   <div class="container py-0 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -118,7 +97,7 @@ border-bottom-right-radius: .3rem;
 </br>
 
 <div style="text-align: center;">
-                <b><p style="font-size: 20px;">Login</p></b>
+                <b><p style="font-size: 25px;">Log in</p></b>
 </div>
 
                 <form>
@@ -142,7 +121,7 @@ border-bottom-right-radius: .3rem;
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block fa-lg  mb-2 btn-custom-color" type="button">Login</button>
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block fa-lg  mb-2 btn-custom-color" type="button">Log In</button>
 
                     <a class="text-muted" href="#!">Forgot password?</a>
                   </div>
@@ -158,7 +137,7 @@ border-bottom-right-radius: .3rem;
               </div>
             </div>
 
-            <div class="col-lg-6 d-flex align-items-center fade-in image-container" style="background-image: url('images/1.jpg'); background-size: 459px; background-repeat: no-repeat; animation: zoomIn 1s;">
+            <div class="col-lg-6 d-flex align-items-center  image-container" style="background-image: url('images/side.png'); background-size: 459px; background-repeat: no-repeat; animation: zoomIn 1s;">
 
            
            
