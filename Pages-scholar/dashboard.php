@@ -109,6 +109,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                     </ul>
                     <span class="navbar-text">
                    
+
+                    
                     <div class="dropdown">
                     <button class="btn btn-transparents dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img class="img-profile rounded-circle me-2"  width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>"> <?php echo $info[0]['l_name']; ?>

@@ -73,15 +73,28 @@ class Scholar{
 
   }
 
-        public function checkData($filesAndPicture, $scholarData){
+        public function checkData($filesAndPicture, $scholarData, $studentType){
             //check if the file extension is in the array $allowed
         if (
             in_array($filesAndPicture['fileActualExt1'], $filesAndPicture['allowed2']) &&
-            in_array($filesAndPicture['fileActualExt2'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed1']) && 
+            (
+                ($studentType == 'srhigh') ? (
+                    in_array($filesAndPicture['fileActualExt2'], $filesAndPicture['allowed1'])
+                ) : true
+            ) &&
+            (
+                ($studentType == 'college') ? (
+                    in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed1'])
+                ) : true
+            ) &&
             in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed1']) &&
             in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt6'], $filesAndPicture['allowed1'])) {
+            in_array($filesAndPicture['fileActualExt6'], $filesAndPicture['allowed1']) &&
+            (
+                ($studentType == 'srhigh') ? (
+                    in_array($filesAndPicture['fileActualExt7'], $filesAndPicture['allowed1'])
+                ) : true
+            )) {
 
             //seperate filename
             $newFileName1 = explode('.',$filesAndPicture['fileName1']);
@@ -90,6 +103,7 @@ class Scholar{
             $newFileName4 = explode('.',$filesAndPicture['fileName4']);
             $newFileName5 = explode('.',$filesAndPicture['fileName5']);
             $newFileName6 = explode('.',$filesAndPicture['fileName6']);
+            $newFileName7 = explode('.',$filesAndPicture['fileName7']);
             
             //Copy of Grades
             $fileNameNew1 = uniqid('', true) . "." . $filesAndPicture['fileActualExt1'];
@@ -114,15 +128,31 @@ class Scholar{
             $fileNameNew6 = uniqid('', true) . "." . $filesAndPicture['fileActualExt6'];
             $fileDestination6 = '../Scholar_files/' . $fileNameNew6;
 
-            $arrayFiles = array($fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6);
+            $fileNameNew7 = uniqid('', true) . "." . $filesAndPicture['fileActualExt7'];
+            $fileDestination7 = '../Scholar_files/' . $fileNameNew7;
+
+            $arrayFiles = array($fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6, $fileNameNew7);
             // if (move_uploaded_file($fileTmpName, $fileDestination) ) {
             if (
                 move_uploaded_file($filesAndPicture['fileTmpName1'],$fileDestination1) &&
-                move_uploaded_file($filesAndPicture['fileTmpName2'],$fileDestination2) &&
-                move_uploaded_file($filesAndPicture['fileTmpName3'],$fileDestination3) &&
+                (
+                    ($studentType == 'srhigh') ? (
+                        move_uploaded_file($filesAndPicture['fileTmpName2'],$fileDestination2)
+                    ) : true
+                ) &&
+                (
+                    ($studentType == 'college') ? (
+                        move_uploaded_file($filesAndPicture['fileTmpName3'],$fileDestination3)
+                    ) : true
+                ) &&
                 move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4) &&
                 move_uploaded_file($filesAndPicture['fileTmpName5'],$fileDestination5) &&
-                move_uploaded_file($filesAndPicture['fileTmpName6'],$fileDestination6))  {
+                move_uploaded_file($filesAndPicture['fileTmpName6'],$fileDestination6) &&
+                (
+                    ($studentType == 'srhigh') ? (
+                        move_uploaded_file($filesAndPicture['fileTmpName7'],$fileDestination7)
+                    ) : true
+                ))  {
 
                 $this->registerEmployee($scholarData, $arrayFiles);
         
@@ -152,12 +182,17 @@ class Scholar{
 
     public function registerEmployee($scholarData, $scholarFiles){
 
+
+
+        if ($studentType == 'srhigh'){
+            
+        }
         // prepare insert statement for employee table
         $sql = "INSERT INTO scholar_info 
         (f_name, m_name, l_name, suffix, gender, c_status, date_of_birth, b_place, height, weight, religion, mobile_number, email, present_address, 
         permanent_address, med_condition, fb_link, father_name, father_attain, father_occupation, mother_name, mother_attain, mother_occupation, guardian, emergency_contact, guardian_rs, numSiblings, 
         sh_school, date_grad, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_course, cschool_years, studType, date_apply) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
@@ -221,7 +256,7 @@ class Scholar{
         //fetch the employeeID
         $scholarId = $stmtScholarID->fetchColumn();
 
-        $arrayNames = array('IdPhoto', 'Grades', 'BirthCertificate', 'Indigency', 'Form137/138', 'HighScoolAchievement');
+        $arrayNames = array('IdPhoto', 'HSGrades', 'CGrades', 'BirthCertificate', 'Indigency', 'Form137/138', 'HighScoolAchievement');
 
 
                 for ($i = 0; $i < count($scholarFiles); $i++) {

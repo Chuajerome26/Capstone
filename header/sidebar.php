@@ -1,3 +1,14 @@
+
+<?php 
+
+
+$notification = "SELECT * FROM notifcation";
+$notify = $database->getConnection()->prepare($notification);
+$notify->execute();
+$notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
+
+
+?>
 <style>   
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
@@ -159,6 +170,9 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 
 
 
+                  
+
+
                     <li class="nav-item dropdown text-decoration-none list-unstyled pt-3  d-block d-md-none">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="me-2 rounded-circle shadow-sm" src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" alt="Id" width="30" height="30">   
@@ -203,15 +217,65 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 <hr class="sidebar-divider d-none d-md-block">
 
 
-                <ul class="navbar-nav ms-auto d-flex flex-row   d-none d-lg-block me-5">
+                <ul class="navbar-nav ms-auto d-flex  d-none d-lg-block me-5">
                 
+                <div class="d-flex gap-2">
+
+                
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="notif-button">
+                        <div style="position: relative; display: inline-block;">
+                            <i class="fa-solid fa-bell" style="font-size: 18px;"></i>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" style="width: 350px;" id="notif-container">
+                        <div class="container-fluid">
+                            <h6 class="p-2"><i class="fa-solid fa-bell me-3"></i>Notification</h6>
+                            <hr class="p-0 m-0">
+                            <div class="row">
+                                <div class="col-12" style="max-height: 400px; overflow-y: auto;">
+                                    <ul class="list-group border-0" id="notification-container">
+                                        <?php  
+                                        foreach ($notifications as $x) {
+                                            $user = $x['sender'];
+                                            $scholar = "SELECT * FROM scholar_info WHERE id = :user"; 
+                                            $scholar_info = $database->getConnection()->prepare($scholar);
+                                            $scholar_info->bindParam(':user', $user, PDO::PARAM_INT);
+                                            $scholar_info->execute();
+                                            $scholar_data = $scholar_info->fetch(PDO::FETCH_ASSOC);
+                                        ?>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 border-bottom px-1 m-0" style="font-size: 12px;">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="" width="50" height="45" alt="" class="rounded-circle shadow" style="max-width: 50px; max-height: 45px;" />
+                                                    <div class="ms-3">
+                                                        <div class="fw-bold">
+                                                            <?php echo $scholar_data['f_name']; ?> <?php echo $scholar_data['l_name']; ?>
+                                                        </div>
+                                                        <div class="text-muted mb-1" style="font-size: 10px;">
+                                                            <?php echo $x["date"]?>
+                                                        </div>
+                                                            <?php if($x["remarks"] == "applicants"){?>
+                                                                    Applied for scholarship
+                                                            <?php }?>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        <?php }?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+
                
 
                  
 
-                    <li class="dropdown me-4 mt-1">
+                    <li class="dropdown me-4 ">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="me-2 rounded-circle shadow-sm" src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" alt="Id" width="30" height="30"> 
+                            <img class="me-2 rounded-circle shadow-sm" src="../Scholar_files/<?php echo $admin_info[0]['pic']; ?>" alt="Id" width="25" height="25"> 
                             <span><?php echo $admin_info[0]['l_name']; ?></span>
                         </a>
                         <ul class="dropdown-menu  dropdown-menu-end  w-100">
@@ -225,7 +289,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         </ul>
                     </li>
 
-
+                    </div>
                     </ul>
 
 

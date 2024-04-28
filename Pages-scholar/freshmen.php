@@ -709,9 +709,9 @@
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Are you a high school graduate or college?</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" id="highSchoolGrad" name="studentType" onclick="showHighSchoolFields('highSchoolFields')">
+                        <input class="form-check-input" type="radio" id="highSchoolGrad" name="studentType" value="srhigh" onclick="showHighSchoolFields('highSchoolFields')">
                         <label class="form-check-label">Senior High School Graduate</label>
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="form-check-input" type="radio" id="collegeStudent" name="studentType" onclick="showCollegeFields('collegeFields')">
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input class="form-check-input" type="radio" id="collegeStudent" name="studentType" value="college" onclick="showCollegeFields('collegeFields')">
                         <label class="form-check-label">College</label>
                     </div>
                 </div>
@@ -762,7 +762,7 @@
 
                     <div class="col-md-3 mb-3">
                     <label  class="form-label">Upload Grade File:(PDF Only)<span class="text-danger">*</span></label>
-                        <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer21')" required></label>
+                        <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog1" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer21')" required></label>
                         <div class="Preview1 " id="previewContainer21">
                         </div>
                     </div>
@@ -808,7 +808,7 @@
 
                         <div class="col-md-3 mb-3">
                         <label  class="form-label">Upload Grade File:(PDF Only)<span class="text-danger">*</span></label>
-                            <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')" required></label>
+                            <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog2" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')" required></label>
                             <div class="Preview1 " id="previewContainer3">
                             </div>
                         </div>
