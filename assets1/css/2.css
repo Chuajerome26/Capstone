@@ -34,7 +34,7 @@
 		padding-left: 40px;
 	}
 	.modal-login .form-control:focus {
-		border-color: #00ce81;
+		border-color: #0EDC8D;
 	}
 	.modal-login .form-control, .modal-login .btn {
 		min-height: 40px;
@@ -50,12 +50,12 @@
 		right: -5px;
 	}
 	.modal-login .btn {
-		background: #00ce81;
+		background: #0EDC8D;
 		margin-bottom: 20px;
 		line-height: normal;
 	}
 	.modal-login .btn:hover, .modal-login .btn:focus {
-		background: #00bf78;
+		background: #0EDC8D;
 	}
 	.modal-login .modal-footer {
 		background: #ecf0f1;
