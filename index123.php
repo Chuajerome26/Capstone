@@ -58,8 +58,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="toolbar-login">
                             <div class="button">
-                                <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">Create an Account</button>
-                                <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Login</button>
+                                <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">Apply Now</button>
                             </div>
                         </div>
                     </div>
@@ -328,14 +327,13 @@
             <p class="fw-bold h4 mb-0 text-center">REQUIREMENT LIST:</p>    
         </div>
         <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">Letter of Intent &nbsp;&nbsp;|&nbsp;&#160; Family Profile</li>
-            <li class="list-group-item">Written Parent Consent &nbsp;&nbsp;|&nbsp;&#160; Latest Copy of Grades</li>
-            <li class="list-group-item">Birth Certificate &nbsp;&nbsp;|&nbsp;&#160; Certificate of Indigency</li>
-            <li class="list-group-item">High School Diploma&nbsp;&nbsp;|&nbsp;&#160; Form 137/138</li>
-            <li class="list-group-item">College/University Acceptance Letter&nbsp;&nbsp;|&nbsp;&#160; Enrollment Form</li>
-            <li class="list-group-item">Certificate of Good Moral</li>
-            <li class="list-group-item">Recommendation Letter from Adviser/Principal</li>
-            <li class="list-group-item">Sketch of House Area and Directions for Commuting from CCMF site</li>
+            <li class="list-group-item">2x2 latest photo</li>
+            <li class="list-group-item">Cerified True Copy of Birth Certificate</li>
+            <li class="list-group-item">Certified True Copy of Form 137 or 138 / Grade Slip</li>
+            <li class="list-group-item">Latest Copy of Grades</li>
+            <li class="list-group-item">Barangay Certification</li>
+            <li class="list-group-item">Indigency</li>
+
         </ul>
         <div class="card-footer bg-white py-3 text-center">
             <a data-toggle="modal" data-target="#applyModal" class="btn mt-3" style="background-color: #0EDC8D; color: #ffffff;">Apply Now</a>
@@ -378,16 +376,19 @@
     <div class="modal-dialog modal-dialog-centered modal-login">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold text-center">Are you a Freshmen or a College student?</h5>
+                <h5 class="modal-title fw-bold text-center">Are you sure you want to proceed?</h5>
                 <button type="button" class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
-                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/freshmen.php';">Freshman</button>
-                    <button type="submit" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;" onclick="window.location.href='Pages-scholar/appform-college2.php';">College</button>
+                <button type="submit" class="btn btn-primary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" onclick="window.location.href='Pages-scholar/freshmen.php';">Yes, Continue</button>
+                <p class="text-center mt-2">Click here if all your requirements are ready.</p>
+                <button type="button" class="btn btn-secondary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" data-dismiss="modal">No, Cancel</button>
+                <p class="text-center mt-2">Click here to review the requirements.</p>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- Modal for Login -->

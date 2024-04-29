@@ -102,7 +102,7 @@
                                     <h6 class="display-7 text-center ms-2 mt-1 fw-bold"><span class="d-none d-lg-block">Scholarship Management System</span></h6>
                                 </a>
                             </div>
-                            <div class="p-2 ms-auto"> <a href="../index.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
+                            <div class="p-2 ms-auto"> <a href="../index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
                         </div>
 
 
@@ -627,7 +627,7 @@
                         <option value="Bachelor's Degree">Bachelor's Degree</option>
                         <option value="Master's Degree">Master's Degree</option>
                         <option value="Doctorate Degree">Doctorate Degree</option>
-                        <option value="Other">Others</option>
+                        <option value="Others">Others</option>
                     </select>
                     <div id="FotherAttain" style="display: none;">
                         <input class="form-control form-control-sm mt-2" type="text" name="FotherAttain" id="FotherAttain1" placeholder="Other Condition">
@@ -666,7 +666,7 @@
                         <option value="Bachelor's Degree">Bachelor's Degree</option>
                         <option value="Master's Degree">Master's Degree</option>
                         <option value="Doctorate Degree">Doctorate Degree</option>
-                        <option value="Other">Others</option>
+                        <option value="Others">Others</option>
                     </select>
                     <div id="MotherAttain" style="display: none;">
                         <input class="form-control form-control-sm mt-2" type="text" name="MotherAttain" id="MotherAttain1" placeholder="Other Condition">
@@ -844,14 +844,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-6 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Latest Copy of Grades</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="cog" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer5')" required></label>
-                                <div class="Preview1 " id="previewContainer5">
-                                </div>
-                        </div> 
-                    </div> -->
+
                     <div class="col-lg-4 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Birth Certificate (PDF Only)<span class="text-danger">*</span></h6>
@@ -1323,6 +1316,14 @@ $(document).ready(function() {
     });
     return isValid;
     }
+
+    // Clear the error state and message when the user corrects the input
+    $('input[required], select[required], textarea[required]').on('input change', function() {
+        if (this.checkValidity()) {
+            $(this).removeClass('is-invalid');
+            $(this).next('.invalid-feedback').remove();
+        }
+    });
 
     $('#myTabs a.nav-link').on('click', function (e) {
         if ($(this).hasClass('disabled')) {

@@ -61,9 +61,9 @@ if(isset($_POST['submit'])){
 
         'numSiblings' => trim($_POST["numSiblings"]) ?? '',
 
-        'shSchool' => trim(isset($_POST["shSchool"]) ? $_POST["shSchool"]:'') ?? '',
+        'shSchool' => trim($_POST["shSchool"]) ?? '',
         'dateGrad' => trim($_POST["dateGrad"]) ?? '',
-        'shAve' => trim(isset($_POST["shAve"]) ? $_POST["shAve"]:'') ?? '',
+        'shAve' => trim($_POST["shAve"]) ?? '',
         'shAchievements' => trim(isset($_POST["shAchievements"]) ? $_POST["shAchievements"]:'') ?? '',
         'shCourse' => trim(isset($_POST["shCourse"]) && $_POST['shCourse'] == "Others" ? $_POST["otherCourse"]:$_POST['shCourse'] ?? '') ?? '',
 
