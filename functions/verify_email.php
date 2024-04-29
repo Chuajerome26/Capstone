@@ -1,6 +1,6 @@
 <?php
-require '../class/database.php';
-require '../class/admin.php';
+require '../classes/database.php';
+require '../classes/admin.php';
 
 $database = new Database();
 $admin = new Admin($database);
