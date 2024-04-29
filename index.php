@@ -107,7 +107,7 @@ border-bottom-right-radius: .3rem;
                 <b><p style="font-size: 25px;">Log in</p></b>
 </div>
 
-                <form>
+                <form method="post" action="functions/admin-login.php">
                   
 
                   <div data-mdb-input-init class="form-outline mb-4">
@@ -119,9 +119,9 @@ border-bottom-right-radius: .3rem;
 
                   <div data-mdb-input-init class="form-outline mb-4">
                   <label class="form-label" for="form2Example22">Password</label>
-                    <input type="password" id="form2Example22" class="form-control" />
+                    <input type="password" name="pass" id="form2Example22" class="form-control" />
                     <div class="form-check mt-2">
-                    <input class="form-check-input" type="checkbox" name="pass" id="showPasswordCheck" onchange="togglePasswordVisibility()">
+                    <input class="form-check-input" type="checkbox" id="showPasswordCheck" onchange="togglePasswordVisibility()">
         <label class="form-check-label" for="showPasswordCheck">Show Password</label>
     </div>
                     

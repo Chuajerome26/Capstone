@@ -1,6 +1,6 @@
 <?php
 
-if ($_POST['uname'] !== '' && $_POST['psw'] !== '' && isset($_POST['submitBtn'])){
+if ($_POST['email'] !== '' && $_POST['pass'] !== '' && isset($_POST['submit'])){
 session_start();
 require '../classes/admin.php';
 require '../classes/database.php';
@@ -8,8 +8,8 @@ require '../classes/database.php';
 
 // include '../includes/autoload-class.php';
 
-    $email = $_POST['uname'];
-    $pass = $_POST['psw'];
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
 
     $database = new Database();
     $admin = new Admin($database);
@@ -17,22 +17,26 @@ require '../classes/database.php';
 
     $adminData = $admin->login($email);
 
-    $user_id = $adminData['user_id'];
+    $user_id = $adminData['id'];
     $adminPass = $adminData['pass'];
     $userType = $adminData['user_type'];
     $admin_id = $adminData['admin_id'];
 
-    $scholarInfo = $admin->scholarInfo($user_id);
-    $adminInfo = $admin->adminInfo($admin_id);
-
-    if(!$adminData){
-          header("Location:../index.php?scholar=errorEmail");
+    if($adminData['is_verified'] == 0){
+        header("Location:../index.php?info=verifyEmail");
         exit();
     }
-    $hashed_input_password = password_hash($pass, PASSWORD_DEFAULT);
+    // $scholarInfo = $admin->scholarInfo($user_id);
+    // $adminInfo = $admin->adminInfo($admin_id);
+
+    if(!$adminData){
+        header("Location:../index.php?info=errorCredentialsEmail");
+        exit();
+    }
+    $hashed_input_password = password_hash($pass, PASSWORD_DEFAULT); 
     if(!password_verify($pass, $adminPass)){
         // if not, create variable error 
-        header("Location:../index.php?scholar=errorPassword");
+        header("Location:../index.php?info=errorCredentials");
         exit();
     }
 
@@ -54,7 +58,7 @@ require '../classes/database.php';
         exit();
         
     }elseif($get_admin[0]['count'] == 0 && $userType == 1){
-        header('Location: ../index.php?scholar='.$userType);
+        header('Location: ../index.php?info=error');
         exit();
     }
 
