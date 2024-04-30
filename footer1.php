@@ -12,7 +12,7 @@
 
 
 #footer {
-    background: rgba(49, 54, 63, 0.3) !important;
+    background: #A3FFD6 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     padding-left: 0 !important;
@@ -31,7 +31,7 @@
 <div class="col-xs-12 col-sm-4 col-md-4 mx-auto">
 
 <div class="row">
-<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+<div class="col-xs-12 col-sm-12 col-md-12">
 <ul class="list-unstyled list-inline social text-center">
 
 </ul>
@@ -39,7 +39,7 @@
 </hr>
 </div>
 <div class="row">
-<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+<div class="col-xs-15 col-sm-15 col-md-15 mt-2 mt-sm-2 text-center text-black">
 <p class="style=font-size: 10px;">&copy; 2024 Scholarship Management System. All Rights Reserved.</p>
 </div>
 </hr>
