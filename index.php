@@ -202,6 +202,82 @@ border-bottom-right-radius: .3rem;
 </html>
 
 <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const successValue = urlParams.get('info');
+    console.log(successValue);
+
+    if(successValue === "errorCredentials"){
+        Swal.fire({
+            icon:'error',
+            title:'Wrong Credentials',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "verifyEmail"){
+        Swal.fire({
+            icon:'error',
+            title:'Verify Your Account!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "passDonotMatch"){
+        Swal.fire({
+            icon:'error',
+            title:'Password Do not Match!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "emailExist"){
+        Swal.fire({
+            icon:'error',
+            title:'Email Already Exist!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "checkEmail"){
+        Swal.fire({
+            icon:'error',
+            title:'Check Your Email!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }
+
     function togglePasswordVisibility() {
         var passwordInput = document.getElementById("form2Example22");
         var checkbox = document.getElementById("showPasswordCheck");

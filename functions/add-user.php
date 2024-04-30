@@ -37,11 +37,7 @@ if(isset($_POST['submit'])){
         $message .= '<a href="http://ccmf.website/functions/verify_email.php?token='.$token.'">Verify Account</a>';
     
         if ($database->sendEmail($email , $subject, $message)) {
-            header('Location: ../Pages/signup.php');
-        } else {
-            echo "Error sending email. Please try again later.";
+            header('Location: ../index.php?info=checkEmail');
+            exit();
         }
-
-    header('Location: ../index.php?info=checkEmail');
-    exit();
 }

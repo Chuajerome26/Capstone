@@ -30,7 +30,7 @@ require '../classes/database.php';
     // $adminInfo = $admin->adminInfo($admin_id);
 
     if(!$adminData){
-        header("Location:../index.php?info=errorCredentialsEmail");
+        header("Location:../index.php?info=errorCredentials");
         exit();
     }
     $hashed_input_password = password_hash($pass, PASSWORD_DEFAULT); 

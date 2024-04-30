@@ -28,7 +28,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.png" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
     <!-- Web Font -->
@@ -37,13 +37,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         rel="stylesheet">
 
     <!-- ========================= CSS here ========================= -->
-    <link rel="stylesheet" href="assets1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets1/css/LineIcons.2.0.css" />
-    <link rel="stylesheet" href="assets1/css/animate.css" />
-    <link rel="stylesheet" href="assets1/css/tiny-slider.css" />
-    <link rel="stylesheet" href="assets1/css/glightbox.min.css" />
-    <link rel="stylesheet" href="assets1/css/main.css" />
-    <link rel="stylesheet" href="assets1/css/2.css" />
+    <link rel="stylesheet" href="../assets1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets1/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="../assets1/css/animate.css" />
+    <link rel="stylesheet" href="../assets1/css/tiny-slider.css" />
+    <link rel="stylesheet" href="../assets1/css/glightbox.min.css" />
+    <link rel="stylesheet" href="../assets1/css/main.css" />
+    <link rel="stylesheet" href="../assets1/css/2.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -100,7 +100,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
                         <a class="navbar-brand" >
-                            <img src="images/logo.png" alt="Logo">
+                            <img src="../images/logo.png" alt="Logo">
                         </a>
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -129,7 +129,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <div class="hero-area">
         <div class="hero-slider">
             <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('assets1/images/hero/hero.png');">
+            <div class="hero-inner overlay" style="background-image: url('../assets1/images/hero/hero.png');">
                 <div class="container">
                     <div class="row ">
                         <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
@@ -152,7 +152,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
             <!--/ End Single Slider -->
             <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('assets1/images/hero/hero2.png');">
+            <div class="hero-inner overlay" style="background-image: url('../assets1/images/hero/hero2.png');">
                 <div class="container">
                     <div class="row ">
                         <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
@@ -174,7 +174,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
             </div>
             <!--/ End Single Slider -->
             <!-- Single Slider -->
-            <div class="hero-inner overlay" style="background-image: url('assets1/images/hero/hero3.png');">
+            <div class="hero-inner overlay" style="background-image: url('../assets1/images/hero/hero3.png');">
                 <div class="container">
                     <div class="row ">
                         <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
@@ -220,7 +220,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="about-right wow fadeInRight" data-wow-delay=".4s">
-                        <img height="550" src="assets1/images/about/bg4.jpg" alt="#">
+                        <img height="550" src="../assets1/images/about/bg4.jpg" alt="#">
                     </div>
                 </div>
             </div>
@@ -528,13 +528,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 </style>
     <!-- ========================= JS here ========================= -->
-    <script src="assets1/js/bootstrap.min.js"></script>
-    <script src="assets1/js/count-up.min.js"></script>
-    <script src="assets1/js/wow.min.js"></script>
-    <script src="assets1/js/tiny-slider.js"></script>
-    <script src="assets1/js/glightbox.min.js"></script>
-    <script src="assets1/js/main.js"></script>
-    <script src="assets1/js/2.js"></script>
+    <script src="../assets1/js/bootstrap.min.js"></script>
+    <script src="../assets1/js/count-up.min.js"></script>
+    <script src="../assets1/js/wow.min.js"></script>
+    <script src="../assets1/js/tiny-slider.js"></script>
+    <script src="../assets1/js/glightbox.min.js"></script>
+    <script src="../assets1/js/main.js"></script>
+    <script src="../assets1/js/2.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
