@@ -115,8 +115,8 @@
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
                                   <tbody>
                                     <tr>
-                                      <td style="width:100px;">
-                                      <img src="https:ccmf.website/images/logo.jpg" alt="Logo" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;">
+                                      <td style="width:300px;">
+                                      <img src="../images/Management1.png" alt="Logo" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;">
                                       </td>
                                     </tr>
                                   </tbody>
@@ -124,17 +124,17 @@
                               </td>
                             </tr>
                             <tr>
-                              <td align="center" style="font-size:0px;padding:10px 25px;padding-top:30px;word-break:break-word;">
+                              <!-- <td align="center" style="font-size:0px;padding:10px 25px;padding-top:30px;word-break:break-word;">
                                 <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:16px;font-weight:bold;letter-spacing:1px;line-height:24px;text-align:center;text-transform:uppercase;color:#ffffff;">Consuelo Chito Madrigal Foundation, Inc. (CCMFI) <br>
                                   <span style="color: #979797; font-weight: normal">-</span>
                                 </div>
-                              </td>
+                              </td> -->
                             </tr>
-                            <tr>
+                            <!-- <tr>
                               <td align="center" style="font-size:0px;padding:10px 25px;padding-top:0;word-break:break-word;">
                                 <div style="font-family:'open Sans', Helvetica, Arial, sans-serif;font-size:13px;font-weight:bold;letter-spacing:1px;line-height:20px;text-align:center;text-transform:uppercase;color:#17CBC4;">Area 6 Sitio Veterans <br> Brgy. Bagong Silangan, Quezon City</div>
                               </td>
-                            </tr>
+                            </tr> -->
                             <tr>
                               <td align="center" style="font-size:0px;padding:0;word-break:break-word;">
                                 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
@@ -363,7 +363,7 @@
                       <td style="direction:ltr;font-size:0px;padding:20px 0;padding-left:15px;padding-right:15px;text-align:center;">
                         <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:285px;" ><![endif]-->
                         <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                          <!-- <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                             <tbody>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
@@ -376,11 +376,11 @@
                                 </td>
                               </tr>
                             </tbody>
-                          </table>
+                          </table> -->
                         </div>
                         <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:285px;" ><![endif]-->
                         <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                          <!-- <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
                             <tbody>
                               <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0;word-break:break-word;">
@@ -393,7 +393,7 @@
                                 </td>
                               </tr>
                             </tbody>
-                          </table>
+                          </table> -->
                         </div>
                         <!--[if mso | IE]></td></tr></table><![endif]-->
                       </td>
@@ -471,9 +471,9 @@
                                                       <td style="padding:4px;vertical-align:middle;">
                                                         <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#A1A0A0;border-radius:3px;width:30px;">
                                                           <tr>
-                                <li><a href="https://www.facebook.com/CCMFI" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                <!-- <li><a href="https://www.facebook.com/CCMFI" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                                     <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
-                                </svg></a></li>
+                                </svg></a></li> -->
                                
                         </div>
                                                             </td>
@@ -481,11 +481,7 @@
                                                         </table>
                                                       </td>
                                                     </tr>
-                                                  </table>
-                                                  <!--[if mso | IE]></td><td><![endif]-->
-                                                  <!--[if mso | IE]></td><td><![endif]-->
-                                                  <!--[if mso | IE]></td><td><![endif]-->
-                                                  <!--[if mso | IE]></td></tr></table><![endif]-->
+                                                  <!-- </table>
                                                 </td>
                                               </tr>
                                               <tr>
@@ -504,7 +500,7 @@
                                                 </td>
                                               </tr>
                                             </tbody>
-                                          </table>
+                                          </table> -->
                                         </td>
                                       </tr>
                                     </tbody>
@@ -530,7 +526,7 @@
                                       <tbody>
                                         <tr>
                                           <td style="vertical-align:top;padding-right:0;">
-                                            <table border="0" cellpadding="0" cellspacing="0" role="presentation" style width="100%">
+                                            <!-- <table border="0" cellpadding="0" cellspacing="0" role="presentation" style width="100%">
                                               <tbody>
                                                 <tr>
                                                   <td align="center" style="font-size:0px;padding:10px 25px;word-break:break-word;">
@@ -538,7 +534,7 @@
                                                   </td>
                                                 </tr>
                                               </tbody>
-                                            </table>
+                                            </table> -->
                                           </td>
                                         </tr>
                                       </tbody>
