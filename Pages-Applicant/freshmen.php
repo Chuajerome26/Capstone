@@ -9,7 +9,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $admin = new Admin($database);
 
     $id = $_SESSION['id'];
-    $info = $admin->getApplicantById($id);
+    $appliLogin = $admin->getApplicantLoginById($id);
     $pic = $admin->getApplicants2x2($id);
 
 } else {
@@ -115,7 +115,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                     <h6 class="display-7 text-center ms-2 mt-1 fw-bold"><span class="d-none d-lg-block">Scholarship Management System</span></h6>
                                 </a>
                             </div>
-                            <div class="p-2 ms-auto"> <a href="../index.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
+                            <div class="p-2 ms-auto"> <a href="index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
                         </div>
 
 
@@ -232,32 +232,29 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <form id="ccmfForm" method="POST" action="../functions/applicants-register-freshmen.php" enctype="multipart/form-data">
                     <div class="row">
                     <!--- Personal Infomartion --->
-                    <div class="col-md-4 mb-3">
+                    <?php
+                    foreach($appliLogin as $i){
+                    ?>
+                    <h5 class="text-primary">We've automatically filled in some of the fields for you based on your login information.</h5>
+                    <div class="col-md-3 mb-3">
                         <label  class="form-label">First Name:<span class="text-danger">*</span></label>
-                        <input type="text" name="fName" id="fName" class="form-control form-control-sm" placeholder="First Name" required>
+                        <input type="text" name="fName" id="fName" class="form-control form-control-sm" value="<?php echo $i["fname"]?>" readonly>
                     </div>
 
 
                     <div class="col-md-3 mb-3">
                         <label  class="form-label">Middle Name:</label>
-                        <input type="text" name="mName" id="mName" class="form-control form-control-sm" placeholder="Optional">
+                        <input type="text" name="mName" id="mName" class="form-control form-control-sm" value="<?php echo $i["mname"]?>" readonly>
                     </div>
 
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label  class="form-label">Last Name:<span class="text-danger">*</span></label>
-                        <input type="text" name="lName" id="lName" class="form-control form-control-sm" placeholder="Last Name" required>
+                        <input type="text" name="lName" id="lName" class="form-control form-control-sm" value="<?php echo $i["lname"]?>" readonly>
                     </div>
 
-                    <div class="col-md-1 mb-3">
-                        <label  class="form-label">Suffix:</label>
-                        <select class="form-select form-select-sm" name="suffix" aria-label="Default select example">
-                        <option></option>
-                        <option value="Jr.">Jr.</option>
-                        <option value="Sr.">Sr.</option>
-                        <option value="II">II</option>
-                        <option value="III">III</option>
-                        <option value="IV">IV</option>
-                        </select>
+                    <div class="col-md-2 mb-3">
+                        <label  class="form-label">Suffix:(Optional)</label>
+                        <input type="text" name="suffix" class="form-control form-control-sm" value="<?php echo $i["suffix"]?>" placeholder="E.g. Jr. Sr. III...">
                     </div>
 
                     <div class="col-md-2 mb-3">
@@ -567,12 +564,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                     <div class="col-md-4 mb-3">
                         <label  class="form-label">Email Address: <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="email" class="form-control form-control-sm" placeholder="Example: sample@gmail.com" required>
-                        <div id="emailFeedback" class="invalid-feedback">
-                            Please enter a valid email address.
-                        </div>
+                        <input type="email" id="email" name="email" class="form-control form-control-sm" value="<?php echo $i["user"];?>" readonly>
                     </div>
-
+                    <?php }?>
                     <div class="col-md-4 mb-3">
                         <label  class="form-label">Facebook Link:</label>
                         <input type="text" name="fbLink" id="fbLink" class="form-control form-control-sm" placeholder="Link">
@@ -1336,6 +1330,14 @@ $(document).ready(function() {
     });
     return isValid;
     }
+
+    // Clear the error state and message when the user corrects the input
+    $('input[required], select[required], textarea[required]').on('input change', function() {
+        if (this.checkValidity()) {
+            $(this).removeClass('is-invalid');
+            $(this).next('.invalid-feedback').remove();
+        }
+    });
 
     $('#myTabs a.nav-link').on('click', function (e) {
         if ($(this).hasClass('disabled')) {

@@ -130,7 +130,7 @@ border-bottom-right-radius: .3rem;
                   <div class="text-center pt-1 mb-5 pb-1">
                   <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block fa-lg  mb-2 btn-custom-color" type="submit" name="submit">Log In</button>
 
-                    <a class="text-muted" href="#!">Forgot password?</a>
+                  <a href="#" class="forgot-password" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
@@ -166,10 +166,39 @@ border-bottom-right-radius: .3rem;
       </div>
     </div>
   </div>
+
+ <!-- Modal for Forgot Password -->
+ <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="forgotPasswordModalLabel">Forgot Password?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your email address below and we'll send you instructions on how to reset your password.</p>
+                <form action="functions/forgot_pass.php" method="post">
+                    <div class="form-group">
+                        <label class="fw-bold" for="forgotEmail">Email Address:</label>
+                        <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 
 
 <?php include 'footer1.php'; ?>
+
 
 
 

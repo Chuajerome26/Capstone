@@ -385,6 +385,20 @@ class Admin
           return $result;
       }
     }
+    function checkUserApplicationStatus($id) {
+        $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) FROM scholar_info WHERE scholar_id = :scholar_id");
+        $stmt->bindParam(':scholar_id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+
+        return $count > 0;
+    }    
+    public function getApplicantLoginById($id){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM login 
+                                                        WHERE user_type = '0' AND id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetchAll();
+    }
     public function getApplicantById($id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
                                                         WHERE status = '0' AND id = ?");

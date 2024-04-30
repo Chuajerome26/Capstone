@@ -190,18 +190,33 @@ class Scholar{
     }
 
     public function registerEmployee($scholarData, $scholarFiles){
+
+        // get the ID of the inserted employee record
+        // prepare the SQL statement using the database property
+        $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM login WHERE user=?");
+
+            //if execution fail
+        if (!$stmtScholarID->execute([$scholarData['email']])) {
+            header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
+            exit();
+        }
+        //fetch the employeeID
+        $scholarId = $stmtScholarID->fetchColumn();
+
+
         // prepare insert statement for employee table 38
         $sql = "INSERT INTO scholar_info 
-        (f_name, m_name, l_name, suffix, gender, c_status, date_of_birth, b_place, height, weight, religion, mobile_number, email, present_address, 
+        (scholar_id, f_name, m_name, l_name, suffix, gender, c_status, date_of_birth, b_place, height, weight, religion, mobile_number, email, present_address, 
         permanent_address, med_condition, fb_link, father_name, father_attain, father_occupation, mother_name, mother_attain, mother_occupation, guardian, emergency_contact, guardian_rs, numSiblings, 
         sh_school, date_grad, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_course, cschool_years, studType, date_apply) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
 
         //if execution fail
-        if (!$stmt->execute([$scholarData['fName'],
+        if (!$stmt->execute([$scholarId, 
+                            $scholarData['fName'],
                             $scholarData['mName'],
                             $scholarData['lName'],
                             $scholarData['suffix'],
@@ -246,18 +261,6 @@ class Scholar{
 
             exit();
         }
-        
-        // get the ID of the inserted employee record
-        // prepare the SQL statement using the database property
-        $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM scholar_info WHERE email=?");
-
-            //if execution fail
-        if (!$stmtScholarID->execute([$scholarData['email']])) {
-            header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
-            exit();
-        }
-        //fetch the employeeID
-        $scholarId = $stmtScholarID->fetchColumn();
 
         $arrayNames = array('IdPhoto', 'HSGrades', 'CGrades', 'BirthCertificate', 'Indigency', 'Form137/138', 'HighScoolAchievement');
 
