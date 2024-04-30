@@ -116,7 +116,7 @@
                                   <tbody>
                                     <tr>
                                       <td style="width:300px;">
-                                      <img src="../images/Management1.png" alt="Logo" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;">
+                                      <img src="https://ccmf.website/images/Management1.png" alt="Logo" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;">
                                       </td>
                                     </tr>
                                   </tbody>
