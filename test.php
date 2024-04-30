@@ -34,7 +34,7 @@
 <style>
     body {
         color: #1e3050;
-        font-family: 'Poppins', sans-serif;
+        font-family: ;
         background-image: url(../images/Background.png);
         background-position: center center;
         background-repeat: no-repeat;
@@ -118,9 +118,10 @@
 <body style="background-color: #A3FFD6;"> 
 <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                     <span style="font-size:15px;">
-                    <strong>Scholarship Management System</strong>
+                    <img src="images/Management1.png"
+                    style="width: 250px;">
                 </span>
             </a>
         </div>
@@ -128,8 +129,10 @@
     
     <div class="container center-align mt-3">
         <div class="card slim-card shadow border-0 mb-3 p-5">
-        <a href="index.php" class="text-decoration-none text-black mb-3"><i class="fa-solid fa-arrow-left me-2"></i>Back</a>
-            <h4 class="mb-3 fw-bold">Sign Up</h4>
+            
+        <a href="index.php" class="text-decoration-none text-black mb-4" style="font-size:18px;"><i class="fa-solid fa-arrow-left me-2" style="font-size: 21px;"></i>Back</a>
+
+            <h4 class="mb-5 fw-bold">Sign Up</h4>
             <?php if (!empty($errors)) : ?>
                 <div class="alert alert-danger" role="alert">
                     <?php foreach ($errors as $error) : ?>
@@ -141,21 +144,21 @@
                 <div class="row">
                     <div class="col-sm-6 mb-3">
                         <label for="fname" class="form-label fw-bold">First Name</label>
-                        <input type="text" class="form-control" id="fname" name="fname" autocomplete="off" required placeholder="Firstname">
+                        <input type="text" class="form-control" id="fname" name="fname" autocomplete="off" required placeholder="Ex: Juan Crisostomo">
                     </div>
 
                     <div class="col-sm-6 mb-3">
                         <label for="mname" class="form-label fw-bold">Middle Name</label>
-                        <input type="text" class="form-control" id="mname" name="mname" autocomplete="off" required placeholder="Middlename">
+                        <input type="text" class="form-control" id="mname" name="mname" autocomplete="off" required placeholder="Ex: Jose">
                     </div>
 
                     <div class="col-sm-6 mb-3">
                         <label for="lname" class="form-label fw-bold">Last Name</label>
-                        <input type="text" class="form-control" id="lname" name="lname" autocomplete="off" required placeholder="Lastname">
+                        <input type="text" class="form-control" id="lname" name="lname" autocomplete="off" required placeholder="Ex: Dela Cruz">
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label  class="form-label">Suffix:</label>
+                        <label  class="form-label fw-bold">Suffix:</label>
                         <select class="form-select form-select-sm" name="suffix" aria-label="Default select example">
                         <option value=""></option>
                         <option value="Jr.">Jr.</option>
@@ -166,16 +169,18 @@
                         </select>
                     </div>
 
-                    <div class="col-sm-6 mb-3">
+                    <div class="col-sm-12 mb-3">
                         <label for="email" class="form-label fw-bold">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" autocomplete="off" required aria-describedby="passwordHelpBlock" placeholder="name@email.com">
+                        <input type="email" class="form-control" id="email" name="email" autocomplete="off" required aria-describedby="passwordHelpBlock" placeholder="Ex: JuanDelaCruz21@gmail.com">
                         <div id="passwordHelpBlock" class="form-text">
                         Use your QCU email for this field.
                         </div>
                     </div>
 
                     <!-- Password field -->
+
                 <div class="col-sm-6 mb-3">
+                    
                     <label for="password" class="form-label fw-bold">Password</label>
                     <div class="input-group">
                         <input type="password" class="form-control  border-end-0" id="password" name="password" required placeholder="Password">
@@ -189,7 +194,8 @@
                     
                     </div>
                     <!-- Confirm Password field -->
-                    <div class="col-sm-6 mb-3">
+                    
+                    <div class="col-sm-6 mb-3 ">
                     <label for="confirmPassword" class="form-label fw-bold">Confirm Password</label>
                     <div class="input-group">
                         <input type="password" class="form-control border-end-0" id="confirmPassword" name="confirmPassword" required placeholder="Confirm Password">
@@ -209,9 +215,7 @@
                         Continue
                     </button>
                     <!-- Cancel button -->
-                    <button class="btn btn-outline-danger me-md-2 fw-bold order-md-1 order-2" type="button" onclick="location.href='index.php';">
-                        Cancel
-                    </button>   
+                     
                 </div>  
             </form>
         </div>
