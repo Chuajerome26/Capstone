@@ -254,7 +254,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                     <div class="col-md-2 mb-3">
                         <label  class="form-label">Suffix:(Optional)</label>
-                        <input type="text" name="suffix" class="form-control form-control-sm" value="<?php echo $i["suffix"]?>" placeholder="E.g. Jr. Sr. III...">
+                        <input type="text" name="suffix" class="form-control form-control-sm" value="<?php echo $i["suffix"]?>" placeholder="E.g. Jr. Sr. III..." readonly>
                     </div>
 
                     <div class="col-md-2 mb-3">

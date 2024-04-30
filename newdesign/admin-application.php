@@ -832,13 +832,13 @@ $appliData1 = $admin->getApplicants();
 <?php
 $appliData2 = $admin->getApplicants();
     foreach($appliData2 as $b){
-        $appliFiles = $admin->getApplicantsFiles($b['id']);
+        $appliFiles = $admin->getApplicantsFiles($b['scholar_id']);
 ?>
 <div class="modal fade" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Modal title</h5>
+        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Files</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -849,7 +849,6 @@ $appliData2 = $admin->getApplicants();
                     <th>Requirements</th>
                     <th>Details</th>
                     <th>First Evaluation</th>
-                    <th>Last Evaluation</th>
                     <th>Remarks</th>
                 </tr> 
             </thead>
@@ -862,14 +861,11 @@ $appliData2 = $admin->getApplicants();
                     <td><a href="../Scholar_files/<?php echo $files["file_name"]?>" target="_blank"><?php echo $files["file_name"]?></a></td>
                     <?php if($files["status"] == 0): ?>
                         <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" id="<?php echo $files['id'];?>" value="1" onchange="toggleInput(this, '<?php echo $files['id'];?>_remarks')"></td>
-                        <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" value="2" disabled></td>
                         <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" required></td>
                     <?php elseif($files["status"] == 1): ?>
                         <td align="center">Done</td>
-                        <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" value="2"></td>
                         <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
                     <?php else: ?>
-                        <td align="center">Done</td>
                         <td align="center">Done</td>
                         <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
                     <?php endif; ?>

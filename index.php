@@ -119,7 +119,7 @@ border-bottom-right-radius: .3rem;
                    <div class="col-sm-15 mb-3">
                     <label for="password" class="form-label fw-bold">Password</label>
                     <div class="input-group">
-                        <input type="password" class="form-control  border-end-0" id="password" name="password" required placeholder="Password">
+                        <input type="password" class="form-control  border-end-0" id="password" name="pass" required placeholder="Password">
                         <!-- Change the id of the eye icon to togglePassword -->
                         <span class="input-group-text bg-white border-start-0" id="togglePassword"><i class="fas fa-eye-slash"></i></span>
                     </div>
