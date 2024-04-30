@@ -8,6 +8,8 @@
 <link rel="icon" type="image/x-icon" href="<?php echo 'images/Management1.png'; ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Fontawesome -->
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <script>
        function updateTime() {
             var now = new Date();
@@ -113,14 +115,15 @@ border-bottom-right-radius: .3rem;
                       name="email" placeholder="name@example.com" />
                     
                   </div>
-
-                  <div data-mdb-input-init class="form-outline mb-4">
-                  <label class="form-label" for="form2Example22">Password</label>
-                    <input type="password" name="pass" id="form2Example22" class="form-control" />
-                    <div class="form-check mt-2">
-                    <input class="form-check-input" type="checkbox" id="showPasswordCheck" onchange="togglePasswordVisibility()">
-        <label class="form-check-label" for="showPasswordCheck">Show Password</label>
-    </div>
+  
+                   <div class="col-sm-15 mb-3">
+                    <label for="password" class="form-label fw-bold">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control  border-end-0" id="password" name="password" required placeholder="Password">
+                        <!-- Change the id of the eye icon to togglePassword -->
+                        <span class="input-group-text bg-white border-start-0" id="togglePassword"><i class="fas fa-eye-slash"></i></span>
+                    </div>
+                    
                     
                   </div>
 
@@ -302,5 +305,19 @@ border-bottom-right-radius: .3rem;
         } else {
             passwordInput.type = "password";
         }
+    }
+
+     togglePassword.addEventListener('click', function() {
+        togglePasswordVisibility(document.getElementById('password'), togglePassword);
+    });
+
+    toggleConfirmPassword.addEventListener('click', function() {
+        togglePasswordVisibility(document.getElementById('confirmPassword'), toggleConfirmPassword);
+    });
+
+    function togglePasswordVisibility(inputField, toggleButton) {
+        const type = inputField.getAttribute('type') === 'password' ? 'text' : 'password';
+        inputField.setAttribute('type', type);
+        toggleButton.innerHTML = type === 'password' ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
     }
 </script>

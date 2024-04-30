@@ -105,12 +105,20 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 
                     <hr class="sidebar-divider d-none d-md-block">
                     
-                    <a href="../newdesign/Stipend.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'productapproval') ? 'active-nav-item' : ''; ?>">
+                    <a href="../newdesign/Stipend Processing.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'productapproval') ? 'active-nav-item' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
                     <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
                      <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2z"/>
                     </svg>
-                        <span class="ms-2">Stipend</span>
+                        <span class="ms-2">Stipend Process</span>
+                    </a>
+
+                    <a href="../newdesign/Stipend Send.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'productapproval') ? 'active-nav-item' : ''; ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                    <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                     <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2z"/>
+                    </svg>
+                        <span class="ms-2">Stipend Send</span>
                     </a>
 
                     <a href="../newdesign/renewal.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'productapproval') ? 'active-nav-item' : ''; ?>">
