@@ -219,6 +219,7 @@
 </body>
 </html>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -232,43 +233,56 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function validateInput(input) {
-        let inputValue = input.value.trim();
-        let isValid = true;
+    let inputValue = input.value.trim();
+    let isValid = true;
 
-        if (input.hasAttribute("required") && inputValue === "") {
-            isValid = false;
+    // Replace numbers with an empty string
+    if ((input.getAttribute("id") === "fname" || input.getAttribute("id") === "lname" || input.getAttribute("id") === "mname")) {
+        if (/\d/.test(input.value)) {
+            Swal.fire({
+                icon: "error",
+                title: "Tanga mo!",
+                text: "Mali numbers tsaka bawal yobmot!"
+            });
         }
-
-        if ((input.getAttribute("id") === "fname" || input.getAttribute("id") === "lname" || input.getAttribute("id") === "mname") && !/^[a-zA-Z\s\-_.,!?@#$%^&*()]*$/.test(inputValue)) {
-            isValid = false;
-        }
-
-        if (input.getAttribute("id") === "email" && !/\S+@\S+\.\S+/.test(inputValue)) {
-            isValid = false;
-        }
-
-        if (input.getAttribute("id") === "password" && !validatePassword(inputValue)) {
-            isValid = false;
-        }
-
-        if (input.getAttribute("id") === "confirmPassword") {
-            const passwordInput = document.getElementById("password");
-            if (inputValue !== passwordInput.value.trim()) {
-                isValid = false;
-            }
-        }
-
-        if (!isValid) {
-            input.classList.remove("is-valid");
-            input.classList.add("is-invalid");
-        } else {
-            input.classList.remove("is-invalid");
-            input.classList.add("is-valid");
-        }
-
-        updateContinueButtonState();
-        return isValid;
+        input.value = input.value.replace(/\d/g, ""); // Replace numbers with an empty string
     }
+
+    if (input.hasAttribute("required") && inputValue === "") {
+        isValid = false;
+    }
+
+    if ((input.getAttribute("id") === "fname" || input.getAttribute("id") === "lname" || input.getAttribute("id") === "mname") && !/^[a-zA-Z\s\-_.,!?@#$%^&*()]*$/.test(inputValue)) {
+        isValid = false;
+    }
+
+    if (input.getAttribute("id") === "email" && !/\S+@\S+\.\S+/.test(inputValue)) {
+        isValid = false;
+    }
+
+    if (input.getAttribute("id") === "password" && !validatePassword(inputValue)) {
+        isValid = false;
+    }
+
+    if (input.getAttribute("id") === "confirmPassword") {
+        const passwordInput = document.getElementById("password");
+        if (inputValue !== passwordInput.value.trim()) {
+            isValid = false;
+        }
+    }
+
+    if (!isValid) {
+        input.classList.remove("is-valid");
+        input.classList.add("is-invalid");
+    } else {
+        input.classList.remove("is-invalid");
+        input.classList.add("is-valid");
+    }
+
+    updateContinueButtonState();
+    return isValid;
+}
+
 
     function updateContinueButtonState() {
         let allValid = true;

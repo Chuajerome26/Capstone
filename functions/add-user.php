@@ -35,9 +35,8 @@ if(isset($_POST['submit'])){
         $subject = "Email Verification";
         $message = "Click the following link to verify your email:\n\n";
         $message .= '<a href="http://ccmf.website/functions/verify_email.php?token='.$token.'">Verify Account</a>';
+        $database->sendEmail($email , $subject, $message);
+        header('Location: ../index.php?info=checkEmail');
+        exit();
     
-        if ($database->sendEmail($email , $subject, $message)) {
-            header('Location: ../index.php?info=checkEmail');
-            exit();
-        }
 }

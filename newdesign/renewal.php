@@ -73,14 +73,14 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $endPlus3 = date('Y-m-d', strtotime($end . ' +3 days'));
 
     //sending email to scholars who still has status = 0 even after the end of renewal period
-    if ($date >= $endPlus1 && $date < $endPlus2) {
+    if ($date >= $endPlus1) {
         foreach ($renewal_info as $status) {
             if ($status['renew_status'] == 0 && $status['nonCom_notif'] == 0) {
                 $database->sendEmail($status['Email'], "Urgent: Scholarship Renewal Has Ended. 1st Warning", $messageWarning1st);
                 $scholar->updateNonComNotif1($status['id']);
             }
         }
-    } elseif ($date >= $endPlus2 && $date < $endPlus3) {
+    } elseif ($date >= $endPlus2) {
         foreach ($renewal_info as $status) {
             if ($status['renew_status'] == 0 && $status['nonCom_notif'] == 1) {
                 $database->sendEmail($status['Email'], "Urgent: Scholarship Renewal Has Ended. 2nd Warning", $messageWarning2nd);

@@ -264,8 +264,23 @@ border-bottom-right-radius: .3rem;
         })
     }else if(successValue === "checkEmail"){
         Swal.fire({
-            icon:'error',
+            icon:'success',
             title:'Check Your Email!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }
+    else if(successValue === "successfullyVerified"){
+        Swal.fire({
+            icon:'success',
+            title:'Successfully Verify, Proceed to Login!',
             toast:true,
             position:'top-end',
             showConfirmButton: false,
