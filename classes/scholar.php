@@ -208,11 +208,34 @@ class Scholar{
         $sql = "INSERT INTO scholar_info 
         (scholar_id, f_name, m_name, l_name, suffix, gender, c_status, date_of_birth, b_place, height, weight, religion, mobile_number, email, present_address, 
         permanent_address, med_condition, fb_link, father_name, father_attain, father_occupation, mother_name, mother_attain, mother_occupation, guardian, emergency_contact, guardian_rs, numSiblings, 
-        sh_school, date_grad, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_course, cschool_years, studType, date_apply) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        sh_school, date_grad, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_course, cschool_years, studType, scholar_type, date_apply) 
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
+
+        // Define the scholar type based on studType and corresponding average
+        if ($scholarData['studType'] == 'srhigh') {
+            if (($shAve >= 95 && $shAve <= 100)) {
+                $scholar_type = 3;
+            } elseif (($shAve >= 90 && $shAve <= 94)) {
+                $scholar_type = 2;
+            } elseif (($shAve >= 85 && $shAve <= 89)) {
+                $scholar_type = 1;
+            } else {
+                $scholar_type = 0;
+            }
+        } elseif ($scholarData['studType'] == 'college') {
+            if (($cAve >= 1.0 && $cAve <= 1.5)) {
+                $scholar_type = 3;
+            } elseif (($cAve >= 1.4 && $cAve <= 1.9)) {
+                $scholar_type = 2;
+            } elseif (($cAve >= 2.0 && $cAve <= 2.25)) {
+                $scholar_type = 1;
+            } else {
+                $scholar_type = 0;
+            }
+        }
 
         //if execution fail
         if (!$stmt->execute([$scholarId, 
@@ -256,6 +279,7 @@ class Scholar{
                             $scholarData['cCourse'],
                             $scholarData['schoYear'],
                             $scholarData['studType'],
+                            $scholar_type,
                             $this->date])) {
             header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
 
@@ -364,7 +388,7 @@ class Scholar{
         // $this->database->sendEmail($scholarData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
 
         //if sucess uploading file, go to this 👇 page
-            header("Location: ../index.php?scholar=success");
+            header("Location: ../Pages-Applicant/index123.php?scholar=success");
             exit();
 
     }

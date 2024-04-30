@@ -624,7 +624,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 </div>
                 <div class="col-md-2 mb-3">
                     <label class="form-label">Educational Attainment:</label>
-                    <select name="fAttain"  id="fAttain" class="form-select form-select-sm" aria-label="Highest Educational Attainment" onchange="checkOtherOption('fAttain', 'FotherAttain', 'FotherAttain1')">
+                    <select name="fAttain"  class="form-select form-select-sm" aria-label="Highest Educational Attainment">
                         <option value="">Select One</option>
                         <option value="No Formal Education">No Formal Education</option>
                         <option value="Elementary Graduate">Elementary Graduate</option>
@@ -634,12 +634,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <option value="Bachelor's Degree">Bachelor's Degree</option>
                         <option value="Master's Degree">Master's Degree</option>
                         <option value="Doctorate Degree">Doctorate Degree</option>
-                        <option value="Other">Others</option>
                     </select>
-                    <div id="FotherAttain" style="display: none;">
-                        <input class="form-control form-control-sm mt-2" type="text" name="FotherAttain" id="FotherAttain1" placeholder="Other Condition">
-                    </div>
                 </div>
+
                 <div class="col-md-2 mb-3">
                     <label  class="form-label">Occupation:</label>
                     <input type="text" name="fOccupation" class="form-control form-control-sm" placeholder="Occupation">
@@ -663,7 +660,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 </div>
                 <div class="col-md-2 mb-3">
                     <label class="form-label">Educational Attainment:</label>
-                    <select name="mAttain"  id="mAttain" class="form-select form-select-sm" aria-label="Highest Educational Attainment" onchange="checkOtherOption('mAttain', 'MotherAttain', 'MotherAttain1')">
+                    <select name="mAttain" class="form-select form-select-sm" aria-label="Highest Educational Attainment">
                         <option value="">Select One</option>
                         <option value="No Formal Education">No Formal Education</option>
                         <option value="Elementary Graduate">Elementary Graduate</option>
@@ -673,10 +670,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <option value="Bachelor's Degree">Bachelor's Degree</option>
                         <option value="Master's Degree">Master's Degree</option>
                         <option value="Doctorate Degree">Doctorate Degree</option>
-                        <option value="Other">Others</option>
                     </select>
-                    <div id="MotherAttain" style="display: none;">
-                        <input class="form-control form-control-sm mt-2" type="text" name="MotherAttain" id="MotherAttain1" placeholder="Other Condition">
+                    <div style="display: none;">
+                        <input class="form-control form-control-sm mt-2" type="text" name="MotherAttain" placeholder="Other Condition">
                     </div>
                 </div>
                 <div class="col-md-2 mb-3">
@@ -714,7 +710,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
             <!-- Academic Info Tab -->
 
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Are you a high school graduate or college?</label>
+                    <label class="form-label">Are you a high school graduate, or are you currently enrolled as a college student?</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="highSchoolGrad" name="studentType" value="srhigh" onclick="showHighSchoolFields('highSchoolFields')">
                         <label class="form-check-label">Senior High School Graduate</label>
@@ -1169,14 +1165,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         document.getElementById('collegeFields').style.display = 'none';
         toggleRequiredFields('#highSchoolFields', true);
         toggleRequiredFields('#collegeFields', false);
-        document.getElementById('studType').value = 'Freshman';
+        document.getElementById('studType').value = 'srhigh';
     }
     function showCollegeFields() {
         document.getElementById('highSchoolFields').style.display = 'none';
         document.getElementById('collegeFields').style.display = 'block';
         toggleRequiredFields('#collegeFields', true);
         toggleRequiredFields('#highSchoolFields', false);
-        document.getElementById('studType').value = 'College';
+        document.getElementById('studType').value = 'college';
     }
     function toggleRequiredFields(selector, state) {
     $(selector).find('input[required], select[required], textarea[required]').each(function() {

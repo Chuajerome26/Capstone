@@ -357,8 +357,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         <ul class="list-group list-group-flush text-center">
             <li class="list-group-item">2x2 latest photo</li>
             <li class="list-group-item">Certified True Copy of Birth Certificate</li>
-            <li class="list-group-item">Certified True Copy of Form 137 or 138 / Grade Slip</li>
-            <li class="list-group-item">Latest Copy of Grades</li>
+            <li class="list-group-item">Certified True Copy of Form 137 or 138 / Grade Slip (For Sr. High School Graduates)</li>
+            <li class="list-group-item">Latest Copy of Grades (For College Enrolled Students)</li>
             <li class="list-group-item">Barangay Certification</li>
             <li class="list-group-item">Latest Income Tax Retur of Parents /Affidavit of Non-filing</li>
             <li class="list-group-item">Indigency</li>
