@@ -455,9 +455,6 @@ $appliData1 = $admin->getApplicants();
                                     <dt class="col-sm-6 ">Birth Place:</dt>
                                     <dd class="col-sm-6"><?php echo $a['b_place'];?></dd>
 
-                                    <dt class="col-sm-6 ">Citizenship:</dt>
-                                    <dd class="col-sm-6"><?php echo $a['citizenship'];?></dd>
-
                                     <dt class="col-sm-6 ">Religion:</dt>
                                     <dd class="col-sm-6"><?php echo $a['religion'];?></dd>
 
@@ -473,9 +470,6 @@ $appliData1 = $admin->getApplicants();
                                     
                                     <dt class="col-sm-6 ">Civil Status:</dt>
                                     <dd class="col-sm-6"><?php echo $a['c_status'];?></dd>
-
-                                    <dt class="col-sm-6 ">Age:</dt>
-                                    <dd class="col-sm-6"><?php echo $a['age'];?></dd>
                                 
                                     <dt class="col-sm-6 ">Height & Weight: </dt>
                                     <dd class="col-sm-6"><?php echo $a['height'];?> | <?php echo $a['weight'];?></dd>
@@ -504,42 +498,25 @@ $appliData1 = $admin->getApplicants();
                 <div class="row">
                     <div class="col-md-6 ">
                         <h6>Father Details</h6>
-                        <?php if($a['isDecF'] == "no"): ?>
+                
                         <dl class="row">
                             <dt class="col-sm-5 ">Name:</dt>
                             <dd class="col-sm-7"><?php echo $a["father_name"];?></dd>
 
-
                             <dt class="col-sm-5">Occupation:</dt>
                             <dd class="col-sm-7"><?php echo $a["father_occupation"];?></dd>
 
-                            <dt class="col-sm-5">Monthly Income:</dt>
-                            <dd class="col-sm-7"><?php echo $a["father_income"];?></dd>
+                            <dt class="col-sm-5">Educational Attainment:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_attain"];?></dd>
 
-                            <dt class="col-sm-5">Age:</dt>
-                            <dd class="col-sm-7"><?php echo $a["father_age"];?></dd>
-
+                        </dl>
                             
-                            <dt class="col-sm-5">Contact Number:</dt>
-                            <dd class="col-sm-7"><?php echo $a["father_contact"];?></dd>
-                        </dl>
-                        <?php else: ?>
-                            <dl class="row">
-                            <dt class="col-sm-5">Is your Father Deceased?</dt>
-                            <dd class="col-sm-7"><?php echo $a["isDecF"];?></dd>
-
-
-                            <dt class="col-sm-5">Reason:</dt>
-                            <dd class="col-sm-7"><?php echo $a["reasonF"];?></dd>
-
-                        </dl>
-                        <?php endif;?>
                     </div>
 
                     <div class="col-md-6">
                         <dl class="row">
                         <h6 >Mother Details</h6>
-                            <?php if($a['isDecM'] == "no"):?>
+    
                             <dl class="row">
                             <dt class="col-sm-5">Name:</dt>
                             <dd class="col-sm-7"><?php echo $a["mother_name"];?></dd>
@@ -548,27 +525,12 @@ $appliData1 = $admin->getApplicants();
                             <dt class="col-sm-5">Occupation:</dt>
                             <dd class="col-sm-7"><?php echo $a["mother_occupation"];?></dd>
 
-                            <dt class="col-sm-5">Monthly Income:</dt>
-                            <dd class="col-sm-7"><?php echo $a["mother_income"];?></dd>
-
-                            <dt class="col-sm-5">Age:</dt>
-                            <dd class="col-sm-7"><?php echo $a["mother_age"];?></dd>
-
-                            
-                            <dt class="col-sm-5">Contact Number:</dt>
-                            <dd class="col-sm-7"><?php echo $a["mother_contact"];?></dd>
-                            </dl>
-                            <?php else: ?>
-                            <dl class="row">
-                            <dt class="col-sm-5">Is your Mother Deceased?</dt>
-                            <dd class="col-sm-7"><?php echo $a["isDecM"];?></dd>
-
-
-                            <dt class="col-sm-5">Reason:</dt>
-                            <dd class="col-sm-7"><?php echo $a["reasonM"];?></dd>
+                            <dt class="col-sm-5">Educational Attainment:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_attain"];?></dd>
 
                             </dl>
-                            <?php endif;?>
+
+
                         </dl>
                         </div>
                 </div>
@@ -596,7 +558,7 @@ $appliData1 = $admin->getApplicants();
 
                     <div class="col-md-12 border mt-3 mb-3"></div>  
                     <div class="col-md-12" >
-                        <h6>Sibling Details</h6>
+                        <h6>Family Earner</h6>
                         <div class="table-responsive">
                         <table class="table p-0 w-100">
                             <thead>
@@ -649,7 +611,7 @@ $appliData1 = $admin->getApplicants();
                         </div>
 
                 <dl class="row ms-3">
-                <h6 class="mt-3">Elementary School</h6>
+                    <h6 class="mt-3">Elementary School</h6>
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["e_school"];?></dd>
 

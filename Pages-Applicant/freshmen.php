@@ -592,7 +592,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Estimated Monthly Income:<span class="text-danger">*</span></label>
-                            <input type="text" name="earnerIncome[]"  id="earnerIncome"class="form-control form-control-sm" placeholder="Monthyly Income" required>
+                            <input type="text" name="earnerIncome[]"  id="earnerIncome" class="form-control form-control-sm" placeholder="Monthyly Income" required>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Occupation:<span class="text-danger">*</span></label>
