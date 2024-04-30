@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script>
-        function updateTime() {
+       function updateTime() {
             var now = new Date();
             var dateTime = now.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
             document.getElementById('datetime').innerHTML = dateTime;
@@ -17,14 +17,11 @@
         }
         </script>
          <body onload="updateTime()">
-            <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-            <div class="mx-auto text-center" style="width: fit-content;" id="datetime">
-                <?php echo date('l, F j, Y, h:i:s A');?>
-            </div>
-            </div>
+         <header>
+        <nav style="background-color: #0EDC8D; color: #fff; padding: 3px; text-align: center;">
+            <div id="datetime" style="font-size: 19px; font-weight: bold; color: black; background-color: #0EDC8D; padding: 3px;"></div>
         </nav>
+    </header>
 <style>
     	.gradient-custom-2 {
 /* fallback for old browsers */
@@ -86,7 +83,7 @@ border-bottom-right-radius: .3rem;
 
     </style>
 </head>
-<body style="background-color: #A3FFD6;">
+<body style="background-color: #0EDC8D;">
 
   <div class="container py-0 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
