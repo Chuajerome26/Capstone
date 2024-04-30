@@ -9,23 +9,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <script>
-    function updateTime() {
-        var now = new Date();
-        var dateTime = now.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-        document.getElementById('datetime').innerHTML = dateTime;
-        setTimeout(updateTime, 1000); // Update every second
-    }
-</script>
-
-<body onload="updateTime()">
-<header>
-    <nav style="background-color: #A3FFD6; color: #A3FFD6; padding: 3px; text-align: center;">
+       function updateTime() {
+            var now = new Date();
+            var dateTime = now.toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+            document.getElementById('datetime').innerHTML = dateTime;
+            setTimeout(updateTime, 1000); // Update every second
+        }
+        </script>
+         <body onload="updateTime()">
+         <header>
+        <nav style="background-color: #A3FFD6; color: #fff; padding: 3px; text-align: center;">
         <div id="datetime" style="font-family: 'Times New Roman', Times, serif; font-size: 22px; font-weight: bold; color: black; background-color: #A3FFD6; padding: 3px;"></div>
-    </nav>
-</header>
-</body>
-
-
+        </nav>
+    </header>
 <style>
     	.gradient-custom-2 {
 /* fallback for old browsers */
