@@ -8,7 +8,6 @@
 <link rel="icon" type="image/x-icon" href="<?php echo 'images/Management1.png'; ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 <!-- Fontawesome -->
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -30,123 +29,7 @@
         </nav>
     </header>
 
-<style
-
-type="text/css">
-    	
-.accordion-style .card {
-    background:  #0EDC8D;
-    box-shadow: none;
-    margin-bottom: 15px;
-    margin-top: 0 !important;
-    border: black;
-}
-
-.accordion-style .card:last-child {
-    margin-bottom: 0;
-}
-
-.accordion-style .card-header {
-    border: 0;
-    background: none;
-    padding: 5px;
-    border-bottom: none;
-}
-
-.accordion-style .btn-link {
-    color:  black;
-    position: relative;
-    display: block;
-    width: 100%;
-    text-align: left;
-    white-space: normal;
-    box-shadow: none;
-    padding: 15px 55px;
-    text-decoration: none;
-}
-
-.mx-auto {
-    margin-right: auto !important;
-    margin-left: auto !important;
-}
-.rounded {
-    border-radius: 0.25rem !important;
-}
-
-.accordion-style .btn-link:hover {
-    text-decoration: none;
-}
-.accordion-style .btn-link.collapsed {
-    color: black;
-}
-
-.accordion-style .btn-link.collapsed:after {
-    content: "+";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    font-size: 1rem;
-    color:  #0EDC8D;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(-50%);
-    box-shadow:  #0EDC8D;
-}
-
-.accordion-style .btn-link:after {
-    content: "-";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    font-size: 1rem;
-    color:   #0EDC8D;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(-50%);
-    box-shadow: 8px 8px 30px 0 rgba(0, 0, 0, 0.12);
-}
-
-.accordion-style .card-body {
-    padding-top: 5px;
-    padding-left: 5rem;
-    padding-bottom: 5;
-    
-}
-
-.accordion-style .card-body:before {
-    position: absolute;
-    content: "";
-    border-style: dashed;
-    border-width: 0 0 0 1.2px;
-    border-color:  black;
-    left: 20px;
-    top: 0;
-    z-index: 1;
-    bottom: 0;
-}
-
-@media screen and (max-width: 767px) {
-    .accordion-style .btn-link {
-        padding: 15px 40px 15px 55px;
-    }
-}
-
-@media screen and (max-width: 575px) {
-    .accordion-style .btn-link {
-        padding: 15px 30px 15px 55px;
-    }
-}
-
+<style>
 
     	.gradient-custom-2 {
 /* fallback for old browsers */
@@ -284,41 +167,6 @@ border-bottom-right-radius: .3rem;
         </ul>
               </div>
             </div>
-            <div class="col-lg-12">
-    <div class="ps-lg-6 ps-xl-10 w-lg-90">
-        <div class="mb-4">
-            <div id="accordion" class="accordion-style">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Requirements List of Application</button>
-                        </h5>
-                    </div>
-
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordion">
-                        <div class="card-body position-relative">
-                            <ul class="list-group list-group-flush text-center">
-                                <li class="list-group-item"><b>2x2 latest photo</b></li>
-                                <li class="list-group-item"><b>Certified True Copy of Birth Certificate</b></li>
-                                <li class="list-group-item"><b>Certified True Copy of Form 137 or 138 / Grade Slip</b></li>
-                                <li class="list-group-item"><b>Latest Copy of Grades</b></li>
-                                <li class="list-group-item"><b>Barangay Certification</b></li>
-                                <li class="list-group-item"><b>Latest Income Tax Return of Parents / Affidavit of Non-filing</b></li>
-                                <li class="list-group-item"><b>Indigency</b></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
           </div>
         </div>
       </div>
@@ -354,13 +202,10 @@ border-bottom-right-radius: .3rem;
 
 </body>
 
+</html>
 
 <?php include 'footer1.php'; ?>
 
-
-
-
-</html>
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
