@@ -1,11 +1,20 @@
 <?php
-function editInitialIntEmail($last_name, $convertedTime, $convertedTime1, $newDate1, $mode_interview, $data){
+function ApplySuccess($scholar_type, $scholarData){
 
-    return'<!doctype html>
+    $type = "";
+    if ($scholar_type == 3) {
+        $type = "Academic Rank 1 ";
+    } elseif ($scholar_type == 2) {
+        $type = "Academic Rank 2";
+    } elseif ($scholar_type == 1) {
+        $type = "Economic";
+    }
+
+    return '<!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     
     <head>
-      <title> Scholarship Management System </title>
+      <title> CCMF </title>
       <!--[if !mso]><!-->
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!--<![endif]-->
@@ -189,7 +198,7 @@ function editInitialIntEmail($last_name, $convertedTime, $convertedTime1, $newDa
                                 <tbody>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Dear '.$last_name.',</div>
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Dear '.$scholarData['f_name'].',</div>
                                     </td>
                                   </tr>
                                   <tr>
@@ -201,31 +210,14 @@ function editInitialIntEmail($last_name, $convertedTime, $convertedTime1, $newDa
                                   </tr>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">This message is to inform you that the initial interview schedule for the scholarship application is currently in edit. Below are the details that can be modified:</div>
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We are pleased to inform you that your scholarship application is now in process. Your Scholarship Type has been identified as '.$type.'.</div>
                                     </td>
                                   </tr>
                                   <tr>
-                                  <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
-                                    <ul>
-                                    <li><strong>Time:</strong> '.$convertedTime.' - '.$convertedTime1.'</li>
-                                    <li><strong>Date:</strong> '.$newDate1.'</li>
-                                    <li><strong>Mode of Interview:</strong> '.$mode_interview.'</li>
-                                    <li><strong>Information:</strong>'.$data.'</li>
-                                    </ul>
-                                    </div>
-                                  </td>
-                                </tr>
-                                  <tr>
-                                    <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Please make the necessary adjustments as needed and ensure that the updated information is accurately reflected.</div>
+                                    <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Thank you for your interest and participation. We will keep you updated on the progress of your application.</div>
                                     </td>
                                   </tr>
-                                  <tr>
-                                  <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Thank you for your attention to this matter.</div>
-                                  </td>
-                                </tr>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
                                       <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Best regards,</div>

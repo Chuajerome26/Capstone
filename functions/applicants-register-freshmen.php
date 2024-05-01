@@ -39,6 +39,7 @@ if(isset($_POST['submit'])){
         'permanent_address' => trim($permanent_address) ?? '',
 
         'mNumber' => trim($_POST["mNumber"]) ?? '',
+        'gNumber' => trim($_POST["gNumber"]) ?? '',
         'email' => trim($_POST["email"]) ?? '',
         'fb_link' => trim($_POST["fbLink"]) ?? '',
 

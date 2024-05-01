@@ -556,18 +556,22 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                     <br>
 
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label class="form-label">Active Contact Number: <span class="text-danger">*</span></label>
                         <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" required maxlength="11">
                     </div>
                     
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Active Gcash Number: <span class="text-danger">* </span><input type="checkbox" id="sameAsActive"> <label for="sameAsActive"><small class="text-muted">Same as active number</small></label>
+                        <input type="text" name="gNumber" id="gNumber" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" required maxlength="11">
+                    </div>
 
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label  class="form-label">Email Address: <span class="text-danger">*</span></label>
                         <input type="email" id="email" name="email" class="form-control form-control-sm" value="<?php echo $i["user"];?>" readonly>
                     </div>
                     <?php }?>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label  class="form-label">Facebook Link:</label>
                         <input type="text" name="fbLink" id="fbLink" class="form-control form-control-sm" placeholder="Link">
                     </div>
@@ -834,7 +838,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                 <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
                                     <img src="../images/no-images.jpg" id="image1" alt="Image">
                                 </div>
-                                <h6 class="text-center">Upload 2x2 Picture</h6>
+                                <h6 class="text-center">Upload 2x2 Picture (PNG)</h6>
                                 <div class="row justify-content-center">
                                     <div class="col-lg-5 col-12 mb-2 text-center">
                                         <label class="fileSelect btn btn-sm btn-primary col-12">
@@ -1043,6 +1047,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
         }
     });
+
+    //function for same as present address
+    document.getElementById('sameAsActive').addEventListener('change', function() {
+        if (this.checked) {
+            document.getElementById('gNumber').value = document.getElementById('mNumber').value;
+        } else {
+            document.getElementById('gNumber').value = '';
+        }
+    });
     // Function to update district and zip code
     function updateDistrictandZip() {
         var selectElement = document.getElementById("areaSelect");
@@ -1146,6 +1159,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
         // Apply the function to your input elements
         allowNumbersOnly('mNumber');
+        allowNumbersOnly('gNumber');
         allowNumbersOnly('shAve');
         allowNumbersOnly('cAve');
         allowNumbersOnly('height');
