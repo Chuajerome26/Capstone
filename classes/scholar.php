@@ -244,21 +244,21 @@ class Scholar{
 
         // Define the scholar type based on studType and corresponding average
         if ($scholarData['studType'] == 'Senior High Graduate') {
-            if ($scholarData['shAve'] >= 95 && $scholarData['shAve'] <= 100) {
+            if (($scholarData['shAve'] >= 95 && $scholarData['shAve'] <= 100) || ($scholarData['shAve'] >= 1.0 && $scholarData['shAve'] <= 1.5)) {
                 $scholar_type = 3;
-            } elseif ($scholarData['shAve'] >= 90 && $scholarData['shAve'] <= 94) {
+            } elseif (($scholarData['shAve'] >= 90 && $scholarData['shAve'] <= 94) || ($scholarData['shAve'] >= 1.6 && $scholarData['shAve'] <= 1.9)) {
                 $scholar_type = 2;
-            } elseif ($scholarData['shAve'] >= 85 && $scholarData['shAve'] <= 89) {
+            } elseif (($scholarData['shAve'] >= 85 && $scholarData['shAve'] <= 89) || ($scholarData['shAve'] >= 2.0 && $scholarData['shAve'] <= 2.25)) {
                 $scholar_type = 1;
             } else {
                 $scholar_type = 0;
             }
         } elseif ($scholarData['studType'] == 'College') {
-            if ($scholarData['cAve'] >= 1.0 && $scholarData['cAve'] <= 1.5) {
+            if (($scholarData['cAve'] >= 1.0 && $scholarData['cAve'] <= 1.5) || ($scholarData['cAve'] >= 95 && $scholarData['cAve'] <= 100)) {
                 $scholar_type = 3;
-            } elseif ($scholarData['cAve'] >= 1.6 && $scholarData['cAve'] <= 1.9) {
+            } elseif (($scholarData['cAve'] >= 1.6 && $scholarData['cAve'] <= 1.9) || ($scholarData['cAve'] >= 90 && $scholarData['cAve'] <= 94)) {
                 $scholar_type = 2;
-            } elseif ($scholarData['cAve'] >= 2.0 && $scholarData['cAve'] <= 2.25) {
+            } elseif (($scholarData['cAve'] >= 2.0 && $scholarData['cAve'] <= 2.25) || ($scholarData['cAve'] >= 85 && $scholarData['cAve'] <= 89)) {
                 $scholar_type = 1;
             } else {
                 $scholar_type = 0;
@@ -413,7 +413,7 @@ class Scholar{
         // $scholarPass = $this->generateEmployeeIDAndPassword($fullName);
         // $this->saveScholarIDAndPassword($scholarUser[0], $scholarPass[0], $scholarId,0, $scholarData['email']);
 
-        $messageApplied = ApplySuccess($scholar_type, $scholarData);
+        $messageApplied = ApplySuccess($scholar_type, $scholarData['fName']);
         // send email
         $this->database->sendEmail($scholarData['email'],"Scholarship Application Submitted Successfully!",$messageApplied);
 

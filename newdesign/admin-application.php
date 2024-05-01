@@ -389,11 +389,6 @@ foreach($applicantsss as $pogiko){
 $appliData1 = $admin->getApplicants();
     foreach($appliData1 as $a){
         $pic1=$admin->getApplicants2x2($a['scholar_id']);
-        if($a['studType'] == 'srhigh'){
-            $text = 'Senior High';
-        }else{
-            $text = 'College';
-        }
 ?>
 <div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -464,7 +459,7 @@ $appliData1 = $admin->getApplicants();
                                     <dd class="col-sm-6"><?php echo $a['religion'];?></dd>
 
                                     <dt class="col-sm-6 ">Student Type:</dt>
-                                    <dd class="col-sm-6"><?php echo $text;?></dd>
+                                    <dd class="col-sm-6"><?php echo $a['studType'];?></dd>
                                 </div>
                             </div>
 

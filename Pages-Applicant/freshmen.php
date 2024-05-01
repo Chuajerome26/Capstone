@@ -838,7 +838,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                 <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
                                     <img src="../images/no-images.jpg" id="image1" alt="Image">
                                 </div>
-                                <h6 class="text-center">Upload 2x2 Picture (PNG)</h6>
+                                <h6 class="text-center">Upload 2x2 Picture (JPG/PNG)</h6>
                                 <div class="row justify-content-center">
                                     <div class="col-lg-5 col-12 mb-2 text-center">
                                         <label class="fileSelect btn btn-sm btn-primary col-12">
