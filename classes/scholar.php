@@ -90,9 +90,10 @@ class Scholar{
             in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed1']) &&
             in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed1']) &&
             in_array($filesAndPicture['fileActualExt6'], $filesAndPicture['allowed1']) &&
+            in_array($filesAndPicture['fileActualExt7'], $filesAndPicture['allowed1']) &&
             (
-                ($studentType == 'srhigh' && isset($filesAndPicture['fileActualExt7'])) ? (
-                    in_array($filesAndPicture['fileActualExt7'], $filesAndPicture['allowed1'])
+                ($studentType == 'srhigh' && isset($filesAndPicture['fileActualExt8'])) ? (
+                    in_array($filesAndPicture['fileActualExt8'], $filesAndPicture['allowed1'])
                 ) : true
             )) {
 
@@ -103,8 +104,9 @@ class Scholar{
             $newFileName4 = explode('.',$filesAndPicture['fileName4']);
             $newFileName5 = explode('.',$filesAndPicture['fileName5']);
             $newFileName6 = explode('.',$filesAndPicture['fileName6']);
-            if (isset($filesAndPicture['fileName7'])) {
-                $newFileName7 = explode('.',$filesAndPicture['fileName7']);
+            $newFileName7 = explode('.',$filesAndPicture['fileName7']);
+            if (isset($filesAndPicture['fileName8'])) {
+                $newFileName8 = explode('.',$filesAndPicture['fileName8']);
             }
             
             //Copy of Grades
@@ -129,16 +131,19 @@ class Scholar{
 
             $fileNameNew6 = uniqid('', true) . "." . $filesAndPicture['fileActualExt6'];
             $fileDestination6 = '../Scholar_files/' . $fileNameNew6;
+
+            $fileNameNew7 = uniqid('', true) . "." . $filesAndPicture['fileActualExt7'];
+            $fileDestination7 = '../Scholar_files/' . $fileNameNew7;
             
-            if (isset($filesAndPicture['fileActualExt7'])) {
-                $fileNameNew7 = uniqid('', true) . "." . $filesAndPicture['fileActualExt7'];
-                $fileDestination7 = '../Scholar_files/' . $fileNameNew7;
+            if (isset($filesAndPicture['fileActualExt8'])) {
+                $fileNameNew8 = uniqid('', true) . "." . $filesAndPicture['fileActualExt8'];
+                $fileDestination8 = '../Scholar_files/' . $fileNameNew8;
             }
 
-            $arrayFiles = array($fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6);
+            $arrayFiles = array($fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6, $fileNameNew7);
 
-            if (isset($fileNameNew7)) {
-                array_push($arrayFiles, $fileNameNew7);
+            if (isset($fileNameNew8)) {
+                array_push($arrayFiles, $fileNameNew8);
             }
             
             // if (move_uploaded_file($fileTmpName, $fileDestination) ) {
@@ -157,9 +162,10 @@ class Scholar{
                 move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4) &&
                 move_uploaded_file($filesAndPicture['fileTmpName5'],$fileDestination5) &&
                 move_uploaded_file($filesAndPicture['fileTmpName6'],$fileDestination6) &&
+                move_uploaded_file($filesAndPicture['fileTmpName7'],$fileDestination7) &&
                 (
-                    ($studentType == 'srhigh' && isset($fileDestination7) && isset($filesAndPicture['fileTmpName7'])) ? (
-                        move_uploaded_file($filesAndPicture['fileTmpName7'],$fileDestination7)
+                    ($studentType == 'srhigh' && isset($fileDestination8) && isset($filesAndPicture['fileTmpName8'])) ? (
+                        move_uploaded_file($filesAndPicture['fileTmpName8'],$fileDestination8)
                     ) : true
                 ))  {
 
@@ -215,7 +221,7 @@ class Scholar{
         $stmt = $this->database->getConnection()->prepare($sql);
 
         // Define the scholar type based on studType and corresponding average
-        if ($scholarData['studType'] == 'srhigh') {
+        if ($scholarData['studType'] == 'Senior High Graduate') {
             if ($scholarData['shAve'] >= 95 && $scholarData['shAve'] <= 100) {
                 $scholar_type = 3;
             } elseif ($scholarData['shAve'] >= 90 && $scholarData['shAve'] <= 94) {
@@ -225,7 +231,7 @@ class Scholar{
             } else {
                 $scholar_type = 0;
             }
-        } elseif ($scholarData['studType'] == 'college') {
+        } elseif ($scholarData['studType'] == 'College') {
             if ($scholarData['cAve'] >= 1.0 && $scholarData['cAve'] <= 1.5) {
                 $scholar_type = 3;
             } elseif ($scholarData['cAve'] >= 1.4 && $scholarData['cAve'] <= 1.9) {
@@ -286,7 +292,7 @@ class Scholar{
             exit();
         }
 
-        $arrayNames = array('IdPhoto', 'HSGrades', 'CGrades', 'BirthCertificate', 'Indigency', 'Form137/138', 'HighScoolAchievement');
+        $arrayNames = array('IdPhoto', 'Form137/138', 'CollegeGrades', 'BirthCertificate', 'Indigency', 'BarangayCerrt', 'ITR', 'HighScoolAchievement');
 
 
                 for ($i = 0; $i < count($scholarFiles); $i++) {

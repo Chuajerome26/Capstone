@@ -110,22 +110,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     </ul>
                     <span class="navbar-text d-flex">
 
-
-                    <div class="dropdown">
-                    <button class="btn btn-transparents dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="img-profile rounded-circle me-2"  width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>"> <?php echo $info[0]['l_name']; ?>
-                    </button>
-                    <ul class="dropdown-menu">
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                      <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                      Logout
-                                  </a>
-                        
-                    </ul>
-                    </div>
-
-
-
+                    <img class="img-profile rounded-circle me-2"  width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>">
+                    <div class="p-2 ms-auto"> <a href="index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
 
                     </span>
                     </div>
@@ -229,19 +215,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 <dt class="col-sm-5">Place of Birth:</dt>
                                                 <dd class="col-sm-7"><?php echo $a['b_place'];?></dd>
 
-                                                <dt class="col-sm-5">Citizenship:</dt>
-                                                <dd class="col-sm-7"><?php echo $a['citizenship'];?></dd>
-
                                                 <dt class="col-sm-5">Religion:</dt>
                                                 <dd class="col-sm-7"><?php echo $a['religion'];?></dd>
-
-                                                <dt class="col-sm-5">Student Type:</dt>
-                                                <dd class="col-sm-7"><?php echo $a['studType'];?></dd>
 
                                                 <dt class="col-sm-5">Gender:</dt>
                                                 <dd class="col-sm-7"><?php echo $a['gender'];?></dd>
 
-                                                                              
+                                                <dt class="col-sm-5">Civil Status:</dt>
+                                                <dd class="col-sm-7"><?php echo $a['c_status'];?></dd>                              
                                                 </dl>
                                             </div>
 
@@ -249,12 +230,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                                             <div class="col-md-6">
                                                 <dl class="row">
-                                                <dt class="col-sm-5">Civil Status:</dt>
-                                                <dd class="col-sm-7"><?php echo $a['c_status'];?></dd>
-
-                                                <dt class="col-sm-5">Age:</dt>
-                                                <dd class="col-sm-7"><?php echo $a['age'];?></dd>
-
 
                                                 <dt class="col-sm-5">Height:</dt>
                                                 <dd class="col-sm-7"><?php echo $a['height'];?></dd>
@@ -264,6 +239,25 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                                                 <dt class="col-sm-5">Medical Condition:</dt>
                                                 <dd class="col-sm-7"><?php echo $a['med_condition'];?></dd>
+
+                                                <dt class="col-sm-5">Student Type:</dt>
+                                                <dd class="col-sm-7"><?php echo $a['studType'];?></dd>
+
+                                                <dt class="col-sm-5">Sscholarship Type:</dt>
+                                                <dd class="col-sm-7">
+                                                <?php
+                                                if ($a['scholar_type'] == 3) {
+                                                    $schoType = "Academic Rank 1";
+                                                } elseif ($a['scholar_type'] == 2) {
+                                                    $schoType = "Academic Rank 2";
+                                                } elseif ($a['scholar_type'] == 1) {
+                                                    $schoType = "Economic";
+                                                } else {
+                                                    $schoType = "Waiting for evaluation";
+                                                }
+                                                echo $schoType;
+                                                ?>
+                                                </dd>
                                                 
                                                 </dl>
                                             </div>
@@ -280,7 +274,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                                     <div class="row mt-2 mx-2" style="font-size: 14px;">
                                     <div class="col-md-6 ">
-                                    <?php if($a['isDecF'] == "no"): ?>
                                         <dl class="row">
                                             <p class="mb-3 fw-bold">Father Information</p> 
                                             <dt class="col-sm-5 ">Name:</dt>
@@ -288,66 +281,37 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                                             <dt class="col-sm-5">Occupation:</dt>
                                             <dd class="col-sm-7"><?php echo $a["father_occupation"];?></dd>
-
-                                            <dt class="col-sm-5">Monthly Income:</dt>
-                                            <dd class="col-sm-7"><?php echo $a["father_income"];?></dd>
-
-                                            <dt class="col-sm-5">Age:</dt>
-                                            <dd class="col-sm-7"><?php echo $a["father_age"];?></dd>
-
                                             
-                                            <dt class="col-sm-5">Educational Contact:</dt>
-                                            <dd class="col-sm-7"><?php echo $a["father_contact"];?></dd>
+                                            <dt class="col-sm-5">Educational Attainment:</dt>
+                                            <dd class="col-sm-7"><?php echo $a["father_attain"];?></dd>
                                         </dl>
-                                        <?php else: ?>
-                                            <dl class="row">
-                                            <dt class="col-sm-5">Is your Father Deceased?</dt>
-                                            <dd class="col-sm-7"><?php echo $a["isDecF"];?></dd>
-
-
-                                            <dt class="col-sm-5">Reason:</dt>
-                                            <dd class="col-sm-7"><?php echo $a["reasonF"];?></dd>
-
-                                        </dl>
-                                        <?php endif;?>
                                     </div>
-
-
 
                                     <div class="col-md-6">
                                         <dl class="row">
                                         <p class="mb-3 fw-bold">Mother Information</p> 
-
-                                        <?php if($a['isDecM'] == "no"):?>
                                             <dl class="row">
                                             <dt class="col-sm-5">Name:</dt>
                                             <dd class="col-sm-7"><?php echo $a["mother_name"];?></dd>
 
-
                                             <dt class="col-sm-5">Occupation:</dt>
                                             <dd class="col-sm-7"><?php echo $a["mother_occupation"];?></dd>
 
-                                            <dt class="col-sm-5">Monthly Income:</dt>
-                                            <dd class="col-sm-7"><?php echo $a["mother_income"];?></dd>
-
-                                            <dt class="col-sm-5">Age:</dt>
-                                            <dd class="col-sm-7"><?php echo $a["mother_age"];?></dd>
-
-                                            
-                                            <dt class="col-sm-5">Contact Number:</dt>
-                                            <dd class="col-sm-7"><?php echo $a["mother_contact"];?></dd>
+                                            <dt class="col-sm-5">Educational Attainment:</dt>
+                                            <dd class="col-sm-7"><?php echo $a["mother_attain"];?></dd>
                                             </dl>
-                                            <?php else: ?>
+                                        </dl>
+                                        
+                                        </dl>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <dl class="row">
+                                        <p class="mb-3 fw-bold">Siblings</p> 
                                             <dl class="row">
-                                            <dt class="col-sm-5">Is your Mother Deceased?</dt>
-                                            <dd class="col-sm-7"><?php echo $a["isDecM"];?></dd>
-
-
-                                            <dt class="col-sm-5">Reason:</dt>
-                                            <dd class="col-sm-7"><?php echo $a["reasonM"];?></dd>
-
+                                            <dt class="col-sm-5">Number of Siblings:</dt>
+                                            <dd class="col-sm-7"><?php echo $a["numSiblings"];?></dd>
                                             </dl>
-                                            <?php endif;?>
                                         </dl>
                                         
                                         </dl>
@@ -377,48 +341,34 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                                         <dt class="col-sm-5">Relationship:</dt>
                                         <dd class="col-sm-7"><?php echo $a["guardian_rs"];?></dd>
-                                                    
+                                        
                                         </dl>
                                         
                                     </div>
                                         
-                                      
 
-
-
-                                    <h6 class="fw-bold mt-2">Siblings Details:</h6>
+                                    <h6 class="fw-bold mt-2">Income Earner in the Family</h6>
                                     <hr>
                                                         
                                         <dl class="row ms-3" style="font-size: 14px;">
                                             <?php 
-                                                        $sibling = $admin->getAllSibling($a['id']);
-                                                        foreach($sibling as $sb){
+                                                        $earner = $admin->getAllEarner($a['scholar_id']);
+                                                        foreach($earner as $er){
                                                     ?>
                                                 <dt class="col-sm-5 ">Name:</dt>
-                                                <dd class="col-sm-7"><?php echo $sb["name"];?></dd>
+                                                <dd class="col-sm-7"><?php echo $er["earner_name"];?></dd>
 
 
-                                                <dt class="col-sm-5">Age:</dt>
-                                                <dd class="col-sm-7"><?php echo $sb["age"];?></dd>
+                                                <dt class="col-sm-5">Income:</dt>
+                                                <dd class="col-sm-7"><?php echo $er["earner_income"];?></dd>
 
                                                 <dt class="col-sm-5">Occupation:</dt>
-                                                <dd class="col-sm-7"><?php echo $sb["occupation"];?></dd>
+                                                <dd class="col-sm-7"><?php echo $er["earner_occupation"];?></dd>
 
-                                                <dt class="col-sm-5">Civil Status:</dt>
-                                                <dd class="col-sm-7"><?php echo $sb["civil_status"];?></dd>
-
-
-                                                <dt class="col-sm-5">Religion:</dt>
-                                                <dd class="col-sm-7"><?php echo $sb["religion"];?></dd>
-
-                                                <dt class="col-sm-5">Educational Attained:</dt>
-                                                <dd class="col-sm-7 mb-4"><?php echo $sb["educational_attained"];?></dd>
-
+                                                <dt class="col-sm-5">Company:</dt>
+                                                <dd class="col-sm-7"><?php echo $er["earner_company"];?></dd>
                                                 <?php }?>                  
-                                            </dl> 
-
-
-
+                                            </dl>
 
                                 </div>
                             </div>
@@ -445,12 +395,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 </dt>
                                                 <dd class="col-sm-5">
                                                             <?php
-                                                                if($log['application_status'] == 0){
-                                                                    $remarks = '<span class="badge bg-primary">Evaluate</span>';
+                                                                if($a['application_status'] == 0){
+                                                                    $remarks = '<span class="badge bg-primary">For Evaluation</span>';
                                                                 }
-                                                                else if($log['application_status'] == 1){
+                                                                else if($a['application_status'] == 1){
                                                                     $remarks = '<span class="badge bg-warning">Initial Interview</span>';
-                                                                }else if($log['remapplication_statusarks'] == 2){
+                                                                }else if($a['remapplication_statusarks'] == 2){
                                                                     $remarks = '<span class="badge bg-info">Final Interview</span>';
                                                                 }
 
@@ -531,49 +481,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 
                         <div class="row mx-2 mt-2" style="font-size: 14px;">
-                        <div class="col-12 col-lg-3  d-none d-lg-block  border-0 border-end">
-                            <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy ">
-                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-1"><h6>Academic Information</h6></a>
-                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-2"><h6>Grade Information</h6></a>
-                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-3"><h6>Incoming Freshmen</h6></a>
-                            <a class="p-1 rounded text-decoration-none text-black" href="#simple-list-item-4"><h6>School Choice Information</h6></a>
-                           
-                            </div>
-                        </div>
                         <div class="col-12 col-lg-9 ">
                             <div data-bs-spy="scroll" data-bs-target="#simple-list-example" data-bs-offset="0" data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
-                            <h6 id="simple-list-item-1">Academic Information</h6>
+                            <h6>Academic Information</h6>
                             <hr>
-                            
-                            <dl class="row ms-3">
-                            <h6 class="mt-3">Elementary School</h6>
-                            <dt class="col-sm-5">School:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_school"];?></dd>
-
-
-                            <dt class="col-sm-5">Average:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_ave"];?></dd>
-
-                            <dt class="col-sm-5">Achievements:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_achievements"];?></dd>
-                        </dl>
-
-
-                        <dl class="row ms-3">
-                             <h6 >Junior High School</h6>
-                            <dt class="col-sm-5">School:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_school"];?></dd>
-
-
-                            <dt class="col-sm-5">Average:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_ave"];?></dd>
-
-                            <dt class="col-sm-5">Achievements:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_achievements"];?></dd>
-                        </dl>
-
                         
                         <dl class="row ms-3" >
+                            <?php if($a['studType'] == 'Senior High Graduate'):?>
                             <h6 >Senior High School</h6>
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_school"];?></dd>
@@ -584,6 +498,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                             <dt class="col-sm-5">Achievements:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_achievements"];?></dd>
+                            <?php else: endif;?>
                         </dl>
 
                         
@@ -593,7 +508,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["c_school"];?></dd>
 
-
                             <dt class="col-sm-5">Average:</dt>
                             <dd class="col-sm-7"><?php echo $a["c_ave"];?></dd>
 
@@ -602,80 +516,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                             <?php else: endif;?>
                         </dl>
 
-
-                            <h6 id="simple-list-item-2">Grade Information</h6>
-                            <hr>
-                        <dl class="row ms-3">
-                        <?php $gradeInfo = $admin->getAllGrade($a['id']);
-                                    foreach($gradeInfo as $gi){
-                                ?>
-                            <?php if($a['studType'] == "College"): ?>
-                            
-                            <dt class="col-sm-5">Subject:</dt>
-                            <dd class="col-sm-7"><?php echo $gi['subject']; ?></dd>
-
-                            <dt class="col-sm-5">Unit:</dt>
-                            <dd class="col-sm-7"><?php echo $gi['unit']; ?></dd>
-
-                            <dt class="col-sm-5">Grade:</dt>
-                            <dd class="col-sm-7 mb-4"><?php echo $gi['grade']; ?></dd>
-                            <?php else: ?>
-                                
-                            <dt class="col-sm-5">Subject:</dt>
-                            <dd class="col-sm-7"><?php echo $gi['subject']; ?></dd>
-
-                            <dt class="col-sm-5">Grade:</dt>
-                            <dd class="col-sm-7 mb-4"><?php echo $gi['grade']; ?></dd>
-                            <?php endif; }?>
-                        </dl>
-                        
-                            
-                            <h6 id="simple-list-item-3">Incoming Freshmen</h6>
-                            <hr>
-                            <dl class="row mt-3 ms-3" >
-                            <?php if($a['studType'] == "College"):?>
-                                <dt class="col-sm-6 ">Did you stop attending college?</dt>
-                                <dd class="col-sm-6 mb-3"><?php echo $a["stopAttend"];?></dd>
-                                <?php if($a['stopAttend'] == "yes"): ?>
-
-                                <dt class="col-sm-6 ">Reason:</dt>
-                                <dd class="col-sm-6 mb-3"><?php echo $a["reason_attend"];?></dd>
-
-                                <dt class="col-sm-6 ">Year Level:</dt>
-                                <dd class="col-sm-6 mb-3"><?php echo $a["yrlvl"];?></dd>
-
-                                <dt class="col-sm-6 ">Semester:</dt>
-                                <dd class="col-sm-6 mb-3"><?php echo $a["semester"];?></dd>
-                                <?php else: endif; ?>
-                            <?php else: endif;?>
-
-                            <dt class="col-sm-6 mt-3">Did you apply for / are you a recipient of another scholarship?</dt>
-                            <dd class="col-sm-6"><?php echo $a["other_scho"];?></dd>
-
-                            <?php if($a["other_scho"] == "yes"): ?>
-                                <dt class="col-sm-6 mt-3">Type:</dt>
-                                <dd class="col-sm-6  "><?php echo $a["other_scho_type"];?></dd>
-
-                                <dt class="col-sm-6 mt-3">Coverage</dt>
-                                <dd class="col-sm-6 "><?php echo $a["other_scho_coverage"];?></dd>
-
-                                <dt class="col-sm-6 mt-3">Status:</dt>
-                                <dd class="col-sm-6 "><?php echo $a["other_scho_status"];?></dd>
-                            <?php else: endif;?>
-
-                            <dt class="col-sm-6 mt-3">How did you learn about CCMFI Schoolarship?</dt>
-                            <dd class="col-sm-6 "><?php echo $a["q1"];?></dd>
-
-                            <dt class="col-sm-6 mt-3">Why are you applying for this scholarship></dt>
-                            <dd class="col-sm-6 "><?php echo $a["q2"];?></dd>
-
-                            <dt class="col-sm-6 mt-3">Will you pursue your studies event without this scholarship?</dt>
-                            <dd class="col-sm-6 "><?php echo $a["apply_scho"];?></dd>
-
-                            <dt class="col-sm-6 mt-3">Explain your Answer:</dt>
-                            <dd class="col-sm-6"><?php echo $a["apply_scho_explain"];?></dd>
-
-                            </dl> 
                             
                             </div>
                         </div>
@@ -708,39 +548,55 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                    
                     </div>
                                             
-                        <div class="row ">
-                            <?php 
-                                $applifiles = $admin->getApplicantsFiles($id);
-                                
-                                foreach($applifiles as $a) {
-                                    if (!empty($a['file_name'])) {
-                            ?>
-                            <div class="col-md-4 mb-3">
-                                <a class="text-decoration-none" href="../Scholar_files/<?= $a['file_name'] ?>" target="_blank">
-                                    <div class="card shadow-sm">
-                                        <div class="card-body">
-                                        <div class="hstack gap-3">
-                                        <div class=""> <img class="img-fluid" src="../images/folder-removebg-preview.png" width="40" height="40"></div>
-                                        
-                                        <div class="">  
-                                        <div for="<?= $a['requirement_name'] ?>"><?= $a['requirement_name'] ?></div>
-                                            <small class="text-secondary"><?php echo $a['file_name'] ?></small>
-                                            
-                                        </div>
-                                        
-                                        </div>
+                    <div class="row">
+                        <?php 
+                            $applifiles = $admin->getApplicantsFiles($id);
 
-                                    
+                            foreach ($applifiles as $i) {
+                                if (!empty($i['file_name'])) {
+                                    if ($a['studType'] == "College" && $i['requirement_name'] != "Form137/138") {
+                                        // Display files for college students except "CollegeGrades"
+                                        ?>
+                                        <div class="col-md-4 mb-3">
+                                            <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
+                                                <div class="card shadow-sm">
+                                                    <div class="card-body">
+                                                        <div class="hstack gap-3">
+                                                            <div><img class="img-fluid" src="../images/PDF-logo.png" width="40" height="40"></div>
+                                                            <div>
+                                                                <div><?= $i['requirement_name']; ?></div>
+                                                                <small class="text-secondary"><?php echo $i['file_name']; ?></small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
+                                        <?php
+                                    } elseif ($a['studType'] == "Senior High Graduate" && $i['requirement_name'] != "CollegeGrades") {
+                                        // Display files for senior high graduates except "CollegeGrades"
+                                        ?>
+                                        <div class="col-md-4 mb-3">
+                                            <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
+                                                <div class="card shadow-sm">
+                                                    <div class="card-body">
+                                                        <div class="hstack gap-3">
+                                                            <div><img class="img-fluid" src="../images/PDF-logo.png" width="40" height="40"></div>
+                                                            <div>
+                                                                <div><?= $i['requirement_name']; ?></div>
+                                                                <small class="text-secondary"><?php echo $i['file_name']; ?></small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                                <?php 
-                                        }
+                                        <?php
                                     }
-                                ?>
-                            </div>
-
+                                }
+                            }
+                        ?>
+                    </div>
 
                             
                         </div>

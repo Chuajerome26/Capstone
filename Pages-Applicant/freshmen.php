@@ -764,7 +764,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     </div>
 
                     <div class="col-md-3 mb-3">
-                    <label  class="form-label">Upload Grade File:(PDF Only)<span class="text-danger">*</span></label>
+                    <label  class="form-label">Form 137/138:(PDF Only)<span class="text-danger">*</span></label>
                         <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog1" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer21')" required></label>
                         <div class="Preview1 " id="previewContainer21">
                         </div>
@@ -810,7 +810,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div>
 
                         <div class="col-md-3 mb-3">
-                        <label  class="form-label">Upload Grade File:(PDF Only)<span class="text-danger">*</span></label>
+                        <label  class="form-label">Upload Latest Grade File:(PDF Only)<span class="text-danger">*</span></label>
                             <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog2" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')" required></label>
                             <div class="Preview1 " id="previewContainer3">
                             </div>
@@ -847,15 +847,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-6 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Latest Copy of Grades</h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="cog" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer5')" required></label>
-                                <div class="Preview1 " id="previewContainer5">
-                                </div>
-                        </div> 
-                    </div> -->
-                    <div class="col-lg-4 col-12 mb-3">               
+
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Birth Certificate (PDF Only)<span class="text-danger">*</span></h6>
                                 <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="birth" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')" required></label>
@@ -864,7 +857,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div> 
                     </div>
 
-                     <div class="col-lg-4 col-12 mb-3">               
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Certificate of Indigency (PDF Only)<span class="text-danger">*</span></h6>
                                 <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="indigency" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')" required></label>
@@ -872,12 +865,21 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                 </div>
                         </div> 
                     </div>
-
-                    <div class="col-lg-4 col-12 mb-3">               
+                    
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
-                                <h6>Form 137/138 (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="form137" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer13')" required></label>
-                                <div class="Preview1 " id="previewContainer13">
+                                <h6>Barangay Certificate (PDF Only)<span class="text-danger">*</span></h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="brgy" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer17')" required></label>
+                                <div class="Preview1 " id="previewContainer17">
+                                </div>
+                        </div> 
+                    </div>
+
+                    <div class="col-lg-6 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Latest Income Tax Return / Affidavit of Non-Filing (PDF Only)<span class="text-danger">*</span></h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="Itr" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer18')" required></label>
+                                <div class="Preview1 " id="previewContainer18">
                                 </div>
                         </div> 
                     </div>
@@ -1165,14 +1167,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         document.getElementById('collegeFields').style.display = 'none';
         toggleRequiredFields('#highSchoolFields', true);
         toggleRequiredFields('#collegeFields', false);
-        document.getElementById('studType').value = 'srhigh';
+        document.getElementById('studType').value = 'Senior High Graduate';
     }
     function showCollegeFields() {
         document.getElementById('highSchoolFields').style.display = 'none';
         document.getElementById('collegeFields').style.display = 'block';
         toggleRequiredFields('#collegeFields', true);
         toggleRequiredFields('#highSchoolFields', false);
-        document.getElementById('studType').value = 'college';
+        document.getElementById('studType').value = 'College';
     }
     function toggleRequiredFields(selector, state) {
     $(selector).find('input[required], select[required], textarea[required]').each(function() {

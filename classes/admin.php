@@ -321,8 +321,8 @@ class Admin
         return $result;
 
     }
-    public function getAllSibling($scholar_id){
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_siblings WHERE scholar_id = ?");
+    public function getAllEarner($scholar_id){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_earner WHERE scholar_id = ?");
 
         if (!$stmt->execute([$scholar_id])) {
             header("Location: ../newdesign/admin-application.php?error=stmtfail");
@@ -334,6 +334,19 @@ class Admin
         return $result;
 
     }
+    // public function getAllSibling($scholar_id){
+    //     $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_siblings WHERE scholar_id = ?");
+
+    //     if (!$stmt->execute([$scholar_id])) {
+    //         header("Location: ../newdesign/admin-application.php?error=stmtfail");
+    //         exit();
+    //     }
+    //     //fetch the result
+    //     $result = $stmt->fetchAll();
+        
+    //     return $result;
+
+    // }
     public function getApplicants2x2($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_file WHERE scholar_id=? AND requirement_name = 'IdPhoto'");
 
