@@ -251,9 +251,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 } elseif ($a['scholar_type'] == 2) {
                                                     $schoType = "Academic Rank 2";
                                                 } elseif ($a['scholar_type'] == 1) {
-                                                    $schoType = "Economic";
-                                                } else {
-                                                    $schoType = "Waiting for evaluation";
+                                                    $schoType = "Economic Scholarship";
                                                 }
                                                 echo $schoType;
                                                 ?>
