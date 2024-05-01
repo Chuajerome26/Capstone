@@ -17,7 +17,7 @@ if(isset($_POST['submit'])){
     $remarks = $_POST['remarks'];
     $date =  date('Y-m-d');
 
-    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE scholar_id = :id');
     $stmt->execute(['id' => $id]);
     $user = $stmt->fetch();
 

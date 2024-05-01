@@ -408,7 +408,7 @@ class Admin
     }    
     public function getApplicantLoginById($id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM login 
-                                                        WHERE user_type = '0' AND scholar_id = ?");
+                                                        WHERE user_type = '0' AND id = ?");
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }
