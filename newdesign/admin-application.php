@@ -94,8 +94,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $applicantsData1 = $admin->getApplicants();
     foreach($applicantsData1 as $applicant) {
         $income = $applicant['father_income'] + $applicant['mother_income'];
-        $appliGrade = $admin->getGrade($applicant['id']);
-        $pic = $admin->getApplicants2x2($applicant['id']);
+        $appliGrade = $admin->getGrade($applicant['scholar_id']);
+        $pic = $admin->getApplicants2x2($applicant['scholar_id']);
         $prediction = $admin->predictAcceptanceOfApplicant($appliGrade[0]['average'], $income);
 
         if($prediction <= 100 && $prediction >= 75) {
@@ -115,7 +115,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $applicant["id"];?>">Details</button>
                     <form method="post" action="../functions/scholar-accept.php">
                         <button class="btn btn-sm btn-primary" type="submit" name="accept">Accept</button>
-                        <input type="hidden" name="acceptId" value="<?php echo $applicant['id']?>">
+                        <input type="hidden" name="acceptId" value="<?php echo $applicant['scholar_id']?>">
                     </form>
                 </div>
             </div>
@@ -193,16 +193,16 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                 <td><?php echo $remarks;?></td>
                                 <td class="text-center">
                                     <div class="d-flex gap-1">
-                                    <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>"><i class="fa-solid fa-circle-info"></i></button>
-                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>"><i class="fa-solid fa-file"></i></button>
+                                    <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>"><i class="fa-solid fa-circle-info"></i></button>
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>"><i class="fa-solid fa-file"></i></button>
                                  </div> 
                             </td>
                                 <td class="d-flex gap-1" style="white-space: nowrap;">
                                     <form method="post" action="../functions/scholar-accept.php">
-                                        <input class="btn btn-sm btn-primary " type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['id']?>">
+                                        <input class="btn btn-sm btn-primary " type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
                                     </form>
-                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["id"];?>">Decline</button>
-                                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#remarks<?php echo $s["id"];?>"><i class="fa-solid fa-comment text-white"></i></button>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["scholar_id"];?>">Decline</button>
+                                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#remarks<?php echo $s["scholar_id"];?>"><i class="fa-solid fa-comment text-white"></i></button>
 
                             </td>
                             </tr>
@@ -242,44 +242,22 @@ breakpoints: {
 </script>
     
 <!-- End of Main Content -->
-
-
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="admin-logout.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 <!-- Modal for Decline -->
 <?php
 $appliData = $admin->getApplicants();
 foreach($appliData as $z){
 ?>
-<div class="modal fade" id="declineModal<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="declineModal<?php echo $z["id"];?>" aria-hidden="true">
+<div class="modal fade" id="declineModal<?php echo $z["scholar_id"];?>" tabindex="-1" aria-labelledby="declineModal<?php echo $z["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog" style="max-width:8000px;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="declineModal<?php echo $z["id"];?>">Scholar Details</h5>
+        <h5 class="modal-title" id="declineModal<?php echo $z["scholar_id"];?>">Scholar Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form method="post" action="../functions/scholar-decline.php">
             <textarea rows="8" cols="50" placeholder="Remarks" name="remarks"></textarea>
-            <input type="hidden" name="declineId" value="<?php echo $z['id']?>">
+            <input type="hidden" name="declineId" value="<?php echo $z['scholar_id']?>">
       </div>
       <div class="modal-footer">
         <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
@@ -294,15 +272,15 @@ foreach($appliData as $z){
 <!-- Modal for Remarks -->
 <?php
 $applicantss = $admin->getApplicants();
-foreach($applicantss as $z) {
-    $id = $z["id"];
+foreach($applicantss as $z1) {
+    $id = $z["scholar_id"];
 ?>
 
-<div class="modal fade" id="remarks<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="remarksTitle<?php echo $z["id"];?>" aria-hidden="true">
+<div class="modal fade" id="remarks<?php echo $z1["scholar_id"];?>" tabindex="-1" aria-labelledby="remarksTitle<?php echo $z1["scholar_id"];?>" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="remarksTitle<?php echo $z["id"];?>">Remarks</h5>
+                <h5 class="modal-title" id="remarksTitle<?php echo $z1["scholar_id"];?>">Remarks</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -346,7 +324,7 @@ foreach($applicantss as $z) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z["id"];?>" onclick="modal(<?php echo $z['id']; ?>)">Give Remarks</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z1["scholar_id"];?>" onclick="modal(<?php echo $z['id']; ?>)">Give Remarks</button>
             </div>
         </div>
     </div>
@@ -360,11 +338,11 @@ $num = 1;
 foreach($applicantsss as $pogiko){
 ?>
 <!-- Modal for Remarks Save-->
-<div class="modal fade" id="remarksSend<?php echo $pogiko["id"];?>" tabindex="-1" aria-labelledby="remarksSend<?php echo $pogiko["id"];?>l" aria-hidden="true">
+<div class="modal fade" id="remarksSend<?php echo $pogiko["scholar_id"];?>" tabindex="-1" aria-labelledby="remarksSend<?php echo $pogiko["scholar_id"];?>l" aria-hidden="true">
   <div class="modal-dialog" style="max-width:600px;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="remarksSend<?php echo $pogiko["id"];?>">Applicant Details</h5>
+        <h5 class="modal-title" id="remarksSend<?php echo $pogiko["scholar_id"];?>">Applicant Details</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -395,11 +373,11 @@ $appliData1 = $admin->getApplicants();
             $text = 'College';
         }
 ?>
-<div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>" aria-hidden="true">
+<div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
+        <h5 class="modal-title" id="detailsModal<?php echo $a["scholar_id"];?>">Scholar Details</h5>
         <div id="editCancelBtn<?php echo $a['id']; ?>" style="margin-left:10px;">
             <button id="editButton" class="btn btn-sm btn-primary" onclick="replaceDetailsWithInputs('detailsContainer'+<?php echo $a['id']; ?>, 'footer'+<?php echo $a['id'];?>, 'editBtn<?php echo $a['id']; ?>')">Edit</button>
         </div>
@@ -715,11 +693,11 @@ $appliData2 = $admin->getApplicants();
     foreach($appliData2 as $b){
         $appliFiles = $admin->getApplicantsFiles($b['scholar_id']);
 ?>
-<div class="modal fade" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
+<div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Files</h5>
+        <h5 class="modal-title" id="filesModal<?php echo $b["scholar_id"];?>">Files</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -761,7 +739,7 @@ $appliData2 = $admin->getApplicants();
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="hidden" name="scholar_id" value="<?php echo $b['id'] ?>">
+        <input type="hidden" name="scholar_id" value="<?php echo $b['scholar_id'] ?>">
         <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
         </form>
       </div>

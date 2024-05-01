@@ -15,19 +15,19 @@ if(isset($_POST["accept"])){
     $currentDate1 = date('Y-m-d H:i:s');
     $currentDate = date('Y-m-d');
 
-    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE scholar_id = :id');
     $stmt->execute(['id' => $id]);
     $user = $stmt->fetch();
 
     $email = $user['email'];
-    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 1, application_status = 3 WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 1, application_status = 3 WHERE scholar_id = :id');
 
     if(!$stmt->execute(['id' => $id])){
         header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }
 
-    $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE user_id = :id');
+    $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE id = :id');
 
     if(!$stmt1->execute(['id' => $id])){
         header('Location: ../newdesign/admin-application.php?status=error');
