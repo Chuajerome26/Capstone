@@ -5,9 +5,11 @@
 
 
 <title>Log In</title>
-<link rel="icon" type="image/x-icon" href="<?php echo 'images/forcert1.png'; ?>">
+<link rel="icon" type="image/x-icon" href="<?php echo 'images/Management1.png'; ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
 <!-- Fontawesome -->
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <script> src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -27,7 +29,9 @@
         <div id="datetime" style="font-family: 'Times New Roman', Times, serif; font-size: 22px; font-weight: bold; color: black; background-color: #A3FFD6; padding: 3px;"></div>
         </nav>
     </header>
+
 <style
+
 type="text/css">
     	
 .accordion-style .card {
@@ -231,7 +235,7 @@ border-bottom-right-radius: .3rem;
                   <div data-mdb-input-init class="form-outline mb-4">
                   <label class="form-label" for="form2Example11">Username</label>
                     <input type="email" id="form2Example11" class="form-control"
-                      name="email" placeholder="Ex: JuanDelaCruz21@gmail.com.com" />
+                      name="email" placeholder="JuanDelaCruz@gmail.com" />
                     
                   </div>
   
@@ -314,6 +318,7 @@ border-bottom-right-radius: .3rem;
       </div>
     </div>
   </div>
+
           </div>
         </div>
       </div>
@@ -337,17 +342,11 @@ border-bottom-right-radius: .3rem;
                         <label class="fw-bold" for="forgotEmail">Email Address:</label>
                         <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
                     </div>
-                    <div class="float-right">
                     <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  </div>
-    
-
                 </form>
-               
             </div>
-            <div class="mb-3">
-                
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -355,6 +354,8 @@ border-bottom-right-radius: .3rem;
 
 </body>
 
+
+<?php include 'footer1.php'; ?>
 
 
 
