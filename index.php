@@ -5,7 +5,7 @@
 
 
 <title>Log In</title>
-<link rel="icon" type="image/x-icon" href="<?php echo 'images/forcert.png'; ?>">
+<link rel="icon" type="image/x-icon" href="<?php echo 'images/forcert1.png'; ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
