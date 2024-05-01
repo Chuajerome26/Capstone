@@ -32,7 +32,7 @@ class Admin
         }
     }
     public function checkIfApplicant($id){
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE id=? AND status=0");
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE scholar_id=? AND status=0");
 
          //if execution fail
         if (!$stmt->execute([$id])) {
@@ -53,19 +53,19 @@ class Admin
     }
     public function updateNotif1($id){
         // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE id =?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE scholar_id =?");
        //if execution fail
         $stmt->execute([1, $id]);
     }
     public function updateNotif2($id){
         // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE id =?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE scholar_id =?");
        //if execution fail
         $stmt->execute([2, $id]);
     }
     public function updateNotif0($id){
         // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE id =?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE scholar_id =?");
        //if execution fail
         $stmt->execute([0, $id]);
     }
@@ -408,19 +408,19 @@ class Admin
     }    
     public function getApplicantLoginById($id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM login 
-                                                        WHERE user_type = '0' AND id = ?");
+                                                        WHERE user_type = '0' AND scholar_id = ?");
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }
     public function getApplicantById($id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
-                                                        WHERE status = '0' AND id = ?");
+                                                        WHERE status = '0' AND scholar_id = ?");
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }
     public function getScholarById($id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
-                                                        WHERE status = '1' AND id = ?");
+                                                        WHERE status = '1' AND scholar_id = ?");
         $stmt->execute([$id]);
         return $stmt->fetchAll();
     }
@@ -428,7 +428,7 @@ class Admin
         
         // prepare the SQL statement using the database property
       $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info
-                                                   WHERE id=?");
+                                                   WHERE scholar_id=?");
 
        //if execution fail
       if (!$stmt->execute([$id])) {
@@ -492,7 +492,7 @@ class Admin
 
         
         // prepare the SQL statement using the database property
-      $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE status = 1 AND id=?");
+      $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE status = 1 AND scholar_id=?");
 
        //if execution fail
       if (!$stmt->execute([$id])) {
@@ -561,7 +561,7 @@ public function updateScholarFiles($id) {
 
 public function acceptScholar($id){
         // prepared statement
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET status = ? WHERE id = ?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET status = ? WHERE scholar_id = ?");
 
        //if execution fail
        if (!$stmt->execute([1,$id])) {

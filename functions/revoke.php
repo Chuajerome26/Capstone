@@ -15,12 +15,12 @@ if(isset($_POST['revoke'])){
 
     $scholar_id = $_POST['scholar_id'];
 
-    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE scholar_id = :id');
     $stmt->execute(['id' => $scholar_id]);
     $user = $stmt->fetch();
 
     $email = $user['email'];
-    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 6 WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 6 WHERE scholar_id = :id');
 
     if(!$stmt->execute(['id' => $scholar_id])){
         header('Location: ../newdesign/admin-scholar.php?status=error');

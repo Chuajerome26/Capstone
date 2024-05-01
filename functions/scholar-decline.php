@@ -15,13 +15,13 @@ if(isset($_POST['submit'])){
     $remarks = $_POST['remarks'];
     $currentDate1 = date('Y-m-d H:i:s');
 
-    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE scholar_id = :id');
     $stmt->execute(['id' => $id]);
     $user = $stmt->fetch();
 
     $email = $user['email'];
 
-    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 5 WHERE id = :id');
+    $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 5 WHERE scholar_id = :id');
 
     if(!$stmt->execute(['id' => $id])){
         header('Location: ../newdesign/admin-application.php?status=error');

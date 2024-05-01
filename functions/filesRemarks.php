@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 
     $user_id = $_SESSION['id'];
 
-    $arrayNames = array('IdPhoto', 'Grades', 'BirthCertificate', 'Indigency', 'Form137/138');
+    $arrayNames = array('IdPhoto', 'Form137/138', 'CollegeGrades', 'BirthCertificate', 'Indigency', 'BarangayCerrt', 'ITR', 'HighScoolAchievement');
     $remarks = array();
     // Iterate through each name and retrieve its value from $_POST
     foreach ($arrayNames as $name) {

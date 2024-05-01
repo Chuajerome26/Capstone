@@ -47,58 +47,8 @@
 </div>
 </section>
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-  $(document).ready(function(){
-    $('#createNewLink').click(function(){
-      $('#registrationModal').modal('show');
-    });
 
-    $('#registrationForm').submit(function(event) {
-      event.preventDefault();
-
-      var firstName = $('#firstName').val();
-      var middleName = $('#middleName').val();
-      var lastName = $('#lastName').val();
-
-      if (!isValidName(firstName)) {
-        $('#firstName').addClass('invalid-input').removeClass('valid-input');
-        alert("First name cannot contain numbers.");
-        return;
-      } else {
-        $('#firstName').addClass('valid-input').removeClass('invalid-input');
-      }
-
-      if (!isValidName(middleName)) {
-        $('#middleName').addClass('invalid-input').removeClass('valid-input');
-        alert("Middle name cannot contain numbers.");
-        return;
-      } else {
-        $('#middleName').addClass('valid-input').removeClass('invalid-input');
-      }
-
-      if (!isValidName(lastName)) {
-        $('#lastName').addClass('invalid-input').removeClass('valid-input');
-        alert("Last name cannot contain numbers.");
-        return;
-      } else {
-        $('#lastName').addClass('valid-input').removeClass('invalid-input');
-      }
-
-      // If all validations pass, you can submit the form
-      // Example: $('#registrationForm').submit();
-    });
-
-    function isValidName(name) {
-      return /^[^0-9]+$/.test(name);
-    }
-  });
-</script>
 
 </body>
 </html>
