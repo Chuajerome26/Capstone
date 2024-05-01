@@ -116,21 +116,25 @@
 
 
 <body style="background-color: #A3FFD6;"> 
-<nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="index.php">
-                    <span style="font-size:15px;">
-                    <img src="images/Management1.png"
-                    style="width: 250px;">
-                </span>
-            </a>
-        </div>
-    </nav>
+
     
     <div class="container center-align mt-3">
         <div class="card slim-card shadow border-0 mb-3 p-5">
+        <div class="col-auto">
+    <a href="index.php" class="text-decoration-none text-black" style="font-size:18px;">
+            <i class="fa-solid fa-arrow-left me-2" style="font-size: 21px;"></i>Back
+        </a>
+      
+    </div>
             
-        <a href="index.php" class="text-decoration-none text-black mb-4" style="font-size:18px;"><i class="fa-solid fa-arrow-left me-2" style="font-size: 21px;"></i>Back</a>
+        <div class="row align-items-center">
+   
+    <div class="col-md-4 mx-auto">
+    <img src="images/Management1.png" style="width: 250px;" class="mb-1">
+       
+    </div>
+</div>
+        
 
             <h4 class="mb-5 fw-bold">Sign Up</h4>
             <?php if (!empty($errors)) : ?>
