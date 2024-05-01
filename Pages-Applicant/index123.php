@@ -358,10 +358,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
             <li class="list-group-item">2x2 latest photo</li>
             <li class="list-group-item">Certified True Copy of Birth Certificate</li>
             <li class="list-group-item">Certified True Copy of Form 137 or 138 / Grade Slip (For Sr. High School Graduates)</li>
+            <li class="list-group-item">Certificate of Honor or Award (For Sr. High School Graduates)</li>
             <li class="list-group-item">Latest Copy of Grades (For College Enrolled Students)</li>
             <li class="list-group-item">Barangay Certification</li>
             <li class="list-group-item">Latest Income Tax Retur of Parents /Affidavit of Non-filing</li>
             <li class="list-group-item">Indigency</li>
+            <li class="list-group-item">General Weighted Average should be 85 and above for Senior High School Graduates<br>
+                                        And 2.25 and above for College Enrolled</li>
         </ul>
         <div class="card-footer bg-white py-3 text-center">
             <a data-toggle="modal" data-target="#applyModal" class="btn mt-3" style="background-color: #0EDC8D; color: #ffffff;">Apply Now</a>

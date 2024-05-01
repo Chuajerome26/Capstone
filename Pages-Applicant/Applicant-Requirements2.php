@@ -100,7 +100,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
               <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top mb-2">
                 <div class="container">
-                <img src="../assets1/images/logo/Logo2.png" alt="Logo" width="190" height="40" class="d-inline-block align-text-top">
+                <img src="../images/Management1.png" alt="Logo" width="190" height="40" class="d-inline-block align-text-top">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -110,7 +110,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     </ul>
                     <span class="navbar-text d-flex">
 
-                    <img class="img-profile rounded-circle me-2"  width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>">
+                    <img class="img-profile rounded-circle me-2"  width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>"><?php echo $info[0]['f_name']; ?>
                     <div class="p-2 ms-auto"> <a href="index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
 
                     </span>
@@ -243,7 +243,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 <dt class="col-sm-5">Student Type:</dt>
                                                 <dd class="col-sm-7"><?php echo $a['studType'];?></dd>
 
-                                                <dt class="col-sm-5">Sscholarship Type:</dt>
+                                                <dt class="col-sm-5">Scholarship Type:</dt>
                                                 <dd class="col-sm-7">
                                                 <?php
                                                 if ($a['scholar_type'] == 3) {
@@ -627,17 +627,34 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <form method="post" enctype="multipart/form-data" action="../functions/edit-applicant-info.php">
     <?php 
     $applifiles = $admin->getApplicantsFiles($id);
-    
-    foreach($applifiles as $a){
-  ?>
+
+    foreach($applifiles as $i) {
+        if ($a['studType'] == "Senior High Graduate" && $i['requirement_name'] != "CollegeGrades") {
+            // Display files for senior high graduates except "CollegeGrades"
+            ?>
             <div class="form-group">
-            <label for="<?= $a['requirement_name'] ?>"><?= $a['requirement_name'] ?></label>
-            <?php if (!empty($a['file_name'])) { ?>
-                <a href="../Scholar_files/<?= $a['file_name'] ?>" target="_blank"><?= $a['file_name'] ?></a>
-            <?php } ?>
-            <input class="form-control" type="file" id="<?= $a['requirement_name'] ?>" name="<?= $a['requirement_name'] ?>" accept=".pdf">
-        </div>
-    <?php } ?>
+                <label for="<?= $i['requirement_name'] ?>"><?= $i['requirement_name'] ?></label>
+                <?php if (!empty($i['file_name'])) { ?>
+                    <a href="../Scholar_files/<?= $i['file_name'] ?>" target="_blank"><?= $i['file_name'] ?></a>
+                <?php } ?>
+                <input class="form-control" type="file" id="<?= $i['requirement_name'] ?>" name="<?= $i['requirement_name'] ?>" accept=".pdf">
+            </div>
+            <?php
+        } elseif ($a['studType'] == "College" && $i['requirement_name'] != "Form137/138") {
+            // Display files for college students except "Form137/138"
+            ?>
+            <div class="form-group">
+                <label for="<?= $i['requirement_name'] ?>"><?= $i['requirement_name'] ?></label>
+                <?php if (!empty($i['file_name'])) { ?>
+                    <a href="../Scholar_files/<?= $i['file_name'] ?>" target="_blank"><?= $i['file_name'] ?></a>
+                <?php } ?>
+                <input class="form-control" type="file" id="<?= $i['requirement_name'] ?>" name="<?= $i['requirement_name'] ?>" accept=".pdf">
+            </div>
+            <?php
+        }
+    }
+    ?>
+
         
     
 

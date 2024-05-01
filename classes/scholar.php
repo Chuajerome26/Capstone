@@ -234,7 +234,7 @@ class Scholar{
         } elseif ($scholarData['studType'] == 'College') {
             if ($scholarData['cAve'] >= 1.0 && $scholarData['cAve'] <= 1.5) {
                 $scholar_type = 3;
-            } elseif ($scholarData['cAve'] >= 1.4 && $scholarData['cAve'] <= 1.9) {
+            } elseif ($scholarData['cAve'] >= 1.6 && $scholarData['cAve'] <= 1.9) {
                 $scholar_type = 2;
             } elseif ($scholarData['cAve'] >= 2.0 && $scholarData['cAve'] <= 2.25) {
                 $scholar_type = 1;
@@ -292,7 +292,7 @@ class Scholar{
             exit();
         }
 
-        $arrayNames = array('IdPhoto', 'Form137/138', 'CollegeGrades', 'BirthCertificate', 'Indigency', 'BarangayCerrt', 'ITR', 'HighScoolAchievement');
+        $arrayNames = array('IdPhoto', 'Form137/138', 'CollegeGrades', 'BirthCertificate', 'Indigency', 'BarangayCert', 'ITR', 'HighScoolAchievement');
 
 
                 for ($i = 0; $i < count($scholarFiles); $i++) {
@@ -304,7 +304,7 @@ class Scholar{
 
                     $stmt123->execute([$scholarId, $name, $fileName]);
                 }
-                var_dump($scholarData['earnerName']);
+                //var_dump($scholarData['earnerName']);
                 for ($i = 0; $i < count($scholarData['earnerName']); $i++) {
                     // Prepare an SQL statement
                     $stmt4 = $this->database->getConnection()->prepare("INSERT INTO scholar_earner (scholar_id, earner_name, earner_income, earner_occupation, earner_company) VALUES (?, ?, ?, ?, ?)");
@@ -390,13 +390,13 @@ class Scholar{
         // $scholarPass = $this->generateEmployeeIDAndPassword($fullName);
         // $this->saveScholarIDAndPassword($scholarUser[0], $scholarPass[0], $scholarId,0, $scholarData['email']);
 
-
+        //$messageApplied
         // send email
-        // $this->database->sendEmail($scholarData['email'],"Succesfully register","We are delighted to inform you that your registration in the 3G Clothing has been successful.");
+        //$this->database->sendEmail($scholarData['email'],"Scholarship Application Submitted Successfully!",$messageApplied);
 
         //if sucess uploading file, go to this 👇 page
-            // header("Location: ../Pages-Applicant/index123.php?scholar=success");
-            // exit();
+             header("Location: ../Pages-Applicant/index123.php?scholar=success");
+             exit();
 
     }
 
