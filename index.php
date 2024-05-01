@@ -190,11 +190,14 @@ border-bottom-right-radius: .3rem;
                         <label class="fw-bold" for="forgotEmail">Email Address:</label>
                         <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
                     </div>
+                    <div class="float-right">
                     <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="mb-4">
+               
             </div>
         </div>
     </div>
