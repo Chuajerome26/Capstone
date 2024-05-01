@@ -23,7 +23,7 @@ if(isset($_POST['submit'])){
     
     $hashedpwd = password_hash($password, PASSWORD_DEFAULT);
 
-    if($scholar->findByEmail($email)){
+    if($scholar->findByEmailLogin($email)){
         //return to employee register page
         header("Location: ../index.php?info=emailExist");
         exit();

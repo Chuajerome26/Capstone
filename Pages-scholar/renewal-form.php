@@ -1,9 +1,22 @@
-<?php 
+<?php
+session_start();
+
+if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
     require '../classes/admin.php';
     require '../classes/database.php';
 
     $database = new Database();
     $admin = new Admin($database);
+
+    $id = $_SESSION['id'];
+    $appliLogin = $admin->getApplicantLoginById($id);
+    $pic = $admin->getApplicants2x2($id);
+
+} else {
+    header("Location: ../index.php");
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -102,7 +115,7 @@
                                     <h6 class="display-7 text-center ms-2 mt-1 fw-bold"><span class="d-none d-lg-block">Scholarship Management System</span></h6>
                                 </a>
                             </div>
-                            <div class="p-2 ms-auto"> <a href="../index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
+                            <div class="p-2 ms-auto"> <a href="index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
                         </div>
 
 
@@ -219,32 +232,29 @@
                     <form id="ccmfForm" method="POST" action="../functions/applicants-register-freshmen.php" enctype="multipart/form-data">
                     <div class="row">
                     <!--- Personal Infomartion --->
-                    <div class="col-md-4 mb-3">
+                    <?php
+                    foreach($appliLogin as $i){
+                    ?>
+                    <h5 class="text-primary">We've automatically filled in some of the fields for you based on your login information.</h5>
+                    <div class="col-md-3 mb-3">
                         <label  class="form-label">First Name:<span class="text-danger">*</span></label>
-                        <input type="text" name="fName" id="fName" class="form-control form-control-sm" placeholder="First Name" required>
+                        <input type="text" name="fName" id="fName" class="form-control form-control-sm" value="<?php echo $i["fname"]?>" readonly>
                     </div>
 
 
                     <div class="col-md-3 mb-3">
                         <label  class="form-label">Middle Name:</label>
-                        <input type="text" name="mName" id="mName" class="form-control form-control-sm" placeholder="Optional">
+                        <input type="text" name="mName" id="mName" class="form-control form-control-sm" value="<?php echo $i["mname"]?>" readonly>
                     </div>
 
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label  class="form-label">Last Name:<span class="text-danger">*</span></label>
-                        <input type="text" name="lName" id="lName" class="form-control form-control-sm" placeholder="Last Name" required>
+                        <input type="text" name="lName" id="lName" class="form-control form-control-sm" value="<?php echo $i["lname"]?>" readonly>
                     </div>
 
-                    <div class="col-md-1 mb-3">
-                        <label  class="form-label">Suffix:</label>
-                        <select class="form-select form-select-sm" name="suffix" aria-label="Default select example">
-                        <option></option>
-                        <option value="Jr.">Jr.</option>
-                        <option value="Sr.">Sr.</option>
-                        <option value="II">II</option>
-                        <option value="III">III</option>
-                        <option value="IV">IV</option>
-                        </select>
+                    <div class="col-md-2 mb-3">
+                        <label  class="form-label">Suffix:(Optional)</label>
+                        <input type="text" name="suffix" class="form-control form-control-sm" value="<?php echo $i["suffix"]?>" placeholder="E.g. Jr. Sr. III..." readonly>
                     </div>
 
                     <div class="col-md-2 mb-3">
@@ -554,12 +564,9 @@
 
                     <div class="col-md-4 mb-3">
                         <label  class="form-label">Email Address: <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="email" class="form-control form-control-sm" placeholder="Example: sample@gmail.com" required>
-                        <div id="emailFeedback" class="invalid-feedback">
-                            Please enter a valid email address.
-                        </div>
+                        <input type="email" id="email" name="email" class="form-control form-control-sm" value="<?php echo $i["user"];?>" readonly>
                     </div>
-
+                    <?php }?>
                     <div class="col-md-4 mb-3">
                         <label  class="form-label">Facebook Link:</label>
                         <input type="text" name="fbLink" id="fbLink" class="form-control form-control-sm" placeholder="Link">
@@ -585,7 +592,7 @@
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Estimated Monthly Income:<span class="text-danger">*</span></label>
-                            <input type="text" name="earnerIncome[]"  id="earnerIncome"class="form-control form-control-sm" placeholder="Monthyly Income" required>
+                            <input type="text" name="earnerIncome[]"  id="earnerIncome" class="form-control form-control-sm" placeholder="Monthyly Income" required>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Occupation:<span class="text-danger">*</span></label>
@@ -617,7 +624,7 @@
                 </div>
                 <div class="col-md-2 mb-3">
                     <label class="form-label">Educational Attainment:</label>
-                    <select name="fAttain"  id="fAttain" class="form-select form-select-sm" aria-label="Highest Educational Attainment" onchange="checkOtherOption('fAttain', 'FotherAttain', 'FotherAttain1')">
+                    <select name="fAttain"  class="form-select form-select-sm" aria-label="Highest Educational Attainment">
                         <option value="">Select One</option>
                         <option value="No Formal Education">No Formal Education</option>
                         <option value="Elementary Graduate">Elementary Graduate</option>
@@ -627,12 +634,9 @@
                         <option value="Bachelor's Degree">Bachelor's Degree</option>
                         <option value="Master's Degree">Master's Degree</option>
                         <option value="Doctorate Degree">Doctorate Degree</option>
-                        <option value="Others">Others</option>
                     </select>
-                    <div id="FotherAttain" style="display: none;">
-                        <input class="form-control form-control-sm mt-2" type="text" name="FotherAttain" id="FotherAttain1" placeholder="Other Condition">
-                    </div>
                 </div>
+
                 <div class="col-md-2 mb-3">
                     <label  class="form-label">Occupation:</label>
                     <input type="text" name="fOccupation" class="form-control form-control-sm" placeholder="Occupation">
@@ -656,7 +660,7 @@
                 </div>
                 <div class="col-md-2 mb-3">
                     <label class="form-label">Educational Attainment:</label>
-                    <select name="mAttain"  id="mAttain" class="form-select form-select-sm" aria-label="Highest Educational Attainment" onchange="checkOtherOption('mAttain', 'MotherAttain', 'MotherAttain1')">
+                    <select name="mAttain" class="form-select form-select-sm" aria-label="Highest Educational Attainment">
                         <option value="">Select One</option>
                         <option value="No Formal Education">No Formal Education</option>
                         <option value="Elementary Graduate">Elementary Graduate</option>
@@ -666,10 +670,9 @@
                         <option value="Bachelor's Degree">Bachelor's Degree</option>
                         <option value="Master's Degree">Master's Degree</option>
                         <option value="Doctorate Degree">Doctorate Degree</option>
-                        <option value="Others">Others</option>
                     </select>
-                    <div id="MotherAttain" style="display: none;">
-                        <input class="form-control form-control-sm mt-2" type="text" name="MotherAttain" id="MotherAttain1" placeholder="Other Condition">
+                    <div style="display: none;">
+                        <input class="form-control form-control-sm mt-2" type="text" name="MotherAttain" placeholder="Other Condition">
                     </div>
                 </div>
                 <div class="col-md-2 mb-3">
@@ -707,7 +710,7 @@
             <!-- Academic Info Tab -->
 
                 <div class="col-md-6 mb-3">
-                    <label class="form-label">Are you a high school graduate or college?</label>
+                    <label class="form-label">Are you a high school graduate, or are you currently enrolled as a college student?</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="highSchoolGrad" name="studentType" value="srhigh" onclick="showHighSchoolFields('highSchoolFields')">
                         <label class="form-check-label">Senior High School Graduate</label>
@@ -761,7 +764,7 @@
                     </div>
 
                     <div class="col-md-3 mb-3">
-                    <label  class="form-label">Upload Grade File:(PDF Only)<span class="text-danger">*</span></label>
+                    <label  class="form-label">Form 137/138:(PDF Only)<span class="text-danger">*</span></label>
                         <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog1" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer21')" required></label>
                         <div class="Preview1 " id="previewContainer21">
                         </div>
@@ -807,7 +810,7 @@
                         </div>
 
                         <div class="col-md-3 mb-3">
-                        <label  class="form-label">Upload Grade File:(PDF Only)<span class="text-danger">*</span></label>
+                        <label  class="form-label">Upload Latest Grade File:(PDF Only)<span class="text-danger">*</span></label>
                             <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog2" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')" required></label>
                             <div class="Preview1 " id="previewContainer3">
                             </div>
@@ -845,7 +848,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-12 mb-3">               
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Birth Certificate (PDF Only)<span class="text-danger">*</span></h6>
                                 <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="birth" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')" required></label>
@@ -854,7 +857,7 @@
                         </div> 
                     </div>
 
-                     <div class="col-lg-4 col-12 mb-3">               
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Certificate of Indigency (PDF Only)<span class="text-danger">*</span></h6>
                                 <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="indigency" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')" required></label>
@@ -862,12 +865,21 @@
                                 </div>
                         </div> 
                     </div>
-
-                    <div class="col-lg-4 col-12 mb-3">               
+                    
+                    <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
-                                <h6>Form 137/138 (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="form137" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer13')" required></label>
-                                <div class="Preview1 " id="previewContainer13">
+                                <h6>Barangay Certificate (PDF Only)<span class="text-danger">*</span></h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="brgy" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer17')" required></label>
+                                <div class="Preview1 " id="previewContainer17">
+                                </div>
+                        </div> 
+                    </div>
+
+                    <div class="col-lg-6 col-12 mb-3">               
+                        <div class="fileUpload container">
+                                <h6>Latest Income Tax Return / Affidavit of Non-Filing (PDF Only)<span class="text-danger">*</span></h6>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="Itr" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer18')" required></label>
+                                <div class="Preview1 " id="previewContainer18">
                                 </div>
                         </div> 
                     </div>
@@ -1155,7 +1167,7 @@
         document.getElementById('collegeFields').style.display = 'none';
         toggleRequiredFields('#highSchoolFields', true);
         toggleRequiredFields('#collegeFields', false);
-        document.getElementById('studType').value = 'Freshman';
+        document.getElementById('studType').value = 'Senior High Graduate';
     }
     function showCollegeFields() {
         document.getElementById('highSchoolFields').style.display = 'none';

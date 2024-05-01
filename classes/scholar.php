@@ -30,6 +30,27 @@ class Scholar{
             return false;
         }
     }
+    public function findByEmailLogin($email){
+        // prepare the SQL statement using the database property
+      $stmt = $this->database->getConnection()->prepare("SELECT * FROM login WHERE user=?");
+
+       //if execution fail
+      if (!$stmt->execute([$email])) {
+          header("Location: ../Pages-scholar/form.php?scholar=emailExist");
+          exit();
+      }
+
+      //fetch the result
+      $result = $stmt->fetch();
+      
+        //if has result true, else return false
+      if ($result) {
+          return true;
+      } else {
+          return false;
+      }
+
+  }
     public function findByEmail($email){
           // prepare the SQL statement using the database property
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE email=?");

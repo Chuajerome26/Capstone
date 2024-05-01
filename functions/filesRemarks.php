@@ -77,9 +77,9 @@ if(isset($_POST['submit'])){
     $currentDate = date('Y-m-d');
     $currentDate1 = date('Y-m-d H:i:s');
     // Add 7 days to the current date
-    $newDate = date('Y-m-d', strtotime($currentDate . ' +7 days'));
+    $newDate = date('Y-m-d', strtotime($currentDate . ' +1 days'));
 
-    if($countCorrect[0]['count'] == 5){
+    if($countCorrect[0]['count'] >= 7){
         
         $sched = $admin->selectAndInsertSchedules($scholarData, $start_time, $end_time, $excluded_start, $excluded_end, $duration, $max10, $newDate);
         $date = $sched[0]['date'];
