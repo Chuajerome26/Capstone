@@ -367,11 +367,6 @@ foreach($applicantsss as $pogiko){
 $appliData1 = $admin->getApplicants();
     foreach($appliData1 as $a){
         $pic1=$admin->getApplicants2x2($a['id']);
-        if($a['studType'] == 'srhigh'){
-            $text = 'Senior High';
-        }else{
-            $text = 'College';
-        }
 ?>
 <div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -442,7 +437,7 @@ $appliData1 = $admin->getApplicants();
                                     <dd class="col-sm-6"><?php echo $a['religion'];?></dd>
 
                                     <dt class="col-sm-6 ">Student Type:</dt>
-                                    <dd class="col-sm-6"><?php echo $text;?></dd>
+                                    <dd class="col-sm-6"><?php echo $a['studType'];?></dd>
                                 </div>
                             </div>
 
@@ -587,7 +582,7 @@ $appliData1 = $admin->getApplicants();
             </div>
         </div>
 
-            <div class="col-md-12 mt-3">
+            <div class="col-md-6 mt-3">
                 <div class="card border shadow">
                 <div class="card-header">
                             <strong>Academic Information</strong>
@@ -598,20 +593,15 @@ $appliData1 = $admin->getApplicants();
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_school"];?></dd>
 
-                            <dt class="col-sm-5">Strand:</dt>
-                            <dd class="col-sm-7"><?php echo $a["sh_course"];?></dd>
 
                             <dt class="col-sm-5">Average:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_ave"];?></dd>
 
                             <dt class="col-sm-5">Achievements:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_achievements"];?></dd>
-
-                            <dt class="col-sm-5">Date Graduate:</dt>
-                            <dd class="col-sm-7"><?php echo $a["date_grad"];?></dd>
                         </dl>
                 
-                        <?php elseif($a['studType'] == "college"): ?>
+                        <?php elseif($a['studType'] == "College"): ?>
                         <dl class="row ms-3">
                             <h6 >College School</h6>
                             <dt class="col-sm-5">School:</dt>
@@ -627,11 +617,74 @@ $appliData1 = $admin->getApplicants();
                         <?php endif; ?>
                 </div>
 
+                    <div class="card-body">
+                    </div>
                 </div>
 
 
-                
-            <div class="col-md-12 mt-3">
+                <div class="col-md-6 mt-3">
+                <div class="card border shadow" style="min-height: 598px;">
+                <div class="card-header">
+                            <strong>Questions</strong>
+                        </div>
+
+                            <dl class="row mt-3 ms-3" >
+<?php if($a['studType'] == "College"):?>
+                                <dt class="col-sm-6 ">Did you stop attending college?</dt>
+                                <dd class="col-sm-6 mb-3"><?php echo $a["stopAttend"];?></dd>
+                                <?php if($a['stopAttend'] == "yes"): ?>
+
+                                <dt class="col-sm-6 ">Reason:</dt>
+                                <dd class="col-sm-6 mb-3"><?php echo $a["reason_attend"];?></dd>
+
+                                <dt class="col-sm-6 ">Year Level:</dt>
+                                <dd class="col-sm-6 mb-3"><?php echo $a["yrlvl"];?></dd>
+
+                                <dt class="col-sm-6 ">Semester:</dt>
+                                <dd class="col-sm-6 mb-3"><?php echo $a["semester"];?></dd>
+                                <?php else: endif; ?>
+                            <?php else: endif;?>
+                            
+
+                            <dt class="col-sm-12 ">Did you apply for / are you a recipient of another scholarship?:</dt>
+                            <dd class="col-sm-12 mb-3"><?php echo $a["other_scho"];?></dd>
+
+                            <?php if($a["other_scho"] == "yes"): ?>
+                                <dt class="col-sm-12 ">Type:</dt>
+                                <dd class="col-sm-12 mb-4 "><?php echo $a["other_scho_type"];?></dd>
+
+                                <dt class="col-sm-12 ">Coverage</dt>
+                                <dd class="col-sm-12 mb-4"><?php echo $a["other_scho_coverage"];?></dd>
+
+                                <dt class="col-sm-12 ">Status:</dt>
+                                <dd class="col-sm-12 mb-4"><?php echo $a["other_scho_status"];?></dd>
+                            <?php else: endif;?>
+
+                            <dt class="col-sm-12 ">How did you learn about CCMFI Schoolarship?</dt>
+                            <dd class="col-sm-12 mb-4"><?php echo $a["q1"];?></dd>
+
+                            <dt class="col-sm-12 ">Why are you applying for this scholarship</dt>
+                            <dd class="col-sm-12 mb-4"><?php echo $a["q2"];?></dd>
+
+                            <dt class="col-sm-12 ">Will you pursue your studies event without this scholarship?</dt>
+                            <dd class="col-sm-12 mb-4"><?php echo $a["apply_scho"];?></dd>
+
+                            <dt class="col-sm-12">Explain your Answer:</dt>
+                            <dd class="col-sm-12 mb-4"><?php echo $a["apply_scho_explain"];?></dd>
+            
+                            </dl> 
+
+
+
+
+
+            <div>
+            </div>
+    </div>
+
+    
+    </div>
+    <div class="col-md-12  ">
                 <div class="card border shadow">
                 <div class="card-header">
                             <strong>Grade Information</strong>
