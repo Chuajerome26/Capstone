@@ -231,7 +231,7 @@ border-bottom-right-radius: .3rem;
                   <div data-mdb-input-init class="form-outline mb-4">
                   <label class="form-label" for="form2Example11">Username</label>
                     <input type="email" id="form2Example11" class="form-control"
-                      name="email" placeholder="name@example.com" />
+                      name="email" placeholder="Ex: JuanDelaCruz21@gmail.com.com" />
                     
                   </div>
   
