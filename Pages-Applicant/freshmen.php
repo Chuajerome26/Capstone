@@ -236,7 +236,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     foreach($appliLogin as $i){
                     ?>
                     <h5 class="text-primary">We've automatically filled in some of the fields for you based on your login information.</h5>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label  class="form-label">First Name:<span class="text-danger">*</span></label>
                         <input type="text" name="fName" id="fName" class="form-control form-control-sm" value="<?php echo $i["fname"]?>" readonly>
                     </div>
@@ -257,7 +257,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <input type="text" name="suffix" class="form-control form-control-sm" value="<?php echo $i["suffix"]?>" placeholder="E.g. Jr. Sr. III..." readonly>
                     </div>
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label class="form-label">Gender: <span class="text-danger">*</span></label>
                         <select class="form-select form-select-sm" name="gender" id="genderSelect" aria-label="Default select example" onchange="checkOtherOption('genderSelect', 'otherOption', 'otherGenderInput')" required>
                             <option></option>
@@ -272,17 +272,17 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     </div>
                 
 
-                    <div class="col-md-2  mb-3">
+                    <div class="col-md-4  mb-3">
                         <label  class="form-label">Date of Birth: <span class="text-danger">*</span></label>
                         <input type="date" name="dofBirth" class="form-control form-control-sm" required>
                     </div>
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label  class="form-label">Place of Birth: <span class="text-danger">*</span></label>
                         <input type="text" name="bPlace" class="form-control form-control-sm" placeholder="City, Municipality" required>
                     </div>
                 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                     <label  class="form-label">Civil Status: <span class="text-danger">*</span></label>
                         <select class="form-select form-select-sm" name="cStatus" id="cStatus" aria-label="Default select example" onchange="checkOtherOption('cStatus', 'otherStatus', 'otherStatus1')" required>
                         <option value=""></option>
@@ -297,23 +297,23 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div>
                     </div>
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label  class="form-label">Religion: <span class="text-danger">*</span></label>
                         <input type="text" name="religion" id="religion" class="form-control form-control-sm" placeholder="Religion" required>
                     </div>
                     
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label  class="form-label">Height (in cm): <span class="text-danger">*</span></label>
                         <input type="text" name="height" id="height" class="form-control form-control-sm" placeholder="Height" required>
                     </div>
 
                     
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label  class="form-label">Weight (in kg): <span class="text-danger">*</span></label>
                         <input type="text" name="weight" id="weight" class="form-control form-control-sm" placeholder="Weight" required>
                     </div>
 
-                    <div class="col-md-5 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label class="form-label">Do you have Medical Conditions?</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="mCondition" value="yes" onclick="showOtherScholarshipField('inputeMedical')">
@@ -323,7 +323,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div>
                     </div>
                     <!--Lalabas lang to gar kapag nag yes-->
-                    <div class="col-md-2 mb-3" id="inputeMedical" style="display: none;">
+                    <div class="col-md-4 mb-3" id="inputeMedical" style="display: none;">
                         <label  class="form-label">Please specify <span class="text-secondary">(if applicable) </span>:</label>
                         <select class="form-select form-select-sm" name="pwd" id="pwd" aria-label="Default select example" onchange="checkOtherOption('pwd', 'otherMedical', 'otherMedical1')">
                         <option></option>
@@ -591,7 +591,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <div class="family-info-container">
                     <div class="row">
                         <div class="col-md-2 mb-3">
-                            <label class="form-label">Income Earner in the family:<span class="text-danger">*</span></label>
+                            <label class="form-label">Income Provider:<span class="text-danger">*</span></label>
                             <input type="text" name="earnerName[]" id="earnerName" class="form-control form-control-sm" placeholder="Full Name" required>
                         </div>
                         <div class="col-md-2 mb-3">
@@ -697,7 +697,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Relationship:<span class="text-danger">*</span></label>
-                    <input type="text" name="relationship" class="form-control form-control-sm" placeholder="Relationship" required>
+                    <input type="text" name="relationship" id="relationship" class="form-control form-control-sm" placeholder="Relationship" required>
                 </div>
                 <hr>
                 <div class="col-md-4 mb-3">
@@ -1130,7 +1130,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         function allowLettersOnly(inputId) {
             document.getElementById(inputId).addEventListener('input', function(e) {
                 // Replace any digit or dot with an empty string
-                this.value = this.value.replace(/[\d.]/g, '');
+                this.value = this.value.replace(/[^a-zA-Z.]/g, '');
             });
         }
 
@@ -1146,6 +1146,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         allowLettersOnly('motherMName');
         allowLettersOnly('motherLName');
         allowLettersOnly('guardianFname');
+        allowLettersOnly('relationship');
 
 
 
