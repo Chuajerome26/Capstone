@@ -5,7 +5,7 @@
 
 
 <title>Log In</title>
-<link rel="icon" type="image/x-icon" href="<?php echo 'images/Management1.png'; ?>">
+<link rel="icon" type="image/x-icon" href="<?php echo 'images/forcert.png'; ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Fontawesome -->
@@ -184,11 +184,17 @@ border-bottom-right-radius: .3rem;
                         <label class="fw-bold" for="forgotEmail">Email Address:</label>
                         <input type="email" id="forgotEmail" name="forgotEmail" class="form-control" required>
                     </div>
+                    <div class="float-right">
                     <button type="submit" name="submit" class="btn btn-primary">Reset Password</button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  </div>
+    
+
                 </form>
+               
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <div class="mb-3">
+                
             </div>
         </div>
     </div>
