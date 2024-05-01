@@ -114,12 +114,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             <td><?php echo $s["date_apply"];?></td>
                                             
                                             <td style="white-space: nowrap;">
-                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["id"];?>">Details</button>
-                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["id"];?>">Files</button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>">Details</button>
+                                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button>
                                             </td>
                                             <td>
                                                 <form method="post" action="../functions/revoke.php">
-                                                    <input type="hidden" name="scholar_id" value="<?php echo $s['id']; ?>"> 
+                                                    <input type="hidden" name="scholar_id" value="<?php echo $s['scholar_id']; ?>"> 
                                                     <button type="submit" name="revoke" class="btn btn-sm btn-danger">Revoke</button>
                                                 </form>
                                             </td>
@@ -260,21 +260,21 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 <?php
 $appliData1 = $admin->getScholars();
     foreach($appliData1 as $a){
-        $pic1=$admin->getApplicants2x2($a['id']);
+        $pic1=$admin->getApplicants2x2($a['scholar_id']);
 ?>
-<div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>" aria-hidden="true">
+<div class="modal fade" id="detailsModal<?php echo $a["scholar_id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Scholar Details</h5>
-        <div id="editCancelBtn<?php echo $a['id']; ?>" style="margin-left:10px;display:none;">
-            <button id="editButton" class="btn btn-sm btn-primary" onclick="replaceDetailsWithInputs('detailsContainer'+<?php echo $a['id']; ?>, 'footer'+<?php echo $a['id'];?>, 'editBtn<?php echo $a['id']; ?>')">Edit</button>
+        <h5 class="modal-title" id="detailsModal<?php echo $a["scholar_id"];?>">Scholar Details</h5>
+        <div id="editCancelBtn<?php echo $a['scholar_id']; ?>" style="margin-left:10px;display:none;">
+            <button id="editButton" class="btn btn-sm btn-primary" onclick="replaceDetailsWithInputs('detailsContainer'+<?php echo $a['scholar_id']; ?>, 'footer'+<?php echo $a['scholar_id'];?>, 'editBtn<?php echo $a['scholar_id']; ?>')">Edit</button>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form method="post" action="../functions/applicant-info-edit.php">
-        <div id="detailsContainer<?php echo $a['id']; ?>">
+        <div id="detailsContainer<?php echo $a['scholar_id']; ?>">
         
             <div class="row g-0 p-2">
 
@@ -327,9 +327,6 @@ $appliData1 = $admin->getScholars();
                                     <dt class="col-sm-6 ">Birth Place:</dt>
                                     <dd class="col-sm-6"><?php echo $a['b_place'];?></dd>
 
-                                    <dt class="col-sm-6 ">Citizenship:</dt>
-                                    <dd class="col-sm-6"><?php echo $a['citizenship'];?></dd>
-
                                     <dt class="col-sm-6 ">Religion:</dt>
                                     <dd class="col-sm-6"><?php echo $a['religion'];?></dd>
 
@@ -345,9 +342,6 @@ $appliData1 = $admin->getScholars();
                                     
                                     <dt class="col-sm-6 ">Civil Status:</dt>
                                     <dd class="col-sm-6"><?php echo $a['c_status'];?></dd>
-
-                                    <dt class="col-sm-6 ">Age:</dt>
-                                    <dd class="col-sm-6"><?php echo $a['age'];?></dd>
                                 
                                     <dt class="col-sm-6 ">Height & Weight: </dt>
                                     <dd class="col-sm-6"><?php echo $a['height'];?> | <?php echo $a['weight'];?></dd>
@@ -376,7 +370,6 @@ $appliData1 = $admin->getScholars();
                 <div class="row">
                     <div class="col-md-6 ">
                         <h6>Father Details</h6>
-                        <?php if($a['isDecF'] == "no"): ?>
                         <dl class="row">
                             <dt class="col-sm-5 ">Name:</dt>
                             <dd class="col-sm-7"><?php echo $a["father_name"];?></dd>
@@ -385,62 +378,27 @@ $appliData1 = $admin->getScholars();
                             <dt class="col-sm-5">Occupation:</dt>
                             <dd class="col-sm-7"><?php echo $a["father_occupation"];?></dd>
 
-                            <dt class="col-sm-5">Monthly Income:</dt>
-                            <dd class="col-sm-7"><?php echo $a["father_income"];?></dd>
+                            <dt class="col-sm-5">Educational Attainment:</dt>
+                            <dd class="col-sm-7"><?php echo $a["father_attain"];?></dd>
 
-                            <dt class="col-sm-5">Age:</dt>
-                            <dd class="col-sm-7"><?php echo $a["father_age"];?></dd>
-
-                            
-                            <dt class="col-sm-5">Contact Number:</dt>
-                            <dd class="col-sm-7"><?php echo $a["father_contact"];?></dd>
+                            <dt class="col-sm-5">Number of Siblings:</dt>
+                            <dd class="col-sm-7"><?php echo $a["numSiblings"];?></dd>
                         </dl>
-                        <?php else: ?>
-                            <dl class="row">
-                            <dt class="col-sm-5">Is your Father Deceased?</dt>
-                            <dd class="col-sm-7"><?php echo $a["isDecF"];?></dd>
-
-
-                            <dt class="col-sm-5">Reason:</dt>
-                            <dd class="col-sm-7"><?php echo $a["reasonF"];?></dd>
-
-                        </dl>
-                        <?php endif;?>
                     </div>
 
                     <div class="col-md-6">
                         <dl class="row">
                         <h6 >Mother Details</h6>
-                            <?php if($a['isDecM'] == "no"):?>
                             <dl class="row">
                             <dt class="col-sm-5">Name:</dt>
                             <dd class="col-sm-7"><?php echo $a["mother_name"];?></dd>
 
-
                             <dt class="col-sm-5">Occupation:</dt>
                             <dd class="col-sm-7"><?php echo $a["mother_occupation"];?></dd>
-
-                            <dt class="col-sm-5">Monthly Income:</dt>
-                            <dd class="col-sm-7"><?php echo $a["mother_income"];?></dd>
-
-                            <dt class="col-sm-5">Age:</dt>
-                            <dd class="col-sm-7"><?php echo $a["mother_age"];?></dd>
-
                             
-                            <dt class="col-sm-5">Contact Number:</dt>
-                            <dd class="col-sm-7"><?php echo $a["mother_contact"];?></dd>
+                            <dt class="col-sm-5">Educational Attainment:</dt>
+                            <dd class="col-sm-7"><?php echo $a["mother_attain"];?></dd>
                             </dl>
-                            <?php else: ?>
-                            <dl class="row">
-                            <dt class="col-sm-5">Is your Mother Deceased?</dt>
-                            <dd class="col-sm-7"><?php echo $a["isDecM"];?></dd>
-
-
-                            <dt class="col-sm-5">Reason:</dt>
-                            <dd class="col-sm-7"><?php echo $a["reasonM"];?></dd>
-
-                            </dl>
-                            <?php endif;?>
                         </dl>
                         </div>
                 </div>
@@ -468,40 +426,28 @@ $appliData1 = $admin->getScholars();
 
                     <div class="col-md-12 border mt-3 mb-3"></div>  
                     <div class="col-md-12" >
-                        <h6>Sibling Details</h6>
+                        <h6>Income Provider</h6>
                         <div class="table-responsive">
                         <table class="table p-0 w-100">
                             <thead>
                                 <tr>
                                 <th>Name</th>
-                                <th>Age</th>
+                                <th>Income</th>
                                 <th>Occupation</th>
-                                <th>Civil Status</th>
-                                <th>Religion</th>
-                                <th>Educational Attainment</th>
+                                <th>Company</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
-                                    $sibling = $admin->getAllSibling($a['id']);
-                                    $sC = count($sibling);
-                                    foreach($sibling as $sb){
-                                        if($sC != 0 && $sb['name'] != ''):
+                            <?php $gradeInfo = $admin->getAllEarner($a['scholar_id']);
+                                    foreach($gradeInfo as $gi){
                                 ?>
                                 <tr>
-                                    <td><?php echo $sb['name']; ?></th>
-                                    <td><?php echo $sb['age']; ?></td>
-                                    <td><?php echo $sb['occupation']; ?></td>
-                                    <td><?php echo $sb['civil_status']; ?></td>
-                                    <td><?php echo $sb['religion']; ?></td>
-                                    <td><?php echo $sb['educational_attained']; ?></td>
+                                <td><?php echo $gi['earner_name']; ?></th>
+                                <td><?php echo $gi['earner_income']; ?></td>
+                                <td><?php echo $gi['earner_occupation']; ?></td>
+                                <td><?php echo $gi['earner_company']; ?></td>
                                 </tr>
-                                <?php 
-                                    else:
-                                ?>
-                                    <td colspan="6"><div class="alert alert-primary" role="alert">No Siblings</div></td>
-                                <?php endif;
-                                } ?>
+                                <?php }?>
                                 </tr>
                                 
                                 </tr>
@@ -521,35 +467,10 @@ $appliData1 = $admin->getScholars();
                         </div>
 
                 <dl class="row ms-3">
-                <h6 class="mt-3">Elementary School</h6>
-                            <dt class="col-sm-5">School:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_school"];?></dd>
 
-
-                            <dt class="col-sm-5">Average:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_ave"];?></dd>
-
-                            <dt class="col-sm-5">Achievements:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_achievements"];?></dd>
-                        </dl>
-                
-
-                        <dl class="row ms-3">
-                <h6 >Junior High School</h6>
-                            <dt class="col-sm-5">School:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_school"];?></dd>
-
-
-                            <dt class="col-sm-5">Average:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_ave"];?></dd>
-
-                            <dt class="col-sm-5">Achievements:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_achievements"];?></dd>
-                        </dl>
-                
-
-                        <dl class="row ms-3" >
-                <h6 >Senior High School</h6>
+                    <dl class="row ms-3" >
+                        <?php if($a['studType'] == 'Senior High Graduate'):?>
+                    <h6 >Senior High School</h6>
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_school"];?></dd>
 
@@ -560,6 +481,7 @@ $appliData1 = $admin->getScholars();
                             <dt class="col-sm-5">Achievements:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_achievements"];?></dd>
                         </dl>
+                        <?php endif; ?>
                 
                     <?php if($a['studType'] == "College"): ?>
                         <dl class="row ms-3">
@@ -581,115 +503,21 @@ $appliData1 = $admin->getScholars();
                     </div>
                 </div>
 
-
-                <div class="col-md-6 mt-3">
-                <div class="card border shadow" style="min-height: 598px;">
-                <div class="card-header">
-                            <strong>Questions</strong>
-                        </div>
-
-                            <dl class="row mt-3 ms-3" >
-<?php if($a['studType'] == "College"):?>
-                                <dt class="col-sm-6 ">Did you stop attending college?</dt>
-                                <dd class="col-sm-6 mb-3"><?php echo $a["stopAttend"];?></dd>
-                                <?php if($a['stopAttend'] == "yes"): ?>
-
-                                <dt class="col-sm-6 ">Reason:</dt>
-                                <dd class="col-sm-6 mb-3"><?php echo $a["reason_attend"];?></dd>
-
-                                <dt class="col-sm-6 ">Year Level:</dt>
-                                <dd class="col-sm-6 mb-3"><?php echo $a["yrlvl"];?></dd>
-
-                                <dt class="col-sm-6 ">Semester:</dt>
-                                <dd class="col-sm-6 mb-3"><?php echo $a["semester"];?></dd>
-                                <?php else: endif; ?>
-                            <?php else: endif;?>
-                            
-
-                            <dt class="col-sm-12 ">Did you apply for / are you a recipient of another scholarship?:</dt>
-                            <dd class="col-sm-12 mb-3"><?php echo $a["other_scho"];?></dd>
-
-                            <?php if($a["other_scho"] == "yes"): ?>
-                                <dt class="col-sm-12 ">Type:</dt>
-                                <dd class="col-sm-12 mb-4 "><?php echo $a["other_scho_type"];?></dd>
-
-                                <dt class="col-sm-12 ">Coverage</dt>
-                                <dd class="col-sm-12 mb-4"><?php echo $a["other_scho_coverage"];?></dd>
-
-                                <dt class="col-sm-12 ">Status:</dt>
-                                <dd class="col-sm-12 mb-4"><?php echo $a["other_scho_status"];?></dd>
-                            <?php else: endif;?>
-
-                            <dt class="col-sm-12 ">How did you learn about CCMFI Schoolarship?</dt>
-                            <dd class="col-sm-12 mb-4"><?php echo $a["q1"];?></dd>
-
-                            <dt class="col-sm-12 ">Why are you applying for this scholarship</dt>
-                            <dd class="col-sm-12 mb-4"><?php echo $a["q2"];?></dd>
-
-                            <dt class="col-sm-12 ">Will you pursue your studies event without this scholarship?</dt>
-                            <dd class="col-sm-12 mb-4"><?php echo $a["apply_scho"];?></dd>
-
-                            <dt class="col-sm-12">Explain your Answer:</dt>
-                            <dd class="col-sm-12 mb-4"><?php echo $a["apply_scho_explain"];?></dd>
-            
-                            </dl> 
-
-
-
-
-
-            <div>
-            </div>
     </div>
 
     
     </div>
-    <div class="col-md-12  ">
-                <div class="card border shadow">
-                <div class="card-header">
-                            <strong>Grade Information</strong>
-                        </div>
-                        <div class="table-responsive">
-                <table class="table p-0 w-100">
-                            <thead>
-                                <tr>
-                                <th >Subject</th>
-                                <?php if($a['studType'] == "College"): ?>
-                                <th>Unit</th>
-                                <?php endif; ?>
-                                <th>Grade</th>
-                            
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $gradeInfo = $admin->getAllGrade($a['id']);
-                                    foreach($gradeInfo as $gi){
-                                ?>
-                                <tr>
-                                <td><?php echo $gi['subject']; ?></th>
-                                <?php if($a['studType'] == "College"): ?>
-                                <td><?php echo $gi['unit']; ?></td>
-                                <?php endif; ?>
-                                <td><?php echo $gi['grade']; ?></td>
-                                </tr>
-                                <?php }?>
-                                </tr>
-                            </tbody>
-                            </table>
-                                    </div>
-
-                </div>
-            </div>
+    
 
             <!--  -->
 
   </div>
 </div>
 </div>
-<div class="modal-footer" id="footer<?php echo $a['id'];?>">
+<div class="modal-footer" id="footer<?php echo $a['scholar_id'];?>">
 
-    <input type="hidden" name="scholar_id" value="<?php echo $a['id'];?>">
-    <button type="submit" class="btn btn-sm btn-success" name="submit" id="editBtn<?php echo $a['id']; ?>" style="display:none">Save</button>
+    <input type="hidden" name="scholar_id" value="<?php echo $a['scholar_id'];?>">
+    <button type="submit" class="btn btn-sm btn-success" name="submit" id="editBtn<?php echo $a['scholar_id']; ?>" style="display:none">Save</button>
 </div>
 
 </form>
@@ -708,13 +536,13 @@ $appliData1 = $admin->getScholars();
 <?php
 $appliData2 = $admin->getScholars();
     foreach($appliData2 as $b){
-        $appliFiles = $admin->getApplicantsFiles($b['id']);
+        $appliFiles = $admin->getApplicantsFiles($b['scholar_id']);
 ?>
-<div class="modal fade" id="filesModal<?php echo $b["id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["id"];?>" aria-hidden="true">
+<div class="modal fade" id="filesModal<?php echo $b["scholar_id"];?>" tabindex="-1" aria-labelledby="filesModal<?php echo $b["scholar_id"];?>" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="filesModal<?php echo $b["id"];?>">Scholar Files</h5>
+        <h5 class="modal-title" id="filesModal<?php echo $b["scholar_id"];?>">Scholar Files</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
