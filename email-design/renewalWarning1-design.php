@@ -202,10 +202,16 @@ function renewalWarning1Email(){
                                     <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">This is to remind you that the renewal period for your scholarship has ended, and we have not received your renewal confirmation yet. Please ensure to renew your scholarship as soon as possible to avoid any disruptions to your scholarship benefits.</div>
                                   </td>
                                 </tr>
+                                  <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
                                       <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Best regards,</div>
                                     </td>
                                   </tr>
+                                  <tr>
+                                  <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">The Development Team<br>ScholarPoint</div>
+                                  </td>
+                                </tr>
                                 </tbody>
                               </table>
                             </div>

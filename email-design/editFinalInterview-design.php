@@ -232,6 +232,11 @@ function editFinalIntEmail($last_name, $convertedTime, $convertedTime1, $newDate
                                     </td>
                                   </tr>
                                   <tr>
+                                  <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">The Development Team<br>ScholarPoint</div>
+                                  </td>
+                                </tr>
+                                  <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:0px;word-break:break-word;">
                                       <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;"></div>
                                     </td>
