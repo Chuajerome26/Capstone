@@ -12,7 +12,7 @@ class Scholar{
     }
     public function findById($id){
             // prepare the SQL statement using the database property
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE id=? AND status = 1");
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info WHERE scholar_id=? AND status = 1");
 
         //if execution fail
         if (!$stmt->execute([$id])) {
@@ -537,7 +537,7 @@ class Scholar{
     }    
     public function getScholars($id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_info 
-                                                        WHERE id = ? AND status = '1'");
+                                                        WHERE scholar_id = ? AND status = '1'");
         $stmt->execute([$id]);
         $scholars = $stmt->fetchAll();
         return $scholars;
