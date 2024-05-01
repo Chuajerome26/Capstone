@@ -1,5 +1,6 @@
 <?php
 include '../email-design/scholarlogin-design.php';//Sa email design to ya.
+include '../email-design/scholar-apply-design.php';
 class Scholar{
 
     private $database;
@@ -212,10 +213,10 @@ class Scholar{
 
         // prepare insert statement for employee table 38
         $sql = "INSERT INTO scholar_info 
-        (scholar_id, f_name, m_name, l_name, suffix, gender, c_status, date_of_birth, b_place, height, weight, religion, mobile_number, email, present_address, 
+        (scholar_id, f_name, m_name, l_name, suffix, gender, c_status, date_of_birth, b_place, height, weight, religion, mobile_number, gcash_number, email, present_address, 
         permanent_address, med_condition, fb_link, father_name, father_attain, father_occupation, mother_name, mother_attain, mother_occupation, guardian, emergency_contact, guardian_rs, numSiblings, 
         sh_school, date_grad, sh_ave, sh_achievements, sh_course, c_school, c_ave, c_course, cschool_years, studType, scholar_type, date_apply) 
-        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
 
             // prepared statement
         $stmt = $this->database->getConnection()->prepare($sql);
@@ -258,6 +259,7 @@ class Scholar{
 
                             $scholarData['religion'],
                             $scholarData['mNumber'],
+                            $scholarData['gNumber'],
                             $scholarData['email'],
                             $scholarData['present_address'],
                             $scholarData['permanent_address'],
@@ -390,9 +392,9 @@ class Scholar{
         // $scholarPass = $this->generateEmployeeIDAndPassword($fullName);
         // $this->saveScholarIDAndPassword($scholarUser[0], $scholarPass[0], $scholarId,0, $scholarData['email']);
 
-        //$messageApplied
+        $messageApplied = ApplySuccess($scholar_type, $scholarData);
         // send email
-        //$this->database->sendEmail($scholarData['email'],"Scholarship Application Submitted Successfully!",$messageApplied);
+        $this->database->sendEmail($scholarData['email'],"Scholarship Application Submitted Successfully!",$messageApplied);
 
         //if sucess uploading file, go to this 👇 page
              header("Location: ../Pages-Applicant/index123.php?scholar=success");
