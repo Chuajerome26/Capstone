@@ -121,8 +121,8 @@
     <div class="container center-align mt-3">
         <div class="card slim-card shadow border-0 mb-3 p-5">
         <div class="col-auto">
-    <a href="index.php" class="text-decoration-none text-black" style="font-size:18px;">
-            <i class="fa-solid fa-arrow-left me-2" style="font-size: 21px;"></i>Back
+    <a href="index.php" class="text-decoration-none text-black text-primary" style="font-size:18px;">
+            <i class="fa-solid  fa-arrow-left me-2 text-primary" style="font-size: 16px;"></i>Back
         </a>
       
     </div>
