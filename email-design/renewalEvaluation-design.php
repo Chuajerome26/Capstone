@@ -5,7 +5,7 @@ function renewalEvaluationEmail($file1_remarks, $file2_remarks, $getStatus1) {
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     
     <head>
-      <title> CCMF </title>
+      <title> Scholarship Management System </title>
       <!--[if !mso]><!-->
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <!--<![endif]-->
