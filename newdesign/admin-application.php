@@ -609,37 +609,9 @@ $appliData1 = $admin->getApplicants();
                 <div class="card-header">
                             <strong>Academic Information</strong>
                         </div>
-
-                <dl class="row ms-3">
-                    <h6 class="mt-3">Elementary School</h6>
-                            <dt class="col-sm-5">School:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_school"];?></dd>
-
-
-                            <dt class="col-sm-5">Average:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_ave"];?></dd>
-
-                            <dt class="col-sm-5">Achievements:</dt>
-                            <dd class="col-sm-7"><?php echo $a["e_achievements"];?></dd>
-                        </dl>
-                
-
-                        <dl class="row ms-3">
-                <h6 >Junior High School</h6>
-                            <dt class="col-sm-5">School:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_school"];?></dd>
-
-
-                            <dt class="col-sm-5">Average:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_ave"];?></dd>
-
-                            <dt class="col-sm-5">Achievements:</dt>
-                            <dd class="col-sm-7"><?php echo $a["jh_achievements"];?></dd>
-                        </dl>
-                
-
+                        <?php if($a['studType'] == "srhigh"): ?>
                         <dl class="row ms-3" >
-                <h6 >Senior High School</h6>
+                            <h6 >Senior High School</h6>
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_school"];?></dd>
 
@@ -651,9 +623,9 @@ $appliData1 = $admin->getApplicants();
                             <dd class="col-sm-7"><?php echo $a["sh_achievements"];?></dd>
                         </dl>
                 
-                    <?php if($a['studType'] == "College"): ?>
+                        <?php elseif($a['studType'] == "College"): ?>
                         <dl class="row ms-3">
-                <h6 >College School</h6>
+                            <h6 >College School</h6>
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["c_school"];?></dd>
 

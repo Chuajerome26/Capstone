@@ -217,89 +217,41 @@ border-bottom-right-radius: .3rem;
 
     if(successValue === "errorCredentials"){
         Swal.fire({
-            icon:'error',
-            title:'Wrong Credentials',
-            toast:true,
-            position:'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+            title: "Wrong Credentials!",
+            text: "Make sure you Input your Correct Username and Password",
+            icon: "error"
+        });
     }else if(successValue === "verifyEmail"){
         Swal.fire({
-            icon:'error',
-            title:'Verify Your Account!',
-            toast:true,
-            position:'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+            title: "Verify Your Account!",
+            text: "Check your Email for Verification",
+            icon: "error"
+        });
     }else if(successValue === "passDonotMatch"){
         Swal.fire({
-            icon:'error',
-            title:'Password Do not Match!',
-            toast:true,
-            position:'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+            title: "Password Do not Match!",
+            text: "Register Again!",
+            icon: "error"
+        });
     }else if(successValue === "emailExist"){
         Swal.fire({
-            icon:'error',
-            title:'Email Already Exist!',
-            toast:true,
-            position:'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+            title: "Email Already Exist!",
+            text: "Use another Email Address",
+            icon: "error"
+        });
     }else if(successValue === "checkEmail"){
         Swal.fire({
-            icon:'success',
-            title:'Check Your Email!',
-            toast:true,
-            position:'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+            title: "User Registration Succesfully!",
+            text: "A verification link has been sent to your Email Address",
+            icon: "success"
+        });
     }
     else if(successValue === "successfullyVerified"){
         Swal.fire({
-            icon:'success',
-            title:'Successfully Verify, Proceed to Login!',
-            toast:true,
-            position:'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        })
+            title: "User Verification Succesfully!",
+            text: "You can now Login and Apply for Scholarship",
+            icon: "success"
+        });
     }
 
     function togglePasswordVisibility() {
