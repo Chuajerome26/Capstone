@@ -57,12 +57,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 
 
         .nav-tabs .nav-link.active {
-            border-bottom: 3px solid #0d6efd;
+            border-bottom: 3px solid #0C0C0C;
             border-left: none;
             border-right: none;
             border-top: none;
             /* Keep only the border-bottom for the active tab */
-            background-color: transparent;
+            background-color: #E2DFD0;
             /* Remove the background color */
             color: black;
 
@@ -691,71 +691,78 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 
 <!-- Modal for Renewal History -->
 <?php
-        foreach($renewal_info as $i){
-            $scholar_id = $i["scholar_id"];
-            $ref = $i["reference_number"];
+foreach ($renewal_info as $i) {
+    $scholar_id = $i["scholar_id"];
+    $ref = $i["reference_number"];
     ?>
-<div class="modal fade" id="detailsFilesModal<?php echo $i["id"];?>" tabindex="-1" aria-labelledby="detailsFilesModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="detailsFilesModalLabel">Renewal Details</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $i["full_name"];?></h5>
-            <p class="card-text">Civil Status: <?php echo $i["c_status"];?></p>
-            <p class="card-text">Contact Number: <?php echo $i["contact_num"];?></p>
-            <p class="card-text">Active Gcash Number: <?php echo $i["gcash"];?></p>
-            <p class="card-text">Educational Level: <?php echo $i["educ_lvl"];?></p>
-            <p class="card-text">Total Units: <?php echo $i["total_units"];?></p>
-            <p class="card-text">University Currently Enrolled at: <?php echo $i["univ"];?></p>
-            <p class="card-text">Number of Units Currently Enroleld in: <?php echo $i["num_units_sem"];?></p>
-            <p class="card-text">Year Level: <?php echo $i["year_lvl"];?></p>
-            <p class="card-text">Current Semester: <?php echo $i["sem"];?></p>
-            <p class="card-text">School Year: <?php echo $i["school_year"];?></p>
-            <p class="card-text">Date: <?php echo $i["date_apply"];?></p>
-          </div>
-        </div>
+    <div class="modal fade" id="detailsFilesModal<?php echo $i["id"]; ?>" tabindex="-1" aria-labelledby="detailsFilesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="detailsFilesModalLabel">Renewal Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $i["full_name"]; ?></h5>
+                            <p class="card-text"><strong>Civil Status:</strong> <?php echo $i["c_status"]; ?></p>
+                            <p class="card-text"><strong>Contact Number:</strong> <?php echo $i["contact_num"]; ?></p>
+                            <p class="card-text"><strong>Active Gcash Number:</strong> <?php echo $i["gcash"]; ?></p>
+                            <p class="card-text"><strong>Educational Level:</strong> <?php echo $i["educ_lvl"]; ?></p>
+                            <p class="card-text"><strong>Total Units:</strong> <?php echo $i["total_units"]; ?></p>
+                            <p class="card-text"><strong>University Currently Enrolled at:</strong> <?php echo $i["univ"]; ?></p>
+                            <p class="card-text"><strong>Number of Units Currently Enrolled in:</strong> <?php echo $i["num_units_sem"]; ?></p>
+                            <p class="card-text"><strong>Year Level:</strong> <?php echo $i["year_lvl"]; ?></p>
+                            <p class="card-text"><strong>Current Semester:</strong> <?php echo $i["sem"]; ?></p>
+                            <p class="card-text"><strong>School Year:</strong> <?php echo $i["school_year"]; ?></p>
+                            <p class="card-text"><strong>Date:</strong> <?php echo $i["date_apply"]; ?></p>
+                        </div>
+                    </div>
 
-        <!-- Grade Info Section -->
-        <div class="card mt-3">
-            <div class="card-body">
-            <h5 class="card-title">Grade Info</h5>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Unit</th>
-                        <th scope="col">Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php 
-                    $gradeInfo = $admin->getAllGrade($scholar_id, $ref);
-                    foreach($gradeInfo as $gi){
-                ?>
-                    <tr>
-                        <td><?php echo $gi['subject'];?></td>
-                        <td><?php echo $gi['unit'];?></td>
-                        <td><?php echo $gi['grade'];?></td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
+                    <!-- Grade Info Section -->
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Grade Info</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Subject</th>
+                                            <th scope="col">Unit</th>
+                                            <th scope="col">Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $gradeInfo = $admin->getAllGrade($scholar_id, $ref);
+                                        foreach ($gradeInfo as $gi) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $gi['subject']; ?></td>
+                                                <td><?php echo $gi['unit']; ?></td>
+                                                <td><?php echo $gi['grade']; ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
-</div>
-<?php }?>
+<?php } ?>
+
+
+
+
+
 
 <!-- RenewFiles Modal-->
 <?php
