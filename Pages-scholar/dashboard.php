@@ -298,12 +298,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                         <?php
                                                                 } else {
                                                         ?>
-                                                                    <button type="button" class="btn btn-primary" disabled>Renewal Submitted</button>
+                                                                    <button type="button" class="btn btn-primary" disabled>Renewal Close</button>
                                                         <?php
                                                                 }
                                                             } else {
                                                         ?>
-                                                                <button type="button" class="btn btn-primary" disabled>Renewal Period Over</button>
+                                                                <button type="button" class="btn btn-primary" disabled>Renewal Close</button>
                                                         <?php
                                                             }
                                                         ?>

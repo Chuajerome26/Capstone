@@ -101,7 +101,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <th scope="col">Status</th>
         </tr>
   </thead>
-  <tbody class="table-group-dividercar">
+  <tbody class="table-group-divider">
     <?php 
       foreach($stipend as $stip){
         if($stip['scholar_type'] == 3){
@@ -130,12 +130,18 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <td style="white-space: nowrap;"><?php echo $grants; ?></td>
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
     </tr>
+      </tbody>
+      </table>
     <?php } ?>
                     </div>
 </div>
 </div>
 </div>
 </div>
+
+      </div>
+      </div>
+      </main>
 
 
 
