@@ -269,6 +269,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
             <p class="card-text">Contact Number: <?php echo $i["contact_num"];?></p>
             <p class="card-text">Active Gcash Number: <?php echo $i["gcash"];?></p>
             <p class="card-text">Educational Level: <?php echo $i["educ_lvl"];?></p>
+            <p class="card-text">Total Units: <?php echo $i["total_units"];?></p>
             <p class="card-text">University Currently Enrolled at: <?php echo $i["univ"];?></p>
             <p class="card-text">Number of Units Currently Enroleld in: <?php echo $i["num_units_sem"];?></p>
             <p class="card-text">Year Level: <?php echo $i["year_lvl"];?></p>

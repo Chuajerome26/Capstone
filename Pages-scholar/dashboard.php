@@ -12,6 +12,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
     $id = $_SESSION['id'];
     $info = $admin->getScholarById($id);
     $pic = $admin->getApplicants2x2($id);
+    $renewal_info = $scholar->getRenewalNewInfoById($id);
 
 } else {
     header("Location: ../index.php");
@@ -691,7 +692,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                     <div class="p-2 ms-auto">
                                     </div>
                                 </div>
-                                                
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <thead>
@@ -703,24 +703,26 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+                                        foreach($renewal_info as $ri){
+
+                                            if($ri['renewal_status'] == 1){
+                                                $status = '<span class="badge bg-secondary">Submitted</span>';
+                                            }elseif($ri['renewal_status'] == 2){
+                                                $status = '<span class="badge bg-success">Approved</span>';
+                                            }elseif($ri['renewal_status'] == 3){
+                                                $status = '<span class="badge bg-info">Tentative</span>';
+                                            }elseif($ri['renewal_status'] == 4){
+                                                $status = '<span class="badge bg-danger">Non-Compliant</span>';
+                                            }
+                                        ?>  
                                             <tr>
-                                                <td>REF123</td>
-                                                <td>2024-04-28</td>
-                                                <td>Submitted</td>
-                                                <td>Renewal submitted on time</td>
+                                                <td><?php echo $ri['reference_number'];?></td>
+                                                <td><?php echo $ri['date_apply'];?></td>
+                                                <td><?php echo $status?></td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsFilesModal<?php echo $ri["id"];?>">Details</button></td>
                                             </tr>
-                                            <tr>
-                                                <td>REF456</td>
-                                                <td>2024-04-25</td>
-                                                <td>Approved</td>
-                                                <td>Renewal approved</td>
-                                            </tr>
-                                            <tr>
-                                                <td>REF789</td>
-                                                <td>2024-04-30</td>
-                                                <td>Pending</td>
-                                                <td>Renewal pending review</td>
-                                            </tr>
+                                        <?php }?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -733,58 +735,73 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
             <?php } ?>
         </div>
 
-<!-- Modal for Renewal -->
-<div class="modal fade" id="scholarRenewalModal" tabindex="-1" role="dialog" aria-labelledby="scholarRenewalModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="scholarRenewalModalLabel">Scholar Renewal Form</h5>
-            </div>
-            <div class="modal-body">
-            <?php 
-                $info = $scholar->getRenewalInfoById($id);
-            ?>
-                <!-- Form -->
-                <form action="../functions/scholarRenewal.php" method="post" enctype="multipart/form-data">
-                <?php if($info[0]['renew_status'] == 0): ?>
+<!-- Modal for Renewal History -->
+<?php
+        foreach($renewal_info as $i){
+            $scholar_id = $i["scholar_id"];
+            $ref = $i["reference_number"];
+    ?>
+<div class="modal fade" id="detailsFilesModal<?php echo $i["id"];?>" tabindex="-1" aria-labelledby="detailsFilesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsFilesModalLabel">Renewal Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $i["full_name"];?></h5>
+            <p class="card-text">Civil Status: <?php echo $i["c_status"];?></p>
+            <p class="card-text">Contact Number: <?php echo $i["contact_num"];?></p>
+            <p class="card-text">Active Gcash Number: <?php echo $i["gcash"];?></p>
+            <p class="card-text">Educational Level: <?php echo $i["educ_lvl"];?></p>
+            <p class="card-text">Total Units: <?php echo $i["total_units"];?></p>
+            <p class="card-text">University Currently Enrolled at: <?php echo $i["univ"];?></p>
+            <p class="card-text">Number of Units Currently Enroleld in: <?php echo $i["num_units_sem"];?></p>
+            <p class="card-text">Year Level: <?php echo $i["year_lvl"];?></p>
+            <p class="card-text">Current Semester: <?php echo $i["sem"];?></p>
+            <p class="card-text">School Year: <?php echo $i["school_year"];?></p>
+            <p class="card-text">Date: <?php echo $i["date_apply"];?></p>
+          </div>
+        </div>
 
-                <div class="form-group">
-                <label for="gwa" class="form-label">Year Level:</label>
-                <select name="yearLvl" id="yearLvlSelect" class="form-select" style="width: 50%;" onchange="checkOtherOption()">
-                    <option value="1st">1st</option>
-                    <option value="2nd">2nd</option>
-                    <option value="3rd">3rd</option>
-                    <option value="4th">4th</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div id="otherOption" style="display: none;">
-                <div class="form-group">
-                    <input type="text" name="otherYearLevel" id="otherYearLevelInput" class="form-control" placeholder="Enter your year level">
-                </div>
-            </div>
-            <?php endif; ?>
-            <?php if($info[0]['file1_status'] == 0): ?>
-            <div class="form-group" style="width: 50%;">
-            <label for="gradeslip" class="form-label">Upload Grade Slip:</label>
-            <input type="file" class="form-control" id="gradeslip" name="file1" required>
-        </div>
-        <?php endif;?>
-        <?php if($info[0]['file2_status'] == 0): ?>
-        <div class="form-group" style="width: 50%;">
-            <label for="regform" class="form-label">Upload Registration Form:</label>
-            <input type="file" class="form-control" id="regform" name="file2" required>
-        </div>
-        <?php endif; ?>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
-                </form>
+        <!-- Grade Info Section -->
+        <div class="card mt-3">
+            <div class="card-body">
+            <h5 class="card-title">Grade Info</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                    $gradeInfo = $admin->getAllGrade($scholar_id, $ref);
+                    foreach($gradeInfo as $gi){
+                ?>
+                    <tr>
+                        <td><?php echo $gi['subject'];?></td>
+                        <td><?php echo $gi['unit'];?></td>
+                        <td><?php echo $gi['grade'];?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
             </div>
         </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
 </div>
+<?php }?>
 
 <!-- RenewFiles Modal-->
 <?php
