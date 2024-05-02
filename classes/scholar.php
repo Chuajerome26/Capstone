@@ -595,9 +595,9 @@ class Scholar{
         return $scholars;
     }    
     public function hasSubmittedRenewal($id) {
-        $query = "SELECT renew_status FROM scholar_renew WHERE scholarID = :scholarID";
+        $query = "SELECT renewal_status FROM scholar_renewal WHERE scholar_id = :scholar_id";
         $stmt = $this->database->getConnection()->prepare($query);
-        $stmt->bindParam(':scholarID', $id, PDO::PARAM_STR);
+        $stmt->bindParam(':scholar_id', $id, PDO::PARAM_STR);
         $stmt->execute();
 
         $renewStatus = $stmt->fetchColumn();

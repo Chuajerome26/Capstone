@@ -9,8 +9,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $admin = new Admin($database);
 
     $id = $_SESSION['id'];
-    $info = $admin->getApplicantById($id);
-    $pic = $admin->getApplicants2x2($id);
+    $info = $admin->getApplicantLoginById($id);
 
 } else {
     header("Location: ../index.php");
@@ -224,13 +223,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         <?php endif; ?>
         <div class="btn-group">
     <span style="font-size: 17px; height: 43px;  color: black; font-weight: bold; position: relative; top: 8px;" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        JOHN CARLO MORAL
+        <?php echo $info[0]['fname']; ?> <?php echo $info[0]['lname']; ?>
         </span>
     <div class="dropdown-menu">
         <!-- Dropdown menu links -->
         
        
-        <a class="dropdown-item" href="#"><span class="dropdown-item-text" style="font-size:15px;">Logout</span></a>
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><span class="dropdown-item-text" style="font-size:15px;">Logout</span></a>
     
 </div>
 

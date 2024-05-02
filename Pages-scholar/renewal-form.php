@@ -9,8 +9,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
     $admin = new Admin($database);
 
     $id = $_SESSION['id'];
-    $appliLogin = $admin->getScholarById(161);
-    $pic = $admin->getApplicants2x2(161);
+    $appliLogin = $admin->getScholarById($id);
+    $pic = $admin->getApplicants2x2($id);
 
 } else {
     header("Location: ../index.php");
@@ -481,43 +481,43 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-$(document).ready(function() {
-    // Function to validate required fields
-    function validateForm() {
-        var isValid = true;
-        $('input:visible[required], select:visible[required], textarea:visible[required]').each(function() {
-            if (!this.checkValidity()) {
-                isValid = false;
-                $(this).addClass('is-invalid');
-                $(this).next('.invalid-feedback').remove();
-                $(this).after('<div class="invalid-feedback">This is a required field</div>');
-            } else {
-                $(this).removeClass('is-invalid');
-                $(this).next('.invalid-feedback').remove();
-            }
-        });
-        return isValid;
-    }
+// $(document).ready(function() {
+//     // Function to validate required fields
+//     function validateForm() {
+//         var isValid = true;
+//         $('input:visible[required], select:visible[required], textarea:visible[required]').each(function() {
+//             if (!this.checkValidity()) {
+//                 isValid = false;
+//                 $(this).addClass('is-invalid');
+//                 $(this).next('.invalid-feedback').remove();
+//                 $(this).after('<div class="invalid-feedback">This is a required field</div>');
+//             } else {
+//                 $(this).removeClass('is-invalid');
+//                 $(this).next('.invalid-feedback').remove();
+//             }
+//         });
+//         return isValid;
+//     }
 
-    // On submit button click
-    $('#submitForm').on('click', function(event) {
-        event.preventDefault(); // Prevent form submission for now
+//     // On submit button click
+//     $('#submitForm').on('click', function(event) {
+//         event.preventDefault(); // Prevent form submission for now
         
-        // Validate the form
-        if (validateForm()) {
-            // If form is valid, you can proceed with form submission
-            $('form').submit(); // You might need to change 'form' to the actual form selector if you have multiple forms on the page
-        }
-    });
+//         // Validate the form
+//         if (validateForm()) {
+//             // If form is valid, you can proceed with form submission
+//             $('ccmfForm').submit();
+//         }
+//     });
 
-    // Clear the error state and message when the user corrects the input
-    $('input[required], select[required], textarea[required]').on('input change', function() {
-        if (this.checkValidity()) {
-            $(this).removeClass('is-invalid');
-            $(this).next('.invalid-feedback').remove();
-        }
-    });
-});
+//     // Clear the error state and message when the user corrects the input
+//     $('input[required], select[required], textarea[required]').on('input change', function() {
+//         if (this.checkValidity()) {
+//             $(this).removeClass('is-invalid');
+//             $(this).next('.invalid-feedback').remove();
+//         }
+//     });
+// });
 </script>   
 
 <script>
@@ -614,7 +614,6 @@ $(document).ready(function() {
         }
 
         // Apply the function to your input elements
-        restrictAverage('totalUnits');
         restrictAverage('unitsPerSem');
         restrictAverage('gAve');
 </script>

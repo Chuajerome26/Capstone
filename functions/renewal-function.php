@@ -62,6 +62,10 @@ if(isset($_POST['submit'])){
 
                 $stmt2 = $database->getConnection()->prepare("INSERT INTO scholar_renewal (scholar_id, full_name, c_status, contact_num, gcash, educ_lvl, total_units, cur_school, univ, num_units_sem, year_lvl, sem, school_year, scholar_type, reference_number, date_apply, file1, file2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 $stmt2->execute([$scholar_id, $full_name, $c_stat, $active_num, $gcash_num, $educLvl, $totalUnits, $transferSchool, $university, $unitsPerSem, $yLevel, $semester, $schoolYear, $scholar_type, $user['reference_number'], $date, $uploadedFileName1, $uploadedFileName2]);
+
+                // Update renewal_status to 1 after insertion
+                $stmt3 = $database->getConnection()->prepare("UPDATE scholar_renewal SET renewal_status = 1 WHERE scholar_id = ?");
+                $stmt3->execute([$scholar_id]);
                 header('Location: ../Pages-scholar/dashboard.php?scholar=successRenew');
                 exit;
             

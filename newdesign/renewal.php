@@ -208,12 +208,14 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                                 $grants = '2000';
                                             }
 
-                                            if($s['renewal_status'] == 0){
-                                                $status = '<span class="badge bg-secondary">Pending</span>';
+                                            if($s['renewal_status'] == 1){
+                                                $status = '<span class="badge bg-secondary">Submitted</span>';
                                             }elseif($s['renewal_status'] == 2){
-                                                $status = '<span class="badge bg-success">Accept</span>';
-                                            }elseif($s['renewal_status'] == 0){
+                                                $status = '<span class="badge bg-success">Approved</span>';
+                                            }elseif($s['renewal_status'] == 3){
                                                 $status = '<span class="badge bg-info">Tentative</span>';
+                                            }elseif($s['renewal_status'] == 4){
+                                                $status = '<span class="badge bg-danger">Non-Compliant</span>';
                                             }
                                             
                                             ?>
