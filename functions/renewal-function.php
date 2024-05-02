@@ -13,7 +13,6 @@ if(isset($_POST['submit'])){
     $gcash_num = $_POST['gNumber'];
     $educLvl = $_POST['eduLevel'];
     $totalUnits = $_POST['totalUnitsCol'];
-    $transferSchool = $_POST['transferSchool'];
     $university = isset($_POST['university']) && $_POST['university'] == "Others" ? $_POST['otherUniv']:$_POST['university'];
     $unitsPerSem = $_POST['unitsPerSem'];
     $yLevel = $_POST['yLevel'];
@@ -60,8 +59,8 @@ if(isset($_POST['submit'])){
         if (move_uploaded_file($_FILES['regForm']['tmp_name'], $uploadDir . $uploadedFileName1) &&
             move_uploaded_file($_FILES['gradeSlip']['tmp_name'], $uploadDir . $uploadedFileName2)) {
 
-                $stmt2 = $database->getConnection()->prepare("INSERT INTO scholar_renewal (scholar_id, full_name, c_status, contact_num, gcash, educ_lvl, total_units, cur_school, univ, num_units_sem, year_lvl, sem, school_year, scholar_type, reference_number, date_apply, file1, file2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt2->execute([$scholar_id, $full_name, $c_stat, $active_num, $gcash_num, $educLvl, $totalUnits, $transferSchool, $university, $unitsPerSem, $yLevel, $semester, $schoolYear, $scholar_type, $user['reference_number'], $date, $uploadedFileName1, $uploadedFileName2]);
+                $stmt2 = $database->getConnection()->prepare("INSERT INTO scholar_renewal (scholar_id, full_name, c_status, contact_num, gcash, educ_lvl, total_units, univ, num_units_sem, year_lvl, sem, school_year, scholar_type, reference_number, date_apply, file1, file2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt2->execute([$scholar_id, $full_name, $c_stat, $active_num, $gcash_num, $educLvl, $totalUnits, $university, $unitsPerSem, $yLevel, $semester, $schoolYear, $scholar_type, $user['reference_number'], $date, $uploadedFileName1, $uploadedFileName2]);
 
                 // Update renewal_status to 1 after insertion
                 $stmt3 = $database->getConnection()->prepare("UPDATE scholar_renewal SET renewal_status = 1 WHERE scholar_id = ?");

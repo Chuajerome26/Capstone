@@ -147,17 +147,17 @@
             <form method="POST" action="functions/add-user.php"> <!-- Add the action attribute pointing to your PHP script -->  
                 <div class="row">
                     <div class="col-sm-6 mb-3">
-                        <label for="fname" class="form-label fw-bold">First Name</label>
+                        <label for="fname" class="form-label fw-bold">First Name<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="fname" name="fname" autocomplete="off" required placeholder="Ex: Juan Crisostomo">
                     </div>
 
                     <div class="col-sm-6 mb-3">
                         <label for="mname" class="form-label fw-bold">Middle Name</label>
-                        <input type="text" class="form-control" id="mname" name="mname" autocomplete="off" required placeholder="Ex: Jose">
+                        <input type="text" class="form-control" id="mname" name="mname" autocomplete="off" placeholder="Ex: Jose">
                     </div>
 
                     <div class="col-sm-6 mb-3">
-                        <label for="lname" class="form-label fw-bold">Last Name</label>
+                        <label for="lname" class="form-label fw-bold">Last Name<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="lname" name="lname" autocomplete="off" required placeholder="Ex: Dela Cruz">
                     </div>
 
@@ -174,7 +174,7 @@
                     </div>
 
                     <div class="col-sm-12 mb-3">
-                        <label for="email" class="form-label fw-bold">Email</label>
+                        <label for="email" class="form-label fw-bold">Email<span class="text-danger">*</span></label>
                         <input type="email" class="form-control" id="email" name="email" autocomplete="off" required aria-describedby="passwordHelpBlock" placeholder="Ex: JuanDelaCruz21@gmail.com">
                         <div id="passwordHelpBlock" class="form-text">
                         Use your QCU email for this field.
@@ -185,7 +185,7 @@
 
                 <div class="col-sm-6 mb-3">
                     
-                    <label for="password" class="form-label fw-bold">Password</label>
+                    <label for="password" class="form-label fw-bold">Password<span class="text-danger">*</span></label>
                     <div class="input-group">
                         <input type="password" class="form-control  border-end-0" id="password" name="password" required placeholder="Password">
                         <!-- Change the id of the eye icon to togglePassword -->
@@ -200,7 +200,7 @@
                     <!-- Confirm Password field -->
                     
                     <div class="col-sm-6 mb-3 ">
-                    <label for="confirmPassword" class="form-label fw-bold">Confirm Password</label>
+                    <label for="confirmPassword" class="form-label fw-bold">Confirm Password<span class="text-danger">*</span></label>
                     <div class="input-group">
                         <input type="password" class="form-control border-end-0" id="confirmPassword" name="confirmPassword" required placeholder="Confirm Password">
                         <!-- Change the id of the eye icon to toggleConfirmPassword -->

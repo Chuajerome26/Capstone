@@ -186,40 +186,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
             <div class="border-bottom mb-3 border border-1"></div>
 
 
-            <!-- <div class="row mt-2">
-                <div class="col-md-12">
-                    <ul class="nav nav-tabs" id="myTabs">
-                        <li class="nav-item">
-                            <a class="nav-link active fw-bold " style="font-size:15px" id="personalInfo-tab" data-bs-toggle="tab" href="#personalInfo">
-                                <span class="d-none d-lg-block">1. Personal Information</span>
-                                <span class="d-lg-none">Personal Information</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold" style="font-size:15px" id="famInfo-tab" data-bs-toggle="tab" href="#famInfo">
-                                <span class="d-none d-lg-block">2. Family Information</span>
-                                <span class="d-lg-none">Family Information</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold" style="font-size:15px" id="acadInfo-tab" data-bs-toggle="tab" href="#acadInfo">
-                                <span class="d-none d-lg-block">3. Academic Information</span>
-                                <span class="d-lg-none">Academic Information</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold" style="font-size:15px" id="requirements-tab" data-bs-toggle="tab" href="#requirements">
-                                <span class="d-none d-lg-block">4. Requirements</span>
-                                <span class="d-lg-none">Requirements</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
-
             <div class="tab-content mt-2 mb-4" id="myTabsContent">
                 <div class="tab-pane fade show active" id="personalInfo" role="tabpanel" aria-labelledby="personalInfo-tab">
-                    <form id="ccmfForm" method="POST" action="../functions/renewal-function.php" enctype="multipart/form-data" onsubmit="return validateForm()">
+                    <form id="ccmfForm" method="POST" action="../functions/renewal-function.php" enctype="multipart/form-data">
                     <div class="row">
                     <!--- Personal Infomartion --->
                     <?php
@@ -277,16 +246,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                     </div>
 
                     <div class="col-md-6 mb-3">
-                        <label class="form-label">Is Current School at Quezon City?<span class="text-danger">*</span></label>
-                        <select name="transferSchool" id="transferSchool" class="form-select form-select-sm" aria-label="Transfer" required>
-                            <option value=""></option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-6 mb-3" id="otherUnivOption" style="display:none;">
-                        <label  class="form-label">Universities:</label>
+                        <label  class="form-label">Current University Enrolled at:</label>
                         <select class="form-select form-select-sm" name="university" id="universitySelect" aria-label="Select University" onchange="checkOtherOption('universitySelect', 'otherUniv', 'otherUniv1')">
                             <option></option>
                             <option value="AMA Computer University - Fairview Campus">AMA Computer University - Fairview Campus</option>
@@ -358,7 +318,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                     <div class="sub">
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <label class="form-label">Subject:</label>
+                            <label class="form-label">Subject:<span class="text-danger">*</span></label>
                             <input type="text" name="sub[]" class="form-control form-control-sm" placeholder="Subject" required>
                         </div>
                         <div class="col-md-3 mb-3">
@@ -366,7 +326,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                             <input type="text" name="totalUnits[]" class="form-control form-control-sm" placeholder="Unit">
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label class="form-label">Grade:</label>
+                            <label class="form-label">Grade:<span class="text-danger">*</span></label>
                             <input type="text" name="gAverage[]" id="gAve" class="form-control form-control-sm" placeholder="Grade" required>
                         </div>
 
@@ -481,53 +441,50 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-// $(document).ready(function() {
-//     // Function to validate required fields
-//     function validateForm() {
-//         var isValid = true;
-//         $('input:visible[required], select:visible[required], textarea:visible[required]').each(function() {
-//             if (!this.checkValidity()) {
-//                 isValid = false;
-//                 $(this).addClass('is-invalid');
-//                 $(this).next('.invalid-feedback').remove();
-//                 $(this).after('<div class="invalid-feedback">This is a required field</div>');
-//             } else {
-//                 $(this).removeClass('is-invalid');
-//                 $(this).next('.invalid-feedback').remove();
-//             }
-//         });
-//         return isValid;
-//     }
+    $(document).ready(function() {
+        $('#submitForm').on('click', function(event) {
+            // Prevent form submission if validation fails
+            if (!validateForm()) {
+                event.preventDefault();
+                return false;
+            }
+        });
 
-//     // On submit button click
-//     $('#submitForm').on('click', function(event) {
-//         event.preventDefault(); // Prevent form submission for now
-        
-//         // Validate the form
-//         if (validateForm()) {
-//             // If form is valid, you can proceed with form submission
-//             $('ccmfForm').submit();
-//         }
-//     });
+        function validateForm() {
+            var isValid = true;
+            $('#ccmfForm').find('input:visible[required], select:visible[required], textarea:visible[required]').each(function() {
+                if (!this.checkValidity()) {
+                    isValid = false;
+                    $(this).addClass('is-invalid');
+                    $(this).next('.invalid-feedback').remove();
+                    $(this).after('<div class="invalid-feedback">This is a required field</div>');
+                } else {
+                    $(this).removeClass('is-invalid');
+                    $(this).next('.invalid-feedback').remove();
+                }
+            });
+            return isValid;
+        }
 
-//     // Clear the error state and message when the user corrects the input
-//     $('input[required], select[required], textarea[required]').on('input change', function() {
-//         if (this.checkValidity()) {
-//             $(this).removeClass('is-invalid');
-//             $(this).next('.invalid-feedback').remove();
-//         }
-//     });
-// });
-</script>   
+        // Clear the error state and message when the user corrects the input
+        $('input[required], select[required], textarea[required]').on('input change', function() {
+            if (this.checkValidity()) {
+                $(this).removeClass('is-invalid');
+                $(this).next('.invalid-feedback').remove();
+            }
+        });
+    });
+</script>
+   
 
 <script>
-    document.getElementById('transferSchool').addEventListener('change', function() {
-        if (this.value == "yes") {
-            document.getElementById('otherUnivOption').style.display = "block";
-        } else {
-            document.getElementById('otherUnivOption').style.display = 'none';
-        }
-    });
+    // document.getElementById('transferSchool').addEventListener('change', function() {
+    //     if (this.value == "yes") {
+    //         document.getElementById('otherUnivOption').style.display = "block";
+    //     } else {
+    //         document.getElementById('otherUnivOption').style.display = 'none';
+    //     }
+    // });
     //function for same as present address
     document.getElementById('sameAsActive').addEventListener('change', function() {
         if (this.checked) {

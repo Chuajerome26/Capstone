@@ -307,12 +307,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                         <?php
                                                                 } else {
                                                         ?>
-                                                                    <button type="button" class="btn btn-primary" disabled>Renewal Close</button>
+                                                                    <button type="button" class="btn btn-primary" disabled>Renewal Submitted</button>
                                                         <?php
                                                                 }
                                                             } else {
                                                         ?>
-                                                                <button type="button" class="btn btn-primary" disabled>Renewal Close</button>
+                                                                <button type="button" class="btn btn-primary" disabled>Renewal Ended</button>
                                                         <?php
                                                             }
                                                         ?>
@@ -328,53 +328,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 
 
 
-
-                            <div class="col-md-12">
-                                    <div class="card shadow mb-2">
-                                        <div class="card-body">
-                                        <h6 class="fw-bold mb-1">Done Renewal</h6>
-                                            <hr>
-                                            <?php
-                                            $rewalInfo = $scholar->getRenewalInfoById($id);
-                                            if (empty($rewalInfo)) {
-                                                echo "No data";
-                                            } else {
-                                                $foundData = false;
-                                                foreach ($rewalInfo as $d) {
-                                                    if ($d['renew_status'] != 0 && $d['renew_status'] != 4) { // Check if renew_status is not pending or non-compliant
-                                                        $status = "";
-                                                        if ($d['renew_status'] == 1) {
-                                                            $status = "Pending for approval";
-                                                        } else if ($d['renew_status'] == 2) {
-                                                            $status = "Approved";
-                                                        } else if ($d['renew_status'] == 3) {
-                                                            $status = "For Correction: Please check your email for further instructions";
-                                                        }
-                                                        $foundData = true;
-                                            ?>
-                                                        <div class="ms-1">
-                                                            <div class="p-0 m-0 mb-2 mt-2">
-                                                                <div><small class="text-muted">Renewal History:</small> </div>
-                                                            </div>
-                                                            <div class="card"></div>
-                                                            <div class="p-0 m-0 mt-2">
-                                                                <div><small class="text-muted">Date Renewed:<strong><?php echo $d["date_renew"]; ?></strong></small></div>
-                                                                <div><small class="text-muted">Status: <strong><?php echo $status; ?></strong></small> </div>
-                                                                <!-- Modal to boss --->
-                                                                <button type="button" class="btn btn-primary btn-sm w-100 mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $d["id"]; ?>">View Files</button>
-                                                            </div>
-                                                        </div>
-                                            <?php
-                                                    }
-                                                }
-                                                if (!$foundData) {
-                                                    echo "No data";
-                                                }
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-                            </div>
+                            
                             </div>
                            
                     </div>
