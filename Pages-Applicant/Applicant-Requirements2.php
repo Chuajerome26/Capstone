@@ -548,51 +548,53 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                             
                     <div class="row">
                         <?php 
-                            $applifiles = $admin->getApplicantsFiles($id);
+                        $applifiles = $admin->getApplicantsFiles($id);
 
-                            foreach ($applifiles as $i) {
-                                if (!empty($i['file_name'])) {
-                                    if ($a['studType'] == "College" && $i['requirement_name'] != "Form137/138") {
-                                        // Display files for college students except "CollegeGrades"
-                                        ?>
-                                        <div class="col-md-4 mb-3">
-                                            <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
-                                                <div class="card shadow-sm">
-                                                    <div class="card-body">
-                                                        <div class="hstack gap-3">
-                                                            <div><img class="img-fluid" src="../images/PDF-logo.png" width="40" height="40"></div>
-                                                            <div>
-                                                                <div><?= $i['requirement_name']; ?></div>
-                                                                <small class="text-secondary"><?php echo $i['file_name']; ?></small>
-                                                            </div>
+                        foreach ($applifiles as $i) {
+                            if (!empty($i['file_name'])) {
+                                $logo = ($i['requirement_name'] == 'IdPhoto') ? 'jpgLogo.png' : 'PDF-logo.png';
+
+                                if ($a['studType'] == "College" && $i['requirement_name'] != "Form137/138") {
+                                    // Display files for college students except "CollegeGrades"
+                                    ?>
+                                    <div class="col-md-4 mb-3">
+                                        <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
+                                            <div class="card shadow-sm">
+                                                <div class="card-body">
+                                                    <div class="hstack gap-3">
+                                                        <div><img class="img-fluid" src="../images/<?= $logo; ?>" width="40" height="40"></div>
+                                                        <div>
+                                                            <div><?= $i['requirement_name']; ?></div>
+                                                            <small class="text-secondary"><?php echo $i['file_name']; ?></small>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </a>
-                                        </div>
-                                        <?php
-                                    } elseif ($a['studType'] == "Senior High Graduate" && $i['requirement_name'] != "CollegeGrades") {
-                                        // Display files for senior high graduates except "CollegeGrades"
-                                        ?>
-                                        <div class="col-md-4 mb-3">
-                                            <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
-                                                <div class="card shadow-sm">
-                                                    <div class="card-body">
-                                                        <div class="hstack gap-3">
-                                                            <div><img class="img-fluid" src="../images/PDF-logo.png" width="40" height="40"></div>
-                                                            <div>
-                                                                <div><?= $i['requirement_name']; ?></div>
-                                                                <small class="text-secondary"><?php echo $i['file_name']; ?></small>
-                                                            </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <?php
+                                } elseif ($a['studType'] == "Senior High Graduate" && $i['requirement_name'] != "CollegeGrades") {
+                                    // Display files for senior high graduates except "CollegeGrades"
+                                    ?>
+                                    <div class="col-md-4 mb-3">
+                                        <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
+                                            <div class="card shadow-sm">
+                                                <div class="card-body">
+                                                    <div class="hstack gap-3">
+                                                        <div><img class="img-fluid" src="../images/<?= $logo; ?>" width="40" height="40"></div>
+                                                        <div>
+                                                            <div><?= $i['requirement_name']; ?></div>
+                                                            <small class="text-secondary"><?php echo $i['file_name']; ?></small>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </a>
-                                        </div>
-                                        <?php
-                                    }
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <?php
                                 }
                             }
+                        }
                         ?>
                     </div>
 

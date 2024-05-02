@@ -362,7 +362,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <h2>Mission</h2>
                         <p>Our mission is to empower students by providing them with the necessary resources and support to pursue their academic dreams. We believe that education is a fundamental right and should be accessible to all, regardless of financial background or social status.</p>
                         <br>
-                        <h2>Vission</h2>
+                        <h2>Vision</h2>
                         <p>Our vision is a world where every individual, regardless of background or circumstance, has the opportunity to pursue higher education and fulfill their academic potential. We strive to be the leading provider of innovative scholarship management solutions, driving positive change in education globally.</p>
                         <br>
                         <h2>What We Do</h2>

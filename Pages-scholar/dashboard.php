@@ -99,7 +99,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 
             <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top mb-2">
                 <div class="container">
-                <img src="../assets1/images/logo/Logo2.png" alt="Logo" width="190" height="40" class="d-inline-block align-text-top">
+                <img src="../images/Management1.png" alt="Logo" width="190" height="40" class="d-inline-block align-text-top">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -618,38 +618,58 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                    
                     </div>
                                             
-                        <div class="row ">
-                            <?php 
-                                $applifiles = $admin->getApplicantsFiles($id);
-                                
-                                foreach($applifiles as $a) {
-                                    if (!empty($a['file_name'])) {
-                            ?>
-                            <div class="col-md-4 mb-3">
-                                <a class="text-decoration-none" href="../Scholar_files/<?= $a['file_name'] ?>" target="_blank">
-                                    <div class="card shadow-sm">
-                                        <div class="card-body">
-                                        <div class="hstack gap-3">
-                                        <div class=""> <img class="img-fluid" src="../images/folder-removebg-preview.png" width="40" height="40"></div>
-                                        
-                                        <div class="">  
-                                        <div for="<?= $a['requirement_name'] ?>"><?= $a['requirement_name'] ?></div>
-                                            <small class="text-secondary"><?php echo $a['file_name'] ?></small>
-                                            
-                                        </div>
-                                        
-                                        </div>
+                    <div class="row">
+                        <?php 
+                        $applifiles = $admin->getApplicantsFiles($id);
 
-                                           
-                                        </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php 
-                                        }
-                                    }
-                                ?>
-                            </div>
+                        foreach ($applifiles as $i) {
+                            if (!empty($i['file_name'])) {
+                                $logo = ($i['requirement_name'] == 'IdPhoto') ? 'jpgLogo.png' : 'PDF-logo.png';
+
+                                if ($a['studType'] == "College" && $i['requirement_name'] != "Form137/138") {
+                                    // Display files for college students except "CollegeGrades"
+                                    ?>
+                                    <div class="col-md-4 mb-3">
+                                        <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
+                                            <div class="card shadow-sm">
+                                                <div class="card-body">
+                                                    <div class="hstack gap-3">
+                                                        <div><img class="img-fluid" src="../images/<?= $logo; ?>" width="40" height="40"></div>
+                                                        <div>
+                                                            <div><?= $i['requirement_name']; ?></div>
+                                                            <small class="text-secondary"><?php echo $i['file_name']; ?></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <?php
+                                } elseif ($a['studType'] == "Senior High Graduate" && $i['requirement_name'] != "CollegeGrades") {
+                                    // Display files for senior high graduates except "CollegeGrades"
+                                    ?>
+                                    <div class="col-md-4 mb-3">
+                                        <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
+                                            <div class="card shadow-sm">
+                                                <div class="card-body">
+                                                    <div class="hstack gap-3">
+                                                        <div><img class="img-fluid" src="../images/<?= $logo; ?>" width="40" height="40"></div>
+                                                        <div>
+                                                            <div><?= $i['requirement_name']; ?></div>
+                                                            <small class="text-secondary"><?php echo $i['file_name']; ?></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                        }
+                        ?>
+                    </div>
+
 
 
                             

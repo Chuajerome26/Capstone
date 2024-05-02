@@ -25,7 +25,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 <meta charset="utf-8">
 
 
-<title>CCMF FORM</title>
+<title>SMS FORM</title>
 <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -111,7 +111,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="hstack gap-3 mb-3">
                             <div class="p-1">
                                 <a class="navbar-brand d-flex align-items-center m-auto" >
-                                    <img src="../images/consuelo.jpg" alt="Image" class="img-fluid" width="45px" height="45px">
+                                    <img src="../images/forcert.png" alt="Image" class="img-fluid" width="45px" height="45px">
                                     <h6 class="display-7 text-center ms-2 mt-1 fw-bold"><span class="d-none d-lg-block">Scholarship Management System</span></h6>
                                 </a>
                             </div>
@@ -140,7 +140,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="">
 
 
-                    <div class="mx-1 mb-3">    I hereby declare that all information provided and documents submitted in support of my scholarship application are true and accurate. I give my consent to CCMF to collect, use and process my personal information. Furthermore, I confirm my compliance with the Data Privacy Act of 2012, ensuring the confidentiality and protection of any personal data shared in this application process.</div>
+                    <div class="mx-1 mb-3">    I hereby declare that all information provided and documents submitted in support of my scholarship application are true and accurate. I give my consent to collect, use and process my personal information. Furthermore, I confirm my compliance with the Data Privacy Act of 2012, ensuring the confidentiality and protection of any personal data shared in this application process.</div>
                     <div class="mx-1 mb-3 text-danger">Reminder:<span class="text-danger">*</span></div>
                     <div class="mx-1 mb-3">Ensure you are residence of Quezon City within district 1-6.</div>
                     <div class="mx-1 mb-3">Ensure that you are Incoming Freshmen or In College Level.</div>
@@ -1130,7 +1130,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         function allowLettersOnly(inputId) {
             document.getElementById(inputId).addEventListener('input', function(e) {
                 // Replace any digit or dot with an empty string
-                this.value = this.value.replace(/[^a-zA-Z.]/g, '');
+                this.value = this.value.replace(/[^a-zA-Z.\s]/g, '');
             });
         }
 
