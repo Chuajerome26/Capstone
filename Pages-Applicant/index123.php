@@ -28,7 +28,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="../images/forcert1.png" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
     <!-- Web Font -->
@@ -71,28 +71,27 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-start; /* Change align-items to flex-start */
+  align-items: flex-start;
   user-select: none;
   position: fixed;
-  bottom: 30px;
-  left: 30px; /* Change left to 30px */
-  transition: left 0.3s, height 0.3s; /* Added transition for left and height */
-  height: 70px; /* Initial height */
-  width: 70px;
+  bottom: 20px; /* Adjusted bottom */
+  left: 20px; /* Adjusted left */
+  transition: left 0.3s, height 0.3s;
+  height: 50px; /* Adjusted height */
+  width: 50px; /* Adjusted width */
   border-radius: 50%;
   background-color: #4ba2ff;
-  z-index: 9999; /* Increased z-index */
+  z-index: 9999;
 }
 
 .fab-container:hover {
   transform: scale(1.1); /* Zoom in by 10% */
 }
 
-
 .fab-container .fab {
   position: relative;
-  height: 70px;
-  width: 70px;
+  height: 50px; /* Adjusted height */
+  width: 50px; /* Adjusted width */
   background-color: #4ba2ff;
   border-radius: 50%;
   z-index: 2;
@@ -103,17 +102,21 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
   position: absolute;
   bottom: 0;
   right: 0;
-  height: 35px;
-  width: 35px;
+  height: 25px; /* Adjusted height */
+  width: 25px; /* Adjusted width */
   background-color: inherit;
   border-radius: 0 0 10px 0;
   z-index: -1;
 }
 
+
 .fab-container .fab .fab-content .material-icons {
   color: white;
-  font-size: 48px;
+  font-size: 36px; /* Adjusted font size */
+  
 }
+
+
 
 .fab-container .sub-button .material-icons {
   color: white;
@@ -121,14 +124,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 .fab-container .fab .fab-content {
   display: flex;
-  align-items: center; /* Center the content vertically */
-  justify-content: center; /* Center the content horizontally */
+  align-items: center;
+  justify-content: center;
   height: 100%;
   width: 100%;
   border-radius: 50%;
 }
-
-
 
 
     </style>
@@ -152,7 +153,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <!-- Start Header Area -->
     <header class="header navbar-area">
         <!-- Toolbar Start -->
-        <div class="toolbar-area">
+        <!-- <div class="toolbar-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-md-6 col-12">
@@ -163,43 +164,59 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="col-lg-4 col-md-6 col-12">
                         <?php
                         $userHasApplied = $admin->checkUserApplicationStatus($id); // Function that checks the database
-                        ?>
-                        <div class="toolbar-login">
+                        ?> -->
+                        <!-- <div class="toolbar-login">
                             <div class="button">
                             <?php if ($userHasApplied): ?>
                                 <a href="../Pages-Applicant/Applicant-Requirements2.php" style="font-size: 15px; height: 43px;" class="btn btn-primary">View Submitted Files</a>
                                 <?php else: ?>
-                                    <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#applyModal">Apply Now</button>
-                                <?php endif; ?>
-                                <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Logout</button>
+                                    <button type="button" style="font-size: 15px; height: 43px;"  class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+
+                                <?php endif; ?> -->
+                                <!-- <button type="button" style="font-size: 15px; height: 43px;" class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Logout</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Toolbar End -->
+
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
                         <a class="navbar-brand" >
-                            <img src="../images/logo.png" alt="Logo">
+                            <img src="../images/Management1.png" alt="Logo">
                         </a>
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class="toggler-icon"></span>
                             <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ms-auto">
                                 <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#requirements">Requirements</a></li>
+                                <li class="nav-item"><a class="nav-link mr-5" href="#about">About</a></li>
                             </ul>
+
+                            <!-- toolbar -->
+                            <div class="toolbar-login" style="margin-left: 10px;">
+    <div class="button">
+        <?php if ($userHasApplied): ?>
+            <a href="../Pages-Applicant/Applicant-Requirements2.php" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;" class="btn btn-primary">View Submitted Files</a>
+        <?php else: ?>
+            <button type="button" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;"  class="btn btn-primary mr-3" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+        <?php endif; ?>
+        <button type="button" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;" class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Logout</button>
+    </div>
+</div>
+
+
+                             <!-- toolbar end -->
+                            
                         </div> <!-- navbar collapse -->
                     </nav> <!-- navbar -->
                 </div>
