@@ -99,6 +99,14 @@ if (isset($_SESSION['id'])) {
                     </div>
                 </div>
             </div>
+           
+            
+            <div class="mt-4">
+
+                <p style="text-align: center;">Didn't get the code?<button id="resendButton" type="button" class="btn btn-primary" style="background-color: transparent; color:blue; border:none;" onclick="resendCode()">Resend code</button></p>
+</div>
+
+</div>
         </form>
 
         <?php if(!empty($message)): ?>
@@ -155,6 +163,26 @@ if (isset($_SESSION['id'])) {
             });
         });
     });
+</script>
+
+<script>
+    var cooldownTime = 60; // Cooldown time in seconds
+    var cooldownInterval;
+
+    function resendCode() {
+        document.getElementById("resendButton").setAttribute("disabled", "disabled");
+
+        cooldownInterval = setInterval(function() {
+            cooldownTime--;
+            if (cooldownTime <= 0) {
+                clearInterval(cooldownInterval);
+                document.getElementById("resendButton").removeAttribute("disabled");
+                document.getElementById("resendButton").innerText = "Resend code";
+            } else {
+                document.getElementById("resendButton").innerText = "Resend code (" + cooldownTime + ")";
+            }
+        }, 1000);
+    }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></script>
 </body>
