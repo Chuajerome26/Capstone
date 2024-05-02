@@ -46,8 +46,93 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <link rel="stylesheet" href="../assets1/css/2.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="./css/style.css">
+      <!-- Demo CSS (No need to include it into your project) -->
+      <link rel="stylesheet" href="./css/demo.css">
+      <!-- Material Icons -->
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 
+<style>
+
+.cd__main {
+   display: block !important;
+}
+
+.fab-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start; /* Change align-items to flex-start */
+  user-select: none;
+  position: fixed;
+  bottom: 30px;
+  left: 30px; /* Change left to 30px */
+  transition: left 0.3s, height 0.3s; /* Added transition for left and height */
+  height: 70px; /* Initial height */
+  width: 70px;
+  border-radius: 50%;
+  background-color: #4ba2ff;
+  z-index: 9999; /* Increased z-index */
+}
+
+.fab-container:hover {
+  transform: scale(1.1); /* Zoom in by 10% */
+}
+
+
+.fab-container .fab {
+  position: relative;
+  height: 70px;
+  width: 70px;
+  background-color: #4ba2ff;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.fab-container .fab::before {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 35px;
+  width: 35px;
+  background-color: inherit;
+  border-radius: 0 0 10px 0;
+  z-index: -1;
+}
+
+.fab-container .fab .fab-content .material-icons {
+  color: white;
+  font-size: 48px;
+}
+
+.fab-container .sub-button .material-icons {
+  color: white;
+}
+
+.fab-container .fab .fab-content {
+  display: flex;
+  align-items: center; /* Center the content vertically */
+  justify-content: center; /* Center the content horizontally */
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+
+
+
+    </style>
+    
 </head>
 
 <body>
@@ -343,32 +428,34 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <!-- Start Clients Area -->
     
     <!-- Start Footer Area -->
-    <section class="requirements" id="requirements">
+    <!-- <section class="requirements" id="requirements"> -->
     <footer class="footer style2">
    
      <!-- Adjusted class and input -->
      <center>
-     <div class="col-lg-5 col-md-6 col-12">
+     <!-- <div class="col-lg-10 col-md-12 col-12"> -->
     <!-- Card Element -->
-    <div class="card shadow-sm">
-        <div class="card-header bg-white py-3">
-            <p class="fw-bold h4 mb-0 text-center">REQUIREMENT LIST:</p>    
-        </div>
+    <!-- <div class="card-header bg-white py-2 text-center">
+        <button class="accordion-button collapsed mx-auto text-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background-color: #0EDC8D;">
+            <span class="fw-bold h6 mb-0" style="color: black;">REQUIREMENT LIST FOR APPLICATION</span>   
+        </button>
+    </div>
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <ul class="list-group list-group-flush text-center">
             <li class="list-group-item">2x2 latest photo</li>
             <li class="list-group-item">Certified True Copy of Birth Certificate</li>
-            <li class="list-group-item">Certified True Copy of Form 137 or 138 / Grade Slip (For Sr. High School Graduates)</li>
-            <li class="list-group-item">Certificate of Honor or Award (For Sr. High School Graduates)</li>
-            <li class="list-group-item">Latest Copy of Grades (For College Enrolled Students)</li>
+            <li class="list-group-item">Certified True Copy of Form 137 or 138 / Grade Slip</li>
+            <li class="list-group-item">Latest Copy of Grades</li>
             <li class="list-group-item">Barangay Certification</li>
-            <li class="list-group-item">Latest Income Tax Retur of Parents /Affidavit of Non-filing</li>
+            <li class="list-group-item">Latest Income Tax Return of Parents / Affidavit of Non-filing</li>
             <li class="list-group-item">Indigency</li>
-            <li class="list-group-item">General Weighted Average should be 85 and above for Senior High School Graduates<br>
-                                        And 2.25 and above for College Enrolled</li>
         </ul>
-        <div class="card-footer bg-white py-3 text-center">
+        <div class="card-footer bg-white py-2 text-center">
             <a data-toggle="modal" data-target="#applyModal" class="btn mt-3" style="background-color: #0EDC8D; color: #ffffff;">Apply Now</a>
         </div>
+    </div>
+</div> -->
+    
 </center>
     </div>
 </div>
@@ -402,66 +489,25 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     </footer>
     <!--/ End Footer Area -->
 
-<!-- Modal for Account Create -->
-<div class="modal fade" id="applyModal">
-    <div class="modal-dialog modal-dialog-centered modal-login">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold text-center">Are you sure you want to proceed?</h5>
-                <button type="button" class="close" data-dismiss="modal">×</button>
-            </div>
-            <div class="modal-body">
-                <button type="submit" class="btn btn-primary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" onclick="window.location.href='freshmen.php';">Yes, Continue</button>
-                <p class="text-center mt-2">Click here if all your requirements are ready.</p>
-                <button type="button" class="btn btn-secondary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" data-dismiss="modal">No, Cancel</button>
-                <p class="text-center mt-2">Click here to review the requirements.</p>
-            </div>
-        </div>
+<!-- Second Modal -->
+<div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-login">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold text-center">Are you sure you want to proceed?</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <button type="submit" class="btn btn-primary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" onclick="window.location.href='freshmen.php';">Yes, Continue</button>
+        <p class="text-center mt-2">Click here if all your requirements are ready.</p>
+        <button type="button" class="btn btn-secondary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" data-bs-dismiss="modal">No, Cancel</button>
+        <p class="text-center mt-2">Click here to review the requirements.</p>
+      </div>
     </div>
+  </div>
 </div>
 
 
-
-<!-- Modal for Login -->
-<!-- <div class="modal fade" id="loginModal">
-    <div class="modal-dialog modal-dialog-centered modal-login">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold text-center">Sign in</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form action="functions/admin-login.php" method="post">
-                    <div class="form-group">
-                        <i class="fa fa-user"></i>
-                        <label class="fw-bold" for="username"></label>
-                        <input type="text" class="form-control" name="uname" placeholder="Username" required>
-                    </div>
-                    <div class="form-group">
-                    <div class="row align-items-center">
-                        <div class="col-12 col-md-12">
-                            <div class="form-group">
-                                <i class="fa fa-lock"></i>
-                                <label class="fw-bold" for="password"></label>
-                                <input type="password" class="form-control form-control-sm" name="psw" id="password" placeholder="Password" required>
-                                <div class="mt-2 pl-0 form-check">
-                            <input type="checkbox" onclick="showPassword()">
-                            <label class="form-check-label" for="showPassword">Show Password</label>
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <div class="forgot">
-                        <a href="#" class="forgot-password" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
-                    </div>
-                    <button type="submit" name="submitBtn" class="btn btn-success mx-auto d-block mt-3" style="width: 270px; height: 50px; font-size: 18px;">Login</button>
-                </form>
-
-            </div>
-        </div>
-    </div>
-</div> -->
 
  <!-- Modal for Forgot Password -->
  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
@@ -528,6 +574,48 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <a href="#" class="scroll-top btn-hover">
         <i class="lni lni-chevron-up"></i>
     </a>
+
+     <!--$%adsense%$-->
+     <main class="cd__main">
+      
+
+     <div class="fab-container">
+  <button type="button" class="fab shadow" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div class="fab-content">
+      <span class="material-icons">description</span>
+    </div>
+  </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Requirements List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <ul class="list-group list-group-flush text-center">
+      <li class="list-group-item">2x2 latest photo</li>
+            <li class="list-group-item">Certified True Copy of Birth Certificate</li>
+            <li class="list-group-item">Certified True Copy of Form 137 or 138 / Grade Slip (For Sr. High School Graduates)</li>
+            <li class="list-group-item">Certificate of Honor or Award (For Sr. High School Graduates)</li>
+            <li class="list-group-item">Latest Copy of Grades (For College Enrolled Students)</li>
+            <li class="list-group-item">Barangay Certification</li>
+            <li class="list-group-item">Latest Income Tax Retur of Parents /Affidavit of Non-filing</li>
+            <li class="list-group-item">Indigency</li>
+            <li class="list-group-item">General Weighted Average should be 85 and above for Senior High School Graduates<br>
+                                        And 2.25 and above for College Enrolled</li>
+        </ul>
+      </div>
+      <div class="card-footer bg-white py-2 text-center">
+        <button type="button" class="btn mt-3" data-bs-toggle="modal" data-bs-target="#applyModal" style="background-color: #0EDC8D; color: #ffffff;">Apply Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
 
 </style>
     <!-- ========================= JS here ========================= -->
@@ -668,6 +756,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     }
 }
 
+
+$('#applyModal').on('show.bs.modal', function () {
+    $('#exampleModal').modal('hide');
+  });
+  
 </script>
 </body>
 
