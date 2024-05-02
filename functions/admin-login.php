@@ -42,7 +42,7 @@ require '../classes/database.php';
 
     // Generate a random token and set expiry time (e.g., 10 minutes from now)
     $token = $admin->generateRandomSixDigitNumber();
-    $expiry = new DateTime('+10 minutes');
+    $expiry = new DateTime('+1 minutes');
     $formattedExpiry = $expiry->format('Y-m-d H:i:s');
 
     $update = $admin->twoFactor($token, $formattedExpiry, $user_id);

@@ -2,6 +2,7 @@
 <?php
 
 require '../classes/database.php';
+require '../classes/admin.php';
 
 function generateReferenceNumber($length = 8) {
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -26,6 +27,7 @@ $reference = generateReferenceNumber();
 
 if(isset($_POST['submit'])){
     $database = new Database();
+    $admin = new Admin($database);
     
     $start = $_POST['startDate'];
     $end = $_POST['endDate'];
@@ -68,7 +70,7 @@ if(isset($_POST['submit'])){
     //     header('Location: ../newdesign/renewal.php?status=empty');
     //     exit();
     // }
-
+    
 
 
     header('Location: ../newdesign/renewal.php?status=success');

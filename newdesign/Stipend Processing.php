@@ -58,14 +58,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                   
                               <!-- Academic is for Checkbox 1 -->
                               <!-- Economic is for Checkbox 2 -->
-                              <button type="button" class="button1 btn btn-warning shadow-sm" id="select-academic-btn">
-                            <div class="d-none d-sm-inline-block">Academic</div>
-                          <input type="hidden" id="academic-checked" value="0">
-                        </button>
-                              <button type="button" class="button2 btn btn-success me-md-2" id="select-economic-btn">
-                               <div class="d-none d-sm-inline-block">Economic</div>
-                               <input type="hidden" id="economic-checked" value="0">
-                               </button>
+                              
                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                               <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Send Email</div>
                               </button>
@@ -92,13 +85,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                     <table id="scholars" class="table">
                                     <thead>
      <tr>
-     <th scope="col"></th>
       <th scope="col">#</th>
       <th scope="col">Scholar ID</th>
       <th scope="col">Scholar Name</th>
       <th scope="col">Type</th>
       <th scope="col">Grants</th>
       <th scope="col">Status</th>
+      <th scope="col">Actions</th>
         </tr>
   </thead>
   <tbody class="table-group-divider">
@@ -122,13 +115,15 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         }
     ?>
     <tr>
-      <td><input type="checkbox" class="item-checkbox1" id="item-3"></td>
       <th scope="col">1</th>
       <td style="white-space: nowrap;"><?php echo $stip['scholar_id'] ?></td>
       <td style="white-space: nowrap;"><?php echo $stip['full_name'] ?></td>
       <td style="white-space: nowrap;"><?php echo $scho_type; ?></td>
       <td style="white-space: nowrap;"><?php echo $grants; ?></td>
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
+      <td style="white-space: nowrap;"><?php echo $status; ?>
+        <button class="btn btn-sm btn-primary" type="submit">Send Certificate</button>
+      </td>
     </tr>
       </tbody>
       </table>
