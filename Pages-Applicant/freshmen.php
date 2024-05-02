@@ -1168,10 +1168,43 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         allowNumbersOnly('earnerIncome');
         allowNumbersOnly('numSiblings');
 
-    // function isValidEmail(email) {
-    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // return emailRegex.test(email);
-    // }
+
+    // Function to enforce numeric-only input and restrictions on average fields
+    function restrictAverage(inputId) {
+        document.getElementById(inputId).addEventListener('input', function(e) {
+            // Replace any character that is not a digit or a dot with an empty string
+            this.value = this.value.replace(/[^\d.]/g, '');
+
+            // If the input is not empty
+            if (this.value !== "") {
+                // If it's a valid number
+                if (!isNaN(this.value)) {
+                    const value = parseFloat(this.value);
+                    // Restrict the value based on whether it's a whole number or decimal
+                    if (Number.isInteger(value)) {
+                        // If whole number, restrict to not exceed 100
+                        if (value > 100) {
+                            this.value = "100";
+                        }
+                    } else {
+                        // If decimal, restrict to not exceed 100
+                        if (value > 100) {
+                            this.value = "100";
+                        }
+                        // Round the value to two decimal places
+                        this.value = parseFloat(value.toFixed(2)).toString();
+                    }
+                } else {
+                    // If input is not a valid number, set value to empty string
+                    this.value = "";
+                }
+            }
+        });
+    }
+
+    // Apply the function to your input elements
+    restrictAverage('shAve');
+    restrictAverage('cAve');
 </script>
 
 <script>

@@ -119,16 +119,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                         </div>
 
 
-
-
-                       
-        <!--- Di bale mamaya nalang mga alas singko --->
-        <?php
-        $currentAppState = $admin->getCurrentAppState();
-        if ($currentAppState['state'] == 1) {
-        ?>
-
-
             
 <div class="modal fade border-0" id="permissionModal" tabindex="-1" role="dialog" aria-labelledby="permissionModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable " role="document">
@@ -467,16 +457,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 
 
         </form>
-        <?php
-        } else {
-            //Application closed if the button was turned off from the admin side
-            echo '
-            <div class="alert alert-primary" role="alert">
-            Application is currently unavailable, wait for future announcements in our Facebook page.
-            </div>
-            ';
-        }
-        ?>
         </div>
  
 
@@ -501,31 +481,43 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
-function validateForm() {
-    const form = document.getElementById('ccmfForm');
-    const inputs = form.querySelectorAll('input[required], select[required]');
-    let isValid = true;
+$(document).ready(function() {
+    // Function to validate required fields
+    function validateForm() {
+        var isValid = true;
+        $('input:visible[required], select:visible[required], textarea:visible[required]').each(function() {
+            if (!this.checkValidity()) {
+                isValid = false;
+                $(this).addClass('is-invalid');
+                $(this).next('.invalid-feedback').remove();
+                $(this).after('<div class="invalid-feedback">This is a required field</div>');
+            } else {
+                $(this).removeClass('is-invalid');
+                $(this).next('.invalid-feedback').remove();
+            }
+        });
+        return isValid;
+    }
 
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            isValid = false;
-            showError(input, `${input.name} is required`);
+    // On submit button click
+    $('#submitForm').on('click', function(event) {
+        event.preventDefault(); // Prevent form submission for now
+        
+        // Validate the form
+        if (validateForm()) {
+            // If form is valid, you can proceed with form submission
+            $('form').submit(); // You might need to change 'form' to the actual form selector if you have multiple forms on the page
         }
     });
 
-    return isValid;
-}
-
-function showError(input, message) {
-    // Check if error message already exists
-    const existingError = input.parentElement.querySelector('.error-message');
-    if (existingError) return;
-
-    const error = document.createElement('div');
-    error.className = 'error-message';
-    error.textContent = message;
-    input.parentNode.appendChild(error);
-}
+    // Clear the error state and message when the user corrects the input
+    $('input[required], select[required], textarea[required]').on('input change', function() {
+        if (this.checkValidity()) {
+            $(this).removeClass('is-invalid');
+            $(this).next('.invalid-feedback').remove();
+        }
+    });
+});
 </script>   
 
 <script>
@@ -586,11 +578,45 @@ function showError(input, message) {
 
         allowNumbersOnly('totalUnits');
         allowNumbersOnly('unitsPerSem');
+        allowNumbersOnly('gAve');
 
-    // function isValidEmail(email) {
-    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    // return emailRegex.test(email);
-    // }
+        // Function to enforce numeric-only input and restrictions on average fields
+        function restrictAverage(inputId) {
+            document.getElementById(inputId).addEventListener('input', function(e) {
+                // Replace any character that is not a digit or a dot with an empty string
+                this.value = this.value.replace(/[^\d.]/g, '');
+
+                // If the input is not empty
+                if (this.value !== "") {
+                    // If it's a valid number
+                    if (!isNaN(this.value)) {
+                        const value = parseFloat(this.value);
+                        // Restrict the value based on whether it's a whole number or decimal
+                        if (Number.isInteger(value)) {
+                            // If whole number, restrict to not exceed 100
+                            if (value > 100) {
+                                this.value = "100";
+                            }
+                        } else {
+                            // If decimal, restrict to not exceed 100
+                            if (value > 100) {
+                                this.value = "100";
+                            }
+                            // Round the value to two decimal places
+                            this.value = parseFloat(value.toFixed(2)).toString();
+                        }
+                    } else {
+                        // If input is not a valid number, set value to empty string
+                        this.value = "";
+                    }
+                }
+            });
+        }
+
+        // Apply the function to your input elements
+        restrictAverage('totalUnits');
+        restrictAverage('unitsPerSem');
+        restrictAverage('gAve');
 </script>
 
 <script>
