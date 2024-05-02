@@ -5,31 +5,37 @@ require '../classes/database.php';
 
 session_start();
 
+$database = new Database();
+$admin = new Admin($database);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $token = $_POST['token'];
+    $token = implode('', $_POST["verificationCode"]);
     $userId = $_SESSION['id'];
     $userType = $_SESSION['user_type'];
 
-    $database = new Database;
+    if($userType == 3 || $userType == 2){
+        $stmt = $database->getConnection()->prepare('SELECT * FROM login WHERE admin_id = :id AND token = :token AND token_expiry > NOW()');
+        $stmt->execute(['id' => $userId, 'token' => $token]);
+    }else{
+        $stmt = $database->getConnection()->prepare('SELECT * FROM login WHERE id = :id AND token = :token AND token_expiry > NOW()');
+        $stmt->execute(['id' => $userId, 'token' => $token]);
+    }
 
-    // Check token and expiry time
-    $stmt = $database->getConnection()->prepare('SELECT * FROM login WHERE user_id = :id AND token = :token AND token_expiry > NOW()');
-    $stmt->execute(['id' => $userId, 'token' => $token]);
     $user = $stmt->fetch();
-
+    
     if ($user) {
         // 2FA verification successful, clear token and expiry
-        $stmt = $database->getConnection()->prepare('UPDATE login SET token = NULL, token_expiry = NULL WHERE user_id = :id');
+        $stmt = $database->getConnection()->prepare('UPDATE login SET token = NULL, token_expiry = NULL WHERE id = :id');
         $stmt->execute(['id' => $userId]);
 
         if($userType == 3){
-            header("Location: ../Pages-admin/dashboard.php");
+            header("Location: ../newdesign/dashboard.php");
         }else if($userType == 2){
-            header("Location: ../Pages-admin/dashboard.php");
+            header("Location: ../newdesign/dashboard.php");
         }else if($userType == 1){
-            header("Location: ../Pages-scholar/scholardash.php");
+            header("Location: ../Pages-scholar/dashboard.php");
         }else if($userType == 0){
-            header("Location: ../Pages-Applicant/Applicant-Requirements.php");
+            header("Location: ../Pages-Applicant/index123.php");
         }
 
     } else {

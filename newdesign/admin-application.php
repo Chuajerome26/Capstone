@@ -294,11 +294,11 @@ foreach($applicantss as $z1) {
                             if($getRemarks):
                                 foreach($getRemarks as $pogi):
                                     if($pogi['remarks'] == 0){
-                                        $remarks123 = 'Evaluate By';
+                                        $remarks123 = 'Evaluated By';
                                     }else if($pogi['remarks'] == 1){
                                         $remarks123 = 'Schedule Interview for Initial - Evaluation Completed By';
                                     }else if($pogi['remarks'] == 2){
-                                        $remarks123 = 'Schedule Interview for Final - Interview Completed By';
+                                        $remarks123 = 'Done Interview';
                                     }else if($pogi['remarks'] == 3){
                                         $remarks123 = 'Accepted By';
                                     }else if($pogi['remarks'] == 5){
@@ -344,7 +344,7 @@ foreach($applicantsss as $pogiko){
   <div class="modal-dialog" style="max-width:600px;">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="remarksSend<?php echo $pogiko["scholar_id"];?>">Applicant Details</h5>
+        <h5 class="modal-title" id="remarksSend<?php echo $pogiko["scholar_id"];?>">Send Remarks</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

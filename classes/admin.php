@@ -211,7 +211,7 @@ class Admin
 
     public function twoFactor($token, $token_expiry, $id){
 
-        $stmt = $this->database->getConnection()->prepare('UPDATE login SET token = ?, token_expiry = ? WHERE user_id = ?');
+        $stmt = $this->database->getConnection()->prepare('UPDATE login SET token = ?, token_expiry = ? WHERE id = ?');
 
          //if execution fail
          if (!$stmt->execute([$token, $token_expiry, $id])) {

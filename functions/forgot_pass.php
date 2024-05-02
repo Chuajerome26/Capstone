@@ -41,11 +41,11 @@ if(isset($_POST["submit"])){
         $sentEmail = $database->sendEmail($email, "Password Reset Request", $forgotMessage);
 
         echo "<script>alert('An email has been sent to $email with instructions to reset your password.'); 
-        window.location.href='../index.php?user=passwordResetSuccess';</script>";
+        window.location.href='../index.php?info=passwordResetSuccess';</script>";
         exit();
     } else {
         echo "<script>alert('Email address not found. Please enter a valid email address.'); 
-        window.location.href='../index.php?user=errorEmail';</script>";
+        window.location.href='../index.php?info=errorEmail';</script>";
         exit();
     }
 }

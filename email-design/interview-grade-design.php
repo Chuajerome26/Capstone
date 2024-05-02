@@ -1,5 +1,5 @@
 <?php
-function IntGrade($last_name, $newDate1, $time_start, $time_end){
+function IntGrade($last_name){
 
     return'<!doctype html>
     <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -201,49 +201,27 @@ function IntGrade($last_name, $newDate1, $time_start, $time_end){
                                   </tr>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We are delighted to inform you that you have been shortlisted for the final round of interviews for the Scholarship Program. Congratulations on reaching this stage!</div>
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">I hope this message finds you well. I wanted to take a moment to express my gratitude for your participation in the recent scholarship interview. Your thoughtful responses and insightful perspectives truly impressed the interview panel.</div>
                                     </td>
                                   </tr>
                                   <tr>
                                   <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">The final interview will be a crucial step in the selection process, where we aim to learn more about you, your aspirations, and how you align with the values and objectives of our scholarship program.</div>
+                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We understand that preparing for and participating in interviews can be a demanding process, and we appreciate the time and effort you dedicated to sharing your experiences and aspirations with us.</div>
                                   </td>
                                 </tr>
                                 <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Please find below the details for your final interview:</div>
+                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">The interview panel was particularly impressed by the interviewee was evident throughout our conversation.</div>
                                 </td>
                               </tr>
                                   <tr>
-                                  <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">
-                                    <ul>
-                                    <li><strong>Date:</strong> '.$newDate1.'</li>
-                                    <li><strong>Time:</strong> '.$time_start.' to '.$time_end.'</li>
-                                    <li><strong>Platform:</strong> Onsite Interview</li>
-                                    <li><strong>Location:</strong></li>
-                                    </ul>
-                                    </div>
-                                  </td>
-                                </tr>
-                                  <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">During the interview, you can expect questions related to your academic achievements, extracurricular activities, career goals, and your understanding of how this scholarship will contribute to your personal and professional development.</div>
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Please know that your application is under careful consideration, and we will be in touch with you as soon as a decision has been made. In the meantime, if you have any questions or need further information, please dont hesitate to reach out to us.</div>
                                     </td>
                                   </tr>
                                   <tr>
                                   <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We encourage you to prepare thoroughly and showcase your strengths and passion for your chosen field of study. Feel free to bring any relevant documents or materials that you believe will support your candidacy.</div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">If you have any questions or concerns regarding the interview process, please do not hesitate to email us.</div>
-                                </td>
-                              </tr>
-                                  <tr>
-                                  <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:30px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Once again, congratulations on reaching this stage, and we look forward to meeting you and learning more about your journey and aspirations.</div>
+                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Once again, thank you for your interest in our scholarship program and for your participation in the interview. We wish you the best of luck in all your future endeavors.</div>
                                   </td>
                                 </tr>
                                   <tr>

@@ -92,7 +92,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         else if($log['remarks'] == 1){
                                             $remarks = '<span class="badge bg-secondary">Initial Interview</span>';
                                         }else if($log['remarks'] == 2){
-                                            $remarks = '<span class="badge bg-info">Final Interview</span>';
+                                            $remarks = '<span class="badge bg-info">Done Interview</span>';
                                         }else if($log['remarks'] == 3){
                                             $remarks = '<span class="badge bg-success">Accepted</span>';
                                         }else if($log['remarks'] == 5){

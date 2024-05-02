@@ -256,6 +256,18 @@ border-bottom-right-radius: .3rem;
             text: "You can now Login and Apply for Scholarship",
             icon: "success"
         });
+    }else if(successValue === "passwordResetSuccess"){
+        Swal.fire({
+            title: "Check Your Email!",
+            text: "You can now Reset you Password!",
+            icon: "success"
+        });
+    }else if(successValue === "errorEmail"){
+        Swal.fire({
+            title: "No Email Found!",
+            text: "Email Does Not Exist!",
+            icon: "error"
+        });
     }
 
     function togglePasswordVisibility() {
