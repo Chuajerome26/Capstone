@@ -295,19 +295,20 @@ class Admin
             return $result;
         }
     }
-    public function getAllGrade($scholar_id){
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_grade WHERE scholar_id = ?");
-
-        if (!$stmt->execute([$scholar_id])) {
+    public function getAllGrade($scholar_id, $ref) {
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_grade WHERE scholar_id = :scholar_id AND reference_num = :ref");
+    
+        if (!$stmt->execute([':scholar_id' => $scholar_id, ':ref' => $ref])) {
             header("Location: ../newdesign/admin-application.php?error=stmtfail");
             exit();
         }
+        
         //fetch the result
         $result = $stmt->fetchAll();
     
         return $result;
-        
     }
+    
     public function getAllChoice($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_college_choices WHERE scholar_id = ?");
 

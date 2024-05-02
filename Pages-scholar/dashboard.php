@@ -192,6 +192,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                         <span class="d-lg-none">Files</span>
                                                     </a>
                                                 </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link fw-bold" style="font-size:15px" id="renewal-tab" data-bs-toggle="tab" href="#renewal">
+                                                    <span class="d-none d-lg-block">Renewal History</span>
+                                                        <span class="d-lg-none">Files</span>
+                                                    </a>
+                                                </li>
 
                                             </ul>
                                         </div>
@@ -289,10 +295,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                             </div>
                                                         </div>
                                                         <?php
+                                                            $getRef = $scholar->getRenewalDates();
+                                                            $ref = $getRef['reference_number'];
                                                             $nonCom = date('Y-m-d', strtotime($date['renewal_date_end'] . ' +3 days'));
                                                             if (($currentDate >= $date['renewal_date_start'] && $currentDate <= $date['renewal_date_end']) || ($nonCom >= $currentDate && $date['renewal_date_end'] <= $currentDate)) {
                                                                 // Before displaying the renewal form, check if the scholar has already submitted
-                                                                if (!$scholar->hasSubmittedRenewal($id))  {
+                                                                if (!$scholar->hasSubmittedRenewal($id, $ref))  {
                                                         ?>
                                                                 <a href="renewal-form.php"><button type="button" class="btn btn-primary">Submit Renewal</button></a>
                                                         <?php
@@ -611,72 +619,117 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                         <div class="card-body">
                             
                         <div class="hstack gap-3">
-                    <div class="p-2"><h6>Requirement List</h6></div>
-                    <div class="p-2 ms-auto">
+                            <div class="p-2"><h6>Requirement List</h6></div>
+                                <div class="p-2 ms-auto">
                   
-                    </div>
+                                </div>
                    
-                    </div>
+                            </div>
                                             
-                    <div class="row">
-                        <?php 
-                        $applifiles = $admin->getApplicantsFiles($id);
+                                <div class="row">
+                                    <?php 
+                                    $applifiles = $admin->getApplicantsFiles($id);
 
-                        foreach ($applifiles as $i) {
-                            if (!empty($i['file_name'])) {
-                                $logo = ($i['requirement_name'] == 'IdPhoto') ? 'jpgLogo.png' : 'PDF-logo.png';
+                                    foreach ($applifiles as $i) {
+                                        if (!empty($i['file_name'])) {
+                                            $logo = ($i['requirement_name'] == 'IdPhoto') ? 'jpgLogo.png' : 'PDF-logo.png';
 
-                                if ($a['studType'] == "College" && $i['requirement_name'] != "Form137/138") {
-                                    // Display files for college students except "CollegeGrades"
-                                    ?>
-                                    <div class="col-md-4 mb-3">
-                                        <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
-                                            <div class="card shadow-sm">
-                                                <div class="card-body">
-                                                    <div class="hstack gap-3">
-                                                        <div><img class="img-fluid" src="../images/<?= $logo; ?>" width="40" height="40"></div>
-                                                        <div>
-                                                            <div><?= $i['requirement_name']; ?></div>
-                                                            <small class="text-secondary"><?php echo $i['file_name']; ?></small>
+                                            if ($a['studType'] == "College" && $i['requirement_name'] != "Form137/138") {
+                                                // Display files for college students except "CollegeGrades"
+                                                ?>
+                                                <div class="col-md-4 mb-3">
+                                                    <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
+                                                        <div class="card shadow-sm">
+                                                            <div class="card-body">
+                                                                <div class="hstack gap-3">
+                                                                    <div><img class="img-fluid" src="../images/<?= $logo; ?>" width="40" height="40"></div>
+                                                                    <div>
+                                                                        <div><?= $i['requirement_name']; ?></div>
+                                                                        <small class="text-secondary"><?php echo $i['file_name']; ?></small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <?php
-                                } elseif ($a['studType'] == "Senior High Graduate" && $i['requirement_name'] != "CollegeGrades") {
-                                    // Display files for senior high graduates except "CollegeGrades"
-                                    ?>
-                                    <div class="col-md-4 mb-3">
-                                        <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
-                                            <div class="card shadow-sm">
-                                                <div class="card-body">
-                                                    <div class="hstack gap-3">
-                                                        <div><img class="img-fluid" src="../images/<?= $logo; ?>" width="40" height="40"></div>
-                                                        <div>
-                                                            <div><?= $i['requirement_name']; ?></div>
-                                                            <small class="text-secondary"><?php echo $i['file_name']; ?></small>
+                                                <?php
+                                            } elseif ($a['studType'] == "Senior High Graduate" && $i['requirement_name'] != "CollegeGrades") {
+                                                // Display files for senior high graduates except "CollegeGrades"
+                                                ?>
+                                                <div class="col-md-4 mb-3">
+                                                    <a class="text-decoration-none" href="../Scholar_files/<?= $i['file_name']; ?>" target="_blank">
+                                                        <div class="card shadow-sm">
+                                                            <div class="card-body">
+                                                                <div class="hstack gap-3">
+                                                                    <div><img class="img-fluid" src="../images/<?= $logo; ?>" width="40" height="40"></div>
+                                                                    <div>
+                                                                        <div><?= $i['requirement_name']; ?></div>
+                                                                        <small class="text-secondary"><?php echo $i['file_name']; ?></small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    </a>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <?php
-                                }
-                            }
-                        }
-                        ?>
-                    </div>
-
-
-
-                            
+                                                <?php
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!--Renewal Tab-->
+            <div class="tab-pane fade" id="renewal" role="tabpanel" aria-labelledby="renewal-tab">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="hstack gap-3">
+                                <div class="p-2"><h6>Renewal History</h6></div>
+                                    <div class="p-2 ms-auto">
+                                    </div>
+                                </div>
+                                                
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Reference Number</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>REF123</td>
+                                                <td>2024-04-28</td>
+                                                <td>Submitted</td>
+                                                <td>Renewal submitted on time</td>
+                                            </tr>
+                                            <tr>
+                                                <td>REF456</td>
+                                                <td>2024-04-25</td>
+                                                <td>Approved</td>
+                                                <td>Renewal approved</td>
+                                            </tr>
+                                            <tr>
+                                                <td>REF789</td>
+                                                <td>2024-04-30</td>
+                                                <td>Pending</td>
+                                                <td>Renewal pending review</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </div>
+                </div>
+            </div>
+
+
+
             <?php } ?>
         </div>
 

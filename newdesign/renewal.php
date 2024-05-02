@@ -190,7 +190,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                                 <th scope="col">Scholar Type</th>
                                                 <th scope="col">Date Renewed</th>
                                                 <th scope="col">Status</th>
-                                                <th scope="col">Files</th>
+                                                <th scope="col">Details and Files</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
@@ -225,7 +225,10 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                                 <td style="white-space: nowrap;"><?php echo $scho_type;?></td>
                                                 <td><?php echo $s["date_apply"];?></td>
                                                 <td><?php echo $status;?></td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["id"];?>">Files</button></td>
+                                                <td>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsFilesModal<?php echo $s["id"];?>">Details</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["id"];?>">Files</button>
+                                                </td>
                                             </tr>
                                             <?php 
                                         $num++;
@@ -245,7 +248,60 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
             <!-- End of Main Content -->
 
+<!-- Modal -->
+<?php
+        foreach($renewal_info as $i){
+            $scholar_id = $i["scholar_id"];
+            $ref = $i["reference_num"];
+    ?>
+<div class="modal fade" id="detailsFilesModal<?php echo $i["id"];?>" tabindex="-1" aria-labelledby="detailsFilesModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsFilesModalLabel">Renewal Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><?php echo $i["full_name"];?></h5>
+            <p class="card-text">Civil Status: <?php echo $i["c_status"];?></p>
+            <p class="card-text">Contact Number: <?php echo $i["contact_num"];?></p>
+            <p class="card-text">Active Gcash Number: <?php echo $i["gcash"];?></p>
+            <p class="card-text">Educational Level: <?php echo $i["educ_lvl"];?></p>
+            <p class="card-text">University Currently Enrolled at: <?php echo $i["univ"];?></p>
+            <p class="card-text">Number of Units Currently Enroleld in: <?php echo $i["num_units_sem"];?></p>
+            <p class="card-text">Year Level: <?php echo $i["year_lvl"];?></p>
+            <p class="card-text">Current Semester: <?php echo $i["sem"];?></p>
+            <p class="card-text">School Year: <?php echo $i["school_year"];?></p>
+            <p class="card-text">Date: <?php echo $i["date_apply"];?></p>
+          </div>
+        </div>
 
+        <!-- Grade Info Section -->
+        <div class="card mt-3">
+            <div class="card-body">
+            <h5 class="card-title">Grade Info</h5>
+            <?php 
+
+                $gradeInfo = $admin->getAllGrade($scholar_id, $ref);
+                foreach($gradeInfo as $gi){
+            ?>
+                <p class="card-text">Subject: <?php echo $gi['subject'];?></p>
+                <p class="card-text">Unit: <?php echo $gi['unit'];?></p>
+                <p class="card-text">Subject: <?php echo $gi['subject'];?></p>
+            <?php }?>
+            </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<?php }?>
 <!-- RenewFiles Modal-->
 <?php
         foreach($renewal_info as $a){

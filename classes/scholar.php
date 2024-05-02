@@ -594,15 +594,17 @@ class Scholar{
         $scholars = $stmt->fetchAll();
         return $scholars;
     }    
-    public function hasSubmittedRenewal($id) {
-        $query = "SELECT renewal_status FROM scholar_renewal WHERE scholar_id = :scholar_id";
-        $stmt = $this->database->getConnection()->prepare($query);
-        $stmt->bindParam(':scholar_id', $id, PDO::PARAM_STR);
-        $stmt->execute();
+    public function hasSubmittedRenewal($id, $ref) {
+    $query = "SELECT renewal_status FROM scholar_renewal WHERE scholar_id = :scholar_id AND reference_number = :ref";
+    $stmt = $this->database->getConnection()->prepare($query);
+    $stmt->bindParam(':scholar_id', $id, PDO::PARAM_STR);
+    $stmt->bindParam(':ref', $ref, PDO::PARAM_STR);
+    $stmt->execute();
 
-        $renewStatus = $stmt->fetchColumn();
-        return ($renewStatus == 1 || $renewStatus == 2);
+    $renewStatus = $stmt->fetchColumn();
+    return ($renewStatus == 1 || $renewStatus == 2);
     }
+
 
     public function moveRenewalToDone($id) {
         // First, fetch the renewal information of the scholar
