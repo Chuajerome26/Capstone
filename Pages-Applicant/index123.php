@@ -131,6 +131,16 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
   border-radius: 50%;
 }
 
+.dropdown-item {
+        padding: 0.5rem 1rem; /* Adjust padding as needed */
+    }
+
+    .dropdown-item-text {
+        background-color: #0EDC8D;
+        color: white;
+        padding: 0.25rem 0.5rem; /* Adjust padding as needed */
+        border-radius: 0.25rem; /* Optional: Add border radius */
+    }
 
     </style>
     
@@ -151,7 +161,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <!-- /End Preloader -->
 
     <!-- Start Header Area -->
-    <header class="header navbar-area">
+    <header class="header navbar-area" style="background-color: #C9FDD7">
         <!-- Toolbar Start -->
         <!-- <div class="toolbar-area">
             <div class="container">
@@ -199,7 +209,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ms-auto">
                                 <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-                                <li class="nav-item"><a class="nav-link mr-5" href="#about">About</a></li>
+                                <li class="nav-item"><a class="nav-link mr-4" href="#about">About</a></li>
                             </ul>
 
                             <!-- toolbar -->
@@ -208,9 +218,23 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         <?php if ($userHasApplied): ?>
             <a href="../Pages-Applicant/Applicant-Requirements2.php" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;" class="btn btn-primary">View Submitted Files</a>
         <?php else: ?>
-            <button type="button" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;"  class="btn btn-primary mr-3" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+            
+            <button type="button" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;"  class="btn btn-primary mr-5" onmouseover="this.style.backgroundColor='#0BB37B'"
+    onmouseout="this.style.backgroundColor='#0EDC8D'" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
         <?php endif; ?>
-        <button type="button" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;" class="btn btn-primary" data-toggle="modal" data-target="#logoutModal">Logout</button>
+        <div class="btn-group">
+    <span style="font-size: 17px; height: 43px;  color: black; font-weight: bold; position: relative; top: 8px;" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        JOHN CARLO MORAL
+        </span>
+    <div class="dropdown-menu">
+        <!-- Dropdown menu links -->
+        
+       
+        <a class="dropdown-item" href="#"><span class="dropdown-item-text" style="font-size:15px;">Logout</span></a>
+    
+</div>
+
+
     </div>
 </div>
 
@@ -492,7 +516,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="col-12">
                             <div class="left">
                                 <p class="fw-bold fs-5">Scholar Management System <a href="" rel="nofollow"
-                                        target="_blank">(SMS)</a></p>
+                                        target="_blank">(ScholarPoint)</a></p>
 
                                         <p class=" fs-6">&copy; 2024 All Rights Reserved. </p>
                             </div>
@@ -515,10 +539,28 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">×</button>
       </div>
       <div class="modal-body">
-        <button type="submit" class="btn btn-primary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" onclick="window.location.href='freshmen.php';">Yes, Continue</button>
-        <p class="text-center mt-2">Click here if all your requirements are ready.</p>
-        <button type="button" class="btn btn-secondary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" data-bs-dismiss="modal">No, Cancel</button>
-        <p class="text-center mt-2">Click here to review the requirements.</p>
+      <div class="row">
+    <div class="col-md-6 text-center">
+    <p class="text-center mt-2">Click here if all your requirements are ready. </p>
+        </div>
+        <div class="col-md-6 text-center mt-2">
+        <button type="submit" class="btn btn-primary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" onmouseover="this.style.backgroundColor='#0BB37B'"
+    onmouseout="this.style.backgroundColor='#0EDC8D'" onclick="window.location.href='freshmen.php';">Yes, Continue</button>
+   
+        <button type="button" class="btn btn-secondary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" onmouseover="this.style.backgroundColor='#0BB37B'"
+    onmouseout="this.style.backgroundColor='#0EDC8D'" data-bs-dismiss="modal">No, Cancel</button>
+        
+        
+        </div>
+</div>
+       
+
+
+        
+       
+       
+        
+        
       </div>
     </div>
   </div>
