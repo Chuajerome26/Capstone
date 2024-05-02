@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
+if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
     require '../classes/admin.php';
     require '../classes/database.php';
 
@@ -12,9 +12,9 @@ session_start();
     $appliLogin = $admin->getScholarById(161);
     $pic = $admin->getApplicants2x2(161);
 
-// } else {
-//     header("Location: ../index.php");
-// }
+} else {
+    header("Location: ../index.php");
+}
 
 
 ?>
@@ -115,7 +115,7 @@ session_start();
                                     <h6 class="display-7 text-center ms-2 mt-1 fw-bold"><span class="d-none d-lg-block">Scholarship Management System</span></h6>
                                 </a>
                             </div>
-                            <div class="p-2 ms-auto"> <a href="index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
+                            <div class="p-2 ms-auto"> <a href="dashboard.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
                         </div>
 
 

@@ -15,6 +15,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $id = $_SESSION['id'];
 
     $admin_info = $admin->adminInfo($id);
+    $stipend = $scholar->getStipend();
 
 } else {
     header("Location: ../index.php");
@@ -102,7 +103,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
   </thead>
   <tbody class="table-group-dividercar">
     <?php 
-      $stipend = $scholar->getStipend();
       foreach($stipend as $stip){
         if($stip['scholar_type'] == 3){
           $scho_type = '<span class="badge bg-warning" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 1</span>';

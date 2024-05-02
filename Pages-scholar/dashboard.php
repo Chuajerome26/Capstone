@@ -290,11 +290,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                         </div>
                                                         <?php
                                                             $nonCom = date('Y-m-d', strtotime($date['renewal_date_end'] . ' +3 days'));
-                                                            if (($currentDate >= $date['renewal_date_start'] && $currentDate <= $date['renewal_date_end']) || $nonCom >= $currentDate) {
+                                                            if (($currentDate >= $date['renewal_date_start'] && $currentDate <= $date['renewal_date_end']) || ($nonCom >= $currentDate && $date['renewal_date_end'] <= $currentDate)) {
                                                                 // Before displaying the renewal form, check if the scholar has already submitted
                                                                 if (!$scholar->hasSubmittedRenewal($id))  {
                                                         ?>
-                                                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#scholarRenewalModal">Submit Renewal</button>
+                                                                <a href="renewal-form.php"><button type="button" class="btn btn-primary">Submit Renewal</button></a>
                                                         <?php
                                                                 } else {
                                                         ?>

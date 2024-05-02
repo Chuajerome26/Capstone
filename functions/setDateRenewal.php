@@ -37,6 +37,12 @@ if(isset($_POST['submit'])){
         exit();
     }
 
+    $stmt1 =  $database->getConnection()->prepare('UPDATE scholar_info SET nonCom = 0');
+
+    if(!$stmt1->execute()){
+        header('Location: ../newdesign/renewal.php?status=error');
+        exit();
+    }
     // $stmt1 = $database->getConnection()->prepare('SELECT * FROM scholar_info WHERE status = 1');
     // $stmt1->execute();
     // $rows = $stmt1->fetchAll();

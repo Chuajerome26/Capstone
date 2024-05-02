@@ -504,7 +504,11 @@ class Scholar{
         return $stmt;
     }
     public function getRenewalNewInfo() {
-        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renewal")->fetchAll();
+
+        $renewalDates = $this->getRenewalDates();
+        $ref = $renewalDates['reference_number'];
+
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renewal WHERE reference_number = '$ref'")->fetchAll();
 
         return $stmt;
     }
@@ -567,7 +571,7 @@ class Scholar{
     }
 
     public function getRenewalDates() {
-        $query = "SELECT renewal_date_start, renewal_date_end FROM scholar_renewal_date WHERE id = 1";
+        $query = "SELECT * FROM scholar_renewal_date WHERE id = 1";
         $stmt = $this->database->getConnection()->query($query);
 
         if ($stmt) {
@@ -657,19 +661,19 @@ class Scholar{
     
     public function updateNonComNotif0($id){
         // Update for 1st warning
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET nonCom_notif = ? WHERE id =?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET nonCom = ? WHERE scholar_id =?");
        //if execution fail
         $stmt->execute([0, $id]);
     }
     public function updateNonComNotif1($id){
         // Update for 1st warning
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET nonCom_notif = ? WHERE id =?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET nonCom = ? WHERE scholar_id =?");
        //if execution fail
         $stmt->execute([1, $id]);
     }
     public function updateNonComNotif2($id){
         // Update for 2nd warning
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET nonCom_notif = ? WHERE id =?");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET nonCom = ? WHERE scholar_id =?");
        //if execution fail
         $stmt->execute([2, $id]);
     }

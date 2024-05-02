@@ -23,7 +23,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $admin_info = $admin->adminInfo($id);
     $renewal_info = $scholar->getRenewalNewInfo();
     $renewalDates = $scholar->getRenewalDates();
-    // $scholars = $admin->getScholars();
+    $scholars = $admin->getScholars();
     $scholar->updateNonComStatus($id);
 
 
@@ -139,6 +139,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <p class="h3 mb-0 font-weight-bold text-gray-800">Renewal</p>
+                        <div id="toggleStatus" class="p-2 ms-auto">
+                            <div class="alert alert-primary" role="alert">Renewal: <?php echo $dateFormat; ?> - <?php echo $dateFormat1; ?></div>
+                        </div>
                         <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#startRenewal">
                             Start Renewal
                         </button>

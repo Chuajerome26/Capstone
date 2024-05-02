@@ -6,18 +6,24 @@ session_start();
 if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_type'] === 2)) {
     require '../classes/admin.php';
     require '../classes/database.php';
+    require '../classes/scholar.php';
 
     $database = new Database();
     $admin = new Admin($database);
+    $scholar = new Scholar($database);
 
     $id = $_SESSION['id'];
 
     $admin_info = $admin->adminInfo($id);
 
     $today = $admin->getInterviewCountForToday();
-    $renewal = $admin->getRenewalCount();
+
+    $renewal = $scholar->getRenewalNewInfo();
+    $countRenew = count($renewal);
+
     $scholar = $admin->getScholars();
     $scholar1 = count($scholar);
+
     $applicants = $admin->getApplicantsCount();
     // $funds = $admin->getTotalFunds();
 
@@ -120,7 +126,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h6 mb-0 mr-3 font-weight-bold text-white"><?php echo $renewal; ?></div>
+                                                    <div class="h6 mb-0 mr-3 font-weight-bold text-white"><?php echo $countRenew; ?></div>
                                                 </div>
                                             </div>
                                         </div>
