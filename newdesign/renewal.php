@@ -252,7 +252,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 <?php
         foreach($renewal_info as $i){
             $scholar_id = $i["scholar_id"];
-            $ref = $i["reference_num"];
+            $ref = $i["reference_number"];
     ?>
 <div class="modal fade" id="detailsFilesModal<?php echo $i["id"];?>" tabindex="-1" aria-labelledby="detailsFilesModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -282,15 +282,27 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         <div class="card mt-3">
             <div class="card-body">
             <h5 class="card-title">Grade Info</h5>
-            <?php 
-
-                $gradeInfo = $admin->getAllGrade($scholar_id, $ref);
-                foreach($gradeInfo as $gi){
-            ?>
-                <p class="card-text">Subject: <?php echo $gi['subject'];?></p>
-                <p class="card-text">Unit: <?php echo $gi['unit'];?></p>
-                <p class="card-text">Subject: <?php echo $gi['subject'];?></p>
-            <?php }?>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                    $gradeInfo = $admin->getAllGrade($scholar_id, $ref);
+                    foreach($gradeInfo as $gi){
+                ?>
+                    <tr>
+                        <td><?php echo $gi['subject'];?></td>
+                        <td><?php echo $gi['unit'];?></td>
+                        <td><?php echo $gi['grade'];?></td>
+                    </tr>
+                <?php } ?>
+                </tbody>
+            </table>
             </div>
         </div>
 

@@ -59,7 +59,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                               <!-- Academic is for Checkbox 1 -->
                               <!-- Economic is for Checkbox 2 -->
                               
-                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              <button type="button" class="btn btn-primary">
                               <i class="fa-regular fa-paper-plane "></i><div class="d-none d-sm-inline-block">Generate Certificate</div>
                               </button>
                               
@@ -130,9 +130,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
       <td style="white-space: nowrap;"><?php echo $cert; ?></td>
       <td style="white-space: nowrap;">
+      <form>
         <button class="btn btn-sm btn-primary" type="submit">Send Certificate</button>
         <button class="btn btn-sm btn-info" type="submit">Generate Certificate</button>
         <button class="btn btn-sm btn-warning" type="submit">Send Stipend</button>
+      </form>
       </td>
     </tr>
     <?php } ?>
