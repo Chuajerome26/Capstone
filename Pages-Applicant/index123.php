@@ -45,10 +45,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <link rel="stylesheet" href="../assets1/css/2.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-
+    
       <!-- Style CSS -->
       <link rel="stylesheet" href="./css/style.css">
       <!-- Demo CSS (No need to include it into your project) -->
@@ -87,15 +88,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
   transform: scale(1.1); /* Zoom in by 10% */
 }
 
-.fab-container .fab {
-  position: relative;
-  height: 50px; /* Adjusted height */
-  width: 50px; /* Adjusted width */
-  background-color: #4ba2ff;
-  border-radius: 50%;
-  z-index: 2;
-}
-
 .fab-container .fab::before {
   content: " ";
   position: absolute;
@@ -122,24 +114,56 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 }
 
 .fab-container .fab .fab-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  border-radius: 50%;
+    background-color: #0EDC8D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 56px;
+    height: 56px;
+}
+
+.dropdown-menu {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 10px; /* Add padding for spacing */
+    border-radius: 5px; /* Rounded corners */
+    min-width: unset;
 }
 
 .dropdown-item {
-        padding: 0.5rem 1rem; /* Adjust padding as needed */
-    }
+    padding: 4px 8px; /* Padding for the item */
+    transition: background-color 0.3s; /* Smooth transition */
+    
+}
 
-    .dropdown-item-text {
-        background-color: #0EDC8D;
-        color: white;
-        padding: 0.25rem 0.5rem; /* Adjust padding as needed */
-        border-radius: 0.25rem; /* Optional: Add border radius */
-    }
+.dropdown-item:hover {
+    background-color: #d3d3d3; /* Lighter gray background on hover */
+}
+
+.dropdown-item-text {
+    color: #333; /* Text color */
+}
+
+.dropdown-item-text:hover {
+    color: #000; /* Text color on hover */
+}
+
+
+    .btn-group {
+  display: inline-block; /* Ensure the link only takes up the necessary width */
+  text-decoration: none; /* Remove default underline */
+  color: black; /* Set default text color */
+  transition: color 0.3s, box-shadow 0.3s; /* Add smooth transitions */
+  cursor: pointer;
+  user-select: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+}
+
+.list-group-bullet {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+
 
     </style>
     
@@ -218,20 +242,21 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
             <a href="../Pages-Applicant/Applicant-Requirements2.php" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;" class="btn btn-primary">View Submitted Files</a>
         <?php else: ?>
             
-            <button type="button" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;"  class="btn btn-primary mr-5" onmouseover="this.style.backgroundColor='#0BB37B'"
+            <button type="button" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;"  class="btn btn-primary mr-4" onmouseover="this.style.backgroundColor='#0BB37B'"
     onmouseout="this.style.backgroundColor='#0EDC8D'" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+
+        <span style="font-size:19px;">Logged in as:</span>
         <?php endif; ?>
         <div class="btn-group">
-    <span style="font-size: 17px; height: 43px;  color: black; font-weight: bold; position: relative; top: 8px;" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <?php echo $info[0]['fname']; ?> <?php echo $info[0]['lname']; ?>
-        </span>
-    <div class="dropdown-menu">
-        <!-- Dropdown menu links -->
-        
-       
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"><span class="dropdown-item-text" style="font-size:15px;">Logout</span></a>
-    
+        <span style="font-size: 18px; height: 44px; color: black; position: relative; top: 8px; text-decoration: underline; text-transform: uppercase; font-family: Arial;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">    
+         <?php echo $info[0]['fname']; ?> <?php echo $info[0]['lname']; ?>
+        </span>        
+        <div class="dropdown-menu dropdown-menu-right">
+    <div class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+        <span class="dropdown-item-text" style="font-size:15px;">Logout</span>
+    </div>
 </div>
+
 
 
     </div>
@@ -334,7 +359,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="about-title align-left">
                             <span class="wow fadeInDown" data-wow-delay=".2s">About Our Scholarship</span>
                             <h2 class="wow fadeInUp" data-wow-delay=".4s">Welcome to Scholarship Management</h2>
-                            <p class="wow fadeInUp" data-wow-delay=".6s"> where we are dedicated to facilitating access to education for students worldwide. Our organization was founded with the mission of bridging the gap between deserving students and available scholarship opportunities.</p>
+                            <p class="wow fadeInUp" data-wow-delay=".6s">CLICK THE ICON IN THE LOWER LEFT TO VIEW THE REQUIREMENTS NEEDED.</p>
                             <p class="qote wow fadeInUp" data-wow-delay=".8s"></p>
                             <div class="button wow fadeInUp" data-wow-delay="1s">
                                 <a href="#about" class="btn">Read More</a>
@@ -531,27 +556,28 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 <!-- Second Modal -->
 <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-login">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title fw-bold text-center">Are you sure you want to proceed?</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">×</button>
+        <h5 class="modal-title text-center fw-bold" id="applyModalLabel">Are you sure you want to proceed?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <div class="row">
-    <div class="col-md-6 text-center">
-    <p class="text-center mt-2">Click here if all your requirements are ready. </p>
+        <div class="row align-items-center">
+        <div class="col-md-6 text-center">
+        <p class="mt-2 mb-0" style="font-family: 'Roboto', sans-serif; font-size: 18px; color: #333;">Click "Yes" if all your Requirements are ready.</p>
         </div>
-        <div class="col-md-6 text-center mt-2">
-        <button type="submit" class="btn btn-primary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" onmouseover="this.style.backgroundColor='#0BB37B'"
-    onmouseout="this.style.backgroundColor='#0EDC8D'" onclick="window.location.href='freshmen.php';">Yes, Continue</button>
-   
-        <button type="button" class="btn btn-secondary mx-auto d-block mt-3" style="width: 200px; height: 40px; font-size: 16px;" onmouseover="this.style.backgroundColor='#0BB37B'"
-    onmouseout="this.style.backgroundColor='#0EDC8D'" data-bs-dismiss="modal">No, Cancel</button>
-        
-        
+          <div class="col-md-6 text-center">
+            <button type="button" class="btn btn-success btn-lg mt-3" style="width: 200px;" onclick="window.location.href='freshmen.php';">Yes, Continue</button>
+            <button type="button" class="btn btn-danger btn-lg mt-3" style="width: 200px;" data-bs-dismiss="modal">No, Cancel</button>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
        
 
 
@@ -649,30 +675,34 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color: #C9FDD7;">
         <h5 class="modal-title" id="exampleModalLabel">Requirements List</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <ul class="list-group list-group-flush text-center">
-      <li class="list-group-item">2x2 latest photo</li>
-            <li class="list-group-item">Certified True Copy of Birth Certificate</li>
-            <li class="list-group-item">Certified True Copy of Form 137 or 138 / Grade Slip (For Sr. High School Graduates)</li>
-            <li class="list-group-item">Certificate of Honor or Award (For Sr. High School Graduates)</li>
-            <li class="list-group-item">Latest Copy of Grades (For College Enrolled Students)</li>
-            <li class="list-group-item">Barangay Certification</li>
-            <li class="list-group-item">Latest Income Tax Retur of Parents /Affidavit of Non-filing</li>
-            <li class="list-group-item">Indigency</li>
-            <li class="list-group-item">General Weighted Average should be 85 and above for Senior High School Graduates<br>
-                                        And 2.25 and above for College Enrolled</li>
+        <ul class="list-group list-group-flush list-group-bullet">
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">2x2 Latest Photo</span></li>
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Certified True Copy of Birth Certificate</span></li>
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Certified True Copy of Form 137 or 138 / Grade Slip (For Sr. High School Graduates)</span></li>
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Certificate of Honor or Award (For Sr. High School Graduates)</span></li>
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Latest Copy of Grades (For College Enrolled Students)</span></li>
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Barangay Certification</span></li>
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Latest Income Tax Return of Parents / Affidavit of Non-filing</span></li>
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Indigency</span></li>
+          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">General Weighted Average should be 85 and above for Senior High School Graduates, and 2.25 and above for College Enrolled</span></li>
         </ul>
       </div>
-      <div class="card-footer bg-white py-2 text-center">
+      <div class="modal-footer bg-white py-2 text-center">
         <button type="button" class="btn mt-3" data-bs-toggle="modal" data-bs-target="#applyModal" style="background-color: #0EDC8D; color: #ffffff;">Apply Now</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
       
 
 </style>
