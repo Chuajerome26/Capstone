@@ -62,7 +62,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $messageStart = renewalStartEmail($dateFormat);
     $messageReminder = renewalReminderEmail($dateFormat1);
     $messageEnd = renewalEndEmail($dateFormat1);
-
+    
     if($start == $date){
         foreach($scholars as $data){
             if($data['notif_send'] == 0){
@@ -94,7 +94,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $endPlus1 = date('Y-m-d', strtotime($end . ' +1 day'));
     $endPlus2 = date('Y-m-d', strtotime($end . ' +2 days'));
     $endPlus3 = date('Y-m-d', strtotime($end . ' +3 days'));
-
 
     if ($date == $endPlus3) {
         for($i=0;$i < count($not_renewed_scholars);$i++){
@@ -163,7 +162,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <p class="h3 mb-0 font-weight-bold text-gray-800">Renewal<?php var_dump($not_renewed_scholars); ?></p>
+                        <p class="h3 mb-0 font-weight-bold text-gray-800">Renewal</p>
                         <div id="toggleStatus" class="p-2 ms-auto">
                             <div class="alert alert-primary" role="alert">Renewal: <?php echo $dateFormat; ?> - <?php echo $dateFormat1; ?></div>
                         </div>

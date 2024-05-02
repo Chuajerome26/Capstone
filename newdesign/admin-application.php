@@ -179,9 +179,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                 $remarks = '<span class="badge bg-primary">For Evaluation</span>';
                             }
                             else if($s['application_status'] == 1){
-                                $remarks = '<span class="badge bg-warning">Initial Interview</span>';
+                                $remarks = '<span class="badge bg-warning">Interview</span>';
                             }else if($s['application_status'] == 2){
-                                $remarks = '<span class="badge bg-info">Final Interview</span>';
+                                $remarks = '<span class="badge bg-info">Done Interview</span>';
                             }
 
                     ?>

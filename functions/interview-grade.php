@@ -29,30 +29,10 @@ if(isset($_POST['submit'])){
     $q5 = $_POST['q5'];
 
     $totalGrade = $q1 + $q2 + $q3 + $q4 + $q5;
+    $average = $totalGrade / 5;
 
-    $updateGrade = $admin->gradeInterviewInitial($id, $totalGrade);
 
     if($updateGrade){
-        $start_time = '09:00';
-        $end_time = '15:00';
-        $excluded_start = '12:00';
-        $excluded_end = '13:00';
-        $max10 = 1;
-        $duration = 30;
-
-        $scholarData = array(
-            'scholar_id' => $scholar_id,
-            'type' => 1,
-        );
-
-        $sched = $admin->selectAndInsertSchedulesforFinal($scholarData, $start_time, $end_time, $excluded_start, $excluded_end, $duration, $max10, $newDate);
-        $date = $sched[0]['date'];
-        $newDate1 = date("M d, Y", strtotime($date));
-        $time_start = $sched[0]['start'];
-        $time_end = $sched[0]['end'];
-
-        $convertedTime = date("h:i A", strtotime($time_start));
-        $convertedTime1 = date("h:i A", strtotime($time_end));
 
         $message1 = '
         Dear '.$last_name.',
@@ -81,6 +61,8 @@ if(isset($_POST['submit'])){
         Consuelo "CHITO" Madrigal Foundation, Inc.
         ccmf2015main@gmail.com
         ';
+
+
         $message = IntGrade($last_name, $newDate1, $time_start, $time_end);
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 2, $message1, $currentDate1);
         $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 2 WHERE id = :id');

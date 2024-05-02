@@ -20,6 +20,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $renewalDates = $scholar->getRenewalDates();
     $scholars = $admin->getScholars();
 
+    $scholarInfo = $scholar->getRenewalNewInfoAll();
+
 } else {
     header("Location: ../index.php");
 }
@@ -91,7 +93,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         </thead>
                                         <tbody class="table-group-divider">
                                         <?php
-                                        $scholarInfo = $scholar->getDoneRenewalInfo();
+                                        
                                         $num = 1;
                                         foreach($scholarInfo as $s){
                                         ?>
@@ -150,8 +152,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     <!-- end -->
 <!-- RenewFiles Modal-->
 <?php
-    $renewalFiless = $scholar->getDoneRenewalInfo();
-        foreach($renewalFiless as $a){
+
+        foreach($scholarInfo as $a){
     ?>
         <div class="modal fade" id="renewFilesModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $a["id"];?>l" aria-hidden="true">
         <div class="modal-dialog" style="max-width:600px;">

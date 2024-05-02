@@ -76,10 +76,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
 <ul class="nav nav-underline">
 <li class="nav-item">
-<a class="nav-link text-black" aria-current="page" href="#" onclick="showTab('initial-interview')">Initial Interview</a>
-</li>
-<li class="nav-item">
-<a class="nav-link text-black" href="#" onclick="showTab('final-interview')">Final Interview</a>
+<a class="nav-link text-black" aria-current="page" href="#">Interviews</a>
 </li>
 
 </li>
@@ -91,12 +88,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
 <div class="row">
 <!-- Area Chart -->
-<div  id="initial-interview-card" class="col-lg-12 mb-4 mt-3">
+<div class="col-lg-12 mb-4 mt-3">
     <div class="card shadow mb-4 ">
         <!-- Card Header - Dropdown -->
         
         <div class="card-body">
-        <h6 class="p-2 font-weight-bold text-black mb-2">Initial Interview</h6>
+        <h6 class="p-2 font-weight-bold text-black mb-2">Interviews</h6>
             <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
                 <div class="row">
                     <?php
@@ -176,127 +173,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     </div>
 </div>
 <!-- Pie Chart -->
-
-
-
-<!-- Area Chart -->
-<div id="final-interview-card" class="col-lg-12 mb-4 mt-3 " style="display: none;">
-    <div class="card shadow mb-4 ">
-        <!-- Card Header - Dropdown -->
-        
-        <div class="card-body">
-        <h6 class="p-2 font-weight-bold text-black mb-2">Final Interview</h6>
-            <div class="container mt-6" style="max-height: 400px; overflow-y: auto;">
-                <div class="row g-1">
-                <?php
-                    // Initialize an array to keep track of displayed dates
-                    $displayedDates = [];
-
-                if($finalInterview["hasData"]){
-                    foreach ($finalInterview1 as $final) {
-                        $date = $final['date'];
-                        $dateTime = new DateTime($date);
-                        $formattedDate = $dateTime->format("F j, Y");
-                        // Check if the date has already been displayed
-                        if (!in_array($date, $displayedDates)) {
-                            // Add the date to the list of displayed dates
-                            $displayedDates[] = $date;
-                            ?>
-                            
-                                <div class="col-4">
-
-                                <div class="card" style="width: 22rem;">
-                                <div class="hstack gap-1 d-flex align-items-center ms-4 mt-1">
-                                    <div class="p-1 text-center"><i class="fa-regular fa-calendar-days fs-2"></i></div>
-                                    <div class="ms-2">
-                                        <div ><strong>Wednesday</strong></div> 
-                                        <div><small class="text-muted"><?php echo $formattedDate; ?></small></div>
-                                    </div>
-                                </div>
-                                     
-                                <div class="card border mt-2 mb-2"></div>
-
-                                    <div class="card-body " style="max-height: 200px; overflow-y: auto; min-height: 180px;">
-
-                              
-                                <div class="scrollable-content">
-
-                                    <?php
-                                        // Loop to display data entries with the same date within the same card
-                                        foreach ($finalInterview1 as $final1) { 
-                                            if ($final1['date'] == $date) {
-                                                $info = $admin->getApplicantById($final1['scholar_id']);
-                                                ?>
-                                                <li class="card-text ms-3"><?php echo $info[0]['f_name']." ".$info[0]['l_name']; ?></li>
-                                                <?php
-                                                    }
-                                                }
-                                                ?>
-
-                                    <!-- Add more content if needed -->
-                                </div>
-                            </div>
-                            <div class="card-footer bg-light border-0">
-                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#editFinalModal<?php echo $final["date"];?>">Edit</button>
-                            </div>
-                        </div>
-                                </div>
-
-
-                            <?php
-                        }
-                    }
-                }else{
-                    ?>
-                    <div>
-                    <div class="alert alert-primary" role="alert">
-                        No Interview for now.
-                        </div>
-                    </div>
-                    <?php } ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Pie Chart -->
 </div>
 
-
-
-
-<script>
-function showTab(tabId) {
-// Hide all card containers
-document.getElementById('initial-interview-card').style.display = 'none';
-document.getElementById('final-interview-card').style.display = 'none';
-
-// Show the selected tab's card container
-document.getElementById(tabId + '-card').style.display = 'block';
-}
-</script>
 
 <!-- End of Main Content -->
 
- <!-- Logout Modal-->
- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="admin-logout.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Modal For View Details -->
     <?php 
         $displayedDatesforModal = [];
