@@ -36,9 +36,9 @@ if(isset($_POST['submit'])){
                 $grants = 2000;
             }
 
-            $stmt = $database->getConnection()->prepare('INSERT INTO stipend (scholar_id, full_name, scholar_type, grants, date_insert) VALUE (?, ?, ?, ?, CURRENT_TIMESTAMP)');
+            $stmt = $database->getConnection()->prepare('INSERT INTO stipend (scholar_id, full_name, scholar_type, grants, date_insert, reference_number) VALUE (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)');
 
-            if(!$stmt->execute([$getStatus1[0]['scholar_id'], $getStatus1[0]['full_name'], $getStatus1[0]['scholar_type'], $grants])){
+            if(!$stmt->execute([$getStatus1[0]['scholar_id'], $getStatus1[0]['full_name'], $getStatus1[0]['scholar_type'], $grants],  $getStatus1[0]['reference_number'])){
                 header('Location: ../newdesign/admin-application.php?status=error');
                 exit();
             }

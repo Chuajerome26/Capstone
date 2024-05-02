@@ -85,7 +85,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Name</th>
-                                                <th scope="col">Email</th>
+                                                <th scope="col">Scholar Type</th>
                                                 <th scope="col">Date Renewed</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Files</th>
@@ -93,17 +93,37 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         </thead>
                                         <tbody class="table-group-divider">
                                         <?php
-                                        
                                         $num = 1;
                                         foreach($scholarInfo as $s){
-                                        ?>
+                                            if($s['scholar_type'] == 3){
+                                                $scho_type = '<span class="badge bg-warning" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 1</span>';
+                                                $grants = '5000';
+                                            }elseif($s['scholar_type'] == 2){
+                                                $scho_type = '<span class="badge bg-info" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 2</span>';
+                                                $grants = '4000';
+                                            }elseif($s['scholar_type'] == 1){
+                                                $scho_type = '<span class="badge bg-primary" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Economic</span>';
+                                                $grants = '2000';
+                                            }
+
+                                            if($s['renewal_status'] == 1){
+                                                $status = '<span class="badge bg-secondary">Submitted</span>';
+                                            }elseif($s['renewal_status'] == 2){
+                                                $status = '<span class="badge bg-success">Approved</span>';
+                                            }elseif($s['renewal_status'] == 3){
+                                                $status = '<span class="badge bg-info">Tentative</span>';
+                                            }elseif($s['renewal_status'] == 4){
+                                                $status = '<span class="badge bg-danger">Non-Compliant</span>';
+                                            }
+                                            
+                                            ?>
                                             <tr>
                                                 <th scope="col"><?php echo $num; ?></th>
-                                                <td style="white-space: nowrap;"><?php echo $s["Firstname"]." ".$s["Lastname"]; ?></td>
-                                                <td style="white-space: nowrap;"><?php echo $s["Email"];?></td>
-                                                <td><?php echo $s["date_renew"];?></td>
-                                                <td>Approved</td>
-                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["id"];?>">Files</button></td>
+                                                <td style="white-space: nowrap;"><?php echo $s["full_name"]; ?></td>
+                                                <td style="white-space: nowrap;"><?php echo $scho_type;?></td>
+                                                <td><?php echo $s["date_apply"];?></td>
+                                                <td><?php echo $status;?></td>
+                                                <td><?php echo $s['reference_number'];?> </td>
                                             </tr>
                                             <?php 
                                         $num++;

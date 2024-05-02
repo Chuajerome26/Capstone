@@ -43,7 +43,7 @@ class Database
     $mail->isHTML(true);//Set email format to HTML
 
     //recipients
-    $mail->setFrom('ccmf91740@gmail.com','CCMF');
+    $mail->setFrom('ccmf91740@gmail.com','Scholarship Management System');
     $mail->addAddress($recipient);
     $mail->Subject = $subject;
     $mail->Body = $message;

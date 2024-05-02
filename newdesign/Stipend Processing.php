@@ -60,7 +60,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                               <!-- Economic is for Checkbox 2 -->
                               
                               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                              <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Send Email</div>
+                              <i class="fa-regular fa-paper-plane "></i><div class="d-none d-sm-inline-block">Generate Certificate</div>
                               </button>
                               
                           </div>
@@ -91,6 +91,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <th scope="col">Type</th>
       <th scope="col">Grants</th>
       <th scope="col">Status</th>
+      <th scope="col">Certificate</th>
       <th scope="col">Actions</th>
         </tr>
   </thead>
@@ -113,6 +114,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         }elseif($stip['status'] == 1){
           $status = '<span class="badge bg-success">Sent</span>';
         }
+
+        if($stip['certificate'] == ""){
+          $cert = "No Generated File";
+        }else{
+          $cert = $stip['certificate']; 
+        }
     ?>
     <tr>
       <th scope="col">1</th>
@@ -121,13 +128,16 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <td style="white-space: nowrap;"><?php echo $scho_type; ?></td>
       <td style="white-space: nowrap;"><?php echo $grants; ?></td>
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
+      <td style="white-space: nowrap;"><?php echo $cert; ?></td>
       <td style="white-space: nowrap;">
         <button class="btn btn-sm btn-primary" type="submit">Send Certificate</button>
+        <button class="btn btn-sm btn-info" type="submit">Generate Certificate</button>
+        <button class="btn btn-sm btn-warning" type="submit">Send Stipend</button>
       </td>
     </tr>
+    <?php } ?>
       </tbody>
       </table>
-    <?php } ?>
                     </div>
 </div>
 </div>

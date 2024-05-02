@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
 
     $user_id = $_SESSION['id'];
 
-    $arrayNames = array('IdPhoto', 'Form137/138', 'CollegeGrades', 'BirthCertificate', 'Indigency', 'BarangayCerrt', 'ITR', 'HighScoolAchievement');
+    $arrayNames = array('IdPhoto', 'Form137/138', 'CollegeGrades', 'BirthCertificate', 'Indigency', 'BarangayCert', 'ITR', 'HighScoolAchievement');
     $remarks = array();
     // Iterate through each name and retrieve its value from $_POST
     foreach ($arrayNames as $name) {
@@ -110,7 +110,7 @@ ccmf2015main@gmail.com
 
         $message = fileRemarkSuccess($last_name, $date, $convertedTime, $convertedTime1);
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 1, $message1, $currentDate1);
-        $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 1 WHERE id = :id');
+        $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 1 WHERE scholar_id = :id');
         $update->execute(['id' => $scholar_id]);
 
         $database->sendEmail($email,"Scholarship Application Evaluation - Completed", $message);
