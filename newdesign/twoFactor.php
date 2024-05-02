@@ -47,7 +47,7 @@ if (isset($_SESSION['id'])) {
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
-            background-color: #f2f2f2;
+            background-color: #A3FFD6;
             font-size: 1rem;
         }
 .single-digit-input {
@@ -69,7 +69,7 @@ if (isset($_SESSION['id'])) {
 <nav class="navbar navbar-expand-lg mt-5">
     <div class="container-fluid">
         <div class="text-center mx-auto"> <!-- Center the logo horizontally and vertically -->
-            <img src="../images/Management1.png" style="width: 300px; height: 60px;" alt="Logo">
+            
         </div>
     </div>
 </nav>
@@ -77,6 +77,7 @@ if (isset($_SESSION['id'])) {
 
 <div class="container d-flex justify-content-center align-items-center py-5">
     <div class="card shadow border-0 mb-2 p-3" style="width: 40rem;">
+    <img src="../images/Management1.png" style="width: 220px; height: 43px;" alt="Logo">
         <h4 class="mb-4 fw-bold text-center">Verification</h4>
         
         <form class="verification-group mb-4" method="POST" action="../functions/verify_2fa.php">
@@ -86,7 +87,7 @@ if (isset($_SESSION['id'])) {
                         <input type="text" name="verificationCode[]" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="single-digit-input" required>
                         <input type="text" name="verificationCode[]" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="single-digit-input" required>
                         <input type="text" name="verificationCode[]" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="single-digit-input" required>
-                        <span> - </span>
+                        <span> - &nbsp;</span>
                         <input type="text" name="verificationCode[]" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="single-digit-input" required>
                         <input type="text" name="verificationCode[]" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="single-digit-input" required>
                         <input type="text" name="verificationCode[]" inputmode="numeric" pattern="[0-9]*" maxlength="1" class="single-digit-input" required>
@@ -170,7 +171,13 @@ if (isset($_SESSION['id'])) {
     var cooldownInterval;
 
     function resendCode() {
+        if (document.getElementById("resendButton").getAttribute("disabled") === "disabled") {
+            return; // Do nothing if button is already disabled
+        }
+
         document.getElementById("resendButton").setAttribute("disabled", "disabled");
+        cooldownTime = 60; // Reset cooldown time
+        document.getElementById("resendButton").innerText = "Resend code (" + cooldownTime + ")";
 
         cooldownInterval = setInterval(function() {
             cooldownTime--;
