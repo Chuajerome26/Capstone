@@ -26,7 +26,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 
 <title>SMS FORM</title>
-<link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
+<link rel="shortcut icon" type="image/x-icon" href="../images/forcert1.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -111,8 +111,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="hstack gap-3 mb-3">
                             <div class="p-1">
                                 <a class="navbar-brand d-flex align-items-center m-auto" >
-                                    <img src="../images/forcert.png" alt="Image" class="img-fluid" width="45px" height="45px">
-                                    <h6 class="display-7 text-center ms-2 mt-1 fw-bold"><span class="d-none d-lg-block">Scholarship Management System</span></h6>
+                                    <img src="../images/Management1.png" alt="Image" class="img-fluid" width="230px" height="60px">
                                 </a>
                             </div>
                             <div class="p-2 ms-auto"> <a href="index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
