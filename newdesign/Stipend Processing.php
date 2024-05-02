@@ -121,7 +121,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <td style="white-space: nowrap;"><?php echo $scho_type; ?></td>
       <td style="white-space: nowrap;"><?php echo $grants; ?></td>
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
-      <td style="white-space: nowrap;"><?php echo $status; ?>
+      <td style="white-space: nowrap;">
         <button class="btn btn-sm btn-primary" type="submit">Send Certificate</button>
       </td>
     </tr>

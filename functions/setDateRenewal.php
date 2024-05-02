@@ -3,6 +3,7 @@
 
 require '../classes/database.php';
 require '../classes/admin.php';
+include '../email-design/renewalStartEmail-design.php';
 
 function generateReferenceNumber($length = 8) {
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -70,7 +71,14 @@ if(isset($_POST['submit'])){
     //     header('Location: ../newdesign/renewal.php?status=empty');
     //     exit();
     // }
-    
+    $scholar_info = $admin->getScholars();
+    $dateFormat = date('M d, Y', strtotime($start));
+
+    $messageStart = renewalStartEmail($dateFormat);
+
+    foreach($scholar_info as $s){
+        $database->sendEmail($s['email'], "Scholar Program Renewal", $messageStart);
+    }
 
 
     header('Location: ../newdesign/renewal.php?status=success');

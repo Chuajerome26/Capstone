@@ -53,12 +53,25 @@ Warm regards,
 
         $message = IntGrade($last_name);
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 2, $message1, $currentDate1);
-        $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 2 WHERE id = :id');
+        $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 2 WHERE scholar_id = :id');
         $update->execute(['id' => $scholar_id]);
         $database->sendEmail($email,"Thank You for Your Recent Scholarship Interview", $message);
         header('Location: ../newdesign/schedule-task.php?status=successGrade');
         exit();
     }else{
+
+        $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 5 WHERE scholar_id = :id');
+
+        if(!$stmt->execute(['id' => $scholar_id])){
+            header('Location: ../newdesign/admin-application.php?status=error');
+            exit();
+        }
         
+        $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 5 WHERE id = :id');
+
+        if(!$stmt1->execute(['id' => $scholar_id])){
+            header('Location: ../newdesign/admin-application.php?status=error');
+            exit();
+        }
     }
 }
