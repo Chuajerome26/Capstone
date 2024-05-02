@@ -84,7 +84,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                 $admin->updateNotif0($data['id']);
             }
         }
-    } else {
+    }
 
     //Email message for 1st to final warning
     $messageWarning1st = renewalWarning1Email();
@@ -94,24 +94,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $endPlus1 = date('Y-m-d', strtotime($end . ' +1 day'));
     $endPlus2 = date('Y-m-d', strtotime($end . ' +2 days'));
     $endPlus3 = date('Y-m-d', strtotime($end . ' +3 days'));
-    //sending email to scholars who still has status = 0 even after the end of renewal period
-    if ($date >= $endPlus1) {
-        for($i=0;$i < count($not_renewed_scholars);$i++){
-            $scholar_id = $not_renewed_scholars[$i]['scholar_id'];
-            if ($not_renewed_scholars[$i]['nonCom'] == 0) {
-                $database->sendEmail($not_renewed_scholars[$i]['email'], "Urgent: Scholarship Renewal Has Ended. 1st Warning", $messageWarning1st);
-                $scholar->updateNonComNotif1($scholar_id);
-            }
-        }
-    } elseif ($date >= $endPlus2) {
-        for($i=0;$i < count($not_renewed_scholars);$i++){
-            $scholar_id = $not_renewed_scholars[$i]['scholar_id'];
-            if ($not_renewed_scholars[$i]['nonCom'] == 1) {
-                $database->sendEmail($not_renewed_scholars[$i]['email'], "Urgent: Scholarship Renewal Has Ended. 2nd Warning", $messageWarning2nd);
-                $scholar->updateNonComNotif2($scholar_id);
-            }
-        }
-    } elseif ($date >= $endPlus3) {
+
+
+    if ($date == $endPlus3) {
         for($i=0;$i < count($not_renewed_scholars);$i++){
             $scholar_id = $not_renewed_scholars[$i]['scholar_id'];
             if ($not_renewed_scholars[$i]['nonCom'] == 2) {
@@ -119,8 +104,24 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                 $scholar->updateNonComNotif0($scholar_id);
             }
         }
+    } elseif ($date == $endPlus2) {
+        for($i=0;$i < count($not_renewed_scholars);$i++){
+            $scholar_id = $not_renewed_scholars[$i]['scholar_id'];
+            if ($not_renewed_scholars[$i]['nonCom'] == 1) {
+                $database->sendEmail($not_renewed_scholars[$i]['email'], "Urgent: Scholarship Renewal Has Ended. 2nd Warning", $messageWarning2nd);
+                $scholar->updateNonComNotif2($scholar_id);
+            }
+        }
+    } elseif ($date == $endPlus1) {
+        for($i=0;$i < count($not_renewed_scholars);$i++){
+            $scholar_id = $not_renewed_scholars[$i]['scholar_id'];
+            if ($not_renewed_scholars[$i]['nonCom'] == 0) {
+                $database->sendEmail($not_renewed_scholars[$i]['email'], "Urgent: Scholarship Renewal Has Ended. 1st Warning", $messageWarning1st);
+                $scholar->updateNonComNotif1($scholar_id);
+            }
+        }
     }
-}
+
 
 } else {
     header("Location: ../index.php");
@@ -162,7 +163,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <p class="h3 mb-0 font-weight-bold text-gray-800">Renewal</p>
+                        <p class="h3 mb-0 font-weight-bold text-gray-800">Renewal<?php var_dump($not_renewed_scholars); ?></p>
                         <div id="toggleStatus" class="p-2 ms-auto">
                             <div class="alert alert-primary" role="alert">Renewal: <?php echo $dateFormat; ?> - <?php echo $dateFormat1; ?></div>
                         </div>
