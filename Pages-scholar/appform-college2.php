@@ -726,7 +726,7 @@
                     <div >
                     <button class="btn btn-primary btn-sm shadow mb-1 mt-4" onclick="addGradeRow(event)">Add Row</button>
                     </div>
-                    </div>
+                </div>
                     <div class="border-bottom mb-3 border border-1"></div>
 
                     <div class="sub">

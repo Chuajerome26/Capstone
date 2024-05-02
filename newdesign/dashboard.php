@@ -16,9 +16,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
     $today = $admin->getInterviewCountForToday();
     $renewal = $admin->getRenewalCount();
-    $scholar = $admin->getScholarCount();
+    $scholar = $admin->getScholars();
+    $scholar1 = count($scholar);
     $applicants = $admin->getApplicantsCount();
     // $funds = $admin->getTotalFunds();
+
 
 } else {
     header("Location: ../index.php");
@@ -71,7 +73,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         <div class="col mr-2">
                                             <div class="text-s font-weight-bold text-white text-uppercase mb-1">
                                                 Current Scholars</div>
-                                            <div class="h5 mb-0 font-weight-bold text-white"><?php echo $scholar; ?></div>
+                                            <div class="h5 mb-0 font-weight-bold text-white"><?php echo $scholar1; ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-mortarboard text-white" viewBox="0 0 16 16">

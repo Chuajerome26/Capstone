@@ -249,8 +249,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (/\d/.test(input.value)) {
             Swal.fire({
                 icon: "error",
-                title: "Tanga mo!",
-                text: "Mali numbers tsaka bawal yobmot!"
+                title: "Letters Only!",
+                text: "Input Letters Only!"
             });
         }
         input.value = input.value.replace(/\d/g, ""); // Replace numbers with an empty string

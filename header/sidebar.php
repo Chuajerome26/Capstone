@@ -113,14 +113,6 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class="ms-2">Stipend Process</span>
                     </a>
 
-                    <a href="../newdesign/Stipend Send.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'productapproval') ? 'active-nav-item' : ''; ?>">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
-                    <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
-                     <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2z"/>
-                    </svg>
-                        <span class="ms-2">Stipend Send</span>
-                    </a>
-
                     <a href="../newdesign/renewal.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'productapproval') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
                         <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
@@ -246,11 +238,10 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                     <ul class="list-group border-0" id="notification-container">
                                         <?php  
                                         foreach ($notifications as $x) {
-                                            $user = $x['sender'];
-                                            $scholar = "SELECT * FROM scholar_info WHERE id = :user"; 
+                                            $user = $x['receiver'];
+                                            $scholar = "SELECT * FROM scholar_info WHERE scholar_id = ?"; 
                                             $scholar_info = $database->getConnection()->prepare($scholar);
-                                            $scholar_info->bindParam(':user', $user, PDO::PARAM_INT);
-                                            $scholar_info->execute();
+                                            $scholar_info->execute([$user]);
                                             $scholar_data = $scholar_info->fetch(PDO::FETCH_ASSOC);
                                         ?>
                                             <li class="list-group-item d-flex justify-content-between align-items-center border-0 border-bottom px-1 m-0" style="font-size: 12px;">
@@ -263,7 +254,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                                         <div class="text-muted mb-1" style="font-size: 10px;">
                                                             <?php echo $x["date"]?>
                                                         </div>
-                                                            <?php if($x["remarks"] == "applicants"){?>
+                                                            <?php if($x["remarks"] == "acceptedApplicants"){?>
                                                                     Applied for scholarship
                                                             <?php }?>
                                                     </div>

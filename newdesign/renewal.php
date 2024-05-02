@@ -21,10 +21,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     $id = $_SESSION['id'];
     $date = date('Y-m-d');
     $admin_info = $admin->adminInfo($id);
-    $renewal_info = $scholar->getRenewalInfo();
+    $renewal_info = $scholar->getRenewalNewInfo();
     $renewalDates = $scholar->getRenewalDates();
-    $scholars = $admin->getScholars();
+    // $scholars = $admin->getScholars();
     $scholar->updateNonComStatus($id);
+
 
     $start = $renewalDates['renewal_date_start'];
     $end = $renewalDates['renewal_date_end'];
@@ -111,7 +112,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11"> -->
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
             integrity="sha512-xrbcVZjH2az0FbiCx9A1Gvpy2m1xL/zoVqOz8O3R5gBQVlBwm8AR2wteZbc56l3P5fQQ8HIjTCSxmbWEKeF86A=="
@@ -144,15 +145,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
-
-
-                    <!-- Content Row -->
 
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-lg-15 mb-4">
+                        <div class="col-lg-12 mb-4">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                               
@@ -163,7 +160,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Name</th>
-                                                <th scope="col">Email</th>
+                                                <th scope="col">Scholar Type</th>
                                                 <th scope="col">Date Renewed</th>
                                                 <th scope="col">Status</th>
                                                 <th scope="col">Files</th>
@@ -171,37 +168,33 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         </thead>
                                         <tbody class="table-group-divider">
                                         <?php
-                                        $scholarInfo = $scholar->getRenewalInfo();
                                         $num = 1;
-                                        foreach($scholarInfo as $s){
+                                        foreach($renewal_info as $s){
+                                            if($s['scholar_type'] == 3){
+                                                $scho_type = '<span class="badge bg-warning" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 1</span>';
+                                                $grants = '5000';
+                                            }elseif($s['scholar_type'] == 2){
+                                                $scho_type = '<span class="badge bg-info" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 2</span>';
+                                                $grants = '4000';
+                                            }elseif($s['scholar_type'] == 1){
+                                                $scho_type = '<span class="badge bg-primary" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Economic</span>';
+                                                $grants = '2000';
+                                            }
 
-                                            if($s['renew_status'] == 0){
-                                                $status = "Pending";
-                                            }else if($s['renew_status'] == 1){
-                                                $status = "Submitted";
-                                            }else if($s['renew_status'] == 2){
-                                                $status = "Approved";
-                                                    // Check if renewal should be moved to done
-                                                    $movedToDone = $scholar->moveRenewalToDone($s["id"]); // Assuming $scholar is the instance of your class
-                                                    if($movedToDone) {
-                                                        // If renewal moved to done, update status
-                                                        $status = "Moved to Done Renewal";
-                                                    }
-                                            }else if($s['renew_status'] == 3){
-                                                $status = "Tentative";
-                                            }else if($s['renew_status'] == 4){
-                                                $status = "Non-compliant";
+                                            if($s['renewal_status'] == 0){
+                                                $status = '<span class="badge bg-secondary">Pending</span>';
+                                            }elseif($s['renewal_status'] == 2){
+                                                $status = '<span class="badge bg-success">Accept</span>';
+                                            }elseif($s['renewal_status'] == 0){
+                                                $status = '<span class="badge bg-info">Tentative</span>';
                                             }
-                                            // Check and update non-compliance status
-                                            if ($status == "Pending") {
-                                                $scholar->updateNonComStatus($s["id"]);
-                                            }
+                                            
                                             ?>
                                             <tr>
                                                 <th scope="col"><?php echo $num; ?></th>
-                                                <td style="white-space: nowrap;"><?php echo $s["Firstname"]." ".$s["Lastname"]; ?></td>
-                                                <td style="white-space: nowrap;"><?php echo $s["Email"];?></td>
-                                                <td><?php echo $s["date_renew"];?></td>
+                                                <td style="white-space: nowrap;"><?php echo $s["full_name"]; ?></td>
+                                                <td style="white-space: nowrap;"><?php echo $scho_type;?></td>
+                                                <td><?php echo $s["date_apply"];?></td>
                                                 <td><?php echo $status;?></td>
                                                 <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#renewFilesModal<?php echo $s["id"];?>">Files</button></td>
                                             </tr>
@@ -220,40 +213,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
 
-                        <!-- Content Column -->
-                        <div class="col-lg-15 mb-4">
-
-            </div>
             <!-- End of Main Content -->
 
 
-
-            <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="admin-logout.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end -->
 <!-- RenewFiles Modal-->
 <?php
-    $renewalFiless = $scholar->getRenewalInfo();
-        foreach($renewalFiless as $a){
+        foreach($renewal_info as $a){
     ?>
         <div class="modal fade" id="renewFilesModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="renewFilesModal<?php echo $a["id"];?>l" aria-hidden="true">
         <div class="modal-dialog" style="max-width:600px;">
@@ -361,6 +327,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                 </div>
                    
              </div> 
+                    </div>
           </main>
 
 
@@ -373,8 +340,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <!-- DataTables Bootstrap 5 JS -->
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script>
@@ -428,12 +393,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         $(document).ready(function() {
             $('#applicant').DataTable();
         });
-    
-        $(document).ready(function () {
-        $("#openModalLink").click(function () {
-        $("#myModal").modal("show");
-        });
-    });
 
 </script>
     

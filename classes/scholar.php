@@ -493,9 +493,23 @@ class Scholar{
             return true;
         }
     }
-    
+    public function getStipend() {
+        $stmt = $this->database->getConnection()->query("SELECT * FROM stipend")->fetchAll();
+
+        return $stmt;
+    }
     public function getRenewalInfo() {
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renew WHERE renew_status = 1 OR renew_status = 2 OR renew_status = 3 OR renew_status = 4")->fetchAll();
+
+        return $stmt;
+    }
+    public function getRenewalNewInfo() {
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renewal")->fetchAll();
+
+        return $stmt;
+    }
+    public function getRenewalNewInfoById($id) {
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renewal WHERE id='$id'")->fetchAll();
 
         return $stmt;
     }
@@ -615,7 +629,7 @@ class Scholar{
     public function updateRenewalStatus($id, $file1, $file2){
         $renew_status = ($file1 && $file2) ? 2 : 3;
     
-        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renew SET file1_status = ?, file2_status = ?, renew_status = ? WHERE id = ? ");
+        $stmt = $this->database->getConnection()->prepare("UPDATE scholar_renewal SET file1_status = ?, file2_status = ?, renewal_status = ? WHERE id = ? ");
         
         if(!$stmt->execute([$file1, $file2, $renew_status, $id])){
             header('Location: ../newdesign/renewal.php?scholar=error');

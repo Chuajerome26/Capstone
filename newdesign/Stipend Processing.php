@@ -6,9 +6,11 @@ session_start();
 if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_type'] === 2)) {
     require '../classes/admin.php';
     require '../classes/database.php';
+    require  '../classes/scholar.php';
 
     $database = new Database();
     $admin = new Admin($database);
+    $scholar = new Scholar($database);
 
     $id = $_SESSION['id'];
 
@@ -63,7 +65,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                <div class="d-none d-sm-inline-block">Economic</div>
                                <input type="hidden" id="economic-checked" value="0">
                                </button>
-                              <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                               <i class="fa-regular fa-paper-plane "></i> <div class="d-none d-sm-inline-block">Send Email</div>
                               </button>
                               
@@ -94,145 +96,44 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <th scope="col">Scholar ID</th>
       <th scope="col">Scholar Name</th>
       <th scope="col">Type</th>
-      <th scope="col">Email</th>
+      <th scope="col">Grants</th>
       <th scope="col">Status</th>
         </tr>
   </thead>
   <tbody class="table-group-dividercar">
+    <?php 
+      $stipend = $scholar->getStipend();
+      foreach($stipend as $stip){
+        if($stip['scholar_type'] == 3){
+          $scho_type = '<span class="badge bg-warning" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 1</span>';
+          $grants = '5000';
+        }elseif($stip['scholar_type'] == 2){
+          $scho_type = '<span class="badge bg-info" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 2</span>';
+          $grants = '4000';
+        }elseif($stip['scholar_type'] == 1){
+          $scho_type = '<span class="badge bg-primary" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Economic</span>';
+          $grants = '2000';
+        }
+
+        if($stip['status'] == 0){
+          $status = '<span class="badge bg-primary">To Send</span>';
+        }elseif($stip['status'] == 1){
+          $status = '<span class="badge bg-success">Sent</span>';
+        }
+    ?>
     <tr>
-    <td><input type="checkbox" class="item-checkbox1" id="item-3"></td>
-    <th scope="col">1</th>
-    <td style="white-space: nowrap;">2020-0001</td>
-    <td style="white-space: nowrap;">Sample Name1</td>
-    <td style="white-space: nowrap;"><span class="badge bg-warning" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic</span></td>
-    <td style="white-space: nowrap;">Samplename1@gmail.com</td>
-      <td style="white-space: nowrap;">To Send</td>
+      <td><input type="checkbox" class="item-checkbox1" id="item-3"></td>
+      <th scope="col">1</th>
+      <td style="white-space: nowrap;"><?php echo $stip['scholar_id'] ?></td>
+      <td style="white-space: nowrap;"><?php echo $stip['full_name'] ?></td>
+      <td style="white-space: nowrap;"><?php echo $scho_type; ?></td>
+      <td style="white-space: nowrap;"><?php echo $grants; ?></td>
+      <td style="white-space: nowrap;"><?php echo $status; ?></td>
     </tr>
-
-
-    <tr>
-    <td><input type="checkbox" class="item-checkbox1" id="item-3"></td>
-      <th scope="col">2</th>
-      <td style="white-space: nowrap;">2020-0002</td>
-      <td style="white-space: nowrap;">Sample Name2</td>
-      <td style="white-space: nowrap;"><span class="badge bg-warning" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic</span></td>
-      <td style="white-space: nowrap;">Samplename2@gmail.com</td>
-      <td style="white-space: nowrap;">To Send</td>
-    </tr> 
-    
-    <tr>
-    <td><input type="checkbox" class="item-checkbox2" id="item-3"></td>
-      <th scope="col">3</th>
-      <td style="white-space: nowrap;">2020-0003</td>
-      <td style="white-space: nowrap;">Sample Name3</td>
-      <td style="white-space: nowrap;"><span class="badge bg-success" style="color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Economic</span></td>
-      <td style="white-space: nowrap;">Samplename3@gmail.com</td>
-      <td style="white-space: nowrap;">To Send</td>
-    </tr> 
-
-    <tr>
-    <td><input type="checkbox" class="item-checkbox2" id="item-3"></td>
-      <th scope="col">4</th>
-      <td style="white-space: nowrap;">2020-0004</td>
-      <td style="white-space: nowrap;">Sample Name4</td>
-      <td style="white-space: nowrap;"><span class="badge bg-success" style="color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Economic</span></td>
-      <td style="white-space: nowrap;">Samplename4@gmail.com</td>
-      <td style="white-space: nowrap;">To Send</td>
-    </tr> 
+    <?php } ?>
                     </div>
-
-            
-<!-- Send Email -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Stipend Processing Reminder</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <form enctype="multipart/form-data" method="post" action="../functions/admin-sendEmail.php">
-            <div class="form-group mb-3">
-              <label for="recipientEmail">Recipient's Email:</label>
-              <select name="Email" class="form-control" required>
-                <option value="0">Select Scholar</option>
-
-                <?php
-                $scholar = $admin->getScholars();
-                foreach($scholar as $s){
-                    echo "<option value='" . $s['email'] . "'>" . $s['f_name'] . " " . $s['l_name'] . "</option>";
-                }
-                ?>
-
-              </select>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="message">Message:</label>
-              <textarea class="form-control" name="message" rows="5" placeholder="Dear Scholar,
-
-We would like to inform you that your stipend for the 1st Semester SY: 2023-2024 is currently being processed. You can expect to receive your stipend within the 1 week. 
-
-Thank you for your patience and understanding.
-
-Sincerely,
-[Your Organization]" required></textarea>
-            </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="successModalLabel">Stipend Sent Confirmation</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <form enctype="multipart/form-data" method="post" action="../functions/admin-sendEmail.php">
-            <div class="form-group mb-3">
-              <label for="recipientEmail">Recipient's Email:</label>
-              <select name="Email" class="form-control" required>
-                <option value="0">Select Scholar</option>
-
-                <?php
-                $scholar = $admin->getScholars();
-                foreach($scholar as $s){
-                    echo "<option value='" . $s['email'] . "'>" . $s['f_name'] . " " . $s['l_name'] . "</option>";
-                }
-                ?>
-
-              </select>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="message">Message:</label>
-              <textarea class="form-control" name="message" rows="5" placeholder="Dear Scholar,
-
-We are pleased to inform you that your stipend for the 1st Semester SY: 2023-2024 has been successfully sent to your account. You should receive the stipend within the next week. 
-
-Thank you for your cooperation.
-
-Sincerely,
-[Your Organization]" required></textarea>
-            </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="submit">Send Email</button>
-        </form>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
 </div>
 </div>
 
@@ -245,8 +146,6 @@ Sincerely,
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <!-- DataTables Bootstrap 5 JS -->
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     

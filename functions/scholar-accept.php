@@ -27,7 +27,7 @@ if(isset($_POST["accept"])){
         exit();
     }
 
-    $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE user_id = :id');
+    $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 1 WHERE id = :id');
 
     if(!$stmt1->execute(['id' => $id])){
         header('Location: ../newdesign/admin-application.php?status=error');

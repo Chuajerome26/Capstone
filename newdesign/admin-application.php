@@ -180,7 +180,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                             }
                             else if($s['application_status'] == 1){
                                 $remarks = '<span class="badge bg-warning">Initial Interview</span>';
-                            }else if($s['remapplication_statusarks'] == 2){
+                            }else if($s['application_status'] == 2){
                                 $remarks = '<span class="badge bg-info">Final Interview</span>';
                             }
 
@@ -212,7 +212,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         ?>
                         </tbody>
                     </table>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>

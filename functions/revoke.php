@@ -27,10 +27,6 @@ if(isset($_POST['revoke'])){
         exit();
     }
 
-    $stmt1 = $database->getConnection()->prepare('DELETE FROM scholar_renew WHERE scholarID = :id');
-
-    $stmt1->execute(['id' => $scholar_id]);
-
     $message = scholarRevoke($user['l_name']);
 
 
