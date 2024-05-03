@@ -590,12 +590,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <div class="family-info-container">
                     <div class="row">
                         <div class="col-md-2 mb-3">
-                            <label class="form-label">Income Provider:<span class="text-danger">*</span></label>
+                            <label class="form-label">Income Provider: Ex: Juan Dela Cruz<span class="text-danger">*</span></label>
                             <input type="text" name="earnerName[]" id="earnerName" class="form-control form-control-sm" placeholder="Full Name" required>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Estimated Monthly Income:<span class="text-danger">*</span></label>
-                            <input type="text" name="earnerIncome[]"  id="earnerIncome" class="form-control form-control-sm" placeholder="Monthyly Income" required>
+                            <input type="text" name="earnerIncome[]"  id="earnerIncome" class="form-control form-control-sm" placeholder="Monthly Income" required>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label class="form-label">Occupation:<span class="text-danger">*</span></label>
@@ -768,7 +768,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                     <div class="col-md-3 mb-3">
                     <label  class="form-label">Form 137/138:(PDF Only)<span class="text-danger">*</span></label>
-                        <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog1" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer21')" required></label>
+                        <label class="fileSelect btn btn-sm btn-primary col-12">
+                        <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">
+                        <input type="file" name="cog1" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer21')" required></label>
                         <div class="Preview1 " id="previewContainer21">
                         </div>
                     </div>
@@ -780,7 +782,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                     <div class="col-md-3 mb-3">
                     <label  class="form-label">Uploade Honor / Award PDF File (If Applicable):</label>
-                        <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="shAchievementsFile" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer22')"></label>
+                        <label class="fileSelect btn btn-sm btn-primary col-12">
+                        <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
+                        <input type="file" name="shAchievementsFile" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer22')"></label>
                         <div class="Preview1 " id="previewContainer22">
                         </div>
                     </div>
@@ -814,7 +818,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                         <div class="col-md-3 mb-3">
                         <label  class="form-label">Upload Latest Grade File:(PDF Only)<span class="text-danger">*</span></label>
-                            <label class="fileSelect btn btn-sm btn-primary col-12">Upload PDF File<input type="file" name="cog2" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')" required></label>
+                            <label class="fileSelect btn btn-sm btn-primary col-12">
+                            <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
+                            <input type="file" name="cog2" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')" required></label>
                             <div class="Preview1 " id="previewContainer3">
                             </div>
                         </div>
@@ -841,7 +847,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                 <div class="row justify-content-center">
                                     <div class="col-lg-5 col-12 mb-2 text-center">
                                         <label class="fileSelect btn btn-sm btn-primary col-12">
-                                            Upload File
+                                        <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">
                                             <input type="file" id="fileInput" name="idPicture" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')" required>
                                         </label>
                                         <div id="selectedFileName" class="mt-2"></div> <!-- Display selected file name -->
@@ -854,7 +860,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Birth Certificate (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="birth" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')" required></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">
+                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
+                                <input type="file" name="birth" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')" required></label>
                                 <div class="Preview1 " id="previewContainer6">
                                 </div>
                         </div> 
@@ -863,7 +871,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Certificate of Indigency (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="indigency" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')" required></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">
+                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
+                                <input type="file" name="indigency" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')" required></label>
                                 <div class="Preview1 " id="previewContainer7">
                                 </div>
                         </div> 
@@ -872,7 +882,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Barangay Certificate (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="brgy" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer17')" required></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">
+                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
+                                <input type="file" name="brgy" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer17')" required></label>
                                 <div class="Preview1 " id="previewContainer17">
                                 </div>
                         </div> 
@@ -881,7 +893,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Latest Income Tax Return / Affidavit of Non-Filing (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="Itr" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer18')" required></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">
+                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">
+                                <input type="file" name="Itr" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer18')" required></label>
                                 <div class="Preview1 " id="previewContainer18">
                                 </div>
                         </div> 
