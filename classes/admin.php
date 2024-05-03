@@ -370,6 +370,18 @@ class Admin
             exit();
         }
     }
+    public function selectStipend($id, $ref){
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM stipend WHERE scholar_id = ? AND reference_number = ?");
+
+        //if execution fail
+        if (!$stmt->execute([$id,$ref])) {
+            header("Location: ../Pages/employee-register.php?error=stmtfail");
+            exit();
+        }
+
+        $result = $stmt->fetchAll();
+        return $result;
+    }
     public function getApplicants2x2($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_file WHERE scholar_id=? AND requirement_name = 'IdPhoto'");
 

@@ -111,7 +111,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>
                                             <td style="white-space: nowrap;"><?php echo $scholar_info[0]['f_name'];?></td>
-                                            <td style="white-space: nowrap;"><?php echo $admin_info[0]["f_name"];?></td>
+                                            <td style="white-space: nowrap;"><?php echo isset($admin_info[0]["f_name"]) ? $admin_info[0]["f_name"]:'';?></td>
                                             <td style="white-space: nowrap;"><?php echo $remarks;?></td>
                                             <td style="white-space: nowrap;"><?php echo $log["date"];?></td>
                                         </tr>

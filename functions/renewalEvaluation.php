@@ -11,8 +11,6 @@ if(isset($_POST['submit'])){
 
     $getStatus = $scholar->getRenewalNewInfoById($id);
 
-    var_dump($getStatus);
-
     $info = $scholar->findById($getStatus[0]['scholar_id']);
 
     $email = $info['email'];

@@ -1,6 +1,7 @@
 <?php
 
 require '../classes/database.php';
+include '../email-design/';
 
 $database = new Database();
 
@@ -50,6 +51,7 @@ if(isset($_POST['submit'])){
         $scholar_type = 0;
     }
 
+    if($scholar_type != 0){
         $uploadDir = "../Uploads_gslip/";
         $uploadedFileName1 = $_FILES['regForm']['name'];
         $uploadedFileName2 = $_FILES['gradeSlip']['name'];
@@ -72,6 +74,11 @@ if(isset($_POST['submit'])){
             header('Location: ../Pages-scholar/dashboard.php?scholar=error');
             exit;
         }
+    }else{
+        
+        header('Location: ../Pages-scholar/dashboard.php?scholar=successRenew');
+        exit;
+    }
     header('Location: ../Pages-Scholar/renewal-form.php');
     exit();
 }

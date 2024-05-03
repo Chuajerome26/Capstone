@@ -58,10 +58,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                   
                               <!-- Academic is for Checkbox 1 -->
                               <!-- Economic is for Checkbox 2 -->
-                              
-                              <button type="button" class="btn btn-primary">
-                              <i class="fa-regular fa-paper-plane "></i><div class="d-none d-sm-inline-block">Generate Certificate</div>
-                              </button>
+
                               
                           </div>
       
@@ -128,15 +125,15 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <td style="white-space: nowrap;"><?php echo $scho_type; ?></td>
       <td style="white-space: nowrap;"><?php echo $grants; ?></td>
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
-      <td style="white-space: nowrap;"><a href="../certificates/<?php echo $cert; ?>"><?php echo $cert; ?></a></td>
+      <td style="white-space: nowrap;"><a href="../certificates/<?php echo $cert; ?>" target="_blank"><?php echo $cert; ?></a></td>
       <td style="white-space: nowrap;">
       <form method="post" action="../admin/stipend.php">
         <input type="hidden" name="scholar_id" value="<?php echo $stip['scholar_id']; ?>">
         <input type="hidden" name="f_name" value="<?php echo $stip['full_name']; ?>">
         <input type="hidden" name="grants" value="<?php echo $grants; ?>">
-        <button class="btn btn-sm btn-primary" type="submit" name="sendCert">Send Certificate</button>
+        <input type="file" name="grants" value="<?php echo $cert; ?>" style="display:none">
+        <button class="btn btn-sm btn-primary" type="submit" name="sendCert">Send Stipend</button>
         <button class="btn btn-sm btn-info" type="submit" name="genCert">Generate Certificate</button>
-        <button class="btn btn-sm btn-warning" type="submit" name="sendStipend">Send Stipend</button>
       </form>
       </td>
     </tr>
