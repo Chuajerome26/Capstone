@@ -343,7 +343,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Registration Form (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="regForm" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')" required></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">
+                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
+                                <input type="file" name="regForm" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')" required></label>
                                 <div class="Preview1 " id="previewContainer6">
                                 </div>
                         </div> 
@@ -352,7 +354,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                     <div class="col-lg-6 col-12 mb-3">               
                         <div class="fileUpload container">
                                 <h6>Grade Slip (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">Upload File<input type="file" name="gradeSlip" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')" required></label>
+                                <label class="fileSelect btn btn-sm btn-primary col-12">
+                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">
+                                <input type="file" name="gradeSlip" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')" required></label>
                                 <div class="Preview1 " id="previewContainer7">
                                 </div>
                         </div> 

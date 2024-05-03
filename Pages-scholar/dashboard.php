@@ -720,6 +720,36 @@ foreach ($renewal_info as $i) {
                         </div>
                     </div>
 
+                    <!-- File Info Section -->
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Uploaded Files</h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Files</th>
+                                            <th scope="col">Details</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td>Registration Form</td>
+                                        <td><a href="../Uploads_gslip/<?php echo $i["file1"]; ?>" target="_blank"><?php echo $i["file1"]?></a></td>
+                                        </tr>
+
+                                        <tr>
+                                        <td>Grade Slip</td>
+                                        <td><a href="../Uploads_gslip/<?php echo $i["file2"]; ?>" target="_blank"><?php echo $i["file2"]?></a></td>
+                                        </tr>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Grade Info Section -->
                     <div class="card mt-3">
                         <div class="card-body">
