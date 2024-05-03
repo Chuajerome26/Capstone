@@ -71,14 +71,14 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         </form>
                         
                         </div>
-                        <div class="p-2">
+                        <!-- <div class="p-2">
                             <form action="../functions/download-applicant.php" method="post">
                                 <button type="submit" class=" btn  btn-primary shadow-sm">
                                     <i class="fas fa-download fa-sm text-white-50"></i> 
                                     <div class="d-none d-sm-inline-block">Generate Report</div>
                                 </button>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
     
 
@@ -259,7 +259,7 @@ foreach($appliData as $z){
       <div class="modal-body">
         <form method="post" action="../functions/scholar-decline.php">
             <textarea rows="8" cols="50" placeholder="Remarks" name="remarks"></textarea>
-            <input type="hidden" name="declineId" value="<?php echo $z['id']?>">
+            <input type="hidden" name="declineId" value="<?php echo $z['scholar_id']?>">
       </div>
       <div class="modal-footer">
         <button type="submit" name="submit" class="btn btn-primary">Save changes</button>

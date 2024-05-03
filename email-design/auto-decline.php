@@ -201,27 +201,32 @@ function autoDeclined($last_name){
                                   </tr>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">I hope this message finds you well. I wanted to take a moment to express my gratitude for your participation in the recent scholarship interview. Your thoughtful responses and insightful perspectives truly impressed the interview panel.</div>
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We hope this message finds you well.</div>
                                     </td>
                                   </tr>
                                   <tr>
                                   <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We understand that preparing for and participating in interviews can be a demanding process, and we appreciate the time and effort you dedicated to sharing your experiences and aspirations with us.</div>
+                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">We wanted to take a moment to express our sincere gratitude for your continued support and trust in The Development Team. Its been our pleasure to serve you, and we truly appreciate your loyalty over the years that you are being scholar.</div>
                                   </td>
                                 </tr>
                                 <tr>
                                 <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
-                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">The interview panel was particularly impressed by the interviewee was evident throughout our conversation.</div>
+                                  <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">As your subscription/service renewal date approaches, we wanted to remind you to renew to continue enjoying our services.</div>
                                 </td>
                               </tr>
                                   <tr>
                                     <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Please know that your application is under careful consideration, and we will be in touch with you as soon as a decision has been made. In the meantime, if you have any questions or need further information, please dont hesitate to reach out to us.</div>
+                                      <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Renewing your subscription/service is quick and easy.</div>
                                     </td>
                                   </tr>
                                   <tr>
                                   <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
-                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Once again, thank you for your interest in our scholarship program and for your participation in the interview. We wish you the best of luck in all your future endeavors.</div>
+                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Should you have any questions or need assistance with your renewal process, please dont hesitate to reach out to us. Were here to help!</div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td align="left" style="font-size:0px;padding:10px 25px;padding-bottom:25px;word-break:break-word;">
+                                    <div style="font-family:open Sans, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;line-height:24px;text-align:left;color:#637381;">Once again, thank you for choosing us. We look forward to continuing to serve you in the future.</div>
                                   </td>
                                 </tr>
                                   <tr>

@@ -1,13 +1,16 @@
 <?php
 
 require '../classes/database.php';
-include '../email-design/';
+require '../classes/admin.php';
+include '../email-design/auto-decline.php';
 
 $database = new Database();
+$admin = new Admin($database);
 
 if(isset($_POST['submit'])){
     $date = date('Y-m-d H:i:s');
     $scholar_id = $_POST['scholar_id'];
+    $info1 = $admin->getScholarById($scholar_id);
     $full_name = $_POST['fName'].' '.$_POST['mName'].' '.$_POST['lName'].' '.$_POST['suffix'];
     $c_stat = $_POST['cStatus'];
     $active_num = $_POST['mNumber'];
@@ -75,7 +78,8 @@ if(isset($_POST['submit'])){
             exit;
         }
     }else{
-        
+        $message = autoDeclined($info[0]['l_name']);
+        $database->sendEmail($info[0]['email'], "Renewal Declined", $message);
         header('Location: ../Pages-scholar/dashboard.php?scholar=successRenew');
         exit;
     }

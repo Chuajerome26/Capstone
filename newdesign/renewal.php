@@ -439,7 +439,21 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <!-- <script>
+        // Get today's date
+        var today = new Date();
+        
+        // Format the date as YYYY-MM-DD (required format for input type="date")
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var dd = String(today.getDate()).padStart(2, '0');
+        var minDate = yyyy + '-' + mm + '-' + dd;
+        
+        // Set the min attribute of the date input fields
+        document.getElementById('startDate').min = minDate;
+        document.getElementById('endDate').min = minDate;
+    </script> -->
+
     <script>
         function toggleInput(checkbox, inputId) {
             var inputField = document.getElementById(inputId);
