@@ -128,12 +128,15 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
       <td style="white-space: nowrap;"><?php echo $scho_type; ?></td>
       <td style="white-space: nowrap;"><?php echo $grants; ?></td>
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
-      <td style="white-space: nowrap;"><?php echo $cert; ?></td>
+      <td style="white-space: nowrap;"><a href="../certificates/<?php echo $cert; ?>"><?php echo $cert; ?></a></td>
       <td style="white-space: nowrap;">
-      <form>
-        <button class="btn btn-sm btn-primary" type="submit">Send Certificate</button>
-        <button class="btn btn-sm btn-info" type="submit">Generate Certificate</button>
-        <button class="btn btn-sm btn-warning" type="submit">Send Stipend</button>
+      <form method="post" action="../admin/stipend.php">
+        <input type="hidden" name="scholar_id" value="<?php echo $stip['scholar_id']; ?>">
+        <input type="hidden" name="f_name" value="<?php echo $stip['full_name']; ?>">
+        <input type="hidden" name="grants" value="<?php echo $grants; ?>">
+        <button class="btn btn-sm btn-primary" type="submit" name="sendCert">Send Certificate</button>
+        <button class="btn btn-sm btn-info" type="submit" name="genCert">Generate Certificate</button>
+        <button class="btn btn-sm btn-warning" type="submit" name="sendStipend">Send Stipend</button>
       </form>
       </td>
     </tr>

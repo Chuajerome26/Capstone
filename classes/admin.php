@@ -199,6 +199,19 @@ class Admin
             return $result;
         }
     }
+    public function insertPdf($file,$employeeId){
+
+
+        // prepared statement
+        $stmt = $this->database->getConnection()->prepare("UPDATE stipend SET certificate = ? WHERE employee_id = ?");
+
+       //if execution fail
+       if (!$stmt->execute([$file,$employeeId])) {
+           header("Location: ../Pages/employee-register.php?error=stmtfail");
+
+           exit();
+       }
+   }
     function generateRandomSixDigitNumber() {
         $number = '';
     
@@ -348,6 +361,15 @@ class Admin
     //     return $result;
 
     // }
+    public function insertCertFilePath($file, $id, $ref){
+        $stmt = $this->database->getConnection()->prepare("UPDATE stipend SET certificate = ? WHERE scholar_id = ? AND reference_number = ?");
+
+        //if execution fail
+        if (!$stmt->execute([$file,$id,$ref])) {
+            header("Location: ../Pages/employee-register.php?error=stmtfail");
+            exit();
+        }
+    }
     public function getApplicants2x2($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_file WHERE scholar_id=? AND requirement_name = 'IdPhoto'");
 
