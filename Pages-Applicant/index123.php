@@ -240,7 +240,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <div class="button">
         <?php if ($userHasApplied): ?>
             <a href="../Pages-Applicant/Applicant-Requirements2.php" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;" class="btn btn-primary">View Submitted Files</a>
-        <?php else: ?>
+            <span style="font-size:19px;">Logged in as:</span>
+        <?php else: ?>    
             
             <button type="button" style="font-size: 15px; height: 43px; background-color: #0EDC8D; color: white;"  class="btn btn-primary mr-4" onmouseover="this.style.backgroundColor='#0BB37B'"
     onmouseout="this.style.backgroundColor='#0EDC8D'" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>

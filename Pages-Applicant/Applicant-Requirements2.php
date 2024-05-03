@@ -40,7 +40,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 <!-- Link Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- Custom styles for this template-->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-xrbcVZjH2az0FbiCx9A1Gvpy2m1xL/zoVqOz8O3R5gBQVlBwm8AR2wteZbc56l3P5fQQ8HIjTCSxmbWEKeF86A=="
         crossorigin="anonymous" />
@@ -57,12 +56,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 
         .nav-tabs .nav-link.active {
-            border-bottom: 3px solid #0d6efd;
+            border-bottom: 3px solid #0C0C0C;
             border-left: none;
             border-right: none;
             border-top: none;
             /* Keep only the border-bottom for the active tab */
-            background-color: transparent;
+            background-color: #E2DFD0;
             /* Remove the background color */
             color: black;
 
@@ -109,11 +108,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                      
                     </ul>
                     <span class="navbar-text d-flex">
+                    <img class="img-profile rounded-circle me-2" width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>">
+                    <div class="ms-auto">
+                        <a href="index123.php"><i class="fas fa-arrow-left me-2"></i>Back</a>
+                    </div>
+                </span>
 
-                    <img class="img-profile rounded-circle me-2"  width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>"><?php echo $info[0]['f_name']; ?>
-                    <div class="p-2 ms-auto"> <a href="index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>
+                </span>
 
-                    </span>
+
                     </div>
                 </div>
                 </nav>
@@ -252,6 +255,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                     $schoType = "Academic Rank 2";
                                                 } elseif ($a['scholar_type'] == 1) {
                                                     $schoType = "Economic Scholarship";
+                                                }else{
+                                                    $schoType = "Not Qualified";
                                                 }
                                                 echo $schoType;
                                                 ?>
