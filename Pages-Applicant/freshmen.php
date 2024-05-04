@@ -561,7 +561,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     </div>
                     
                     <div class="col-md-3 mb-3">
-                        <label class="form-label">Active Gcash Number: <span class="text-danger">* </span><input type="checkbox" id="sameAsActive"> <label for="sameAsActive"><small class="text-muted">Same as active number</small></label>
+                        <label class="form-label">Active Gcash or Paymaya Number: <span class="text-danger">* </span><input type="checkbox" id="sameAsActive"> <label for="sameAsActive"><small class="text-muted">Same as active number</small></label>
                         <input type="text" name="gNumber" id="gNumber" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" required maxlength="11">
                     </div>
 
