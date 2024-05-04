@@ -131,6 +131,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         <input type="hidden" name="scholar_id" value="<?php echo $stip['scholar_id']; ?>">
         <input type="hidden" name="f_name" value="<?php echo $stip['full_name']; ?>">
         <input type="hidden" name="grants" value="<?php echo $grants; ?>">
+        <input type="hidden" name="id" value="<?php echo $stip['id']; ?>">
         <input type="file" name="grants" value="<?php echo $cert; ?>" style="display:none">
         <button class="btn btn-sm btn-primary" type="submit" name="sendCert">Send Stipend</button>
         <button class="btn btn-sm btn-info" type="submit" name="genCert">Generate Certificate</button>

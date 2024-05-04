@@ -369,6 +369,7 @@ class Admin
             header("Location: ../Pages/employee-register.php?error=stmtfail");
             exit();
         }
+        return true;
     }
     public function selectStipend($id, $ref){
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM stipend WHERE scholar_id = ? AND reference_number = ?");

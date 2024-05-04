@@ -78,8 +78,8 @@ if(isset($_POST['submit'])){
             exit;
         }
     }else{
-        $message = autoDeclined($info[0]['l_name']);
-        $database->sendEmail($info[0]['email'], "Renewal Declined", $message);
+        $message = autoDeclined($info1[0]['email']);
+        $database->sendEmail($info1[0]['email'], "Renewal Declined", $message);
         header('Location: ../Pages-scholar/dashboard.php?scholar=successRenew');
         exit;
     }

@@ -3,6 +3,7 @@ require_once __DIR__ .'/vendor/autoload.php';
 require '../classes/database.php';
 require '../classes/admin.php';
 require '../classes/scholar.php';
+include '../email-design/stipend-design.php';
 
 $database = new Database();
 $admin = new Admin($database);
@@ -19,17 +20,7 @@ if(isset($_POST['sendCert'])){
     $ref = $scholar_dates['reference_number'];
     $stipend = $admin->selectStipend($scholar_id, $ref);
     $last = $info[0]['l_name'];
-    $message = '
-Dear '.$last.',
-
-I hope this email finds you well. I am writing to inform you that we have received the certificate confirming the disbursement of your stipend/allowance as a scholar.
-
-Kindly note that the stipend/allowance will be credited to your GCash account within the next one to seven days. Once the transaction is complete, you will receive a notification from GCash confirming the deposit.
-
-Should you encounter any delays or have any inquiries regarding the stipend/allowance disbursement process, please do not hesitate to reach out to us for assistance.
-
-Congratulations once again on your academic achievements, and we wish you the best as you continue to excel in your studies.
-';
+    $message = stipend($last);
 
     if($stipend[0]['certificate'] == ""){
         header('Location: ../newdesign/Stipend Processing.php?status=noFileGenerated');
@@ -195,9 +186,10 @@ Congratulations once again on your academic achievements, and we wish you the be
 
         $mdpf->Output($file_path, 'F');
 
-        $admin->insertCertFilePath($filename,$scholar_id,$ref);
-
-        header('Location: ../newdesign/Stipend Processing.php?info=generated');
+        if($admin->insertCertFilePath($filename, $scholar_id, $ref)){
+            header('Location: ../newdesign/Stipend Processing.php?info=generated');
+            exit();
+        }
+        header('Location: ../newdesign/Stipend Processing.php?info=error');
         exit();
-        
 }

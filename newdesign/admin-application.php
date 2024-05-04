@@ -95,7 +95,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     foreach($applicantsData1 as $applicant) {
         // $income = $applicant['father_income'] + $applicant['mother_income'];
         // $appliGrade = $admin->getGrade($applicant['id']);
-        // $pic = $admin->getApplicants2x2($applicant['id']);
+        $pic = $admin->getApplicants2x2($applicant['scholar_id']);
         $prediction = $admin->predictAcceptanceOfApplicant(1, 0);
 
         if($prediction <= 100 && $prediction >= 75) {
@@ -107,9 +107,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
             <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" alt="Profile Picture" class="img-thumbnail rounded-circle ms-4" style="width: 60px; height: 60px;">
            
             <div class=" ms-2">
-                    <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $applicant['f_name']; ?></div>
-                    <div class="text-muted"><small>Age: <?php echo $applicant['l_name']; ?></small></div>
-                    <div class="text-muted"><small>Percentage: <?php echo $prediction; ?></small></div>
+                    <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $applicant['l_name']; ?></div>
                 </div>
                 <div class="p-2 ms-auto d-grid gap-2">
                     <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $applicant["scholar_id"];?>">Details</button>

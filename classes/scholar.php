@@ -513,7 +513,7 @@ class Scholar{
         return $stmt;
     }
     public function getRenewalNewInfoById($id) {
-        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renewal WHERE scholar_id='$id'")->fetchAll();
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_renewal WHERE id='$id'")->fetchAll();
 
         return $stmt;
     }
