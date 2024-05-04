@@ -84,7 +84,7 @@ require '../classes/database.php';
          exit();
     }
 
-     header("Location: ../newdesign/dashboard.php");
+
     exit();
 } else {
     header("Location:../index.php?error=emptyInput");
