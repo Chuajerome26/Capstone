@@ -100,9 +100,16 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     // Initialize an array to keep track of displayed dates
                     $displayedDates = [];
 
-                if($initialInterview["hasData"]){
+                    // Collect all dates from initial interviews
+                    $dates = [];
                     foreach ($initialInterview1 as $it) {
-                        $date = $it['date'];
+                        $dates[] = $it['date'];
+}
+                    // Sort the dates in ascending order
+                        sort($dates);
+
+                if($initialInterview["hasData"]){
+                    foreach ($dates as $date) {
                         $dateTime = new DateTime($date);
                         $formattedDate = $dateTime->format("F j, Y");
                         // Check if the date has already been displayed
@@ -117,7 +124,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                                 <div class="hstack gap-1 d-flex align-items-center ms-4 mt-1">
                                     <div class="p-1 text-center"><i class="fa-regular fa-calendar-days fs-2"></i></div>
                                     <div class="ms-2">
-                                        <div ><strong>Wednesday</strong></div> 
+                                    <div><strong><?php echo date('l', strtotime($date)); ?></strong></div>
                                         <div><small class="text-muted"><?php echo $formattedDate; ?></small></div>
                                     </div>
                                 </div>
