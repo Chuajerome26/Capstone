@@ -231,7 +231,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                             $newNotificationCount = $admin->countNewNotifications($id);
                             if ($newNotificationCount > 0):
                             ?>
-                            <span class="badge bg-red"><?php echo $newNotificationCount; ?></span>
+                            <span class="badge bg-danger"><?php echo $newNotificationCount; ?></span>
                             <?php endif; ?>
                         </div>
                     </a>
