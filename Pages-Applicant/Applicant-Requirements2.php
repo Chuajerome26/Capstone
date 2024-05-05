@@ -29,7 +29,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
+    <link rel="shortcut icon" type="image/x-icon" href="../images/forcert1.png" />
     <title>Applicant Requirements</title>
 
     <!-- Custom fonts for this template-->
@@ -99,7 +99,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
               <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top mb-2">
                 <div class="container">
-                <img src="../images/Management1.png" alt="Logo" width="190" height="40" class="d-inline-block align-text-top">
+                <img src="../images/forcert1.png" alt="Logo" width="70" height="40" class="d-inline-block align-text-top">
+                <span class="ms-2" style="color:#0EDC8D;"><strong>Scholarship Management <br>System</strong></span>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -110,7 +111,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <span class="navbar-text d-flex">
                     <img class="img-profile rounded-circle me-2" width="30" height="30" src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>">
                     <div class="ms-auto">
-                        <a href="index123.php"><i class="fas fa-arrow-left me-2"></i>Back</a>
+                        <a href="index123.php" class="text-primary"><i class="fas fa-arrow-left me-2 text-primary"></i>Back</a>
                     </div>
                 </span>
 
