@@ -786,6 +786,28 @@ public function getRemarks($id){
         return $result;
     }
 }
+public function getRemarksForInterview($id){
+
+    $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_remarks WHERE scholar_id=? AND remarks = ?");
+
+    // Execute the statement
+    if ($stmt->execute([$id, 6])) {
+        // Fetch the result
+        $result = $stmt->fetchAll();
+
+        // Check if there are any rows returned
+        if ($result) {
+            return $result;
+        } else {
+            // No rows found
+            return false;
+        }
+    } else {
+        // Error in executing the statement
+        header("Location: ../index.php?error=stmtfail");
+        exit();
+    }
+}
 
 public function findAdminByEmail($email){
     // prepare the SQL statement using the database property
