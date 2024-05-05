@@ -1,8 +1,7 @@
 
 <?php 
 
-
-$notification = "SELECT * FROM notifcation";
+$notification = "SELECT * FROM notifcation ORDER BY date DESC";
 $notify = $database->getConnection()->prepare($notification);
 $notify->execute();
 $notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
@@ -227,6 +226,12 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                     <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="notif-button">
                         <div style="position: relative; display: inline-block;">
                             <i class="fa-solid fa-bell" style="font-size: 18px;"></i>
+                            <?php
+                            $newNotificationCount = $admin->countNewNotifications($id);
+                            if ($newNotificationCount > 0):
+                            ?>
+                            <span class="badge bg-red"><?php echo $newNotificationCount; ?></span>
+                            <?php endif; ?>
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" style="width: 350px;" id="notif-container">
@@ -238,8 +243,8 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                     <ul class="list-group border-0" id="notification-container">
                                         <?php  
                                         foreach ($notifications as $x) {
-                                            $user = $x['receiver'];
-                                            $scholar = "SELECT * FROM scholar_info WHERE scholar_id = ?"; 
+                                            $user = $x['sender'];
+                                            $scholar = "SELECT * FROM login WHERE id = ?"; 
                                             $scholar_info = $database->getConnection()->prepare($scholar);
                                             $scholar_info->execute([$user]);
                                             $scholar_data = $scholar_info->fetch(PDO::FETCH_ASSOC);
@@ -249,15 +254,17 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                                     <img src="" width="50" height="45" alt="" class="rounded-circle shadow" style="max-width: 50px; max-height: 45px;" />
                                                     <div class="ms-3">
                                                         <div class="fw-bold">
-                                                            <?php echo $scholar_data['f_name']; ?> <?php echo $scholar_data['l_name']; ?>
+                                                            <?php echo $scholar_data['fname']; ?> <?php echo $scholar_data['lname']; ?>
                                                         </div>
                                                         <div class="text-muted mb-1" style="font-size: 10px;">
                                                             <?php echo $x["date"]?>
                                                         </div>
-                                                            <?php if($x["remarks"] == "acceptedApplicants"){?>
-                                                                    Applied for scholarship
+                                                            <?php if($x["remarks"] == "applicantApplied"){?>
+                                                                Applied for scholarship
+                                                            <?php }else if($x["remarks"] == "scholarRenewed"){?>
+                                                                Submitted a renewal
                                                             <?php }?>
-                                                    </div>
+                                                    </div>  
                                                 </div>
                                             </li>
                                         <?php }?>

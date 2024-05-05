@@ -1,17 +1,22 @@
 <?php
-
+session_start();
 if(isset($_POST['submit'])){
     require '../classes/database.php';
     require '../classes/scholar.php';
     require '../classes/admin.php';
 
+    $user_id = $_SESSION["id"];
+    $currentDate1 = date('Y-m-d H:i:s');
+    $currentDate = date('Y-m-d');
+
     $database = new Database();
     $scholar = new Scholar($database);
+    $admin = new Admin($database);
 
     //scholar data
     $dob = $_POST["dofBirth"];
     $dateOfBirth = new DateTime($dob);
-    $currentDate = new DateTime();
+    // $currentDate = new DateTime();
     // $age = $currentDate->diff($dateOfBirth)->y;
 
     $father_name = $_POST['fatherFName'].' '.$_POST['fatherMName'].' '.$_POST['fatherLName'];
@@ -219,6 +224,12 @@ if(isset($_POST['submit'])){
         isset($fileData8) ? $fileData8['fileError'] === 0 : true
     )) {
 
+        // Fetch all admin IDs
+        $adminIds = $admin->getAllAdminIds();
+
+        foreach ($adminIds as $adminId) {
+            $notification = $admin->InsertNotif($user_id, $adminId, "applicantApplied", $currentDate1);
+        }
         $scholar->checkData($filesAndPicture, $scholarData, $_POST['studentType']);
     } else {
         echo "There was an error while uploading the file";

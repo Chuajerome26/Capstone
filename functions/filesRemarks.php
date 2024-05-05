@@ -107,7 +107,7 @@ Best regards,
 Consuelo "CHITO" Madrigal Foundation Inc
 ccmf2015main@gmail.com
 ';
-
+        // $notification = $admin->InsertNotif($user_id, $scholar_id, "interviewSchedSent", $currentDate1);
         $message = fileRemarkSuccess($last_name, $date, $convertedTime, $convertedTime1);
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 1, $message1, $currentDate1);
         $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 1 WHERE scholar_id = :id');

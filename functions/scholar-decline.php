@@ -35,6 +35,8 @@ if(isset($_POST['submit'])){
         exit();
     }
     
+    // $notification = $admin->InsertNotif($user_id, $id, "declinedApplicants", $currentDate1);
+
     $declineMessage = applicantDecline($user['l_name']);
     $addRemarks = $admin->addRemarks($id, $user_id, 5, $remarks, $currentDate1);
     $sentEmail = $database->sendEmail($email,"Scholarship Application Status Update", $declineMessage);

@@ -52,8 +52,7 @@ Consuelo "CHITO" Madrigal Foundation, Inc.
 ccmf2015main@gmail.com';
 
 
-$notification = $database->getConnection()->prepare("INSERT INTO notifcation (sender, receiver, remarks, date) VALUES (?,?,?,?)");
-$notification->execute([$user_id, $id, "acceptedApplicants", $currentDate1]); 
+    // $notification = $admin->InsertNotif($user_id, $id, "acceptedApplicants", $currentDate1);
 
     $addRemarks = $admin->addRemarks($id, $user_id, 3, $acceptanceMessage1, $currentDate1);
     $sentEmail = $database->sendEmail($email,"Congratulations! Scholarship Acceptance", $acceptanceMessage);

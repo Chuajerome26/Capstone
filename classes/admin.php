@@ -51,6 +51,26 @@ class Admin
             return $result;
         }
     }
+    public function InsertNotif($senderId, $receiverId, $remarks, $date){
+
+        // prepare insert statement for employee table
+         $sql = "INSERT INTO notifcation (sender, receiver, remarks, date) VALUES (?,?,?,?)";
+    
+         // prepared statement
+        $stmt = $this->database->getConnection()->prepare($sql);
+    
+        //if execution fail
+        if (!$stmt->execute([$senderId, $receiverId, $remarks,  $date])) {
+            header("Location: ../newdesign/admin-application.php?status=error");
+            exit();
+        }
+    }
+    public function countNewNotifications($id) {
+        $sql = "SELECT COUNT(*) FROM notifcation WHERE is_seen = 0 AND receiver = ?";
+        $stmt = $this->database->getConnection()->prepare($sql);
+        $stmt->execute([$id]);
+        return $stmt->fetchColumn();
+    }
     public function updateNotif1($id){
         // prepared statement
         $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE scholar_id =?");
@@ -243,6 +263,11 @@ class Admin
         return $stmt;
         exit();
     }
+    public function getAllAdminIds(){
+        $stmt = $this->database->getConnection()->query("SELECT id FROM admin_info")->fetchAll(PDO::FETCH_COLUMN);
+        return $stmt;
+    }
+    
     public function checkAdmin(){
         $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) as count FROM admin_info");
 

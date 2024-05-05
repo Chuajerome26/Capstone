@@ -64,6 +64,13 @@ if(isset($_POST['submit'])){
         if (move_uploaded_file($_FILES['regForm']['tmp_name'], $uploadDir . $uploadedFileName1) &&
             move_uploaded_file($_FILES['gradeSlip']['tmp_name'], $uploadDir . $uploadedFileName2)) {
 
+                // Fetch all admin IDs
+                $adminIds = $admin->getAllAdminIds();
+
+                foreach ($adminIds as $adminId) {
+                    $notification = $admin->InsertNotif($scholar_id, $adminId, "scholarRenewed", $currentDate1);
+                }
+
                 $stmt2 = $database->getConnection()->prepare("INSERT INTO scholar_renewal (scholar_id, full_name, c_status, contact_num, gcash, educ_lvl, total_units, univ, num_units_sem, year_lvl, sem, school_year, scholar_type, reference_number, date_apply, file1, file2) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
                 $stmt2->execute([$scholar_id, $full_name, $c_stat, $active_num, $gcash_num, $educLvl, $totalUnits, $university, $unitsPerSem, $yLevel, $semester, $schoolYear, $scholar_type, $user['reference_number'], $date, $uploadedFileName1, $uploadedFileName2]);
 
