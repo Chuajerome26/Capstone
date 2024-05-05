@@ -515,7 +515,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div>
 
                         <div class="col-md-4 mb-3">
-                                <label  class="form-label">House/Lot & Blk.No./Street/Village:<span class="text-danger">*</span></label>
+                                <label  class="form-label">House/Lot & Blk.No./Street/Subdivision/Village:<span class="text-danger">*</span></label>
                                 <input type="text" name="present_hnumber" class="form-control form-control-sm" placeholder="House/Lot & Blk.No./Street/Village" required>
                         </div>
 
@@ -549,7 +549,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div>
 
                         <div class="col-md-4 mb-3">
-                                <label  class="form-label">House/Lot & Blk.No./Street/Village:</label>:<span class="text-danger">*</span></label>
+                                <label  class="form-label">House/Lot & Blk.No./Street/Subdivision/Village:</label>:<span class="text-danger">*</span></label>
                                 <input type="text" name="permanent_hnumber" class="form-control form-control-sm" placeholder="House/Lot & Blk.No./Street/Village" required>
                         </div>
 
@@ -561,7 +561,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     </div>
                     
                     <div class="col-md-3 mb-3">
-                        <label class="form-label">Active Gcash Number: <span class="text-danger">* </span><input type="checkbox" id="sameAsActive"> <label for="sameAsActive"><small class="text-muted">Same as active number</small></label>
+                        <label class="form-label">Active Gcash or Paymaya Number: <span class="text-danger">* </span><input type="checkbox" id="sameAsActive"> <label for="sameAsActive"><small class="text-muted">Same as active number</small></label>
                         <input type="text" name="gNumber" id="gNumber" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" required maxlength="11">
                     </div>
 
@@ -1259,11 +1259,31 @@ function addFamilyRow(event) {
 
     // Create the remove button
     const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
-    removeButton.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'w-100', 'border-2');
-    removeButton.onclick = function() {
-        familyInfoContainer.removeChild(newRow);
-    };
+removeButton.textContent = 'Remove';
+removeButton.classList.add('btn', 'btn-outline-danger', 'btn-sm', 'w-100', 'border-2');
+
+// Adding event listener to the remove button
+removeButton.addEventListener('click', function() {
+    // Use SweetAlert for confirmation
+    swal({
+        title: 'Are you sure?',
+        text: 'You are about to remove this item.',
+        icon: 'warning',
+        buttons: ['Cancel', 'Yes, remove it!'],
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            // Perform removal if confirmed
+            const parentElement = removeButton.closest('.row');
+            parentElement.parentNode.removeChild(parentElement);
+            swal('Your item has been removed!', {
+                icon: 'success',
+            });
+        } else {
+            swal('Your item is safe!');
+        }
+    });
+});
 
     // Append the remove button to the appropriate column
     const buttonColumn = newRow.querySelector('.button-column');
