@@ -16,6 +16,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
 
     $admin_info = $admin->adminInfo($id);
 
+    $pic = $admin->getApplicants2x2($id);
+
     $today = $admin->getInterviewCountForToday();
 
     $renewal = $scholar->getRenewalNewInfo();
