@@ -21,14 +21,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     }else{
         $initialInterview1 = [];
     }
-
-    $finalInterview = $admin->getFinalInterviews();
-
-    if($finalInterview["hasData"]){
-        $finalInterview1 = $finalInterview["data"];
-    }else{
-        $finalInterview1 = [];
-    }
 } else {
     header("Location: ../index.php");
 }
@@ -189,7 +181,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     <?php 
         $displayedDatesforModal = [];
         foreach($initialInterview1 as $a){
-            $date1 = $a['date'];
+            $date = $a['date'];
             if (!in_array($date, $displayedDatesforModal)) {
                 // Add the date to the list of displayed dates
                 $displayedDatesforModal[] = $date;
@@ -212,7 +204,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                     </thead>
                     <tbody>
                         <?php foreach($initialInterview1 as $b){
-                                if($b['date'] == $date1){
+                                if($b['date'] == $date){
                                     $info1 = $admin->getApplicantById($b['scholar_id']);
                                     ?>
                         <tr>
@@ -301,51 +293,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         </div>
     </div>
     <?php }?>
-    <!-- Modal End -->
-    <!-- Modal for Final Interview Edit -->
-    <?php 
-    foreach($finalInterview1 as $fT){
-    ?>
-    <div class="modal fade" id="editFinalModal<?php echo $fT["date"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $fT["date"];?>l" aria-hidden="true">
-        <div class="modal-dialog" style="max-width:600px;">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="detailsModal<?php echo $fT["id"];?>">Edit </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <h2>Interview Form</h2>
-                    <form method="post" action="../functions/editFinalInterview.php">
-                    <div class="form-group">
-                        <label for="interviewDate">Interview Date:</label>
-                        <input type="date" class="form-control" id="interviewDate1" name="interviewDate"  min="<?php echo date('Y-m-d'); ?>" value="<?php echo $fT['date']; ?>" required>
-                    </div>
-                    <!-- <div class="form-group">
-                        <label for="modeOfTnterview">Mode of Interview:</label>
-                        <select class="form-control" id="modeOfTnterview" name="modeOfTnterview" required>
-                        <option value="">Select Mode</option>
-                        <option value="In-person">Onsite</option>
-                        <option value="Phone">Online</option>
-                        </select>
-                    </div> -->
-                    <!-- <div class="form-group">
-                        <label for="additionalInfo">Additional Information:</label>
-                        <textarea class="form-control" id="additionalInfo" name="additionalInfo" rows="3"></textarea>
-                    </div> -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="hidden" name="date" value="<?php echo $fT['date']; ?>">
-                <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
-    <?php }?>
-    <!-- Modal End -->
 
     <!-- Modal for Initial Interview Edit -->
     <?php 
@@ -400,13 +347,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
         </div>
     </div>
     <?php }?>
-           
 
 
                 </div>
-                   
-             </div> 
-          </main>
+            </div> 
+        </main>
 
 
 
