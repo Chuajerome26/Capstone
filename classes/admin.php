@@ -311,10 +311,13 @@ class Admin
     }
     public function getApplicants(){
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_info
-                                                        WHERE status = '0'")->fetchAll();
+                                                        WHERE status = '0'
+                                                        ORDER BY date_apply DESC")->fetchAll();
         return $stmt;
         exit();
     }
+    
+    
     public function getGrade($scholar_id){
         $stmt = $this->database->getConnection()->prepare("SELECT ROUND(AVG(grade), 2) as average FROM scholar_grade WHERE scholar_id = ?");
 
