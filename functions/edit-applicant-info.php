@@ -9,6 +9,12 @@ if (isset($_POST['submit'])) {
     // Process form submission
     $id = $_POST['id'];
     
+    // Fetch all admin IDs
+    $adminIds = $admin->getAllAdminIds();
+
+    foreach ($adminIds as $adminId) {
+        $notification = $admin->InsertNotif($id, $adminId, "applicantFileUpdated", $currentDate1);
+    }
     // Update the data
     $admin->updateScholarFiles($id);
     
