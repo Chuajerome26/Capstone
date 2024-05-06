@@ -282,7 +282,8 @@ foreach($applicantss as $app) {
                 if ($currentDateTime < $interviewDateTime) {
                     // If current date and time is before the interview date and time
                 ?>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $b["scholar_id"];?>" disabled>Give Remarks</button>
+                    <button type="button" class="btn btn-primary" disabled>Give Remarks</button>
+                    <span class="text-secondary">You can only give remarks after the interview.</span>
                 <?php 
                 } else {
                     // If current date and time is after or equal to the interview date and time
