@@ -598,6 +598,14 @@ class Scholar{
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_info WHERE status = '1'")->fetchAll();
         return $stmt;
     }
+    public function getAllApplicants(){
+        $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_info WHERE status = '0'")->fetchAll();
+        return $stmt;
+    }
+    public function getAllStipend(){
+        $stmt = $this->database->getConnection()->query("SELECT * FROM stipend")->fetchAll();
+        return $stmt;
+    }
     public function hasSubmittedRenewal($id, $ref) {
     $query = "SELECT renewal_status FROM scholar_renewal WHERE scholar_id = :scholar_id AND reference_number = :ref";
     $stmt = $this->database->getConnection()->prepare($query);
