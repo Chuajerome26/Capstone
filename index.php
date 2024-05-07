@@ -111,8 +111,8 @@ border-bottom-right-radius: .3rem;
               <div class="card-body p-md-5 mx-md-4">
 
            
-              <img src="images/forcert1.png" width="90px" height="60px">
-              <span style="font-size: 15px; color:#0EDC8D"> <strong>Scholar Management System</strong></span>
+              <img src="images/<?php echo $result[0]['logo']; ?>" width="90px" height="60px">
+              <span style="font-size: 15px; color:#0EDC8D"> <strong><?php echo $result[0]['title_name']; ?></strong></span>
 
 
                             
