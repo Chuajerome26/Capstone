@@ -1280,7 +1280,7 @@ removeButton.addEventListener('click', function() {
                 icon: 'success',
             });
         } else {
-            swal('Your item is safe!');
+            swal('Cancelled');
         }
     });
 });
