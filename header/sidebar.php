@@ -67,8 +67,6 @@ overflow-x: auto;
 overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
     </style>
-
-
     <!-- Main Navigation -->
     <header>
         <!-- Sidebar -->

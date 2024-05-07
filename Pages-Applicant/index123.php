@@ -10,6 +10,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
     $id = $_SESSION['id'];
     $info = $admin->getApplicantLoginById($id);
+    $content = $admin->getContent();
 
 } else {
     header("Location: ../index.php");
@@ -23,11 +24,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Scholarship Management System</title>
+    <title><?php echo $content[0]['title_name']; ?></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <link rel="shortcut icon" type="image/x-icon" href="../images/forcert1.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="../images/<?php echo $content[0]['logo']; ?>" />
     <!-- Place favicon.ico in the root directory -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
     <!-- Web Font -->

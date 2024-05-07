@@ -11,6 +11,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
     $id = $_SESSION['id'];
     $appliLogin = $admin->getScholarById($id);
     $pic = $admin->getApplicants2x2($id);
+    $content = $admin->getContent();
 
 } else {
     header("Location: ../index.php");
@@ -25,8 +26,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 <meta charset="utf-8">
 
 
-<title>CCMF FORM</title>
-<link rel="shortcut icon" type="image/x-icon" href="../images/logo.jpg" />
+<title><?php echo $content[0]['title_name']; ?></title>
+<link rel="shortcut icon" type="image/x-icon" href="../images/<?php echo $content[0]['logo']; ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
