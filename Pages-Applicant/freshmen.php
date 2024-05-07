@@ -909,7 +909,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
                 <script>
 
-                    function handleFiles(event, previewContainerId) {
+                    function handleFiles(event, previewContainerId, fileType) {
                         const fileList = event.target.files;
                         const previewContainer = document.getElementById(previewContainerId);
                         previewContainer.innerHTML = '';
@@ -957,42 +957,42 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 
                     
-                function handleFiles1(event, previewContainerId) {
-                    const fileList = event.target.files;
-                    const previewContainer = document.getElementById(previewContainerId);
-                    previewContainer.innerHTML = '';
+                // function handleFiles1(event, previewContainerId) {
+                //     const fileList = event.target.files;
+                //     const previewContainer = document.getElementById(previewContainerId);
+                //     previewContainer.innerHTML = '';
 
-                    for (let i = 0; i < fileList.length; i++) {
-                        const file = fileList[i];
-                        if (file.type === 'application/pdf') {
-                            if (file.size <=  3 * 1024 * 1024) { // Check if file size is less than or equal to 25MB
-                                const fileNameContainer = document.createElement('div'); // Create a div container
-                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+                //     for (let i = 0; i < fileList.length; i++) {
+                //         const file = fileList[i];
+                //         if (file.type === 'application/pdf') {
+                //             if (file.size <=  3 * 1024 * 1024) { // Check if file size is less than or equal to 25MB
+                //                 const fileNameContainer = document.createElement('div'); // Create a div container
+                //                 fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
 
-                                const logo = document.createElement('img');
-                                logo.src = '../images/PDF-logo.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                                logo.alt = 'Logo';
-                                logo.style.width = '40px'; // Set the width of the image
-                                logo.style.height = '50px'; // Set the height of the image
-                                fileNameContainer.appendChild(logo); // Append the logo to the div container
+                //                 const logo = document.createElement('img');
+                //                 logo.src = '../images/PDF-logo.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                //                 logo.alt = 'Logo';
+                //                 logo.style.width = '40px'; // Set the width of the image
+                //                 logo.style.height = '50px'; // Set the height of the image
+                //                 fileNameContainer.appendChild(logo); // Append the logo to the div container
 
-                                const fileName = document.createElement('a');
-                                fileName.textContent = file.name;
-                                fileName.href = URL.createObjectURL(file);
-                                fileName.target = '_blank';
-                                fileName.style.display = 'block';
+                //                 const fileName = document.createElement('a');
+                //                 fileName.textContent = file.name;
+                //                 fileName.href = URL.createObjectURL(file);
+                //                 fileName.target = '_blank';
+                //                 fileName.style.display = 'block';
 
-                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+                //                 fileNameContainer.appendChild(fileName); // Append the file name link to the div container
 
-                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                            } else {
-                                swal("Error!", "File size exceeds the maximum limit of 3 MB.", "error");
-                            }
-                        } else {
-                            swal("Error!", "Please select only PDF files.", "error");
-                        }
-                    }
-                }
+                //                 previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                //             } else {
+                //                 swal("Error!", "File size exceeds the maximum limit of 3 MB.", "error");
+                //             }
+                //         } else {
+                //             swal("Error!", "Wrong Format of File", "error");
+                //         }
+                //     }
+                // }
                 </script>
 
               
