@@ -91,6 +91,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class="ms-2">Scholar Tabs</span>
                     </a>
 
+                    <?php if($_SESSION['user_type'] === 2 || $_SESSION['user_type'] === 6): ?>
                     <a href="../newdesign/admin-application.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'requestpending') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-mortarboard-fill" viewBox="0 0 16 16">
                         <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
@@ -98,9 +99,10 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         </svg>
                         <span class="ms-1">Scholarship Applicants</span>
                     </a>
-
+                    <?php endif;?>
                     <hr class="sidebar-divider d-none d-md-block">
-                    
+
+                    <?php if($_SESSION['user_type'] === 4): ?>
                     <a href="../newdesign/Stipend Processing.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'productapproval') ? 'active-nav-item' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
                     <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
@@ -124,7 +126,9 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                     </svg>
                         <span class="ms-2">Done Renewal</span>
                     </a>
+                    <?php endif;?>
 
+                    <?php if($_SESSION['user_type'] === 3): ?>
                     <a href="../newdesign/schedule-task.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'eventcalendar') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27"  fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
                         <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -132,7 +136,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         </svg>
                         <span class="ms-2">Schedule Interview</span>
                     </a>
-
+                    <?php endif;?>
                     <a href="../newdesign/admin-announcement.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'userlist') ? 'active-nav-item' : ''; ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27"  fill="currentColor" class="bi bi-megaphone-fill" viewBox="0 0 16 16">
                         <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0zm-1 .724c-2.067.95-4.539 1.481-7 1.656v6.237a25 25 0 0 1 1.088.085c2.053.204 4.038.668 5.912 1.56zm-8 7.841V4.934c-.68.027-1.399.043-2.008.053A2.02
@@ -159,6 +163,14 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class ="ms-2">Admin Logs</span>                  
                     </a>
 
+                    <a href="../Pages-CMS/customize-form.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'logs') ? 'active-nav-item' : ''; ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27"  fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                    <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+                    </svg>
+                        <span class ="ms-2">Customize Forms</span>                  
+                    </a>
 
                     <?php endif;?>
 

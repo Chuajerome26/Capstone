@@ -3,7 +3,7 @@
 // start session
 session_start();
 
-if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_type'] === 2)) {
+if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
     require '../classes/admin.php';
     require '../classes/database.php';
 
@@ -282,11 +282,11 @@ foreach($applicantss as $app) {
             <div class="modal-footer">
             <?php 
                 $currentDate = date("Y-m-d");
-                $currentTime = date("h:i A");
+                // $currentTime = date("h:i A");
                 $interviewDate = $b['date'];
-                $interviewEndTime = date("h:i A", strtotime($b['time_end']));
+                // $interviewEndTime = date("h:i A", strtotime($b['time_end']));
 
-                        if ($currentDate >= $interviewDate && $currentTime > $interviewEndTime) {
+                        if ($currentDate >= $interviewDate) {
                     ?>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $b["scholar_id"];?>" onclick="modal(<?php echo $b['scholar_id']; ?>)">Give Remarks</button>
                     <?php 

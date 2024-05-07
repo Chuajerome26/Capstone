@@ -65,19 +65,27 @@ require '../classes/database.php';
 
 
 
-    if($userType == 6){
+    if($userType == 6){//Super Admin
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 6;
         header("Location: ../Pages-CMS/Admin-CMS.php");
-    }else if($userType == 2){
+    }else if($userType == 4){//Renewal/Stipend
+        $_SESSION["id"] = $admin_id;
+        $_SESSION["user_type"] = 4;
+        header("Location: ../newdesign/renewal.php");
+    }else if($userType == 3){//Interviewer
+        $_SESSION["id"] = $admin_id;
+        $_SESSION["user_type"] = 3;
+        header("Location: ../newdesign/schedule-task.php");
+    }else if($userType == 2){//Evaluator
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 2;
-        header("Location: ../newdesign/dashboard.php");
-    }else if($userType == 1){
+        header("Location: ../newdesign/admin-application.php");
+    }else if($userType == 1){//Scholar
         $_SESSION["id"] = $user_id;
         $_SESSION["user_type"] = 1;
         header("Location: ../Pages-scholar/dashboard.php");
-    }else if($userType == 0){
+    }else if($userType == 0){//Applicant
         $_SESSION["id"] = $user_id;
         $_SESSION["user_type"] = 0;
         header("Location: ../Pages-Applicant/index123.php");
