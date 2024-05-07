@@ -137,8 +137,10 @@
             
         <div class="row align-items-center">
    
-    <div class="col-md-4 mx-auto">
-    <img src="images/Management1.png" style="width: 250px;" class="mb-1">
+    <div class="col text-center">
+    <img src="images/forcert1.png" style="width: 70px;" >
+    <span  style="color:#0EDC8D; font-size: 18px;"><strong>Scholarship Management System</strong></span>
+        
        
     </div>
 </div>
