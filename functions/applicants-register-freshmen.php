@@ -225,7 +225,7 @@ if(isset($_POST['submit'])){
     )) {
 
         // Fetch all admin IDs
-        $adminIds = $admin->getAllAdminIds();
+        $adminIds = $admin->getEvaluatorAdminIds();
 
         foreach ($adminIds as $adminId) {
             $notification = $admin->InsertNotif($user_id, $adminId, "applicantApplied", $currentDate1);

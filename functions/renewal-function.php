@@ -65,7 +65,7 @@ if(isset($_POST['submit'])){
             move_uploaded_file($_FILES['gradeSlip']['tmp_name'], $uploadDir . $uploadedFileName2)) {
 
                 // Fetch all admin IDs
-                $adminIds = $admin->getAllAdminIds();
+                $adminIds = $admin->getRenewalAdminIds();
 
                 foreach ($adminIds as $adminId) {
                     $notification = $admin->InsertNotif($scholar_id, $adminId, "scholarRenewed", $currentDate1);

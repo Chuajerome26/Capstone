@@ -267,7 +267,18 @@ class Admin
         $stmt = $this->database->getConnection()->query("SELECT id FROM admin_info")->fetchAll(PDO::FETCH_COLUMN);
         return $stmt;
     }
-    
+    public function getEvaluatorAdminIds(){
+        $stmt = $this->database->getConnection()->query("SELECT admin_id FROM login WHERE user_type='2' ")->fetchAll(PDO::FETCH_COLUMN);
+        return $stmt;
+    }
+    public function getInterviewerAdminIds(){
+        $stmt = $this->database->getConnection()->query("SELECT admin_id FROM login WHERE user_type='3'")->fetchAll(PDO::FETCH_COLUMN);
+        return $stmt;
+    }
+    public function getRenewalAdminIds(){
+        $stmt = $this->database->getConnection()->query("SELECT admin_id FROM login WHERE user_type='4'")->fetchAll(PDO::FETCH_COLUMN);
+        return $stmt;
+    }
     public function checkAdmin(){
         $stmt = $this->database->getConnection()->prepare("SELECT COUNT(*) as count FROM admin_info");
 

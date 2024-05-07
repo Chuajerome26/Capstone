@@ -221,7 +221,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                                         <div class="text-muted mb-1" style="font-size: 10px;">
                                                             <?php echo $x["date"]?>
                                                         </div>
-                                                            <?php if($x["remarks"] == "acceptedApplicants"){?>
+                                                            <?php if($x["remarks"] == "applicantApplied"){?>
                                                                     Applied for scholarship
                                                             <?php }?>
                                                     </div>

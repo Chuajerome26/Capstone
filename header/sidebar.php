@@ -1,7 +1,15 @@
 
 <?php 
 
-$notification = "SELECT * FROM notifcation ORDER BY date DESC";
+if ($_SESSION['user_type'] == 2) {
+    $notification = "SELECT * FROM notifcation WHERE remarks IN ('applicantApplied', 'applicantFileUpdated') ORDER BY date DESC";
+} else if ($_SESSION['user_type'] == 3) {
+    $notification = "SELECT * FROM notifcation WHERE remarks = 'interviewSchedSent' ORDER BY date DESC";
+} else if ($_SESSION['user_type'] == 4) {
+    $notification = "SELECT * FROM notifcation WHERE remarks = 'scholarRenewed' ORDER BY date DESC";
+} else {
+    $notification = "SELECT * FROM notifcation ORDER BY date DESC";
+}
 $notify = $database->getConnection()->prepare($notification);
 $notify->execute();
 $notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
@@ -274,6 +282,8 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                                                 Submitted a renewal
                                                             <?php }else if($x["remarks"] == "applicantFileUpdated"){?>
                                                                 Updated their application files
+                                                            <?php }else if($x["remarks"] == "interviewSchedSent"){?>
+                                                                Interview Schedule Sent
                                                             <?php }?>
                                                     </div>  
                                                 </div>

@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $id = $_POST['id'];
     
     // Fetch all admin IDs
-    $adminIds = $admin->getAllAdminIds();
+    $adminIds = $admin->getEvaluatorAdminIds();
 
     foreach ($adminIds as $adminId) {
         $notification = $admin->InsertNotif($id, $adminId, "applicantFileUpdated", $currentDate1);
