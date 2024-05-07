@@ -1,11 +1,19 @@
+<?php 
+    require 'database.php';
 
+    $database = new Database();
+    $query = "SELECT * FROM content_design";
+    $stmt = $database->getConnection()->prepare($query);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="images/forcert1.png">
-    <title>Sign Up</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/<?php echo $result[0]['logo']; ?>" />
+    <title><?php echo $result[0]['title_name']; ?></title>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
