@@ -68,7 +68,7 @@ require '../classes/database.php';
     if($userType == 3){
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 3;
-        header("Location: ../newdesign/dashboard.php");
+        header("Location: ../Pages-CMS/Admin-CMS.php");
     }else if($userType == 2){
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 2;
