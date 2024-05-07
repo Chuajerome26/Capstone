@@ -6,8 +6,6 @@ $notify = $database->getConnection()->prepare($notification);
 $notify->execute();
 $notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
 
-$pic = $admin->getApplicants2x2($id);
-
 ?>
 <style>   
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
@@ -242,7 +240,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                             <div class="row">
                                 <div class="col-12" style="max-height: 400px; overflow-y: auto;">
                                     <ul class="list-group border-0" id="notification-container">
-                                        <?php  
+                                        <?php 
                                         foreach ($notifications as $x) {
                                             $user = $x['sender'];
                                             $scholar = "SELECT * FROM login WHERE id = ?"; 
@@ -264,6 +262,8 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                                                 Applied for scholarship
                                                             <?php }else if($x["remarks"] == "scholarRenewed"){?>
                                                                 Submitted a renewal
+                                                            <?php }else if($x["remarks"] == "applicantFileUpdated"){?>
+                                                                Updated their application files
                                                             <?php }?>
                                                     </div>  
                                                 </div>

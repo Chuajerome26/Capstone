@@ -220,9 +220,18 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <div class="col-lg-12">
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" >
-                            <img src="../images/Management1.png" alt="Logo">
-                        </a>
+                        
+                            <img src="../images/forcert1.png" class="mb-2"  width="90px" height="60px">
+                            
+                            
+                            <p style="font-size: 18px; color:#0EDC8D" class="mt-3"><strong>Scholarship Management <br>system</strong></p>
+                               
+                                
+                            
+                              
+                            
+                                
+                       
                         <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">

@@ -101,11 +101,15 @@ border-bottom-right-radius: .3rem;
             <div class="col-lg-6">
               <div class="card-body p-md-5 mx-md-4">
 
-                <div class="text-center">
-                  <img src="images/Management1.png"
-                    style="width: 250px;">
-                  
-                </div>
+           
+              <img src="images/forcert1.png" width="90px" height="60px">
+              <span style="font-size: 15px; color:#0EDC8D"> <strong>Scholar Management System</strong></span>
+
+
+                            
+                            
+                           
+                
 </br>
 
 <div style="text-align: center;">

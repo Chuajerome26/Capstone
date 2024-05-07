@@ -211,7 +211,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                             <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
                             <td><?php echo $b['time_start']?> - <?php echo $b['time_end'];?></td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#questionModal<?php echo $b["id"];?>">Start</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
                             </td>
                         </tr>
                         <?php }
@@ -229,6 +229,106 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
     </div>
     <?php }} ?>
     <!-- Modal End -->
+
+
+    <!-- Modal for Remarks -->
+<?php
+$applicantss = $admin->getApplicants();
+foreach($applicantss as $app) {
+    $id = $b["scholar_id"];
+?>
+
+<div class="modal fade" id="remarksModal<?php echo $app["scholar_id"];?>" tabindex="-1" aria-labelledby="remarksModalLabel<?php echo $app["scholar_id"];?>" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="remarksModalLabel<?php echo $app["scholar_id"];?>">Remarks</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-3 text-dark">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-11">
+                            <?php 
+                            $getRemarks = $admin->getRemarksForInterview($id);
+                            if($getRemarks){
+                                foreach($getRemarks as $pogi){
+                            ?>
+                            <div class="d-flex flex-row align-items-start mb-4">
+                                <img class="img-thumbnail rounded-circle shadow border me-3" src="../images/logo.jpg" alt="avatar" width="50" height="55" />
+                                <div class="card w-100 shadow">
+                                    <div class="card-body p-4">
+                                        <div class="">
+                                            <h5>Interview Evaluation Remarks By Admin</h5>
+                                            <p class="small"><?php echo date('M d, Y', strtotime($pogi["date"])); ?></p>
+                                            <p><?php echo nl2br($pogi["remarks_mess"]);?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php } ?>
+                            <?php }else{ ?>
+                            <div class="alert alert-primary" role="alert">No Remarks</div>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <?php 
+                $currentDateTime = date("Y-m-d H:i:s");
+                $interviewDateTime = $b['date'] . ' ' . $b['time_end'];
+
+                if ($currentDateTime < $interviewDateTime) {
+                    // If current date and time is before the interview date and time
+                ?>
+                    <button type="button" class="btn btn-primary" disabled>Give Remarks</button>
+                    <span class="text-secondary">You can only give remarks after the interview.</span>
+                <?php 
+                } else {
+                    // If current date and time is after or equal to the interview date and time
+                ?>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $b["scholar_id"];?>" onclick="modal(<?php echo $b['scholar_id']; ?>)">Give Remarks</button>
+                <?php 
+                }
+                ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>
+
+
+    <!--Modal Interview Remarks-->
+    <?php 
+    foreach($initialInterview1 as $z){
+    ?>
+    <div class="modal fade" id="remarksSend<?php echo $z["scholar_id"];?>" tabindex="-1" aria-labelledby="remarksSendLabel<?php echo $z["scholar_id"];?>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="remarksSendLabel<?php echo $z["scholar_id"];?>">Remarks</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="../functions/interview-remarks.php">
+          <div class="mb-3">
+            <label for="remarksTextarea" class="form-label">Enter your remarks:</label>
+            <textarea class="form-control" name="remarks" rows="4" placeholder="Please provide your remarks for this interview..."></textarea>
+
+            <input type="hidden" name="scholar_id" value="<?php echo $z['scholar_id']?>">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<?php }?>
+    <!--Modal End-->
 
     <!-- Modal Start Question -->
     <?php 

@@ -565,9 +565,9 @@ $appliData1 = $admin->getApplicants();
                 <div class="card-header">
                             <strong>Academic Information</strong>
                         </div>
-                        <?php if($a['studType'] == "srhigh"): ?>
+                        <?php if($a['studType'] == "Senior High Graduate"): ?>
                         <dl class="row ms-3" >
-                <h6 >Senior High School</h6>
+                        <h6 >Senior High School</h6>
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["sh_school"];?></dd>
                             
@@ -586,7 +586,7 @@ $appliData1 = $admin->getApplicants();
                 
                     <?php else: ?>
                         <dl class="row ms-3">
-                <h6 >College School</h6>
+                        <h6 >College School</h6>
                             <dt class="col-sm-5">School:</dt>
                             <dd class="col-sm-7"><?php echo $a["c_school"];?></dd>
 
@@ -613,7 +613,7 @@ $appliData1 = $admin->getApplicants();
     <div class="col-md-12  ">
                 <div class="card border shadow">
                 <div class="card-header">
-                            <strong>Grade Information</strong>
+                            <strong>Income Provider in the Family</strong>
                         </div>
                         <div class="table-responsive">
                 <table class="table p-0 w-100">
