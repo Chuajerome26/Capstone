@@ -206,10 +206,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3 || $_SESSION['user_t
                         <?php foreach($initialInterview1 as $b){
                                 if($b['date'] == $date){
                                     $info1 = $admin->getApplicantById($b['scholar_id']);
+                                    // Convert time to AM/PM format
+                                    $time_start = date("h:i A", strtotime($b['time_start']));
+                                    $time_end = date("h:i A", strtotime($b['time_end']));
                                     ?>
                         <tr>
                             <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
-                            <td><?php echo $b['time_start']?> - <?php echo $b['time_end'];?></td>
+                            <td><?php echo $time_start?> - <?php echo $time_end?></td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
                             </td>
@@ -276,27 +279,27 @@ foreach($applicantss as $app) {
             </div>
             <div class="modal-footer">
             <?php 
-                $currentDateTime = date("Y-m-d H:i:s");
-                $interviewDateTime = $b['date'] . ' ' . $b['time_end'];
+                $currentDate = date("Y-m-d");
+                $currentTime = date("h:i A");
+                $interviewDate = $b['date'];
+                $interviewEndTime = date("h:i A", strtotime($b['time_end']));
 
-                if ($currentDateTime < $interviewDateTime) {
-                    // If current date and time is before the interview date and time
-                ?>
-                    <button type="button" class="btn btn-primary" disabled>Give Remarks</button>
-                    <span class="text-secondary">You can only give remarks after the interview.</span>
-                <?php 
-                } else {
-                    // If current date and time is after or equal to the interview date and time
-                ?>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $b["scholar_id"];?>" onclick="modal(<?php echo $b['scholar_id']; ?>)">Give Remarks</button>
-                <?php 
-                }
-                ?>
+                        if ($currentDate >= $interviewDate && $currentTime > $interviewEndTime) {
+                    ?>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $b["scholar_id"];?>" onclick="modal(<?php echo $b['scholar_id']; ?>)">Give Remarks</button>
+                    <?php 
+                        } else {
+                    ?>
+                            <button type="button" class="btn btn-primary" disabled>Give Remarks</button>
+                            <span class="text-secondary">You can only give remarks after the interview.</span>
+                    <?php 
+                        }
+                    ?>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<?php } ?>
+        <?php } ?>
 
 
     <!--Modal Interview Remarks-->
