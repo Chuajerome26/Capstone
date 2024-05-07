@@ -11,7 +11,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $id = $_SESSION['id'];
     $info = $admin->getApplicantById($id);
     $pic = $admin->getApplicants2x2($id);
-    $content = $admin->getContent();
 
 } else {
     header("Location: ../index.php");
@@ -30,8 +29,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="../images/<?php echo $content[0]['logo']; ?> " />
-    <title><?php echo $content[0]['title_name']; ?></title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/forcert1.png" />
+    <title>Applicant Requirements</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -287,9 +286,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 <dd class="col-sm-7"><?php echo $a['studType'];?></dd>
 
                                                 <dt class="col-sm-5">Scholarship Type:</dt>
-<dd class="col-sm-1">
-  <i class="fas fa-question-circle" data-toggle="modal" data-target="#scholarshipTypeModal"></i>
-</dd>
+                                                <dd class="col-sm-7">
 
 <div class="modal fade" id="scholarshipTypeModal" tabindex="-1" role="dialog" aria-labelledby="scholarshipTypeModalLabel" aria-hidden="true">
   <div class="modal-dialog custom-modal-width" role="document">
@@ -330,8 +327,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 }
                                                 echo $schoType;
                                                 ?>
-                                                </dd>
                                                 
+                                                &nbsp; <i class="fas fa-question-circle" data-toggle="modal" data-target="#scholarshipTypeModal"></i>
+
+                                                </dd>
                                                 </dl>
                                             </div>
 
@@ -744,12 +743,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     </main>
 
                
-
-
-
-
-
-
 
 
 <script>
