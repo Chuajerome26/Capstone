@@ -65,9 +65,9 @@ require '../classes/database.php';
 
 
 
-    if($userType == 3){
+    if($userType == 6){
         $_SESSION["id"] = $admin_id;
-        $_SESSION["user_type"] = 3;
+        $_SESSION["user_type"] = 6;
         header("Location: ../Pages-CMS/Admin-CMS.php");
     }else if($userType == 2){
         $_SESSION["id"] = $admin_id;
@@ -80,8 +80,7 @@ require '../classes/database.php';
     }else if($userType == 0){
         $_SESSION["id"] = $user_id;
         $_SESSION["user_type"] = 0;
-         header("Location: ../Pages-Applicant/index123.php");
-         exit();
+        header("Location: ../Pages-Applicant/index123.php");
     }
 
 

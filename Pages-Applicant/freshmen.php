@@ -28,7 +28,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
 
 <title><?php echo $content[0]['title_name']; ?></title>
-<link rel="shortcut icon" type="image/x-icon" href="../images/ " />
+<link rel="shortcut icon" type="image/x-icon" href="../images/<?php echo $content[0]['logo']; ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
