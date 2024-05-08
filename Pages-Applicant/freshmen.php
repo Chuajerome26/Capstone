@@ -13,7 +13,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $pic = $admin->getApplicants2x2($id);
     $content = $admin->getContent();
 
-
+    $files = $admin->getCustomizableForm();
 } else {
     header("Location: ../index.php");
 }
@@ -838,161 +838,114 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
             <div class="tab-pane fade" id="requirements" role="tabpanel" aria-labelledby="requirements-tab">
 
                     <div class="row">
-
-                    <!-- HTML -->
-                    <div class="col-md-12 m-auto mb-3">
-                        <div class="fileUpload container">
-                            <div class="p-2">
-                                <div class="Preview mb-3 max-width-8 rounded-circle overflow-hidden" id="previewContainer1">
-                                    <img src="../images/no-images.jpg" id="image1" alt="Image">
-                                </div>
-                                <h6 class="text-center">Upload 2x2 Picture (JPG/PNG)</h6>
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-5 col-12 mb-2 text-center">
+                        <?php for($i = 0; $i < count($files); $i++): 
+                            $status = str_replace(' ', '', $files[$i]['name']);
+                            ?>
+                            <div class="col-lg-6 col-12 mb-3">               
+                                <div class="fileUpload container">
+                                        <h6><?php echo $files[$i]['name'];?> (PDF Only)<span class="text-danger">*</span></h6>
                                         <label class="fileSelect btn btn-sm btn-primary col-12">
-                                        <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">
-                                            <input type="file" id="fileInput" name="idPicture" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer1', 'image1')" required>
-                                        </label>
-                                        <div id="selectedFileName" class="mt-2"></div> <!-- Display selected file name -->
-                                    </div>
-                                </div>
+                                        <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
+                                        <input type="file" name="<?php echo $status;?>" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles(event, 'previewContainer<?php echo $i; ?>', '<?php echo $files[$i]['file_type']; ?>')" <?php echo ($files[$i]['is_required'] == 0) ? '':'required';?>></label>
+                                        <div class="Preview1" id="previewContainer<?php echo $i; ?>">
+                                        </div>
+                                </div> 
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Birth Certificate (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">
-                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
-                                <input type="file" name="birth" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer6')" required></label>
-                                <div class="Preview1 " id="previewContainer6">
-                                </div>
-                        </div> 
-                    </div>
-
-                    <div class="col-lg-6 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Certificate of Indigency (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">
-                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
-                                <input type="file" name="indigency" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer7')" required></label>
-                                <div class="Preview1 " id="previewContainer7">
-                                </div>
-                        </div> 
-                    </div>
-                    
-                    <div class="col-lg-6 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Barangay Certificate (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">
-                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
-                                <input type="file" name="brgy" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer17')" required></label>
-                                <div class="Preview1 " id="previewContainer17">
-                                </div>
-                        </div> 
-                    </div>
-
-                    <div class="col-lg-6 col-12 mb-3">               
-                        <div class="fileUpload container">
-                                <h6>Latest Income Tax Return / Affidavit of Non-Filing (PDF Only)<span class="text-danger">*</span></h6>
-                                <label class="fileSelect btn btn-sm btn-primary col-12">
-                                <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">
-                                <input type="file" name="Itr" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer18')" required></label>
-                                <div class="Preview1 " id="previewContainer18">
-                                </div>
-                        </div> 
-                    </div>
+                        <?php endfor; ?>
                     </div>
                     
 
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
                 <script>
 
-                    function handleFiles(event, previewContainerId, fileType) {
-                        const fileList = event.target.files;
-                        const previewContainer = document.getElementById(previewContainerId);
-                        previewContainer.innerHTML = '';
+function handleFiles(event, previewContainerId, fileTypes) {
+    const fileList = event.target.files;
+    const previewContainer = document.getElementById(previewContainerId);
+    previewContainer.innerHTML = '';
 
-                        const acceptedTypes = ['image/png', 'image/jpeg', 'image/jpg'];
-                        const maxSize = 10 * 1024 * 1024; // 5 MB in bytes
+    const maxSize = 10 * 1024 * 1024; // 10 MB in bytes
 
-                        for (let i = 0; i < fileList.length; i++) {
-                            const file = fileList[i];
+    let acceptedTypes = [];
 
-                            // Check if the file type is valid
-                            if (acceptedTypes.includes(file.type)) {
-                                // Check if the file size is within the limit
-                                if (file.size <= maxSize) {
-                                    const reader = new FileReader();
+    if(fileTypes == "pdf"){
+        acceptedTypes.push('application/pdf');
+    }else if(fileTypes == "image"){
+        acceptedTypes.push('image/png', 'image/jpeg', 'image/jpg');
+    }
 
-                                    reader.onload = function() {
-                                        const img = document.createElement('img');
-                                        img.src = reader.result;
-                                        img.alt = file.name;
-                                        img.classList.add('previewImage');
-                                        previewContainer.appendChild(img);
-                                    }
+    for (let i = 0; i < fileList.length; i++) {
+        const file = fileList[i];
+        // const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
 
-                                    reader.readAsDataURL(file);
+        // Check if the file type is valid
+        if (acceptedTypes.includes(file.type)) {
+            // Check if the file size is within the limit
+            if (file.size <= maxSize) {
+                const fileNameContainer = document.createElement('div'); // Create a div container
+                    fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
 
-                                    document.getElementById('selectedFileName').textContent = file.name;
-                                } else {
-                                    swal("Error!", "File size exceeds the maximum limit of 10 MB.", "error");
-                                        const img = document.createElement('img');
-                                        img.src = '../images/no-images.jpg';
-                                        img.classList.add('previewImage');
-                                        previewContainer.appendChild(img);
-                                }
-                            } else {
-                                swal("Error!", "Please select only JPEG, PNG, or JPG files.", "error");
-                                    const img = document.createElement('img');
-                                    img.src = '../images/no-images.jpg';
-                                    img.classList.add('previewImage');
-                                    previewContainer.appendChild(img);
-                            }
-                        }
-                    }
+                    const logo = document.createElement('img');
+                    logo.src = '../images/PDF-logo.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                    logo.alt = 'Logo';
+                    logo.style.width = '40px'; // Set the width of the image
+                    logo.style.height = '50px'; // Set the height of the image
+                    fileNameContainer.appendChild(logo); // Append the logo to the div container
 
+                    const fileName = document.createElement('a');
+                    fileName.textContent = file.name;
+                    fileName.href = URL.createObjectURL(file);
+                    fileName.target = '_blank';
+                    fileName.style.display = 'block';
 
+                    fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+
+                    previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+            } else {
+                swal("Error!", "File size exceeds the maximum limit of 10 MB.", "error");
+            }
+        } else {
+            swal("Error!", "Wrong Format of File", "error");
+        }
+    }
+}
 
                     
-                // function handleFiles1(event, previewContainerId) {
-                //     const fileList = event.target.files;
-                //     const previewContainer = document.getElementById(previewContainerId);
-                //     previewContainer.innerHTML = '';
+                function handleFiles1(event, previewContainerId) {
+                    const fileList = event.target.files;
+                    const previewContainer = document.getElementById(previewContainerId);
+                    previewContainer.innerHTML = '';
 
-                //     for (let i = 0; i < fileList.length; i++) {
-                //         const file = fileList[i];
-                //         if (file.type === 'application/pdf') {
-                //             if (file.size <=  3 * 1024 * 1024) { // Check if file size is less than or equal to 25MB
-                //                 const fileNameContainer = document.createElement('div'); // Create a div container
-                //                 fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
+                    for (let i = 0; i < fileList.length; i++) {
+                        const file = fileList[i];
+                        if (file.type === 'application/pdf') {
+                            if (file.size <=  3 * 1024 * 1024) { // Check if file size is less than or equal to 25MB
+                                const fileNameContainer = document.createElement('div'); // Create a div container
+                                fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
 
-                //                 const logo = document.createElement('img');
-                //                 logo.src = '../images/PDF-logo.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
-                //                 logo.alt = 'Logo';
-                //                 logo.style.width = '40px'; // Set the width of the image
-                //                 logo.style.height = '50px'; // Set the height of the image
-                //                 fileNameContainer.appendChild(logo); // Append the logo to the div container
+                                const logo = document.createElement('img');
+                                logo.src = '../images/PDF-logo.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                                logo.alt = 'Logo';
+                                logo.style.width = '40px'; // Set the width of the image
+                                logo.style.height = '50px'; // Set the height of the image
+                                fileNameContainer.appendChild(logo); // Append the logo to the div container
 
-                //                 const fileName = document.createElement('a');
-                //                 fileName.textContent = file.name;
-                //                 fileName.href = URL.createObjectURL(file);
-                //                 fileName.target = '_blank';
-                //                 fileName.style.display = 'block';
+                                const fileName = document.createElement('a');
+                                fileName.textContent = file.name;
+                                fileName.href = URL.createObjectURL(file);
+                                fileName.target = '_blank';
+                                fileName.style.display = 'block';
 
-                //                 fileNameContainer.appendChild(fileName); // Append the file name link to the div container
+                                fileNameContainer.appendChild(fileName); // Append the file name link to the div container
 
-                //                 previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
-                //             } else {
-                //                 swal("Error!", "File size exceeds the maximum limit of 3 MB.", "error");
-                //             }
-                //         } else {
-                //             swal("Error!", "Wrong Format of File", "error");
-                //         }
-                //     }
-                // }
+                                previewContainer.appendChild(fileNameContainer); // Append the div container to the preview container
+                            } else {
+                                swal("Error!", "File size exceeds the maximum limit of 3 MB.", "error");
+                            }
+                        } else {
+                            swal("Error!", "Wrong Format of File", "error");
+                        }
+                    }
+                }
                 </script>
 
               

@@ -400,6 +400,12 @@ class Admin
         return $result;
 
     }
+    public function getCustomizableForm(){
+        $stmt = $this->database->getConnection()->query("SELECT * FROM customizable_form_file")->fetchAll();
+        return $stmt;
+        exit();
+
+    }
     // public function getAllSibling($scholar_id){
     //     $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_siblings WHERE scholar_id = ?");
 

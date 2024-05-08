@@ -95,111 +95,53 @@ class Scholar{
 
   }
 
-        public function checkData($filesAndPicture, $scholarData, $studentType){
-            //check if the file extension is in the array $allowed
-        if (
-            in_array($filesAndPicture['fileActualExt1'], $filesAndPicture['allowed2']) &&
-            (
-                ($studentType == 'srhigh') ? (
-                    in_array($filesAndPicture['fileActualExt2'], $filesAndPicture['allowed1'])
-                ) : true
-            ) &&
-            (
-                ($studentType == 'college') ? (
-                    in_array($filesAndPicture['fileActualExt3'], $filesAndPicture['allowed1'])
-                ) : true
-            ) &&
-            in_array($filesAndPicture['fileActualExt4'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt5'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt6'], $filesAndPicture['allowed1']) &&
-            in_array($filesAndPicture['fileActualExt7'], $filesAndPicture['allowed1']) &&
-            (
-                ($studentType == 'srhigh' && isset($filesAndPicture['fileActualExt8'])) ? (
-                    in_array($filesAndPicture['fileActualExt8'], $filesAndPicture['allowed1'])
-                ) : true
-            )) {
+  public function checkData($filesAndPicture, $scholarData, $studentType) {
+    $stmt = $this->database->getConnection()->query("SELECT * FROM customizable_form_file");
 
-            //seperate filename
-            $newFileName1 = explode('.',$filesAndPicture['fileName1']);
-            $newFileName2 = explode('.',$filesAndPicture['fileName2']);
-            $newFileName3 = explode('.',$filesAndPicture['fileName3']);
-            $newFileName4 = explode('.',$filesAndPicture['fileName4']);
-            $newFileName5 = explode('.',$filesAndPicture['fileName5']);
-            $newFileName6 = explode('.',$filesAndPicture['fileName6']);
-            $newFileName7 = explode('.',$filesAndPicture['fileName7']);
-            if (isset($filesAndPicture['fileName8'])) {
-                $newFileName8 = explode('.',$filesAndPicture['fileName8']);
-            }
-            
-            //Copy of Grades
-            $fileNameNew1 = uniqid('', true) . "." . $filesAndPicture['fileActualExt1'];
-                //file destination
-            $fileDestination1 = '../Scholar_files/' . $fileNameNew1;
-
-            //Good Moral
-            $fileNameNew2 = uniqid('', true) . "." . $filesAndPicture['fileActualExt2'];
-            $fileDestination2 = '../Scholar_files/' . $fileNameNew2;
-
-            //Enrollment Form
-            $fileNameNew3 = uniqid('', true) . "." . $filesAndPicture['fileActualExt3'];
-                //file destination
-            $fileDestination3 = '../Scholar_files/' . $fileNameNew3;
-
-            $fileNameNew4 = uniqid('', true) . "." . $filesAndPicture['fileActualExt4'];
-            $fileDestination4 = '../Scholar_files/' . $fileNameNew4;
-
-            $fileNameNew5 = uniqid('', true) . "." . $filesAndPicture['fileActualExt5'];
-            $fileDestination5 = '../Scholar_files/' . $fileNameNew5;
-
-            $fileNameNew6 = uniqid('', true) . "." . $filesAndPicture['fileActualExt6'];
-            $fileDestination6 = '../Scholar_files/' . $fileNameNew6;
-
-            $fileNameNew7 = uniqid('', true) . "." . $filesAndPicture['fileActualExt7'];
-            $fileDestination7 = '../Scholar_files/' . $fileNameNew7;
-            
-            if (isset($filesAndPicture['fileActualExt8'])) {
-                $fileNameNew8 = uniqid('', true) . "." . $filesAndPicture['fileActualExt8'];
-                $fileDestination8 = '../Scholar_files/' . $fileNameNew8;
-            }
-
-            $arrayFiles = array($fileNameNew1, $fileNameNew2, $fileNameNew3, $fileNameNew4, $fileNameNew5, $fileNameNew6, $fileNameNew7);
-
-            if (isset($fileNameNew8)) {
-                array_push($arrayFiles, $fileNameNew8);
-            }
-            
-            // if (move_uploaded_file($fileTmpName, $fileDestination) ) {
-            if (
-                move_uploaded_file($filesAndPicture['fileTmpName1'],$fileDestination1) &&
-                (
-                    ($studentType == 'srhigh') ? (
-                        move_uploaded_file($filesAndPicture['fileTmpName2'],$fileDestination2)
-                    ) : true
-                ) &&
-                (
-                    ($studentType == 'college') ? (
-                        move_uploaded_file($filesAndPicture['fileTmpName3'],$fileDestination3)
-                    ) : true
-                ) &&
-                move_uploaded_file($filesAndPicture['fileTmpName4'],$fileDestination4) &&
-                move_uploaded_file($filesAndPicture['fileTmpName5'],$fileDestination5) &&
-                move_uploaded_file($filesAndPicture['fileTmpName6'],$fileDestination6) &&
-                move_uploaded_file($filesAndPicture['fileTmpName7'],$fileDestination7) &&
-                (
-                    ($studentType == 'srhigh' && isset($fileDestination8) && isset($filesAndPicture['fileTmpName8'])) ? (
-                        move_uploaded_file($filesAndPicture['fileTmpName8'],$fileDestination8)
-                    ) : true
-                ))  {
-
-                $this->registerEmployee($scholarData, $arrayFiles);
-        
-            } else {
-                echo "move_uploaded_file error";
-            }
-        } else {
-            echo "You can't upload this type of file!";
-        }
+    if (!$stmt->execute()) {
+        header("Location: ../newdesign/admin-application.php?error=stmtfail");
+        exit();
     }
+
+    $result = $stmt->fetchAll();
+
+    $arrayFiles = array();
+    $status = false;
+
+    // Move main file
+    $fileNameNew = uniqid('', true) . "." . $filesAndPicture['fileActualExt'];
+    $fileDestination = '../Scholar_files/' . $fileNameNew;
+    $arrayFiles[] = $fileNameNew;
+
+    if (isset($filesAndPicture['fileNameA']) && $filesAndPicture['fileNameA'] !== '') {
+        $fileNameNewA = uniqid('', true) . "." . $filesAndPicture['fileActualExtA'];
+        $fileDestinationA = '../Scholar_files/' . $fileNameNewA;
+        $arrayFiles[] = $fileNameNewA;
+        $status = true;
+    }
+
+    if (move_uploaded_file($filesAndPicture['fileTmpName'], $fileDestination) &&
+        isset($fileDestinationA) ? move_uploaded_file($filesAndPicture['fileTmpNameA'], $fileDestinationA) : true) {
+            foreach ($result as $file) {
+                $fileKey = 'fileData' . $file['id'];
+        
+                $newFileName = explode('.', $filesAndPicture[$fileKey]['fileName']);
+                $fileNameNew = uniqid('', true) . "." . $filesAndPicture['fileActualExt'.$file['id']];
+                $fileDestination = '../Scholar_files/' . $fileNameNew;
+        
+                $arrayFiles[] = $fileNameNew;
+        
+                if (!move_uploaded_file($filesAndPicture[$fileKey]['fileTmpName'], $fileDestination)) {
+                    echo "move_uploaded_file error";
+                }
+            }
+
+        $this->registerEmployee($scholarData, $arrayFiles, $status);
+    } else {
+        echo "move_uploaded_file error";
+    }
+}
+
 
     public function insertInterview($scholarData){
         $sql = "INSERT INTO admin_schedule (scholar_id, interview_schedule, mode_interview, i_f_interview, status, venue, time_start, time_end, grade) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -217,10 +159,16 @@ class Scholar{
         }
     }
 
-    public function registerEmployee($scholarData, $scholarFiles){
+    public function registerEmployee($scholarData, $scholarFiles, $status123){
 
-        // get the ID of the inserted employee record
-        // prepare the SQL statement using the database property
+        $stmt1234 = $this->database->getConnection()->query("SELECT * FROM customizable_form_file");
+
+            if (!$stmt1234->execute()) {
+                header("Location: ../newdesign/admin-application.php?error=stmtfail");
+                exit();
+            }
+            $result123 = $stmt1234->fetchAll();
+
         $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM login WHERE user=?");
 
             //if execution fail
@@ -264,7 +212,7 @@ class Scholar{
                 $scholar_type = 0;
             }
         }
-
+        echo $scholarData['studType'];
         //if execution fail
         if (!$stmt->execute([$scholarId, 
                             $scholarData['fName'],
@@ -315,7 +263,16 @@ class Scholar{
             exit();
         }
 
-        $arrayNames = array('IdPhoto', 'Form137/138', 'CollegeGrades', 'BirthCertificate', 'Indigency', 'BarangayCert', 'ITR', 'HighScoolAchievement');
+        $arrayNames = array(($scholarData['studType'] == 'Senior High Graduate') ? 'Form137/138':'GradeSlip');
+        if ($status123) {
+            array_push($arrayNames, 'Honor');
+        }
+        
+
+        for($i=0;$i < count($result123);$i++){
+
+            array_push($arrayNames, $result123[$i]['name']);
+        }
 
 
                 for ($i = 0; $i < count($scholarFiles); $i++) {

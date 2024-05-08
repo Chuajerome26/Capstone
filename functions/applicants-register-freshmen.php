@@ -13,6 +13,7 @@ if(isset($_POST['submit'])){
     $scholar = new Scholar($database);
     $admin = new Admin($database);
 
+    $files = $admin->getCustomizableForm();
     //scholar data
     $dob = $_POST["dofBirth"];
     $dateOfBirth = new DateTime($dob);
@@ -80,133 +81,71 @@ if(isset($_POST['submit'])){
         
         'studType' => trim($_POST["studType"]) ?? '',
     );
+    
+    if($_POST['studType'] == 'Senior High Graduate'){
+        $fileData = array(
+            'fileName' => $_FILES['cog1']['name'],
+            'fileTmpName' => $_FILES['cog1']['tmp_name'],
+            'fileSize' => $_FILES['cog1']['size'],
+            'fileError' => $_FILES['cog1']['error'],
+            'fileType' => $_FILES['cog1']['type'],
+        );
 
-    $fileData1 = array(
-        'fileName' => $_FILES['idPicture']['name'],
-        'fileTmpName' => $_FILES['idPicture']['tmp_name'],
-        'fileSize' => $_FILES['idPicture']['size'],
-        'fileError' => $_FILES['idPicture']['error'],
-        'fileType' => $_FILES['idPicture']['type'],
-    );
-    $fileData2 = array(
-        'fileName' => $_FILES['cog1']['name'],
-        'fileTmpName' => $_FILES['cog1']['tmp_name'],
-        'fileSize' => $_FILES['cog1']['size'],
-        'fileError' => ($_POST['studentType'] == 'srhigh') ? $_FILES['cog1']['error'] : 0,
-        'fileType' => $_FILES['cog1']['type'],
-    );
-    $fileData3 = array(
-        'fileName' => $_FILES['cog2']['name'],
-        'fileTmpName' => $_FILES['cog2']['tmp_name'],
-        'fileSize' => $_FILES['cog2']['size'],
-        'fileError' => ($_POST['studentType'] == 'college') ? $_FILES['cog2']['error'] : 0,
-        'fileType' => $_FILES['cog2']['type'],
-    );
-    $fileData4 = array(
-        'fileName' => $_FILES['birth']['name'],
-        'fileTmpName' => $_FILES['birth']['tmp_name'],
-        'fileSize' => $_FILES['birth']['size'],
-        'fileError' => $_FILES['birth']['error'],
-        'fileType' => $_FILES['birth']['type'],
-    );
-    $fileData5 = array(
-        'fileName' => $_FILES['indigency']['name'],
-        'fileTmpName' => $_FILES['indigency']['tmp_name'],
-        'fileSize' => $_FILES['indigency']['size'],
-        'fileError' => $_FILES['indigency']['error'],
-        'fileType' => $_FILES['indigency']['type'],
-    );
-    $fileData6 = array(
-        'fileName' => $_FILES['brgy']['name'],
-        'fileTmpName' => $_FILES['brgy']['tmp_name'],
-        'fileSize' => $_FILES['brgy']['size'],
-        'fileError' => $_FILES['brgy']['error'],
-        'fileType' => $_FILES['brgy']['type'],
-    );
-    $fileData7 = array(
-        'fileName' => $_FILES['Itr']['name'],
-        'fileTmpName' => $_FILES['Itr']['tmp_name'],
-        'fileSize' => $_FILES['Itr']['size'],
-        'fileError' => $_FILES['Itr']['error'],
-        'fileType' => $_FILES['Itr']['type'],
-    );
-    if (isset($_FILES['shAchievementsFile']) && $_FILES['shAchievementsFile']['error'] === UPLOAD_ERR_OK) {
-        $fileData8 = array(
-            'fileName' => $_FILES['shAchievementsFile']['name'],
-            'fileTmpName' => $_FILES['shAchievementsFile']['tmp_name'],
-            'fileSize' => $_FILES['shAchievementsFile']['size'],
-            'fileError' => ($_POST['studentType'] == 'srhigh') ? $_FILES['shAchievementsFile']['error'] : 0,
-            'fileType' => $_FILES['shAchievementsFile']['type'],
+        if(isset($_FILES['shAchievementsFile']) && $_FILES['shAchievementsFile']['error'] === UPLOAD_ERR_OK) {
+            $fileDataA = array(
+                'fileName' => $_FILES['shAchievementsFile']['name'],
+                'fileTmpName' => $_FILES['shAchievementsFile']['tmp_name'],
+                'fileSize' => $_FILES['shAchievementsFile']['size'],
+                'fileError' => $_FILES['shAchievementsFile']['error'],
+                'fileType' => $_FILES['shAchievementsFile']['type'],
+            );
+
+            $fileExtA = explode('.', $fileDataA['fileName']);
+            $fileActualExtA = strtolower(end($fileExtA));
+        }
+    }elseif($_POST['studType'] == 'College'){
+        $fileData = array(
+            'fileName' => $_FILES['cog2']['name'],
+            'fileTmpName' => $_FILES['cog2']['tmp_name'],
+            'fileSize' => $_FILES['cog2']['size'],
+            'fileError' => $_FILES['cog2']['error'],
+            'fileType' => $_FILES['cog2']['type'],
         );
     }
-    
-    $allowedFile1 = array('pdf');
-    $allowedFile2 = array('jpg', 'jpeg', 'png');
-    //seperate the filename and its extension - file
-    $fileExt1 = explode('.', $fileData1['fileName']);
-    $fileActualExt1= strtolower(end($fileExt1));
 
-    $fileExt2 = explode('.', $fileData2['fileName']);
-    $fileActualExt2 = strtolower(end($fileExt2));
+    $fileExt = explode('.', $fileData['fileName']);
+    $fileActualExt= strtolower(end($fileExt));
 
-    $fileExt3 = explode('.', $fileData3['fileName']);
-    $fileActualExt3 = strtolower(end($fileExt3));
-
-    $fileExt4 = explode('.', $fileData4['fileName']);
-    $fileActualExt4 = strtolower(end($fileExt4));
-
-    $fileExt5 = explode('.', $fileData5['fileName']);
-    $fileActualExt5 = strtolower(end($fileExt5));
-
-    $fileExt6 = explode('.', $fileData6['fileName']);
-    $fileActualExt6 = strtolower(end($fileExt6));
-
-    $fileExt7 = explode('.', $fileData7['fileName']);
-    $fileActualExt7 = strtolower(end($fileExt7));
-
-    if (isset($fileData8)) {
-        $fileExt8 = explode('.', $fileData8['fileName']);
-        $fileActualExt8 = strtolower(end($fileExt8));
-    }
-
-    //resume and picture data
     $filesAndPicture = array(
-        'allowed1' => $allowedFile1,  
-        'allowed2' => $allowedFile2,
-        'fileActualExt1' => $fileActualExt1,
-        'fileActualExt2' => $fileActualExt2,
-        'fileActualExt3' => $fileActualExt3,
-        'fileActualExt4' => $fileActualExt4,
-        'fileActualExt5' => $fileActualExt5,
-        'fileActualExt6' => $fileActualExt6,
-        'fileActualExt7' => $fileActualExt7,
-        'fileActualExt8' => isset($fileData8) ? $fileActualExt8 : null,
-        'fileName1' => $fileData1['fileName'],
-        'fileName2' => $fileData2['fileName'],
-        'fileName3' => $fileData3['fileName'],
-        'fileName4' => $fileData4['fileName'],
-        'fileName5' => $fileData5['fileName'],
-        'fileName6' => $fileData6['fileName'],
-        'fileName7' => $fileData7['fileName'],
-        'fileName8' => isset($fileData8) ? $fileData8['fileName'] : null,
-        'fileTmpName1' => $fileData1['fileTmpName'],
-        'fileTmpName2' => $fileData2['fileTmpName'],
-        'fileTmpName3' => $fileData3['fileTmpName'],
-        'fileTmpName4' => $fileData4['fileTmpName'],
-        'fileTmpName5' => $fileData5['fileTmpName'],
-        'fileTmpName6' => $fileData6['fileTmpName'],
-        'fileTmpName7' => $fileData7['fileTmpName'],
-        'fileTmpName8' => isset($fileData8) ? $fileData8['fileTmpName'] : null,
+        'fileActualExt' => $fileActualExt,
+        'fileName' => $fileData['fileName'],
+        'fileTmpName' => $fileData['fileTmpName'],
+        'fileActualExtA' => isset($fileDataA) ? $fileActualExtA: '',
+        'fileNameA' => isset($fileDataA) ? $fileDataA['fileName']: '',
+        'fileTmpNameA' => isset($fileDataA) ? $fileDataA['fileTmpName']: '',
     );
-
-    //check if any input is  empty
-    // foreach($scholarData as $data){
-    //     if(empty($data)){
-    //         //return to employee register page
-    //         header("Location: ../Pages-scholar/appforms.php?scholar=emptyInput");
-    //         exit();
-    //     }
-    // }
+    
+    for($i = 0; $i < count($files); $i++) {
+        $status= str_replace(' ', '', $files[$i]['name']);
+        $fileKey = 'fileData' . $files[$i]['id'];
+    
+        $$fileKey = array(
+            'fileName' => $_FILES[$status]['name'],
+            'fileTmpName' => $_FILES[$status]['tmp_name'],
+            'fileSize' => $_FILES[$status]['size'],
+            'fileError' => $_FILES[$status]['error'],
+            'fileType' => $_FILES[$status]['type'],
+        );
+    
+        $fileExt = explode('.', $$fileKey['fileName']);
+        ${'fileActualExt' . $files[$i]['id']} = strtolower(end($fileExt));
+    
+        // Insert the data into the filesAndPicture array
+        $filesAndPicture[$fileKey] = $$fileKey;
+        $filesAndPicture['fileActualExt' . $files[$i]['id']] = ${'fileActualExt' . $files[$i]['id']};
+    }
+    
+    var_dump($filesAndPicture);
 
 
     //check if records already exist
@@ -217,12 +156,17 @@ if(isset($_POST['submit'])){
         exit();
     }
 
+    for($i = 0; $i < count($files); $i++){
+        $fileKey = 'fileData' . $files[$i]['id'];
+        if($filesAndPicture[$fileKey]['fileError'] === 0){
 
+        }else{
+            echo "There was an error while uploading the file";
+            exit();
+        }
+    }
     //if theres no error from the resume file
-    if ( $fileData1['fileError'] === 0 && $fileData2['fileError'] === 0 && $fileData3['fileError'] === 0
-    && $fileData4['fileError'] === 0 && $fileData5['fileError'] === 0 && $fileData6['fileError'] === 0 && $fileData7['fileError'] === 0 && (
-        isset($fileData8) ? $fileData8['fileError'] === 0 : true
-    )) {
+    if ($fileData['fileError'] === 0 && (isset($fileDataA) ? $fileDataA['fileError'] === 0 : true)) {
 
         // Fetch all admin IDs
         $adminIds = $admin->getEvaluatorAdminIds();
