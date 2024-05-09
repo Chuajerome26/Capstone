@@ -224,13 +224,74 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                     <i class="fas fa-bars"></i>
                 </button>
 
-                <!-- Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center text-decoration-none text-black" href="dashboard.php">
-                <div class="sidebar-brand-icon rotate-n-15">    
-                </div>
-                <div class="sidebar-brand-text mx-3 ms-5" style="font-size: 28px; font-weight:bold;"> <img src="../images/forcert1.png"  style="width: 270px; height: 55px; margin-left: -50px;"></div>
+                <li class="nav-item dropdown list-unstyled d-block d-lg-none">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="notif-button">
+                        <div style="position: relative; display: inline-block;">
+                            <i class="fa-solid fa-bell" style="font-size: 18px;"></i>
+                            <?php
+                            $newNotificationCount = $admin->countNewNotifications($id);
+                            if ($newNotificationCount > 0):
+                            ?>
+                            <span class="badge bg-danger"><?php echo $newNotificationCount; ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" style="width: 350px;" id="notif-container">
+                        <div class="container-fluid">
+                            <h6 class="p-2"><i class="fa-solid fa-bell me-3"></i>Notification</h6>
+                            <hr class="p-0 m-0">
+                            <div class="row">
+                                <div class="col-12" style="max-height: 400px; overflow-y: auto;">
+                                    <ul class="list-group border-0" id="notification-container">
+                                        <?php 
+                                        foreach ($notifications as $x) {
+                                            $user = $x['sender'];
+                                            $scholar = "SELECT * FROM login WHERE id = ?"; 
+                                            $scholar_info = $database->getConnection()->prepare($scholar);
+                                            $scholar_info->execute([$user]);
+                                            $scholar_data = $scholar_info->fetch(PDO::FETCH_ASSOC);
+                                        ?>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 border-bottom px-1 m-0" style="font-size: 12px;">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" width="50" height="45" alt="" class="rounded-circle shadow" style="max-width: 50px; max-height: 45px;" />
+                                                    <div class="ms-3">
+                                                        <div class="fw-bold">
+                                                            <?php echo $scholar_data['fname']; ?> <?php echo $scholar_data['lname']; ?>
+                                                        </div>
+                                                        <div class="text-muted mb-1" style="font-size: 10px;">
+                                                            <?php echo $x["date"]?>
+                                                        </div>
+                                                            <?php if($x["remarks"] == "applicantApplied"){?>
+                                                                Applied for scholarship
+                                                            <?php }else if($x["remarks"] == "scholarRenewed"){?>
+                                                                Submitted a renewal
+                                                            <?php }else if($x["remarks"] == "applicantFileUpdated"){?>
+                                                                Updated their application files
+                                                            <?php }else if($x["remarks"] == "interviewSchedSent"){?>
+                                                                Interview Schedule Sent
+                                                            <?php }else if($x["remarks"] == "interviewDone"){?>
+                                                                Interview Done
+                                                            <?php }?>
+                                                    </div>  
+                                                </div>
+                                            </li>
+                                        <?php }?>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </li>
+
+               
+                <a class="sidebar-brand d-flex align-items-center justify-content-center text-decoration-none text-black d-none d-lg-block" href="dashboard.php">
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <!-- Brand icon content -->
+                    </div>
+                    <div class="sidebar-brand-text mx-3 ms-5" style="font-size: 28px; font-weight:bold;">
+                        <img class="d-none d-lg-block" src="../images/forcert1.png" style="width: 100px; height: 55px;">
+                    </div>
                 </a>
-                <hr class="sidebar-divider d-none d-md-block">
 
 
                 <ul class="navbar-nav ms-auto d-flex  d-none d-lg-block me-5">
