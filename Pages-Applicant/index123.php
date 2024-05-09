@@ -12,6 +12,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $info = $admin->getApplicantLoginById($id);
     $content = $admin->getContent();
 
+    $currentAppState = $admin->getCurrentAppState();
+
 } else {
     header("Location: ../index.php");
 }
@@ -569,6 +571,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
+    <?php if ($currentAppState['state'] == 1): ?>
       <div class="modal-header">
         <h5 class="modal-title text-center fw-bold" id="applyModalLabel">Are you sure you want to proceed?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -584,6 +587,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
           </div>
         </div>
       </div>
+    <?php else: ?>
+        <div class="modal-header">
+            Modal Closed!
+        </div>
+    <?php endif; ?>
     </div>
   </div>
 </div>

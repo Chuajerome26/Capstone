@@ -12,8 +12,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
     $id = $_SESSION['id'];
 
     $admin_info = $admin->adminInfo($id);
-    $admin_logs = $admin->getAdminlogs();
-    $count = count($admin_logs);
+    $admin_logs = $admin->getCustomizableForm();
 
 } else {
     header("Location: ../index.php");
@@ -52,8 +51,16 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
 
               <div class="container-fluid">
                     
-              <div class="hstack g-1 mb-3">
-                        <div class="p-2"><p class="h4 mb-0 font-weight-bold text-gray-800">Customize WebPage</p></div>
+              <div class="row">
+                        <div class="col-8"><p class="h4 mb-0 font-weight-bold text-gray-800">Customize WebPage</p></div>
+                        <div class="col-4 float-end">
+                            <form action="../functions/download-applicant.php" method="post">
+                                <button type="submit" class=" btn  btn-primary shadow-sm float-end">
+                                    <i class="fas fa-download fa-sm text-white-50"></i> 
+                                    <div class="d-none d-sm-inline-block">Generate Report</div>
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
 
@@ -70,14 +77,30 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Scholar ID</th>
-                                            <th scope="col">Admin ID</th>
-                                            <th scope="col">Remarks</th>
-                                            <th scope="col">Date</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">File Type</th>
+                                            <th scope="col">Required</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-dividercar">
-
+                                        <?php 
+                                            $num = 1;
+                                            foreach($admin_logs as $s):
+                                                if($s['is_required'] == 1){
+                                                    $req = "Required";
+                                                }else{
+                                                    $req = "Not Required";
+                                                }
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $num; ?></td>
+                                            <td><?php echo $s['name']; ?></td>
+                                            <td><?php echo $s['file_type']; ?></td>
+                                            <td><?php echo $req; ?></td>
+                                        </tr>
+                                        <?php 
+                                        $num++;
+                                    endforeach; ?>
                                     </tbody>
                                     </table>
                                     </div>

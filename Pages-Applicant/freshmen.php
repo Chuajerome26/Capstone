@@ -823,8 +823,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <label  class="form-label">Upload Latest Grade File:(PDF Only)<span class="text-danger">*</span></label>
                             <label class="fileSelect btn btn-sm btn-primary col-12">
                             <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
-                            <input type="file" name="cog2" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer3')" required></label>
-                            <div class="Preview1 " id="previewContainer3">
+                            <input type="file" name="cog2" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles1(event, 'previewContainer', 'pdf')" required></label>
+                            <div class="Preview1 " id="previewContainer">
                             </div>
                         </div>
 
@@ -840,13 +840,18 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="row">
                         <?php for($i = 0; $i < count($files); $i++): 
                             $status = str_replace(' ', '', $files[$i]['name']);
+                            if($files[$i]['file_type'] == "pdf"){
+                                $fileType1 = "PDF";
+                            }else{
+                                $fileType1 = "PNG, JPG, JPEG";
+                            }
                             ?>
                             <div class="col-lg-6 col-12 mb-3">               
                                 <div class="fileUpload container">
-                                        <h6><?php echo $files[$i]['name'];?> (PDF Only)<span class="text-danger">*</span></h6>
+                                        <h6><?php echo $files[$i]['name'];?> (<?php echo $fileType1; ?> Only)<span class="text-danger">*</span></h6>
                                         <label class="fileSelect btn btn-sm btn-primary col-12">
                                         <img src="../images/upload-logo1.png" alt="Upload File" style="height: 20px;">    
-                                        <input type="file" name="<?php echo $status;?>" class="fileElem visually-hidden" accept=".pdf" multiple onchange="handleFiles(event, 'previewContainer<?php echo $i; ?>', '<?php echo $files[$i]['file_type']; ?>')" <?php echo ($files[$i]['is_required'] == 0) ? '':'required';?>></label>
+                                        <input type="file" name="<?php echo $status;?>" class="fileElem visually-hidden" multiple onchange="handleFiles(event, 'previewContainer<?php echo $i; ?>', '<?php echo $files[$i]['file_type']; ?>')" <?php echo ($files[$i]['is_required'] == 0) ? '':'required';?>></label>
                                         <div class="Preview1" id="previewContainer<?php echo $i; ?>">
                                         </div>
                                 </div> 
@@ -1330,7 +1335,7 @@ function addGradeRow(event) {
     }
 </script>
 
-<script>
+<!-- <script>
 //Function for validating required fields
 $(document).ready(function() {
     // Initially disable all tabs except the first
@@ -1381,7 +1386,7 @@ $(document).ready(function() {
         }
     });
 });
-</script>
+</script> -->
 
 
 
