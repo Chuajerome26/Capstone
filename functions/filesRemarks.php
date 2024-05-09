@@ -12,6 +12,7 @@ if(isset($_POST['submit'])){
     $user_id = $_SESSION['id'];
     $scholar_id = $_POST['scholar_id'];
     $applicantInfo = $admin->getApplicantsFiles($scholar_id);
+    $files_count = count($applicantInfo);
 
     $arrayNames = array();
     foreach($applicantInfo as $files1){
@@ -87,7 +88,7 @@ if(isset($_POST['submit'])){
     // Add 7 days to the current date
     $newDate = date('Y-m-d', strtotime($currentDate . ' +1 days'));
 
-    if($countCorrect[0]['count'] >= 7){
+    if($countCorrect[0]['count'] >= $files_count){
         
         $sched = $admin->selectAndInsertSchedules($scholarData, $start_time, $end_time, $excluded_start, $excluded_end, $duration, $max10, $newDate);
         $date = $sched[0]['date'];
@@ -164,6 +165,6 @@ ccmf2015main@gmail.com
         $database->sendEmail($email,"Scholarship Application - File Evaluation Update", $message);
     }
 
-    // header('Location: ../newdesign/admin-application.php?status=UpdatedRemarks');
-    // exit();
+    header('Location: ../newdesign/admin-application.php?status=UpdatedRemarks');
+    exit();
 }

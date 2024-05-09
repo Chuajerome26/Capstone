@@ -24,8 +24,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/x-icon" href="../images/forcert1.png" />
-        <title>Scholarship Management System</title>
+        <link rel="shortcut icon" type="image/x-icon" href="../images/<?php echo $content_design[0]['logo']; ?>" />
+        <title><?php echo $content_design[0]['title_name']; ?></title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
         <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
@@ -41,7 +41,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
     <body>
       
           <header>
-            <?php include '../header/sidebar-CMS.php'; ?>
+            <?php include '../header/sidebar.php'; ?>
           </header>
 
           <main  style="margin-top: 68px;">
@@ -123,9 +123,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                 <div class="row m-3">
                                     <div class="col-8"><h5 class="p-2 font-weight-bold text-black mb-2">Content</h5></div>
                                     <div class="col-4 float-end">
-                                        <button type="submit" class=" btn  btn-primary shadow-sm float-end" data-bs-toggle="modal" data-bs-target="#add">
-                                            <i class="fas fa-add fa-sm text-white-50"></i> 
-                                            <div class="d-none d-sm-inline-block">Add</div>
+                                        <button type="submit" class=" btn  btn-primary shadow-sm float-end" data-bs-toggle="modal" data-bs-target="#edit">
+                                            <i class="fas fa-edit fa-sm text-white-50"></i> 
+                                            <div class="d-none d-sm-inline-block">Edit</div>
                                         </button>
                                     </div>
                                 </div>
@@ -192,7 +192,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit Files Requirements</h5>
+        <h5 class="modal-title">Add Files Requirements</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -218,6 +218,45 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                     <option value="1">Required</option>
                 </select>
             </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="edit" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Contents</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="../functions/editContent.php" enctype="multipart/form-data">
+        <div class="row">
+            <?php foreach($content_design as $design){ ?>
+            <div class="col-md-12">
+                <label  class="form-label">Title Name:</label>
+                <input type="text" name="titleName" class="form-control form-control-sm" value="<?php echo $design['title_name'] ?>" required>
+            </div>
+            <div class="col-md-12">
+                <label  class="form-label">Logo:</label>
+                <input type="file" name="logo" class="form-control form-control-sm">
+            </div>
+            <div class="col-md-12">
+                <label  class="form-label">Vision:</label>
+                <input type="text" name="vision" class="form-control form-control-sm" value="<?php echo $design['vision'] ?>" required>
+            </div>
+            <div class="col-md-12">
+                <label  class="form-label">Mission:</label>
+                <input type="text" name="mission" class="form-control form-control-sm" value="<?php echo $design['mission'] ?>" required>
+            </div>
+            <?php }?>
         </div>
       </div>
       <div class="modal-footer">
@@ -300,6 +339,36 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
             }
         })
     }
+    else if(successValue === "updateContent"){
+        Swal.fire({
+            icon:'success',
+            title:'Updated Successfully!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "error"){
+        Swal.fire({
+            icon:'error',
+            title:'Something Went Wrong!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }
+    
     </script>
 
     

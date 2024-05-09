@@ -303,9 +303,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                     <p class="wow fadeInUp" data-wow-delay=".7s">Empowering students to achieve<br>
                                         their academic dreams
                                         </p>
-                                    <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="#about" class="btn">Learn More</a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -325,10 +323,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                     <h1 class="wow fadeInUp" data-wow-delay=".5s">Building a strong foundation<br> through education </h1>
                                     <p class="wow fadeInUp" data-wow-delay=".7s">Scholarships are a means to enable deserving students to have an education, that might otherwise be beyond their reach, to encourage them to study well and is a great way to motivate them to perform even better. 
                                         </p>
-                                    <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="#about" class="btn">Learn More</a>
-                                       
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -347,10 +342,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                     <h1 class="wow fadeInUp" data-wow-delay=".5s">Empower communities and enlighten <br>families</h1>
                                     <p class="wow fadeInUp" data-wow-delay=".7s">We are committed to making a positive impact on society and empowering <br> the future generations.
                                         </p>
-                                    <div class="button wow fadeInUp" data-wow-delay=".9s">
-                                        <a href="#about" class="btn">Learn More</a>
-                                        
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -371,7 +363,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="about-left">
                         <div class="about-title align-left">
                             <span class="wow fadeInDown" data-wow-delay=".2s">About Our Scholarship</span>
-                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Welcome to Scholarship Management</h2>
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Welcome to <?php echo $content[0]['title_name']; ?></h2>
                             <p class="wow fadeInUp" data-wow-delay=".6s">CLICK THE ICON IN THE LOWER LEFT TO VIEW THE REQUIREMENTS NEEDED.</p>
                             <p class="qote wow fadeInUp" data-wow-delay=".8s"></p>
                             <div class="button wow fadeInUp" data-wow-delay="1s">
@@ -401,7 +393,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <div class="col-lg-8 offset-lg-2 col-md-12 col-12">
                     <div class="breadcrumbs-content">
                         <h1 class="page-title">About Us</h1>
-                        <p>At the Scholarship Management System, we are committed to revolutionizing the process of scholarship administration. Our platform serves as a centralized hub where students can effortlessly discover, apply for, and track scholarships, while administrators efficiently manage and allocate funds. By leveraging cutting-edge technology and a user-friendly interface, we aim to empower students to pursue their academic dreams and enable institutions to optimize their scholarship programs. Join us in shaping a brighter future through accessible education for all.</p>
+                        <p>At the <?php echo $content[0]['title_name']; ?>, we are committed to revolutionizing the process of scholarship administration. Our platform serves as a centralized hub where students can effortlessly discover, apply for, and track scholarships, while administrators efficiently manage and allocate funds. By leveraging cutting-edge technology and a user-friendly interface, we aim to empower students to pursue their academic dreams and enable institutions to optimize their scholarship programs. Join us in shaping a brighter future through accessible education for all.</p>
                     </div>
                 </div>
             </div>
@@ -421,13 +413,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="newsletter-title">
                         
                         <h2>Mission</h2>
-                        <p>Our mission is to empower students by providing them with the necessary resources and support to pursue their academic dreams. We believe that education is a fundamental right and should be accessible to all, regardless of financial background or social status.</p>
+                        <p><?php echo $content[0]['mission']; ?></p>
                         <br>
                         <h2>Vision</h2>
-                        <p>Our vision is a world where every individual, regardless of background or circumstance, has the opportunity to pursue higher education and fulfill their academic potential. We strive to be the leading provider of innovative scholarship management solutions, driving positive change in education globally.</p>
+                        <p><?php echo $content[0]['vision']; ?></p>
                         <br>
-                        <h2>What We Do</h2>
-                        <p>Well-educated individuals, families, imbued with charity and truth,healed from poverty to help build a better tomorrow.</p>
                     </div>
                   
                
@@ -477,7 +467,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-12">
                     <div class="single-achievement wow fadeInUp" data-wow-delay=".2s">
-                        <h3 class="counter"><span id="secondo1" class="countup" cup-end="100">100</span>+</h3>
+                        <h3 class="counter"><span id="secondo1" class="countup" cup-end="100">100</span></h3>
                         <h4>Scholars</h4>
                     </div>
                 </div>
@@ -552,7 +542,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="row">
                         <div class="col-12">
                             <div class="left">
-                                <p class="fw-bold fs-5">Scholar Management System <a href="" rel="nofollow"
+                                <p class="fw-bold fs-5"><?php echo $content[0]['title_name']; ?><a href="" rel="nofollow"
                                         target="_blank">(ScholarPoint)</a></p>
 
                                         <p class=" fs-6">&copy; 2024 All Rights Reserved. </p>
