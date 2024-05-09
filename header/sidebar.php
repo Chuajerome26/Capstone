@@ -236,7 +236,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                             $newNotificationCount = $admin->countNewNotifications($id);
                             if ($newNotificationCount > 0):
                             ?>
-                            <span class="badge bg-danger"><?php echo $newNotificationCount; ?></span>
+                            <span class="badge bg-danger notification-count"><?php echo $newNotificationCount; ?></span>
                             <?php endif; ?>
                         </div>
                     </a>
@@ -298,14 +298,14 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="notif-button">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="notif-button" data-user-id="<?php echo $id; ?>">
                         <div style="position: relative; display: inline-block;">
                             <i class="fa-solid fa-bell" style="font-size: 18px;"></i>
                             <?php
                             $newNotificationCount = $admin->countNewNotifications($id);
                             if ($newNotificationCount > 0):
                             ?>
-                            <span class="badge bg-danger"><?php echo $newNotificationCount; ?></span>
+                            <span class="badge bg-danger notification-count"><?php echo $newNotificationCount; ?></span>
                             <?php endif; ?>
                         </div>
                     </a>
@@ -388,6 +388,60 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         </nav>
         <!-- Navbar -->
     </header>
+
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Add click event listener to document
+    $(document).on('click', '#notif-button', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+
+        // Retrieve user ID from data attribute
+        var userId = $(this).data('user-id');
+
+        // Make AJAX request to update notification count in the database
+        $.ajax({
+            url: '../functions/reset_notification.php', // Change to your PHP script path
+            method: 'POST',
+            data: { 
+                action: 'reset_notification',
+                id: userId // Pass user ID to PHP script
+            },
+            success: function(response) {
+                // Update UI if necessary
+                console.log('Notification count updated successfully');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error updating notification count:', error);
+            }
+        });
+    });
+});
+</script>
+
+<script>
+    function updateNotificationCount() {
+    $.ajax({
+        url: '../functions/get_notification_count.php', // PHP script to get notification count
+        method: 'GET',
+        success: function(count) {
+            // Update notification count on the page
+            $('.notification-count').text(count);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching notification count:', error);
+        }
+    });
+}
+
+$(document).ready(function() {
+    updateNotificationCount();
+
+    setInterval(updateNotificationCount, 5000);
+});
+</script>
 
  <script>
 

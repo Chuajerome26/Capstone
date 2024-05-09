@@ -71,6 +71,11 @@ class Admin
         $stmt->execute([$id]);
         return $stmt->fetchColumn();
     }
+    public function resetNotificationCount($id) {
+        $sql = "UPDATE notifcation SET is_seen = 1 WHERE receiver = ?";
+        $stmt = $this->database->getConnection()->prepare($sql);
+        $stmt->execute([$id]);
+    }
     public function updateNotif1($id){
         // prepared statement
         $stmt = $this->database->getConnection()->prepare("UPDATE scholar_info SET notif_send = ? WHERE scholar_id =?");
