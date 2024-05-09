@@ -47,7 +47,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <style>
 
 .custom-modal-width {
-    max-width: 800px; /* Adjust the width as needed */
+    max-width: auto; /* Adjust the width as needed */
     margin: auto;
     margin-top: 100px;
 }
@@ -81,6 +81,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
         opacity: 1;
     }
 }
+
 
 
         .nav-tabs {
@@ -291,26 +292,22 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 <div class="modal fade" id="scholarshipTypeModal" tabindex="-1" role="dialog" aria-labelledby="scholarshipTypeModalLabel" aria-hidden="true">
   <div class="modal-dialog custom-modal-width" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Scholarship Types</h5>
-        </button>
+    <div class="modal-header d-flex justify-content-center" style="background-color: #C9FDD7;">
+    <h5 class="modal-title">Scholarship Types</h5>
+    
       </div>
       <div class="modal-body">
        <ul>
-        <h6>Academic</h6>  <h7>Academic scholarship is the rigorous pursuit of knowledge and research within academia to advance understanding and contribute to the scholarly community.</h7>
-        <li>Academic Rank 1 - Average must graduate from a high school in Quezon City. </li>
-        <li>Academic Rank 2 - Maintain a minimum GPA of 1.5 for Academic Ranks 1 and 2. </li>
-        <br>
-        <div>
-        <h6>Economic</h6>  <h7>Economic scholarship involves studying and analyzing economic principles, theories, and policies to advance understanding and inform decision-making.</h7>
-        <li>Economic 85 - 89 - Indigent Community</li>
-    </div>
+        <li>Academic Rank 1 - Applicants with a GWA between 1 - 1.5 </li>
+        <li>Academic Rank 2 - Applicants with a GWA between 1.4 - 1.9 </li>
+        <li>Economic - Applicants with a GWA between 2 - 2.25 </li>
     </ul>
       
       </div>
-      <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #0EDC8D;">OK</button>
-      </div>
+      <div class="modal-footer d-flex justify-content-center">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #0EDC8D;">OK</button>
+</div>
+
     </div>
   </div>
 </div>
@@ -328,7 +325,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                 echo $schoType;
                                                 ?>
                                                 
-                                                &nbsp; <i class="fas fa-question-circle" data-toggle="modal" data-target="#scholarshipTypeModal"></i>
+                                            &nbsp; <i class="fas fa-info-circle" data-toggle="modal" data-target="#scholarshipTypeModal" style="cursor: pointer;"></i>
 
                                                 </dd>
                                                 </dl>
