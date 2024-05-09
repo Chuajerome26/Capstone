@@ -587,11 +587,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
           </div>
         </div>
       </div>
-    <?php else: ?>
+      <?php else: ?>
         <div class="modal-header">
-        <h5 class="modal-title text-center fw-bold">Application is currently unavailable.</h5>
+        <h5 class="modal-title text-center fw-bold">Application is Closed</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+                    <div class="row align-items-center">
+                        <p style="font-family: 'Roboto', sans-serif; font-size: 18px;">Application is currently unavailable, wait for future announcements in our Facebook page.</p>
     <?php endif; ?>
     </div>
   </div>
