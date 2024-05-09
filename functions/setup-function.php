@@ -9,7 +9,6 @@ require '../classes/database.php';
     $pass = trim($_POST['password']);
     $confirmPass = trim($_POST['confirmPassword']);
     $token = trim($_POST['token']);
-    $user = trim($_POST['username']);
     $fileData1 = array(
         'fileName' => $_FILES['idPhoto']['name'],
         'fileTmpName' => $_FILES['idPhoto']['tmp_name'],
@@ -45,7 +44,7 @@ require '../classes/database.php';
     }
 
     if(move_uploaded_file($fileData1['fileTmpName'],$fileDestination1)){
-        $admin->setUpAdminPass($adminId, $user, $pass, $fileNameNew1, $token, $adminEmail, $adminType);
+        $admin->setUpAdminPass($adminId, $adminEmail, $pass, $fileNameNew1, $token, $adminType);
         header('Location: ../index.php?scholar=setUp');
         exit();
     }

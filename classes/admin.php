@@ -911,7 +911,7 @@ public function setUpSuperAdmin($fname, $lname, $email, $fileName, $pass, $type)
     $this->database->sendEmail($email,"Your Set Up for your Account has been done!", $emailBody);
 }
 
-public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email, $adminType){
+public function setUpAdminPass($id ,$username, $pass, $pic, $token, $adminType){
     $stmt = $this->database->getConnection()->prepare("UPDATE admin_info SET pic = ? WHERE token = ?");
     if (!$stmt->execute([$pic, $token])) {
         header("Location: ../index.php?status=error");
@@ -930,7 +930,7 @@ public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email, $adm
     }
     
     $emailBody = AdminSetupEmail($username, $pass);
-    $this->database->sendEmail($email, "Your Setup for your Account has been done!", $emailBody);
+    $this->database->sendEmail($username, "Your Setup for your Account has been done!", $emailBody);
 }
 
 

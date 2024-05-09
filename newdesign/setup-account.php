@@ -32,10 +32,6 @@
                      <span><p class="text-center fs-4 fw-bold">SET UP YOUR ACCOUNT</p></span>
                         <form id="signupForm" method="post" action="../functions/setup-function.php" onsubmit="return validateForm()" enctype="multipart/form-data">
                             <div class="row">
-                            <div class="col-md-12 mb-3">
-                                    <label for="password" class="form-label">Email</label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="E.g. username@gmail.com" required>
-                                </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
