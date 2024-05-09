@@ -10,8 +10,15 @@ if(isset($_POST['submit'])){
     $admin = new Admin($database);
 
     $user_id = $_SESSION['id'];
+    $scholar_id = $_POST['scholar_id'];
+    $applicantInfo = $admin->getApplicantsFiles($scholar_id);
 
-    $arrayNames = array('IdPhoto', 'Form137/138', 'CollegeGrades', 'BirthCertificate', 'Indigency', 'BarangayCert', 'ITR', 'HighScoolAchievement');
+    $arrayNames = array();
+    foreach($applicantInfo as $files){
+        $status = str_replace(' ', '', $files['name']);
+
+        $arrayNames[] = $status;
+    }
     $remarks = array();
     // Iterate through each name and retrieve its value from $_POST
     foreach ($arrayNames as $name) {
@@ -35,9 +42,6 @@ if(isset($_POST['submit'])){
     $excluded_end = '13:00';
     $max10 = 1;
     $duration = 30;
-
-    $scholar_id = $_POST['scholar_id'];
-    $applicantInfo = $admin->getApplicantsFiles($scholar_id);
 
     // $email = $applicantInfo[0]['email'];
     // $last_name = $applicantInfo[0]['l_name'];

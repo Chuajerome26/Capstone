@@ -82,7 +82,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                             <th scope="col">Required</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="table-group-dividercar">
+                                    <tbody>
                                         <?php 
                                             $num = 1;
                                             foreach($admin_logs as $s):

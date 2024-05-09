@@ -157,23 +157,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="table-group-divider">
+                        <tbody>
                         <?php
                         $applicantsData = $admin->getApplicants();
                         $num = 1;
                         foreach($applicantsData as $s){
-                            // $id = $s['id'];
-                            // $rate = $admin->getScheduleById($id);
-                            // if($rate){
-                            //     if($rate['rate'] == 0){
-                            //         $rate1 = 0;
-                            //     }else{
-                            //         $rate1 = $rate['rate']; 
-                            //     }
-                            // }else{
-                            //     $rate1 = 0;
-                            // }
-                            // $percentage = $admin->predictAcceptanceOfApplicant($s['gwa'], $rate1);
                             if($s['application_status'] == 0){
                                 $remarks = '<span class="badge bg-primary">For Evaluation</span>';
                             }
@@ -185,7 +173,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
 
                     ?>
                             <tr>
-                                <th scope="col"><?php echo $num; ?></th>
+                                <td><?php echo $num; ?></td>
                                 <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                 <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
                                 <td><?php echo $s["date_apply"];?></td> 
@@ -194,7 +182,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
                                     <div class="d-flex gap-1">
                                     <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $s["scholar_id"];?>"><i class="fa-solid fa-circle-info"></i></button>
                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>"><i class="fa-solid fa-file"></i></button>
-                                 </div> 
+                                </div> 
                             </td>
                                 <td class="d-flex gap-1" style="white-space: nowrap;">
                                     <form method="post" action="../functions/scholar-accept.php">
@@ -218,6 +206,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
 
         <!-- Pie Chart -->
     </div>
+                        </div>
+                    </div>
+                </div>
 </main>
 
 
@@ -692,19 +683,21 @@ $appliData2 = $admin->getApplicants();
             <form id="formRemarks" method="post" action="../functions/filesRemarks.php">
             <tbody>
                 <?php foreach($appliFiles as $files){
+
+                    $status = str_replace(' ', '', $files['requirement_name']);
                     ?>
                 <tr>
                     <td><?php echo $files['requirement_name']; ?></td>
                     <td><a href="../Scholar_files/<?php echo $files["file_name"]?>" target="_blank"><?php echo $files["file_name"]?></a></td>
                     <?php if($files["status"] == 0): ?>
-                        <td align="center"><input type="checkbox" name="<?php echo $files['requirement_name'];?>" id="<?php echo $files['id'];?>" value="1" onchange="toggleInput(this, '<?php echo $files['id'];?>_remarks')"></td>
-                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" required></td>
+                        <td align="center"><input type="checkbox" name="<?php echo $status; ?>" id="<?php echo $files['id'];?>" value="1" onchange="toggleInput(this, '<?php echo $files['id'];?>_remarks')"></td>
+                        <td><input type="text" class="form-control" name="<?php echo $status?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" required></td>
                     <?php elseif($files["status"] == 1): ?>
                         <td align="center">Done</td>
-                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
+                        <td><input type="text" class="form-control" name="<?php echo $status?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
                     <?php else: ?>
                         <td align="center">Done</td>
-                        <td><input type="text" class="form-control" name="<?php echo $files['requirement_name'];?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
+                        <td><input type="text" class="form-control" name="<?php echo $status?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
                     <?php endif; ?>
                         <td><input type="hidden" name="file_id" value="<?php echo $files['id']; ?>">
                     </td>

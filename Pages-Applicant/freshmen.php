@@ -1335,7 +1335,7 @@ function addGradeRow(event) {
     }
 </script>
 
-<!-- <script>
+<script>
 //Function for validating required fields
 $(document).ready(function() {
     // Initially disable all tabs except the first
@@ -1386,7 +1386,7 @@ $(document).ready(function() {
         }
     });
 });
-</script> -->
+</script>
 
 
 
