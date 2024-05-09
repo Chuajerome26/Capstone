@@ -51,7 +51,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
 
               <div class="container-fluid">
                     
-              <div class="row">
+              <div class="row mb-3">
                         <div class="col-8"><p class="h4 mb-0 font-weight-bold text-gray-800">Customize WebPage</p></div>
                         <div class="col-4 float-end">
                             <form action="../functions/download-applicant.php" method="post">
@@ -68,7 +68,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-12">
+                        <div class="col-xl-12" >
                             <div class="card shadow mb-4" style="font-size: 14px;">
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-body">

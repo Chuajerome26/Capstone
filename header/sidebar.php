@@ -171,7 +171,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class ="ms-2">Admin Logs</span>                  
                     </a>
 
-                    <a href="../Pages-CMS/customize-form.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'logs') ? 'active-nav-item' : ''; ?>">
+                    <a href="../newdesign/customize-form.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'logs') ? 'active-nav-item' : ''; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27"  fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
                     <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
                     <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
@@ -228,7 +228,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 <a class="sidebar-brand d-flex align-items-center justify-content-center text-decoration-none text-black" href="dashboard.php">
                 <div class="sidebar-brand-icon rotate-n-15">    
                 </div>
-                <div class="sidebar-brand-text mx-3 ms-5" style="font-size: 28px; font-weight:bold;"> <img src="../images/Management.png"  style="width: 270px; height: 55px; margin-left: -50px;"></div>
+                <div class="sidebar-brand-text mx-3 ms-5" style="font-size: 28px; font-weight:bold;"> <img src="../images/forcert1.png"  style="width: 270px; height: 55px; margin-left: -50px;"></div>
                 </a>
                 <hr class="sidebar-divider d-none d-md-block">
 

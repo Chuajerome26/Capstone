@@ -68,7 +68,7 @@ require '../classes/database.php';
     if($userType == 6){//Super Admin
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 6;
-        header("Location: ../Pages-CMS/Admin-CMS.php");
+        header("Location: ../newdesign/dashboard.php");
     }else if($userType == 4){//Renewal/Stipend
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 4;
