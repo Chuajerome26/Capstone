@@ -14,8 +14,8 @@ if(isset($_POST['submit'])){
     $applicantInfo = $admin->getApplicantsFiles($scholar_id);
 
     $arrayNames = array();
-    foreach($applicantInfo as $files){
-        $status = str_replace(' ', '', $files['requirement_name']);
+    foreach($applicantInfo as $files1){
+        $status = str_replace(' ', '', $files1['requirement_name']);
 
         $arrayNames[] = $status;
     }
@@ -75,6 +75,7 @@ if(isset($_POST['submit'])){
             $status[$name] = $currentStatus;
         }
     }
+    var_dump($status);
     $admin->updateFilesRemarks($scholar_id, $status, $arrayNames);
 
     $scholar_infor = $admin->getApplicantById($scholar_id); 
@@ -163,6 +164,6 @@ ccmf2015main@gmail.com
         $database->sendEmail($email,"Scholarship Application - File Evaluation Update", $message);
     }
 
-    header('Location: ../newdesign/admin-application.php?status=UpdatedRemarks');
-    exit();
+    // header('Location: ../newdesign/admin-application.php?status=UpdatedRemarks');
+    // exit();
 }

@@ -871,11 +871,15 @@ function handleFiles(event, previewContainerId, fileTypes) {
     const maxSize = 10 * 1024 * 1024; // 10 MB in bytes
 
     let acceptedTypes = [];
+    let logoPath = "";
 
     if(fileTypes == "pdf"){
         acceptedTypes.push('application/pdf');
+        logoPath = "PDF-logo.png";
+        
     }else if(fileTypes == "image"){
         acceptedTypes.push('image/png', 'image/jpeg', 'image/jpg');
+        logoPath = "jpgLogo.png";
     }
 
     for (let i = 0; i < fileList.length; i++) {
@@ -890,7 +894,7 @@ function handleFiles(event, previewContainerId, fileTypes) {
                     fileNameContainer.classList.add('fileBox', 'd-flex', 'align-items-center'); // Add classes for styling and flexbox
 
                     const logo = document.createElement('img');
-                    logo.src = '../images/PDF-logo.png'; // Replace 'path_to_your_logo_image' with the actual path to your logo image
+                    logo.src = '../images/'+logoPath; // Replace 'path_to_your_logo_image' with the actual path to your logo image
                     logo.alt = 'Logo';
                     logo.style.width = '40px'; // Set the width of the image
                     logo.style.height = '50px'; // Set the height of the image

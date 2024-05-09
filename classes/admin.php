@@ -617,8 +617,8 @@ class Admin
     if (count($status) !== count($arrayNames)) {
         // Handle error, such as array size mismatch
         error_log("Array sizes mismatch: Status count = " . count($status) . ", ArrayNames count = " . count($arrayNames));
-        header("Location: ../newdesign/admin-application.php?error=array_size_mismatch");
-        exit();
+        // header("Location: ../newdesign/admin-application.php?error=array_size_mismatch");
+        // exit();
     }
 
     // Iterate through each name and its corresponding status

@@ -13,6 +13,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
 
     $admin_info = $admin->adminInfo($id);
     $admin_logs = $admin->getCustomizableForm();
+    $content_design = $admin->getContent();
 
 } else {
     header("Location: ../index.php");
@@ -53,13 +54,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                     
               <div class="row mb-3">
                         <div class="col-8"><p class="h4 mb-0 font-weight-bold text-gray-800">Customize WebPage</p></div>
-                        <div class="col-4 float-end">
-                                <button type="submit" class=" btn  btn-primary shadow-sm float-end" data-bs-toggle="modal" data-bs-target="#add">
-                                    <i class="fas fa-add fa-sm text-white-50"></i> 
-                                    <div class="d-none d-sm-inline-block">Add</div>
-                                </button>
 
-                        </div>
                     </div>
 
 
@@ -69,7 +64,16 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                         <!-- Area Chart -->
                         <div class="col-xl-12" >
                             <div class="card shadow mb-4" style="font-size: 14px;">
-                                <!-- Card Header - Dropdown -->
+                            
+                                <div class="row m-3">
+                                    <div class="col-8"><h5 class="p-2 font-weight-bold text-black mb-2">Files</h5></div>
+                                    <div class="col-4 float-end">
+                                        <button type="submit" class=" btn  btn-primary shadow-sm float-end" data-bs-toggle="modal" data-bs-target="#add">
+                                            <i class="fas fa-add fa-sm text-white-50"></i> 
+                                            <div class="d-none d-sm-inline-block">Add</div>
+                                        </button>
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                     <table id="viewLogs" class="table table-striped table-hover">
@@ -98,7 +102,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                             <td><?php echo $s['file_type']; ?></td>
                                             <td><?php echo $req; ?></td>
                                             <td>
-                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                                <button type="button" class="btn btn-sm btn-danger" onclick="confirmation(<?php echo $s['id'];?>)"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                         <?php 
@@ -110,6 +114,74 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                 </div>
                             </div>
                         </div>
+                        
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-12" >
+                            <div class="card shadow mb-4" style="font-size: 14px;">
+                            
+                                <div class="row m-3">
+                                    <div class="col-8"><h5 class="p-2 font-weight-bold text-black mb-2">Content</h5></div>
+                                    <div class="col-4 float-end">
+                                        <button type="submit" class=" btn  btn-primary shadow-sm float-end" data-bs-toggle="modal" data-bs-target="#add">
+                                            <i class="fas fa-add fa-sm text-white-50"></i> 
+                                            <div class="d-none d-sm-inline-block">Add</div>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                        <?php 
+                                            $nums = 1;
+                                            foreach($content_design as $des):
+                                        ?>
+                                        <div class="container">
+                                            <div class="row justify-content-center align-items-center">
+                                                <div class="col-md-6">
+                                                    <div class="card mb-3" style="height: 200px;">
+                                                        <div class="card-body text-center d-flex flex-column justify-content-center">
+                                                            <h5 class="p-2 font-weight-bold text-black mb-2">Title</h5>
+                                                            <h3><?php echo $des['title_name']; ?></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card mb-3" style="height: 200px;">
+                                                        <div class="card-body text-center d-flex flex-column justify-content-center">
+                                                            <h5 class="p-2 font-weight-bold text-black mb-2">Logo</h5>
+                                                            <div class="d-flex justify-content-center align-items-center">
+                                                                <img src="../images/<?php echo $des['logo']; ?>" class="img-fluid" style="max-width: 100px; max-height: 100px;" alt="Logo">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card mb-3" style="height: 200px;">
+                                                        <div class="card-body text-center d-flex flex-column justify-content-center">
+                                                            <h5 class="p-2 font-weight-bold text-black mb-2">Vision</h5>
+                                                            <h3><?php echo $des['vision']; ?></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card mb-3" style="height: 200px;">
+                                                        <div class="card-body text-center d-flex flex-column justify-content-center">
+                                                            <h5 class="p-2 font-weight-bold text-black mb-2">Mission</h5>
+                                                            <h3><?php echo $des['mission']; ?></h3>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <?php 
+                                        $num++;
+                                    endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
                 </div>
             </div> 
@@ -117,18 +189,39 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
         </main>
     
 <div class="modal fade" id="add" tabindex="-1" aria-labelledby="add" aria-hidden="true">
-  <div class="modal-dialog modal-l modal-dialog-centered modal-dialog-scrollable" >
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Edit Files Requirements</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
+        <form method="post" action="../functions/addRequirements.php">
+        <div class="row">
+            <div class="col-md-12">
+                <label  class="form-label">Name:</label>
+                <input type="text" name="fileName" class="form-control form-control-sm" placeholder="Name of Requirements" required>
+            </div>
+            <div class="col-md-12">
+                <label  class="form-label">File Type:</label>
+                <select class="form-select form-select-sm" name="fileType" required>
+                    <option></option>
+                    <option value="pdf">PDF</option>
+                    <option value="image">Image</option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label  class="form-label">Is Required?</label>
+                <select class="form-select form-select-sm" name="isReq" required>
+                    <option></option>
+                    <option value="0">Not Required</option>
+                    <option value="1">Required</option>
+                </select>
+            </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <input type="hidden" name="scholar_id" value="<?php echo $b['scholar_id'] ?>">
         <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
         </form>
       </div>
@@ -151,6 +244,62 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
         $(document).ready(function() {
             $('#viewLogs').DataTable();
         });
+
+        $(document).ready(function() {
+            $('#contents').DataTable();
+        });
+    </script>
+
+    <script>
+    function confirmation(id){
+        Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            window.location.href = '../functions/deleteReq.php?id='+id;
+        });
+    }
+    </script>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const successValue = urlParams.get('status');
+    console.log(successValue);
+
+    if(successValue === "successDel"){
+        Swal.fire({
+            icon:'success',
+            title:'Deleted Successfully!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "successAdd"){
+        Swal.fire({
+            icon:'success',
+            title:'Added Successfully!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }
     </script>
 
     

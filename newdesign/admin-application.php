@@ -685,19 +685,20 @@ $appliData2 = $admin->getApplicants();
                 <?php foreach($appliFiles as $files){
 
                     $status = str_replace(' ', '', $files['requirement_name']);
+                    echo $status;
                     ?>
                 <tr>
                     <td><?php echo $files['requirement_name']; ?></td>
                     <td><a href="../Scholar_files/<?php echo $files["file_name"]?>" target="_blank"><?php echo $files["file_name"]?></a></td>
                     <?php if($files["status"] == 0): ?>
                         <td align="center"><input type="checkbox" name="<?php echo $status; ?>" id="<?php echo $files['id'];?>" value="1" onchange="toggleInput(this, '<?php echo $files['id'];?>_remarks')"></td>
-                        <td><input type="text" class="form-control" name="<?php echo $status?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" required></td>
+                        <td><input type="text" class="form-control" name="<?php echo $status;?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" required></td>
                     <?php elseif($files["status"] == 1): ?>
                         <td align="center">Done</td>
-                        <td><input type="text" class="form-control" name="<?php echo $status?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
+                        <td><input type="text" class="form-control" name="<?php echo $status;?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
                     <?php else: ?>
                         <td align="center">Done</td>
-                        <td><input type="text" class="form-control" name="<?php echo $status?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
+                        <td><input type="text" class="form-control" name="<?php echo $status;?>_remarks" id="<?php echo $files['id'];?>_remarks" placeholder="<?php echo $files['requirement_name'];?> Remarks" disabled></td>
                     <?php endif; ?>
                         <td><input type="hidden" name="file_id" value="<?php echo $files['id']; ?>">
                     </td>

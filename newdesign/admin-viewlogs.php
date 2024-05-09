@@ -69,7 +69,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                 <div class="card-body">
                                     <h6 class="p-2 font-weight-bold text-black mb-2">Admin Logs</h6>
                                     <div class="table-responsive">
-                                    <table class="table table-striped table-hover">
+                                    <table id="viewLogs" class="table table-striped table-hover">
                                     <?php if($count != 0): ?>
                                     <thead>
                                         <tr>
@@ -80,7 +80,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                             <th scope="col">Date</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="viewLogs" class="table-group-dividercar">
+                                    <tbody class="table-group-dividercar">
                                     <?php
                                     $num = 1;
                                     foreach ($admin_logs as $log): 
@@ -189,8 +189,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- DataTables JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <!-- DataTables Bootstrap 5 JS -->
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <script>

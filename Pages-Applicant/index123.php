@@ -224,10 +224,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <div class="nav-inner">
                     <nav class="navbar navbar-expand-lg">
                         
-                            <img src="../images/forcert1.png" class="mb-2"  width="90px" height="60px">
+                            <img src="../images/<?php echo $content[0]['logo']; ?>" class="mb-2"  width="90px" height="60px">
                             
                             
-                            <p style="font-size: 18px; color:#0EDC8D" class="mt-3"><strong>Scholarship Management <br>system</strong></p>
+                            <p style="font-size: 18px; color:#0EDC8D" class="mt-3"><strong><?php echo $content[0]['title_name']; ?></strong></p>
                                
                                 
                             
@@ -298,7 +298,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="col-lg-8 offset-lg-2 col-md-12 co-12">
                             <div class="home-slider">
                                 <div class="hero-text">
-                                    <h5 class="wow fadeInUp" data-wow-delay=".3s">Scholarship Management</h5>
+                                    <h5 class="wow fadeInUp" data-wow-delay=".3s"><?php echo $content[0]['title_name']; ?></h5>
                                     <h1 class="wow fadeInUp" data-wow-delay=".5s">Opening Doors of <br>Hope..</h1>
                                     <p class="wow fadeInUp" data-wow-delay=".7s">Empowering students to achieve<br>
                                         their academic dreams
