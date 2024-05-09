@@ -15,10 +15,12 @@ if(isset($_POST['submit'])){
 
     $arrayNames = array();
     foreach($applicantInfo as $files){
-        $status = str_replace(' ', '', $files['name']);
+        $status = str_replace(' ', '', $files['requirement_name']);
 
         $arrayNames[] = $status;
     }
+
+    var_dump($arrayNames);
     $remarks = array();
     // Iterate through each name and retrieve its value from $_POST
     foreach ($arrayNames as $name) {
@@ -64,7 +66,8 @@ if(isset($_POST['submit'])){
             $status[$name] = $_POST[$name];
         } else {
             foreach ($applicantInfo as $file) {
-                if ($file['requirement_name'] == $name) {
+                $status1 = str_replace(' ', '', $file['requirement_name']);
+                if ($status1 == $name) {
                     $currentStatus = $file['status'];
                     break; // Exit the loop once the status is found
                 }

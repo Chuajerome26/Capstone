@@ -54,12 +54,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
               <div class="row mb-3">
                         <div class="col-8"><p class="h4 mb-0 font-weight-bold text-gray-800">Customize WebPage</p></div>
                         <div class="col-4 float-end">
-                            <form action="../functions/download-applicant.php" method="post">
-                                <button type="submit" class=" btn  btn-primary shadow-sm float-end">
-                                    <i class="fas fa-download fa-sm text-white-50"></i> 
-                                    <div class="d-none d-sm-inline-block">Generate Report</div>
+                                <button type="submit" class=" btn  btn-primary shadow-sm float-end" data-bs-toggle="modal" data-bs-target="#add">
+                                    <i class="fas fa-add fa-sm text-white-50"></i> 
+                                    <div class="d-none d-sm-inline-block">Add</div>
                                 </button>
-                            </form>
+
                         </div>
                     </div>
 
@@ -80,6 +79,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                             <th scope="col">Name</th>
                                             <th scope="col">File Type</th>
                                             <th scope="col">Required</th>
+                                            <th scope="col">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -97,6 +97,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                             <td><?php echo $s['name']; ?></td>
                                             <td><?php echo $s['file_type']; ?></td>
                                             <td><?php echo $req; ?></td>
+                                            <td>
+                                                <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                            </td>
                                         </tr>
                                         <?php 
                                         $num++;
@@ -112,7 +115,26 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
             </div> 
             </div>
         </main>
-
+    
+<div class="modal fade" id="add" tabindex="-1" aria-labelledby="add" aria-hidden="true">
+  <div class="modal-dialog modal-l modal-dialog-centered modal-dialog-scrollable" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Files Requirements</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <input type="hidden" name="scholar_id" value="<?php echo $b['scholar_id'] ?>">
+        <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
         

@@ -270,8 +270,8 @@ class Scholar{
         
 
         for($i=0;$i < count($result123);$i++){
-
-            array_push($arrayNames, $result123[$i]['name']);
+            $newName = str_replace(' ', '', $result123[$i]['name']);
+            array_push($arrayNames, $newName);
         }
 
 
