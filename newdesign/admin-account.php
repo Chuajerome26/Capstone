@@ -84,6 +84,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                                             <th scope="col">Pic</th>
                                             <th scope="col">Name</th>
                                             <th scope="col">Email</th>
+                                            <th scope="col">Admin Type</th>
                                             <th scope="col">Date Added</th>
                                     
                                             
@@ -100,6 +101,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                                             <td><img class="img-profile rounded-circle" src="../Scholar_files/<?php echo $s['pic']; ?>" style="height:40px;width:40px;"></td>
                                             <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                             <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
+                                            td style="white-space: nowrap;"><?php echo $s["type"];?></td>
                                             <td><?php echo $s["date"];?></td>
                                             
                                             
@@ -182,7 +184,15 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                                         <label for="email">Email:</label>
                                         <input type="email" class="form-control" name="email" placeholder="Enter email" required>
                                     </div>
-                                
+                                    <div class="form-group">
+                                        <label for="email">Select admin type:</label>
+                                        <select class="form-control" name="type" required>
+                                            <option value="" disabled selected>Admin Type</option>
+                                            <option value="4">Accountant (Responsible for renewal and stipend)</option>
+                                            <option value="3">Interviewer (Responsible for interviews)</option>
+                                            <option value="2">Evaluator (Responsible for evaluating applicants)</option>
+                                        </select>
+                                    </div>
                             </div>
                             </div>
                             <div class="modal-footer">

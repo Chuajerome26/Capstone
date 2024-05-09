@@ -860,17 +860,17 @@ public function findAdminByEmail($email){
   }
 
 }
-public function addAdminAccount($first_name, $last_name, $email, $token){
+public function addAdminAccount($first_name, $last_name, $email, $type, $token){
 
     // prepare insert statement for employee table
     $date = date('Y-m-d');
-    $sql = "INSERT INTO admin_info (f_name, l_name, email, token, date) VALUES (?,?,?,?,?)";
+    $sql = "INSERT INTO admin_info (f_name, l_name, email, type, token, date) VALUES (?,?,?,?,?,?)";
 
      // prepared statement
     $stmt = $this->database->getConnection()->prepare($sql);
 
     //if execution fail
-    if (!$stmt->execute([$first_name, $last_name, $email, $token, $date])) {
+    if (!$stmt->execute([$first_name, $last_name, $email, $type, $token, $date])) {
         header("Location: ../newdesign/admin-application.php?status=error");
         exit();
     }
@@ -911,28 +911,28 @@ public function setUpSuperAdmin($fname, $lname, $email, $fileName, $pass, $type)
     $this->database->sendEmail($email,"Your Set Up for your Account has been done!", $emailBody);
 }
 
-public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email){
-
+public function setUpAdminPass($id ,$username, $pass, $pic, $token, $email, $adminType){
     $stmt = $this->database->getConnection()->prepare("UPDATE admin_info SET pic = ? WHERE token = ?");
-
     if (!$stmt->execute([$pic, $token])) {
         header("Location: ../index.php?status=error");
         exit();
     }
 
-    $sql = "INSERT INTO login (user,pass,admin_id,user_type) VALUES (?,?,?,?);";
+    $sql = "INSERT INTO login (user, pass, admin_id, user_type) VALUES (?, ?, ?, ?)";
     $stmt1 = $stmt = $this->database->getConnection()->prepare($sql);
 
     $hashedpwd = password_hash($pass, PASSWORD_DEFAULT);
-        //if execution fail
-    if (!$stmt->execute([$username, $hashedpwd, $id, 2])) {
+    
+    // Use the adminType fetched from findAdminByToken method
+    if (!$stmt->execute([$username, $hashedpwd, $id, $adminType])) {
         header("Location: ../Pages-scholar/appform.php?scholar=stmtfail");
         exit();
     }
+    
     $emailBody = AdminSetupEmail($username, $pass);
-    //send email employee his/her id and password 
-    $this->database->sendEmail($email,"Your Set Up for your Account has been done!", $emailBody);
+    $this->database->sendEmail($email, "Your Setup for your Account has been done!", $emailBody);
 }
+
 
 public function findAdminByToken($token){
 
@@ -1130,7 +1130,7 @@ public function getNoneCompliantInfo()
     return $stmt;
 }
 public function getInterviewCountForToday() {
-    $stmt = $this->database->getConnection()->query("SELECT COUNT(*) FROM admin_schedule_interview WHERE date = CURDATE()")->fetchColumn();
+    $stmt = $this->database->getConnection()->query("SELECT COUNT(*) FROM admin_schedule_interview WHERE grade = 0 AND date = CURDATE()")->fetchColumn();
     return $stmt;
 }
 

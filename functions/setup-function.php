@@ -22,6 +22,7 @@ require '../classes/database.php';
 
     $adminId = $admin_data[0]['id'];
     $adminEmail = $admin_data[0]['email'];
+    $adminType = $admin_data[0]['type'];
 
     $allowedFile2 = array('jpg', 'jpeg', 'png');
     $fileExt1 = explode('.', $fileData1['fileName']);
@@ -44,7 +45,7 @@ require '../classes/database.php';
     }
 
     if(move_uploaded_file($fileData1['fileTmpName'],$fileDestination1)){
-        $admin->setUpAdminPass($adminId, $user, $pass, $fileNameNew1, $token, $adminEmail);
+        $admin->setUpAdminPass($adminId, $user, $pass, $fileNameNew1, $token, $adminEmail, $adminType);
         header('Location: ../index.php?scholar=setUp');
         exit();
     }
