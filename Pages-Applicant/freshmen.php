@@ -295,7 +295,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <option value="Others">Others</option>
                         </select>
                         <div id="otherStatus" style="display: none;">
-                            <input class="form-control form-control-sm mt-2" type="text" name="otherStatus" id="otherStatus1" placeholder="Other Condition">
+                            <input class="form-control form-control-sm mt-2" type="text" name="otherStatus" id="otherStatus1" placeholder="Other Status">
                         </div>
                     </div>
 
@@ -661,8 +661,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <input type="text" name="motherMName" id="motherMName" class="form-control form-control-sm" placeholder="Mother Middle Name">
                 </div>
                 <div class="col-md-2 mb-3">
-                    <label  class="form-label">Mother's Last Name:</label>
-                    <input type="text" name="motherLName" id="motherLName"class="form-control form-control-sm" placeholder="Mother Last Name">
+                    <label  class="form-label">Mother's Maiden Name:</label>
+                    <input type="text" name="motherLName" id="motherLName"class="form-control form-control-sm" placeholder="Mother Maiden Name">
                 </div>
                 <div class="col-md-2 mb-3">
                     <label class="form-label">Educational Attainment:</label>
@@ -1000,27 +1000,60 @@ function handleFiles(event, previewContainerId, fileTypes) {
    
 </script>
 <script>
-            //function for same as present address
-            document.getElementById('sameAsPresent').addEventListener('change', function() {
+    //function for same as present address
+    document.getElementById('sameAsPresent').addEventListener('change', function() {
+        const permanentFields = document.querySelectorAll('.permanent-address-fields input');
         if (this.checked) {
-            // Copy values from present address to permanent address
-            document.querySelector('input[name="permanent_barangay"]').value = document.querySelector('select[name="present_brgy"]').value;
-            document.querySelector('input[name="permanent_district"]').value = document.querySelector('#districtField').value;
-            document.querySelector('input[name="permanent_city"]').value = "Quezon City";
-            document.querySelector('input[name="permanent_province"]').value = "Metro Manila";
-            document.querySelector('input[name="permanent_zip"]').value = document.querySelector('#zipField').value;
-            document.querySelector('input[name="permanent_hnumber"]').value = document.querySelector('input[name="present_hnumber"][placeholder="House/Lot & Blk.No./Street/Village"]').value;
+            // Copy values from present address to permanent address and make fields read-only
+            permanentFields.forEach(field => {
+                field.value = document.querySelector(`[name="${field.name.replace('permanent_', 'present_')}"]`).value;
+                field.readOnly = true;
+            });
         } else {
-            // Clear permanent address fields if unchecked
-            document.querySelector('input[name="permanent_barangay"]').value = '';
-            document.querySelector('input[name="permanent_district"]').value = '';
-            document.querySelector('input[name="permanent_city"]').value = '';
-            document.querySelector('input[name="permanent_province"]').value = '';
-            document.querySelector('input[name="permanent_zip"]').value = '';
-            document.querySelector('input[name="permanent_hnumber"]').value = '';
-
+            // Clear permanent address fields and make them editable if unchecked
+            permanentFields.forEach(field => {
+                field.value = '';
+                field.readOnly = false;
+            });
         }
     });
+</script>
+
+<script>
+         //function for same as present address
+document.getElementById('sameAsPresent').addEventListener('change', function() {
+    // Get all the permanent address input fields
+    const permanentFields = document.querySelectorAll('input[name^="permanent_"]');
+    
+    if (this.checked) {
+        // Copy values from present address to permanent address
+        document.querySelector('input[name="permanent_barangay"]').value = document.querySelector('select[name="present_brgy"]').value;
+        document.querySelector('input[name="permanent_district"]').value = document.querySelector('#districtField').value;
+        document.querySelector('input[name="permanent_city"]').value = "Quezon City";
+        document.querySelector('input[name="permanent_province"]').value = "Metro Manila";
+        document.querySelector('input[name="permanent_zip"]').value = document.querySelector('#zipField').value;
+        document.querySelector('input[name="permanent_hnumber"]').value = document.querySelector('input[name="present_hnumber"][placeholder="House/Lot & Blk.No./Street/Village"]').value;
+        
+        // Set all permanent address fields to read-only
+        permanentFields.forEach(field => {
+            field.readOnly = true;
+        });
+    } else {
+        // Clear permanent address fields if unchecked
+        document.querySelector('input[name="permanent_barangay"]').value = '';
+        document.querySelector('input[name="permanent_district"]').value = '';
+        document.querySelector('input[name="permanent_city"]').value = '';
+        document.querySelector('input[name="permanent_province"]').value = '';
+        document.querySelector('input[name="permanent_zip"]').value = '';
+        document.querySelector('input[name="permanent_hnumber"]').value = '';
+        
+        // Set all permanent address fields to editable
+        permanentFields.forEach(field => {
+            field.readOnly = false;
+        });
+    }
+});
+
 
     //function for same as present address
     document.getElementById('sameAsActive').addEventListener('change', function() {
