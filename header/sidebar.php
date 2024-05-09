@@ -180,6 +180,15 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                         <span class ="ms-2">Customize Forms</span>                  
                     </a>
 
+                    <a href="../newdesign/customize-gwa.php" class="list-group-item list-group-item-action py-2 mb-2 border-0  ripple  <?php echo ($current_nav == 'logs') ? 'active-nav-item' : ''; ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="27"  fill="currentColor" class="bi bi-journal-text" viewBox="0 0 16 16">
+                    <path d="M5 10.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0-2a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5"/>
+                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+                    </svg>
+                        <span class ="ms-2">Customize GWA</span>                  
+                    </a>
+
                     <?php endif;?>
 
                   
@@ -229,7 +238,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 </button>
 
                 <li class="nav-item dropdown list-unstyled d-block d-lg-none">
-                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="notif-button">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="notif-button" data-user-id="<?php echo $id; ?>">
                         <div style="position: relative; display: inline-block;">
                             <i class="fa-solid fa-bell" style="font-size: 18px;"></i>
                             <?php

@@ -167,7 +167,16 @@ class Scholar{
                 header("Location: ../newdesign/admin-application.php?error=stmtfail");
                 exit();
             }
-            $result123 = $stmt1234->fetchAll();
+        $result123 = $stmt1234->fetchAll();
+        
+        //query for new GWA
+        $stmtgwa = $this->database->getConnection()->prepare("SELECT * FROM customize_gwa");
+
+            if (!$stmtgwa->execute()) {
+                header("Location: ../newdesign/customize-gwa.php?error=stmtfail");
+                exit();
+            }
+        $newgwa = $stmtgwa->fetchColumn();
 
         $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM login WHERE user=?");
 

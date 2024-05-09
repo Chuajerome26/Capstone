@@ -411,6 +411,12 @@ class Admin
         exit();
 
     }
+    public function getGwaRequirement(){
+        $stmt = $this->database->getConnection()->query("SELECT * FROM customize_gwa")->fetchAll();
+        return $stmt;
+        exit();
+
+    }
     // public function getAllSibling($scholar_id){
     //     $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_siblings WHERE scholar_id = ?");
 
