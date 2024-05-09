@@ -215,8 +215,12 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         <!-- Sidebar -->
 
         <!-- Navbar -->
-        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light px-3 fixed-top" style="background-color: rgb(14,220,141);">
+        <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light px-3 fixed-top" style="background-color: #8DECB4;">
             <div class="container-fluid">
+            <div class=" mx-2 ms-4" style="font-size: 28px; font-weight:bold;">
+            <img class="d-none d-lg-block" src="../images/forcert1.png" style="width: 75px; height: 55px;">
+                    </div>
+                    <b><span style="font-size: 16px; color:#11D08D">Scholarship Management<br>System</span></b>
             
                 <!-- Toggle button -->
                 <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
@@ -284,14 +288,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                 </li>
 
                
-                <a class="sidebar-brand d-flex align-items-center justify-content-center text-decoration-none text-black d-none d-lg-block" href="dashboard.php">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <!-- Brand icon content -->
-                    </div>
-                    <div class="sidebar-brand-text mx-3 ms-5" style="font-size: 28px; font-weight:bold;">
-                        <img class="d-none d-lg-block" src="../images/forcert1.png" style="width: 100px; height: 55px;">
-                    </div>
-                </a>
+               
 
 
                 <ul class="navbar-nav ms-auto d-flex  d-none d-lg-block me-5">
