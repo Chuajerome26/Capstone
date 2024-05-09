@@ -86,6 +86,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                                             <th scope="col">Email</th>
                                             <th scope="col">Admin Type</th>
                                             <th scope="col">Date Added</th>
+                                            <th scope="col">Action</th>
                                     
                                             
                                         </tr>
@@ -95,14 +96,24 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                                     $applicantsData = $admin->getAdmins();
                                     $num = 1;
                                     foreach($applicantsData as $s){
+                                        if($s['type'] == 6){
+                                            $type = "Super Admin";
+                                        }else if($s['type'] == 4){
+                                            $type = "Accountant";
+                                        }else if($s['type'] == 3){
+                                            $type = "Interviewer";
+                                        }else if($s['type'] == 2){
+                                            $type = "Evaluator";
+                                        }
                                     ?>
                                         <tr>
                                             <th scope="col"><?php echo $num; ?></th>
                                             <td><img class="img-profile rounded-circle" src="../Scholar_files/<?php echo $s['pic']; ?>" style="height:40px;width:40px;"></td>
                                             <td style="white-space: nowrap;"><?php echo $s["f_name"]." ".$s["l_name"]; ?></td>
                                             <td style="white-space: nowrap;"><?php echo $s["email"];?></td>
-                                            td style="white-space: nowrap;"><?php echo $s["type"];?></td>
+                                            <td style="white-space: nowrap;"><?php echo $type?></td>
                                             <td><?php echo $s["date"];?></td>
+                                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#changeTypeModal<?php echo $s["id"];?>">Change Admin Type</button></td>
                                             
                                             
                                         </tr>
@@ -160,6 +171,41 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
             </div>
             <!-- End of Main Content -->
 
+            <!--Modal for changing admin type-->
+            <?php
+            $adminData = $admin->getAdmins();
+            foreach($adminData as $ad){
+            ?>
+            <div class="modal fade" id="changeTypeModal<?php echo $ad["id"];?>" tabindex="-1" aria-labelledby="changeTypeModalLabel<?php echo $ad["id"];?>" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changeTypeModalLabel<?php echo $ad["id"];?>">Change Admin Type</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form method="post" action="../functions/adminType-update.php">
+                            <label for="adminTypeSelect">Select Admin Type:</label>
+                            <select class="form-select" name="admin_type" required>
+                                <option value="" disabled selected>Admin Type</option>
+                                <option value="4">Accountant (Responsible for renewal and stipend)</option>
+                                <option value="3">Interviewer (Responsible for interviews)</option>
+                                <option value="2">Evaluator (Responsible for evaluating applicants)</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <input type="hidden" name="admin_id" value="<?php echo $ad['id']?>">
+                            <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php }?>
+            <!--Modal end-->  
+
+            <!--Modal for adding admin-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
