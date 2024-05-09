@@ -19,7 +19,7 @@ $data = '
             width: 250px;
         }
         .column1 {
-            width: 20px;
+            width: 16px;
             padding: 5px;
             border: 1px solid black;
         }
@@ -57,7 +57,7 @@ $data = '
                     $scho_type = "Economic";
                 }
                 $data .= '<tr>
-                            <td class="column2">' . $num . '</td>
+                            <td class="column1">' . $num . '</td>
                             <td class="column2">' . $isko['f_name'] .' '. $isko['l_name'] .'</td>
                             <td class="column2">'. $isko['studType'] .'</td>
                             <td class="column2">'. $scho_type .'</td>
@@ -74,7 +74,8 @@ $data = '
                     <td class="column1" style="text-align: center; color: white;">#</td>
                     <td class="column2" style="text-align: center; color: white;">Name</td>
                     <td class="column2" style="text-align: center; color: white;">Student Type</td> 
-                    <td class="column2" style="text-align: center; color: white;">Scholarship Type</td> 
+                    <td class="column2" style="text-align: center; color: white;">Scholarship Type</td>
+                    <td class="column2" style="text-align: center; color: white;">Scholarship Status</td>
                     <td class="column2" style="text-align: center; color: white;">Date Applied</td> 
                 </tr>
                 <tbody>';
@@ -88,11 +89,21 @@ $data = '
                     }else if($appli['scholar_type'] = 1){
                         $scho_type = "Economic";
                     }
+
+                    //scholarship status
+                    if ($appli['application_status'] == 0) {
+                        $scho_status = "For Evaluation";
+                    }else if ($appli['application_status'] == 1) {
+                        $scho_status = "For interview";
+                    } else if ($appli['application_status'] == 2) {
+                        $scho_status = "Done interview";
+                    }
                     $data .= '<tr>
-                                <td class="column2">' . $num . '</td>
+                                <td class="column1">' . $num . '</td>
                                 <td class="column2">' . $appli['f_name'] .' '. $appli['l_name'] .'</td>
                                 <td class="column2">'. $appli['studType'] .'</td>
                                 <td class="column2">'. $scho_type .'</td>
+                                <td class="column2">'. $scho_status .'</td>
                                 <td class="column2">'. $dateApplied .'</td>
                             </tr>';
                     $num++;
@@ -122,7 +133,7 @@ $data = '
                             $scho_type = "Economic";
                         }
                         $data .= '<tr>
-                                    <td class="column2">' . $num . '</td>
+                                    <td class="column1">' . $num . '</td>
                                     <td class="column2">' . $stipend['full_name'] .'</td>
                                     <td class="column2">'. $scho_type .'</td>
                                     <td class="column2">'. $stipend['grants'] .'</td>

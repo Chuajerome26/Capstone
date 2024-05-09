@@ -72,15 +72,15 @@ require '../classes/database.php';
     }else if($userType == 4){//Renewal/Stipend
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 4;
-        header("Location: ../newdesign/renewal.php");
+        header("Location: ../newdesign/dashboard.php");
     }else if($userType == 3){//Interviewer
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 3;
-        header("Location: ../newdesign/schedule-task.php");
+        header("Location: ../newdesign/dashboard.php");
     }else if($userType == 2){//Evaluator
         $_SESSION["id"] = $admin_id;
         $_SESSION["user_type"] = 2;
-        header("Location: ../newdesign/admin-application.php");
+        header("Location: ../newdesign/dashboard.php");
     }else if($userType == 1){//Scholar
         $_SESSION["id"] = $user_id;
         $_SESSION["user_type"] = 1;

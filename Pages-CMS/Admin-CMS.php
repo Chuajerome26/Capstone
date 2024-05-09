@@ -66,7 +66,15 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-3">
                         <p class="h5 mb-0 font-weight-bold text-gray-800"><i class="fa-solid fa-chart-line me-3"></i>Dashboard</p>
-                  
+                        
+                        <div class="p-2">
+                            <form action="../admin/generate.php" method="post">
+                                <button type="submit" class=" btn  btn-primary shadow-sm">
+                                    <i class="fas fa-download fa-sm text-white-50"></i> 
+                                    <div class="d-none d-sm-inline-block">Generate Report</div>
+                                </button>
+                            </form>
+                        </div>
                 </div>
 
                 <!-- Content Row -->

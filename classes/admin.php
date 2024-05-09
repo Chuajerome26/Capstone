@@ -821,7 +821,7 @@ public function getRemarksForInterview($id){
     $stmt = $this->database->getConnection()->prepare("SELECT * FROM admin_remarks WHERE scholar_id=? AND remarks = ?");
 
     // Execute the statement
-    if ($stmt->execute([$id, 6])) {
+    if ($stmt->execute([$id, 2])) {
         // Fetch the result
         $result = $stmt->fetchAll();
 

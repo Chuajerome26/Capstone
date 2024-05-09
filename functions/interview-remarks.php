@@ -24,7 +24,7 @@ if(isset($_POST['submit'])){
 
     $stmt = $database->getConnection()->prepare('INSERT INTO admin_remarks (scholar_id, admin_id, remarks, remarks_mess, date) VALUES (:id, :admin_id, :remarks, :remarks_mess, :date)');
 
-    if(!$stmt->execute(['id' => $id, 'admin_id' => $user_id, 'remarks' => 6, 'remarks_mess' => $remarks, 'date' => $date])){
+    if(!$stmt->execute(['id' => $id, 'admin_id' => $user_id, 'remarks' => 2, 'remarks_mess' => $remarks, 'date' => $date])){
         header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }

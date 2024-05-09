@@ -189,7 +189,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                 $displayedDatesforModal[] = $date;
     ?>
     <div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>l" aria-hidden="true">
-        <div class="modal-dialog" style="max-width:600px;">
+        <div class="modal-dialog" style="max-width:800px;">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Details</h5>
@@ -201,7 +201,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                         <tr>
                             <th>Requirements</th>
                             <th>Time</th>
-                            <th>Actions</th>
+                            <th>Mark As Done</th>
+                            <th>View / Give Remarks</th>
                         </tr> 
                     </thead>
                     <tbody>
@@ -215,9 +216,26 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                         <tr>
                             <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
                             <td><?php echo $time_start?> - <?php echo $time_end?></td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
-                            </td>
+                            <form method="post" action="../functions/interview-grade.php">
+                            <?php
+                            $currentDateTime = date("Y-m-d H:i:s");
+                            $interviewDateTimeEnd = $b['date'] . ' ' . $b['time_end'];
+                            if($b['grade'] == 0 && $currentDateTime <= $interviewDateTimeEnd): ?>
+                                <td align="center"><input type="checkbox" name="interview_done" value="1" disabled></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" id="remarks-btn">Remarks</button>
+                                </td>
+                            <?php elseif($b['grade'] == 0 && $currentDateTime >= $interviewDateTimeEnd): ?>
+                                <td align="center"><input type="checkbox" name="interview_done" value="1"></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
+                                </td>
+                            <?php else: ?>
+                                <td align="center">Done</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
+                                </td>
+                            <?php endif; ?>
                         </tr>
                         <?php }
                     }
@@ -227,8 +245,10 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <input type="hidden" name="scholar_id" value="<?php echo $b['scholar_id'] ?>">
+                <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
             </div>
+                </form>
             </div>
         </div>
     </div>
@@ -280,23 +300,7 @@ foreach($applicantss as $app) {
                 </div>
             </div>
             <div class="modal-footer">
-            <?php 
-                $currentDate = date("Y-m-d");
-                // $currentTime = date("h:i A");
-                $interviewDate = $b['date'];
-                // $interviewEndTime = date("h:i A", strtotime($b['time_end']));
-
-                        if ($currentDate >= $interviewDate) {
-                    ?>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $b["scholar_id"];?>" onclick="modal(<?php echo $b['scholar_id']; ?>)">Give Remarks</button>
-                    <?php 
-                        } else {
-                    ?>
-                            <button type="button" class="btn btn-primary" disabled>Give Remarks</button>
-                            <span class="text-secondary">You can only give remarks after the interview.</span>
-                    <?php 
-                        }
-                    ?>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $b["scholar_id"];?>" onclick="modal(<?php echo $b['scholar_id']; ?>)">Give Remarks</button>
                     </div>
                 </div>
             </div>
@@ -336,7 +340,7 @@ foreach($applicantss as $app) {
     <!--Modal End-->
 
     <!-- Modal Start Question -->
-    <?php 
+    <!-- <?php 
     foreach($initialInterview1 as $z){
     ?>
     <div class="modal fade" id="questionModal<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $z["id"];?>l" aria-hidden="true">
@@ -397,7 +401,7 @@ foreach($applicantss as $app) {
             </div>
         </div>
     </div>
-    <?php }?>
+    <?php }?> -->
 
     <!-- Modal for Initial Interview Edit -->
     <?php 
@@ -471,6 +475,7 @@ foreach($applicantss as $app) {
     <!-- DataTables Bootstrap 5 JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     
     <script>
            $(document).ready(function() {
@@ -561,10 +566,24 @@ foreach($applicantss as $app) {
     }
 </script>
 
-    
-    
+<script>
+//alert for interview remarks
+document.getElementById("remarks-btn").addEventListener("click", function() {
+    if ("<?php echo $currentDateTime; ?>" <= "<?php echo $interviewDateTimeEnd; ?>") {
+        // SweetAlert for notification
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: 'The interview has not ended yet!',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Okay'
+        });
+    } else {
+        // Proceed with your desired action
+    }
+});
+</script>
 
-    
     
     </body>
   </html>

@@ -13,8 +13,8 @@ if(isset($_POST['submit'])){
 
     $currentDate = date('Y-m-d');
     $currentDate1 = date('Y-m-d H:i:s');
-    $newDate = date('Y-m-d', strtotime($currentDate . ' +7 days'));
-    $id = $_POST['id'];
+    // $newDate = date('Y-m-d', strtotime($currentDate . ' +7 days'));
+    // $id = $_POST['id'];
     $scholar_id = $_POST['scholar_id'];
 
     $info = $admin->getApplicantById($scholar_id);
@@ -22,17 +22,17 @@ if(isset($_POST['submit'])){
     $email = $info[0]['email'];
     $last_name = $info[0]['l_name'];
 
-    $q1 = $_POST['q1'];
-    $q2 = $_POST['q2'];
-    $q3 = $_POST['q3'];
-    $q4 = $_POST['q4'];
-    $q5 = $_POST['q5'];
+    // $q1 = $_POST['q1'];
+    // $q2 = $_POST['q2'];
+    // $q3 = $_POST['q3'];
+    // $q4 = $_POST['q4'];
+    // $q5 = $_POST['q5'];
 
-    $totalGrade = $q1 + $q2 + $q3 + $q4 + $q5;
-    $average = round($totalGrade / 5, 2);
+    // $totalGrade = $q1 + $q2 + $q3 + $q4 + $q5;
+    // $average = round($totalGrade / 5, 2);
 
 
-    if($average >= 37.50){
+    if(isset($_POST['interview_done']) && $_POST['interview_done'] == 1) {
 
         $message1 = '
         Dear '.$last_name.',
@@ -50,28 +50,26 @@ Once again, thank you for your interest in our scholarship program and for your 
 Warm regards,
         ';
 
+        $adminIds = $admin->getEvaluatorAdminIds();
 
+        foreach ($adminIds as $adminId) {
+            $notification = $admin->InsertNotif($user_id, $adminId, "interviewDone", $currentDate1);
+        }
         $message = IntGrade($last_name);
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 2, $message1, $currentDate1);
-        $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 2 WHERE scholar_id = :id');
-        $update->execute(['id' => $scholar_id]);
+        // $update = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 2 WHERE scholar_id = :id');
+        // $update->execute(['id' => $scholar_id]);
+
+        // Update the first table (scholar_info)
+        $update1 = $database->getConnection()->prepare('UPDATE scholar_info SET application_status = 2 WHERE scholar_id = :id');
+        $update1->execute(['id' => $scholar_id]);
+
+        // Update the second table (admin_schedule_interview)
+        $update2 = $database->getConnection()->prepare('UPDATE admin_schedule_interview SET grade = 1 WHERE scholar_id = :id');
+        $update2->execute(['id' => $scholar_id]);
+
         $database->sendEmail($email,"Thank You for Your Recent Scholarship Interview", $message);
         header('Location: ../newdesign/schedule-task.php?status=successGrade');
         exit();
-    }else{
-
-        $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 5 WHERE scholar_id = :id');
-
-        if(!$stmt->execute(['id' => $scholar_id])){
-            header('Location: ../newdesign/admin-application.php?status=error');
-            exit();
-        }
-        
-        $stmt1 = $database->getConnection()->prepare('UPDATE login SET user_type = 5 WHERE id = :id');
-
-        if(!$stmt1->execute(['id' => $scholar_id])){
-            header('Location: ../newdesign/admin-application.php?status=error');
-            exit();
-        }
     }
 }

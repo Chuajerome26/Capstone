@@ -284,6 +284,8 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                                                 Updated their application files
                                                             <?php }else if($x["remarks"] == "interviewSchedSent"){?>
                                                                 Interview Schedule Sent
+                                                            <?php }else if($x["remarks"] == "interviewDone"){?>
+                                                                Interview Done
                                                             <?php }?>
                                                     </div>  
                                                 </div>
