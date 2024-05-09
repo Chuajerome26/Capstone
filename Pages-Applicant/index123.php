@@ -589,7 +589,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
       </div>
     <?php else: ?>
         <div class="modal-header">
-            Modal Closed!
+        <h5 class="modal-title text-center fw-bold">Application is currently unavailable.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
     <?php endif; ?>
     </div>
