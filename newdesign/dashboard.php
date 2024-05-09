@@ -3,7 +3,7 @@
 // start session
 session_start();
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id']) && ($_SESSION['user_type'] == 2 || $_SESSION['user_type'] == 3 || $_SESSION['user_type'] == 4 || $_SESSION['user_type'] == 6)) {
     require '../classes/admin.php';
     require '../classes/database.php';
     require '../classes/scholar.php';

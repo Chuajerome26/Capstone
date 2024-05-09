@@ -94,10 +94,15 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
     <?php
     $applicantsData1 = $admin->getApplicants();
     foreach($applicantsData1 as $applicant) {
-        // $income = $applicant['father_income'] + $applicant['mother_income'];
-        // $appliGrade = $admin->getGrade($applicant['id']);
+        if($applicant['studType'] == "College"){
+            $income = $applicant['c_ave'];
+        }else{
+            $income = $applicant['sh_ave'];
+        }
+
+        $appliGrade = $admin->getAllEarner($applicant['scholar_id']);
         $pic = $admin->getApplicants2x2($applicant['scholar_id']);
-        $prediction = $admin->predictAcceptanceOfApplicant(1, 0);
+        $prediction = $admin->predictAcceptanceOfApplicant($appliGrade, $income);
 
         if($prediction <= 100 && $prediction >= 75) {
     ?>

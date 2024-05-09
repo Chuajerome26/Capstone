@@ -224,9 +224,9 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
         <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light px-3 fixed-top" style="background-color: #8DECB4;">
             <div class="container-fluid">
             <div class=" mx-2 ms-4" style="font-size: 28px; font-weight:bold;">
-            <img class="d-none d-lg-block" src="../images/forcert1.png" style="width: 75px; height: 55px;">
+            <img class="d-none d-lg-block" src="../images/<?php echo $content[0]['logo']; ?>" style="width: 75px; height: 55px;">
                     </div>
-                    <b><span style="font-size: 16px; color:#11D08D">Scholarship Management<br>System</span></b>
+                    <b><span style="font-size: 16px; color:#11D08D"><?php echo $content[0]['title_name']; ?></b>
             
                 <!-- Toggle button -->
                 <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"

@@ -11,6 +11,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     $id = $_SESSION['id'];
     $info = $admin->getApplicantById($id);
     $pic = $admin->getApplicants2x2($id);
+    $content = $admin->getContent();
 
 } else {
     header("Location: ../index.php");
@@ -29,8 +30,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="../images/forcert1.png" />
-    <title>Applicant Requirements</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../images/<?php echo $content[0]['logo']; ?>" />
+    <title><?php echo $content[0]['title_name']; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

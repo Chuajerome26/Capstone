@@ -380,14 +380,14 @@ class Admin
 
     }
     public function getAllEarner($scholar_id){
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM scholar_earner WHERE scholar_id = ?");
+        $stmt = $this->database->getConnection()->prepare("SELECT SUM(earner_income) FROM scholar_earner WHERE scholar_id = ?");
 
         if (!$stmt->execute([$scholar_id])) {
             header("Location: ../newdesign/admin-application.php?error=stmtfail");
             exit();
         }
         //fetch the result
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchColumn();
         
         return $result;
 
