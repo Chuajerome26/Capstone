@@ -260,6 +260,8 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                             $scholar_info = $database->getConnection()->prepare($scholar);
                                             $scholar_info->execute([$user]);
                                             $scholar_data = $scholar_info->fetch(PDO::FETCH_ASSOC);
+
+                                            $pic = $admin->getApplicants2x2($user);
                                         ?>
                                             <li class="list-group-item d-flex justify-content-between align-items-center border-0 border-bottom px-1 m-0" style="font-size: 12px;">
                                                 <div class="d-flex align-items-center">
@@ -329,6 +331,8 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                             $scholar_info = $database->getConnection()->prepare($scholar);
                                             $scholar_info->execute([$user]);
                                             $scholar_data = $scholar_info->fetch(PDO::FETCH_ASSOC);
+
+                                            $pic = $admin->getApplicants2x2($user);
                                         ?>
                                             <li class="list-group-item d-flex justify-content-between align-items-center border-0 border-bottom px-1 m-0" style="font-size: 12px;">
                                                 <div class="d-flex align-items-center">

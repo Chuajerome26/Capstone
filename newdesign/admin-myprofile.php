@@ -9,7 +9,7 @@ $database = new Database();
 $admin = new Admin($database);
 
 
-if (!isset($_SESSION['id']) || ($_SESSION['user_type'] != 3 && $_SESSION['user_type'] != 2)) {
+if (!isset($_SESSION['id']) || ($_SESSION['user_type'] == 3 && $_SESSION['user_type'] == 2 && $_SESSION['user_type'] == 4 && $_SESSION['user_type'] == 6)) {
     header("Location: ../index.php");
     exit();
 }
@@ -323,12 +323,9 @@ document.getElementById('avatarInput').addEventListener('change', function() {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript">
 function goBack() {
-    if (window.history.length > 1) {
-        window.history.go(-2); // Goes back two steps in history
-    } else {
         // Fallback: redirect to a default page or the homepage
         window.location.href = 'dashboard.php';
-    }
+    
 }
 
 </script>
