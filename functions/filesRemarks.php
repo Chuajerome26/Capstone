@@ -119,7 +119,7 @@ ccmf2015main@gmail.com
         $adminIds = $admin->getInterviewerAdminIds();
 
         foreach ($adminIds as $adminId) {
-            $notification = $admin->InsertNotif($user_id, $adminId, "interviewSchedSent", $currentDate1);
+            $notification = $admin->InsertNotif($scholar_id, $adminId, "interviewSchedSent", $currentDate1);
         }
         $message = fileRemarkSuccess($last_name, $date, $convertedTime, $convertedTime1);
         $addRemarks = $admin->addRemarks($scholar_id, $user_id, 1, $message1, $currentDate1);
