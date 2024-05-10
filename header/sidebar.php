@@ -2,16 +2,16 @@
 <?php 
 
 if ($_SESSION['user_type'] == 2) {
-    $notification = "SELECT * FROM notifcation WHERE remarks IN ('applicantApplied', 'applicantFileUpdated') ORDER BY date DESC";
+    $notification = "SELECT * FROM notifcation WHERE remarks IN ('applicantApplied', 'applicantFileUpdated') AND receiver = ? ORDER BY date DESC";
 } else if ($_SESSION['user_type'] == 3) {
-    $notification = "SELECT * FROM notifcation WHERE remarks = 'interviewSchedSent' ORDER BY date DESC";
+    $notification = "SELECT * FROM notifcation WHERE remarks = 'interviewSchedSent' AND receiver = ? ORDER BY date DESC";
 } else if ($_SESSION['user_type'] == 4) {
-    $notification = "SELECT * FROM notifcation WHERE remarks = 'scholarRenewed' ORDER BY date DESC";
+    $notification = "SELECT * FROM notifcation WHERE remarks = 'scholarRenewed' AND receiver = ? ORDER BY date DESC";
 } else {
     $notification = "SELECT * FROM notifcation ORDER BY date DESC";
 }
 $notify = $database->getConnection()->prepare($notification);
-$notify->execute();
+$notify->execute([$id]);
 $notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
 
 ?>
