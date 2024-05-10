@@ -33,6 +33,20 @@ if(isset($_POST["accept"])){
         header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }
+        if($user['scholar_type'] == 3){$
+            $grants = 5000;
+        }elseif($user['scholar_type'] == 2){
+            $grants = 4000;
+        }elseif($user['scholar_type'] == 1){
+            $grants = 2000;
+        }
+
+    $stipend = $database->getConnection()->prepare('INSERT INTO stipend (scholar_id, full_name, scholar_type, grants, date_insert) VALUE (?, ?, ?, ?, CURRENT_TIMESTAMP)');
+
+    if(!$stipend->execute([$id, $user['f_name'].$user['l_name'], $user['scholar_type'], $grants])){
+        header('Location: ../newdesign/admin-application.php?status=error');
+        exit();
+    }
     
     $acceptanceMessage = applicantAccept($user['l_name']);
 
@@ -45,11 +59,7 @@ Details regarding the disbursement of funds and any additional requirements will
     
 Once again, congratulations on this well-deserved achievement. We look forward to witnessing your continued success.
     
-Best regards,
-    
-Executive Director
-Consuelo "CHITO" Madrigal Foundation, Inc.
-ccmf2015main@gmail.com';
+';
 
 
     // $notification = $admin->InsertNotif($user_id, $id, "acceptedApplicants", $currentDate1);

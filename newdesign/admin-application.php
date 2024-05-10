@@ -100,9 +100,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
             $income = $applicant['sh_ave'];
         }
 
-        $appliGrade = $admin->getAllEarner($applicant['scholar_id']);
+        $appliGrade = $admin->getAllEarnerSum($applicant['scholar_id']);
         $pic = $admin->getApplicants2x2($applicant['scholar_id']);
-        $prediction = $admin->predictAcceptanceOfApplicant($appliGrade, $income);
+        $prediction = $admin->predictAcceptanceOfApplicant($income, $appliGrade);
 
         if($prediction <= 100 && $prediction >= 75) {
     ?>
@@ -118,7 +118,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
                 <div class="p-2 ms-auto d-grid gap-2">
                     <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $applicant["scholar_id"];?>">Details</button>
                     <form method="post" action="../functions/scholar-accept.php">
+                        <?php if($applicant['application_status'] == 2): ?>
                         <button class="btn btn-sm btn-primary" type="submit" name="accept">Accept</button>
+                        <?php else: ?>
+                        <button class="btn btn-sm btn-primary" type="submit" name="accept" disabled>Accept</button>
+                        <?php endif; ?>
                         <input type="hidden" name="acceptId" value="<?php echo $applicant['scholar_id']?>">
                     </form>
                 </div>
@@ -191,7 +195,11 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
                             </td>
                                 <td class="d-flex gap-1" style="white-space: nowrap;">
                                     <form method="post" action="../functions/scholar-accept.php">
-                                        <input class="btn btn-sm btn-primary " type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
+                                        <?php if($s['application_status'] == 2): ?>
+                                            <input class="btn btn-sm btn-primary" type="submit" name="accept" value="Accept"><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
+                                        <?php else: ?>
+                                            <input class="btn btn-sm btn-primary" type="submit" name="accept" value="Accept" disabled><input type="hidden" name="acceptId" value="<?php echo $s['scholar_id']?>">
+                                        <?php endif; ?>
                                     </form>
                                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#declineModal<?php echo $s["scholar_id"];?>">Decline</button>
                                     <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#remarks<?php echo $s["scholar_id"];?>"><i class="fa-solid fa-comment text-white"></i></button>
