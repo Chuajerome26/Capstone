@@ -328,7 +328,7 @@ class Admin
     public function getApplicants(){
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_info
                                                         WHERE status = '0'
-                                                        ORDER BY date_apply DESC")->fetchAll();
+                                                        ORDER BY id DESC")->fetchAll();
         return $stmt;
         exit();
     }
