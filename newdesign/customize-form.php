@@ -239,7 +239,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
       <div class="modal-body">
         <form method="post" action="../functions/editContent.php" enctype="multipart/form-data">
         <div class="row">
-            <?php foreach($content_design as $design){ ?>
+            <?php foreach($content as $design){ ?>
             <div class="col-md-12">
                 <label  class="form-label">Title Name:</label>
                 <input type="text" name="titleName" class="form-control form-control-sm" value="<?php echo $design['title_name'] ?>" required>
