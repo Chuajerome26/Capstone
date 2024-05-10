@@ -132,7 +132,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                                 <div class="card-body">
                                         <?php 
                                             $nums = 1;
-                                            foreach($content_design as $des):
+                                            foreach($content as $des):
                                         ?>
                                         <div class="container">
                                             <div class="row justify-content-center align-items-center">
