@@ -113,8 +113,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         <div class="hstack gap-3 mb-3">
                             <div class="p-1">
                                 <a class="navbar-brand d-flex align-items-center m-auto" >
-                                <img src="../images/forcert1.png" alt="Logo" width="60" height="40" class="d-inline-block align-text-top">
-                <span class="ms-2" style="color:#0EDC8D; font-size: 15px;"><strong>Scholarship Management <br>System</strong></span>
+                                <img src="../images/<?php echo $content[0]['logo']; ?>" alt="Logo" width="60" height="40" class="d-inline-block align-text-top">
+                <span class="ms-2" style="color:#0EDC8D; font-size: 15px;"><strong><?php echo $content[0]['title_name']; ?></strong></span>
                                 </a>
                             </div>
                             <div class="p-2 ms-auto"> <a href="index123.php"><i class='bx bx-arrow-back me-2'></i>Back</a></div>

@@ -102,7 +102,12 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
 
             <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top mb-2">
                 <div class="container">
-                <img src="../images/Management1.png" alt="Logo" width="190" height="40" class="d-inline-block align-text-top">
+                <div class="p-1">
+                                <a class="navbar-brand d-flex align-items-center m-auto" >
+                                <img src="../images/<?php echo $content[0]['logo']; ?>" alt="Logo" width="60" height="40" class="d-inline-block align-text-top">
+                <span class="ms-2" style="color:#0EDC8D; font-size: 15px;"><strong><?php echo $content[0]['title_name']; ?></strong></span>
+                                </a>
+                            </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
