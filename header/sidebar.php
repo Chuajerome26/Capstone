@@ -3,16 +3,26 @@
 
 if ($_SESSION['user_type'] == 2) {
     $notification = "SELECT * FROM notifcation WHERE remarks IN ('applicantApplied', 'applicantFileUpdated') AND receiver = ? ORDER BY date DESC";
+    $notify = $database->getConnection()->prepare($notification);
+    $notify->execute([$id]);
+    $notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
 } else if ($_SESSION['user_type'] == 3) {
     $notification = "SELECT * FROM notifcation WHERE remarks = 'interviewSchedSent' AND receiver = ? ORDER BY date DESC";
+    $notify = $database->getConnection()->prepare($notification);
+    $notify->execute([$id]);
+    $notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
 } else if ($_SESSION['user_type'] == 4) {
     $notification = "SELECT * FROM notifcation WHERE remarks = 'scholarRenewed' AND receiver = ? ORDER BY date DESC";
+    $notify = $database->getConnection()->prepare($notification);
+    $notify->execute([$id]);
+    $notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
 } else {
     $notification = "SELECT * FROM notifcation ORDER BY date DESC";
+    $notify = $database->getConnection()->prepare($notification);
+    $notify->execute();
+    $notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
 }
-$notify = $database->getConnection()->prepare($notification);
-$notify->execute([$id]);
-$notifications = $notify->fetchAll(PDO::FETCH_ASSOC); // Fetch all rows
+
 
 ?>
 <style>   
