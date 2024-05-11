@@ -170,13 +170,13 @@ class Scholar{
         $result123 = $stmt1234->fetchAll();
         
         //query for new GWA
-        $stmtgwa = $this->database->getConnection()->prepare("SELECT * FROM customize_gwa");
+        $stmtScholarshipTypes = $this->database->getConnection()->prepare("SELECT scholar_type, min_gwa, max_gwa FROM customize_gwa");
 
-            if (!$stmtgwa->execute()) {
+            if (!$stmtScholarshipTypes->execute()) {
                 header("Location: ../newdesign/customize-gwa.php?error=stmtfail");
                 exit();
             }
-        $newgwa = $stmtgwa->fetchColumn();
+        $scholarshipTypes = $stmtScholarshipTypes->fetchAll(PDO::FETCH_ASSOC);
 
         $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM login WHERE user=?");
 
@@ -200,26 +200,23 @@ class Scholar{
         $stmt = $this->database->getConnection()->prepare($sql);
 
         // Define the scholar type based on studType and corresponding average
-        if ($scholarData['studType'] == 'Senior High Graduate') {
-            if (($scholarData['shAve'] >= 95 && $scholarData['shAve'] <= 100) || ($scholarData['shAve'] >= 1.0 && $scholarData['shAve'] <= 1.5)) {
-                $scholar_type = 3;
-            } elseif (($scholarData['shAve'] >= 90 && $scholarData['shAve'] <= 94) || ($scholarData['shAve'] >= 1.6 && $scholarData['shAve'] <= 1.9)) {
-                $scholar_type = 2;
-            } elseif (($scholarData['shAve'] >= 85 && $scholarData['shAve'] <= 89) || ($scholarData['shAve'] >= 2.0 && $scholarData['shAve'] <= 2.25)) {
-                $scholar_type = 1;
-            } else {
-                $scholar_type = 0;
+        foreach ($scholarshipTypes as $isko) {
+            if ($scholarData['studType'] == 'Senior High Graduate') {
+                if (($scholarData['shAve'] >= $isko['min_gwa'] && $scholarData['shAve'] <= $isko['max_gwa'])) {
+                    $scholar_type = $isko['scholar_type'];
+                    break;
+                }
+            } elseif ($scholarData['studType'] == 'College') {
+                if (($scholarData['cAve'] >= $isko['min_gwa'] && $scholarData['cAve'] <= $isko['max_gwa'])) {
+                    $scholar_type = $isko['scholar_type'];
+                    break;
+                }
             }
-        } elseif ($scholarData['studType'] == 'College') {
-            if (($scholarData['cAve'] >= 1.0 && $scholarData['cAve'] <= 1.5) || ($scholarData['cAve'] >= 95 && $scholarData['cAve'] <= 100)) {
-                $scholar_type = 3;
-            } elseif (($scholarData['cAve'] >= 1.6 && $scholarData['cAve'] <= 1.9) || ($scholarData['cAve'] >= 90 && $scholarData['cAve'] <= 94)) {
-                $scholar_type = 2;
-            } elseif (($scholarData['cAve'] >= 2.0 && $scholarData['cAve'] <= 2.25) || ($scholarData['cAve'] >= 85 && $scholarData['cAve'] <= 89)) {
-                $scholar_type = 1;
-            } else {
-                $scholar_type = 0;
-            }
+        }
+
+        // If no matching scholarship type is found, set default scholar type
+        if (!isset($scholar_type)) {
+            $scholar_type = 0; // Set default scholar type or handle differently based on your requirements
         }
         echo $scholarData['studType'];
         //if execution fail

@@ -204,7 +204,7 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                             $newNotificationCount = $admin->countNewNotifications($id);
                             if ($newNotificationCount > 0):
                             ?>
-                            <span class="badge bg-danger notification-count"><?php echo $newNotificationCount; ?></span>
+                            <span class="badge bg-danger notification-count<?php echo $newNotificationCount > 0 ? '' : ' d-none'; ?>"><?php echo $newNotificationCount; ?></span>
                             <?php endif; ?>
                         </div>
                     </a>
@@ -328,6 +328,12 @@ $(document).ready(function() {
         success: function(count) {
             // Update notification count on the page
             $('.notification-count').text(count);
+
+            if (count == 0) {
+                $('.notification-count').addClass('d-none');
+            } else {
+                $('.notification-count').removeClass('d-none');
+            }
         },
         error: function(xhr, status, error) {
             console.error('Error fetching notification count:', error);

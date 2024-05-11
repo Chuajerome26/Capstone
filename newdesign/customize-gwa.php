@@ -224,7 +224,7 @@ foreach($scho_info as $i){
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes, delete it!"
         }).then((result) => {
-            window.location.href = '../functions/deleteReq.php?id='+id;
+            window.location.href = '../functions/deleteGwa.php?id='+id;
         });
     }
     </script>
