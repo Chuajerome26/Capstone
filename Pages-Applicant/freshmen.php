@@ -812,8 +812,10 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                         <div class="col-md-4 mb-3">
                             <label  class="form-label">Last School Year Attended (From: To: ):<span class="text-danger">*</span></label>
-                            <input type="number" name="schoYear" id="schoYear" class="form-control form-control-sm" placeholder="E.g. 2022 - 2023" required>
+                            <input type="text" name="schoYear" id="schoYear" class="form-control form-control-sm" placeholder="E.g. 2022 - 2023" required>
                         </div>
+
+
 
                         <div class="col-md-3 mb-3">
                             <label  class="form-label">General Weighted Average:<span class="text-danger">*</span></label>
@@ -862,6 +864,29 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     
 
                 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                <script>
+    document.getElementById('schoYear').addEventListener('input', function(event) {
+        let inputValue = event.target.value;
+        // Replace any non-digit and non-dash characters with an empty string
+        inputValue = inputValue.replace(/[^\d-]/g, '');
+        // Ensure that there's only one dash present
+        inputValue = inputValue.replace(/-+/g, '-');
+        // Set the sanitized value back to the input field
+        event.target.value = inputValue;
+    });
+</script>
+
+<script>
+    document.getElementById('cAve').addEventListener('input', function(event) {
+        let inputValue = event.target.value;
+        // Match only numbers or numbers with up to one decimal point
+        let regex = /^\d+(\.\d{0,2})?$/;
+        // If the input matches the regex, allow the input, otherwise, remove the last character
+        if (!regex.test(inputValue)) {
+            event.target.value = inputValue.slice(0, -1);
+        }
+    });
+</script>
                 <script>
 
 function handleFiles(event, previewContainerId, fileTypes) {
