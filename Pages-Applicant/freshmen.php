@@ -653,7 +653,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <!--Mother-->
                 <div class="row">
                 <div class="col-md-2 mb-3">
-                    <label  class="form-label">Mother's First Name:</label>
+                    <label  class="form-label">(Maiden Name of Mother)<br>Mother's First Name:</label>
                     <input type="text" name="motherFName" id="motherFName" class="form-control form-control-sm" placeholder="Mother First Name">
                 </div>
                 <div class="col-md-2 mb-3">
@@ -661,7 +661,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <input type="text" name="motherMName" id="motherMName" class="form-control form-control-sm" placeholder="Mother Middle Name">
                 </div>
                 <div class="col-md-2 mb-3">
-                    <label  class="form-label">Mother's Maiden Name:</label>
+                    <label  class="form-label">Mother's Last Name:</label>
                     <input type="text" name="motherLName" id="motherLName"class="form-control form-control-sm" placeholder="Mother Maiden Name">
                 </div>
                 <div class="col-md-2 mb-3">
@@ -733,8 +733,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="row">
                     <div class="col-md-4 mb-3">
                         <label  class="form-label">Senior High School Name:<span class="text-danger">*</span></label>
-                        <input type="text" name="shSchool" class="form-control form-control-sm" placeholder="Senior High School" required>
+                        <input type="text" name="shSchool" class="form-control form-control-sm" placeholder="Senior High School" required oninput="this.value = this.value.replace(/[0-9]/g, '');">
                     </div>
+                    
                     
                     <div class="col-md-3 mb-3">
                         <label  class="form-label">Track/Strand:</label>
@@ -801,7 +802,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label  class="form-label">College Name:<span class="text-danger">*</span></label>
-                            <input type="text" name="cSchool" class="form-control form-control-sm" placeholder="College Name" required>
+                            <input type="text" name="cSchool" class="form-control form-control-sm" placeholder="College Name" required oninput="this.value = this.value.replace(/[0-9]/g, '');">
                         </div>
 
                         <div class="col-md-4 mb-3">
@@ -810,7 +811,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <label  class="form-label">School Years Attended (From: To: ):<span class="text-danger">*</span></label>
+                            <label  class="form-label">Last School Year Attended (From: To: ):<span class="text-danger">*</span></label>
                             <input type="text" name="schoYear" id="schoYear" class="form-control form-control-sm" placeholder="E.g. 2022 - 2023" required>
                         </div>
 
