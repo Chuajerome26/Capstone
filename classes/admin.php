@@ -184,7 +184,10 @@ class Admin
             $stmt->execute([':date' => $formattedDate, ':start' => date('H:i', $startTime), ':end' => date('H:i', $endTimeSlot)]);
             $count = $stmt->fetchColumn();
 
-            if($count == 0){
+            if($count > 0){
+                // A schedule already exists in the database for this time slot, skip insertion
+                continue;
+            }
                 // The schedule doesn't exist in the database, insert it
                 $sql = "INSERT INTO admin_schedule_interview (scholar_id, date, mode_interview, i_f_interview, time_start, time_end) VALUES (:id, :date, :mode, :type, :start, :end)";
                 $stmt = $this->database->getConnection()->prepare($sql);
@@ -196,7 +199,6 @@ class Admin
                     'start' => date('H:i', $startTime),
                     'end' => date('H:i', $endTimeSlot)
                 ];
-            }
     
             $startTime = $endTimeSlot;
         }
