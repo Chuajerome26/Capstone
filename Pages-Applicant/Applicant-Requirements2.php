@@ -299,11 +299,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
       </div>
       <div class="modal-body">
        <ul>
-        <li>Academic Rank 1 - Applicants with a GWA between 1 - 1.5 </li>
-        <li>Academic Rank 2 - Applicants with a GWA between 1.4 - 1.9 </li>
-        <li>Economic - Applicants with a GWA between 2 - 2.25 </li>
-    </ul>
-      
+       <?php
+        $GwaReq = $admin->getGwaRequirement();
+        foreach($GwaReq as $g){
+        ?>
+            <li><?php echo $g['scholar_type'];?> - Applicants with a GWA between <?php echo $g['min_gwa'];?> - <?php echo $g['max_gwa'];?> </li>
+        <?php }?>
+        </ul>
       </div>
       <div class="modal-footer d-flex justify-content-center">
     <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #0EDC8D;">OK</button>
@@ -313,18 +315,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
   </div>
 </div>
 
-                                                <?php
-                                                if ($a['scholar_type'] == 3) {
-                                                    $schoType = "Academic Rank 1";
-                                                } elseif ($a['scholar_type'] == 2) {
-                                                    $schoType = "Academic Rank 2";
-                                                } elseif ($a['scholar_type'] == 1) {
-                                                    $schoType = "Economic Scholarship";
-                                                }else{
-                                                    $schoType = "Not Qualified";
-                                                }
-                                                echo $schoType;
-                                                ?>
+                                            <?php echo $a['scholar_type'];?>
                                                 
                                             &nbsp; <i class="fas fa-info-circle" data-toggle="modal" data-target="#scholarshipTypeModal" style="cursor: pointer;"></i>
 

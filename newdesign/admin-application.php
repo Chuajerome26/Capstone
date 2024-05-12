@@ -445,20 +445,7 @@ $appliData1 = $admin->getApplicants();
                                     <dd class="col-sm-6"><?php echo $a['studType'];?></dd>
 
                                     <dt class="col-sm-5">Scholarship Type:</dt>
-                                        <dd class="col-sm-7">
-                                        <?php
-                                        if ($a['scholar_type'] == 3) {
-                                                    $schoType = "Academic Rank 1";
-                                        } elseif ($a['scholar_type'] == 2) {
-                                                    $schoType = "Academic Rank 2";
-                                        } elseif ($a['scholar_type'] == 1) {
-                                                    $schoType = "Economic Scholarship";
-                                        }else{
-                                                    $schoType = "Not Qualified";
-                                        }
-                                        echo $schoType;
-                                        ?>
-                                    </dd>
+                                    <dd class="col-sm-6"><?php echo $a['scholar_type'];?></dd>
                                 </div>
                             </div>
 

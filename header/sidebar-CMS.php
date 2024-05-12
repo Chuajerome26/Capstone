@@ -222,10 +222,12 @@ overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
                                             $scholar_info = $database->getConnection()->prepare($scholar);
                                             $scholar_info->execute([$user]);
                                             $scholar_data = $scholar_info->fetch(PDO::FETCH_ASSOC);
+
+                                            $pic = $admin->getApplicants2x2($user);
                                         ?>
                                             <li class="list-group-item d-flex justify-content-between align-items-center border-0 border-bottom px-1 m-0" style="font-size: 12px;">
                                                 <div class="d-flex align-items-center">
-                                                    <img src="" width="50" height="45" alt="" class="rounded-circle shadow" style="max-width: 50px; max-height: 45px;" />
+                                                    <img src="../Scholar_files/<?php echo $pic[0]['file_name']; ?>" width="50" height="45" alt="" class="rounded-circle shadow" style="max-width: 50px; max-height: 45px;" />
                                                     <div class="ms-3">
                                                         <div class="fw-bold">
                                                             <?php echo $scholar_data['fname']; ?> <?php echo $scholar_data['lname']; ?>

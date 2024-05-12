@@ -49,18 +49,11 @@ $data = '
             $num = 1;
             foreach ($scholarInfo as $isko) {
                 $dateApplied = date("F d, Y", strtotime($isko['date_apply']));
-                if($isko['scholar_type'] = 3){
-                    $scho_type = "Academic Rank 1";
-                }else if($isko['scholar_type'] = 2){
-                    $scho_type = "Academic Rank 2";
-                }else if($isko['scholar_type'] = 1){
-                    $scho_type = "Economic";
-                }
                 $data .= '<tr>
                             <td class="column1">' . $num . '</td>
                             <td class="column2">' . $isko['f_name'] .' '. $isko['l_name'] .'</td>
                             <td class="column2">'. $isko['studType'] .'</td>
-                            <td class="column2">'. $scho_type .'</td>
+                            <td class="column2">'. $isko['scholar_type'] .'</td>
                             <td class="column2">'. $dateApplied .'</td>
                         </tr>';
                 $num++;
@@ -82,14 +75,6 @@ $data = '
                 $num = 1;
                 foreach ($applicantInfo  as $appli) {
                     $dateApplied = date("F d, Y", strtotime($appli['date_apply']));
-                    if($appli['scholar_type'] = 3){
-                        $scho_type = "Academic Rank 1";
-                    }else if($appli['scholar_type'] = 2){
-                        $scho_type = "Academic Rank 2";
-                    }else if($appli['scholar_type'] = 1){
-                        $scho_type = "Economic";
-                    }
-
                     //scholarship status
                     if ($appli['application_status'] == 0) {
                         $scho_status = "For Evaluation";
@@ -102,7 +87,7 @@ $data = '
                                 <td class="column1">' . $num . '</td>
                                 <td class="column2">' . $appli['f_name'] .' '. $appli['l_name'] .'</td>
                                 <td class="column2">'. $appli['studType'] .'</td>
-                                <td class="column2">'. $scho_type .'</td>
+                                <td class="column2">'. $appli['scholar_type'] .'</td>
                                 <td class="column2">'. $scho_status .'</td>
                                 <td class="column2">'. $dateApplied .'</td>
                             </tr>';
@@ -125,17 +110,10 @@ $data = '
                     $num = 1;
                     foreach ($stipendInfo  as $stipend) {
                         $dateInsert  = date("F d, Y", strtotime($stipend['date_insert']));
-                        if($stipend['scholar_type'] = 3){
-                            $scho_type = "Academic Rank 1";
-                        }else if($stipend['scholar_type'] = 2){
-                            $scho_type = "Academic Rank 2";
-                        }else if($stipend['scholar_type'] = 1){
-                            $scho_type = "Economic";
-                        }
                         $data .= '<tr>
                                     <td class="column1">' . $num . '</td>
                                     <td class="column2">' . $stipend['full_name'] .'</td>
-                                    <td class="column2">'. $scho_type .'</td>
+                                    <td class="column2">'. $stipend['scholar_type'] .'</td>
                                     <td class="column2">'. $stipend['grants'] .'</td>
                                     <td class="column2">'. $dateInsert .'</td>
                                     <td class="column2">'. $stipend['reference_number'] .'</td>

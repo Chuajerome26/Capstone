@@ -158,6 +158,25 @@ class Scholar{
 
         }
     }
+    function convertToDecimal($grade) {
+        if ($grade >= 90 && $grade <= 99) {
+            return 1;
+        } elseif ($grade >= 85 && $grade < 90) {
+            return 2;
+        } elseif ($grade >= 80 && $grade < 85) {
+            return 2.5;
+        } elseif ($grade >= 75 && $grade < 80) {
+            return 3;
+        } elseif ($grade >= 70 && $grade < 75) {
+            return 3.5;
+        } elseif ($grade >= 65 && $grade < 70) {
+            return 4;
+        } elseif ($grade >= 60 && $grade < 65) {
+            return 4.5;
+        } else {
+            return 5;
+        }
+    }
 
     public function registerEmployee($scholarData, $scholarFiles, $status123){
 
@@ -168,15 +187,6 @@ class Scholar{
                 exit();
             }
         $result123 = $stmt1234->fetchAll();
-        
-        //query for new GWA
-        $stmtScholarshipTypes = $this->database->getConnection()->prepare("SELECT scholar_type, min_gwa, max_gwa FROM customize_gwa");
-
-            if (!$stmtScholarshipTypes->execute()) {
-                header("Location: ../newdesign/customize-gwa.php?error=stmtfail");
-                exit();
-            }
-        $scholarshipTypes = $stmtScholarshipTypes->fetchAll(PDO::FETCH_ASSOC);
 
         $stmtScholarID = $this->database->getConnection()->prepare("SELECT id FROM login WHERE user=?");
 
@@ -188,6 +198,14 @@ class Scholar{
         //fetch the employeeID
         $scholarId = $stmtScholarID->fetchColumn();
 
+        //query for new GWA
+        $stmtScholarshipTypes = $this->database->getConnection()->prepare("SELECT * FROM customize_gwa");
+
+            if (!$stmtScholarshipTypes->execute()) {
+                header("Location: ../newdesign/customize-gwa.php?error=stmtfail");
+                exit();
+            }
+        $scholarshipTypes = $stmtScholarshipTypes->fetchAll();
 
         // prepare insert statement for employee table 38
         $sql = "INSERT INTO scholar_info 
@@ -202,23 +220,43 @@ class Scholar{
         // Define the scholar type based on studType and corresponding average
         foreach ($scholarshipTypes as $isko) {
             if ($scholarData['studType'] == 'Senior High Graduate') {
-                if (($scholarData['shAve'] >= $isko['min_gwa'] && $scholarData['shAve'] <= $isko['max_gwa'])) {
-                    $scholar_type = $isko['scholar_type'];
-                    break;
+                // Check if the user's input grade is a whole number
+                if ($scholarData['shAve'] == intval($scholarData['shAve'])) {
+                    // Convert user input grade to decimal equivalent
+                    $shAveDecimal = $this->convertToDecimal($scholarData['shAve']);
+                    if (($shAveDecimal >= $isko['min_gwa'] && $shAveDecimal <= $isko['max_gwa'])) {
+                        $scholar_type = $isko['scholar_type'];
+                        break;
+                    }
+                } else {
+                    // Use the user's input grade directly for comparison
+                    if (($scholarData['shAve'] >= $isko['min_gwa'] && $scholarData['shAve'] <= $isko['max_gwa'])) {
+                        $scholar_type = $isko['scholar_type'];
+                        break;
+                    }
                 }
             } elseif ($scholarData['studType'] == 'College') {
-                if (($scholarData['cAve'] >= $isko['min_gwa'] && $scholarData['cAve'] <= $isko['max_gwa'])) {
-                    $scholar_type = $isko['scholar_type'];
-                    break;
+                // Check if the user's input grade is a whole number
+                if ($scholarData['cAve'] == intval($scholarData['cAve'])) {
+                    // Convert user input grade to decimal equivalent
+                    $cAveDecimal = $this->convertToDecimal($scholarData['cAve']);
+                    if (($cAveDecimal >= $isko['min_gwa'] && $cAveDecimal <= $isko['max_gwa'])) {
+                        $scholar_type = $isko['scholar_type'];
+                        break;
+                    }
+                } else {
+                    // Use the user's input grade directly for comparison
+                    if (($scholarData['cAve'] >= $isko['min_gwa'] && $scholarData['cAve'] <= $isko['max_gwa'])) {
+                        $scholar_type = $isko['scholar_type'];
+                        break;
+                    }
                 }
             }
         }
-
         // If no matching scholarship type is found, set default scholar type
         if (!isset($scholar_type)) {
-            $scholar_type = 0; // Set default scholar type or handle differently based on your requirements
+            $scholar_type = "Not Qualified";
         }
-        echo $scholarData['studType'];
         //if execution fail
         if (!$stmt->execute([$scholarId, 
                             $scholarData['fName'],
