@@ -179,13 +179,17 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
             <div class="modal fade" id="changeTypeModal<?php echo $ad["id"];?>" tabindex="-1" aria-labelledby="changeTypeModalLabel<?php echo $ad["id"];?>" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header" style="background-color:#8DECB4">
                             <h5 class="modal-title" id="changeTypeModalLabel<?php echo $ad["id"];?>">Change Admin Type</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                         <form method="post" action="../functions/adminType-update.php">
                             <label for="adminTypeSelect">Select Admin Type:</label>
+                            
+                            <span style="margin-left: 150px; font-weight: bold;">Access Per User Level</span>
+                            <i class="fa fa-question-circle mt-1"  style="float:right; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+ 
                             <select class="form-select" name="admin_type" required>
                                 <option value="" disabled selected>Admin Type</option>
                                 <option value="4">Accountant (Responsible for renewal and stipend)</option>
@@ -203,7 +207,31 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                 </div>
             </div>
             <?php }?>
-            <!--Modal end-->  
+            <!--Modal end--> 
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="background-color:#8DECB4">
+                                            <h5 class="modal-title" id="myModalLabel">Access Per User Level</h5>
+                                            
+                                                
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul>
+                                                <li class="mb-2"><a style="font-weight:bold">Evaluator</a> - Only can Access the Applicant Tab</li>
+                                                <li class="mb-2"><a style="font-weight:bold">Interviewer</a> - Only can Access the Schedule Interview Tab</li>
+                                                <li class="mb-2"><a style="font-weight:bold">Accountant </a>- Only can Access the Stipend Process, Renewal and Done Renewal Tabs</li>
+                                                
+            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button"  class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#changeTypeModal<?php echo $s["id"];?>">Back</button>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+            </div>
 
             <!--Modal for adding admin-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -279,7 +307,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
     </script>
 
     
-    
+    <script>
+
+document1.getElementById("myIcon").addEventListener("click", function() {
+  $('#my').modal1('show');
+});
+        </script>
 
     
     
