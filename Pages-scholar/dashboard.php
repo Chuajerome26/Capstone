@@ -418,19 +418,9 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                                                 <dd class="col-sm-7"><?php echo $a['med_condition'];?></dd>
 
                                                 <dt class="col-sm-5">Scholarship Type:</dt>
-                                                <dd class="col-sm-7">
-                                                <?php
-                                                if($a['scholar_type'] == 3){
-                                                    $type = 'Academic Rank 1';
-                                                }
-                                                else if($a['scholar_type'] == 2){
-                                                    $type = 'Academic Rank 2';
-                                                }
-                                                else if($a['scholar_type'] == 1){
-                                                    $type = 'Economic Scholarship';
-                                                }
-                                                echo $type;
-                                                ?></dd>
+                                                <dd class="col-sm-7"><?php echo $a['scholar_type'];?>
+                                                
+                                                </dd>
                                                 </dl>
                                             </div>
 
