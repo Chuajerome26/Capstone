@@ -812,7 +812,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                         <div class="col-md-4 mb-3">
                             <label  class="form-label">Last School Year Attended (From: To: ):<span class="text-danger">*</span></label>
-                            <input type="text" name="schoYear" id="schoYear" class="form-control form-control-sm" placeholder="E.g. 2022 - 2023" required>
+                            <input type="number" name="schoYear" id="schoYear" class="form-control form-control-sm" placeholder="E.g. 2022 - 2023" required>
                         </div>
 
                         <div class="col-md-3 mb-3">
