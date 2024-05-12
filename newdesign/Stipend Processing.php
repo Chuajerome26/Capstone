@@ -97,17 +97,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
   <tbody class="table-group-divider">
     <?php 
       foreach($stipend as $stip){
-        if($stip['scholar_type'] == 3){
-          $scho_type = '<span class="badge bg-warning" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 1</span>';
-          $grants = '5000';
-        }elseif($stip['scholar_type'] == 2){
-          $scho_type = '<span class="badge bg-info" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 2</span>';
-          $grants = '4000';
-        }elseif($stip['scholar_type'] == 1){
-          $scho_type = '<span class="badge bg-primary" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Economic</span>';
-          $grants = '2000';
-        }
-
         if($stip['status'] == 0){
           $status = '<span class="badge bg-primary">To Send</span>';
         }elseif($stip['status'] == 1){
@@ -122,17 +111,17 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
     ?>
     <tr>
       <th scope="col">1</th>
-      <td style="white-space: nowrap;"><?php echo $stip['scholar_id'] ?></td>
-      <td style="white-space: nowrap;"><?php echo $stip['full_name'] ?></td>
-      <td style="white-space: nowrap;"><?php echo $scho_type; ?></td>
-      <td style="white-space: nowrap;"><?php echo $grants; ?></td>
+      <td style="white-space: nowrap;"><?php echo $stip['scholar_id']; ?></td>
+      <td style="white-space: nowrap;"><?php echo $stip['full_name']; ?></td>
+      <td style="white-space: nowrap;"><?php echo $stip['scholar_type']; ?></td>
+      <td style="white-space: nowrap;"><?php echo $stip['grants']; ?></td>
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
       <td style="white-space: nowrap;"><a href="../certificates/<?php echo $cert; ?>" target="_blank">Generated</a></td>
       <td style="white-space: nowrap;">
       <form method="post" action="../admin/stipend.php">
         <input type="hidden" name="scholar_id" value="<?php echo $stip['scholar_id']; ?>">
         <input type="hidden" name="f_name" value="<?php echo $stip['full_name']; ?>">
-        <input type="hidden" name="grants" value="<?php echo $grants; ?>">
+        <input type="hidden" name="grants" value="<?php echo $stip['grants']; ?>">
         <input type="hidden" name="id" value="<?php echo $stip['id']; ?>">
         
         <button class="btn btn-sm btn-primary" type="submit" name="sendCert">Send Stipend</button>

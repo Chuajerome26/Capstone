@@ -108,7 +108,8 @@ $data = '
                     <tr style="text-align:center; font-weight: bold; color: white; background-color: #0d6efd;">
                         <td class="column1" style="text-align: center; color: white;">#</td>
                         <td class="column2" style="text-align: center; color: white;">Name</td>
-                        <td class="column2" style="text-align: center; color: white;">Scholarship Type</td> 
+                        <td class="column2" style="text-align: center; color: white;">Scholarship Type</td>
+                        <td class="column2" style="text-align: center; color: white;">Status</td> 
                         <td class="column2" style="text-align: center; color: white;">Grant</td> 
                         <td class="column2" style="text-align: center; color: white;">Date Processed</td>
                         <td class="column2" style="text-align: center; color: white;">Reference Number</td>
@@ -117,10 +118,16 @@ $data = '
                     $num = 1;
                     foreach ($stipendInfo  as $stipend) {
                         $dateInsert  = date("F d, Y", strtotime($stipend['date_insert']));
+                        if($stipend['status'] == 0){
+                            $status = "To send";
+                          }elseif($stipend['status'] == 1){
+                            $status = "Sent";
+                          }
                         $data .= '<tr>
                                     <td class="column1">' . $num . '</td>
                                     <td class="column2">' . $stipend['full_name'] .'</td>
                                     <td class="column2">'. $stipend['scholar_type'] .'</td>
+                                    <td class="column2">'. $status .'</td>
                                     <td class="column2">'. $stipend['grants'] .'</td>
                                     <td class="column2">'. $dateInsert .'</td>
                                     <td class="column2">'. $stipend['reference_number'] .'</td>

@@ -767,7 +767,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                     <div class="col-md-3 mb-3">
                         <label  class="form-label">General Weighted Average:<span class="text-danger">*</span></label>
-                        <input type="text" name="shAve" id="shAve" class="form-control form-control-sm" placeholder="General Weighted Average" required>
+                        <input type="text" name="shAve" id="shAve" class="form-control form-control-sm" placeholder="E.g. 98, 95, 90, 85..." required>
                     </div>
 
                     <div class="col-md-3 mb-3">
@@ -819,7 +819,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                         <div class="col-md-3 mb-3">
                             <label  class="form-label">General Weighted Average:<span class="text-danger">*</span></label>
-                            <input type="text" name="cAve" id="cAve" class="form-control form-control-sm" placeholder="General Weighted Average" required>
+                            <input type="text" name="cAve" id="cAve" class="form-control form-control-sm" placeholder="E.g. 1, 1.5, 2, 2.25..." required>
                         </div>
 
                         <div class="col-md-3 mb-3">

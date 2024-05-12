@@ -14,6 +14,11 @@ if(isset($_POST['submit'])){
     $info = $scholar->findById($getStatus[0]['scholar_id']);
 
     $email = $info['email'];
+
+    // Fetch the grants based on the scholar's type
+    $stmtScholarshipTypes = $database->getConnection()->prepare("SELECT grants FROM customize_gwa WHERE scholar_type = :type");
+    $stmtScholarshipTypes->execute(['type' => $getStatus['scholar_type']]);
+    $grant = $stmtScholarshipTypes->fetchColumn();
     
     $file1 = isset($_POST['GradeSlip']) ? $_POST['GradeSlip']:$getStatus[0]['file1_status'];
     $file1_remarks = isset($_POST['GradeSlip_remarks']) ? $_POST['GradeSlip_remarks']:'';
@@ -26,17 +31,9 @@ if(isset($_POST['submit'])){
         $getStatus1 = $scholar->getRenewalNewInfoById($id);
         if($getStatus1[0]['file1_status'] == 1 && $getStatus1[0]['file2_status'] == 1){
 
-            if($getStatus1[0]['scholar_type'] == 3){
-                $grants = 5000;
-            }elseif($getStatus1[0]['scholar_type'] == 2){
-                $grants = 4000;
-            }elseif($getStatus1[0]['scholar_type'] == 1){
-                $grants = 2000;
-            }
-
             $stmt = $database->getConnection()->prepare('INSERT INTO stipend (scholar_id, full_name, scholar_type, grants, date_insert, reference_number) VALUE (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)');
 
-            if(!$stmt->execute([$getStatus1[0]['scholar_id'], $getStatus1[0]['full_name'], $getStatus1[0]['scholar_type'], $grants,  $getStatus1[0]['reference_number']])){
+            if(!$stmt->execute([$getStatus1[0]['scholar_id'], $getStatus1[0]['full_name'], $getStatus1[0]['scholar_type'], $grant,  $getStatus1[0]['reference_number']])){
                 header('Location: ../newdesign/admin-application.php?status=error');
                 exit();
             }

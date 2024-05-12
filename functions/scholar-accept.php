@@ -20,6 +20,12 @@ if(isset($_POST["accept"])){
     $user = $stmt->fetch();
 
     $email = $user['email'];
+
+    // Fetch the grants based on the scholar's type
+    $stmtScholarshipTypes = $database->getConnection()->prepare("SELECT grants FROM customize_gwa WHERE scholar_type = :type");
+    $stmtScholarshipTypes->execute(['type' => $user['scholar_type']]);
+    $grant = $stmtScholarshipTypes->fetchColumn();
+    
     $stmt = $database->getConnection()->prepare('UPDATE scholar_info SET status = 1, application_status = 3 WHERE scholar_id = :id');
 
     if(!$stmt->execute(['id' => $id])){
@@ -33,17 +39,10 @@ if(isset($_POST["accept"])){
         header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }
-        if($user['scholar_type'] == 3){$
-            $grants = 5000;
-        }elseif($user['scholar_type'] == 2){
-            $grants = 4000;
-        }elseif($user['scholar_type'] == 1){
-            $grants = 2000;
-        }
 
     $stipend = $database->getConnection()->prepare('INSERT INTO stipend (scholar_id, full_name, scholar_type, grants, date_insert) VALUE (?, ?, ?, ?, CURRENT_TIMESTAMP)');
 
-    if(!$stipend->execute([$id, $user['f_name'].$user['l_name'], $user['scholar_type'], $grants])){
+    if(!$stipend->execute([$id, $user['f_name'].$user['l_name'], $user['scholar_type'], $grant])){
         header('Location: ../newdesign/admin-application.php?status=error');
         exit();
     }
