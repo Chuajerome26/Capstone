@@ -8,7 +8,10 @@ $scholar = new Scholar($database);
 $scholarInfo = $scholar->getAllScholars();
 $applicantInfo = $scholar->getAllApplicants();
 $stipendInfo = $scholar->getAllStipend();
+
 $month = date('F');
+$date = date('Y-m-d');
+$timestamp = time();
 
 $mdpf = new \Mpdf\Mpdf(['format' => 'LETTER']);
 
@@ -31,8 +34,12 @@ $data = '
         table {
             font-size: 13px;
         }
+        p{
+            font-size: 12px;
+            font-style: italic;
+        }
     </style>
-
+    <p>Date: '. date('F j, Y \T\i\m\e: h:iA') .'</p>
     <div class="container" style="font-family: Bahnschrift;">
         <h2 style="margin-bottom: 20px; text-align: center;">Data Report for the Month of '.$month.'</h2>
         <h2 style="margin-top: 0; text-align: center;">Current Scholars</h2>
@@ -125,8 +132,6 @@ $data = '
 ';
 
 $mdpf->WriteHTML($data);
-$date = date('Y-m-d');
-$timestamp = time(); // get current timestamp
 $filename = 'Data_Report_of_'.$date.'-' . $timestamp . '.pdf';
 
 $mdpf->Output($filename, 'D');

@@ -205,7 +205,7 @@ class Scholar{
                 header("Location: ../newdesign/customize-gwa.php?error=stmtfail");
                 exit();
             }
-        $scholarshipTypes = $stmtScholarshipTypes->fetchAll();
+        $scholarshipTypes = $stmtScholarshipTypes->fetchAll(PDO::FETCH_ASSOC);
 
         // prepare insert statement for employee table 38
         $sql = "INSERT INTO scholar_info 
@@ -236,20 +236,10 @@ class Scholar{
                     }
                 }
             } elseif ($scholarData['studType'] == 'College') {
-                // Check if the user's input grade is a whole number
-                if ($scholarData['cAve'] == intval($scholarData['cAve'])) {
-                    // Convert user input grade to decimal equivalent
-                    $cAveDecimal = $this->convertToDecimal($scholarData['cAve']);
-                    if (($cAveDecimal >= $isko['min_gwa'] && $cAveDecimal <= $isko['max_gwa'])) {
-                        $scholar_type = $isko['scholar_type'];
-                        break;
-                    }
-                } else {
-                    // Use the user's input grade directly for comparison
-                    if (($scholarData['cAve'] >= $isko['min_gwa'] && $scholarData['cAve'] <= $isko['max_gwa'])) {
-                        $scholar_type = $isko['scholar_type'];
-                        break;
-                    }
+                // Use the user's input grade directly for comparison
+                if (($scholarData['cAve'] >= $isko['min_gwa'] && $scholarData['cAve'] <= $isko['max_gwa'])) {
+                    $scholar_type = $isko['scholar_type'];
+                    break;
                 }
             }
         }

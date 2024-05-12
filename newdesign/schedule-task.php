@@ -260,7 +260,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
 <?php
 $applicantss = $admin->getApplicants();
 foreach($applicantss as $app) {
-    $id = $b["scholar_id"];
+    $id = $app["scholar_id"];
 ?>
 
 <div class="modal fade" id="remarksModal<?php echo $app["scholar_id"];?>" tabindex="-1" aria-labelledby="remarksModalLabel<?php echo $app["scholar_id"];?>" aria-hidden="true">
