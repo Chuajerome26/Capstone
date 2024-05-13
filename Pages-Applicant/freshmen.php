@@ -561,11 +561,14 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Active Contact Number: <span class="text-danger">*</span></label>
                         <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" required maxlength="11">
+                        <small id="mNumber-error-msg" class="text-danger"></small>
                     </div>
                     
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Active Gcash or Paymaya Number: <span class="text-danger">* </span><input type="checkbox" id="sameAsActive"> <label for="sameAsActive"><small class="text-muted">Same as active number</small></label>
                         <input type="text" name="gNumber" id="gNumber" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" required maxlength="11">
+                        <small id="error-msg" class="text-danger"></small>
+                        <small id="gNumber-error-msg" class="text-danger"></small>
                     </div>
 
                     <div class="col-md-3 mb-3">
@@ -695,6 +698,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Emergency Contact:<span class="text-danger">*</span></label>
                     <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" maxlength="11" required>
+                    <small id="emergencyContact-error-msg" class="text-danger"></small>
                 </div>
 
                 <div class="col-md-4 mb-3">
@@ -879,14 +883,37 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 <script>
     document.getElementById('cAve').addEventListener('input', function(event) {
         let inputValue = event.target.value;
-        // Match only numbers or numbers with up to one decimal point
-        let regex = /^\d+(\.\d{0,2})?$/;
-        // If the input matches the regex, allow the input, otherwise, remove the last character
-        if (!regex.test(inputValue)) {
-            event.target.value = inputValue.slice(0, -1);
+
+        // If the input is not a dot, validate it
+        if (inputValue !== '.') {
+            // Check if the input is a valid number or a dot
+            if (!isNaN(inputValue) || inputValue === '.') {
+                // If the input is valid, allow it
+                // If the input is a dot, and there's already a dot in the value, disallow it
+                if (inputValue === '.' && inputValue.includes('.')) {
+                    event.target.value = inputValue.slice(0, -1);
+                }
+                // Check if the input does not consist of leading zeros
+                else if (inputValue.startsWith('0') && !inputValue.startsWith('0.')) {
+                    event.target.value = ''; // Disallow input
+                }
+                // Check if the input contains a decimal point
+                else if (inputValue.includes('.')) {
+                    // Split the input by the decimal point
+                    let parts = inputValue.split('.');
+                    // If the decimal part is not empty and consists solely of zeros, disallow it
+                    if (parts[1] && parseInt(parts[1]) === 0) {
+                        event.target.value = parts[0] + '.'; // Keep only the integer part
+                    }
+                }
+            } else {
+                // If the input is not valid, remove the last character
+                event.target.value = inputValue.slice(0, -1);
+            }
         }
     });
 </script>
+
                 <script>
 
 function handleFiles(event, previewContainerId, fileTypes) {
@@ -1048,6 +1075,52 @@ function handleFiles(event, previewContainerId, fileTypes) {
         }
     });
 </script>
+
+<script>
+    // Function to validate the input
+    function validateInput(input, errorMsgElementId) {
+        var errorMessage = '';
+        if (input.value.length !== 11) {
+            errorMessage = "Please enter exactly 11 digits";
+        }
+        document.getElementById(errorMsgElementId).textContent = errorMessage;
+        input.setCustomValidity(errorMessage);
+    }
+
+    // Add event listeners for input validation
+    document.getElementById('mNumber').addEventListener('input', function() {
+        validateInput(this, 'mNumber-error-msg');
+    });
+
+    document.getElementById('gNumber').addEventListener('input', function() {
+        // Only validate if checkbox is not checked and gNumber is required
+        if (!document.getElementById('sameAsActive').checked && document.getElementById('gNumber').hasAttribute('required')) {
+            validateInput(this, 'gNumber-error-msg');
+        } else {
+            // Clear error message if checkbox is checked or gNumber is not required
+            document.getElementById('gNumber-error-msg').textContent = '';
+        }
+    });
+
+    document.getElementById('emergencyContact').addEventListener('input', function() {
+        validateInput(this, 'emergencyContact-error-msg');
+    });
+
+    // Add event listener to checkbox
+    document.getElementById('sameAsActive').addEventListener('change', function() {
+        // Clear error message when checkbox is checked and remove required attribute from gNumber
+        if (this.checked) {
+            document.getElementById('gNumber-error-msg').textContent = '';
+            document.getElementById('gNumber').removeAttribute('required');
+        } else {
+            // Re-validate if checkbox is unchecked and add required attribute to gNumber
+            document.getElementById('gNumber').setAttribute('required', 'required');
+            validateInput(document.getElementById('gNumber'), 'gNumber-error-msg');
+        }
+    });
+</script>
+
+
 
 <script>
          //function for same as present address
