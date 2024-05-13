@@ -44,17 +44,13 @@ if(isset($_POST['submit'])){
 
     $average = round($grade1 / $count, 2);
 
-    if (($average >= 1.0 && $average <= 1.5) || ($average >= 95 && $average <= 100)) {
-        $scholar_type = 3;
-    } elseif (($average >= 1.6 && $average <= 1.9) || ($average >= 90 && $average <= 94)) {
-        $scholar_type = 2;
-    } elseif (($average >= 2.0 && $average <= 2.25) || ($average >= 85 && $average <= 89)) {
-        $scholar_type = 1;
-    } else {
-        $scholar_type = 0;
-    }
+    // Fetch scholar type from customize_gwa table based on average grade
+    $stmtScholarshipTypes = $database->getConnection()->prepare("SELECT scholar_type FROM customize_gwa WHERE min_gwa <= ? AND max_gwa >= ?");
+    $stmtScholarshipTypes->execute([$average, $average]);
+    $scholarTypeRow = $stmtScholarshipTypes->fetch();
 
-    if($scholar_type != 0){
+    if($scholarTypeRow){
+        $scholar_type = $scholarTypeRow['scholar_type'];
         $uploadDir = "../Uploads_gslip/";
         $uploadedFileName1 = $_FILES['regForm']['name'];
         $uploadedFileName2 = $_FILES['gradeSlip']['name'];

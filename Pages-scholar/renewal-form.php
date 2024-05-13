@@ -328,7 +328,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 1) {
                         </div>
                         <div class="col-md-3 mb-3">
                             <label class="form-label">Grade:<span class="text-danger">*</span></label>
-                            <input type="text" name="gAverage[]" id="gAve" class="form-control form-control-sm" placeholder="Grade" required>
+                            <input type="text" name="gAverage[]" id="gAve" class="form-control form-control-sm" placeholder="E.g. 1.0, 1.5, 2.0" required pattern="\d+(\.\d+)?" title="Please enter a decimal number" required>
                         </div>
 
                         <div class="col-md-2  button-column">
