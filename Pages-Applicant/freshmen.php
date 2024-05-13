@@ -560,13 +560,13 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Active Contact Number: <span class="text-danger">*</span></label>
-                        <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" required maxlength="11">
+                        <input type="text" name="mNumber" id="mNumber" class="form-control form-control-sm" placeholder="(09XXXXXXXXX)" required maxlength="11">
                         <small id="mNumber-error-msg" class="text-danger"></small>
                     </div>
                     
                     <div class="col-md-3 mb-3">
                         <label class="form-label">Active Gcash or Paymaya Number: <span class="text-danger">* </span><input type="checkbox" id="sameAsActive"> <label for="sameAsActive"><small class="text-muted">Same as active number</small></label>
-                        <input type="text" name="gNumber" id="gNumber" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" required maxlength="11">
+                        <input type="text" name="gNumber" id="gNumber" class="form-control form-control-sm" placeholder="(09XXXXXXXXX)" required maxlength="11">
                         <small id="error-msg" class="text-danger"></small>
                         <small id="gNumber-error-msg" class="text-danger"></small>
                     </div>
@@ -697,7 +697,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
 
                 <div class="col-md-4 mb-3">
                     <label  class="form-label">Emergency Contact:<span class="text-danger">*</span></label>
-                    <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="(+63)XXXXXXXX" maxlength="11" required>
+                    <input type="text" name="emergencyContact" id="emergencyContact" class="form-control form-control-sm" placeholder="(09XXXXXXXXX)" maxlength="11" required>
                     <small id="emergencyContact-error-msg" class="text-danger"></small>
                 </div>
 
