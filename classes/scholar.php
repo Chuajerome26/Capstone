@@ -159,19 +159,19 @@ class Scholar{
         }
     }
     function convertToDecimal($grade) {
-        if ($grade >= 90 && $grade <= 99) {
+        if ($grade >= 95 && $grade <= 99) {
             return 1;
-        } elseif ($grade >= 85 && $grade < 90) {
+        } elseif ($grade >= 90 && $grade <= 95) {
             return 2;
-        } elseif ($grade >= 80 && $grade < 85) {
+        } elseif ($grade >= 85 && $grade <= 90) {
             return 2.5;
-        } elseif ($grade >= 75 && $grade < 80) {
+        } elseif ($grade >= 80 && $grade <= 85) {
             return 3;
-        } elseif ($grade >= 70 && $grade < 75) {
+        } elseif ($grade >= 75 && $grade <= 80) {
             return 3.5;
-        } elseif ($grade >= 65 && $grade < 70) {
+        } elseif ($grade >= 70 && $grade <= 75) {
             return 4;
-        } elseif ($grade >= 60 && $grade < 65) {
+        } elseif ($grade >= 65 && $grade <= 70) {
             return 4.5;
         } else {
             return 5;

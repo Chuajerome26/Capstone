@@ -174,6 +174,7 @@ if(isset($_POST['submit'])){
         foreach ($adminIds as $adminId) {
             $notification = $admin->InsertNotif($user_id, $adminId, "applicantApplied", $currentDate1);
         }
+
         $scholar->checkData($filesAndPicture, $scholarData, $_POST['studentType']);
     } else {
         echo "There was an error while uploading the file";

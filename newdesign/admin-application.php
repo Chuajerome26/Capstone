@@ -104,7 +104,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
         $pic = $admin->getApplicants2x2($applicant['scholar_id']);
         $prediction = $admin->predictAcceptanceOfApplicant($income, $appliGrade);
 
-        if($prediction <= 100 && $prediction >= 75) {
+        if($prediction <= 100 && $prediction >= 85) {
     ?>
     <div class="splide__slide p-0  d-flex justify-content-center align-items-center">
         <div class="card shadow ">
@@ -114,6 +114,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
            
             <div class=" ms-2">
                     <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $applicant['l_name']; ?></div>
+                    <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $prediction; ?></div>
                 </div>
                 <div class="p-2 ms-auto d-grid gap-2">
                     <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $applicant["scholar_id"];?>">Details</button>

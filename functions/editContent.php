@@ -10,7 +10,7 @@ $title = $_POST['titleName'];
 $vision = $_POST['vision'];
 $mission = $_POST['mission'];
 
-if(isset($_FILES['logo']['name'])){
+if(isset($_FILES['logo']['name']) && $_FILES['logo']['error'] == 0){
     $fileData1 = array(
         'fileName' => $_FILES['logo']['name'],
         'fileTmpName' => $_FILES['logo']['tmp_name'],
@@ -18,7 +18,7 @@ if(isset($_FILES['logo']['name'])){
         'fileError' => $_FILES['logo']['error'],
         'fileType' => $_FILES['logo']['type'],
     );
-    
+    echo "error";
     
     $allowedFile2 = array('jpg', 'jpeg', 'png');
     $fileExt1 = explode('.', $fileData1['fileName']);
@@ -40,13 +40,16 @@ if(isset($_FILES['logo']['name'])){
         exit();
     }
 }else{
+
     $contents = $admin->getContent();
 
-    $stmt = $database->getConnection()->prepare("UPDATE content_design SET title_name = ?, logo= ?, vision = ?, mission= ? WHERE id =1");
+    $stmt = $database->getConnection()->prepare("UPDATE content_design SET title_name = ?, logo= ?, vision = ?, mission= ? WHERE id = 1");
+
     if(!$stmt->execute([$title, $contents[0]['logo'], $vision, $mission])){
         header('Location: ../newdesign/customize-form.php?status=error');
         exit();
     }
+
     header('Location: ../newdesign/customize-form.php?status=updateContent');
     exit();
 }
