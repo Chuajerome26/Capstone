@@ -188,7 +188,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                             <label for="adminTypeSelect">Select Admin Type:</label>
                             
                             <span style="margin-left: 150px; font-weight: bold;">Access Per User Level</span>
-                            <i class="fa fa-question-circle mt-1"  style="float:right; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#myModal"></i>
+                            <i class="fa fa-question-circle mt-1"  style="float:right; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#myModal<?php echo $s["id"];?>"></i>
  
                             <select class="form-select" name="admin_type" required>
                                 <option value="" disabled selected>Admin Type</option>
@@ -206,10 +206,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                     </div>
                 </div>
             </div>
-            <?php }?>
             <!--Modal end--> 
 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="myModal<?php echo $s["id"];?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel<?php echo $s["id"];?>" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color:#8DECB4">
@@ -232,6 +231,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 6)) {
                                     </div>
                                 </div>
             </div>
+            <?php }?>
 
             <!--Modal for adding admin-->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

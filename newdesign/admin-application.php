@@ -117,7 +117,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
                     <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $prediction; ?></div>
                 </div>
                 <div class="p-2 ms-auto d-grid gap-2">
-                    <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $applicant["scholar_id"];?>">Details</button>
+                    <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#suggested<?php echo $applicant["scholar_id"];?>">Details</button>
                     <form method="post" action="../functions/scholar-accept.php">
                         <?php if($applicant['application_status'] == 2): ?>
                         <button class="btn btn-sm btn-primary" type="submit" name="accept">Accept</button>
@@ -274,6 +274,64 @@ foreach($appliData as $z){
 </div>
 <?php } ?>
 
+<?php
+$appliData = $admin->getApplicants();
+$scholarshipTypes = $admin->getGwaRequirement();
+
+foreach($appliData as $suggest){
+    if($suggest['studType'] == "College"){
+        $grade1 = $suggest['c_ave'];
+    }else{
+        $grade1 = $suggest['sh_ave'];
+    }
+    $suggestIncome = $admin->getAllEarnerSum($suggest['scholar_id']);
+?>
+<div class="modal fade" id="suggested<?php echo $suggest["scholar_id"];?>" tabindex="-1" aria-labelledby="suggested<?php echo $suggest["scholar_id"];?>" aria-hidden="true">
+<div class="modal-dialog" style="max-width:500px;">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">Suggestions</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <p>The systems Evaluate this Applicant and this is the Result:</p>
+
+        <?php echo " - ".$suggestIncome." Income Per Month. <br>"; ?>
+        <?php
+            if ($suggestIncome < 10000) {
+                echo "Strongly suggest to become a scholar by the system. <br>Reason: The applicant's income falls significantly below the threshold, indicating financial need.";
+            } elseif ($suggestIncome >= 10000 && $suggestIncome < 11000) {
+                echo "Suggest to become a scholar this applicant by the system. <br>Reason: While the income is slightly above the minimum threshold, the applicant might still face financial challenges that warrant consideration for scholarship support.";
+            } elseif ($suggestIncome >= 20000) {
+                echo "This applicant is not eligible for the scholar. <br>Reason: The applicant's income exceeds the maximum threshold, indicating a level of financial stability that may not warrant scholarship assistance.";
+            } else {
+                echo "Provide reasons for considering this applicant's scholarship eligibility based on their income.";
+            }
+        ?>
+        <?php echo " - ".$grade1; ?>
+        <?php 
+           foreach ($scholarshipTypes as $isko) {
+                if ($grade1 >= $isko['min_gwa'] && $grade1 <= $isko['max_gwa']) {
+                    echo "This Applicant is Suggested because ".$isko['scholar_type'].". <br>";
+                    echo "Reason: The applicant's grade point average falls within the specified range for the ".$isko['scholar_type']." scholarship, indicating academic excellence.";
+            
+                    $scholar_type = $isko['scholar_type'];
+                    break;
+                }
+            }
+        ?>
+
+
+    <div class="modal-footer">
+        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
+    </div>
+    </form>
+    </div>
+</div>
+</div>
+</div>
+<?php } ?>
+
 <!-- End -->
 <!-- Modal for Remarks -->
 <?php
@@ -300,7 +358,7 @@ foreach($applicantss as $z1) {
                                     if($pogi['remarks'] == 0){
                                         $remarks123 = 'Evaluated By';
                                     }else if($pogi['remarks'] == 1){
-                                        $remarks123 = 'Schedule Interview for Initial - Evaluation Completed By';
+                                        $remarks123 = 'Schedule for Interview - Evaluation Completed By';
                                     }else if($pogi['remarks'] == 2){
                                         $remarks123 = 'Done Interview';
                                     }else if($pogi['remarks'] == 3){
