@@ -299,11 +299,11 @@ foreach($appliData as $suggest){
         <?php echo " - ".$suggestIncome." Income Per Month. <br>"; ?>
         <?php
             if ($suggestIncome < 10000) {
-                echo "Strongly suggest to become a scholar by the system. <br>Reason: The applicant's income falls significantly below the threshold, indicating financial need.";
+                echo "Strongly suggest to become a scholar by the system. <br>Reason: The applicant's income falls significantly below the threshold, indicating financial need.<br>";
             } elseif ($suggestIncome >= 10000 && $suggestIncome < 11000) {
-                echo "Suggest to become a scholar this applicant by the system. <br>Reason: While the income is slightly above the minimum threshold, the applicant might still face financial challenges that warrant consideration for scholarship support.";
+                echo "Suggest to become a scholar this applicant by the system. <br>Reason: While the income is slightly above the minimum threshold, the applicant might still face financial challenges that warrant consideration for scholarship support.<br>";
             } elseif ($suggestIncome >= 20000) {
-                echo "This applicant is not eligible for the scholar. <br>Reason: The applicant's income exceeds the maximum threshold, indicating a level of financial stability that may not warrant scholarship assistance.";
+                echo "This applicant is not eligible for the scholar. <br>Reason: The applicant's income exceeds the maximum threshold, indicating a level of financial stability that may not warrant scholarship assistance.<br>";
             } else {
                 echo "Provide reasons for considering this applicant's scholarship eligibility based on their income.";
             }
