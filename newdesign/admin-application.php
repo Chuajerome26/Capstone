@@ -114,7 +114,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
            
             <div class=" ms-2">
                     <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $applicant['l_name']; ?></div>
-                    <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $prediction; ?></div>
+                    <div class="text-camel-case" style="text-transform: lowercase;"><?php echo $prediction; ?> %</div>
                 </div>
                 <div class="p-2 ms-auto d-grid gap-2">
                     <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#suggested<?php echo $applicant["scholar_id"];?>">Details</button>
@@ -320,13 +320,6 @@ foreach($appliData as $suggest){
             }
         }
         ?>
-
-
-
-    <div class="modal-footer">
-        <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
-    </div>
-    </form>
     </div>
 </div>
 </div>
