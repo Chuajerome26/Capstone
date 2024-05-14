@@ -35,7 +35,11 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
             <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
             <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+            <!-- Quill stylesheet -->
+            <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
+            <!-- Quill scripts -->
+            <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
     </head>
     <body>
@@ -118,67 +122,67 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
 
                         <!-- Area Chart -->
                         <div class="col-xl-12" >
-                            <div class="card shadow mb-4" style="font-size: 14px;">
-                            
-                                <div class="row m-3">
-                                    <div class="col-8"><h5 class="p-2 font-weight-bold text-black mb-2">Content</h5></div>
-                                    <div class="col-4 float-end">
-                                        <button type="submit" class=" btn  btn-primary shadow-sm float-end" data-bs-toggle="modal" data-bs-target="#edit">
-                                            <i class="fas fa-edit fa-sm text-white-50"></i> 
-                                            <div class="d-none d-sm-inline-block">Edit</div>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                        <?php 
-                                            $nums = 1;
-                                            foreach($content as $des):
-                                        ?>
-                                        <div class="container">
-                                            <div class="row justify-content-center align-items-center">
-                                                <div class="col-md-6">
-                                                    <div class="card mb-3" style="height: 200px;">
-                                                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                                                            <h5 class="p-2 font-weight-bold text-black mb-2">Title</h5>
-                                                            <h3><?php echo $des['title_name']; ?></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="card mb-3" style="height: 200px;">
-                                                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                                                            <h5 class="p-2 font-weight-bold text-black mb-2">Logo</h5>
-                                                            <div class="d-flex justify-content-center align-items-center">
-                                                                <img src="../images/<?php echo $des['logo']; ?>" class="img-fluid" style="max-width: 100px; max-height: 100px;" alt="Logo">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="card mb-3" style="height: 200px;">
-                                                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                                                            <h5 class="p-2 font-weight-bold text-black mb-2">Vision</h5>
-                                                            <h3><?php echo $des['vision']; ?></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="card mb-3" style="height: 200px;">
-                                                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                                                            <h5 class="p-2 font-weight-bold text-black mb-2">Mission</h5>
-                                                            <h3><?php echo $des['mission']; ?></h3>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+    <div class="card shadow mb-4" style="font-size: 14px;">
 
-                                        <?php 
-                                        $num++;
-                                    endforeach; ?>
+        <div class="row m-3">
+            <div class="col-8"><h5 class="p-2 font-weight-bold text-black mb-2">Content</h5></div>
+            <div class="col-4 float-end">
+                <button type="submit" class=" btn  btn-primary shadow-sm float-end" data-bs-toggle="modal" data-bs-target="#edit">
+                    <i class="fas fa-edit fa-sm text-white-50"></i> 
+                    <div class="d-none d-sm-inline-block">Edit</div>
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            <?php 
+                $nums = 1;
+                foreach($content as $des):
+            ?>
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-6">
+                        <div class="card mb-3" style="height: auto;">
+                            <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h5 class="p-2 font-weight-bold text-black mb-2">Title</h5>
+                                <h3><?php echo $des['title_name']; ?></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3" style="height: auto;">
+                            <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h5 class="p-2 font-weight-bold text-black mb-2">Logo</h5>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <img src="../images/<?php echo $des['logo']; ?>" class="img-fluid" style="max-width: 100px; max-height: 100px;" alt="Logo">
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3" style="height: auto;">
+                            <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h5 class="p-2 font-weight-bold text-black mb-2">Vision</h5>
+                                <h3><?php echo $des['vision']; ?></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3" style="height: auto;">
+                            <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <h5 class="p-2 font-weight-bold text-black mb-2">Mission</h5>
+                                <h3><?php echo $des['mission']; ?></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php 
+            $num++;
+        endforeach; ?>
+        </div>
+    </div>
+</div>
 
 
 
@@ -249,15 +253,37 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 6) {
                 <input type="file" name="logo" class="form-control form-control-sm">
             </div>
             <div class="col-md-12">
-                <label  class="form-label">Vision:</label>
-                <input type="text" name="vision" class="form-control form-control-sm" value="<?php echo $design['vision'] ?>" required>
-            </div>
-            <div class="col-md-12">
-                <label  class="form-label">Mission:</label>
-                <input type="text" name="mission" class="form-control form-control-sm" value="<?php echo $design['mission'] ?>" required>
-            </div>
+            <label class="form-label">Vision:</label>
+            <div id="vision-editor" class="styled-textarea"><?php echo $design['vision']; ?></div>
+            <textarea name="vision" style="display:none;"><?php echo $design['vision']; ?></textarea>
+        </div>
+        <div class="col-md-12">
+            <label class="form-label" style="margin-top: 75px;">Mission:</label>
+            <div id="mission-editor" class="styled-textarea" style="overflow-y: auto; height: 150px;"><?php echo $design['mission']; ?></div>
+            <textarea name="mission" style="display:none;"><?php echo $design['mission']; ?></textarea>
+        </div>
             <?php }?>
         </div>
+        <script>
+        // Initialize Quill for the vision textarea
+        var visionEditor = new Quill('#vision-editor', {
+            theme: 'snow'
+        });
+        var visionTextarea = document.querySelector('textarea[name="vision"]');
+        visionEditor.on('text-change', function() {
+            visionTextarea.value = visionEditor.root.innerHTML;
+        });
+
+        // Initialize Quill for the mission textarea
+        var missionEditor = new Quill('#mission-editor', {
+            theme: 'snow'
+        });
+        var missionTextarea = document.querySelector('textarea[name="mission"]');
+        missionEditor.on('text-change', function() {
+            missionTextarea.value = missionEditor.root.innerHTML;
+        });
+
+            </script>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
