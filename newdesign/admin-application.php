@@ -296,7 +296,7 @@ foreach($appliData as $suggest){
     <div class="modal-body">
         <p>The systems Evaluate this Applicant and this is the Result:</p>
 
-        <?php echo " - ".$suggestIncome." Income Per Month. <br>"; ?>
+        <?php echo " - <b>".$suggestIncome." Income Per Month. </b><br>"; ?>
         <?php
             if ($suggestIncome < 10000) {
                 echo "Strongly suggest to become a scholar by the system. <br>Reason: The applicant's income falls significantly below the threshold, indicating financial need.<br>";
@@ -308,7 +308,7 @@ foreach($appliData as $suggest){
                 echo "Provide reasons for considering this applicant's scholarship eligibility based on their income.";
             }
         ?>
-        <?php echo " - ".$grade1."<br>"; ?>
+        <?php echo " - <b>".$grade1." GWA </b><br>"; ?>
         <?php 
         foreach ($scholarshipTypes as $isko) {
             if ($grade1 >= $isko['min_gwa'] && $grade1 <= $isko['max_gwa']) {
