@@ -308,18 +308,19 @@ foreach($appliData as $suggest){
                 echo "Provide reasons for considering this applicant's scholarship eligibility based on their income.";
             }
         ?>
-        <?php echo " - ".$grade1; ?>
+        <?php echo " - ".$grade1."<br>"; ?>
         <?php 
-           foreach ($scholarshipTypes as $isko) {
-                if ($grade1 >= $isko['min_gwa'] && $grade1 <= $isko['max_gwa']) {
-                    echo "This Applicant is Suggested because ".$isko['scholar_type'].". <br>";
-                    echo "Reason: The applicant's grade point average falls within the specified range for the ".$isko['scholar_type']." scholarship, indicating academic excellence.";
-            
-                    $scholar_type = $isko['scholar_type'];
-                    break;
-                }
+        foreach ($scholarshipTypes as $isko) {
+            if ($grade1 >= $isko['min_gwa'] && $grade1 <= $isko['max_gwa']) {
+                echo "This applicant is suggested for the ".$isko['scholar_type']." scholarship. <br>";
+                echo "Reason: The applicant's grade point average falls within the specified range for the ".$isko['scholar_type']." scholarship, indicating academic excellence.";
+                
+                $scholar_type = $isko['scholar_type'];
+                break;
             }
+        }
         ?>
+
 
 
     <div class="modal-footer">
