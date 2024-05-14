@@ -289,10 +289,11 @@ foreach($appliData as $suggest){
 <div class="modal fade" id="suggested<?php echo $suggest["scholar_id"];?>" tabindex="-1" aria-labelledby="suggested<?php echo $suggest["scholar_id"];?>" aria-hidden="true">
 <div class="modal-dialog" style="max-width:500px;">
     <div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title">Suggestions</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
+    <div class="modal-header" style="background-color: #8DECB4;">
+    <h5 class="modal-title">Suggestions</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
     <div class="modal-body">
         <p>The systems Evaluate this Applicant and this is the Result:</p>
 
