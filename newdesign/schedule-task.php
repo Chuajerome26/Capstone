@@ -149,7 +149,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                             </div>
                             <div class="card-footer bg-light border-0 d-flex gap-1">
 
-                            <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $it["id"];?>">View</button>
+                            <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $it["date"];?>">View</button>
                             <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#editInitialModal<?php echo $it["date"];?>">Edit</button>
 
 
@@ -188,15 +188,15 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                 // Add the date to the list of displayed dates
                 $displayedDatesforModal[] = $date;
     ?>
-    <div class="modal fade" id="detailsModal<?php echo $a["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $a["id"];?>l" aria-hidden="true">
+    <div class="modal fade" id="detailsModal<?php echo $date;?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $date;?>l" aria-hidden="true">
         <div class="modal-dialog" style="max-width:800px;">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="detailsModal<?php echo $a["id"];?>">Details</h5>
+                <h5 class="modal-title" id="detailsModal<?php echo $date;?>">Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table id="applicant-modal<?php echo $a["id"]?>" class="table table-striped table-hover">
+                <table class="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th>Requirements</th>
@@ -223,7 +223,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                             if($b['grade'] == 0 && $currentDateTime <= $interviewDateTimeEnd): ?>
                                 <td align="center"><input type="checkbox" name="interview_done" value="1" disabled></td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" id="remarks-btn">Remarks</button>
+                                    <button type="button" class="btn btn-primary" id="remarks-btn<?php echo $b['scholar_id']; ?>" onclick="sweetalert(<?php echo $b['scholar_id']; ?>)">Remarks</button>
                                 </td>
                             <?php elseif($b['grade'] == 0 && $currentDateTime >= $interviewDateTimeEnd): ?>
                                 <td align="center"><input type="checkbox" name="interview_done" value="1"></td>
@@ -300,7 +300,7 @@ foreach($applicantss as $app) {
                 </div>
             </div>
             <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $b["scholar_id"];?>" onclick="modal(<?php echo $b['scholar_id']; ?>)">Give Remarks</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $app["scholar_id"];?>" onclick="modal(<?php echo $app['scholar_id']; ?>)">Give Remarks</button>
                     </div>
                 </div>
             </div>
@@ -338,70 +338,6 @@ foreach($applicantss as $app) {
 </div>
 <?php }?>
     <!--Modal End-->
-
-    <!-- Modal Start Question -->
-    <!-- <?php 
-    foreach($initialInterview1 as $z){
-    ?>
-    <div class="modal fade" id="questionModal<?php echo $z["id"];?>" tabindex="-1" aria-labelledby="detailsModal<?php echo $z["id"];?>l" aria-hidden="true">
-        <div class="modal-dialog" style="max-width:600px;">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="detailsModal<?php echo $z["id"];?>">Questioner</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row" style="margin-10px">
-                    <div class="col-12">
-                        <strong>Instructions: </strong>Rate the applicants on every Question 1 to 10.
-                    </div>
-                    <div class="col-12">
-                        <strong>(1 - lowest, 10 - Highest)</strong>
-                    </div>
-                </div>
-                <table id="applicant-modal<?php echo $z["id"]?>" class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>Questions</th>
-                            <th>Grade</th>
-                        </tr> 
-                    </thead>
-                    <tbody>
-                        <form method="post" action="../functions/interview-grade.php">
-                        <tr>
-                            <td>Tell us about yourself</td>
-                            <td><input class="form-control" type="text" name="q1" required></td>
-                        </tr>
-                        <tr>
-                            <td>Tell us about your Greatest Strength</td>
-                            <td><input class="form-control" type="text" name="q2" required></td>
-                        </tr>
-                        <tr>
-                            <td>Why do you deserve this scholarship ?</td>
-                            <td><input class="form-control" type="text" name="q3" required></td>
-                        </tr>
-                        <tr>
-                            <td>Why did you choose this scholarship ?</td>
-                            <td><input class="form-control" type="text" name="q4" required></td>
-                        </tr>
-                        <tr>
-                            <td>Imagine yourself Five years Form now ?</td>
-                            <td><input class="form-control" type="text" name="q5" required></td>
-                        </tr>
-                    </tbody>
-                </table>    
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="hidden" name="id" value="<?php echo $z['id']; ?>">
-                <input type="hidden" name="scholar_id" value="<?php echo $z['scholar_id']; ?>">
-                <button type="submit" class="btn btn-primary" name="submit">Save changes</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
-    <?php }?> -->
 
     <!-- Modal for Initial Interview Edit -->
     <?php 
@@ -568,7 +504,8 @@ foreach($applicantss as $app) {
 
 <script>
 //alert for interview remarks
-document.getElementById("remarks-btn").addEventListener("click", function() {
+function sweetalert(id){
+document.getElementById("remarks-btn"+id).addEventListener("click", function() {
     if ("<?php echo $currentDateTime; ?>" <= "<?php echo $interviewDateTimeEnd; ?>") {
         // SweetAlert for notification
         Swal.fire({
@@ -582,6 +519,7 @@ document.getElementById("remarks-btn").addEventListener("click", function() {
         // Proceed with your desired action
     }
 });
+}
 </script>
 
     

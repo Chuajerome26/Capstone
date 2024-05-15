@@ -278,7 +278,7 @@ foreach($appliData as $z){
 <?php
 $applicantss = $admin->getApplicants();
 foreach($applicantss as $z1) {
-    $id = $z["scholar_id"];
+    $id = $z1["scholar_id"];
 ?>
 
 <div class="modal fade" id="remarks<?php echo $z1["scholar_id"];?>" tabindex="-1" aria-labelledby="remarksTitle<?php echo $z1["scholar_id"];?>" aria-hidden="true">
@@ -329,7 +329,7 @@ foreach($applicantss as $z1) {
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z["scholar_id"];?>" onclick="modal(<?php echo $z['scholar_id']; ?>)">Give Remarks</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksSend<?php echo $z1["scholar_id"];?>" onclick="modal(<?php echo $z1['scholar_id']; ?>)">Give Remarks</button>
             </div>
         </div>
     </div>
