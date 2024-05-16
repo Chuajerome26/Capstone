@@ -695,14 +695,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
       <div class="modal-body">
         <ul class="list-group list-group-flush list-group-bullet">
           <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">2x2 Latest Photo</span></li>
-          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Certified True Copy of Birth Certificate</span></li>
-          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Certified True Copy of Form 137 or 138 / Grade Slip (For Sr. High School Graduates)</span></li>
-          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Certificate of Honor or Award (For Sr. High School Graduates)</span></li>
-          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Latest Copy of Grades (For College Enrolled Students)</span></li>
-          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Barangay Certification</span></li>
-          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Latest Income Tax Return of Parents / Affidavit of Non-filing</span></li>
-          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">Indigency</span></li>
-          <li class="list-group-item d-flex align-items-start"><i class="fas fa-exclamation-circle text-warning me-2" style="margin-top: 6px;"></i><span style="font-weight: bold;">General Weighted Average should be 85 and above for Senior High School Graduates, and 2.25 and above for College Enrolled</span></li>
         </ul>
       </div>
       <div class="modal-footer bg-white py-2 text-center">

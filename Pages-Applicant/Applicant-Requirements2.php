@@ -455,7 +455,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_type'] === 0) {
                                                                 }
                                                                 else if($a['application_status'] == 1){
                                                                     $remarks = '<span class="badge bg-warning">Interview</span>';
-                                                                }else if($a['remapplication_statusarks'] == 2){
+                                                                }else if($a['application_status'] == 2){
                                                                     $remarks = '<span class="badge bg-info">Done Interview</span>';
                                                                 }
 
