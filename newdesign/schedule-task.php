@@ -93,7 +93,6 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                     <?php
                     // Initialize an array to keep track of displayed dates
                     $displayedDates = [];
-
                     // Collect all dates from initial interviews
                     $dates = [];
                     foreach ($initialInterview1 as $it) {
@@ -149,8 +148,8 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                             </div>
                             <div class="card-footer bg-light border-0 d-flex gap-1">
 
-                            <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $it["date"];?>">View</button>
-                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#editInitialModal<?php echo $it["date"];?>">Edit</button>
+                            <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $date;?>">View</button>
+                            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#editInitialModal<?php echo $date;?>">Edit</button>
 
 
                         </div>
@@ -184,7 +183,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
         $displayedDatesforModal = [];
         foreach($initialInterview1 as $a){
             $date = $a['date'];
-            if (!in_array($date, $displayedDatesforModal)) {
+            if (!in_array($date, $displayedDatesforModal)){
                 // Add the date to the list of displayed dates
                 $displayedDatesforModal[] = $date;
     ?>
@@ -206,53 +205,56 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 3)) {
                         </tr> 
                     </thead>
                     <tbody>
-                        <?php foreach($initialInterview1 as $b){
-                                if($b['date'] == $date){
+                        <?php 
+                            foreach($initialInterview1 as $b):
+                                if($b['date'] == $date):
                                     $info1 = $admin->getApplicantById($b['scholar_id']);
                                     // Convert time to AM/PM format
                                     $time_start = date("h:i A", strtotime($b['time_start']));
                                     $time_end = date("h:i A", strtotime($b['time_end']));
-                                    ?>
-                        <tr>
-                            <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
-                            <td><?php echo $time_start?> - <?php echo $time_end?></td>
-                            <form method="post" action="../functions/interview-grade.php">
-                            <?php
-                            $currentDateTime = date("Y-m-d H:i:s");
-                            $interviewDateTimeEnd = $b['date'] . ' ' . $b['time_end'];
-                            if($b['grade'] == 0 && $currentDateTime <= $interviewDateTimeEnd): ?>
-                                <td align="center"><input type="checkbox" name="interview_done" value="1" disabled></td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" id="remarks-btn<?php echo $b['scholar_id']; ?>" onclick="sweetalert(<?php echo $b['scholar_id']; ?>)">Remarks</button>
-                                </td>
-                            <?php elseif($b['grade'] == 0 && $currentDateTime >= $interviewDateTimeEnd): ?>
-                                <td align="center"><input type="checkbox" name="interview_done" value="1"></td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
-                                </td>
-                            <?php else: ?>
-                                <td align="center">Done</td>
-                                <td>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
-                                </td>
-                            <?php endif; ?>
-                        </tr>
-                        <?php }
-                    }
+                        ?>
+                                    <tr>
+                                        <td><?php echo $info1[0]['f_name']." ".$info1[0]['l_name'];?></td>
+                                        <td><?php echo $time_start?> - <?php echo $time_end?></td>
+                                        <form method="post" action="../functions/interview-grade.php">
+                                        <?php
+                                        $currentDateTime = date("Y-m-d H:i:s");
+                                        $interviewDateTimeEnd = $b['date'] . ' ' . $b['time_end'];
+
+                                        if($currentDateTime <= $interviewDateTimeEnd): ?>
+                                            <td align="center"><input type="checkbox" name="interview_done" value="1" disabled></td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" id="remarks-btn<?php echo $b['scholar_id']; ?>" onclick="sweetalert(<?php echo $b['scholar_id']; ?>)">Remarks</button>
+                                            </td>
+                                        <?php elseif($currentDateTime >= $interviewDateTimeEnd): ?>
+                                            <td align="center"><input type="checkbox" name="interview_done" value="1"></td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
+                                            </td>
+                                        <?php else: ?>
+                                            <td align="center">Done</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#remarksModal<?php echo $b["scholar_id"];?>">Remarks</button>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                    <input type="hidden" name="scholar_id" value="<?php echo $b['scholar_id'] ?>">
+                        <?php endif;
+                    endforeach;
                     ?>
                     </tbody>
                 </table>    
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <input type="hidden" name="scholar_id" value="<?php echo $b['scholar_id'] ?>">
                 <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
             </div>
                 </form>
             </div>
         </div>
     </div>
-    <?php }} ?>
+    <?php }
+} ?>
     <!-- Modal End -->
 
 
