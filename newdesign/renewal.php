@@ -198,13 +198,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
                                         <?php
                                         $num = 1;
                                         foreach($renewal_info as $s){
-                                            if($s['scholar_type'] == 3){
+                                            if($s['scholar_type'] == "Academic Rank 1"){
                                                 $scho_type = '<span class="badge bg-warning" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 1</span>';
                                                 $grants = '5000';
-                                            }elseif($s['scholar_type'] == 2){
+                                            }elseif($s['scholar_type'] == "Academic Rank 2"){
                                                 $scho_type = '<span class="badge bg-info" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Academic Rank 2</span>';
                                                 $grants = '4000';
-                                            }elseif($s['scholar_type'] == 1){
+                                            }elseif($s['scholar_type'] == "Economic"){
                                                 $scho_type = '<span class="badge bg-primary" style="color: black; padding: 2px 6px; border-radius: 3px; font-size: 10px;">Economic</span>';
                                                 $grants = '2000';
                                             }
