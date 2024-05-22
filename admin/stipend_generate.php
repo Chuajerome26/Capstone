@@ -60,7 +60,7 @@ function generateTable($applicants, $statusFilter) {
     
     $num = 1;
     foreach ($applicants as $appli) {
-        if ($appli['application_status'] == $statusFilter) {
+        if ($appli['status'] == $statusFilter) {
             $dateInsert  = date("F d, Y", strtotime($appli['date_insert']));
             $status = $stipend['status'] == 0 ? "To Send" : "Sent";
             
