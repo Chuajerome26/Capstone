@@ -52,7 +52,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
               <div class="card bg-transparent border-0">
 
 
-              <div class="container-fluid">
+              < class="container-fluid">
                     
                     <div class="hstack g-1 mb-1">
                     <div class="p-2"><p class="h4 mb-0 font-weight-bold text-gray-800">Stipend</p></div>
@@ -66,13 +66,13 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
       
                           </div>
                           
-                          <div class="container-fluid">
-                         <div class="row justify-content-end">
+                      <div class="container-fluid">
+                        <div class="row justify-content-end">
               
                  
-              </div>
-          </div>
-      </div>
+                        </div>
+                    </div> 
+      
 
                     <!-- Content Row -->
                     <div class="row">
