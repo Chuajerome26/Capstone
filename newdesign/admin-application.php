@@ -798,7 +798,11 @@ $appliData2 = $admin->getApplicants();
                 <option value="2">Done Interview</option>
             </select>
         </div>
-    </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
+        </form>
     </div>
 </div>
 </div>
