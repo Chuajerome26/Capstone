@@ -593,10 +593,10 @@ class Scholar{
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_info WHERE status = '0'")->fetchAll();
         return $stmt;
     }
-    
+
     public function getAllApplicantsGenerate($start, $end){
         // Prepare the SQL query
-        $sql = "SELECT * FROM scholar_info WHERE status = '0' AND application_date BETWEEN :start AND :end";
+        $sql = "SELECT * FROM scholar_info WHERE status = '0' AND date_apply BETWEEN :start AND :end";
     
         // Get the database connection
         $connection = $this->database->getConnection();
