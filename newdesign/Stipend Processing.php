@@ -95,41 +95,45 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
         </tr>
   </thead>
   <tbody class="table-group-divider">
-    <?php 
-      foreach($stipend as $stip){
-        if($stip['status'] == 0){
-          $status = '<span class="badge bg-primary">To Send</span>';
-        }elseif($stip['status'] == 1){
-          $status = '<span class="badge bg-success">Sent</span>';
-        }
+  <?php 
+$index = 1; // Initialize a counter for the table row numbers
+foreach ($stipend as $stip) {
+    // Determine the status badge
+    if ($stip['status'] == 0) {
+        $status = '<span class="badge bg-primary">To Send</span>';
+    } elseif ($stip['status'] == 1) {
+        $status = '<span class="badge bg-success">Sent</span>';
+    }
 
-        if($stip['certificate'] == ""){
-          $cert = 'Not Generated';
-        }else{
-          $cert = '<a href="../certificates/'.$cert.'" target="_blank">Generated</a>'; 
-        }
+    // Determine the certificate link or text
+    if ($stip['certificate'] == "") {
+        $cert = 'Not Generated';
+    } else {
+        $cert = '<a href="../certificates/' . $stip['certificate'] . '" target="_blank">Generated</a>';
+    }
     ?>
     <tr>
-      <th scope="col">1</th>
-      <td style="white-space: nowrap;"><?php echo $stip['scholar_id']; ?></td>
-      <td style="white-space: nowrap;"><?php echo $stip['full_name']; ?></td>
-      <td style="white-space: nowrap;"><?php echo $stip['scholar_type']; ?></td>
-      <td style="white-space: nowrap;"><?php echo $stip['grants']; ?></td>
-      <td style="white-space: nowrap;"><?php echo $status; ?></td>
-      <td style="white-space: nowrap;"><?php echo $cert; ?></td>
-      <td style="white-space: nowrap;">
-      <form method="post" action="../admin/stipend.php">
-        <input type="hidden" name="scholar_id" value="<?php echo $stip['scholar_id']; ?>">
-        <input type="hidden" name="f_name" value="<?php echo $stip['full_name']; ?>">
-        <input type="hidden" name="grants" value="<?php echo $stip['grants']; ?>">
-        <input type="hidden" name="id" value="<?php echo $stip['id']; ?>">
-        
-        <button class="btn btn-sm btn-primary" type="submit" name="sendCert">Send Stipend</button>
-        <button class="btn btn-sm btn-info" type="submit" name="genCert">Generate Certificate</button>
-      </form>
-      </td>
+        <th scope="row"><?php echo $index++; ?></th> <!-- Use the counter for row number -->
+        <td style="white-space: nowrap;"><?php echo htmlspecialchars($stip['scholar_id']); ?></td>
+        <td style="white-space: nowrap;"><?php echo htmlspecialchars($stip['full_name']); ?></td>
+        <td style="white-space: nowrap;"><?php echo htmlspecialchars($stip['scholar_type']); ?></td>
+        <td style="white-space: nowrap;"><?php echo htmlspecialchars($stip['grants']); ?></td>
+        <td style="white-space: nowrap;"><?php echo $status; ?></td>
+        <td style="white-space: nowrap;"><?php echo $cert; ?></td>
+        <td style="white-space: nowrap;">
+            <form method="post" action="../admin/stipend.php">
+                <input type="hidden" name="scholar_id" value="<?php echo htmlspecialchars($stip['scholar_id']); ?>">
+                <input type="hidden" name="f_name" value="<?php echo htmlspecialchars($stip['full_name']); ?>">
+                <input type="hidden" name="grants" value="<?php echo htmlspecialchars($stip['grants']); ?>">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($stip['id']); ?>">
+                
+                <button class="btn btn-sm btn-primary" type="submit" name="sendCert">Send Stipend</button>
+                <button class="btn btn-sm btn-info" type="submit" name="genCert">Generate Certificate</button>
+            </form>
+        </td>
     </tr>
-    <?php } ?>
+<?php } ?>
+
       </tbody>
       </table>
                     </div>
