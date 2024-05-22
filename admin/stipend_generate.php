@@ -54,7 +54,6 @@ function generateTable($applicants, $statusFilter) {
                     <td class="column2" style="text-align: center; color: white;">Status</td> 
                     <td class="column2" style="text-align: center; color: white;">Grant</td> 
                     <td class="column2" style="text-align: center; color: white;">Date Processed</td>
-                    <td class="column2" style="text-align: center; color: white;">Reference Number</td>
                 </tr>
                 <tbody>';
     
@@ -71,7 +70,7 @@ function generateTable($applicants, $statusFilter) {
                         <td class="column2">' . $status . '</td>
                         <td class="column2">' . $appli['grants'] . '</td>
                         <td class="column2">' . $dateInsert . '</td>
-                        <td class="column2">' . $appli['reference_number'] . '</td>
+                    
                     </tr>';
             $num++;
         }
