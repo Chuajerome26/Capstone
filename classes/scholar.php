@@ -621,7 +621,7 @@ class Scholar{
     }
     public function getAllStipendGenerate($start, $end) {
         // Prepare the SQL query
-        $sql = "SELECT * FROM stipend WHERE date_start BETWEEN :start AND :end";
+        $sql = "SELECT * FROM stipend WHERE date_insert BETWEEN :start AND :end";
     
         // Get the database connection
         $connection = $this->database->getConnection();
