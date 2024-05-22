@@ -164,13 +164,27 @@ foreach ($stipend as $stip) {
         });
 
     const urlParams = new URLSearchParams(window.location.search);
-    const successValue = urlParams.get('success');
+    const successValue = urlParams.get('info');
     console.log(successValue);
 
-    if(successValue === "emailSent"){
+    if(successValue === "send"){
         Swal.fire({
             icon:'success',
-            title:'Email Sent!',
+            title:'Stipend Send!',
+            toast:true,
+            position:'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+    }else if(successValue === "generated"){
+        Swal.fire({
+            icon:'success',
+            title:'Certificate Generated!',
             toast:true,
             position:'top-end',
             showConfirmButton: false,
