@@ -104,9 +104,9 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
         }
 
         if($stip['certificate'] == ""){
-          $cert = "No Generated File";
+          $cert = 'Not Generated';
         }else{
-          $cert = $stip['certificate']; 
+          $cert = '<a href="../certificates/'.$cert.'" target="_blank">Generated</a>'; 
         }
     ?>
     <tr>
@@ -116,7 +116,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
       <td style="white-space: nowrap;"><?php echo $stip['scholar_type']; ?></td>
       <td style="white-space: nowrap;"><?php echo $stip['grants']; ?></td>
       <td style="white-space: nowrap;"><?php echo $status; ?></td>
-      <td style="white-space: nowrap;"><a href="../certificates/<?php echo $cert; ?>" target="_blank">Generated</a></td>
+      <td style="white-space: nowrap;"><?php echo $cert; ?></td>
       <td style="white-space: nowrap;">
       <form method="post" action="../admin/stipend.php">
         <input type="hidden" name="scholar_id" value="<?php echo $stip['scholar_id']; ?>">
