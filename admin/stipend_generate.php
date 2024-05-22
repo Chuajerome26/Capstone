@@ -65,14 +65,14 @@ function generateTable($applicants, $statusFilter) {
             $status = $stipend['status'] == 0 ? "To Send" : "Sent";
             
             $data .= '<tr>
-        //                 <td class="column1">' . $num . '</td>
-        //                 <td class="column2">' . $appli['full_name'] . '</td>
-        //                 <td class="column2">' . $appli['scholar_type'] . '</td>
-        //                 <td class="column2">' . $status . '</td>
-        //                 <td class="column2">' . $appli['grants'] . '</td>
-        //                 <td class="column2">' . $dateInsert . '</td>
-        //                 <td class="column2">' . $appli['reference_number'] . '</td>
-        //             </tr>';
+                        <td class="column1">' . $num . '</td>
+                        <td class="column2">' . $appli['full_name'] . '</td>
+                        <td class="column2">' . $appli['scholar_type'] . '</td>
+                        <td class="column2">' . $status . '</td>
+                        <td class="column2">' . $appli['grants'] . '</td>
+                        <td class="column2">' . $dateInsert . '</td>
+                        <td class="column2">' . $appli['reference_number'] . '</td>
+                    </tr>';
             $num++;
         }
     }
