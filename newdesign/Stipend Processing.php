@@ -114,18 +114,18 @@ foreach ($stipend as $stip) {
     ?>
     <tr>
         <th scope="row"><?php echo $index++; ?></th> <!-- Use the counter for row number -->
-        <td style="white-space: nowrap;"><?php echo htmlspecialchars($stip['scholar_id']); ?></td>
-        <td style="white-space: nowrap;"><?php echo htmlspecialchars($stip['full_name']); ?></td>
-        <td style="white-space: nowrap;"><?php echo htmlspecialchars($stip['scholar_type']); ?></td>
-        <td style="white-space: nowrap;"><?php echo htmlspecialchars($stip['grants']); ?></td>
+        <td style="white-space: nowrap;"><?php echo $stip['scholar_id']; ?></td>
+        <td style="white-space: nowrap;"><?php echo $stip['full_name']; ?></td>
+        <td style="white-space: nowrap;"><?php echo $stip['scholar_type']; ?></td>
+        <td style="white-space: nowrap;"><?php echo $stip['grants']; ?></td>
         <td style="white-space: nowrap;"><?php echo $status; ?></td>
         <td style="white-space: nowrap;"><?php echo $cert; ?></td>
         <td style="white-space: nowrap;">
             <form method="post" action="../admin/stipend.php">
-                <input type="hidden" name="scholar_id" value="<?php echo htmlspecialchars($stip['scholar_id']); ?>">
-                <input type="hidden" name="f_name" value="<?php echo htmlspecialchars($stip['full_name']); ?>">
-                <input type="hidden" name="grants" value="<?php echo htmlspecialchars($stip['grants']); ?>">
-                <input type="hidden" name="id" value="<?php echo htmlspecialchars($stip['id']); ?>">
+                <input type="hidden" name="scholar_id" value="<?php echo $stip['scholar_id']; ?>">
+                <input type="hidden" name="f_name" value="<?php echo $stip['full_name']; ?>">
+                <input type="hidden" name="grants" value="<?php echo $stip['grants']; ?>">
+                <input type="hidden" name="id" value="<?php echo $stip['id']; ?>">
                 
                 <button class="btn btn-sm btn-primary" type="submit" name="sendCert">Send Stipend</button>
                 <button class="btn btn-sm btn-info" type="submit" name="genCert">Generate Certificate</button>
