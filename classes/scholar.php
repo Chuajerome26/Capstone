@@ -593,6 +593,28 @@ class Scholar{
         $stmt = $this->database->getConnection()->query("SELECT * FROM scholar_info WHERE status = '0'")->fetchAll();
         return $stmt;
     }
+    
+    public function getAllApplicantsGenerate($start, $end){
+        // Prepare the SQL query
+        $sql = "SELECT * FROM scholar_info WHERE status = '0' AND application_date BETWEEN :start AND :end";
+    
+        // Get the database connection
+        $connection = $this->database->getConnection();
+    
+        // Prepare the statement
+        $stmt = $connection->prepare($sql);
+    
+        // Bind the parameters
+        $stmt->bindParam(':start', $start);
+        $stmt->bindParam(':end', $end);
+    
+        // Execute the query
+        $stmt->execute();
+    
+        // Fetch all results
+        return $stmt->fetchAll();
+    }
+    
     public function getAllStipend(){
         $stmt = $this->database->getConnection()->query("SELECT * FROM stipend")->fetchAll();
         return $stmt;

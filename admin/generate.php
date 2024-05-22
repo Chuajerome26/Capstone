@@ -6,7 +6,7 @@ require '../classes/scholar.php';
 $database = new Database();
 $scholar = new Scholar($database);
 // $scholarInfo = $scholar->getAllScholars();
-$applicantInfo = $scholar->getAllApplicants();
+// $applicantInfo = $scholar->getAllApplicantsGenerate();
 // $stipendInfo = $scholar->getAllStipend();
 
 $month = date('F');
@@ -18,6 +18,8 @@ $mdpf = new \Mpdf\Mpdf(['format' => 'LETTER']);
 $status123 = $_POST['type'];
 $startDate = $_POST['date_start'];
 $endDate = $_POST['date_end'];
+
+$applicantInfo = $scholar->getAllApplicantsGenerate($startDate, $endDate);
 
 if($status123 == 0){
     $status1 = "For Evaluation";
