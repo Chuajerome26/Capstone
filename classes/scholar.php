@@ -598,11 +598,9 @@ class Scholar{
         // Prepare the SQL query
         $sql = "SELECT * FROM scholar_info WHERE status = '0' AND date_apply BETWEEN :start AND :end";
     
-        // Get the database connection
-        $connection = $this->database->getConnection();
     
         // Prepare the statement
-        $stmt = $connection->prepare($sql);
+        $stmt = $this->database->getConnection()->prepare($sql);
     
         // Bind the parameters
         $stmt->bindParam(':start', $start);
@@ -621,25 +619,13 @@ class Scholar{
     }
     public function getAllStipendGenerate($start, $end) {
         // Prepare the SQL query
-        $sql = "SELECT * FROM stipend WHERE date_insert BETWEEN :start AND :end";
-    
-        // Get the database connection
-        $connection = $this->database->getConnection();
-    
-        // Prepare the statement
-        $stmt = $connection->prepare($sql);
-    
-        // Convert start and end dates to timestamps if they are not already
-        if (!is_numeric($start)) {
-            $start = strtotime($start);
-        }
-        if (!is_numeric($end)) {
-            $end = strtotime($end);
-        }
+        $sql = "SELECT * FROM stipend WHERE DATE(date_insert) BETWEEN :start AND :end";
+
+        $stmt = $this->database->getConnection()->prepare($sql);
     
         // Bind the parameters
-        $stmt->bindParam(':start', $start, PDO::PARAM_INT);
-        $stmt->bindParam(':end', $end, PDO::PARAM_INT);
+        $stmt->bindParam(':start', $start);
+        $stmt->bindParam(':end', $end);
     
         // Execute the query
         $stmt->execute();
