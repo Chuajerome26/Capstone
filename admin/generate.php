@@ -31,7 +31,7 @@ if($status123 == 0){
 
 function convertDate($date123) {
     // Create a DateTime object from the input date using the correct format 'Y-d-m'
-    $date = DateTime::createFromFormat('Y-d-m', $date123);
+    $date = DateTime::createFromFormat('Y-m-d', $date123);
 
     // Check if the date is valid
     if (!$date) {
@@ -137,7 +137,7 @@ $data = '
 
         // Applicants Table for Each Status
         // $data .= '<h2 style="margin-top: 0; text-align: center;">Applicants of ' . $month . '</h2>';
-        $data .= '<h3 style="margin-top: 0; text-align: center;">For '.$status1.'</h3>';
+        $data .= '<h3 style="margin-top: 0; text-align: center;">'.$status1.'</h3>';
         $data .= generateTable($applicantInfo, $status123);
 
         // // Stipend Disbursements Table
