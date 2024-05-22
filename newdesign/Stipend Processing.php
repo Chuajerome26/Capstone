@@ -52,7 +52,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
               <div class="card bg-transparent border-0">
 
 
-              < class="container-fluid">
+              <div class="container-fluid">
                     
                     <div class="hstack g-1 mb-1">
                     <div class="p-2"><p class="h4 mb-0 font-weight-bold text-gray-800">Stipend</p></div>
@@ -60,19 +60,18 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 4)) {
                                   
                               <!-- Academic is for Checkbox 1 -->
                               <!-- Economic is for Checkbox 2 -->
-
+                              <div class="container-fluid">
+                        <div class="row justify-content-end">
+                          <button type="submit" class=" btn  btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#generate">
+                              <i class="fas fa-download fa-sm text-white-50"></i> 
+                              <div class="d-none d-sm-inline-block">Generate Report</div>
+                          </button>
+                        </div>
+                    </div> 
                               
                           </div>
       
                           </div>
-                          
-                      <div class="container-fluid">
-                        <div class="row justify-content-end">
-              
-                 
-                        </div>
-                    </div> 
-      
 
                     <!-- Content Row -->
                     <div class="row">
@@ -145,6 +144,41 @@ foreach ($stipend as $stip) {
       </div>
       </div>
       </main>
+
+<div class="modal fade" id="generate" tabindex="-1" aria-labelledby="generate" aria-hidden="true">
+<div class="modal-dialog" style="max-width:500px;">
+    <div class="modal-content">
+    <div class="modal-header" style="background-color: #8DECB4;">
+    <h5 class="modal-title">Generate Report</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+    <div class="modal-body">
+    <form method="POST" action="../admin/stipend_generate.php">
+        <div class="form-group">
+            <label for="start-date">Start Date:</label>
+            <input type="date" class="form-control" id="start-date" name="date_start">
+        </div>
+        <div class="form-group">
+            <label for="end-date">End Date:</label>
+            <input type="date" class="form-control" id="end-date" name="date_end">
+        </div>
+        <div class="form-group">
+            <label for="type">Type:</label>
+            <select class="form-control" id="type" name="type">
+                <option value="0">To send</option>
+                <option value="1">Sent</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" id="submitRemarks" name="submit">Save changes</button>
+        </form>
+    </div>
+</div>
+</div>
+</div>
 
 
 

@@ -619,6 +619,35 @@ class Scholar{
         $stmt = $this->database->getConnection()->query("SELECT * FROM stipend")->fetchAll();
         return $stmt;
     }
+    public function getAllStipendGenerate($start, $end) {
+        // Prepare the SQL query
+        $sql = "SELECT * FROM stipend WHERE date_start BETWEEN :start AND :end";
+    
+        // Get the database connection
+        $connection = $this->database->getConnection();
+    
+        // Prepare the statement
+        $stmt = $connection->prepare($sql);
+    
+        // Convert start and end dates to timestamps if they are not already
+        if (!is_numeric($start)) {
+            $start = strtotime($start);
+        }
+        if (!is_numeric($end)) {
+            $end = strtotime($end);
+        }
+    
+        // Bind the parameters
+        $stmt->bindParam(':start', $start, PDO::PARAM_INT);
+        $stmt->bindParam(':end', $end, PDO::PARAM_INT);
+    
+        // Execute the query
+        $stmt->execute();
+    
+        // Fetch all results
+        return $stmt->fetchAll();
+    }
+    
     public function hasSubmittedRenewal($id, $ref) {
     $query = "SELECT renewal_status FROM scholar_renewal WHERE scholar_id = :scholar_id AND reference_number = :ref";
     $stmt = $this->database->getConnection()->prepare($query);
