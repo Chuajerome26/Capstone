@@ -72,14 +72,12 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
                         </form>
                         
                         </div>
-                        <!-- <div class="p-2">
-                            <form action="../functions/download-applicant.php" method="post">
-                                <button type="submit" class=" btn  btn-primary shadow-sm">
+                        <div class="p-2">
+                                <button type="submit" class=" btn  btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#generate">
                                     <i class="fas fa-download fa-sm text-white-50"></i> 
                                     <div class="d-none d-sm-inline-block">Generate Report</div>
                                 </button>
-                            </form>
-                        </div> -->
+                        </div>
                     </div>
     
 
@@ -176,7 +174,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] === 2 || $_SESSION['user_t
                                 $remarks = '<span class="badge bg-primary">For Evaluation</span>';
                             }
                             else if($s['application_status'] == 1){
-                                $remarks = '<span class="badge bg-warning">Interview</span>';
+                                $remarks = '<span class="badge bg-warning">For Interview</span>';
                             }else if($s['application_status'] == 2){
                                 $remarks = '<span class="badge bg-info">Done Interview</span>';
                             }
@@ -773,6 +771,38 @@ $appliData2 = $admin->getApplicants();
   </div>
 </div>
 <?php } ?>
+
+<div class="modal fade" id="generate" tabindex="-1" aria-labelledby="generate" aria-hidden="true">
+<div class="modal-dialog" style="max-width:500px;">
+    <div class="modal-content">
+    <div class="modal-header" style="background-color: #8DECB4;">
+    <h5 class="modal-title">Generate Report</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+    <div class="modal-body">
+    <form method="POST" action="../admin/generate.php">
+        <div class="form-group">
+            <label for="start-date">Start Date:</label>
+            <input type="date" class="form-control" id="start-date" name="date_start">
+        </div>
+        <div class="form-group">
+            <label for="end-date">End Date:</label>
+            <input type="date" class="form-control" id="end-date" name="date_end">
+        </div>
+        <div class="form-group">
+            <label for="type">Type:</label>
+            <select class="form-control" id="type" name="type">
+                <option value="0">For Evaluation</option>
+                <option value="1">For Interview</option>
+                <option value="2">Done Interview</option>
+            </select>
+        </div>
+    </form>
+    </div>
+</div>
+</div>
+</div>
 
 
 

@@ -71,12 +71,10 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] == 2 || $_SESSION['user_ty
 
                         
                         <div class="p-2">
-                            <form action="../admin/generate.php" method="post">
-                                <button type="submit" class=" btn  btn-primary shadow-sm">
+                                <!-- <button type="submit" class=" btn  btn-primary shadow-sm">
                                     <i class="fas fa-download fa-sm text-white-50"></i> 
                                     <div class="d-none d-sm-inline-block">Generate Report</div>
-                                </button>
-                            </form>
+                                </button> -->
                         </div>
                 </div>
 
