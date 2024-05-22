@@ -5,9 +5,9 @@ require '../classes/scholar.php';
 
 $database = new Database();
 $scholar = new Scholar($database);
-$scholarInfo = $scholar->getAllScholars();
+// $scholarInfo = $scholar->getAllScholars();
 $applicantInfo = $scholar->getAllApplicants();
-$stipendInfo = $scholar->getAllStipend();
+// $stipendInfo = $scholar->getAllStipend();
 
 $month = date('F');
 $date = date('Y-m-d');
@@ -15,23 +15,26 @@ $timestamp = time();
 
 $mdpf = new \Mpdf\Mpdf(['format' => 'LETTER']);
 
-$statusFilter = $_POST['status'];
+$status123 = $_POST['type'];
 $startDate = $_POST['date_start'];
 $endDate = $_POST['date_end'];
 
-if($statusFilter == 0){
+if($status123 == 0){
     $status1 = "For Evaluation";
-}elseif($statusFilter == 1){
+}elseif($status123 == 1){
     $status1 = "For Interview";
 }else{
     $status1 = "Done Interview";
 }
 
-function convertDate($date){
-    $dateString = $date;
+function convertDate($date123) {
+    // Create a DateTime object from the input date using the correct format 'Y-d-m'
+    $date = DateTime::createFromFormat('Y-d-m', $date123);
 
-    // Create a DateTime object from the input date
-    $date = DateTime::createFromFormat('m/d/Y', $dateString);
+    // Check if the date is valid
+    if (!$date) {
+        return "Invalid date format";
+    }
 
     // Format the date to "M d, Y"
     $formattedDate = $date->format('M d, Y');
@@ -133,7 +136,7 @@ $data = '
         // Applicants Table for Each Status
         // $data .= '<h2 style="margin-top: 0; text-align: center;">Applicants of ' . $month . '</h2>';
         $data .= '<h3 style="margin-top: 0; text-align: center;">For '.$status1.'</h3>';
-        $data .= generateTable($applicantInfo);
+        $data .= generateTable($applicantInfo, $status123);
 
         // // Stipend Disbursements Table
         // $data .= '<h2 style="margin-top: 0; text-align: center;">Stipend Disbursements of ' . $month . '</h2>';
