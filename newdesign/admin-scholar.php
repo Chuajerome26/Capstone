@@ -119,9 +119,7 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] == 2 || $_SESSION['user_ty
                                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#filesModal<?php echo $s["scholar_id"];?>">Files</button>
                                             </td>
                                             <td>
-                                                <form method="post" action="../functions/revoke.php">
-                                                    <input type="hidden" name="scholar_id" value="<?php echo $s['scholar_id']; ?>"> 
-                                                    <button type="submit" name="revoke" class="btn btn-sm btn-danger">Revoke</button>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#revokeModal" onclick="setScholarId('<?php echo $s['scholar_id']; ?>')">Revoke</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -139,7 +137,27 @@ if (isset($_SESSION['id']) && ($_SESSION['user_type'] == 2 || $_SESSION['user_ty
                         <!-- Pie Chart -->
                        
                     </div>
-
+        <!-- revoke modal -->
+    <div class="modal fade" id="revokeModal" tabindex="-1" aria-labelledby="revokeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="revokeModalLabel">Confirm Revoke</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to revoke this scholarship?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <form method="post" action="../functions/revoke.php" id="revokeForm">
+                    <input type="hidden" name="scholar_id" id="modalScholarId">
+                    <button type="submit" name="revoke" class="btn btn-danger">Revoke</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
                     <!-- Content Row -->
                     <div class="row">
                         <div class="card-body">
@@ -599,7 +617,14 @@ $appliData2 = $admin->getScholars();
     <!-- DataTables Bootstrap 5 JS -->
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
 
+    <script>
+    function setScholarId(scholarId) {
+        document.getElementById('modalScholarId').value = scholarId;
+    }
+</script>
     
     <script>
         $(document).ready(function() {
